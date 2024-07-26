@@ -60,3 +60,89 @@ fn proto_paths_from_dir<P: AsRef<Path>>(dir: P) -> anyhow::Result<Vec<PathBuf>> 
     }
     Ok(paths)
 }
+
+#[cfg(test)]
+mod tests {
+    use std::collections::BTreeMap;
+
+    struct Mod {
+        include: bool,
+        name: String,
+        sub_mods: BTreeMap<String, Mod>,
+    }
+
+    #[test]
+    fn test() {
+        let root = Mod {
+            include: false,
+            name: "google".to_owned(),
+            sub_mods: {
+                let mut mods = BTreeMap::new();
+                mods.insert(
+                    "firestore".to_owned(),
+                    Mod {
+                        include: true,
+                        name: "firestore".to_owned(),
+                        sub_mods: {
+                            let mut mods = BTreeMap::new();
+                            mods.insert(
+                                "v1".to_owned(),
+                                Mod {
+                                    include: true,
+                                    name: "v1".to_owned(),
+                                    sub_mods: BTreeMap::new(),
+                                },
+                            );
+                            mods.insert(
+                                "v1beta1".to_owned(),
+                                Mod {
+                                    include: true,
+                                    name: "v1beta1".to_owned(),
+                                    sub_mods: BTreeMap::new(),
+                                },
+                            );
+                            mods
+                        },
+                    },
+                );
+                mods
+            },
+        };
+
+        fn dfs(m: &Mod, c: &mut Vec<String>, s: &mut String) {
+            s.push_str(&format!("{}pub mod {} {{\n", "  ".repeat(c.len()), m.name));
+            c.push(m.name.clone());
+            if m.include {
+                s.push_str(&format!(
+                    "{}include!(\"{}.rs\");\n",
+                    "  ".repeat(c.len()),
+                    c.join("."),
+                ));
+            }
+            for sub_mod in m.sub_mods.values() {
+                dfs(sub_mod, c, s);
+            }
+            c.pop();
+            s.push_str(&format!("{}}}\n", "  ".repeat(c.len())));
+        }
+
+        let mut s = String::new();
+        let mut c = vec![];
+        dfs(&root, &mut c, &mut s);
+        assert_eq!(
+            s,
+            r#"pub mod google {
+  pub mod firestore {
+    include!("google.firestore.rs");
+    pub mod v1 {
+      include!("google.firestore.v1.rs");
+    }
+    pub mod v1beta1 {
+      include!("google.firestore.v1beta1.rs");
+    }
+  }
+}
+"#
+        );
+    }
+}
