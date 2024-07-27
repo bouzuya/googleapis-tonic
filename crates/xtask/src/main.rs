@@ -34,7 +34,7 @@ fn build() -> anyhow::Result<()> {
         .build_client(true)
         // don't generate server code
         .build_server(false)
-        .build_transport(true)
+        .build_transport(false)
         // use bytes::Bytes instead of Vec<u8>
         .bytes(["."])
         .out_dir(src_dir)
