@@ -510,6 +510,10 @@ pub mod kubernetes_config {
         /// cutback time.
         #[prost(message, optional, tag = "5")]
         pub stable_cutback_duration: ::core::option::Option<::prost_types::Duration>,
+        /// Optional. The label to use when selecting Pods for the Deployment and
+        /// Service resources. This label must already be present in both resources.
+        #[prost(string, tag = "6")]
+        pub pod_selector_label: ::prost::alloc::string::String,
     }
     /// Information about the Kubernetes Service networking configuration.
     #[allow(clippy::derive_partial_eq_without_eq)]
@@ -528,6 +532,10 @@ pub mod kubernetes_config {
         /// Deployment has on the cluster.
         #[prost(bool, tag = "3")]
         pub disable_pod_overprovisioning: bool,
+        /// Optional. The label to use when selecting Pods for the Deployment
+        /// resource. This label must already be present in the Deployment.
+        #[prost(string, tag = "4")]
+        pub pod_selector_label: ::prost::alloc::string::String,
     }
     /// The service definition configuration.
     #[allow(clippy::derive_partial_eq_without_eq)]
@@ -4445,14 +4453,6 @@ pub struct RepairRolloutRule {
     /// `[a-z](\[a-z0-9-\]{0,61}\[a-z0-9\])?`.
     #[prost(string, tag = "1")]
     pub id: ::prost::alloc::string::String,
-    /// Optional. Phases within which jobs are subject to automatic repair actions
-    /// on failure. Proceeds only after phase name matched any one in the list, or
-    /// for all phases if unspecified. This value must consist of lower-case
-    /// letters, numbers, and hyphens, start with a letter and end with a letter or
-    /// a number, and have a max length of 63 characters. In other words, it must
-    /// match the following regex: `^[a-z](\[a-z0-9-\]{0,61}\[a-z0-9\])?$`.
-    #[prost(string, repeated, tag = "2")]
-    pub source_phases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Optional. Jobs to repair. Proceeds only after job name matched any one in
     /// the list, or for all jobs if unspecified or empty. The phase that includes
     /// the job must match the phase ID specified in `source_phase`. This value
@@ -4462,60 +4462,9 @@ pub struct RepairRolloutRule {
     /// `^[a-z](\[a-z0-9-\]{0,61}\[a-z0-9\])?$`.
     #[prost(string, repeated, tag = "3")]
     pub jobs: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// Required. Defines the types of automatic repair actions for failed jobs.
-    #[prost(message, repeated, tag = "4")]
-    pub repair_modes: ::prost::alloc::vec::Vec<RepairMode>,
     /// Output only. Information around the state of the 'Automation' rule.
     #[prost(message, optional, tag = "6")]
     pub condition: ::core::option::Option<AutomationRuleCondition>,
-}
-/// Configuration of the repair action.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RepairMode {
-    /// The repair action to perform.
-    #[prost(oneof = "repair_mode::Mode", tags = "1, 2")]
-    pub mode: ::core::option::Option<repair_mode::Mode>,
-}
-/// Nested message and enum types in `RepairMode`.
-pub mod repair_mode {
-    /// The repair action to perform.
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Mode {
-        /// Optional. Retries a failed job.
-        #[prost(message, tag = "1")]
-        Retry(super::Retry),
-        /// Optional. Rolls back a `Rollout`.
-        #[prost(message, tag = "2")]
-        Rollback(super::Rollback),
-    }
-}
-/// Retries the failed job.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct Retry {
-    /// Required. Total number of retries. Retry is skipped if set to 0; The
-    /// minimum value is 1, and the maximum value is 10.
-    #[prost(int64, tag = "1")]
-    pub attempts: i64,
-    /// Optional. How long to wait for the first retry. Default is 0, and the
-    /// maximum value is 14d.
-    #[prost(message, optional, tag = "2")]
-    pub wait: ::core::option::Option<::prost_types::Duration>,
-    /// Optional. The pattern of how wait time will be increased. Default is
-    /// linear. Backoff mode will be ignored if `wait` is 0.
-    #[prost(enumeration = "BackoffMode", tag = "3")]
-    pub backoff_mode: i32,
-}
-/// Rolls back a `Rollout`.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Rollback {
-    /// Optional. The starting phase ID for the `Rollout`. If unspecified, the
-    /// `Rollout` will start in the stable phase.
-    #[prost(string, tag = "1")]
-    pub destination_phase: ::prost::alloc::string::String,
 }
 /// `AutomationRuleCondition` contains conditions relevant to an
 /// `Automation` rule.
@@ -4875,24 +4824,30 @@ pub struct RepairRolloutOperation {
     /// Output only. The name of the rollout that initiates the `AutomationRun`.
     #[prost(string, tag = "1")]
     pub rollout: ::prost::alloc::string::String,
-    /// Output only. The index of the current repair action in the repair sequence.
-    #[prost(int64, tag = "2")]
-    pub current_repair_mode_index: i64,
     /// Output only. Records of the repair attempts. Each repair phase may have
     /// multiple retry attempts or single rollback attempt.
     #[prost(message, repeated, tag = "3")]
     pub repair_phases: ::prost::alloc::vec::Vec<RepairPhase>,
+    /// Output only. The phase ID of the phase that includes the job being
+    /// repaired.
+    #[prost(string, tag = "4")]
+    pub phase_id: ::prost::alloc::string::String,
+    /// Output only. The job ID for the Job to repair.
+    #[prost(string, tag = "5")]
+    pub job_id: ::prost::alloc::string::String,
 }
 /// RepairPhase tracks the repair attempts that have been made for
 /// each `RepairPhaseConfig` specified in the `Automation` resource.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RepairPhase {
+    /// The `RepairPhase` type and the information for that type.
     #[prost(oneof = "repair_phase::RepairPhase", tags = "1, 2")]
     pub repair_phase: ::core::option::Option<repair_phase::RepairPhase>,
 }
 /// Nested message and enum types in `RepairPhase`.
 pub mod repair_phase {
+    /// The `RepairPhase` type and the information for that type.
     #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum RepairPhase {
@@ -4916,12 +4871,6 @@ pub struct RetryPhase {
     /// calculated.
     #[prost(enumeration = "BackoffMode", tag = "2")]
     pub backoff_mode: i32,
-    /// Output only. The phase ID of the phase that includes the job being retried.
-    #[prost(string, tag = "3")]
-    pub phase_id: ::prost::alloc::string::String,
-    /// Output only. The job ID for the Job to retry.
-    #[prost(string, tag = "4")]
-    pub job_id: ::prost::alloc::string::String,
     /// Output only. Detail of a retry action.
     #[prost(message, repeated, tag = "5")]
     pub attempts: ::prost::alloc::vec::Vec<RetryAttempt>,
@@ -5115,8 +5064,8 @@ pub enum RepairState {
     InProgress = 4,
     /// The `repair` action is pending.
     Pending = 5,
-    /// The `repair` action was skipped.
-    Skipped = 6,
+    /// The `repair` action was aborted.
+    Aborted = 7,
 }
 impl RepairState {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -5131,7 +5080,7 @@ impl RepairState {
             RepairState::Failed => "REPAIR_STATE_FAILED",
             RepairState::InProgress => "REPAIR_STATE_IN_PROGRESS",
             RepairState::Pending => "REPAIR_STATE_PENDING",
-            RepairState::Skipped => "REPAIR_STATE_SKIPPED",
+            RepairState::Aborted => "REPAIR_STATE_ABORTED",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -5143,7 +5092,7 @@ impl RepairState {
             "REPAIR_STATE_FAILED" => Some(Self::Failed),
             "REPAIR_STATE_IN_PROGRESS" => Some(Self::InProgress),
             "REPAIR_STATE_PENDING" => Some(Self::Pending),
-            "REPAIR_STATE_SKIPPED" => Some(Self::Skipped),
+            "REPAIR_STATE_ABORTED" => Some(Self::Aborted),
             _ => None,
         }
     }

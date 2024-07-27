@@ -2006,6 +2006,11 @@ pub mod google {
                 include!("google.maps.aerialview.v1.rs");
             }
         }
+        pub mod areainsights {
+            pub mod v1 {
+                include!("google.maps.areainsights.v1.rs");
+            }
+        }
         pub mod mapsplatformdatasets {
             pub mod v1 {
                 include!("google.maps.mapsplatformdatasets.v1.rs");

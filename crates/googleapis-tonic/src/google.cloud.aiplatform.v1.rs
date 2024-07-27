@@ -5732,9 +5732,8 @@ pub struct FunctionResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Retrieval {
-    /// Optional. Disable using the result from this tool in detecting grounding
-    /// attribution. This does not affect how the result is given to the model for
-    /// generation.
+    /// Optional. Deprecated. This option is no longer supported.
+    #[deprecated]
     #[prost(bool, tag = "3")]
     pub disable_attribution: bool,
     /// The source of the retrieval.
@@ -6277,6 +6276,9 @@ pub struct Candidate {
     /// Output only. Content parts of the candidate.
     #[prost(message, optional, tag = "2")]
     pub content: ::core::option::Option<Content>,
+    /// Output only. Confidence score of the candidate.
+    #[prost(double, tag = "8")]
+    pub score: f64,
     /// Output only. The reason why the model stopped generating tokens.
     /// If empty, the model has not stopped generating the tokens.
     #[prost(enumeration = "candidate::FinishReason", tag = "3")]
@@ -6378,6 +6380,88 @@ pub mod candidate {
         }
     }
 }
+/// Segment of the content.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Segment {
+    /// Output only. The index of a Part object within its parent Content object.
+    #[prost(int32, tag = "1")]
+    pub part_index: i32,
+    /// Output only. Start index in the given Part, measured in bytes. Offset from
+    /// the start of the Part, inclusive, starting at zero.
+    #[prost(int32, tag = "2")]
+    pub start_index: i32,
+    /// Output only. End index in the given Part, measured in bytes. Offset from
+    /// the start of the Part, exclusive, starting at zero.
+    #[prost(int32, tag = "3")]
+    pub end_index: i32,
+    /// Output only. The text corresponding to the segment from the response.
+    #[prost(string, tag = "4")]
+    pub text: ::prost::alloc::string::String,
+}
+/// Grounding chunk.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GroundingChunk {
+    /// Chunk type.
+    #[prost(oneof = "grounding_chunk::ChunkType", tags = "1, 2")]
+    pub chunk_type: ::core::option::Option<grounding_chunk::ChunkType>,
+}
+/// Nested message and enum types in `GroundingChunk`.
+pub mod grounding_chunk {
+    /// Chunk from the web.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Web {
+        /// URI reference of the chunk.
+        #[prost(string, optional, tag = "1")]
+        pub uri: ::core::option::Option<::prost::alloc::string::String>,
+        /// Title of the chunk.
+        #[prost(string, optional, tag = "2")]
+        pub title: ::core::option::Option<::prost::alloc::string::String>,
+    }
+    /// Chunk from context retrieved by the retrieval tools.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct RetrievedContext {
+        /// URI reference of the attribution.
+        #[prost(string, optional, tag = "1")]
+        pub uri: ::core::option::Option<::prost::alloc::string::String>,
+        /// Title of the attribution.
+        #[prost(string, optional, tag = "2")]
+        pub title: ::core::option::Option<::prost::alloc::string::String>,
+    }
+    /// Chunk type.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ChunkType {
+        /// Grounding chunk from the web.
+        #[prost(message, tag = "1")]
+        Web(Web),
+        /// Grounding chunk from context retrieved by the retrieval tools.
+        #[prost(message, tag = "2")]
+        RetrievedContext(RetrievedContext),
+    }
+}
+/// Grounding support.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GroundingSupport {
+    /// Segment of the content this support belongs to.
+    #[prost(message, optional, tag = "1")]
+    pub segment: ::core::option::Option<Segment>,
+    /// A list of indices (into 'grounding_chunk') specifying the
+    /// citations associated with the claim. For instance \[1,3,4\] means
+    /// that grounding_chunk\[1\], grounding_chunk\[3\],
+    /// grounding_chunk\[4\] are the retrieved content attributed to the claim.
+    #[prost(int32, repeated, tag = "2")]
+    pub grounding_chunk_indices: ::prost::alloc::vec::Vec<i32>,
+    /// Confidence score of the support references. Ranges from 0 to 1. 1 is the
+    /// most confident. This list must have the same size as the
+    /// grounding_chunk_indices.
+    #[prost(float, repeated, tag = "3")]
+    pub confidence_scores: ::prost::alloc::vec::Vec<f32>,
+}
 /// Metadata returned to client when grounding is enabled.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -6388,6 +6472,12 @@ pub struct GroundingMetadata {
     /// Optional. Google search entry for the following-up web searches.
     #[prost(message, optional, tag = "4")]
     pub search_entry_point: ::core::option::Option<SearchEntryPoint>,
+    /// List of supporting references retrieved from specified grounding source.
+    #[prost(message, repeated, tag = "5")]
+    pub grounding_chunks: ::prost::alloc::vec::Vec<GroundingChunk>,
+    /// Optional. List of grounding support.
+    #[prost(message, repeated, tag = "6")]
+    pub grounding_supports: ::prost::alloc::vec::Vec<GroundingSupport>,
 }
 /// Google search entry point.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -7004,18 +7094,31 @@ pub struct CountTokensRequest {
     /// `projects/{project}/locations/{location}/endpoints/{endpoint}`
     #[prost(string, tag = "1")]
     pub endpoint: ::prost::alloc::string::String,
-    /// Required. The name of the publisher model requested to serve the
+    /// Optional. The name of the publisher model requested to serve the
     /// prediction. Format:
     /// `projects/{project}/locations/{location}/publishers/*/models/*`
     #[prost(string, tag = "3")]
     pub model: ::prost::alloc::string::String,
-    /// Required. The instances that are the input to token counting call.
+    /// Optional. The instances that are the input to token counting call.
     /// Schema is identical to the prediction schema of the underlying model.
     #[prost(message, repeated, tag = "2")]
     pub instances: ::prost::alloc::vec::Vec<::prost_types::Value>,
-    /// Required. Input content.
+    /// Optional. Input content.
     #[prost(message, repeated, tag = "4")]
     pub contents: ::prost::alloc::vec::Vec<Content>,
+    /// Optional. The user provided system instructions for the model.
+    /// Note: only text should be used in parts and content in each part will be in
+    /// a separate paragraph.
+    #[prost(message, optional, tag = "5")]
+    pub system_instruction: ::core::option::Option<Content>,
+    /// Optional. A list of `Tools` the model may use to generate the next
+    /// response.
+    ///
+    /// A `Tool` is a piece of code that enables the system to interact with
+    /// external systems to perform an action, or set of actions, outside of
+    /// knowledge and scope of the model.
+    #[prost(message, repeated, tag = "6")]
+    pub tools: ::prost::alloc::vec::Vec<Tool>,
 }
 /// Response message for [PredictionService.CountTokens][].
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -9013,7 +9116,7 @@ impl ModelDeploymentMonitoringObjectiveType {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dataset {
-    /// Output only. The resource name of the Dataset.
+    /// Output only. Identifier. The resource name of the Dataset.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Required. The user-defined name of the Dataset.
@@ -9834,6 +9937,27 @@ pub struct Endpoint {
     pub predict_request_response_logging_config: ::core::option::Option<
         PredictRequestResponseLoggingConfig,
     >,
+    /// If true, the endpoint will be exposed through a dedicated
+    /// DNS \[Endpoint.dedicated_endpoint_dns\]. Your request to the dedicated DNS
+    /// will be isolated from other users' traffic and will have better performance
+    /// and reliability.
+    /// Note: Once you enabled dedicated endpoint, you won't be able to send
+    /// request to the shared DNS {region}-aiplatform.googleapis.com. The
+    /// limitation will be removed soon.
+    #[prost(bool, tag = "24")]
+    pub dedicated_endpoint_enabled: bool,
+    /// Output only. DNS of the dedicated endpoint. Will only be populated if
+    /// dedicated_endpoint_enabled is true.
+    /// Format:
+    /// `<https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.>
+    #[prost(string, tag = "25")]
+    pub dedicated_endpoint_dns: ::prost::alloc::string::String,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "27")]
+    pub satisfies_pzs: bool,
+    /// Output only. Reserved for future use.
+    #[prost(bool, tag = "28")]
+    pub satisfies_pzi: bool,
 }
 /// A deployment of a Model. Endpoints contain one or more DeployedModels.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -11742,10 +11866,11 @@ pub struct UpdateFeatureOnlineStoreRequest {
     ///
     /// Updatable fields:
     ///
-    ///    * `big_query_source`
-    ///    * `bigtable`
     ///    * `labels`
-    ///    * `sync_config`
+    ///    * `description`
+    ///    * `bigtable`
+    ///    * `bigtable.auto_scaling`
+    ///    * `bigtable.enable_multi_region_replica`
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -11897,7 +12022,14 @@ pub struct UpdateFeatureViewRequest {
     /// Updatable fields:
     ///
     ///    * `labels`
-    ///    * `serviceAgentType`
+    ///    * `service_agent_type`
+    ///    * `big_query_source`
+    ///    * `big_query_source.uri`
+    ///    * `big_query_source.entity_id_columns`
+    ///    * `feature_registry_source`
+    ///    * `feature_registry_source.feature_groups`
+    ///    * `sync_config`
+    ///    * `sync_config.cron`
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -12608,6 +12740,153 @@ pub mod model_evaluation {
         pub explanation_spec: ::core::option::Option<super::ExplanationSpec>,
     }
 }
+/// NotebookExecutionJob represents an instance of a notebook execution.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NotebookExecutionJob {
+    /// Output only. The resource name of this NotebookExecutionJob. Format:
+    /// `projects/{project_id}/locations/{location}/notebookExecutionJobs/{job_id}`
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// The display name of the NotebookExecutionJob. The name can be up to 128
+    /// characters long and can consist of any UTF-8 characters.
+    #[prost(string, tag = "2")]
+    pub display_name: ::prost::alloc::string::String,
+    /// Max running time of the execution job in seconds (default 86400s / 24 hrs).
+    #[prost(message, optional, tag = "5")]
+    pub execution_timeout: ::core::option::Option<::prost_types::Duration>,
+    /// Output only. The Schedule resource name if this job is triggered by one.
+    /// Format:
+    /// `projects/{project_id}/locations/{location}/schedules/{schedule_id}`
+    #[prost(string, tag = "6")]
+    pub schedule_resource_name: ::prost::alloc::string::String,
+    /// Output only. The state of the NotebookExecutionJob.
+    #[prost(enumeration = "JobState", tag = "10")]
+    pub job_state: i32,
+    /// Output only. Populated when the NotebookExecutionJob is completed. When
+    /// there is an error during notebook execution, the error details are
+    /// populated.
+    #[prost(message, optional, tag = "11")]
+    pub status: ::core::option::Option<super::super::super::rpc::Status>,
+    /// Output only. Timestamp when this NotebookExecutionJob was created.
+    #[prost(message, optional, tag = "12")]
+    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// Output only. Timestamp when this NotebookExecutionJob was most recently
+    /// updated.
+    #[prost(message, optional, tag = "13")]
+    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+    /// The labels with user-defined metadata to organize NotebookExecutionJobs.
+    ///
+    /// Label keys and values can be no longer than 64 characters
+    /// (Unicode codepoints), can only contain lowercase letters, numeric
+    /// characters, underscores and dashes. International characters are allowed.
+    ///
+    /// See <https://goo.gl/xmQnxf> for more information and examples of labels.
+    /// System reserved label keys are prefixed with "aiplatform.googleapis.com/"
+    /// and are immutable.
+    #[prost(btree_map = "string, string", tag = "19")]
+    pub labels: ::prost::alloc::collections::BTreeMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// The input notebook.
+    #[prost(oneof = "notebook_execution_job::NotebookSource", tags = "3, 4, 17")]
+    pub notebook_source: ::core::option::Option<notebook_execution_job::NotebookSource>,
+    /// The compute config to use for an execution job.
+    #[prost(oneof = "notebook_execution_job::EnvironmentSpec", tags = "14")]
+    pub environment_spec: ::core::option::Option<
+        notebook_execution_job::EnvironmentSpec,
+    >,
+    /// The location to store the notebook execution result.
+    #[prost(oneof = "notebook_execution_job::ExecutionSink", tags = "8")]
+    pub execution_sink: ::core::option::Option<notebook_execution_job::ExecutionSink>,
+    /// The identity to run the execution as.
+    #[prost(oneof = "notebook_execution_job::ExecutionIdentity", tags = "9, 18")]
+    pub execution_identity: ::core::option::Option<
+        notebook_execution_job::ExecutionIdentity,
+    >,
+}
+/// Nested message and enum types in `NotebookExecutionJob`.
+pub mod notebook_execution_job {
+    /// The Dataform Repository containing the input notebook.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DataformRepositorySource {
+        /// The resource name of the Dataform Repository. Format:
+        /// `projects/{project_id}/locations/{location}/repositories/{repository_id}`
+        #[prost(string, tag = "1")]
+        pub dataform_repository_resource_name: ::prost::alloc::string::String,
+        /// The commit SHA to read repository with. If unset, the file will be read
+        /// at HEAD.
+        #[prost(string, tag = "2")]
+        pub commit_sha: ::prost::alloc::string::String,
+    }
+    /// The Cloud Storage uri for the input notebook.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GcsNotebookSource {
+        /// The Cloud Storage uri pointing to the ipynb file. Format:
+        /// `gs://bucket/notebook_file.ipynb`
+        #[prost(string, tag = "1")]
+        pub uri: ::prost::alloc::string::String,
+        /// The version of the Cloud Storage object to read. If unset, the current
+        /// version of the object is read. See
+        /// <https://cloud.google.com/storage/docs/metadata#generation-number.>
+        #[prost(string, tag = "2")]
+        pub generation: ::prost::alloc::string::String,
+    }
+    /// The content of the input notebook in ipynb format.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct DirectNotebookSource {
+        /// The base64-encoded contents of the input notebook file.
+        #[prost(bytes = "bytes", tag = "1")]
+        pub content: ::prost::bytes::Bytes,
+    }
+    /// The input notebook.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum NotebookSource {
+        /// The Dataform Repository pointing to a single file notebook repository.
+        #[prost(message, tag = "3")]
+        DataformRepositorySource(DataformRepositorySource),
+        /// The Cloud Storage url pointing to the ipynb file. Format:
+        /// `gs://bucket/notebook_file.ipynb`
+        #[prost(message, tag = "4")]
+        GcsNotebookSource(GcsNotebookSource),
+        /// The contents of an input notebook file.
+        #[prost(message, tag = "17")]
+        DirectNotebookSource(DirectNotebookSource),
+    }
+    /// The compute config to use for an execution job.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum EnvironmentSpec {
+        /// The NotebookRuntimeTemplate to source compute configuration from.
+        #[prost(string, tag = "14")]
+        NotebookRuntimeTemplateResourceName(::prost::alloc::string::String),
+    }
+    /// The location to store the notebook execution result.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ExecutionSink {
+        /// The Cloud Storage location to upload the result to. Format:
+        /// `gs://bucket-name`
+        #[prost(string, tag = "8")]
+        GcsOutputUri(::prost::alloc::string::String),
+    }
+    /// The identity to run the execution as.
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum ExecutionIdentity {
+        /// The user email to run the execution as. Only supported by Colab runtimes.
+        #[prost(string, tag = "9")]
+        ExecutionUser(::prost::alloc::string::String),
+        /// The service account to run the execution as.
+        #[prost(string, tag = "18")]
+        ServiceAccount(::prost::alloc::string::String),
+    }
+}
 /// Request message for
 /// [NotebookService.CreateNotebookRuntimeTemplate][google.cloud.aiplatform.v1.NotebookService.CreateNotebookRuntimeTemplate].
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -12950,6 +13229,148 @@ pub struct StartNotebookRuntimeOperationMetadata {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StartNotebookRuntimeResponse {}
+/// Request message for \[NotebookService.CreateNotebookExecutionJob\]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateNotebookExecutionJobRequest {
+    /// Required. The resource name of the Location to create the
+    /// NotebookExecutionJob. Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Required. The NotebookExecutionJob to create.
+    #[prost(message, optional, tag = "2")]
+    pub notebook_execution_job: ::core::option::Option<NotebookExecutionJob>,
+    /// Optional. User specified ID for the NotebookExecutionJob.
+    #[prost(string, tag = "3")]
+    pub notebook_execution_job_id: ::prost::alloc::string::String,
+}
+/// Metadata information for
+/// [NotebookService.CreateNotebookExecutionJob][google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob].
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateNotebookExecutionJobOperationMetadata {
+    /// The operation generic information.
+    #[prost(message, optional, tag = "1")]
+    pub generic_metadata: ::core::option::Option<GenericOperationMetadata>,
+    /// A human-readable message that shows the intermediate progress details of
+    /// NotebookRuntime.
+    #[prost(string, tag = "2")]
+    pub progress_message: ::prost::alloc::string::String,
+}
+/// Request message for \[NotebookService.GetNotebookExecutionJob\]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetNotebookExecutionJobRequest {
+    /// Required. The name of the NotebookExecutionJob resource.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional. The NotebookExecutionJob view. Defaults to BASIC.
+    #[prost(enumeration = "NotebookExecutionJobView", tag = "6")]
+    pub view: i32,
+}
+/// Request message for \[NotebookService.ListNotebookExecutionJobs\]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListNotebookExecutionJobsRequest {
+    /// Required. The resource name of the Location from which to list the
+    /// NotebookExecutionJobs.
+    /// Format: `projects/{project}/locations/{location}`
+    #[prost(string, tag = "1")]
+    pub parent: ::prost::alloc::string::String,
+    /// Optional. An expression for filtering the results of the request. For field
+    /// names both snake_case and camelCase are supported.
+    ///
+    ///    * `notebookExecutionJob` supports = and !=. `notebookExecutionJob`
+    ///    represents the NotebookExecutionJob ID.
+    ///    * `displayName` supports = and != and regex.
+    ///    * `schedule` supports = and != and regex.
+    ///
+    /// Some examples:
+    ///    * `notebookExecutionJob="123"`
+    ///    * `notebookExecutionJob="my-execution-job"`
+    ///    * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"`
+    #[prost(string, tag = "2")]
+    pub filter: ::prost::alloc::string::String,
+    /// Optional. The standard list page size.
+    #[prost(int32, tag = "3")]
+    pub page_size: i32,
+    /// Optional. The standard list page token.
+    /// Typically obtained via
+    /// [ListNotebookExecutionJobs.next_page_token][] of the previous
+    /// [NotebookService.ListNotebookExecutionJobs][google.cloud.aiplatform.v1.NotebookService.ListNotebookExecutionJobs]
+    /// call.
+    #[prost(string, tag = "4")]
+    pub page_token: ::prost::alloc::string::String,
+    /// Optional. A comma-separated list of fields to order by, sorted in ascending
+    /// order. Use "desc" after a field name for descending. Supported fields:
+    ///
+    ///    * `display_name`
+    ///    * `create_time`
+    ///    * `update_time`
+    ///
+    /// Example: `display_name, create_time desc`.
+    #[prost(string, tag = "5")]
+    pub order_by: ::prost::alloc::string::String,
+    /// Optional. The NotebookExecutionJob view. Defaults to BASIC.
+    #[prost(enumeration = "NotebookExecutionJobView", tag = "6")]
+    pub view: i32,
+}
+/// Response message for \[NotebookService.CreateNotebookExecutionJob\]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListNotebookExecutionJobsResponse {
+    /// List of NotebookExecutionJobs in the requested page.
+    #[prost(message, repeated, tag = "1")]
+    pub notebook_execution_jobs: ::prost::alloc::vec::Vec<NotebookExecutionJob>,
+    /// A token to retrieve next page of results.
+    /// Pass to [ListNotebookExecutionJobs.page_token][] to obtain that
+    /// page.
+    #[prost(string, tag = "2")]
+    pub next_page_token: ::prost::alloc::string::String,
+}
+/// Request message for \[NotebookService.DeleteNotebookExecutionJob\]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteNotebookExecutionJobRequest {
+    /// Required. The name of the NotebookExecutionJob resource to be deleted.
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+}
+/// Views for Get/List NotebookExecutionJob
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum NotebookExecutionJobView {
+    /// When unspecified, the API defaults to the BASIC view.
+    Unspecified = 0,
+    /// Includes all fields except for direct notebook inputs.
+    Basic = 1,
+    /// Includes all fields.
+    Full = 2,
+}
+impl NotebookExecutionJobView {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            NotebookExecutionJobView::Unspecified => {
+                "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED"
+            }
+            NotebookExecutionJobView::Basic => "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
+            NotebookExecutionJobView::Full => "NOTEBOOK_EXECUTION_JOB_VIEW_FULL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+            "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC" => Some(Self::Basic),
+            "NOTEBOOK_EXECUTION_JOB_VIEW_FULL" => Some(Self::Full),
+            _ => None,
+        }
+    }
+}
 /// Generated client implementations.
 pub mod notebook_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -13363,6 +13784,130 @@ pub mod notebook_service_client {
                     GrpcMethod::new(
                         "google.cloud.aiplatform.v1.NotebookService",
                         "StartNotebookRuntime",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a NotebookExecutionJob.
+        pub async fn create_notebook_execution_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateNotebookExecutionJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.NotebookService/CreateNotebookExecutionJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "CreateNotebookExecutionJob",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Gets a NotebookExecutionJob.
+        pub async fn get_notebook_execution_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetNotebookExecutionJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::NotebookExecutionJob>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.NotebookService/GetNotebookExecutionJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "GetNotebookExecutionJob",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Lists NotebookExecutionJobs in a Location.
+        pub async fn list_notebook_execution_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListNotebookExecutionJobsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListNotebookExecutionJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.NotebookService/ListNotebookExecutionJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "ListNotebookExecutionJobs",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a NotebookExecutionJob.
+        pub async fn delete_notebook_execution_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteNotebookExecutionJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::super::super::super::longrunning::Operation>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/google.cloud.aiplatform.v1.NotebookService/DeleteNotebookExecutionJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "google.cloud.aiplatform.v1.NotebookService",
+                        "DeleteNotebookExecutionJob",
                     ),
                 );
             self.inner.unary(req, path, codec).await
@@ -15717,11 +16262,64 @@ pub struct Scheduling {
     /// resilient to workers leaving and joining a job.
     #[prost(bool, tag = "3")]
     pub restart_job_on_worker_restart: bool,
+    /// Optional. This determines which type of scheduling strategy to use.
+    #[prost(enumeration = "scheduling::Strategy", tag = "4")]
+    pub strategy: i32,
     /// Optional. Indicates if the job should retry for internal errors after the
     /// job starts running. If true, overrides
     /// `Scheduling.restart_job_on_worker_restart` to false.
     #[prost(bool, tag = "5")]
     pub disable_retries: bool,
+}
+/// Nested message and enum types in `Scheduling`.
+pub mod scheduling {
+    /// Optional. This determines which type of scheduling strategy to use. Right
+    /// now users have two options such as ON_DEMAND which will use regular on
+    /// demand resources to schedule the job, the other is LOW_COST which would
+    /// leverage spot resources alongwith regular resources to schedule
+    /// the job.
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Strategy {
+        /// Strategy will default to ON_DEMAND.
+        Unspecified = 0,
+        /// Regular on-demand provisioning strategy.
+        OnDemand = 1,
+        /// Low cost by making potential use of spot resources.
+        LowCost = 2,
+    }
+    impl Strategy {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Strategy::Unspecified => "STRATEGY_UNSPECIFIED",
+                Strategy::OnDemand => "ON_DEMAND",
+                Strategy::LowCost => "LOW_COST",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STRATEGY_UNSPECIFIED" => Some(Self::Unspecified),
+                "ON_DEMAND" => Some(Self::OnDemand),
+                "LOW_COST" => Some(Self::LowCost),
+                _ => None,
+            }
+        }
+    }
 }
 /// DataLabelingJob is used to trigger a human labeling job on unlabeled data
 /// from the following Dataset:
@@ -16186,7 +16784,6 @@ pub mod trial {
         }
     }
 }
-/// Next ID: 3
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrialContext {
@@ -23739,12 +24336,16 @@ pub struct GetPublisherModelRequest {
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Optional. The IETF BCP-47 language code representing the language in which
-    /// the publisher model's text information should be written in (see go/bcp47).
+    /// the publisher model's text information should be written in.
     #[prost(string, tag = "2")]
     pub language_code: ::prost::alloc::string::String,
     /// Optional. PublisherModel view specifying which fields to read.
     #[prost(enumeration = "PublisherModelView", tag = "3")]
     pub view: i32,
+    /// Optional. Boolean indicates whether the requested model is a Hugging Face
+    /// model.
+    #[prost(bool, tag = "5")]
+    pub is_hugging_face_model: bool,
 }
 /// View enumeration of PublisherModel.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -23897,7 +24498,7 @@ pub mod model_garden_service_client {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatasetVersion {
-    /// Output only. The resource name of the DatasetVersion.
+    /// Output only. Identifier. The resource name of the DatasetVersion.
     #[prost(string, tag = "1")]
     pub name: ::prost::alloc::string::String,
     /// Output only. Timestamp when this DatasetVersion was created.
@@ -28068,7 +28669,8 @@ pub struct UpdateFeatureRequest {
     ///
     ///    * `description`
     ///    * `labels`
-    ///    * `disable_monitoring` (Not supported for FeatureRegistry Feature)
+    ///    * `disable_monitoring` (Not supported for FeatureRegistryService Feature)
+    ///    * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -29204,6 +29806,9 @@ pub struct UpdateFeatureGroupRequest {
     /// Updatable fields:
     ///
     ///    * `labels`
+    ///    * `description`
+    ///    * `big_query`
+    ///    * `big_query.entity_id_columns`
     #[prost(message, optional, tag = "2")]
     pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
@@ -30768,6 +31373,9 @@ pub struct RaySpec {
     /// Optional. Ray metrics configurations.
     #[prost(message, optional, tag = "8")]
     pub ray_metric_spec: ::core::option::Option<RayMetricSpec>,
+    /// Optional. OSS Ray logging configurations.
+    #[prost(message, optional, tag = "10")]
+    pub ray_logs_spec: ::core::option::Option<RayLogsSpec>,
 }
 /// Persistent Cluster runtime information as output
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -30814,6 +31422,14 @@ pub struct ServiceAccountSpec {
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RayMetricSpec {
     /// Optional. Flag to disable the Ray metrics collection.
+    #[prost(bool, tag = "1")]
+    pub disabled: bool,
+}
+/// Configuration for the Ray OSS Logs.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RayLogsSpec {
+    /// Optional. Flag to disable the export of Ray OSS logs to Cloud Logging.
     #[prost(bool, tag = "1")]
     pub disabled: bool,
 }
@@ -30935,6 +31551,9 @@ pub struct SupervisedTuningDatasetDistribution {
     /// Output only. Sum of a given population of values.
     #[prost(int64, tag = "1")]
     pub sum: i64,
+    /// Output only. Sum of a given population of values that are billable.
+    #[prost(int64, tag = "9")]
+    pub billable_sum: i64,
     /// Output only. The minimum of the population values.
     #[prost(double, tag = "2")]
     pub min: f64,
@@ -30988,8 +31607,12 @@ pub struct SupervisedTuningDataStats {
     #[prost(int64, tag = "2")]
     pub total_tuning_character_count: i64,
     /// Output only. Number of billable characters in the tuning dataset.
+    #[deprecated]
     #[prost(int64, tag = "3")]
     pub total_billable_character_count: i64,
+    /// Output only. Number of billable tokens in the tuning dataset.
+    #[prost(int64, tag = "9")]
+    pub total_billable_token_count: i64,
     /// Output only. Number of tuning steps for this Tuning Job.
     #[prost(int64, tag = "4")]
     pub tuning_step_count: i64,
@@ -32251,6 +32874,9 @@ pub struct NearestNeighborQuery {
     /// Optional. The list of string filters.
     #[prost(message, repeated, tag = "4")]
     pub string_filters: ::prost::alloc::vec::Vec<nearest_neighbor_query::StringFilter>,
+    /// Optional. The list of numeric filters.
+    #[prost(message, repeated, tag = "8")]
+    pub numeric_filters: ::prost::alloc::vec::Vec<nearest_neighbor_query::NumericFilter>,
     /// Optional. Crowding is a constraint on a neighbor list produced by nearest
     /// neighbor search requiring that no more than
     /// sper_crowding_attribute_neighbor_count of the k neighbors returned have the
@@ -32293,6 +32919,107 @@ pub mod nearest_neighbor_query {
         /// Optional. The denied tokens.
         #[prost(string, repeated, tag = "3")]
         pub deny_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    }
+    /// Numeric filter is used to search a subset of the entities by using boolean
+    /// rules on numeric columns.
+    /// For example:
+    /// Database Point 0: {name: “a” value_int: 42} {name: “b” value_float: 1.0}
+    /// Database Point 1:  {name: “a” value_int: 10} {name: “b” value_float: 2.0}
+    /// Database Point 2: {name: “a” value_int: -1} {name: “b” value_float: 3.0}
+    /// Query: {name: “a” value_int: 12 operator: LESS}    // Matches Point 1, 2
+    /// {name: “b” value_float: 2.0 operator: EQUAL} // Matches Point 1
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct NumericFilter {
+        /// Required. Column name in BigQuery that used as filters.
+        #[prost(string, tag = "1")]
+        pub name: ::prost::alloc::string::String,
+        /// Optional. This MUST be specified for queries and must NOT be specified
+        /// for database points.
+        #[prost(enumeration = "numeric_filter::Operator", optional, tag = "5")]
+        pub op: ::core::option::Option<i32>,
+        /// The type of Value must be consistent for all datapoints with a given
+        /// name.  This is verified at runtime.
+        #[prost(oneof = "numeric_filter::Value", tags = "2, 3, 4")]
+        pub value: ::core::option::Option<numeric_filter::Value>,
+    }
+    /// Nested message and enum types in `NumericFilter`.
+    pub mod numeric_filter {
+        /// Datapoints for which Operator is true relative to the query’s Value
+        /// field will be allowlisted.
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum Operator {
+            /// Unspecified operator.
+            Unspecified = 0,
+            /// Entities are eligible if their value is < the query's.
+            Less = 1,
+            /// Entities are eligible if their value is <= the query's.
+            LessEqual = 2,
+            /// Entities are eligible if their value is == the query's.
+            Equal = 3,
+            /// Entities are eligible if their value is >= the query's.
+            GreaterEqual = 4,
+            /// Entities are eligible if their value is > the query's.
+            Greater = 5,
+            /// Entities are eligible if their value is != the query's.
+            NotEqual = 6,
+        }
+        impl Operator {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Operator::Unspecified => "OPERATOR_UNSPECIFIED",
+                    Operator::Less => "LESS",
+                    Operator::LessEqual => "LESS_EQUAL",
+                    Operator::Equal => "EQUAL",
+                    Operator::GreaterEqual => "GREATER_EQUAL",
+                    Operator::Greater => "GREATER",
+                    Operator::NotEqual => "NOT_EQUAL",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
+                    "LESS" => Some(Self::Less),
+                    "LESS_EQUAL" => Some(Self::LessEqual),
+                    "EQUAL" => Some(Self::Equal),
+                    "GREATER_EQUAL" => Some(Self::GreaterEqual),
+                    "GREATER" => Some(Self::Greater),
+                    "NOT_EQUAL" => Some(Self::NotEqual),
+                    _ => None,
+                }
+            }
+        }
+        /// The type of Value must be consistent for all datapoints with a given
+        /// name.  This is verified at runtime.
+        #[allow(clippy::derive_partial_eq_without_eq)]
+        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+        pub enum Value {
+            /// int value type.
+            #[prost(int64, tag = "2")]
+            ValueInt(i64),
+            /// float value type.
+            #[prost(float, tag = "3")]
+            ValueFloat(f32),
+            /// double value type.
+            #[prost(double, tag = "4")]
+            ValueDouble(f64),
+        }
     }
     /// Parameters that can be overrided in each query to tune query latency and
     /// recall.
