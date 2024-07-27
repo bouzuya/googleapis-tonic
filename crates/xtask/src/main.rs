@@ -1,4 +1,7 @@
-use std::path::{Path, PathBuf};
+use std::{
+    collections::BTreeMap,
+    path::{Path, PathBuf},
+};
 
 #[derive(clap::Parser)]
 struct Cli {
@@ -61,76 +64,80 @@ fn proto_paths_from_dir<P: AsRef<Path>>(dir: P) -> anyhow::Result<Vec<PathBuf>> 
     Ok(paths)
 }
 
-#[cfg(test)]
-mod tests {
-    use std::collections::BTreeMap;
+struct Mod {
+    include: bool,
+    mods: BTreeMap<String, Mod>,
+}
 
-    struct Mod {
-        include: bool,
-        name: String,
-        sub_mods: BTreeMap<String, Mod>,
-    }
-
-    #[test]
-    fn test() {
-        let root = Mod {
-            include: false,
-            name: "google".to_owned(),
-            sub_mods: {
-                let mut mods = BTreeMap::new();
-                mods.insert(
-                    "firestore".to_owned(),
-                    Mod {
-                        include: true,
-                        name: "firestore".to_owned(),
-                        sub_mods: {
-                            let mut mods = BTreeMap::new();
-                            mods.insert(
-                                "v1".to_owned(),
-                                Mod {
-                                    include: true,
-                                    name: "v1".to_owned(),
-                                    sub_mods: BTreeMap::new(),
-                                },
-                            );
-                            mods.insert(
-                                "v1beta1".to_owned(),
-                                Mod {
-                                    include: true,
-                                    name: "v1beta1".to_owned(),
-                                    sub_mods: BTreeMap::new(),
-                                },
-                            );
-                            mods
-                        },
-                    },
-                );
-                mods
-            },
-        };
-
-        fn dfs(m: &Mod, c: &mut Vec<String>, s: &mut String) {
-            s.push_str(&format!("{}pub mod {} {{\n", "  ".repeat(c.len()), m.name));
-            c.push(m.name.clone());
-            if m.include {
+fn mods_to_string(mods: &BTreeMap<String, Mod>) -> String {
+    fn dfs(mods: &BTreeMap<String, Mod>, c: &mut Vec<String>, s: &mut String) {
+        for (name, r#mod) in mods {
+            s.push_str(&format!("{}pub mod {} {{\n", "  ".repeat(c.len()), name));
+            c.push(name.clone());
+            if r#mod.include {
                 s.push_str(&format!(
                     "{}include!(\"{}.rs\");\n",
                     "  ".repeat(c.len()),
                     c.join("."),
                 ));
             }
-            for sub_mod in m.sub_mods.values() {
-                dfs(sub_mod, c, s);
-            }
+            dfs(&r#mod.mods, c, s);
             c.pop();
             s.push_str(&format!("{}}}\n", "  ".repeat(c.len())));
         }
+    }
 
-        let mut s = String::new();
-        let mut c = vec![];
-        dfs(&root, &mut c, &mut s);
+    let mut s = String::new();
+    let mut c = vec![];
+    dfs(mods, &mut c, &mut s);
+    s
+}
+
+#[cfg(test)]
+mod tests {
+    use std::collections::BTreeMap;
+
+    use crate::{mods_to_string, Mod};
+
+    #[test]
+    fn test_mods_to_string() {
+        let root = [(
+            "google".to_owned(),
+            Mod {
+                include: false,
+                mods: [(
+                    "firestore".to_owned(),
+                    Mod {
+                        include: true,
+                        mods: [
+                            (
+                                "v1".to_owned(),
+                                Mod {
+                                    include: true,
+                                    mods: BTreeMap::new(),
+                                },
+                            ),
+                            (
+                                "v1beta1".to_owned(),
+                                Mod {
+                                    include: true,
+                                    mods: BTreeMap::new(),
+                                },
+                            ),
+                        ]
+                        .into_iter()
+                        .collect::<BTreeMap<String, Mod>>(),
+                    },
+                )]
+                .into_iter()
+                .collect::<BTreeMap<String, Mod>>(),
+            },
+        )]
+        .into_iter()
+        .collect::<BTreeMap<String, Mod>>();
+
         assert_eq!(
-            s,
+            mods_to_string(&root),
             r#"pub mod google {
   pub mod firestore {
     include!("google.firestore.rs");
