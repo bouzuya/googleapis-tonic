@@ -757,17 +757,6 @@ pub mod product_search_client {
     pub struct ProductSearchClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl ProductSearchClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> ProductSearchClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -3208,17 +3197,6 @@ pub mod image_annotator_client {
     #[derive(Debug, Clone)]
     pub struct ImageAnnotatorClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl ImageAnnotatorClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> ImageAnnotatorClient<T>
     where

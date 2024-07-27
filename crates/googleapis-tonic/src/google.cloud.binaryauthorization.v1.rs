@@ -684,17 +684,6 @@ pub mod binauthz_management_service_v1_client {
     pub struct BinauthzManagementServiceV1Client<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl BinauthzManagementServiceV1Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> BinauthzManagementServiceV1Client<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -990,17 +979,6 @@ pub mod system_policy_v1_client {
     pub struct SystemPolicyV1Client<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SystemPolicyV1Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SystemPolicyV1Client<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -1105,17 +1083,6 @@ pub mod validation_helper_v1_client {
     #[derive(Debug, Clone)]
     pub struct ValidationHelperV1Client<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl ValidationHelperV1Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> ValidationHelperV1Client<T>
     where

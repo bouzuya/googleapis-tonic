@@ -1160,17 +1160,6 @@ pub mod issuer_switch_rules_client {
     pub struct IssuerSwitchRulesClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl IssuerSwitchRulesClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> IssuerSwitchRulesClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -1597,17 +1586,6 @@ pub mod issuer_switch_participants_client {
     #[derive(Debug, Clone)]
     pub struct IssuerSwitchParticipantsClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl IssuerSwitchParticipantsClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> IssuerSwitchParticipantsClient<T>
     where
@@ -3438,17 +3416,6 @@ pub mod issuer_switch_resolutions_client {
     pub struct IssuerSwitchResolutionsClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl IssuerSwitchResolutionsClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> IssuerSwitchResolutionsClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -4818,17 +4785,6 @@ pub mod issuer_switch_transactions_client {
     #[derive(Debug, Clone)]
     pub struct IssuerSwitchTransactionsClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl IssuerSwitchTransactionsClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> IssuerSwitchTransactionsClient<T>
     where

@@ -24,17 +24,6 @@ pub mod customer_service_client {
     pub struct CustomerServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl CustomerServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> CustomerServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -178,17 +167,6 @@ pub mod custom_column_service_client {
     #[derive(Debug, Clone)]
     pub struct CustomColumnServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl CustomColumnServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> CustomColumnServiceClient<T>
     where
@@ -737,17 +715,6 @@ pub mod search_ads360_service_client {
     pub struct SearchAds360ServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SearchAds360ServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SearchAds360ServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -951,17 +918,6 @@ pub mod search_ads360_field_service_client {
     #[derive(Debug, Clone)]
     pub struct SearchAds360FieldServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl SearchAds360FieldServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> SearchAds360FieldServiceClient<T>
     where

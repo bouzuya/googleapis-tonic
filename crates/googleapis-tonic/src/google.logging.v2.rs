@@ -278,17 +278,6 @@ pub mod metrics_service_v2_client {
     pub struct MetricsServiceV2Client<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl MetricsServiceV2Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> MetricsServiceV2Client<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -2090,17 +2079,6 @@ pub mod config_service_v2_client {
     pub struct ConfigServiceV2Client<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl ConfigServiceV2Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> ConfigServiceV2Client<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -3769,17 +3747,6 @@ pub mod logging_service_v2_client {
     #[derive(Debug, Clone)]
     pub struct LoggingServiceV2Client<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl LoggingServiceV2Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> LoggingServiceV2Client<T>
     where

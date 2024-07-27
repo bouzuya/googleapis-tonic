@@ -83,17 +83,6 @@ pub mod autokey_admin_client {
     pub struct AutokeyAdminClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl AutokeyAdminClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> AutokeyAdminClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -1981,17 +1970,6 @@ pub mod ekm_service_client {
     #[derive(Debug, Clone)]
     pub struct EkmServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl EkmServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> EkmServiceClient<T>
     where
@@ -3913,17 +3891,6 @@ pub mod key_management_service_client {
     pub struct KeyManagementServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl KeyManagementServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> KeyManagementServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -5049,17 +5016,6 @@ pub mod autokey_client {
     #[derive(Debug, Clone)]
     pub struct AutokeyClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl AutokeyClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> AutokeyClient<T>
     where

@@ -3429,17 +3429,6 @@ pub mod data_catalog_client {
     pub struct DataCatalogClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl DataCatalogClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> DataCatalogClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -5126,17 +5115,6 @@ pub mod policy_tag_manager_client {
     pub struct PolicyTagManagerClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl PolicyTagManagerClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> PolicyTagManagerClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -5762,17 +5740,6 @@ pub mod policy_tag_manager_serialization_client {
     #[derive(Debug, Clone)]
     pub struct PolicyTagManagerSerializationClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl PolicyTagManagerSerializationClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> PolicyTagManagerSerializationClient<T>
     where

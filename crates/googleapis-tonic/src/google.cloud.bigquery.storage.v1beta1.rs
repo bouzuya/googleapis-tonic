@@ -512,17 +512,6 @@ pub mod big_query_storage_client {
     pub struct BigQueryStorageClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl BigQueryStorageClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> BigQueryStorageClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,

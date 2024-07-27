@@ -1389,17 +1389,6 @@ pub mod speech_client {
     pub struct SpeechClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SpeechClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SpeechClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -1807,17 +1796,6 @@ pub mod adaptation_client {
     #[derive(Debug, Clone)]
     pub struct AdaptationClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl AdaptationClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> AdaptationClient<T>
     where

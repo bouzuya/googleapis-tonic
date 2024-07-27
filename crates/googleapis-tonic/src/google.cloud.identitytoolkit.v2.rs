@@ -193,17 +193,6 @@ pub mod authentication_service_client {
     pub struct AuthenticationServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl AuthenticationServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> AuthenticationServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -477,17 +466,6 @@ pub mod account_management_service_client {
     #[derive(Debug, Clone)]
     pub struct AccountManagementServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl AccountManagementServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> AccountManagementServiceClient<T>
     where

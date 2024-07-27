@@ -2896,17 +2896,6 @@ pub mod dataplex_service_client {
     pub struct DataplexServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl DataplexServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> DataplexServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -4501,17 +4490,6 @@ pub mod data_taxonomy_service_client {
     #[derive(Debug, Clone)]
     pub struct DataTaxonomyServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl DataTaxonomyServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> DataTaxonomyServiceClient<T>
     where
@@ -6119,17 +6097,6 @@ pub mod catalog_service_client {
     pub struct CatalogServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl CatalogServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> CatalogServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -7008,17 +6975,6 @@ pub mod content_service_client {
     #[derive(Debug, Clone)]
     pub struct ContentServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl ContentServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> ContentServiceClient<T>
     where
@@ -8860,17 +8816,6 @@ pub mod metadata_service_client {
     pub struct MetadataServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl MetadataServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> MetadataServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -10412,17 +10357,6 @@ pub mod data_scan_service_client {
     #[derive(Debug, Clone)]
     pub struct DataScanServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl DataScanServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> DataScanServiceClient<T>
     where

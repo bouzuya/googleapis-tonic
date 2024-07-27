@@ -2568,17 +2568,6 @@ pub mod sql_databases_service_client {
     pub struct SqlDatabasesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlDatabasesServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlDatabasesServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -4936,17 +4925,6 @@ pub mod sql_instances_service_client {
     pub struct SqlInstancesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlInstancesServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlInstancesServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -6287,17 +6265,6 @@ pub mod sql_backup_runs_service_client {
     pub struct SqlBackupRunsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlBackupRunsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlBackupRunsServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -6479,17 +6446,6 @@ pub mod sql_iam_policies_service_client {
     #[derive(Debug, Clone)]
     pub struct SqlIamPoliciesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl SqlIamPoliciesServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> SqlIamPoliciesServiceClient<T>
     where
@@ -6690,17 +6646,6 @@ pub mod sql_flags_service_client {
     pub struct SqlFlagsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlFlagsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlFlagsServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -6891,17 +6836,6 @@ pub mod sql_ssl_certs_service_client {
     pub struct SqlSslCertsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlSslCertsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlSslCertsServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -7091,17 +7025,6 @@ pub mod sql_regions_service_client {
     pub struct SqlRegionsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlRegionsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlRegionsServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -7179,17 +7102,6 @@ pub mod sql_available_database_versions_service_client {
     #[derive(Debug, Clone)]
     pub struct SqlAvailableDatabaseVersionsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl SqlAvailableDatabaseVersionsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> SqlAvailableDatabaseVersionsServiceClient<T>
     where
@@ -7566,17 +7478,6 @@ pub mod sql_users_service_client {
     pub struct SqlUsersServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlUsersServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlUsersServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -7833,17 +7734,6 @@ pub mod sql_operations_service_client {
     pub struct SqlOperationsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlOperationsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlOperationsServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -8090,17 +7980,6 @@ pub mod sql_connect_service_client {
     pub struct SqlConnectServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlConnectServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlConnectServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -8283,17 +8162,6 @@ pub mod sql_tiers_service_client {
     pub struct SqlTiersServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlTiersServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlTiersServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -8399,17 +8267,6 @@ pub mod sql_instance_names_service_client {
     pub struct SqlInstanceNamesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SqlInstanceNamesServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SqlInstanceNamesServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -8489,17 +8346,6 @@ pub mod sql_events_service_client {
     #[derive(Debug, Clone)]
     pub struct SqlEventsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl SqlEventsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> SqlEventsServiceClient<T>
     where

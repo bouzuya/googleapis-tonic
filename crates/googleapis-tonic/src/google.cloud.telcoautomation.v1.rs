@@ -1781,17 +1781,6 @@ pub mod telco_automation_client {
     pub struct TelcoAutomationClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl TelcoAutomationClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> TelcoAutomationClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,

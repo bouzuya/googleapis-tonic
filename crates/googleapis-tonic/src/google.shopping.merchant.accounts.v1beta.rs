@@ -872,17 +872,6 @@ pub mod shipping_settings_service_client {
     pub struct ShippingSettingsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl ShippingSettingsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> ShippingSettingsServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -1216,17 +1205,6 @@ pub mod user_service_client {
     #[derive(Debug, Clone)]
     pub struct UserServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl UserServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> UserServiceClient<T>
     where
@@ -1653,17 +1631,6 @@ pub mod accounts_service_client {
     pub struct AccountsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl AccountsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> AccountsServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -1982,17 +1949,6 @@ pub mod homepage_service_client {
     #[derive(Debug, Clone)]
     pub struct HomepageServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl HomepageServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> HomepageServiceClient<T>
     where
@@ -2349,17 +2305,6 @@ pub mod account_tax_service_client {
     pub struct AccountTaxServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl AccountTaxServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> AccountTaxServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -2654,17 +2599,6 @@ pub mod terms_of_service_agreement_state_service_client {
     #[derive(Debug, Clone)]
     pub struct TermsOfServiceAgreementStateServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl TermsOfServiceAgreementStateServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> TermsOfServiceAgreementStateServiceClient<T>
     where
@@ -2982,17 +2916,6 @@ pub mod programs_service_client {
     #[derive(Debug, Clone)]
     pub struct ProgramsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl ProgramsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> ProgramsServiceClient<T>
     where
@@ -3358,17 +3281,6 @@ pub mod business_identity_service_client {
     pub struct BusinessIdentityServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl BusinessIdentityServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> BusinessIdentityServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -3601,17 +3513,6 @@ pub mod business_info_service_client {
     pub struct BusinessInfoServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl BusinessInfoServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> BusinessInfoServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -3812,17 +3713,6 @@ pub mod terms_of_service_service_client {
     #[derive(Debug, Clone)]
     pub struct TermsOfServiceServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl TermsOfServiceServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> TermsOfServiceServiceClient<T>
     where
@@ -4139,17 +4029,6 @@ pub mod account_issue_service_client {
     pub struct AccountIssueServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl AccountIssueServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> AccountIssueServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -4346,17 +4225,6 @@ pub mod email_preferences_service_client {
     #[derive(Debug, Clone)]
     pub struct EmailPreferencesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl EmailPreferencesServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> EmailPreferencesServiceClient<T>
     where
@@ -4678,17 +4546,6 @@ pub mod regions_service_client {
     #[derive(Debug, Clone)]
     pub struct RegionsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl RegionsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> RegionsServiceClient<T>
     where
@@ -5267,17 +5124,6 @@ pub mod online_return_policy_service_client {
     #[derive(Debug, Clone)]
     pub struct OnlineReturnPolicyServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl OnlineReturnPolicyServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> OnlineReturnPolicyServiceClient<T>
     where

@@ -958,17 +958,6 @@ pub mod addresses_client {
     pub struct AddressesClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl AddressesClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> AddressesClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -1151,17 +1140,6 @@ pub mod region_operations_client {
     #[derive(Debug, Clone)]
     pub struct RegionOperationsClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl RegionOperationsClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> RegionOperationsClient<T>
     where

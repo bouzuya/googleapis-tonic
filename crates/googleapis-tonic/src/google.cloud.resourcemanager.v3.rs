@@ -171,17 +171,6 @@ pub mod tag_values_client {
     pub struct TagValuesClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl TagValuesClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> TagValuesClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -732,17 +721,6 @@ pub mod organizations_client {
     #[derive(Debug, Clone)]
     pub struct OrganizationsClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl OrganizationsClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> OrganizationsClient<T>
     where
@@ -1377,17 +1355,6 @@ pub mod projects_client {
     #[derive(Debug, Clone)]
     pub struct ProjectsClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl ProjectsClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> ProjectsClient<T>
     where
@@ -2067,17 +2034,6 @@ pub mod tag_holds_client {
     pub struct TagHoldsClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl TagHoldsClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> TagHoldsClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -2554,17 +2510,6 @@ pub mod folders_client {
     #[derive(Debug, Clone)]
     pub struct FoldersClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl FoldersClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> FoldersClient<T>
     where
@@ -3273,17 +3218,6 @@ pub mod tag_bindings_client {
     pub struct TagBindingsClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl TagBindingsClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> TagBindingsClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -3710,17 +3644,6 @@ pub mod tag_keys_client {
     #[derive(Debug, Clone)]
     pub struct TagKeysClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl TagKeysClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> TagKeysClient<T>
     where

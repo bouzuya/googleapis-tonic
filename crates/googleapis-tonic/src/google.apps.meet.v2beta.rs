@@ -803,17 +803,6 @@ pub mod spaces_service_client {
     pub struct SpacesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SpacesServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SpacesServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -1003,17 +992,6 @@ pub mod conference_records_service_client {
     #[derive(Debug, Clone)]
     pub struct ConferenceRecordsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl ConferenceRecordsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> ConferenceRecordsServiceClient<T>
     where

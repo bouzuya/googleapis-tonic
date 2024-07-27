@@ -295,17 +295,6 @@ pub mod report_errors_service_client {
     pub struct ReportErrorsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl ReportErrorsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> ReportErrorsServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -466,17 +455,6 @@ pub mod error_group_service_client {
     #[derive(Debug, Clone)]
     pub struct ErrorGroupServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl ErrorGroupServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> ErrorGroupServiceClient<T>
     where
@@ -1065,17 +1043,6 @@ pub mod error_stats_service_client {
     #[derive(Debug, Clone)]
     pub struct ErrorStatsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl ErrorStatsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> ErrorStatsServiceClient<T>
     where

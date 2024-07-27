@@ -2855,17 +2855,6 @@ pub mod cluster_controller_client {
     pub struct ClusterControllerClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl ClusterControllerClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> ClusterControllerClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -3585,17 +3574,6 @@ pub mod batch_controller_client {
     #[derive(Debug, Clone)]
     pub struct BatchControllerClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl BatchControllerClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> BatchControllerClient<T>
     where
@@ -5023,17 +5001,6 @@ pub mod job_controller_client {
     pub struct JobControllerClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl JobControllerClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> JobControllerClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -6063,17 +6030,6 @@ pub mod workflow_template_service_client {
     pub struct WorkflowTemplateServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl WorkflowTemplateServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> WorkflowTemplateServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -6749,17 +6705,6 @@ pub mod session_controller_client {
     pub struct SessionControllerClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SessionControllerClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SessionControllerClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -7114,17 +7059,6 @@ pub mod session_template_controller_client {
     #[derive(Debug, Clone)]
     pub struct SessionTemplateControllerClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl SessionTemplateControllerClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> SessionTemplateControllerClient<T>
     where
@@ -7635,17 +7569,6 @@ pub mod autoscaling_policy_service_client {
     pub struct AutoscalingPolicyServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl AutoscalingPolicyServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> AutoscalingPolicyServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -7967,17 +7890,6 @@ pub mod node_group_controller_client {
     #[derive(Debug, Clone)]
     pub struct NodeGroupControllerClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl NodeGroupControllerClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> NodeGroupControllerClient<T>
     where

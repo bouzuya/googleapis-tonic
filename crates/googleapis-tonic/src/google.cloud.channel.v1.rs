@@ -3716,17 +3716,6 @@ pub mod cloud_channel_service_client {
     pub struct CloudChannelServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl CloudChannelServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> CloudChannelServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -6856,17 +6845,6 @@ pub mod cloud_channel_reports_service_client {
     #[derive(Debug, Clone)]
     pub struct CloudChannelReportsServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl CloudChannelReportsServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> CloudChannelReportsServiceClient<T>
     where

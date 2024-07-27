@@ -159,17 +159,6 @@ pub mod snapshots_v1_beta3_client {
     pub struct SnapshotsV1Beta3Client<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl SnapshotsV1Beta3Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> SnapshotsV1Beta3Client<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -2058,17 +2047,6 @@ pub mod jobs_v1_beta3_client {
     pub struct JobsV1Beta3Client<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl JobsV1Beta3Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> JobsV1Beta3Client<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -2710,17 +2688,6 @@ pub mod metrics_v1_beta3_client {
     #[derive(Debug, Clone)]
     pub struct MetricsV1Beta3Client<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl MetricsV1Beta3Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> MetricsV1Beta3Client<T>
     where
@@ -3406,17 +3373,6 @@ pub mod messages_v1_beta3_client {
     #[derive(Debug, Clone)]
     pub struct MessagesV1Beta3Client<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl MessagesV1Beta3Client<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> MessagesV1Beta3Client<T>
     where
@@ -4298,17 +4254,6 @@ pub mod templates_service_client {
     pub struct TemplatesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl TemplatesServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> TemplatesServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -4475,17 +4420,6 @@ pub mod flex_templates_service_client {
     #[derive(Debug, Clone)]
     pub struct FlexTemplatesServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl FlexTemplatesServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> FlexTemplatesServiceClient<T>
     where

@@ -1318,17 +1318,6 @@ pub mod managed_notebook_service_client {
     pub struct ManagedNotebookServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl ManagedNotebookServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
-    }
     impl<T> ManagedNotebookServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
@@ -3947,17 +3936,6 @@ pub mod notebook_service_client {
     #[derive(Debug, Clone)]
     pub struct NotebookServiceClient<T> {
         inner: tonic::client::Grpc<T>,
-    }
-    impl NotebookServiceClient<tonic::transport::Channel> {
-        /// Attempt to create a new client by connecting to a given endpoint.
-        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
-        where
-            D: TryInto<tonic::transport::Endpoint>,
-            D::Error: Into<StdError>,
-        {
-            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
-            Ok(Self::new(conn))
-        }
     }
     impl<T> NotebookServiceClient<T>
     where
