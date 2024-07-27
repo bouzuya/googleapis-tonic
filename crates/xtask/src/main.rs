@@ -116,19 +116,20 @@ fn mods_from_file_names(paths: &[String]) -> BTreeMap<String, Mod> {
 
 fn mods_to_string(mods: &BTreeMap<String, Mod>) -> String {
     fn dfs(mods: &BTreeMap<String, Mod>, c: &mut Vec<String>, s: &mut String) {
+        let indent = "    ";
         for (name, r#mod) in mods {
-            s.push_str(&format!("{}pub mod {} {{\n", "  ".repeat(c.len()), name));
+            s.push_str(&format!("{}pub mod {} {{\n", indent.repeat(c.len()), name));
             c.push(name.clone());
             if r#mod.include {
                 s.push_str(&format!(
                     "{}include!(\"{}.rs\");\n",
-                    "  ".repeat(c.len()),
+                    indent.repeat(c.len()),
                     c.join("."),
                 ));
             }
             dfs(&r#mod.mods, c, s);
             c.pop();
-            s.push_str(&format!("{}}}\n", "  ".repeat(c.len())));
+            s.push_str(&format!("{}}}\n", indent.repeat(c.len())));
         }
     }
 
@@ -233,15 +234,15 @@ mod tests {
         assert_eq!(
             mods_to_string(&root),
             r#"pub mod google {
-  pub mod firestore {
-    include!("google.firestore.rs");
-    pub mod v1 {
-      include!("google.firestore.v1.rs");
+    pub mod firestore {
+        include!("google.firestore.rs");
+        pub mod v1 {
+            include!("google.firestore.v1.rs");
+        }
+        pub mod v1beta1 {
+            include!("google.firestore.v1beta1.rs");
+        }
     }
-    pub mod v1beta1 {
-      include!("google.firestore.v1beta1.rs");
-    }
-  }
 }
 "#
         );
