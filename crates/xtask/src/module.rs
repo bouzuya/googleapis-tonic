@@ -29,8 +29,16 @@ impl Module {
         }
     }
 
+    pub fn add_feature(&mut self, feature_name: FeatureName) {
+        self.features.insert(feature_name);
+    }
+
     pub fn add_include(&mut self) {
         self.include = true;
+    }
+
+    pub fn features(&self) -> Vec<FeatureName> {
+        self.features.iter().cloned().collect::<Vec<FeatureName>>()
     }
 
     pub fn ident(&self) -> &Ident {

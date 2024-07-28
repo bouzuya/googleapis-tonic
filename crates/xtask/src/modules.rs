@@ -1,6 +1,6 @@
 use std::str::FromStr as _;
 
-use crate::{ident::Ident, module::Module};
+use crate::{feature_name::FeatureName, ident::Ident, module::Module};
 
 #[derive(Clone, Debug, Default, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Modules(Vec<Module>);
@@ -22,21 +22,24 @@ impl Modules {
                 .split('.')
                 .collect::<Vec<&str>>()
                 .into_iter()
+                .filter(|s| s != &"rs")
                 .map(Ident::from_str)
                 .collect::<anyhow::Result<Vec<Ident>>>()
                 .expect("path to be valid ident");
             if idents.is_empty() {
                 continue;
             }
+
+            let feature_name = FeatureName::from(idents.clone());
+
             let mut module = modules.get_or_insert(&idents[0]);
+            module.add_feature(feature_name.clone());
             for ident in idents.into_iter().skip(1) {
-                if ident.as_str() == "rs" {
-                    module.add_include();
-                    break;
-                } else {
-                    module = module.modules_mut().get_or_insert(&ident);
-                }
+                module = module.modules_mut().get_or_insert(&ident);
+                module.add_feature(feature_name.clone());
             }
+            module.add_include();
+            module.add_feature(feature_name.clone());
         }
         modules
     }
@@ -55,6 +58,20 @@ impl Modules {
         fn dfs(modules: &Modules, c: &mut Vec<String>, s: &mut String) {
             let indent = "    ";
             for module in modules {
+                let features = module.features();
+                if !features.is_empty() {
+                    s.push_str(&format!("{}#[cfg(\n", indent.repeat(c.len())));
+                    s.push_str(&format!("{}any(\n", indent.repeat(c.len() + 1)));
+                    for feature in features {
+                        s.push_str(&format!(
+                            "{}feature=\"{}\",\n",
+                            indent.repeat(c.len() + 2),
+                            feature
+                        ));
+                    }
+                    s.push_str(&format!("{})\n", indent.repeat(c.len() + 1)));
+                    s.push_str(&format!("{})]\n", indent.repeat(c.len())));
+                }
                 s.push_str(&format!(
                     "{}pub mod {} {{\n",
                     indent.repeat(c.len()),
@@ -97,12 +114,36 @@ mod tests {
         .collect::<Vec<String>>();
         assert_eq!(
             Modules::from_file_names(&paths).to_rs_file_content(),
-            r#"pub mod google {
+            r#"#[cfg(
+    any(
+        feature="google-firestore",
+        feature="google-firestore-v1",
+        feature="google-firestore-v1beta1",
+    )
+)]
+pub mod google {
+    #[cfg(
+        any(
+            feature="google-firestore",
+            feature="google-firestore-v1",
+            feature="google-firestore-v1beta1",
+        )
+    )]
     pub mod firestore {
         include!("google.firestore.rs");
+        #[cfg(
+            any(
+                feature="google-firestore-v1",
+            )
+        )]
         pub mod v1 {
             include!("google.firestore.v1.rs");
         }
+        #[cfg(
+            any(
+                feature="google-firestore-v1beta1",
+            )
+        )]
         pub mod v1beta1 {
             include!("google.firestore.v1beta1.rs");
         }
