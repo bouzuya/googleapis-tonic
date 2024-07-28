@@ -1,0 +1,8 @@
+{
+  "rust-analyzer.files.excludeDirs": [
+    "crates/googleapi-tonic"
+  ],
+  "files.watcherExclude": {
+    "crates/googleapis-tonic/**": true
+  }
+}
