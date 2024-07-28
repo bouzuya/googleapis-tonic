@@ -6,6 +6,7 @@ mod modules;
 use std::{
     fs,
     path::{Path, PathBuf},
+    str::FromStr as _,
 };
 
 use anyhow::Context;
@@ -65,6 +66,32 @@ fn build() -> anyhow::Result<()> {
     let modules = Modules::from_file_names(&file_names);
     let output = modules.to_rs_file_content();
     fs::write(format!("{}/lib.rs", src_dir), output)?;
+
+    let cargo_toml_path = PathBuf::from(src_dir)
+        .join("../Cargo.toml")
+        .canonicalize()?;
+    let cargo_toml = fs::read_to_string(&cargo_toml_path)?;
+    let mut document = toml_edit::DocumentMut::from_str(&cargo_toml)?;
+    let table = document["features"]
+        .as_table_mut()
+        .context("features is not a table")?;
+    table.clear();
+    let value_of_empty_array =
+        toml_edit::Item::Value(toml_edit::Value::Array(toml_edit::Array::default()));
+    table.insert("default", value_of_empty_array.clone());
+    for file_name in file_names {
+        table.insert(
+            &file_name
+                .split('.')
+                .filter(|s| s != &"rs")
+                .map(|s| s.replace("r#", ""))
+                .collect::<Vec<String>>()
+                .join("-"),
+            value_of_empty_array.clone(),
+        );
+    }
+    table.sort_values();
+    fs::write(cargo_toml_path, document.to_string())?;
 
     Ok(())
 }

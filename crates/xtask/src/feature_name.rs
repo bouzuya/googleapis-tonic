@@ -10,6 +10,7 @@ impl Display for FeatureName {
         self.0
             .iter()
             .map(Ident::to_string)
+            .map(|s| s.replace("r#", ""))
             .collect::<Vec<String>>()
             .join("-")
             .fmt(f)
