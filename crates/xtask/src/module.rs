@@ -1,17 +1,17 @@
 use std::collections::BTreeSet;
 
-use crate::modules::Modules;
+use crate::{feature_name::FeatureName, ident::Ident, modules::Modules};
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Module {
-    ident: String,
-    features: BTreeSet<String>,
+    ident: Ident,
+    features: BTreeSet<FeatureName>,
     include: bool,
     modules: Modules,
 }
 
 impl Module {
-    pub fn new(ident: String) -> Self {
+    pub fn new(ident: Ident) -> Self {
         Self {
             ident,
             features: BTreeSet::new(),
@@ -20,7 +20,7 @@ impl Module {
         }
     }
 
-    pub fn with_include(ident: String) -> Self {
+    pub fn with_include(ident: Ident) -> Self {
         Self {
             ident,
             features: BTreeSet::new(),
@@ -33,7 +33,7 @@ impl Module {
         self.include = true;
     }
 
-    pub fn ident(&self) -> &str {
+    pub fn ident(&self) -> &Ident {
         &self.ident
     }
 

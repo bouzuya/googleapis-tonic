@@ -1,4 +1,6 @@
-use crate::module::Module;
+use std::str::FromStr as _;
+
+use crate::{ident::Ident, module::Module};
 
 #[derive(Clone, Debug, Default, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Modules(Vec<Module>);
@@ -16,24 +18,30 @@ impl Modules {
     pub fn from_file_names(paths: &[String]) -> Self {
         let mut modules = Modules::default();
         for path in paths {
-            let names = path.split('.').collect::<Vec<&str>>();
-            if names.is_empty() {
+            let idents = path
+                .split('.')
+                .collect::<Vec<&str>>()
+                .into_iter()
+                .map(Ident::from_str)
+                .collect::<anyhow::Result<Vec<Ident>>>()
+                .expect("path to be valid ident");
+            if idents.is_empty() {
                 continue;
             }
-            let mut module = modules.get_or_insert(names[0]);
-            for name in names.into_iter().skip(1) {
-                if name == "rs" {
+            let mut module = modules.get_or_insert(&idents[0]);
+            for ident in idents.into_iter().skip(1) {
+                if ident.as_str() == "rs" {
                     module.add_include();
                     break;
                 } else {
-                    module = module.modules_mut().get_or_insert(name);
+                    module = module.modules_mut().get_or_insert(&ident);
                 }
             }
         }
         modules
     }
 
-    pub fn get_or_insert(&mut self, ident: &str) -> &mut Module {
+    pub fn get_or_insert(&mut self, ident: &Ident) -> &mut Module {
         match self.0.iter().position(|m| m.ident() == ident) {
             Some(index) => self.0.get_mut(index).expect("mod is included"),
             None => {
@@ -50,9 +58,9 @@ impl Modules {
                 s.push_str(&format!(
                     "{}pub mod {} {{\n",
                     indent.repeat(c.len()),
-                    module.ident()
+                    module.ident().as_str()
                 ));
-                c.push(module.ident().to_owned());
+                c.push(module.ident().to_string());
                 if module.include() {
                     s.push_str(&format!(
                         "{}include!(\"{}.rs\");\n",

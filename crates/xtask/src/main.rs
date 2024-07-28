@@ -1,3 +1,5 @@
+mod feature_name;
+mod ident;
 mod module;
 mod modules;
 
