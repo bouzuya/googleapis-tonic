@@ -1,5 +1,4 @@
 use std::{
-    collections::BTreeMap,
     fs,
     path::{Path, PathBuf},
 };
@@ -82,44 +81,57 @@ fn proto_paths_from_dir<P: AsRef<Path>>(dir: P) -> anyhow::Result<Vec<PathBuf>> 
     Ok(paths)
 }
 
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 struct Mod {
+    ident: String,
     include: bool,
-    mods: BTreeMap<String, Mod>,
+    mods: Vec<Mod>,
 }
 
-fn mods_from_file_names(paths: &[String]) -> BTreeMap<String, Mod> {
-    let mut mods = BTreeMap::new();
+fn mods_from_file_names(paths: &[String]) -> Vec<Mod> {
+    fn get_or_push<'a>(mods: &'a mut Vec<Mod>, ident: &str) -> &'a mut Mod {
+        match mods.iter().position(|m| m.ident == ident) {
+            Some(index) => mods.get_mut(index).expect("mod is included"),
+            None => {
+                mods.push(Mod {
+                    ident: ident.to_owned(),
+                    include: false,
+                    mods: vec![],
+                });
+                mods.last_mut().expect("mods is not empty")
+            }
+        }
+    }
+
+    let mut mods = Vec::<Mod>::new();
     for path in paths {
         let names = path.split('.').collect::<Vec<&str>>();
         if names.is_empty() {
             continue;
         }
-        let mut r#mod = mods.entry(names[0].to_owned()).or_insert_with(|| Mod {
-            include: false,
-            mods: BTreeMap::new(),
-        });
+        let mut r#mod = get_or_push(&mut mods, names[0]);
         for name in names.into_iter().skip(1) {
             if name == "rs" {
                 r#mod.include = true;
                 break;
             } else {
-                r#mod = r#mod.mods.entry(name.to_owned()).or_insert_with(|| Mod {
-                    include: false,
-                    mods: BTreeMap::new(),
-                });
+                r#mod = get_or_push(&mut r#mod.mods, name);
             }
         }
     }
     mods
 }
 
-fn mods_to_string(mods: &BTreeMap<String, Mod>) -> String {
-    fn dfs(mods: &BTreeMap<String, Mod>, c: &mut Vec<String>, s: &mut String) {
+fn mods_to_string(mods: &Vec<Mod>) -> String {
+    fn dfs(mods: &Vec<Mod>, c: &mut Vec<String>, s: &mut String) {
         let indent = "    ";
-        for (name, r#mod) in mods {
-            s.push_str(&format!("{}pub mod {} {{\n", indent.repeat(c.len()), name));
-            c.push(name.clone());
+        for r#mod in mods {
+            s.push_str(&format!(
+                "{}pub mod {} {{\n",
+                indent.repeat(c.len()),
+                r#mod.ident
+            ));
+            c.push(r#mod.ident.clone());
             if r#mod.include {
                 s.push_str(&format!(
                     "{}include!(\"{}.rs\");\n",
@@ -141,8 +153,6 @@ fn mods_to_string(mods: &BTreeMap<String, Mod>) -> String {
 
 #[cfg(test)]
 mod tests {
-    use std::collections::BTreeMap;
-
     use crate::{mods_from_file_names, mods_to_string, Mod};
 
     #[test]
@@ -157,79 +167,51 @@ mod tests {
         .collect::<Vec<String>>();
         assert_eq!(
             mods_from_file_names(&paths),
-            [(
-                "google".to_owned(),
-                Mod {
-                    include: false,
-                    mods: [(
-                        "firestore".to_owned(),
+            vec![Mod {
+                ident: "google".to_owned(),
+                include: false,
+                mods: vec![Mod {
+                    ident: "firestore".to_owned(),
+                    include: true,
+                    mods: vec![
                         Mod {
+                            ident: "v1".to_owned(),
                             include: true,
-                            mods: [
-                                (
-                                    "v1".to_owned(),
-                                    Mod {
-                                        include: true,
-                                        mods: BTreeMap::new(),
-                                    },
-                                ),
-                                (
-                                    "v1beta1".to_owned(),
-                                    Mod {
-                                        include: true,
-                                        mods: BTreeMap::new(),
-                                    },
-                                ),
-                            ]
-                            .into_iter()
-                            .collect::<BTreeMap<String, Mod>>(),
+                            mods: vec![]
                         },
-                    )]
-                    .into_iter()
-                    .collect::<BTreeMap<String, Mod>>(),
-                },
-            )]
-            .into_iter()
-            .collect::<BTreeMap<String, Mod>>()
+                        Mod {
+                            ident: "v1beta1".to_owned(),
+                            include: true,
+                            mods: vec![]
+                        },
+                    ]
+                }]
+            }]
         );
     }
 
     #[test]
     fn test_mods_to_string() {
-        let root = [(
-            "google".to_owned(),
-            Mod {
-                include: false,
-                mods: [(
-                    "firestore".to_owned(),
+        let root = vec![Mod {
+            ident: "google".to_owned(),
+            include: false,
+            mods: vec![Mod {
+                ident: "firestore".to_owned(),
+                include: true,
+                mods: vec![
                     Mod {
+                        ident: "v1".to_owned(),
                         include: true,
-                        mods: [
-                            (
-                                "v1".to_owned(),
-                                Mod {
-                                    include: true,
-                                    mods: BTreeMap::new(),
-                                },
-                            ),
-                            (
-                                "v1beta1".to_owned(),
-                                Mod {
-                                    include: true,
-                                    mods: BTreeMap::new(),
-                                },
-                            ),
-                        ]
-                        .into_iter()
-                        .collect::<BTreeMap<String, Mod>>(),
+                        mods: vec![],
                     },
-                )]
-                .into_iter()
-                .collect::<BTreeMap<String, Mod>>(),
-            },
-        )]
-        .into_iter()
-        .collect::<BTreeMap<String, Mod>>();
+                    Mod {
+                        ident: "v1beta1".to_owned(),
+                        include: true,
+                        mods: vec![],
+                    },
+                ],
+            }],
+        }];
 
         assert_eq!(
             mods_to_string(&root),
