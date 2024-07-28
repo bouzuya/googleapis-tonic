@@ -5,6 +5,6 @@ publish = false
 
 [dependencies]
 anyhow = "1.0.86"
-clap = { version = "4.5.10", features = ["derive"] }
+clap = { version = "4.5.11", features = ["derive"] }
 toml_edit = "0.22.17"
 tonic-build = "0.12.1"
