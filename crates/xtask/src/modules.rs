@@ -60,17 +60,15 @@ impl Modules {
             for module in modules {
                 let features = module.features();
                 if !features.is_empty() {
-                    s.push_str(&format!("{}#[cfg(\n", indent.repeat(c.len())));
-                    s.push_str(&format!("{}any(\n", indent.repeat(c.len() + 1)));
+                    s.push_str(&format!("{}#[cfg(any(\n", indent.repeat(c.len())));
                     for feature in features {
                         s.push_str(&format!(
-                            "{}feature=\"{}\",\n",
-                            indent.repeat(c.len() + 2),
+                            "{}feature = \"{}\",\n",
+                            indent.repeat(c.len() + 1),
                             feature
                         ));
                     }
-                    s.push_str(&format!("{})\n", indent.repeat(c.len() + 1)));
-                    s.push_str(&format!("{})]\n", indent.repeat(c.len())));
+                    s.push_str(&format!("{}))]\n", indent.repeat(c.len())));
                 }
                 s.push_str(&format!(
                     "{}pub mod {} {{\n",
@@ -114,36 +112,28 @@ mod tests {
         .collect::<Vec<String>>();
         assert_eq!(
             Modules::from_file_names(&paths).to_rs_file_content(),
-            r#"#[cfg(
-    any(
-        feature="google-firestore",
-        feature="google-firestore-v1",
-        feature="google-firestore-v1beta1",
-    )
-)]
+            r#"#[cfg(any(
+    feature = "google-firestore",
+    feature = "google-firestore-v1",
+    feature = "google-firestore-v1beta1",
+))]
 pub mod google {
-    #[cfg(
-        any(
-            feature="google-firestore",
-            feature="google-firestore-v1",
-            feature="google-firestore-v1beta1",
-        )
-    )]
+    #[cfg(any(
+        feature = "google-firestore",
+        feature = "google-firestore-v1",
+        feature = "google-firestore-v1beta1",
+    ))]
     pub mod firestore {
         include!("google.firestore.rs");
-        #[cfg(
-            any(
-                feature="google-firestore-v1",
-            )
-        )]
+        #[cfg(any(
+            feature = "google-firestore-v1",
+        ))]
         pub mod v1 {
             include!("google.firestore.v1.rs");
         }
-        #[cfg(
-            any(
-                feature="google-firestore-v1beta1",
-            )
-        )]
+        #[cfg(any(
+            feature = "google-firestore-v1beta1",
+        ))]
         pub mod v1beta1 {
             include!("google.firestore.v1beta1.rs");
         }
