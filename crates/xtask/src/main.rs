@@ -35,16 +35,40 @@ fn build() -> anyhow::Result<()> {
     let proto_dir = "crates/xtask/googleapis";
     let src_dir = "crates/googleapis-tonic/src";
 
+    #[derive(Clone, Copy)]
+    enum BytesType {
+        Bytes,
+        VecU8,
+    }
+
+    #[derive(Clone, Copy)]
     enum MapType {
         BTreeMap,
         HashMap,
     }
 
-    for map_type in &[MapType::BTreeMap, MapType::HashMap] {
-        let out_dir = match map_type {
-            MapType::BTreeMap => format!("{}/btree_map", src_dir),
-            MapType::HashMap => format!("{}/hash_map", src_dir),
-        };
+    for (bytes_type, map_type) in [BytesType::Bytes, BytesType::VecU8]
+        .into_iter()
+        .flat_map(|bytes_type| {
+            [MapType::BTreeMap, MapType::HashMap]
+                .into_iter()
+                .map(|map_type| (bytes_type, map_type))
+                .collect::<Vec<(BytesType, MapType)>>()
+        })
+        .collect::<Vec<(BytesType, MapType)>>()
+    {
+        let out_dir = format!(
+            "{}/{}_{}",
+            src_dir,
+            match bytes_type {
+                BytesType::Bytes => "bytes",
+                BytesType::VecU8 => "vec_u8",
+            },
+            match map_type {
+                MapType::BTreeMap => "btree_map",
+                MapType::HashMap => "hash_map",
+            }
+        );
 
         let proto_paths = proto_paths_from_dir(proto_dir)?;
         tonic_build::configure()
@@ -56,8 +80,10 @@ fn build() -> anyhow::Result<()> {
             // don't generate server code
             .build_server(false)
             .build_transport(false)
-            // use bytes::Bytes instead of Vec<u8>
-            .bytes(["."])
+            .bytes(match bytes_type {
+                BytesType::Bytes => vec!["."],
+                BytesType::VecU8 => vec![],
+            })
             .out_dir(out_dir.as_str())
             .protoc_arg("--experimental_allow_proto3_optional")
             .compile(&proto_paths, &[proto_dir])?;
@@ -78,8 +104,12 @@ fn build() -> anyhow::Result<()> {
         let output = modules.to_rs_file_content();
         fs::write(
             format!(
-                "{}/{}.rs",
+                "{}/{}_{}.rs",
                 src_dir,
+                match bytes_type {
+                    BytesType::Bytes => "bytes",
+                    BytesType::VecU8 => "vec_u8",
+                },
                 match map_type {
                     MapType::BTreeMap => "btree_map",
                     MapType::HashMap => "hash_map",
@@ -90,7 +120,7 @@ fn build() -> anyhow::Result<()> {
     }
 
     let mut file_names = vec![];
-    for dir_entry in fs::read_dir(format!("{}/btree_map", src_dir))? {
+    for dir_entry in fs::read_dir(format!("{}/vec_u8_hash_map", src_dir))? {
         let dir_entry = dir_entry?;
         let path = dir_entry.path();
         let file_name = path
@@ -98,9 +128,6 @@ fn build() -> anyhow::Result<()> {
             .with_context(|| format!("file_name is None {}", path.display()))?
             .to_str()
             .with_context(|| format!("file_name is not utf-8 {}", path.display()))?;
-        if file_name == "lib.rs" {
-            continue;
-        }
         file_names.push(file_name.to_owned());
     }
 
@@ -113,11 +140,16 @@ fn build() -> anyhow::Result<()> {
         .as_table_mut()
         .context("features is not a table")?;
     table.clear();
-    table.insert("default", toml_edit::Item::from_str(r#"["hash-map"]"#)?);
+    table.insert(
+        "default",
+        toml_edit::Item::from_str(r#"["vec-u8", "hash-map"]"#)?,
+    );
     let value_of_empty_array =
         toml_edit::Item::Value(toml_edit::Value::Array(toml_edit::Array::default()));
-    table.insert("hash-map", value_of_empty_array.clone());
+    table.insert("bytes", value_of_empty_array.clone());
+    table.insert("vec-u8", value_of_empty_array.clone());
     table.insert("btree-map", value_of_empty_array.clone());
+    table.insert("hash-map", value_of_empty_array.clone());
     for file_name in file_names {
         table.insert(
             &file_name
