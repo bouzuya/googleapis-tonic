@@ -15,8 +15,9 @@ prost-types = "0.13.1"
 tonic = "0.12.1"
 
 [features]
+btree-map = []
 cloud-kubernetes-security-containersecurity_logging = []
-default = []
+default = ["hash-map"]
 google-actions-sdk-v2 = []
 google-actions-sdk-v2-conversation = []
 google-actions-sdk-v2-interactionmodel = []
@@ -539,5 +540,6 @@ grafeas-v1beta1-package = []
 grafeas-v1beta1-provenance = []
 grafeas-v1beta1-source = []
 grafeas-v1beta1-vulnerability = []
+hash-map = []
 maps-fleetengine-delivery-v1 = []
 maps-fleetengine-v1 = []

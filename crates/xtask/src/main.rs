@@ -34,22 +34,63 @@ fn main() -> anyhow::Result<()> {
 fn build() -> anyhow::Result<()> {
     let proto_dir = "crates/xtask/googleapis";
     let src_dir = "crates/googleapis-tonic/src";
-    let proto_paths = proto_paths_from_dir(proto_dir)?;
-    tonic_build::configure()
-        // use BTreeMap instead of HashMap
-        .btree_map(["."])
-        .build_client(true)
-        // don't generate server code
-        .build_server(false)
-        .build_transport(false)
-        // use bytes::Bytes instead of Vec<u8>
-        .bytes(["."])
-        .out_dir(src_dir)
-        .protoc_arg("--experimental_allow_proto3_optional")
-        .compile(&proto_paths, &[proto_dir])?;
+
+    enum MapType {
+        BTreeMap,
+        HashMap,
+    }
+
+    for map_type in &[MapType::BTreeMap, MapType::HashMap] {
+        let out_dir = match map_type {
+            MapType::BTreeMap => format!("{}/btree_map", src_dir),
+            MapType::HashMap => format!("{}/hash_map", src_dir),
+        };
+
+        let proto_paths = proto_paths_from_dir(proto_dir)?;
+        tonic_build::configure()
+            .btree_map(match map_type {
+                MapType::BTreeMap => vec!["."],
+                MapType::HashMap => vec![],
+            })
+            .build_client(true)
+            // don't generate server code
+            .build_server(false)
+            .build_transport(false)
+            // use bytes::Bytes instead of Vec<u8>
+            .bytes(["."])
+            .out_dir(out_dir.as_str())
+            .protoc_arg("--experimental_allow_proto3_optional")
+            .compile(&proto_paths, &[proto_dir])?;
+
+        let mut file_names = vec![];
+        for dir_entry in fs::read_dir(out_dir.as_str())? {
+            let dir_entry = dir_entry?;
+            let path = dir_entry.path();
+            let file_name = path
+                .file_name()
+                .with_context(|| format!("file_name is None {}", path.display()))?
+                .to_str()
+                .with_context(|| format!("file_name is not utf-8 {}", path.display()))?;
+            file_names.push(file_name.to_owned());
+        }
+
+        let modules = Modules::from_file_names(&file_names);
+        let output = modules.to_rs_file_content();
+        fs::write(
+            format!(
+                "{}/{}.rs",
+                src_dir,
+                match map_type {
+                    MapType::BTreeMap => "btree_map",
+                    MapType::HashMap => "hash_map",
+                }
+            ),
+            output,
+        )?;
+    }
 
     let mut file_names = vec![];
-    for dir_entry in fs::read_dir(src_dir)? {
+    for dir_entry in fs::read_dir(format!("{}/btree_map", src_dir))? {
         let dir_entry = dir_entry?;
         let path = dir_entry.path();
         let file_name = path
@@ -63,10 +104,6 @@ fn build() -> anyhow::Result<()> {
         file_names.push(file_name.to_owned());
     }
 
-    let modules = Modules::from_file_names(&file_names);
-    let output = modules.to_rs_file_content();
-    fs::write(format!("{}/lib.rs", src_dir), output)?;
-
     let cargo_toml_path = PathBuf::from(src_dir)
         .join("../Cargo.toml")
         .canonicalize()?;
@@ -76,9 +113,11 @@ fn build() -> anyhow::Result<()> {
         .as_table_mut()
         .context("features is not a table")?;
     table.clear();
+    table.insert("default", toml_edit::Item::from_str(r#"["hash-map"]"#)?);
     let value_of_empty_array =
         toml_edit::Item::Value(toml_edit::Value::Array(toml_edit::Array::default()));
-    table.insert("default", value_of_empty_array.clone());
+    table.insert("hash-map", value_of_empty_array.clone());
+    table.insert("btree-map", value_of_empty_array.clone());
     for file_name in file_names {
         table.insert(
             &file_name
