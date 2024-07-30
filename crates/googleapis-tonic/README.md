@@ -17,7 +17,10 @@ Due to the extensive range of Google APIs, this crate exceeds the default featur
 
 ```toml
 [dependencies]
-googleapis-tonic = { version = "0.2.0", features = ["google-firestore-v1"] }
+googleapis-tonic = {
+  version = "0.2.0",
+  features = ["google-firestore-v1"]
+}
 
 # By default, the following features are enabled:
 # - `hash-map`: Use `HashMap` for map type.
@@ -26,7 +29,11 @@ googleapis-tonic = { version = "0.2.0", features = ["google-firestore-v1"] }
 # You can use the following alternative options:
 # - `btree-map`: Use `BTreeMap` for map type.
 # - `bytes`: Use `bytes::Bytes` for bytes type.
-googleapis-tonic = { version = "0.2.0", default-features = false, features = ["btree-map", "bytes", "google-firestore-v1"] }
+googleapis-tonic = {
+  version = "0.2.0",
+  default-features = false,
+  features = ["btree-map", "bytes", "google-firestore-v1"]
+}
 
 # The complete list of features is defined in `crates/googleapis-tonic/Cargo.toml`.
 ```
