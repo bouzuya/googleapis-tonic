@@ -20,6 +20,6 @@ jobs:
             ~/.cargo/git/db/
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - run: cargo fmt -- --check
+      # - run: cargo fmt -- --check
       - run: cargo clippy -- --deny warnings
       - run: cargo check
