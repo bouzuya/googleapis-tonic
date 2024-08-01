@@ -845,7 +845,7 @@ pub mod google {
         feature = "google-cloud-workstations-v1beta",
     ))]
     pub mod cloud {
-        include!("google.cloud.rs");
+        include!("bytes_hash_map/google.cloud.rs");
         #[cfg(any(
             feature = "google-cloud-phishingprotection-v1beta1",
         ))]
@@ -854,7 +854,7 @@ pub mod google {
                 feature = "google-cloud-phishingprotection-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.phishingprotection.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.phishingprotection.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -875,7 +875,7 @@ pub mod google {
                         feature = "google-cloud-assuredworkloads-regulatoryintercept-logging-v1",
                     ))]
                     pub mod v1 {
-                        include!("google.cloud.assuredworkloads.regulatoryintercept.logging.v1.rs");
+                        include!("bytes_hash_map/google.cloud.assuredworkloads.regulatoryintercept.logging.v1.rs");
                     }
                 }
             }
@@ -883,13 +883,13 @@ pub mod google {
                 feature = "google-cloud-assuredworkloads-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.assuredworkloads.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.assuredworkloads.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-assuredworkloads-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.assuredworkloads.v1.rs");
+                include!("bytes_hash_map/google.cloud.assuredworkloads.v1.rs");
             }
         }
         #[cfg(any(
@@ -903,25 +903,25 @@ pub mod google {
                 feature = "google-cloud-discoveryengine-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.discoveryengine.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.discoveryengine.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-discoveryengine-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.discoveryengine.v1.rs");
+                include!("bytes_hash_map/google.cloud.discoveryengine.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-discoveryengine-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.discoveryengine.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.discoveryengine.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-discoveryengine-logging",
             ))]
             pub mod logging {
-                include!("google.cloud.discoveryengine.logging.rs");
+                include!("bytes_hash_map/google.cloud.discoveryengine.logging.rs");
             }
         }
         #[cfg(any(
@@ -933,13 +933,13 @@ pub mod google {
                 feature = "google-cloud-scheduler-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.scheduler.v1.rs");
+                include!("bytes_hash_map/google.cloud.scheduler.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-scheduler-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.scheduler.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.scheduler.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -951,13 +951,13 @@ pub mod google {
                 feature = "google-cloud-recaptchaenterprise-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.recaptchaenterprise.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.recaptchaenterprise.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-recaptchaenterprise-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.recaptchaenterprise.v1.rs");
+                include!("bytes_hash_map/google.cloud.recaptchaenterprise.v1.rs");
             }
         }
         #[cfg(any(
@@ -972,25 +972,25 @@ pub mod google {
                 feature = "google-cloud-securitycenter-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.securitycenter.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.securitycenter.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-securitycenter-v1p1beta1",
             ))]
             pub mod v1p1beta1 {
-                include!("google.cloud.securitycenter.v1p1beta1.rs");
+                include!("bytes_hash_map/google.cloud.securitycenter.v1p1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-securitycenter-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.securitycenter.v1.rs");
+                include!("bytes_hash_map/google.cloud.securitycenter.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-securitycenter-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.securitycenter.v2.rs");
+                include!("bytes_hash_map/google.cloud.securitycenter.v2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-securitycenter-settings-v1beta1",
@@ -1000,7 +1000,7 @@ pub mod google {
                     feature = "google-cloud-securitycenter-settings-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.securitycenter.settings.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.securitycenter.settings.v1beta1.rs");
                 }
             }
         }
@@ -1033,13 +1033,13 @@ pub mod google {
                     feature = "google-cloud-bigquery-biglake-v1alpha1",
                 ))]
                 pub mod v1alpha1 {
-                    include!("google.cloud.bigquery.biglake.v1alpha1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.biglake.v1alpha1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-bigquery-biglake-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.bigquery.biglake.v1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.biglake.v1.rs");
                 }
             }
             #[cfg(any(
@@ -1051,13 +1051,13 @@ pub mod google {
                     feature = "google-cloud-bigquery-datapolicies-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.bigquery.datapolicies.v1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.datapolicies.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-bigquery-datapolicies-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.bigquery.datapolicies.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.datapolicies.v1beta1.rs");
                 }
             }
             #[cfg(any(
@@ -1070,19 +1070,19 @@ pub mod google {
                     feature = "google-cloud-bigquery-storage-v1beta2",
                 ))]
                 pub mod v1beta2 {
-                    include!("google.cloud.bigquery.storage.v1beta2.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.storage.v1beta2.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-bigquery-storage-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.bigquery.storage.v1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.storage.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-bigquery-storage-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.bigquery.storage.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.storage.v1beta1.rs");
                 }
             }
             #[cfg(any(
@@ -1093,14 +1093,14 @@ pub mod google {
                     feature = "google-cloud-bigquery-dataexchange-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.bigquery.dataexchange.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.dataexchange.v1beta1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-bigquery-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.bigquery.v2.rs");
+                include!("bytes_hash_map/google.cloud.bigquery.v2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-bigquery-connection-v1",
@@ -1111,13 +1111,13 @@ pub mod google {
                     feature = "google-cloud-bigquery-connection-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.bigquery.connection.v1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.connection.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-bigquery-connection-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.bigquery.connection.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.connection.v1beta1.rs");
                 }
             }
             #[cfg(any(
@@ -1128,7 +1128,7 @@ pub mod google {
                     feature = "google-cloud-bigquery-datatransfer-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.bigquery.datatransfer.v1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.datatransfer.v1.rs");
                 }
             }
             #[cfg(any(
@@ -1140,13 +1140,13 @@ pub mod google {
                     feature = "google-cloud-bigquery-migration-v2alpha",
                 ))]
                 pub mod v2alpha {
-                    include!("google.cloud.bigquery.migration.v2alpha.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.migration.v2alpha.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-bigquery-migration-v2",
                 ))]
                 pub mod v2 {
-                    include!("google.cloud.bigquery.migration.v2.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.migration.v2.rs");
                 }
             }
             #[cfg(any(
@@ -1157,7 +1157,7 @@ pub mod google {
                     feature = "google-cloud-bigquery-reservation-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.bigquery.reservation.v1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.reservation.v1.rs");
                 }
             }
             #[cfg(any(
@@ -1168,7 +1168,7 @@ pub mod google {
                     feature = "google-cloud-bigquery-analyticshub-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.bigquery.analyticshub.v1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.analyticshub.v1.rs");
                 }
             }
             #[cfg(any(
@@ -1179,7 +1179,7 @@ pub mod google {
                     feature = "google-cloud-bigquery-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.bigquery.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.bigquery.logging.v1.rs");
                 }
             }
         }
@@ -1198,7 +1198,7 @@ pub mod google {
                     feature = "google-cloud-video-transcoder-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.video.transcoder.v1.rs");
+                    include!("bytes_hash_map/google.cloud.video.transcoder.v1.rs");
                 }
             }
             #[cfg(any(
@@ -1209,7 +1209,7 @@ pub mod google {
                     feature = "google-cloud-video-stitcher-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.video.stitcher.v1.rs");
+                    include!("bytes_hash_map/google.cloud.video.stitcher.v1.rs");
                 }
             }
             #[cfg(any(
@@ -1225,14 +1225,14 @@ pub mod google {
                         feature = "google-cloud-video-livestream-logging-v1",
                     ))]
                     pub mod v1 {
-                        include!("google.cloud.video.livestream.logging.v1.rs");
+                        include!("bytes_hash_map/google.cloud.video.livestream.logging.v1.rs");
                     }
                 }
                 #[cfg(any(
                     feature = "google-cloud-video-livestream-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.video.livestream.v1.rs");
+                    include!("bytes_hash_map/google.cloud.video.livestream.v1.rs");
                 }
             }
         }
@@ -1247,25 +1247,25 @@ pub mod google {
                 feature = "google-cloud-retail-v2beta",
             ))]
             pub mod v2beta {
-                include!("google.cloud.retail.v2beta.rs");
+                include!("bytes_hash_map/google.cloud.retail.v2beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-retail-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.retail.v2.rs");
+                include!("bytes_hash_map/google.cloud.retail.v2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-retail-v2alpha",
             ))]
             pub mod v2alpha {
-                include!("google.cloud.retail.v2alpha.rs");
+                include!("bytes_hash_map/google.cloud.retail.v2alpha.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-retail-logging",
             ))]
             pub mod logging {
-                include!("google.cloud.retail.logging.rs");
+                include!("bytes_hash_map/google.cloud.retail.logging.rs");
             }
         }
         #[cfg(any(
@@ -1277,13 +1277,13 @@ pub mod google {
                 feature = "google-cloud-batch-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.batch.v1.rs");
+                include!("bytes_hash_map/google.cloud.batch.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-batch-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.batch.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.batch.v1alpha.rs");
             }
         }
         #[cfg(any(
@@ -1299,14 +1299,14 @@ pub mod google {
                     feature = "google-cloud-servicehealth-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.servicehealth.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.servicehealth.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-servicehealth-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.servicehealth.v1.rs");
+                include!("bytes_hash_map/google.cloud.servicehealth.v1.rs");
             }
         }
         #[cfg(any(
@@ -1318,13 +1318,13 @@ pub mod google {
                 feature = "google-cloud-telcoautomation-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.telcoautomation.v1.rs");
+                include!("bytes_hash_map/google.cloud.telcoautomation.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-telcoautomation-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.cloud.telcoautomation.v1alpha1.rs");
+                include!("bytes_hash_map/google.cloud.telcoautomation.v1alpha1.rs");
             }
         }
         #[cfg(any(
@@ -1341,20 +1341,20 @@ pub mod google {
                     feature = "google-cloud-datacatalog-lineage-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.datacatalog.lineage.v1.rs");
+                    include!("bytes_hash_map/google.cloud.datacatalog.lineage.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-datacatalog-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.datacatalog.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.datacatalog.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-datacatalog-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.datacatalog.v1.rs");
+                include!("bytes_hash_map/google.cloud.datacatalog.v1.rs");
             }
         }
         #[cfg(any(
@@ -1372,26 +1372,26 @@ pub mod google {
                     feature = "google-cloud-notebooks-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.notebooks.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.notebooks.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-notebooks-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.notebooks.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.notebooks.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-notebooks-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.notebooks.v1.rs");
+                include!("bytes_hash_map/google.cloud.notebooks.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-notebooks-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.notebooks.v2.rs");
+                include!("bytes_hash_map/google.cloud.notebooks.v2.rs");
             }
         }
         #[cfg(any(
@@ -1404,19 +1404,19 @@ pub mod google {
                 feature = "google-cloud-speech-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.speech.v1.rs");
+                include!("bytes_hash_map/google.cloud.speech.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-speech-v1p1beta1",
             ))]
             pub mod v1p1beta1 {
-                include!("google.cloud.speech.v1p1beta1.rs");
+                include!("bytes_hash_map/google.cloud.speech.v1p1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-speech-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.speech.v2.rs");
+                include!("bytes_hash_map/google.cloud.speech.v2.rs");
             }
         }
         #[cfg(any(
@@ -1434,26 +1434,26 @@ pub mod google {
                     feature = "google-cloud-metastore-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.metastore.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.metastore.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-metastore-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.metastore.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.metastore.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-metastore-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.metastore.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.metastore.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-metastore-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.metastore.v1.rs");
+                include!("bytes_hash_map/google.cloud.metastore.v1.rs");
             }
         }
         #[cfg(any(
@@ -1465,13 +1465,13 @@ pub mod google {
                 feature = "google-cloud-networkconnectivity-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.cloud.networkconnectivity.v1alpha1.rs");
+                include!("bytes_hash_map/google.cloud.networkconnectivity.v1alpha1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-networkconnectivity-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.networkconnectivity.v1.rs");
+                include!("bytes_hash_map/google.cloud.networkconnectivity.v1.rs");
             }
         }
         #[cfg(any(
@@ -1484,19 +1484,19 @@ pub mod google {
                 feature = "google-cloud-domains-v1alpha2",
             ))]
             pub mod v1alpha2 {
-                include!("google.cloud.domains.v1alpha2.rs");
+                include!("bytes_hash_map/google.cloud.domains.v1alpha2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-domains-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.domains.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.domains.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-domains-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.domains.v1.rs");
+                include!("bytes_hash_map/google.cloud.domains.v1.rs");
             }
         }
         #[cfg(any(
@@ -1508,13 +1508,13 @@ pub mod google {
                 feature = "google-cloud-filestore-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.filestore.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.filestore.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-filestore-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.filestore.v1.rs");
+                include!("bytes_hash_map/google.cloud.filestore.v1.rs");
             }
         }
         #[cfg(any(
@@ -1545,26 +1545,26 @@ pub mod google {
                     feature = "google-cloud-gkehub-configmanagement-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.cloud.gkehub.configmanagement.v1beta.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.configmanagement.v1beta.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-gkehub-configmanagement-v1alpha",
                 ))]
                 pub mod v1alpha {
-                    include!("google.cloud.gkehub.configmanagement.v1alpha.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.configmanagement.v1alpha.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-gkehub-configmanagement-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.gkehub.configmanagement.v1.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.configmanagement.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-gkehub-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.gkehub.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.gkehub.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-gkehub-multiclusteringress-v1",
@@ -1576,32 +1576,32 @@ pub mod google {
                     feature = "google-cloud-gkehub-multiclusteringress-v1alpha",
                 ))]
                 pub mod v1alpha {
-                    include!("google.cloud.gkehub.multiclusteringress.v1alpha.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.multiclusteringress.v1alpha.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-gkehub-multiclusteringress-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.gkehub.multiclusteringress.v1.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.multiclusteringress.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-gkehub-multiclusteringress-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.cloud.gkehub.multiclusteringress.v1beta.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.multiclusteringress.v1beta.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-gkehub-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.gkehub.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.gkehub.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-gkehub-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.gkehub.v1.rs");
+                include!("bytes_hash_map/google.cloud.gkehub.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-gkehub-servicemesh-v1alpha",
@@ -1612,13 +1612,13 @@ pub mod google {
                     feature = "google-cloud-gkehub-servicemesh-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.cloud.gkehub.servicemesh.v1beta.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.servicemesh.v1beta.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-gkehub-servicemesh-v1alpha",
                 ))]
                 pub mod v1alpha {
-                    include!("google.cloud.gkehub.servicemesh.v1alpha.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.servicemesh.v1alpha.rs");
                 }
             }
             #[cfg(any(
@@ -1630,13 +1630,13 @@ pub mod google {
                     feature = "google-cloud-gkehub-metering-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.cloud.gkehub.metering.v1beta.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.metering.v1beta.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-gkehub-metering-v1alpha",
                 ))]
                 pub mod v1alpha {
-                    include!("google.cloud.gkehub.metering.v1alpha.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.metering.v1alpha.rs");
                 }
             }
             #[cfg(any(
@@ -1647,14 +1647,14 @@ pub mod google {
                     feature = "google-cloud-gkehub-cloudauditlogging-v1alpha",
                 ))]
                 pub mod v1alpha {
-                    include!("google.cloud.gkehub.cloudauditlogging.v1alpha.rs");
+                    include!("bytes_hash_map/google.cloud.gkehub.cloudauditlogging.v1alpha.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-gkehub-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.gkehub.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.gkehub.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -1666,7 +1666,7 @@ pub mod google {
                 feature = "google-cloud-gkebackup-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.gkebackup.v1.rs");
+                include!("bytes_hash_map/google.cloud.gkebackup.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-gkebackup-logging-v1",
@@ -1676,7 +1676,7 @@ pub mod google {
                     feature = "google-cloud-gkebackup-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.gkebackup.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.gkebackup.logging.v1.rs");
                 }
             }
         }
@@ -1688,7 +1688,7 @@ pub mod google {
                 feature = "google-cloud-recommendationengine-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.recommendationengine.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.recommendationengine.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -1700,13 +1700,13 @@ pub mod google {
                 feature = "google-cloud-resourcemanager-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.resourcemanager.v2.rs");
+                include!("bytes_hash_map/google.cloud.resourcemanager.v2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-resourcemanager-v3",
             ))]
             pub mod v3 {
-                include!("google.cloud.resourcemanager.v3.rs");
+                include!("bytes_hash_map/google.cloud.resourcemanager.v3.rs");
             }
         }
         #[cfg(any(
@@ -1728,38 +1728,38 @@ pub mod google {
                     feature = "google-cloud-alloydb-connectors-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.alloydb.connectors.v1.rs");
+                    include!("bytes_hash_map/google.cloud.alloydb.connectors.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-alloydb-connectors-v1alpha",
                 ))]
                 pub mod v1alpha {
-                    include!("google.cloud.alloydb.connectors.v1alpha.rs");
+                    include!("bytes_hash_map/google.cloud.alloydb.connectors.v1alpha.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-alloydb-connectors-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.cloud.alloydb.connectors.v1beta.rs");
+                    include!("bytes_hash_map/google.cloud.alloydb.connectors.v1beta.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-alloydb-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.alloydb.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.alloydb.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-alloydb-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.alloydb.v1.rs");
+                include!("bytes_hash_map/google.cloud.alloydb.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-alloydb-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.alloydb.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.alloydb.v1alpha.rs");
             }
         }
         #[cfg(any(
@@ -1772,19 +1772,19 @@ pub mod google {
                 feature = "google-cloud-websecurityscanner-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.websecurityscanner.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.websecurityscanner.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-websecurityscanner-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.websecurityscanner.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.websecurityscanner.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-websecurityscanner-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.websecurityscanner.v1.rs");
+                include!("bytes_hash_map/google.cloud.websecurityscanner.v1.rs");
             }
         }
         #[cfg(any(
@@ -1802,20 +1802,20 @@ pub mod google {
                     feature = "google-cloud-billing-budgets-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.billing.budgets.v1.rs");
+                    include!("bytes_hash_map/google.cloud.billing.budgets.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-billing-budgets-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.billing.budgets.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.billing.budgets.v1beta1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-billing-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.billing.v1.rs");
+                include!("bytes_hash_map/google.cloud.billing.v1.rs");
             }
         }
         #[cfg(any(
@@ -1830,19 +1830,19 @@ pub mod google {
                 feature = "google-cloud-workflows-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.workflows.v1.rs");
+                include!("bytes_hash_map/google.cloud.workflows.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-workflows-type",
             ))]
             pub mod r#type {
-                include!("google.cloud.workflows.r#type.rs");
+                include!("bytes_hash_map/google.cloud.workflows.r#type.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-workflows-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.workflows.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.workflows.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-workflows-executions-v1",
@@ -1853,13 +1853,13 @@ pub mod google {
                     feature = "google-cloud-workflows-executions-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.cloud.workflows.executions.v1beta.rs");
+                    include!("bytes_hash_map/google.cloud.workflows.executions.v1beta.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-workflows-executions-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.workflows.executions.v1.rs");
+                    include!("bytes_hash_map/google.cloud.workflows.executions.v1.rs");
                 }
             }
         }
@@ -1872,13 +1872,13 @@ pub mod google {
                 feature = "google-cloud-compute-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.compute.v1.rs");
+                include!("bytes_hash_map/google.cloud.compute.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-compute-v1small",
             ))]
             pub mod v1small {
-                include!("google.cloud.compute.v1small.rs");
+                include!("bytes_hash_map/google.cloud.compute.v1small.rs");
             }
         }
         #[cfg(any(
@@ -1897,19 +1897,19 @@ pub mod google {
                     feature = "google-cloud-gkeconnect-gateway-v1alpha1",
                 ))]
                 pub mod v1alpha1 {
-                    include!("google.cloud.gkeconnect.gateway.v1alpha1.rs");
+                    include!("bytes_hash_map/google.cloud.gkeconnect.gateway.v1alpha1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-gkeconnect-gateway-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.gkeconnect.gateway.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.gkeconnect.gateway.v1beta1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-gkeconnect-gateway-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.gkeconnect.gateway.v1.rs");
+                    include!("bytes_hash_map/google.cloud.gkeconnect.gateway.v1.rs");
                 }
             }
         }
@@ -1925,7 +1925,7 @@ pub mod google {
                     feature = "google-cloud-networkanalyzer-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.networkanalyzer.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.networkanalyzer.logging.v1.rs");
                 }
             }
         }
@@ -1938,13 +1938,13 @@ pub mod google {
                 feature = "google-cloud-iap-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.iap.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.iap.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-iap-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.iap.v1.rs");
+                include!("bytes_hash_map/google.cloud.iap.v1.rs");
             }
         }
         #[cfg(any(
@@ -1963,26 +1963,26 @@ pub mod google {
                     feature = "google-cloud-recommender-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.recommender.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.recommender.logging.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-recommender-logging-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.recommender.logging.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.recommender.logging.v1beta1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-recommender-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.recommender.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.recommender.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-recommender-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.recommender.v1.rs");
+                include!("bytes_hash_map/google.cloud.recommender.v1.rs");
             }
         }
         #[cfg(any(
@@ -2004,13 +2004,13 @@ pub mod google {
                         feature = "google-cloud-orchestration-airflow-service-v1",
                     ))]
                     pub mod v1 {
-                        include!("google.cloud.orchestration.airflow.service.v1.rs");
+                        include!("bytes_hash_map/google.cloud.orchestration.airflow.service.v1.rs");
                     }
                     #[cfg(any(
                         feature = "google-cloud-orchestration-airflow-service-v1beta1",
                     ))]
                     pub mod v1beta1 {
-                        include!("google.cloud.orchestration.airflow.service.v1beta1.rs");
+                        include!("bytes_hash_map/google.cloud.orchestration.airflow.service.v1beta1.rs");
                     }
                 }
             }
@@ -2024,13 +2024,13 @@ pub mod google {
                 feature = "google-cloud-orgpolicy-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.orgpolicy.v1.rs");
+                include!("bytes_hash_map/google.cloud.orgpolicy.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-orgpolicy-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.orgpolicy.v2.rs");
+                include!("bytes_hash_map/google.cloud.orgpolicy.v2.rs");
             }
         }
         #[cfg(any(
@@ -2045,31 +2045,31 @@ pub mod google {
                 feature = "google-cloud-videointelligence-v1beta2",
             ))]
             pub mod v1beta2 {
-                include!("google.cloud.videointelligence.v1beta2.rs");
+                include!("bytes_hash_map/google.cloud.videointelligence.v1beta2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-videointelligence-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.videointelligence.v1.rs");
+                include!("bytes_hash_map/google.cloud.videointelligence.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-videointelligence-v1p3beta1",
             ))]
             pub mod v1p3beta1 {
-                include!("google.cloud.videointelligence.v1p3beta1.rs");
+                include!("bytes_hash_map/google.cloud.videointelligence.v1p3beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-videointelligence-v1p2beta1",
             ))]
             pub mod v1p2beta1 {
-                include!("google.cloud.videointelligence.v1p2beta1.rs");
+                include!("bytes_hash_map/google.cloud.videointelligence.v1p2beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-videointelligence-v1p1beta1",
             ))]
             pub mod v1p1beta1 {
-                include!("google.cloud.videointelligence.v1p1beta1.rs");
+                include!("bytes_hash_map/google.cloud.videointelligence.v1p1beta1.rs");
             }
         }
         #[cfg(any(
@@ -2084,31 +2084,31 @@ pub mod google {
                 feature = "google-cloud-asset-v1p5beta1",
             ))]
             pub mod v1p5beta1 {
-                include!("google.cloud.asset.v1p5beta1.rs");
+                include!("bytes_hash_map/google.cloud.asset.v1p5beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-asset-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.asset.v1.rs");
+                include!("bytes_hash_map/google.cloud.asset.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-asset-v1p7beta1",
             ))]
             pub mod v1p7beta1 {
-                include!("google.cloud.asset.v1p7beta1.rs");
+                include!("bytes_hash_map/google.cloud.asset.v1p7beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-asset-v1p2beta1",
             ))]
             pub mod v1p2beta1 {
-                include!("google.cloud.asset.v1p2beta1.rs");
+                include!("bytes_hash_map/google.cloud.asset.v1p2beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-asset-v1p1beta1",
             ))]
             pub mod v1p1beta1 {
-                include!("google.cloud.asset.v1p1beta1.rs");
+                include!("bytes_hash_map/google.cloud.asset.v1p1beta1.rs");
             }
         }
         #[cfg(any(
@@ -2124,14 +2124,14 @@ pub mod google {
                     feature = "google-cloud-clouddms-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.clouddms.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.clouddms.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-clouddms-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.clouddms.v1.rs");
+                include!("bytes_hash_map/google.cloud.clouddms.v1.rs");
             }
         }
         #[cfg(any(
@@ -2142,7 +2142,7 @@ pub mod google {
                 feature = "google-cloud-config-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.config.v1.rs");
+                include!("bytes_hash_map/google.cloud.config.v1.rs");
             }
         }
         #[cfg(any(
@@ -2159,14 +2159,14 @@ pub mod google {
                     feature = "google-cloud-kms-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.kms.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.kms.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-kms-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.kms.v1.rs");
+                include!("bytes_hash_map/google.cloud.kms.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-kms-inventory-v1",
@@ -2176,7 +2176,7 @@ pub mod google {
                     feature = "google-cloud-kms-inventory-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.kms.inventory.v1.rs");
+                    include!("bytes_hash_map/google.cloud.kms.inventory.v1.rs");
                 }
             }
         }
@@ -2190,19 +2190,19 @@ pub mod google {
                 feature = "google-cloud-tpu-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.tpu.v2.rs");
+                include!("bytes_hash_map/google.cloud.tpu.v2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-tpu-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.tpu.v1.rs");
+                include!("bytes_hash_map/google.cloud.tpu.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-tpu-v2alpha1",
             ))]
             pub mod v2alpha1 {
-                include!("google.cloud.tpu.v2alpha1.rs");
+                include!("bytes_hash_map/google.cloud.tpu.v2alpha1.rs");
             }
         }
         #[cfg(any(
@@ -2213,7 +2213,7 @@ pub mod google {
                 feature = "google-cloud-timeseriesinsights-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.timeseriesinsights.v1.rs");
+                include!("bytes_hash_map/google.cloud.timeseriesinsights.v1.rs");
             }
         }
         #[cfg(any(
@@ -2224,7 +2224,7 @@ pub mod google {
                 feature = "google-cloud-vmmigration-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.vmmigration.v1.rs");
+                include!("bytes_hash_map/google.cloud.vmmigration.v1.rs");
             }
         }
         #[cfg(any(
@@ -2236,13 +2236,13 @@ pub mod google {
                 feature = "google-cloud-automl-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.automl.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.automl.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-automl-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.automl.v1.rs");
+                include!("bytes_hash_map/google.cloud.automl.v1.rs");
             }
         }
         #[cfg(any(
@@ -2254,13 +2254,13 @@ pub mod google {
                 feature = "google-cloud-visionai-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.visionai.v1.rs");
+                include!("bytes_hash_map/google.cloud.visionai.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-visionai-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.cloud.visionai.v1alpha1.rs");
+                include!("bytes_hash_map/google.cloud.visionai.v1alpha1.rs");
             }
         }
         #[cfg(any(
@@ -2273,13 +2273,13 @@ pub mod google {
                 feature = "google-cloud-workstations-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.workstations.v1.rs");
+                include!("bytes_hash_map/google.cloud.workstations.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-workstations-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.workstations.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.workstations.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-workstations-logging-v1",
@@ -2289,7 +2289,7 @@ pub mod google {
                     feature = "google-cloud-workstations-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.workstations.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.workstations.logging.v1.rs");
                 }
             }
         }
@@ -2306,14 +2306,14 @@ pub mod google {
                     feature = "google-cloud-backupdr-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.backupdr.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.backupdr.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-backupdr-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.backupdr.v1.rs");
+                include!("bytes_hash_map/google.cloud.backupdr.v1.rs");
             }
         }
         #[cfg(any(
@@ -2324,7 +2324,7 @@ pub mod google {
                 feature = "google-cloud-privatecatalog-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.privatecatalog.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.privatecatalog.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -2343,13 +2343,13 @@ pub mod google {
                     feature = "google-cloud-security-publicca-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.security.publicca.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.security.publicca.v1beta1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-security-publicca-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.security.publicca.v1.rs");
+                    include!("bytes_hash_map/google.cloud.security.publicca.v1.rs");
                 }
             }
             #[cfg(any(
@@ -2361,13 +2361,13 @@ pub mod google {
                     feature = "google-cloud-security-privateca-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.security.privateca.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.security.privateca.v1beta1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-security-privateca-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.security.privateca.v1.rs");
+                    include!("bytes_hash_map/google.cloud.security.privateca.v1.rs");
                 }
             }
         }
@@ -2387,7 +2387,7 @@ pub mod google {
                     feature = "google-cloud-beyondcorp-appgateways-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.beyondcorp.appgateways.v1.rs");
+                    include!("bytes_hash_map/google.cloud.beyondcorp.appgateways.v1.rs");
                 }
             }
             #[cfg(any(
@@ -2398,7 +2398,7 @@ pub mod google {
                     feature = "google-cloud-beyondcorp-appconnections-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.beyondcorp.appconnections.v1.rs");
+                    include!("bytes_hash_map/google.cloud.beyondcorp.appconnections.v1.rs");
                 }
             }
             #[cfg(any(
@@ -2409,7 +2409,7 @@ pub mod google {
                     feature = "google-cloud-beyondcorp-clientgateways-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.beyondcorp.clientgateways.v1.rs");
+                    include!("bytes_hash_map/google.cloud.beyondcorp.clientgateways.v1.rs");
                 }
             }
             #[cfg(any(
@@ -2420,7 +2420,7 @@ pub mod google {
                     feature = "google-cloud-beyondcorp-clientconnectorservices-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.beyondcorp.clientconnectorservices.v1.rs");
+                    include!("bytes_hash_map/google.cloud.beyondcorp.clientconnectorservices.v1.rs");
                 }
             }
             #[cfg(any(
@@ -2431,7 +2431,7 @@ pub mod google {
                     feature = "google-cloud-beyondcorp-appconnectors-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.beyondcorp.appconnectors.v1.rs");
+                    include!("bytes_hash_map/google.cloud.beyondcorp.appconnectors.v1.rs");
                 }
             }
         }
@@ -2444,13 +2444,13 @@ pub mod google {
                 feature = "google-cloud-networkservices-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.networkservices.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.networkservices.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-networkservices-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.networkservices.v1.rs");
+                include!("bytes_hash_map/google.cloud.networkservices.v1.rs");
             }
         }
         #[cfg(any(
@@ -2464,25 +2464,25 @@ pub mod google {
                 feature = "google-cloud-functions-v2beta",
             ))]
             pub mod v2beta {
-                include!("google.cloud.functions.v2beta.rs");
+                include!("bytes_hash_map/google.cloud.functions.v2beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-functions-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.functions.v2.rs");
+                include!("bytes_hash_map/google.cloud.functions.v2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-functions-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.functions.v1.rs");
+                include!("bytes_hash_map/google.cloud.functions.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-functions-v2alpha",
             ))]
             pub mod v2alpha {
-                include!("google.cloud.functions.v2alpha.rs");
+                include!("bytes_hash_map/google.cloud.functions.v2alpha.rs");
             }
         }
         #[cfg(any(
@@ -2497,31 +2497,31 @@ pub mod google {
                 feature = "google-cloud-vision-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.vision.v1.rs");
+                include!("bytes_hash_map/google.cloud.vision.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-vision-v1p4beta1",
             ))]
             pub mod v1p4beta1 {
-                include!("google.cloud.vision.v1p4beta1.rs");
+                include!("bytes_hash_map/google.cloud.vision.v1p4beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-vision-v1p1beta1",
             ))]
             pub mod v1p1beta1 {
-                include!("google.cloud.vision.v1p1beta1.rs");
+                include!("bytes_hash_map/google.cloud.vision.v1p1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-vision-v1p2beta1",
             ))]
             pub mod v1p2beta1 {
-                include!("google.cloud.vision.v1p2beta1.rs");
+                include!("bytes_hash_map/google.cloud.vision.v1p2beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-vision-v1p3beta1",
             ))]
             pub mod v1p3beta1 {
-                include!("google.cloud.vision.v1p3beta1.rs");
+                include!("bytes_hash_map/google.cloud.vision.v1p3beta1.rs");
             }
         }
         #[cfg(any(
@@ -2532,7 +2532,7 @@ pub mod google {
                 feature = "google-cloud-developerconnect-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.developerconnect.v1.rs");
+                include!("bytes_hash_map/google.cloud.developerconnect.v1.rs");
             }
         }
         #[cfg(any(
@@ -2543,7 +2543,7 @@ pub mod google {
                 feature = "google-cloud-healthcare-logging",
             ))]
             pub mod logging {
-                include!("google.cloud.healthcare.logging.rs");
+                include!("bytes_hash_map/google.cloud.healthcare.logging.rs");
             }
         }
         #[cfg(any(
@@ -2556,13 +2556,13 @@ pub mod google {
                 feature = "google-cloud-datastream-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.cloud.datastream.v1alpha1.rs");
+                include!("bytes_hash_map/google.cloud.datastream.v1alpha1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-datastream-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.datastream.v1.rs");
+                include!("bytes_hash_map/google.cloud.datastream.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-datastream-logging-v1",
@@ -2572,7 +2572,7 @@ pub mod google {
                     feature = "google-cloud-datastream-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.datastream.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.datastream.logging.v1.rs");
                 }
             }
         }
@@ -2585,13 +2585,13 @@ pub mod google {
                 feature = "google-cloud-texttospeech-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.texttospeech.v1.rs");
+                include!("bytes_hash_map/google.cloud.texttospeech.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-texttospeech-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.texttospeech.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.texttospeech.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -2603,13 +2603,13 @@ pub mod google {
                 feature = "google-cloud-mediatranslation-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.cloud.mediatranslation.v1alpha1.rs");
+                include!("bytes_hash_map/google.cloud.mediatranslation.v1alpha1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-mediatranslation-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.mediatranslation.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.mediatranslation.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -2620,7 +2620,7 @@ pub mod google {
                 feature = "google-cloud-privilegedaccessmanager-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.privilegedaccessmanager.v1.rs");
+                include!("bytes_hash_map/google.cloud.privilegedaccessmanager.v1.rs");
             }
         }
         #[cfg(any(
@@ -2631,7 +2631,7 @@ pub mod google {
                 feature = "google-cloud-gdchardwaremanagement-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.gdchardwaremanagement.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.gdchardwaremanagement.v1alpha.rs");
             }
         }
         #[cfg(any(
@@ -2645,25 +2645,25 @@ pub mod google {
                 feature = "google-cloud-documentai-v1beta3",
             ))]
             pub mod v1beta3 {
-                include!("google.cloud.documentai.v1beta3.rs");
+                include!("bytes_hash_map/google.cloud.documentai.v1beta3.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-documentai-v1beta2",
             ))]
             pub mod v1beta2 {
-                include!("google.cloud.documentai.v1beta2.rs");
+                include!("bytes_hash_map/google.cloud.documentai.v1beta2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-documentai-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.documentai.v1.rs");
+                include!("bytes_hash_map/google.cloud.documentai.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-documentai-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.documentai.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.documentai.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -2674,7 +2674,7 @@ pub mod google {
                 feature = "google-cloud-migrationcenter-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.migrationcenter.v1.rs");
+                include!("bytes_hash_map/google.cloud.migrationcenter.v1.rs");
             }
         }
         #[cfg(any(
@@ -2687,13 +2687,13 @@ pub mod google {
                 feature = "google-cloud-dataform-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.dataform.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.dataform.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-dataform-v1alpha2",
             ))]
             pub mod v1alpha2 {
-                include!("google.cloud.dataform.v1alpha2.rs");
+                include!("bytes_hash_map/google.cloud.dataform.v1alpha2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-dataform-logging-v1",
@@ -2703,7 +2703,7 @@ pub mod google {
                     feature = "google-cloud-dataform-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.dataform.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.dataform.logging.v1.rs");
                 }
             }
         }
@@ -2730,7 +2730,7 @@ pub mod google {
                 feature = "google-cloud-aiplatform-v1-schema-trainingjob-definition",
             ))]
             pub mod v1 {
-                include!("google.cloud.aiplatform.v1.rs");
+                include!("bytes_hash_map/google.cloud.aiplatform.v1.rs");
                 #[cfg(any(
                     feature = "google-cloud-aiplatform-v1-schema-predict-instance",
                     feature = "google-cloud-aiplatform-v1-schema-predict-params",
@@ -2748,19 +2748,19 @@ pub mod google {
                             feature = "google-cloud-aiplatform-v1-schema-predict-prediction",
                         ))]
                         pub mod prediction {
-                            include!("google.cloud.aiplatform.v1.schema.predict.prediction.rs");
+                            include!("bytes_hash_map/google.cloud.aiplatform.v1.schema.predict.prediction.rs");
                         }
                         #[cfg(any(
                             feature = "google-cloud-aiplatform-v1-schema-predict-instance",
                         ))]
                         pub mod instance {
-                            include!("google.cloud.aiplatform.v1.schema.predict.instance.rs");
+                            include!("bytes_hash_map/google.cloud.aiplatform.v1.schema.predict.instance.rs");
                         }
                         #[cfg(any(
                             feature = "google-cloud-aiplatform-v1-schema-predict-params",
                         ))]
                         pub mod params {
-                            include!("google.cloud.aiplatform.v1.schema.predict.params.rs");
+                            include!("bytes_hash_map/google.cloud.aiplatform.v1.schema.predict.params.rs");
                         }
                     }
                     #[cfg(any(
@@ -2771,7 +2771,7 @@ pub mod google {
                             feature = "google-cloud-aiplatform-v1-schema-trainingjob-definition",
                         ))]
                         pub mod definition {
-                            include!("google.cloud.aiplatform.v1.schema.trainingjob.definition.rs");
+                            include!("bytes_hash_map/google.cloud.aiplatform.v1.schema.trainingjob.definition.rs");
                         }
                     }
                 }
@@ -2785,7 +2785,7 @@ pub mod google {
                 feature = "google-cloud-aiplatform-v1beta1-schema-trainingjob-definition",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.aiplatform.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.aiplatform.v1beta1.rs");
                 #[cfg(any(
                     feature = "google-cloud-aiplatform-v1beta1-schema",
                     feature = "google-cloud-aiplatform-v1beta1-schema-predict-instance",
@@ -2794,7 +2794,7 @@ pub mod google {
                     feature = "google-cloud-aiplatform-v1beta1-schema-trainingjob-definition",
                 ))]
                 pub mod schema {
-                    include!("google.cloud.aiplatform.v1beta1.schema.rs");
+                    include!("bytes_hash_map/google.cloud.aiplatform.v1beta1.schema.rs");
                     #[cfg(any(
                         feature = "google-cloud-aiplatform-v1beta1-schema-trainingjob-definition",
                     ))]
@@ -2803,7 +2803,7 @@ pub mod google {
                             feature = "google-cloud-aiplatform-v1beta1-schema-trainingjob-definition",
                         ))]
                         pub mod definition {
-                            include!("google.cloud.aiplatform.v1beta1.schema.trainingjob.definition.rs");
+                            include!("bytes_hash_map/google.cloud.aiplatform.v1beta1.schema.trainingjob.definition.rs");
                         }
                     }
                     #[cfg(any(
@@ -2816,19 +2816,19 @@ pub mod google {
                             feature = "google-cloud-aiplatform-v1beta1-schema-predict-instance",
                         ))]
                         pub mod instance {
-                            include!("google.cloud.aiplatform.v1beta1.schema.predict.instance.rs");
+                            include!("bytes_hash_map/google.cloud.aiplatform.v1beta1.schema.predict.instance.rs");
                         }
                         #[cfg(any(
                             feature = "google-cloud-aiplatform-v1beta1-schema-predict-prediction",
                         ))]
                         pub mod prediction {
-                            include!("google.cloud.aiplatform.v1beta1.schema.predict.prediction.rs");
+                            include!("bytes_hash_map/google.cloud.aiplatform.v1beta1.schema.predict.prediction.rs");
                         }
                         #[cfg(any(
                             feature = "google-cloud-aiplatform-v1beta1-schema-predict-params",
                         ))]
                         pub mod params {
-                            include!("google.cloud.aiplatform.v1beta1.schema.predict.params.rs");
+                            include!("bytes_hash_map/google.cloud.aiplatform.v1beta1.schema.predict.params.rs");
                         }
                     }
                 }
@@ -2837,7 +2837,7 @@ pub mod google {
                 feature = "google-cloud-aiplatform-logging",
             ))]
             pub mod logging {
-                include!("google.cloud.aiplatform.logging.rs");
+                include!("bytes_hash_map/google.cloud.aiplatform.logging.rs");
             }
         }
         #[cfg(any(
@@ -2859,13 +2859,13 @@ pub mod google {
                         feature = "google-cloud-commerce-consumer-procurement-v1alpha1",
                     ))]
                     pub mod v1alpha1 {
-                        include!("google.cloud.commerce.consumer.procurement.v1alpha1.rs");
+                        include!("bytes_hash_map/google.cloud.commerce.consumer.procurement.v1alpha1.rs");
                     }
                     #[cfg(any(
                         feature = "google-cloud-commerce-consumer-procurement-v1",
                     ))]
                     pub mod v1 {
-                        include!("google.cloud.commerce.consumer.procurement.v1.rs");
+                        include!("bytes_hash_map/google.cloud.commerce.consumer.procurement.v1.rs");
                     }
                 }
             }
@@ -2878,7 +2878,7 @@ pub mod google {
                 feature = "google-cloud-essentialcontacts-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.essentialcontacts.v1.rs");
+                include!("bytes_hash_map/google.cloud.essentialcontacts.v1.rs");
             }
         }
         #[cfg(any(
@@ -2889,7 +2889,7 @@ pub mod google {
                 feature = "google-cloud-netapp-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.netapp.v1.rs");
+                include!("bytes_hash_map/google.cloud.netapp.v1.rs");
             }
         }
         #[cfg(any(
@@ -2900,7 +2900,7 @@ pub mod google {
                 feature = "google-cloud-integrations-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.integrations.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.integrations.v1alpha.rs");
             }
         }
         #[cfg(any(
@@ -2911,7 +2911,7 @@ pub mod google {
                 feature = "google-cloud-edgecontainer-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.edgecontainer.v1.rs");
+                include!("bytes_hash_map/google.cloud.edgecontainer.v1.rs");
             }
         }
         #[cfg(any(
@@ -2922,7 +2922,7 @@ pub mod google {
                 feature = "google-cloud-shell-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.shell.v1.rs");
+                include!("bytes_hash_map/google.cloud.shell.v1.rs");
             }
         }
         #[cfg(any(
@@ -2934,13 +2934,13 @@ pub mod google {
                 feature = "google-cloud-identitytoolkit-logging",
             ))]
             pub mod logging {
-                include!("google.cloud.identitytoolkit.logging.rs");
+                include!("bytes_hash_map/google.cloud.identitytoolkit.logging.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-identitytoolkit-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.identitytoolkit.v2.rs");
+                include!("bytes_hash_map/google.cloud.identitytoolkit.v2.rs");
             }
         }
         #[cfg(any(
@@ -2954,25 +2954,25 @@ pub mod google {
                 feature = "google-cloud-oslogin-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.oslogin.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.oslogin.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-oslogin-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.oslogin.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.oslogin.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-oslogin-common",
             ))]
             pub mod common {
-                include!("google.cloud.oslogin.common.rs");
+                include!("bytes_hash_map/google.cloud.oslogin.common.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-oslogin-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.oslogin.v1.rs");
+                include!("bytes_hash_map/google.cloud.oslogin.v1.rs");
             }
         }
         #[cfg(any(
@@ -2985,19 +2985,19 @@ pub mod google {
                 feature = "google-cloud-tasks-v2beta3",
             ))]
             pub mod v2beta3 {
-                include!("google.cloud.tasks.v2beta3.rs");
+                include!("bytes_hash_map/google.cloud.tasks.v2beta3.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-tasks-v2beta2",
             ))]
             pub mod v2beta2 {
-                include!("google.cloud.tasks.v2beta2.rs");
+                include!("bytes_hash_map/google.cloud.tasks.v2beta2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-tasks-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.tasks.v2.rs");
+                include!("bytes_hash_map/google.cloud.tasks.v2.rs");
             }
         }
         #[cfg(any(
@@ -3013,13 +3013,13 @@ pub mod google {
                 feature = "google-cloud-osconfig-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.osconfig.v1.rs");
+                include!("bytes_hash_map/google.cloud.osconfig.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-osconfig-logging",
             ))]
             pub mod logging {
-                include!("google.cloud.osconfig.logging.rs");
+                include!("bytes_hash_map/google.cloud.osconfig.logging.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-osconfig-agentendpoint-v1",
@@ -3030,26 +3030,26 @@ pub mod google {
                     feature = "google-cloud-osconfig-agentendpoint-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.cloud.osconfig.agentendpoint.v1beta.rs");
+                    include!("bytes_hash_map/google.cloud.osconfig.agentendpoint.v1beta.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-osconfig-agentendpoint-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.osconfig.agentendpoint.v1.rs");
+                    include!("bytes_hash_map/google.cloud.osconfig.agentendpoint.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-osconfig-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.osconfig.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.osconfig.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-osconfig-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.osconfig.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.osconfig.v1beta.rs");
             }
         }
         #[cfg(any(
@@ -3063,25 +3063,25 @@ pub mod google {
                 feature = "google-cloud-language-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.language.v2.rs");
+                include!("bytes_hash_map/google.cloud.language.v2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-language-v1beta2",
             ))]
             pub mod v1beta2 {
-                include!("google.cloud.language.v1beta2.rs");
+                include!("bytes_hash_map/google.cloud.language.v1beta2.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-language-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.language.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.language.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-language-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.language.v1.rs");
+                include!("bytes_hash_map/google.cloud.language.v1.rs");
             }
         }
         #[cfg(any(
@@ -3096,7 +3096,7 @@ pub mod google {
                     feature = "google-cloud-cloudsetup-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.cloudsetup.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.cloudsetup.logging.v1.rs");
                 }
             }
         }
@@ -3108,7 +3108,7 @@ pub mod google {
                 feature = "google-cloud-gkemulticloud-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.gkemulticloud.v1.rs");
+                include!("bytes_hash_map/google.cloud.gkemulticloud.v1.rs");
             }
         }
         #[cfg(any(
@@ -3120,13 +3120,13 @@ pub mod google {
                 feature = "google-cloud-confidentialcomputing-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.cloud.confidentialcomputing.v1alpha1.rs");
+                include!("bytes_hash_map/google.cloud.confidentialcomputing.v1alpha1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-confidentialcomputing-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.confidentialcomputing.v1.rs");
+                include!("bytes_hash_map/google.cloud.confidentialcomputing.v1.rs");
             }
         }
         #[cfg(any(
@@ -3137,7 +3137,7 @@ pub mod google {
                 feature = "google-cloud-contactcenterinsights-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.contactcenterinsights.v1.rs");
+                include!("bytes_hash_map/google.cloud.contactcenterinsights.v1.rs");
             }
         }
         #[cfg(any(
@@ -3149,7 +3149,7 @@ pub mod google {
                 feature = "google-cloud-eventarc-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.eventarc.v1.rs");
+                include!("bytes_hash_map/google.cloud.eventarc.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-eventarc-publishing-v1",
@@ -3159,7 +3159,7 @@ pub mod google {
                     feature = "google-cloud-eventarc-publishing-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.eventarc.publishing.v1.rs");
+                    include!("bytes_hash_map/google.cloud.eventarc.publishing.v1.rs");
                 }
             }
         }
@@ -3179,26 +3179,26 @@ pub mod google {
                     feature = "google-cloud-redis-cluster-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.redis.cluster.v1.rs");
+                    include!("bytes_hash_map/google.cloud.redis.cluster.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-redis-cluster-v1beta1",
                 ))]
                 pub mod v1beta1 {
-                    include!("google.cloud.redis.cluster.v1beta1.rs");
+                    include!("bytes_hash_map/google.cloud.redis.cluster.v1beta1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-redis-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.redis.v1.rs");
+                include!("bytes_hash_map/google.cloud.redis.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-redis-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.redis.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.redis.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -3210,13 +3210,13 @@ pub mod google {
                 feature = "google-cloud-datafusion-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.datafusion.v1.rs");
+                include!("bytes_hash_map/google.cloud.datafusion.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-datafusion-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.datafusion.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.datafusion.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -3227,7 +3227,7 @@ pub mod google {
                 feature = "google-cloud-vpcaccess-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.vpcaccess.v1.rs");
+                include!("bytes_hash_map/google.cloud.vpcaccess.v1.rs");
             }
         }
         #[cfg(any(
@@ -3245,20 +3245,20 @@ pub mod google {
                     feature = "google-cloud-policytroubleshooter-iam-v3beta",
                 ))]
                 pub mod v3beta {
-                    include!("google.cloud.policytroubleshooter.iam.v3beta.rs");
+                    include!("bytes_hash_map/google.cloud.policytroubleshooter.iam.v3beta.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-policytroubleshooter-iam-v3",
                 ))]
                 pub mod v3 {
-                    include!("google.cloud.policytroubleshooter.iam.v3.rs");
+                    include!("bytes_hash_map/google.cloud.policytroubleshooter.iam.v3.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-policytroubleshooter-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.policytroubleshooter.v1.rs");
+                include!("bytes_hash_map/google.cloud.policytroubleshooter.v1.rs");
             }
         }
         #[cfg(any(
@@ -3273,7 +3273,7 @@ pub mod google {
                     feature = "google-cloud-stream-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.stream.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.stream.logging.v1.rs");
                 }
             }
         }
@@ -3285,7 +3285,7 @@ pub mod google {
                 feature = "google-cloud-deploy-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.deploy.v1.rs");
+                include!("bytes_hash_map/google.cloud.deploy.v1.rs");
             }
         }
         #[cfg(any(
@@ -3296,7 +3296,7 @@ pub mod google {
                 feature = "google-cloud-datalabeling-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.datalabeling.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.datalabeling.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -3307,7 +3307,7 @@ pub mod google {
                 feature = "google-cloud-iot-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.iot.v1.rs");
+                include!("bytes_hash_map/google.cloud.iot.v1.rs");
             }
         }
         #[cfg(any(
@@ -3318,7 +3318,7 @@ pub mod google {
                 feature = "google-cloud-run-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.run.v2.rs");
+                include!("bytes_hash_map/google.cloud.run.v2.rs");
             }
         }
         #[cfg(any(
@@ -3331,7 +3331,7 @@ pub mod google {
                 feature = "google-cloud-secretmanager-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.secretmanager.v1.rs");
+                include!("bytes_hash_map/google.cloud.secretmanager.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-secretmanager-logging-v1",
@@ -3341,14 +3341,14 @@ pub mod google {
                     feature = "google-cloud-secretmanager-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.secretmanager.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.secretmanager.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-secretmanager-v1beta2",
             ))]
             pub mod v1beta2 {
-                include!("google.cloud.secretmanager.v1beta2.rs");
+                include!("bytes_hash_map/google.cloud.secretmanager.v1beta2.rs");
             }
         }
         #[cfg(any(
@@ -3360,13 +3360,13 @@ pub mod google {
                 feature = "google-cloud-networksecurity-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.networksecurity.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.networksecurity.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-networksecurity-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.networksecurity.v1.rs");
+                include!("bytes_hash_map/google.cloud.networksecurity.v1.rs");
             }
         }
         #[cfg(any(
@@ -3378,13 +3378,13 @@ pub mod google {
                 feature = "google-cloud-dataproc-logging",
             ))]
             pub mod logging {
-                include!("google.cloud.dataproc.logging.rs");
+                include!("bytes_hash_map/google.cloud.dataproc.logging.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-dataproc-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.dataproc.v1.rs");
+                include!("bytes_hash_map/google.cloud.dataproc.v1.rs");
             }
         }
         #[cfg(any(
@@ -3396,13 +3396,13 @@ pub mod google {
                 feature = "google-cloud-networkmanagement-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.networkmanagement.v1.rs");
+                include!("bytes_hash_map/google.cloud.networkmanagement.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-networkmanagement-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.networkmanagement.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.networkmanagement.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -3413,7 +3413,7 @@ pub mod google {
                 feature = "google-cloud-edgenetwork-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.edgenetwork.v1.rs");
+                include!("bytes_hash_map/google.cloud.edgenetwork.v1.rs");
             }
         }
         #[cfg(any(
@@ -3424,14 +3424,14 @@ pub mod google {
                 feature = "google-cloud-advisorynotifications-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.advisorynotifications.v1.rs");
+                include!("bytes_hash_map/google.cloud.advisorynotifications.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-cloud-common",
         ))]
         pub mod common {
-            include!("google.cloud.common.rs");
+            include!("bytes_hash_map/google.cloud.common.rs");
         }
         #[cfg(any(
             feature = "google-cloud-accessapproval-v1",
@@ -3441,7 +3441,7 @@ pub mod google {
                 feature = "google-cloud-accessapproval-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.accessapproval.v1.rs");
+                include!("bytes_hash_map/google.cloud.accessapproval.v1.rs");
             }
         }
         #[cfg(any(
@@ -3457,14 +3457,14 @@ pub mod google {
                     feature = "google-cloud-gsuiteaddons-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.gsuiteaddons.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.gsuiteaddons.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-gsuiteaddons-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.gsuiteaddons.v1.rs");
+                include!("bytes_hash_map/google.cloud.gsuiteaddons.v1.rs");
             }
         }
         #[cfg(any(
@@ -3479,7 +3479,7 @@ pub mod google {
                     feature = "google-cloud-sensitiveaction-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.sensitiveaction.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.sensitiveaction.logging.v1.rs");
                 }
             }
         }
@@ -3491,7 +3491,7 @@ pub mod google {
                 feature = "google-cloud-dataplex-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.dataplex.v1.rs");
+                include!("bytes_hash_map/google.cloud.dataplex.v1.rs");
             }
         }
         #[cfg(any(
@@ -3502,7 +3502,7 @@ pub mod google {
                 feature = "google-cloud-managedkafka-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.managedkafka.v1.rs");
+                include!("bytes_hash_map/google.cloud.managedkafka.v1.rs");
             }
         }
         #[cfg(any(
@@ -3514,13 +3514,13 @@ pub mod google {
                 feature = "google-cloud-translation-v3beta1",
             ))]
             pub mod v3beta1 {
-                include!("google.cloud.translation.v3beta1.rs");
+                include!("bytes_hash_map/google.cloud.translation.v3beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-translation-v3",
             ))]
             pub mod v3 {
-                include!("google.cloud.translation.v3.rs");
+                include!("bytes_hash_map/google.cloud.translation.v3.rs");
             }
         }
         #[cfg(any(
@@ -3531,7 +3531,7 @@ pub mod google {
                 feature = "google-cloud-apigeeconnect-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.apigeeconnect.v1.rs");
+                include!("bytes_hash_map/google.cloud.apigeeconnect.v1.rs");
             }
         }
         #[cfg(any(
@@ -3542,7 +3542,7 @@ pub mod google {
                 feature = "google-cloud-connectors-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.connectors.v1.rs");
+                include!("bytes_hash_map/google.cloud.connectors.v1.rs");
             }
         }
         #[cfg(any(
@@ -3553,7 +3553,7 @@ pub mod google {
                 feature = "google-cloud-optimization-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.optimization.v1.rs");
+                include!("bytes_hash_map/google.cloud.optimization.v1.rs");
             }
         }
         #[cfg(any(
@@ -3572,26 +3572,26 @@ pub mod google {
                     feature = "google-cloud-dialogflow-cx-v3",
                 ))]
                 pub mod v3 {
-                    include!("google.cloud.dialogflow.cx.v3.rs");
+                    include!("bytes_hash_map/google.cloud.dialogflow.cx.v3.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-dialogflow-cx-v3beta1",
                 ))]
                 pub mod v3beta1 {
-                    include!("google.cloud.dialogflow.cx.v3beta1.rs");
+                    include!("bytes_hash_map/google.cloud.dialogflow.cx.v3beta1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-dialogflow-v2beta1",
             ))]
             pub mod v2beta1 {
-                include!("google.cloud.dialogflow.v2beta1.rs");
+                include!("bytes_hash_map/google.cloud.dialogflow.v2beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-dialogflow-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.dialogflow.v2.rs");
+                include!("bytes_hash_map/google.cloud.dialogflow.v2.rs");
             }
         }
         #[cfg(any(
@@ -3602,7 +3602,7 @@ pub mod google {
                 feature = "google-cloud-dataqna-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.cloud.dataqna.v1alpha.rs");
+                include!("bytes_hash_map/google.cloud.dataqna.v1alpha.rs");
             }
         }
         #[cfg(any(
@@ -3613,7 +3613,7 @@ pub mod google {
                 feature = "google-cloud-apphub-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.apphub.v1.rs");
+                include!("bytes_hash_map/google.cloud.apphub.v1.rs");
             }
         }
         #[cfg(any(
@@ -3625,13 +3625,13 @@ pub mod google {
                 feature = "google-cloud-talent-v4beta1",
             ))]
             pub mod v4beta1 {
-                include!("google.cloud.talent.v4beta1.rs");
+                include!("bytes_hash_map/google.cloud.talent.v4beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-talent-v4",
             ))]
             pub mod v4 {
-                include!("google.cloud.talent.v4.rs");
+                include!("bytes_hash_map/google.cloud.talent.v4.rs");
             }
         }
         #[cfg(any(
@@ -3643,13 +3643,13 @@ pub mod google {
                 feature = "google-cloud-binaryauthorization-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.binaryauthorization.v1.rs");
+                include!("bytes_hash_map/google.cloud.binaryauthorization.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-binaryauthorization-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.binaryauthorization.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.binaryauthorization.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -3660,7 +3660,7 @@ pub mod google {
                 feature = "google-cloud-policysimulator-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.policysimulator.v1.rs");
+                include!("bytes_hash_map/google.cloud.policysimulator.v1.rs");
             }
         }
         #[cfg(any(
@@ -3672,13 +3672,13 @@ pub mod google {
                 feature = "google-cloud-managedidentities-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.managedidentities.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.managedidentities.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-managedidentities-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.managedidentities.v1.rs");
+                include!("bytes_hash_map/google.cloud.managedidentities.v1.rs");
             }
         }
         #[cfg(any(
@@ -3690,13 +3690,13 @@ pub mod google {
                 feature = "google-cloud-webrisk-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.webrisk.v1.rs");
+                include!("bytes_hash_map/google.cloud.webrisk.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-webrisk-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.webrisk.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.webrisk.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -3707,7 +3707,7 @@ pub mod google {
                 feature = "google-cloud-vmwareengine-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.vmwareengine.v1.rs");
+                include!("bytes_hash_map/google.cloud.vmwareengine.v1.rs");
             }
         }
         #[cfg(any(
@@ -3719,13 +3719,13 @@ pub mod google {
                 feature = "google-cloud-cloudcontrolspartner-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.cloudcontrolspartner.v1.rs");
+                include!("bytes_hash_map/google.cloud.cloudcontrolspartner.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-cloudcontrolspartner-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.cloudcontrolspartner.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.cloudcontrolspartner.v1beta.rs");
             }
         }
         #[cfg(any(
@@ -3737,13 +3737,13 @@ pub mod google {
                 feature = "google-cloud-memcache-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.memcache.v1.rs");
+                include!("bytes_hash_map/google.cloud.memcache.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-memcache-v1beta2",
             ))]
             pub mod v1beta2 {
-                include!("google.cloud.memcache.v1beta2.rs");
+                include!("bytes_hash_map/google.cloud.memcache.v1beta2.rs");
             }
         }
         #[cfg(any(
@@ -3754,7 +3754,7 @@ pub mod google {
                 feature = "google-cloud-rapidmigrationassessment-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.rapidmigrationassessment.v1.rs");
+                include!("bytes_hash_map/google.cloud.rapidmigrationassessment.v1.rs");
             }
         }
         #[cfg(any(
@@ -3765,7 +3765,7 @@ pub mod google {
                 feature = "google-cloud-apigateway-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.apigateway.v1.rs");
+                include!("bytes_hash_map/google.cloud.apigateway.v1.rs");
             }
         }
         #[cfg(any(
@@ -3776,7 +3776,7 @@ pub mod google {
                 feature = "google-cloud-storageinsights-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.storageinsights.v1.rs");
+                include!("bytes_hash_map/google.cloud.storageinsights.v1.rs");
             }
         }
         #[cfg(any(
@@ -3792,14 +3792,14 @@ pub mod google {
                     feature = "google-cloud-certificatemanager-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.certificatemanager.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.certificatemanager.logging.v1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-cloud-certificatemanager-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.certificatemanager.v1.rs");
+                include!("bytes_hash_map/google.cloud.certificatemanager.v1.rs");
             }
         }
         #[cfg(any(
@@ -3810,7 +3810,7 @@ pub mod google {
                 feature = "google-cloud-enterpriseknowledgegraph-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.enterpriseknowledgegraph.v1.rs");
+                include!("bytes_hash_map/google.cloud.enterpriseknowledgegraph.v1.rs");
             }
         }
         #[cfg(any(
@@ -3821,7 +3821,7 @@ pub mod google {
                 feature = "google-cloud-contentwarehouse-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.contentwarehouse.v1.rs");
+                include!("bytes_hash_map/google.cloud.contentwarehouse.v1.rs");
             }
         }
         #[cfg(any(
@@ -3840,7 +3840,7 @@ pub mod google {
                         feature = "google-cloud-saasaccelerator-management-logs-v1",
                     ))]
                     pub mod v1 {
-                        include!("google.cloud.saasaccelerator.management.logs.v1.rs");
+                        include!("bytes_hash_map/google.cloud.saasaccelerator.management.logs.v1.rs");
                     }
                 }
             }
@@ -3857,7 +3857,7 @@ pub mod google {
                     feature = "google-cloud-abuseevent-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.abuseevent.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.abuseevent.logging.v1.rs");
                 }
             }
         }
@@ -3869,7 +3869,7 @@ pub mod google {
                 feature = "google-cloud-securitycentermanagement-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.securitycentermanagement.v1.rs");
+                include!("bytes_hash_map/google.cloud.securitycentermanagement.v1.rs");
             }
         }
         #[cfg(any(
@@ -3881,7 +3881,7 @@ pub mod google {
                 feature = "google-cloud-ids-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.ids.v1.rs");
+                include!("bytes_hash_map/google.cloud.ids.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-ids-logging-v1",
@@ -3891,7 +3891,7 @@ pub mod google {
                     feature = "google-cloud-ids-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.ids.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.ids.logging.v1.rs");
                 }
             }
         }
@@ -3903,7 +3903,7 @@ pub mod google {
                 feature = "google-cloud-lifesciences-v2beta",
             ))]
             pub mod v2beta {
-                include!("google.cloud.lifesciences.v2beta.rs");
+                include!("bytes_hash_map/google.cloud.lifesciences.v2beta.rs");
             }
         }
         #[cfg(any(
@@ -3914,7 +3914,7 @@ pub mod google {
                 feature = "google-cloud-secrets-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.secrets.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.secrets.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -3925,7 +3925,7 @@ pub mod google {
                 feature = "google-cloud-apigeeregistry-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.apigeeregistry.v1.rs");
+                include!("bytes_hash_map/google.cloud.apigeeregistry.v1.rs");
             }
         }
         #[cfg(any(
@@ -3942,7 +3942,7 @@ pub mod google {
                     feature = "google-cloud-paymentgateway-issuerswitch-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.paymentgateway.issuerswitch.v1.rs");
+                    include!("bytes_hash_map/google.cloud.paymentgateway.issuerswitch.v1.rs");
                 }
                 #[cfg(any(
                     feature = "google-cloud-paymentgateway-issuerswitch-accountmanager-v1",
@@ -3952,7 +3952,7 @@ pub mod google {
                         feature = "google-cloud-paymentgateway-issuerswitch-accountmanager-v1",
                     ))]
                     pub mod v1 {
-                        include!("google.cloud.paymentgateway.issuerswitch.accountmanager.v1.rs");
+                        include!("bytes_hash_map/google.cloud.paymentgateway.issuerswitch.accountmanager.v1.rs");
                     }
                 }
             }
@@ -3966,13 +3966,13 @@ pub mod google {
                 feature = "google-cloud-sql-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.sql.v1.rs");
+                include!("bytes_hash_map/google.cloud.sql.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-sql-v1beta4",
             ))]
             pub mod v1beta4 {
-                include!("google.cloud.sql.v1beta4.rs");
+                include!("bytes_hash_map/google.cloud.sql.v1beta4.rs");
             }
         }
         #[cfg(any(
@@ -3983,7 +3983,7 @@ pub mod google {
                 feature = "google-cloud-parallelstore-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.cloud.parallelstore.v1beta.rs");
+                include!("bytes_hash_map/google.cloud.parallelstore.v1beta.rs");
             }
         }
         #[cfg(any(
@@ -3994,14 +3994,14 @@ pub mod google {
                 feature = "google-cloud-securityposture-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.securityposture.v1.rs");
+                include!("bytes_hash_map/google.cloud.securityposture.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-cloud-audit",
         ))]
         pub mod audit {
-            include!("google.cloud.audit.rs");
+            include!("bytes_hash_map/google.cloud.audit.rs");
         }
         #[cfg(any(
             feature = "google-cloud-pubsublite-v1",
@@ -4011,7 +4011,7 @@ pub mod google {
                 feature = "google-cloud-pubsublite-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.pubsublite.v1.rs");
+                include!("bytes_hash_map/google.cloud.pubsublite.v1.rs");
             }
         }
         #[cfg(any(
@@ -4022,7 +4022,7 @@ pub mod google {
                 feature = "google-cloud-resourcesettings-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.resourcesettings.v1.rs");
+                include!("bytes_hash_map/google.cloud.resourcesettings.v1.rs");
             }
         }
         #[cfg(any(
@@ -4033,7 +4033,7 @@ pub mod google {
                 feature = "google-cloud-blockchainnodeengine-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.blockchainnodeengine.v1.rs");
+                include!("bytes_hash_map/google.cloud.blockchainnodeengine.v1.rs");
             }
         }
         #[cfg(any(
@@ -4048,7 +4048,7 @@ pub mod google {
                     feature = "google-cloud-datapipelines-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.cloud.datapipelines.logging.v1.rs");
+                    include!("bytes_hash_map/google.cloud.datapipelines.logging.v1.rs");
                 }
             }
         }
@@ -4060,7 +4060,7 @@ pub mod google {
                 feature = "google-cloud-runtimeconfig-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.runtimeconfig.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.runtimeconfig.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -4072,13 +4072,13 @@ pub mod google {
                 feature = "google-cloud-servicedirectory-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.servicedirectory.v1.rs");
+                include!("bytes_hash_map/google.cloud.servicedirectory.v1.rs");
             }
             #[cfg(any(
                 feature = "google-cloud-servicedirectory-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.cloud.servicedirectory.v1beta1.rs");
+                include!("bytes_hash_map/google.cloud.servicedirectory.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -4089,7 +4089,7 @@ pub mod google {
                 feature = "google-cloud-baremetalsolution-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.baremetalsolution.v2.rs");
+                include!("bytes_hash_map/google.cloud.baremetalsolution.v2.rs");
             }
         }
         #[cfg(any(
@@ -4100,7 +4100,7 @@ pub mod google {
                 feature = "google-cloud-securesourcemanager-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.securesourcemanager.v1.rs");
+                include!("bytes_hash_map/google.cloud.securesourcemanager.v1.rs");
             }
         }
         #[cfg(any(
@@ -4111,7 +4111,7 @@ pub mod google {
                 feature = "google-cloud-channel-v1",
             ))]
             pub mod v1 {
-                include!("google.cloud.channel.v1.rs");
+                include!("bytes_hash_map/google.cloud.channel.v1.rs");
             }
         }
         #[cfg(any(
@@ -4122,21 +4122,21 @@ pub mod google {
                 feature = "google-cloud-support-v2",
             ))]
             pub mod v2 {
-                include!("google.cloud.support.v2.rs");
+                include!("bytes_hash_map/google.cloud.support.v2.rs");
             }
         }
         #[cfg(any(
             feature = "google-cloud-location",
         ))]
         pub mod location {
-            include!("google.cloud.location.rs");
+            include!("bytes_hash_map/google.cloud.location.rs");
         }
     }
     #[cfg(any(
         feature = "google-bytestream",
     ))]
     pub mod bytestream {
-        include!("google.bytestream.rs");
+        include!("bytes_hash_map/google.bytestream.rs");
     }
     #[cfg(any(
         feature = "google-shopping-css-v1",
@@ -4174,7 +4174,7 @@ pub mod google {
                     feature = "google-shopping-merchant-promotions-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.promotions.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.promotions.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4185,7 +4185,7 @@ pub mod google {
                     feature = "google-shopping-merchant-inventories-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.inventories.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.inventories.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4196,7 +4196,7 @@ pub mod google {
                     feature = "google-shopping-merchant-lfp-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.lfp.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.lfp.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4207,7 +4207,7 @@ pub mod google {
                     feature = "google-shopping-merchant-reports-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.reports.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.reports.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4218,7 +4218,7 @@ pub mod google {
                     feature = "google-shopping-merchant-products-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.products.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.products.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4229,7 +4229,7 @@ pub mod google {
                     feature = "google-shopping-merchant-conversions-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.conversions.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.conversions.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4240,7 +4240,7 @@ pub mod google {
                     feature = "google-shopping-merchant-quota-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.quota.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.quota.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4251,7 +4251,7 @@ pub mod google {
                     feature = "google-shopping-merchant-accounts-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.accounts.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.accounts.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4262,7 +4262,7 @@ pub mod google {
                     feature = "google-shopping-merchant-datasources-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.datasources.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.datasources.v1beta.rs");
                 }
             }
             #[cfg(any(
@@ -4273,7 +4273,7 @@ pub mod google {
                     feature = "google-shopping-merchant-notifications-v1beta",
                 ))]
                 pub mod v1beta {
-                    include!("google.shopping.merchant.notifications.v1beta.rs");
+                    include!("bytes_hash_map/google.shopping.merchant.notifications.v1beta.rs");
                 }
             }
         }
@@ -4285,14 +4285,14 @@ pub mod google {
                 feature = "google-shopping-css-v1",
             ))]
             pub mod v1 {
-                include!("google.shopping.css.v1.rs");
+                include!("bytes_hash_map/google.shopping.css.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-shopping-type",
         ))]
         pub mod r#type {
-            include!("google.shopping.r#type.rs");
+            include!("bytes_hash_map/google.shopping.r#type.rs");
         }
     }
     #[cfg(any(
@@ -4323,7 +4323,7 @@ pub mod google {
                 feature = "google-devtools-clouderrorreporting-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.devtools.clouderrorreporting.v1beta1.rs");
+                include!("bytes_hash_map/google.devtools.clouderrorreporting.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -4335,13 +4335,13 @@ pub mod google {
                 feature = "google-devtools-artifactregistry-v1beta2",
             ))]
             pub mod v1beta2 {
-                include!("google.devtools.artifactregistry.v1beta2.rs");
+                include!("bytes_hash_map/google.devtools.artifactregistry.v1beta2.rs");
             }
             #[cfg(any(
                 feature = "google-devtools-artifactregistry-v1",
             ))]
             pub mod v1 {
-                include!("google.devtools.artifactregistry.v1.rs");
+                include!("bytes_hash_map/google.devtools.artifactregistry.v1.rs");
             }
         }
         #[cfg(any(
@@ -4353,13 +4353,13 @@ pub mod google {
                 feature = "google-devtools-cloudbuild-v2",
             ))]
             pub mod v2 {
-                include!("google.devtools.cloudbuild.v2.rs");
+                include!("bytes_hash_map/google.devtools.cloudbuild.v2.rs");
             }
             #[cfg(any(
                 feature = "google-devtools-cloudbuild-v1",
             ))]
             pub mod v1 {
-                include!("google.devtools.cloudbuild.v1.rs");
+                include!("bytes_hash_map/google.devtools.cloudbuild.v1.rs");
             }
         }
         #[cfg(any(
@@ -4370,7 +4370,7 @@ pub mod google {
                 feature = "google-devtools-build-v1",
             ))]
             pub mod v1 {
-                include!("google.devtools.build.v1.rs");
+                include!("bytes_hash_map/google.devtools.build.v1.rs");
             }
         }
         #[cfg(any(
@@ -4381,7 +4381,7 @@ pub mod google {
                 feature = "google-devtools-testing-v1",
             ))]
             pub mod v1 {
-                include!("google.devtools.testing.v1.rs");
+                include!("bytes_hash_map/google.devtools.testing.v1.rs");
             }
         }
         #[cfg(any(
@@ -4392,7 +4392,7 @@ pub mod google {
                 feature = "google-devtools-sourcerepo-v1",
             ))]
             pub mod v1 {
-                include!("google.devtools.sourcerepo.v1.rs");
+                include!("bytes_hash_map/google.devtools.sourcerepo.v1.rs");
             }
         }
         #[cfg(any(
@@ -4403,7 +4403,7 @@ pub mod google {
                 feature = "google-devtools-cloudprofiler-v2",
             ))]
             pub mod v2 {
-                include!("google.devtools.cloudprofiler.v2.rs");
+                include!("bytes_hash_map/google.devtools.cloudprofiler.v2.rs");
             }
         }
         #[cfg(any(
@@ -4414,7 +4414,7 @@ pub mod google {
                 feature = "google-devtools-clouddebugger-v2",
             ))]
             pub mod v2 {
-                include!("google.devtools.clouddebugger.v2.rs");
+                include!("bytes_hash_map/google.devtools.clouddebugger.v2.rs");
             }
         }
         #[cfg(any(
@@ -4426,13 +4426,13 @@ pub mod google {
                 feature = "google-devtools-cloudtrace-v2",
             ))]
             pub mod v2 {
-                include!("google.devtools.cloudtrace.v2.rs");
+                include!("bytes_hash_map/google.devtools.cloudtrace.v2.rs");
             }
             #[cfg(any(
                 feature = "google-devtools-cloudtrace-v1",
             ))]
             pub mod v1 {
-                include!("google.devtools.cloudtrace.v1.rs");
+                include!("bytes_hash_map/google.devtools.cloudtrace.v1.rs");
             }
         }
         #[cfg(any(
@@ -4443,7 +4443,7 @@ pub mod google {
                 feature = "google-devtools-remoteworkers-v1test2",
             ))]
             pub mod v1test2 {
-                include!("google.devtools.remoteworkers.v1test2.rs");
+                include!("bytes_hash_map/google.devtools.remoteworkers.v1test2.rs");
             }
         }
         #[cfg(any(
@@ -4454,7 +4454,7 @@ pub mod google {
                 feature = "google-devtools-source-v1",
             ))]
             pub mod v1 {
-                include!("google.devtools.source.v1.rs");
+                include!("bytes_hash_map/google.devtools.source.v1.rs");
             }
         }
         #[cfg(any(
@@ -4466,13 +4466,13 @@ pub mod google {
                 feature = "google-devtools-containeranalysis-v1",
             ))]
             pub mod v1 {
-                include!("google.devtools.containeranalysis.v1.rs");
+                include!("bytes_hash_map/google.devtools.containeranalysis.v1.rs");
             }
             #[cfg(any(
                 feature = "google-devtools-containeranalysis-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.devtools.containeranalysis.v1beta1.rs");
+                include!("bytes_hash_map/google.devtools.containeranalysis.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -4483,7 +4483,7 @@ pub mod google {
                 feature = "google-devtools-resultstore-v2",
             ))]
             pub mod v2 {
-                include!("google.devtools.resultstore.v2.rs");
+                include!("bytes_hash_map/google.devtools.resultstore.v2.rs");
             }
         }
     }
@@ -4492,12 +4492,12 @@ pub mod google {
         feature = "google-rpc-context",
     ))]
     pub mod rpc {
-        include!("google.rpc.rs");
+        include!("bytes_hash_map/google.rpc.rs");
         #[cfg(any(
             feature = "google-rpc-context",
         ))]
         pub mod context {
-            include!("google.rpc.context.rs");
+            include!("bytes_hash_map/google.rpc.context.rs");
         }
     }
     #[cfg(any(
@@ -4512,7 +4512,7 @@ pub mod google {
                 feature = "google-streetview-publish-v1",
             ))]
             pub mod v1 {
-                include!("google.streetview.publish.v1.rs");
+                include!("bytes_hash_map/google.streetview.publish.v1.rs");
             }
         }
     }
@@ -4536,7 +4536,7 @@ pub mod google {
                     feature = "google-spanner-admin-database-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.spanner.admin.database.v1.rs");
+                    include!("bytes_hash_map/google.spanner.admin.database.v1.rs");
                 }
             }
             #[cfg(any(
@@ -4547,7 +4547,7 @@ pub mod google {
                     feature = "google-spanner-admin-instance-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.spanner.admin.instance.v1.rs");
+                    include!("bytes_hash_map/google.spanner.admin.instance.v1.rs");
                 }
             }
         }
@@ -4559,14 +4559,14 @@ pub mod google {
                 feature = "google-spanner-executor-v1",
             ))]
             pub mod v1 {
-                include!("google.spanner.executor.v1.rs");
+                include!("bytes_hash_map/google.spanner.executor.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-spanner-v1",
         ))]
         pub mod v1 {
-            include!("google.spanner.v1.rs");
+            include!("bytes_hash_map/google.spanner.v1.rs");
         }
     }
     #[cfg(any(
@@ -4578,13 +4578,13 @@ pub mod google {
             feature = "google-logging-v2",
         ))]
         pub mod v2 {
-            include!("google.logging.v2.rs");
+            include!("bytes_hash_map/google.logging.v2.rs");
         }
         #[cfg(any(
             feature = "google-logging-type",
         ))]
         pub mod r#type {
-            include!("google.logging.r#type.rs");
+            include!("bytes_hash_map/google.logging.r#type.rs");
         }
     }
     #[cfg(any(
@@ -4615,20 +4615,20 @@ pub mod google {
                 feature = "google-maps-routes-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.maps.routes.v1alpha.rs");
+                include!("bytes_hash_map/google.maps.routes.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-maps-routes-v1",
             ))]
             pub mod v1 {
-                include!("google.maps.routes.v1.rs");
+                include!("bytes_hash_map/google.maps.routes.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-maps-unity",
         ))]
         pub mod unity {
-            include!("google.maps.unity.rs");
+            include!("bytes_hash_map/google.maps.unity.rs");
         }
         #[cfg(any(
             feature = "google-maps-playablelocations-v3",
@@ -4640,12 +4640,12 @@ pub mod google {
                 feature = "google-maps-playablelocations-v3-sample",
             ))]
             pub mod v3 {
-                include!("google.maps.playablelocations.v3.rs");
+                include!("bytes_hash_map/google.maps.playablelocations.v3.rs");
                 #[cfg(any(
                     feature = "google-maps-playablelocations-v3-sample",
                 ))]
                 pub mod sample {
-                    include!("google.maps.playablelocations.v3.sample.rs");
+                    include!("bytes_hash_map/google.maps.playablelocations.v3.sample.rs");
                 }
             }
         }
@@ -4657,7 +4657,7 @@ pub mod google {
                 feature = "google-maps-roads-v1op",
             ))]
             pub mod v1op {
-                include!("google.maps.roads.v1op.rs");
+                include!("bytes_hash_map/google.maps.roads.v1op.rs");
             }
         }
         #[cfg(any(
@@ -4668,7 +4668,7 @@ pub mod google {
                 feature = "google-maps-places-v1",
             ))]
             pub mod v1 {
-                include!("google.maps.places.v1.rs");
+                include!("bytes_hash_map/google.maps.places.v1.rs");
             }
         }
         #[cfg(any(
@@ -4679,7 +4679,7 @@ pub mod google {
                 feature = "google-maps-mapsplatformdatasets-v1",
             ))]
             pub mod v1 {
-                include!("google.maps.mapsplatformdatasets.v1.rs");
+                include!("bytes_hash_map/google.maps.mapsplatformdatasets.v1.rs");
             }
         }
         #[cfg(any(
@@ -4690,7 +4690,7 @@ pub mod google {
                 feature = "google-maps-addressvalidation-v1",
             ))]
             pub mod v1 {
-                include!("google.maps.addressvalidation.v1.rs");
+                include!("bytes_hash_map/google.maps.addressvalidation.v1.rs");
             }
         }
         #[cfg(any(
@@ -4701,7 +4701,7 @@ pub mod google {
                 feature = "google-maps-areainsights-v1",
             ))]
             pub mod v1 {
-                include!("google.maps.areainsights.v1.rs");
+                include!("bytes_hash_map/google.maps.areainsights.v1.rs");
             }
         }
         #[cfg(any(
@@ -4712,7 +4712,7 @@ pub mod google {
                 feature = "google-maps-aerialview-v1",
             ))]
             pub mod v1 {
-                include!("google.maps.aerialview.v1.rs");
+                include!("bytes_hash_map/google.maps.aerialview.v1.rs");
             }
         }
         #[cfg(any(
@@ -4723,7 +4723,7 @@ pub mod google {
                 feature = "google-maps-routing-v2",
             ))]
             pub mod v2 {
-                include!("google.maps.routing.v2.rs");
+                include!("bytes_hash_map/google.maps.routing.v2.rs");
             }
         }
         #[cfg(any(
@@ -4734,7 +4734,7 @@ pub mod google {
                 feature = "google-maps-routeoptimization-v1",
             ))]
             pub mod v1 {
-                include!("google.maps.routeoptimization.v1.rs");
+                include!("bytes_hash_map/google.maps.routeoptimization.v1.rs");
             }
         }
         #[cfg(any(
@@ -4745,7 +4745,7 @@ pub mod google {
                 feature = "google-maps-regionlookup-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.maps.regionlookup.v1alpha.rs");
+                include!("bytes_hash_map/google.maps.regionlookup.v1alpha.rs");
             }
         }
         #[cfg(any(
@@ -4760,7 +4760,7 @@ pub mod google {
                     feature = "google-maps-mobilitybilling-logs-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.maps.mobilitybilling.logs.v1.rs");
+                    include!("bytes_hash_map/google.maps.mobilitybilling.logs.v1.rs");
                 }
             }
         }
@@ -4772,7 +4772,7 @@ pub mod google {
                 feature = "google-maps-solar-v1",
             ))]
             pub mod v1 {
-                include!("google.maps.solar.v1.rs");
+                include!("bytes_hash_map/google.maps.solar.v1.rs");
             }
         }
     }
@@ -4790,7 +4790,7 @@ pub mod google {
         feature = "google-api-serviceusage-v1beta1",
     ))]
     pub mod api {
-        include!("google.api.rs");
+        include!("bytes_hash_map/google.api.rs");
         #[cfg(any(
             feature = "google-api-servicecontrol-v1",
             feature = "google-api-servicecontrol-v2",
@@ -4800,13 +4800,13 @@ pub mod google {
                 feature = "google-api-servicecontrol-v2",
             ))]
             pub mod v2 {
-                include!("google.api.servicecontrol.v2.rs");
+                include!("bytes_hash_map/google.api.servicecontrol.v2.rs");
             }
             #[cfg(any(
                 feature = "google-api-servicecontrol-v1",
             ))]
             pub mod v1 {
-                include!("google.api.servicecontrol.v1.rs");
+                include!("bytes_hash_map/google.api.servicecontrol.v1.rs");
             }
         }
         #[cfg(any(
@@ -4823,20 +4823,20 @@ pub mod google {
                     feature = "google-api-expr-conformance-v1alpha1",
                 ))]
                 pub mod v1alpha1 {
-                    include!("google.api.expr.conformance.v1alpha1.rs");
+                    include!("bytes_hash_map/google.api.expr.conformance.v1alpha1.rs");
                 }
             }
             #[cfg(any(
                 feature = "google-api-expr-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.api.expr.v1beta1.rs");
+                include!("bytes_hash_map/google.api.expr.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-api-expr-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.api.expr.v1alpha1.rs");
+                include!("bytes_hash_map/google.api.expr.v1alpha1.rs");
             }
         }
         #[cfg(any(
@@ -4847,7 +4847,7 @@ pub mod google {
                 feature = "google-api-servicemanagement-v1",
             ))]
             pub mod v1 {
-                include!("google.api.servicemanagement.v1.rs");
+                include!("bytes_hash_map/google.api.servicemanagement.v1.rs");
             }
         }
         #[cfg(any(
@@ -4859,13 +4859,13 @@ pub mod google {
                 feature = "google-api-serviceusage-v1",
             ))]
             pub mod v1 {
-                include!("google.api.serviceusage.v1.rs");
+                include!("bytes_hash_map/google.api.serviceusage.v1.rs");
             }
             #[cfg(any(
                 feature = "google-api-serviceusage-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.api.serviceusage.v1beta1.rs");
+                include!("bytes_hash_map/google.api.serviceusage.v1beta1.rs");
             }
         }
         #[cfg(any(
@@ -4876,7 +4876,7 @@ pub mod google {
                 feature = "google-api-apikeys-v2",
             ))]
             pub mod v2 {
-                include!("google.api.apikeys.v2.rs");
+                include!("bytes_hash_map/google.api.apikeys.v2.rs");
             }
         }
         #[cfg(any(
@@ -4887,7 +4887,7 @@ pub mod google {
                 feature = "google-api-cloudquotas-v1",
             ))]
             pub mod v1 {
-                include!("google.api.cloudquotas.v1.rs");
+                include!("bytes_hash_map/google.api.cloudquotas.v1.rs");
             }
         }
     }
@@ -4916,12 +4916,12 @@ pub mod google {
                 feature = "google-actions-sdk-v2-interactionmodel-type",
             ))]
             pub mod v2 {
-                include!("google.actions.sdk.v2.rs");
+                include!("bytes_hash_map/google.actions.sdk.v2.rs");
                 #[cfg(any(
                     feature = "google-actions-sdk-v2-conversation",
                 ))]
                 pub mod conversation {
-                    include!("google.actions.sdk.v2.conversation.rs");
+                    include!("bytes_hash_map/google.actions.sdk.v2.conversation.rs");
                 }
                 #[cfg(any(
                     feature = "google-actions-sdk-v2-interactionmodel",
@@ -4929,18 +4929,18 @@ pub mod google {
                     feature = "google-actions-sdk-v2-interactionmodel-type",
                 ))]
                 pub mod interactionmodel {
-                    include!("google.actions.sdk.v2.interactionmodel.rs");
+                    include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.rs");
                     #[cfg(any(
                         feature = "google-actions-sdk-v2-interactionmodel-prompt",
                     ))]
                     pub mod prompt {
-                        include!("google.actions.sdk.v2.interactionmodel.prompt.rs");
+                        include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.prompt.rs");
                     }
                     #[cfg(any(
                         feature = "google-actions-sdk-v2-interactionmodel-type",
                     ))]
                     pub mod r#type {
-                        include!("google.actions.sdk.v2.interactionmodel.r#type.rs");
+                        include!("bytes_hash_map/google.actions.sdk.v2.interactionmodel.r#type.rs");
                     }
                 }
             }
@@ -4949,7 +4949,7 @@ pub mod google {
             feature = "google-actions-type",
         ))]
         pub mod r#type {
-            include!("google.actions.r#type.rs");
+            include!("bytes_hash_map/google.actions.r#type.rs");
         }
     }
     #[cfg(any(
@@ -4997,31 +4997,31 @@ pub mod google {
                     feature = "google-ads-searchads360-v0-errors",
                 ))]
                 pub mod errors {
-                    include!("google.ads.searchads360.v0.errors.rs");
+                    include!("bytes_hash_map/google.ads.searchads360.v0.errors.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-searchads360-v0-resources",
                 ))]
                 pub mod resources {
-                    include!("google.ads.searchads360.v0.resources.rs");
+                    include!("bytes_hash_map/google.ads.searchads360.v0.resources.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-searchads360-v0-common",
                 ))]
                 pub mod common {
-                    include!("google.ads.searchads360.v0.common.rs");
+                    include!("bytes_hash_map/google.ads.searchads360.v0.common.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-searchads360-v0-services",
                 ))]
                 pub mod services {
-                    include!("google.ads.searchads360.v0.services.rs");
+                    include!("bytes_hash_map/google.ads.searchads360.v0.services.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-searchads360-v0-enums",
                 ))]
                 pub mod enums {
-                    include!("google.ads.searchads360.v0.enums.rs");
+                    include!("bytes_hash_map/google.ads.searchads360.v0.enums.rs");
                 }
             }
         }
@@ -5055,31 +5055,31 @@ pub mod google {
                     feature = "google-ads-googleads-v15-resources",
                 ))]
                 pub mod resources {
-                    include!("google.ads.googleads.v15.resources.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v15.resources.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v15-services",
                 ))]
                 pub mod services {
-                    include!("google.ads.googleads.v15.services.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v15.services.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v15-common",
                 ))]
                 pub mod common {
-                    include!("google.ads.googleads.v15.common.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v15.common.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v15-errors",
                 ))]
                 pub mod errors {
-                    include!("google.ads.googleads.v15.errors.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v15.errors.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v15-enums",
                 ))]
                 pub mod enums {
-                    include!("google.ads.googleads.v15.enums.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v15.enums.rs");
                 }
             }
             #[cfg(any(
@@ -5094,31 +5094,31 @@ pub mod google {
                     feature = "google-ads-googleads-v16-errors",
                 ))]
                 pub mod errors {
-                    include!("google.ads.googleads.v16.errors.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v16.errors.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v16-services",
                 ))]
                 pub mod services {
-                    include!("google.ads.googleads.v16.services.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v16.services.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v16-enums",
                 ))]
                 pub mod enums {
-                    include!("google.ads.googleads.v16.enums.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v16.enums.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v16-common",
                 ))]
                 pub mod common {
-                    include!("google.ads.googleads.v16.common.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v16.common.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v16-resources",
                 ))]
                 pub mod resources {
-                    include!("google.ads.googleads.v16.resources.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v16.resources.rs");
                 }
             }
             #[cfg(any(
@@ -5133,31 +5133,31 @@ pub mod google {
                     feature = "google-ads-googleads-v17-common",
                 ))]
                 pub mod common {
-                    include!("google.ads.googleads.v17.common.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v17.common.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v17-enums",
                 ))]
                 pub mod enums {
-                    include!("google.ads.googleads.v17.enums.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v17.enums.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v17-errors",
                 ))]
                 pub mod errors {
-                    include!("google.ads.googleads.v17.errors.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v17.errors.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v17-services",
                 ))]
                 pub mod services {
-                    include!("google.ads.googleads.v17.services.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v17.services.rs");
                 }
                 #[cfg(any(
                     feature = "google-ads-googleads-v17-resources",
                 ))]
                 pub mod resources {
-                    include!("google.ads.googleads.v17.resources.rs");
+                    include!("bytes_hash_map/google.ads.googleads.v17.resources.rs");
                 }
             }
         }
@@ -5169,7 +5169,7 @@ pub mod google {
                 feature = "google-ads-admob-v1",
             ))]
             pub mod v1 {
-                include!("google.ads.admob.v1.rs");
+                include!("bytes_hash_map/google.ads.admob.v1.rs");
             }
         }
         #[cfg(any(
@@ -5180,7 +5180,7 @@ pub mod google {
                 feature = "google-ads-admanager-v1",
             ))]
             pub mod v1 {
-                include!("google.ads.admanager.v1.rs");
+                include!("bytes_hash_map/google.ads.admanager.v1.rs");
             }
         }
     }
@@ -5202,39 +5202,39 @@ pub mod google {
                 feature = "google-iam-credentials-v1",
             ))]
             pub mod v1 {
-                include!("google.iam.credentials.v1.rs");
+                include!("bytes_hash_map/google.iam.credentials.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-iam-v1beta",
         ))]
         pub mod v1beta {
-            include!("google.iam.v1beta.rs");
+            include!("bytes_hash_map/google.iam.v1beta.rs");
         }
         #[cfg(any(
             feature = "google-iam-v2",
         ))]
         pub mod v2 {
-            include!("google.iam.v2.rs");
+            include!("bytes_hash_map/google.iam.v2.rs");
         }
         #[cfg(any(
             feature = "google-iam-v1",
             feature = "google-iam-v1-logging",
         ))]
         pub mod v1 {
-            include!("google.iam.v1.rs");
+            include!("bytes_hash_map/google.iam.v1.rs");
             #[cfg(any(
                 feature = "google-iam-v1-logging",
             ))]
             pub mod logging {
-                include!("google.iam.v1.logging.rs");
+                include!("bytes_hash_map/google.iam.v1.logging.rs");
             }
         }
         #[cfg(any(
             feature = "google-iam-v2beta",
         ))]
         pub mod v2beta {
-            include!("google.iam.v2beta.rs");
+            include!("bytes_hash_map/google.iam.v2beta.rs");
         }
         #[cfg(any(
             feature = "google-iam-admin-v1",
@@ -5244,7 +5244,7 @@ pub mod google {
                 feature = "google-iam-admin-v1",
             ))]
             pub mod v1 {
-                include!("google.iam.admin.v1.rs");
+                include!("bytes_hash_map/google.iam.admin.v1.rs");
             }
         }
     }
@@ -5264,26 +5264,26 @@ pub mod google {
                 feature = "google-datastore-admin-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.datastore.admin.v1beta1.rs");
+                include!("bytes_hash_map/google.datastore.admin.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-datastore-admin-v1",
             ))]
             pub mod v1 {
-                include!("google.datastore.admin.v1.rs");
+                include!("bytes_hash_map/google.datastore.admin.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-datastore-v1",
         ))]
         pub mod v1 {
-            include!("google.datastore.v1.rs");
+            include!("bytes_hash_map/google.datastore.v1.rs");
         }
         #[cfg(any(
             feature = "google-datastore-v1beta3",
         ))]
         pub mod v1beta3 {
-            include!("google.datastore.v1beta3.rs");
+            include!("bytes_hash_map/google.datastore.v1beta3.rs");
         }
     }
     #[cfg(any(
@@ -5300,13 +5300,13 @@ pub mod google {
                 feature = "google-identity-accesscontextmanager-v1",
             ))]
             pub mod v1 {
-                include!("google.identity.accesscontextmanager.v1.rs");
+                include!("bytes_hash_map/google.identity.accesscontextmanager.v1.rs");
             }
             #[cfg(any(
                 feature = "google-identity-accesscontextmanager-type",
             ))]
             pub mod r#type {
-                include!("google.identity.accesscontextmanager.r#type.rs");
+                include!("bytes_hash_map/google.identity.accesscontextmanager.r#type.rs");
             }
         }
     }
@@ -5326,7 +5326,7 @@ pub mod google {
                     feature = "google-search-partnerdataingestion-logging-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.search.partnerdataingestion.logging.v1.rs");
+                    include!("bytes_hash_map/google.search.partnerdataingestion.logging.v1.rs");
                 }
             }
         }
@@ -5344,7 +5344,7 @@ pub mod google {
                 feature = "google-chromeos-uidetection-v1",
             ))]
             pub mod v1 {
-                include!("google.chromeos.uidetection.v1.rs");
+                include!("bytes_hash_map/google.chromeos.uidetection.v1.rs");
             }
         }
         #[cfg(any(
@@ -5355,7 +5355,7 @@ pub mod google {
                 feature = "google-chromeos-moblab-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.chromeos.moblab.v1beta1.rs");
+                include!("bytes_hash_map/google.chromeos.moblab.v1beta1.rs");
             }
         }
     }
@@ -5397,42 +5397,42 @@ pub mod google {
                 feature = "google-apps-script-type-slides",
             ))]
             pub mod r#type {
-                include!("google.apps.script.r#type.rs");
+                include!("bytes_hash_map/google.apps.script.r#type.rs");
                 #[cfg(any(
                     feature = "google-apps-script-type-slides",
                 ))]
                 pub mod slides {
-                    include!("google.apps.script.r#type.slides.rs");
+                    include!("bytes_hash_map/google.apps.script.r#type.slides.rs");
                 }
                 #[cfg(any(
                     feature = "google-apps-script-type-calendar",
                 ))]
                 pub mod calendar {
-                    include!("google.apps.script.r#type.calendar.rs");
+                    include!("bytes_hash_map/google.apps.script.r#type.calendar.rs");
                 }
                 #[cfg(any(
                     feature = "google-apps-script-type-sheets",
                 ))]
                 pub mod sheets {
-                    include!("google.apps.script.r#type.sheets.rs");
+                    include!("bytes_hash_map/google.apps.script.r#type.sheets.rs");
                 }
                 #[cfg(any(
                     feature = "google-apps-script-type-drive",
                 ))]
                 pub mod drive {
-                    include!("google.apps.script.r#type.drive.rs");
+                    include!("bytes_hash_map/google.apps.script.r#type.drive.rs");
                 }
                 #[cfg(any(
                     feature = "google-apps-script-type-docs",
                 ))]
                 pub mod docs {
-                    include!("google.apps.script.r#type.docs.rs");
+                    include!("bytes_hash_map/google.apps.script.r#type.docs.rs");
                 }
                 #[cfg(any(
                     feature = "google-apps-script-type-gmail",
                 ))]
                 pub mod gmail {
-                    include!("google.apps.script.r#type.gmail.rs");
+                    include!("bytes_hash_map/google.apps.script.r#type.gmail.rs");
                 }
             }
         }
@@ -5445,13 +5445,13 @@ pub mod google {
                 feature = "google-apps-meet-v2beta",
             ))]
             pub mod v2beta {
-                include!("google.apps.meet.v2beta.rs");
+                include!("bytes_hash_map/google.apps.meet.v2beta.rs");
             }
             #[cfg(any(
                 feature = "google-apps-meet-v2",
             ))]
             pub mod v2 {
-                include!("google.apps.meet.v2.rs");
+                include!("bytes_hash_map/google.apps.meet.v2.rs");
             }
         }
         #[cfg(any(
@@ -5466,7 +5466,7 @@ pub mod google {
                     feature = "google-apps-events-subscriptions-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.apps.events.subscriptions.v1.rs");
+                    include!("bytes_hash_map/google.apps.events.subscriptions.v1.rs");
                 }
             }
         }
@@ -5478,7 +5478,7 @@ pub mod google {
                 feature = "google-apps-card-v1",
             ))]
             pub mod v1 {
-                include!("google.apps.card.v1.rs");
+                include!("bytes_hash_map/google.apps.card.v1.rs");
             }
         }
         #[cfg(any(
@@ -5496,13 +5496,13 @@ pub mod google {
                     feature = "google-apps-drive-labels-v2beta",
                 ))]
                 pub mod v2beta {
-                    include!("google.apps.drive.labels.v2beta.rs");
+                    include!("bytes_hash_map/google.apps.drive.labels.v2beta.rs");
                 }
                 #[cfg(any(
                     feature = "google-apps-drive-labels-v2",
                 ))]
                 pub mod v2 {
-                    include!("google.apps.drive.labels.v2.rs");
+                    include!("bytes_hash_map/google.apps.drive.labels.v2.rs");
                 }
             }
             #[cfg(any(
@@ -5513,7 +5513,7 @@ pub mod google {
                     feature = "google-apps-drive-activity-v2",
                 ))]
                 pub mod v2 {
-                    include!("google.apps.drive.activity.v2.rs");
+                    include!("bytes_hash_map/google.apps.drive.activity.v2.rs");
                 }
             }
         }
@@ -5525,7 +5525,7 @@ pub mod google {
                 feature = "google-apps-alertcenter-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.apps.alertcenter.v1beta1.rs");
+                include!("bytes_hash_map/google.apps.alertcenter.v1beta1.rs");
             }
         }
     }
@@ -5540,19 +5540,19 @@ pub mod google {
             feature = "google-appengine-v1beta",
         ))]
         pub mod v1beta {
-            include!("google.appengine.v1beta.rs");
+            include!("bytes_hash_map/google.appengine.v1beta.rs");
         }
         #[cfg(any(
             feature = "google-appengine-legacy",
         ))]
         pub mod legacy {
-            include!("google.appengine.legacy.rs");
+            include!("bytes_hash_map/google.appengine.legacy.rs");
         }
         #[cfg(any(
             feature = "google-appengine-v1",
         ))]
         pub mod v1 {
-            include!("google.appengine.v1.rs");
+            include!("bytes_hash_map/google.appengine.v1.rs");
         }
         #[cfg(any(
             feature = "google-appengine-logging-v1",
@@ -5562,7 +5562,7 @@ pub mod google {
                 feature = "google-appengine-logging-v1",
             ))]
             pub mod v1 {
-                include!("google.appengine.logging.v1.rs");
+                include!("bytes_hash_map/google.appengine.logging.v1.rs");
             }
         }
     }
@@ -5576,7 +5576,7 @@ pub mod google {
             feature = "google-storage-v2",
         ))]
         pub mod v2 {
-            include!("google.storage.v2.rs");
+            include!("bytes_hash_map/google.storage.v2.rs");
         }
         #[cfg(any(
             feature = "google-storage-control-v2",
@@ -5586,14 +5586,14 @@ pub mod google {
                 feature = "google-storage-control-v2",
             ))]
             pub mod v2 {
-                include!("google.storage.control.v2.rs");
+                include!("bytes_hash_map/google.storage.control.v2.rs");
             }
         }
         #[cfg(any(
             feature = "google-storage-v1",
         ))]
         pub mod v1 {
-            include!("google.storage.v1.rs");
+            include!("bytes_hash_map/google.storage.v1.rs");
         }
     }
     #[cfg(any(
@@ -5608,7 +5608,7 @@ pub mod google {
                 feature = "google-privacy-dlp-v2",
             ))]
             pub mod v2 {
-                include!("google.privacy.dlp.v2.rs");
+                include!("bytes_hash_map/google.privacy.dlp.v2.rs");
             }
         }
     }
@@ -5630,7 +5630,7 @@ pub mod google {
                     feature = "google-compute-logging-gdnsusage-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.compute.logging.gdnsusage.v1.rs");
+                    include!("bytes_hash_map/google.compute.logging.gdnsusage.v1.rs");
                 }
             }
             #[cfg(any(
@@ -5641,7 +5641,7 @@ pub mod google {
                     feature = "google-compute-logging-dr-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.compute.logging.dr.v1.rs");
+                    include!("bytes_hash_map/google.compute.logging.dr.v1.rs");
                 }
             }
         }
@@ -5662,13 +5662,13 @@ pub mod google {
                 feature = "google-analytics-data-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.analytics.data.v1alpha.rs");
+                include!("bytes_hash_map/google.analytics.data.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-analytics-data-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.analytics.data.v1beta.rs");
+                include!("bytes_hash_map/google.analytics.data.v1beta.rs");
             }
         }
         #[cfg(any(
@@ -5680,13 +5680,13 @@ pub mod google {
                 feature = "google-analytics-admin-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.analytics.admin.v1alpha.rs");
+                include!("bytes_hash_map/google.analytics.admin.v1alpha.rs");
             }
             #[cfg(any(
                 feature = "google-analytics-admin-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.analytics.admin.v1beta.rs");
+                include!("bytes_hash_map/google.analytics.admin.v1beta.rs");
             }
         }
     }
@@ -5702,7 +5702,7 @@ pub mod google {
                 feature = "google-marketingplatform-admin-v1alpha",
             ))]
             pub mod v1alpha {
-                include!("google.marketingplatform.admin.v1alpha.rs");
+                include!("bytes_hash_map/google.marketingplatform.admin.v1alpha.rs");
             }
         }
     }
@@ -5720,13 +5720,13 @@ pub mod google {
                 feature = "google-assistant-embedded-v1alpha2",
             ))]
             pub mod v1alpha2 {
-                include!("google.assistant.embedded.v1alpha2.rs");
+                include!("bytes_hash_map/google.assistant.embedded.v1alpha2.rs");
             }
             #[cfg(any(
                 feature = "google-assistant-embedded-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.assistant.embedded.v1alpha1.rs");
+                include!("bytes_hash_map/google.assistant.embedded.v1alpha1.rs");
             }
         }
     }
@@ -5748,25 +5748,25 @@ pub mod google {
                 feature = "google-ai-generativelanguage-v1beta",
             ))]
             pub mod v1beta {
-                include!("google.ai.generativelanguage.v1beta.rs");
+                include!("bytes_hash_map/google.ai.generativelanguage.v1beta.rs");
             }
             #[cfg(any(
                 feature = "google-ai-generativelanguage-v1",
             ))]
             pub mod v1 {
-                include!("google.ai.generativelanguage.v1.rs");
+                include!("bytes_hash_map/google.ai.generativelanguage.v1.rs");
             }
             #[cfg(any(
                 feature = "google-ai-generativelanguage-v1beta2",
             ))]
             pub mod v1beta2 {
-                include!("google.ai.generativelanguage.v1beta2.rs");
+                include!("bytes_hash_map/google.ai.generativelanguage.v1beta2.rs");
             }
             #[cfg(any(
                 feature = "google-ai-generativelanguage-v1beta3",
             ))]
             pub mod v1beta3 {
-                include!("google.ai.generativelanguage.v1beta3.rs");
+                include!("bytes_hash_map/google.ai.generativelanguage.v1beta3.rs");
             }
         }
     }
@@ -5789,38 +5789,38 @@ pub mod google {
                 feature = "google-firestore-admin-v1beta2",
             ))]
             pub mod v1beta2 {
-                include!("google.firestore.admin.v1beta2.rs");
+                include!("bytes_hash_map/google.firestore.admin.v1beta2.rs");
             }
             #[cfg(any(
                 feature = "google-firestore-admin-v1beta1",
             ))]
             pub mod v1beta1 {
-                include!("google.firestore.admin.v1beta1.rs");
+                include!("bytes_hash_map/google.firestore.admin.v1beta1.rs");
             }
             #[cfg(any(
                 feature = "google-firestore-admin-v1",
             ))]
             pub mod v1 {
-                include!("google.firestore.admin.v1.rs");
+                include!("bytes_hash_map/google.firestore.admin.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-firestore-v1",
         ))]
         pub mod v1 {
-            include!("google.firestore.v1.rs");
+            include!("bytes_hash_map/google.firestore.v1.rs");
         }
         #[cfg(any(
             feature = "google-firestore-v1beta1",
         ))]
         pub mod v1beta1 {
-            include!("google.firestore.v1beta1.rs");
+            include!("bytes_hash_map/google.firestore.v1beta1.rs");
         }
         #[cfg(any(
             feature = "google-firestore-bundle",
         ))]
         pub mod bundle {
-            include!("google.firestore.bundle.rs");
+            include!("bytes_hash_map/google.firestore.bundle.rs");
         }
     }
     #[cfg(any(
@@ -5837,14 +5837,14 @@ pub mod google {
                 feature = "google-monitoring-dashboard-v1",
             ))]
             pub mod v1 {
-                include!("google.monitoring.dashboard.v1.rs");
+                include!("bytes_hash_map/google.monitoring.dashboard.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-monitoring-v3",
         ))]
         pub mod v3 {
-            include!("google.monitoring.v3.rs");
+            include!("bytes_hash_map/google.monitoring.v3.rs");
         }
         #[cfg(any(
             feature = "google-monitoring-metricsscope-v1",
@@ -5854,7 +5854,7 @@ pub mod google {
                 feature = "google-monitoring-metricsscope-v1",
             ))]
             pub mod v1 {
-                include!("google.monitoring.metricsscope.v1.rs");
+                include!("bytes_hash_map/google.monitoring.metricsscope.v1.rs");
             }
         }
     }
@@ -5871,14 +5871,14 @@ pub mod google {
                 feature = "google-chat-logging-v1",
             ))]
             pub mod v1 {
-                include!("google.chat.logging.v1.rs");
+                include!("bytes_hash_map/google.chat.logging.v1.rs");
             }
         }
         #[cfg(any(
             feature = "google-chat-v1",
         ))]
         pub mod v1 {
-            include!("google.chat.v1.rs");
+            include!("bytes_hash_map/google.chat.v1.rs");
         }
     }
     #[cfg(any(
@@ -5889,7 +5889,7 @@ pub mod google {
             feature = "google-geo-type",
         ))]
         pub mod r#type {
-            include!("google.geo.r#type.rs");
+            include!("bytes_hash_map/google.geo.r#type.rs");
         }
     }
     #[cfg(any(
@@ -5901,13 +5901,13 @@ pub mod google {
             feature = "google-pubsub-v1beta2",
         ))]
         pub mod v1beta2 {
-            include!("google.pubsub.v1beta2.rs");
+            include!("bytes_hash_map/google.pubsub.v1beta2.rs");
         }
         #[cfg(any(
             feature = "google-pubsub-v1",
         ))]
         pub mod v1 {
-            include!("google.pubsub.v1.rs");
+            include!("bytes_hash_map/google.pubsub.v1.rs");
         }
     }
     #[cfg(any(
@@ -5922,7 +5922,7 @@ pub mod google {
                 feature = "google-example-library-v1",
             ))]
             pub mod v1 {
-                include!("google.example.library.v1.rs");
+                include!("bytes_hash_map/google.example.library.v1.rs");
             }
         }
     }
@@ -5934,7 +5934,7 @@ pub mod google {
             feature = "google-watcher-v1",
         ))]
         pub mod v1 {
-            include!("google.watcher.v1.rs");
+            include!("bytes_hash_map/google.watcher.v1.rs");
         }
     }
     #[cfg(any(
@@ -5953,7 +5953,7 @@ pub mod google {
                     feature = "google-firebase-fcm-connection-v1alpha1",
                 ))]
                 pub mod v1alpha1 {
-                    include!("google.firebase.fcm.connection.v1alpha1.rs");
+                    include!("bytes_hash_map/google.firebase.fcm.connection.v1alpha1.rs");
                 }
             }
         }
@@ -5971,14 +5971,14 @@ pub mod google {
                 feature = "google-bigtable-admin-v2",
             ))]
             pub mod v2 {
-                include!("google.bigtable.admin.v2.rs");
+                include!("bytes_hash_map/google.bigtable.admin.v2.rs");
             }
         }
         #[cfg(any(
             feature = "google-bigtable-v2",
         ))]
         pub mod v2 {
-            include!("google.bigtable.v2.rs");
+            include!("bytes_hash_map/google.bigtable.v2.rs");
         }
     }
     #[cfg(any(
@@ -5993,7 +5993,7 @@ pub mod google {
                 feature = "google-area120-tables-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.area120.tables.v1alpha1.rs");
+                include!("bytes_hash_map/google.area120.tables.v1alpha1.rs");
             }
         }
     }
@@ -6006,13 +6006,13 @@ pub mod google {
             feature = "google-storagetransfer-logging",
         ))]
         pub mod logging {
-            include!("google.storagetransfer.logging.rs");
+            include!("bytes_hash_map/google.storagetransfer.logging.rs");
         }
         #[cfg(any(
             feature = "google-storagetransfer-v1",
         ))]
         pub mod v1 {
-            include!("google.storagetransfer.v1.rs");
+            include!("bytes_hash_map/google.storagetransfer.v1.rs");
         }
     }
     #[cfg(any(
@@ -6025,19 +6025,19 @@ pub mod google {
             feature = "google-container-v1beta1",
         ))]
         pub mod v1beta1 {
-            include!("google.container.v1beta1.rs");
+            include!("bytes_hash_map/google.container.v1beta1.rs");
         }
         #[cfg(any(
             feature = "google-container-v1",
         ))]
         pub mod v1 {
-            include!("google.container.v1.rs");
+            include!("bytes_hash_map/google.container.v1.rs");
         }
         #[cfg(any(
             feature = "google-container-v1alpha1",
         ))]
         pub mod v1alpha1 {
-            include!("google.container.v1alpha1.rs");
+            include!("bytes_hash_map/google.container.v1alpha1.rs");
         }
     }
     #[cfg(any(
@@ -6048,14 +6048,14 @@ pub mod google {
             feature = "google-dataflow-v1beta3",
         ))]
         pub mod v1beta3 {
-            include!("google.dataflow.v1beta3.rs");
+            include!("bytes_hash_map/google.dataflow.v1beta3.rs");
         }
     }
     #[cfg(any(
         feature = "google-type",
     ))]
     pub mod r#type {
-        include!("google.r#type.rs");
+        include!("bytes_hash_map/google.r#type.rs");
     }
     #[cfg(any(
         feature = "google-home-enterprise-sdm-v1",
@@ -6070,7 +6070,7 @@ pub mod google {
                 feature = "google-home-graph-v1",
             ))]
             pub mod v1 {
-                include!("google.home.graph.v1.rs");
+                include!("bytes_hash_map/google.home.graph.v1.rs");
             }
         }
         #[cfg(any(
@@ -6085,7 +6085,7 @@ pub mod google {
                     feature = "google-home-enterprise-sdm-v1",
                 ))]
                 pub mod v1 {
-                    include!("google.home.enterprise.sdm.v1.rs");
+                    include!("bytes_hash_map/google.home.enterprise.sdm.v1.rs");
                 }
             }
         }
@@ -6094,7 +6094,7 @@ pub mod google {
         feature = "google-longrunning",
     ))]
     pub mod longrunning {
-        include!("google.longrunning.rs");
+        include!("bytes_hash_map/google.longrunning.rs");
     }
     #[cfg(any(
         feature = "google-partner-aistreams-v1alpha1",
@@ -6108,7 +6108,7 @@ pub mod google {
                 feature = "google-partner-aistreams-v1alpha1",
             ))]
             pub mod v1alpha1 {
-                include!("google.partner.aistreams.v1alpha1.rs");
+                include!("bytes_hash_map/google.partner.aistreams.v1alpha1.rs");
             }
         }
     }
@@ -6121,13 +6121,13 @@ pub mod google {
             feature = "google-genomics-v1alpha2",
         ))]
         pub mod v1alpha2 {
-            include!("google.genomics.v1alpha2.rs");
+            include!("bytes_hash_map/google.genomics.v1alpha2.rs");
         }
         #[cfg(any(
             feature = "google-genomics-v1",
         ))]
         pub mod v1 {
-            include!("google.genomics.v1.rs");
+            include!("bytes_hash_map/google.genomics.v1.rs");
         }
     }
     #[cfg(any(
@@ -6142,7 +6142,7 @@ pub mod google {
                 feature = "google-networking-trafficdirector-type",
             ))]
             pub mod r#type {
-                include!("google.networking.trafficdirector.r#type.rs");
+                include!("bytes_hash_map/google.networking.trafficdirector.r#type.rs");
             }
         }
     }
@@ -6154,7 +6154,7 @@ pub mod google {
             feature = "google-gapic-metadata",
         ))]
         pub mod metadata {
-            include!("google.gapic.metadata.rs");
+            include!("bytes_hash_map/google.gapic.metadata.rs");
         }
     }
 }
@@ -6176,7 +6176,7 @@ pub mod grafeas {
         feature = "grafeas-v1",
     ))]
     pub mod v1 {
-        include!("grafeas.v1.rs");
+        include!("bytes_hash_map/grafeas.v1.rs");
     }
     #[cfg(any(
         feature = "grafeas-v1beta1",
@@ -6191,60 +6191,60 @@ pub mod grafeas {
         feature = "grafeas-v1beta1-vulnerability",
     ))]
     pub mod v1beta1 {
-        include!("grafeas.v1beta1.rs");
+        include!("bytes_hash_map/grafeas.v1beta1.rs");
         #[cfg(any(
             feature = "grafeas-v1beta1-vulnerability",
         ))]
         pub mod vulnerability {
-            include!("grafeas.v1beta1.vulnerability.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.vulnerability.rs");
         }
         #[cfg(any(
             feature = "grafeas-v1beta1-provenance",
         ))]
         pub mod provenance {
-            include!("grafeas.v1beta1.provenance.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.provenance.rs");
         }
         #[cfg(any(
             feature = "grafeas-v1beta1-image",
         ))]
         pub mod image {
-            include!("grafeas.v1beta1.image.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.image.rs");
         }
         #[cfg(any(
             feature = "grafeas-v1beta1-source",
         ))]
         pub mod source {
-            include!("grafeas.v1beta1.source.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.source.rs");
         }
         #[cfg(any(
             feature = "grafeas-v1beta1-package",
         ))]
         pub mod package {
-            include!("grafeas.v1beta1.package.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.package.rs");
         }
         #[cfg(any(
             feature = "grafeas-v1beta1-build",
         ))]
         pub mod build {
-            include!("grafeas.v1beta1.build.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.build.rs");
         }
         #[cfg(any(
             feature = "grafeas-v1beta1-discovery",
         ))]
         pub mod discovery {
-            include!("grafeas.v1beta1.discovery.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.discovery.rs");
         }
         #[cfg(any(
             feature = "grafeas-v1beta1-deployment",
         ))]
         pub mod deployment {
-            include!("grafeas.v1beta1.deployment.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.deployment.rs");
         }
         #[cfg(any(
             feature = "grafeas-v1beta1-attestation",
         ))]
         pub mod attestation {
-            include!("grafeas.v1beta1.attestation.rs");
+            include!("bytes_hash_map/grafeas.v1beta1.attestation.rs");
         }
     }
 }
@@ -6264,7 +6264,7 @@ pub mod cloud {
                 feature = "cloud-kubernetes-security-containersecurity_logging",
             ))]
             pub mod containersecurity_logging {
-                include!("cloud.kubernetes.security.containersecurity_logging.rs");
+                include!("bytes_hash_map/cloud.kubernetes.security.containersecurity_logging.rs");
             }
         }
     }
@@ -6283,7 +6283,7 @@ pub mod maps {
             feature = "maps-fleetengine-v1",
         ))]
         pub mod v1 {
-            include!("maps.fleetengine.v1.rs");
+            include!("bytes_hash_map/maps.fleetengine.v1.rs");
         }
         #[cfg(any(
             feature = "maps-fleetengine-delivery-v1",
@@ -6293,7 +6293,7 @@ pub mod maps {
                 feature = "maps-fleetengine-delivery-v1",
             ))]
             pub mod v1 {
-                include!("maps.fleetengine.delivery.v1.rs");
+                include!("bytes_hash_map/maps.fleetengine.delivery.v1.rs");
             }
         }
     }

@@ -101,7 +101,17 @@ fn build() -> anyhow::Result<()> {
         }
 
         let modules = Modules::from_file_names(&file_names);
-        let output = modules.to_rs_file_content();
+        let output = modules.to_rs_file_content(&format!(
+            "{}_{}/",
+            match bytes_type {
+                BytesType::Bytes => "bytes",
+                BytesType::VecU8 => "vec_u8",
+            },
+            match map_type {
+                MapType::BTreeMap => "btree_map",
+                MapType::HashMap => "hash_map",
+            }
+        ));
         fs::write(
             format!(
                 "{}/{}_{}.rs",

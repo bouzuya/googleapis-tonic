@@ -54,8 +54,8 @@ impl Modules {
         }
     }
 
-    pub fn to_rs_file_content(&self) -> String {
-        fn dfs(modules: &Modules, c: &mut Vec<String>, s: &mut String) {
+    pub fn to_rs_file_content(&self, dir: &str) -> String {
+        fn dfs(modules: &Modules, c: &mut Vec<String>, s: &mut String, dir: &str) {
             let indent = "    ";
             for module in modules {
                 let features = module.features();
@@ -78,12 +78,13 @@ impl Modules {
                 c.push(module.ident().to_string());
                 if module.include() {
                     s.push_str(&format!(
-                        "{}include!(\"{}.rs\");\n",
+                        "{}include!(\"{}{}.rs\");\n",
                         indent.repeat(c.len()),
+                        dir,
                         c.join("."),
                     ));
                 }
-                dfs(module.modules(), c, s);
+                dfs(module.modules(), c, s, dir);
                 c.pop();
                 s.push_str(&format!("{}}}\n", indent.repeat(c.len())));
             }
@@ -91,7 +92,7 @@ impl Modules {
 
         let mut s = String::new();
         let mut c = vec![];
-        dfs(self, &mut c, &mut s);
+        dfs(self, &mut c, &mut s, dir);
         s
     }
 }
@@ -111,7 +112,7 @@ mod tests {
         .map(|s| s.to_owned())
         .collect::<Vec<String>>();
         assert_eq!(
-            Modules::from_file_names(&paths).to_rs_file_content(),
+            Modules::from_file_names(&paths).to_rs_file_content("dir/"),
             r#"#[cfg(any(
     feature = "google-firestore",
     feature = "google-firestore-v1",
@@ -124,18 +125,18 @@ pub mod google {
         feature = "google-firestore-v1beta1",
     ))]
     pub mod firestore {
-        include!("google.firestore.rs");
+        include!("dir/google.firestore.rs");
         #[cfg(any(
             feature = "google-firestore-v1",
         ))]
         pub mod v1 {
-            include!("google.firestore.v1.rs");
+            include!("dir/google.firestore.v1.rs");
         }
         #[cfg(any(
             feature = "google-firestore-v1beta1",
         ))]
         pub mod v1beta1 {
-            include!("google.firestore.v1beta1.rs");
+            include!("dir/google.firestore.v1beta1.rs");
         }
     }
 }
