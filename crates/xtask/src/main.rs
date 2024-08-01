@@ -152,7 +152,8 @@ fn build() -> anyhow::Result<()> {
     table.clear();
     table.insert(
         "default",
-        toml_edit::Item::from_str(r#"["vec-u8", "hash-map"]"#)?,
+        // FIXME: Add "google-rpc" and "google-type" if needed
+        toml_edit::Item::from_str(r#"["google-rpc", "google-type", "vec-u8", "hash-map"]"#)?,
     );
     let value_of_empty_array =
         toml_edit::Item::Value(toml_edit::Value::Array(toml_edit::Array::default()));
