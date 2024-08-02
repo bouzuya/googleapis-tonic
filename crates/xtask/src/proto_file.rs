@@ -1,37 +1,38 @@
+use std::str::FromStr;
+
 use anyhow::Context;
 
-struct ProtoFile {
-    package: String,
+use crate::package_name::PackageName;
+
+pub struct ProtoFile {
+    package_name: PackageName,
 }
 
 impl ProtoFile {
     pub fn parse(content: &str) -> anyhow::Result<Self> {
-        let mut package = None;
+        let mut package_name = None;
         for line in content.lines() {
-            // package ...;
+            // <https://protobuf.dev/reference/protobuf/proto3-spec/#package>
+            // package = "package" fullIdent ";"
             if line.starts_with("package") {
-                let package_name = line.trim_start_matches("package ").trim_end_matches(";");
-                match package {
+                let p = line.trim_start_matches("package ").trim_end_matches(";");
+                match package_name {
                     None => {
-                        package = Some(package_name.to_owned());
+                        package_name = Some(PackageName::from_str(p)?);
                     }
-                    Some(package) => {
-                        anyhow::bail!(
-                            "multiple package declarations: {} and {}",
-                            package,
-                            package_name
-                        )
+                    Some(package_name) => {
+                        anyhow::bail!("multiple package declarations: {} and {}", package_name, p)
                     }
                 }
             }
         }
         Ok(Self {
-            package: package.context(anyhow::anyhow!("package not found"))?,
+            package_name: package_name.context(anyhow::anyhow!("package declaration not found"))?,
         })
     }
 
-    pub fn package(&self) -> &str {
-        &self.package
+    pub fn package_name(&self) -> &PackageName {
+        &self.package_name
     }
 }
 
@@ -42,7 +43,7 @@ mod tests {
     #[test]
     fn test() -> anyhow::Result<()> {
         let proto_file = ProtoFile::parse("package foo;")?;
-        assert_eq!(proto_file.package(), "foo");
+        assert_eq!(proto_file.package_name(), &PackageName::from_str("foo")?);
         assert!(ProtoFile::parse("").is_err());
         Ok(())
     }

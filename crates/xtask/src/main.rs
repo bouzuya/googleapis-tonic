@@ -2,6 +2,7 @@ mod feature_name;
 mod ident;
 mod module;
 mod modules;
+mod package_name;
 mod proto_file;
 
 use std::{
