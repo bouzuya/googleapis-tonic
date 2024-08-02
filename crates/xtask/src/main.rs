@@ -18,11 +18,13 @@ struct Cli {
 #[derive(clap::Subcommand)]
 enum Subcommand {
     Build,
+    Test,
 }
 
 fn main() -> anyhow::Result<()> {
     let cli = <Cli as clap::Parser>::parse();
     match cli.subcommand {
         Subcommand::Build => self::command::build::execute(),
+        Subcommand::Test => self::command::test::execute(),
     }
 }
