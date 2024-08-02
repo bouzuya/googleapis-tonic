@@ -1,3 +1,4 @@
+mod bytes_type;
 mod feature_name;
 mod ident;
 mod module;
@@ -10,6 +11,7 @@ use std::{fs, path::PathBuf, str::FromStr as _};
 
 use anyhow::Context;
 
+use bytes_type::BytesType;
 use modules::Modules;
 use proto_dir::ProtoDir;
 
@@ -36,12 +38,6 @@ fn build() -> anyhow::Result<()> {
     let src_dir = "crates/googleapis-tonic/src";
 
     #[derive(Clone, Copy)]
-    enum BytesType {
-        Bytes,
-        VecU8,
-    }
-
-    #[derive(Clone, Copy)]
     enum MapType {
         BTreeMap,
         HashMap,
@@ -49,12 +45,12 @@ fn build() -> anyhow::Result<()> {
 
     let proto_dir = ProtoDir::load(proto_dir)?;
 
-    for (bytes_type, map_type) in [BytesType::Bytes, BytesType::VecU8]
-        .into_iter()
+    for (bytes_type, map_type) in BytesType::values()
+        .iter()
         .flat_map(|bytes_type| {
             [MapType::BTreeMap, MapType::HashMap]
                 .into_iter()
-                .map(|map_type| (bytes_type, map_type))
+                .map(|map_type| (*bytes_type, map_type))
                 .collect::<Vec<(BytesType, MapType)>>()
         })
         .collect::<Vec<(BytesType, MapType)>>()
@@ -62,10 +58,7 @@ fn build() -> anyhow::Result<()> {
         let out_dir = format!(
             "{}/{}_{}",
             src_dir,
-            match bytes_type {
-                BytesType::Bytes => "bytes",
-                BytesType::VecU8 => "vec_u8",
-            },
+            bytes_type.as_path_part(),
             match map_type {
                 MapType::BTreeMap => "btree_map",
                 MapType::HashMap => "hash_map",
@@ -104,10 +97,7 @@ fn build() -> anyhow::Result<()> {
         let modules = Modules::from_file_names(&file_names);
         let output = modules.to_rs_file_content(&format!(
             "{}_{}/",
-            match bytes_type {
-                BytesType::Bytes => "bytes",
-                BytesType::VecU8 => "vec_u8",
-            },
+            bytes_type.as_path_part(),
             match map_type {
                 MapType::BTreeMap => "btree_map",
                 MapType::HashMap => "hash_map",
@@ -117,10 +107,7 @@ fn build() -> anyhow::Result<()> {
             format!(
                 "{}/{}_{}.rs",
                 src_dir,
-                match bytes_type {
-                    BytesType::Bytes => "bytes",
-                    BytesType::VecU8 => "vec_u8",
-                },
+                bytes_type.as_path_part(),
                 match map_type {
                     MapType::BTreeMap => "btree_map",
                     MapType::HashMap => "hash_map",
@@ -158,8 +145,9 @@ fn build() -> anyhow::Result<()> {
     );
     let value_of_empty_array =
         toml_edit::Item::Value(toml_edit::Value::Array(toml_edit::Array::default()));
-    table.insert("bytes", value_of_empty_array.clone());
-    table.insert("vec-u8", value_of_empty_array.clone());
+    for bytes_type in BytesType::values() {
+        table.insert(bytes_type.as_feature_name(), value_of_empty_array.clone());
+    }
     table.insert("btree-map", value_of_empty_array.clone());
     table.insert("hash-map", value_of_empty_array.clone());
     for file_name in file_names {
