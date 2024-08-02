@@ -3,17 +3,15 @@ mod ident;
 mod module;
 mod modules;
 mod package_name;
+mod proto_dir;
 mod proto_file;
 
-use std::{
-    fs,
-    path::{Path, PathBuf},
-    str::FromStr as _,
-};
+use std::{fs, path::PathBuf, str::FromStr as _};
 
 use anyhow::Context;
 
 use modules::Modules;
+use proto_dir::ProtoDir;
 
 #[derive(clap::Parser)]
 struct Cli {
@@ -49,6 +47,8 @@ fn build() -> anyhow::Result<()> {
         HashMap,
     }
 
+    let proto_dir = ProtoDir::load(proto_dir)?;
+
     for (bytes_type, map_type) in [BytesType::Bytes, BytesType::VecU8]
         .into_iter()
         .flat_map(|bytes_type| {
@@ -72,7 +72,6 @@ fn build() -> anyhow::Result<()> {
             }
         );
 
-        let proto_paths = proto_paths_from_dir(proto_dir)?;
         tonic_build::configure()
             .btree_map(match map_type {
                 MapType::BTreeMap => vec!["."],
@@ -88,7 +87,7 @@ fn build() -> anyhow::Result<()> {
             })
             .out_dir(out_dir.as_str())
             .protoc_arg("--experimental_allow_proto3_optional")
-            .compile(&proto_paths, &[proto_dir])?;
+            .compile(proto_dir.proto_paths(), &[proto_dir.dir_path()])?;
 
         let mut file_names = vec![];
         for dir_entry in fs::read_dir(out_dir.as_str())? {
@@ -178,23 +177,4 @@ fn build() -> anyhow::Result<()> {
     fs::write(cargo_toml_path, document.to_string())?;
 
     Ok(())
-}
-
-fn proto_paths_from_dir<P: AsRef<Path>>(dir: P) -> anyhow::Result<Vec<PathBuf>> {
-    let mut paths = vec![];
-    for entry in std::fs::read_dir(dir)? {
-        let entry = entry?;
-        if entry.file_type()?.is_file() {
-            let path = entry.path();
-            if let Some(extension) = path.extension() {
-                if extension == "proto" {
-                    paths.push(path);
-                }
-            }
-        } else {
-            let path_buf = entry.path();
-            paths.append(&mut proto_paths_from_dir(&path_buf)?);
-        }
-    }
-    Ok(paths)
 }
