@@ -42,6 +42,10 @@ impl ProtoDir {
         })
     }
 
+    pub fn dependencies(&self) -> &BTreeMap<PackageName, BTreeSet<PackageName>> {
+        &self.dependencies
+    }
+
     pub fn dir_path(&self) -> &Path {
         &self.dir_path
     }
@@ -56,7 +60,7 @@ impl ProtoDir {
     ) -> anyhow::Result<BTreeSet<PackageName>> {
         proto_file
             .import_paths()
-            .into_iter()
+            .iter()
             .filter(|it| !it.starts_with("google/protobuf"))
             .map(|it| {
                 all_proto_files.get(it).with_context(|| {
@@ -67,7 +71,11 @@ impl ProtoDir {
                 })
             })
             .try_fold(
-                BTreeSet::<PackageName>::new(),
+                {
+                    let mut set = BTreeSet::<PackageName>::new();
+                    set.insert(proto_file.package_name().to_owned());
+                    set
+                },
                 |mut acc, it| -> anyhow::Result<BTreeSet<PackageName>> {
                     acc.extend(Self::proto_file_dependencies(all_proto_files, it?)?);
                     Ok(acc)

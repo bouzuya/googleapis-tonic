@@ -15,6 +15,7 @@ use anyhow::Context;
 use bytes_type::BytesType;
 use map_type::MapType;
 use modules::Modules;
+use package_name::PackageName;
 use proto_dir::ProtoDir;
 
 #[derive(clap::Parser)]
@@ -47,12 +48,8 @@ fn build() -> anyhow::Result<()> {
             .map(|map_type| (*bytes_type, *map_type))
             .collect::<Vec<(BytesType, MapType)>>()
     }) {
-        let out_dir = format!(
-            "{}/{}_{}",
-            src_dir,
-            bytes_type.as_path_part(),
-            map_type.as_path_part()
-        );
+        let root_mod_name = format!("{}_{}", bytes_type.as_path_part(), map_type.as_path_part());
+        let out_dir = format!("{}/{}", src_dir, root_mod_name);
 
         tonic_build::configure()
             .btree_map(match map_type {
@@ -60,7 +57,6 @@ fn build() -> anyhow::Result<()> {
                 MapType::HashMap => vec![],
             })
             .build_client(true)
-            // don't generate server code
             .build_server(false)
             .build_transport(false)
             .bytes(match bytes_type {
@@ -84,20 +80,8 @@ fn build() -> anyhow::Result<()> {
         }
 
         let modules = Modules::from_file_names(&file_names);
-        let output = modules.to_rs_file_content(&format!(
-            "{}_{}/",
-            bytes_type.as_path_part(),
-            map_type.as_path_part()
-        ));
-        fs::write(
-            format!(
-                "{}/{}_{}.rs",
-                src_dir,
-                bytes_type.as_path_part(),
-                map_type.as_path_part()
-            ),
-            output,
-        )?;
+        let output = modules.to_rs_file_content(&format!("{}/", root_mod_name));
+        fs::write(format!("{}/{}.rs", src_dir, root_mod_name), output)?;
     }
 
     let mut file_names = vec![];
@@ -123,8 +107,7 @@ fn build() -> anyhow::Result<()> {
     table.clear();
     table.insert(
         "default",
-        // FIXME: Add "google-rpc" and "google-type" if needed
-        toml_edit::Item::from_str(r#"["google-rpc", "google-type", "vec-u8", "hash-map"]"#)?,
+        toml_edit::Item::from_str(r#"["hash-map", "vec-u8"]"#)?,
     );
     let value_of_empty_array =
         toml_edit::Item::Value(toml_edit::Value::Array(toml_edit::Array::default()));
@@ -134,15 +117,24 @@ fn build() -> anyhow::Result<()> {
     for map_type in MapType::values() {
         table.insert(map_type.as_feature_name(), value_of_empty_array.clone());
     }
-    for file_name in file_names {
+    for (pkg, deps) in proto_dir.dependencies() {
+        fn pkg_to_feature_name(pkg: &PackageName) -> String {
+            pkg.to_string().split('.').collect::<Vec<&str>>().join("-")
+        }
+        let feature_name = pkg_to_feature_name(pkg);
         table.insert(
-            &file_name
-                .split('.')
-                .filter(|s| s != &"rs")
-                .map(|s| s.replace("r#", ""))
-                .collect::<Vec<String>>()
-                .join("-"),
-            value_of_empty_array.clone(),
+            &feature_name,
+            toml_edit::Item::Value(toml_edit::Value::Array({
+                let mut array = toml_edit::Array::default();
+                for dep in deps {
+                    let f = pkg_to_feature_name(dep);
+                    if f == feature_name {
+                        continue;
+                    }
+                    array.push(f);
+                }
+                array
+            })),
         );
     }
     table.sort_values();
