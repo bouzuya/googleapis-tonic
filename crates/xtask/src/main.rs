@@ -8,14 +8,19 @@ mod package_name;
 mod proto_dir;
 mod proto_file;
 
-use std::{fs, path::PathBuf, str::FromStr as _};
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    fs,
+    path::PathBuf,
+    str::FromStr as _,
+};
 
 use anyhow::Context;
 
 use bytes_type::BytesType;
+use feature_name::FeatureName;
 use map_type::MapType;
 use modules::Modules;
-use package_name::PackageName;
 use proto_dir::ProtoDir;
 
 #[derive(clap::Parser)]
@@ -84,18 +89,40 @@ fn build() -> anyhow::Result<()> {
         fs::write(format!("{}/{}.rs", src_dir, root_mod_name), output)?;
     }
 
-    let mut file_names = vec![];
-    for dir_entry in fs::read_dir(format!("{}/vec_u8_hash_map", src_dir))? {
-        let dir_entry = dir_entry?;
-        let path = dir_entry.path();
-        let file_name = path
-            .file_name()
-            .with_context(|| format!("file_name is None {}", path.display()))?
-            .to_str()
-            .with_context(|| format!("file_name is not utf-8 {}", path.display()))?;
-        file_names.push(file_name.to_owned());
-    }
+    update_cargo_toml(src_dir, proto_dir)?;
+    Ok(())
+}
 
+fn build_features(proto_dir: ProtoDir) -> BTreeMap<FeatureName, BTreeSet<FeatureName>> {
+    let mut features = BTreeMap::new();
+    features.insert(
+        FeatureName::default(),
+        [
+            FeatureName::from(MapType::HashMap),
+            FeatureName::from(BytesType::VecU8),
+        ]
+        .into_iter()
+        .collect::<BTreeSet<FeatureName>>(),
+    );
+    for bytes_type in BytesType::values() {
+        features.insert(FeatureName::from(*bytes_type), BTreeSet::default());
+    }
+    for map_type in MapType::values() {
+        features.insert(FeatureName::from(*map_type), BTreeSet::default());
+    }
+    for (pkg, deps) in proto_dir.dependencies() {
+        let feature_name = FeatureName::from(pkg);
+        let deps = deps
+            .iter()
+            .map(FeatureName::from)
+            .filter(|it| it != &feature_name)
+            .collect::<BTreeSet<FeatureName>>();
+        features.insert(feature_name, deps);
+    }
+    features
+}
+
+fn update_cargo_toml(src_dir: &str, proto_dir: ProtoDir) -> anyhow::Result<()> {
     let cargo_toml_path = PathBuf::from(src_dir)
         .join("../Cargo.toml")
         .canonicalize()?;
@@ -105,40 +132,17 @@ fn build() -> anyhow::Result<()> {
         .as_table_mut()
         .context("features is not a table")?;
     table.clear();
-    table.insert(
-        "default",
-        toml_edit::Item::from_str(r#"["hash-map", "vec-u8"]"#)?,
-    );
-    let value_of_empty_array =
-        toml_edit::Item::Value(toml_edit::Value::Array(toml_edit::Array::default()));
-    for bytes_type in BytesType::values() {
-        table.insert(bytes_type.as_feature_name(), value_of_empty_array.clone());
-    }
-    for map_type in MapType::values() {
-        table.insert(map_type.as_feature_name(), value_of_empty_array.clone());
-    }
-    for (pkg, deps) in proto_dir.dependencies() {
-        fn pkg_to_feature_name(pkg: &PackageName) -> String {
-            pkg.to_string().split('.').collect::<Vec<&str>>().join("-")
-        }
-        let feature_name = pkg_to_feature_name(pkg);
+    for (feature_name, deps) in build_features(proto_dir) {
         table.insert(
-            &feature_name,
-            toml_edit::Item::Value(toml_edit::Value::Array({
-                let mut array = toml_edit::Array::default();
-                for dep in deps {
-                    let f = pkg_to_feature_name(dep);
-                    if f == feature_name {
-                        continue;
-                    }
-                    array.push(f);
-                }
-                array
-            })),
+            &feature_name.to_string(),
+            toml_edit::Item::Value(toml_edit::Value::Array(
+                deps.iter()
+                    .map(ToString::to_string)
+                    .collect::<toml_edit::Array>(),
+            )),
         );
     }
     table.sort_values();
     fs::write(cargo_toml_path, document.to_string())?;
-
     Ok(())
 }
