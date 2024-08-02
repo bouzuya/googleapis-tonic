@@ -1,6 +1,7 @@
 mod bytes_type;
 mod feature_name;
 mod ident;
+mod map_type;
 mod module;
 mod modules;
 mod package_name;
@@ -12,6 +13,7 @@ use std::{fs, path::PathBuf, str::FromStr as _};
 use anyhow::Context;
 
 use bytes_type::BytesType;
+use map_type::MapType;
 use modules::Modules;
 use proto_dir::ProtoDir;
 
@@ -37,32 +39,19 @@ fn build() -> anyhow::Result<()> {
     let proto_dir = "crates/xtask/googleapis";
     let src_dir = "crates/googleapis-tonic/src";
 
-    #[derive(Clone, Copy)]
-    enum MapType {
-        BTreeMap,
-        HashMap,
-    }
-
     let proto_dir = ProtoDir::load(proto_dir)?;
 
-    for (bytes_type, map_type) in BytesType::values()
-        .iter()
-        .flat_map(|bytes_type| {
-            [MapType::BTreeMap, MapType::HashMap]
-                .into_iter()
-                .map(|map_type| (*bytes_type, map_type))
-                .collect::<Vec<(BytesType, MapType)>>()
-        })
-        .collect::<Vec<(BytesType, MapType)>>()
-    {
+    for (bytes_type, map_type) in BytesType::values().iter().flat_map(|bytes_type| {
+        MapType::values()
+            .iter()
+            .map(|map_type| (*bytes_type, *map_type))
+            .collect::<Vec<(BytesType, MapType)>>()
+    }) {
         let out_dir = format!(
             "{}/{}_{}",
             src_dir,
             bytes_type.as_path_part(),
-            match map_type {
-                MapType::BTreeMap => "btree_map",
-                MapType::HashMap => "hash_map",
-            }
+            map_type.as_path_part()
         );
 
         tonic_build::configure()
@@ -98,20 +87,14 @@ fn build() -> anyhow::Result<()> {
         let output = modules.to_rs_file_content(&format!(
             "{}_{}/",
             bytes_type.as_path_part(),
-            match map_type {
-                MapType::BTreeMap => "btree_map",
-                MapType::HashMap => "hash_map",
-            }
+            map_type.as_path_part()
         ));
         fs::write(
             format!(
                 "{}/{}_{}.rs",
                 src_dir,
                 bytes_type.as_path_part(),
-                match map_type {
-                    MapType::BTreeMap => "btree_map",
-                    MapType::HashMap => "hash_map",
-                }
+                map_type.as_path_part()
             ),
             output,
         )?;
@@ -148,8 +131,9 @@ fn build() -> anyhow::Result<()> {
     for bytes_type in BytesType::values() {
         table.insert(bytes_type.as_feature_name(), value_of_empty_array.clone());
     }
-    table.insert("btree-map", value_of_empty_array.clone());
-    table.insert("hash-map", value_of_empty_array.clone());
+    for map_type in MapType::values() {
+        table.insert(map_type.as_feature_name(), value_of_empty_array.clone());
+    }
     for file_name in file_names {
         table.insert(
             &file_name
