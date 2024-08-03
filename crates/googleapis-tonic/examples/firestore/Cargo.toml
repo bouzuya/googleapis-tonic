@@ -5,6 +5,7 @@ publish = false
 
 [dependencies]
 anyhow = "1.0.86"
+google-api-proto = "1.696.0"
 google-cloud-auth = { version = "0.16.0", default-features = false, features = ["rustls-tls"] }
 googleapis-tonic = { path = "../..", features = ["google-firestore-v1"] }
 tokio = { version = "1.39.2", features = ["macros", "rt-multi-thread"] }
