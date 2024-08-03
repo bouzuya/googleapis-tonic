@@ -55,7 +55,7 @@ impl Modules {
     }
 
     pub fn to_rs_file_content(&self, dir: &str) -> String {
-        fn dfs(modules: &Modules, c: &mut Vec<String>, s: &mut String, dir: &str) {
+        fn dfs(modules: &Modules, c: &mut Vec<Ident>, s: &mut String, dir: &str) {
             let indent = "    ";
             for module in modules {
                 let features = module.features();
@@ -75,13 +75,24 @@ impl Modules {
                     indent.repeat(c.len()),
                     module.ident().as_str()
                 ));
-                c.push(module.ident().to_string());
+                c.push(module.ident().to_owned());
                 if module.include() {
+                    s.push_str(&format!("{}#[cfg(any(\n", indent.repeat(c.len())));
+                    s.push_str(&format!(
+                        "{}feature = \"{}\",\n",
+                        indent.repeat(c.len() + 1),
+                        FeatureName::from(c.clone())
+                    ));
+                    s.push_str(&format!("{}))]\n", indent.repeat(c.len())));
+
                     s.push_str(&format!(
                         "{}include!(\"{}{}.rs\");\n",
                         indent.repeat(c.len()),
                         dir,
-                        c.join("."),
+                        c.iter()
+                            .map(ToString::to_string)
+                            .collect::<Vec<String>>()
+                            .join("."),
                     ));
                 }
                 dfs(module.modules(), c, s, dir);
