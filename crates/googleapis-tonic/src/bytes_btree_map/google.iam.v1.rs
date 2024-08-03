@@ -2,424 +2,337 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GetPolicyOptions {
-    #[prost(int32, tag = "1")]
-    pub requested_policy_version: i32,
+#[prost(int32, tag = "1")]
+pub requested_policy_version: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Policy {
-    #[prost(int32, tag = "1")]
-    pub version: i32,
-    #[prost(message, repeated, tag = "4")]
-    pub bindings: ::prost::alloc::vec::Vec<Binding>,
-    #[prost(message, repeated, tag = "6")]
-    pub audit_configs: ::prost::alloc::vec::Vec<AuditConfig>,
-    #[prost(bytes = "bytes", tag = "3")]
-    pub etag: ::prost::bytes::Bytes,
+#[prost(int32, tag = "1")]
+pub version: i32,
+#[prost(message, repeated, tag = "4")]
+pub bindings: ::prost::alloc::vec::Vec<Binding>,
+#[prost(message, repeated, tag = "6")]
+pub audit_configs: ::prost::alloc::vec::Vec<AuditConfig>,
+#[prost(bytes = "bytes", tag = "3")]
+pub etag: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Binding {
-    #[prost(string, tag = "1")]
-    pub role: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub members: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub condition: ::core::option::Option<super::super::r#type::Expr>,
+#[prost(string, tag = "1")]
+pub role: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub members: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "3")]
+pub condition: ::core::option::Option<super::super::r#type::Expr>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditConfig {
-    #[prost(string, tag = "1")]
-    pub service: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub audit_log_configs: ::prost::alloc::vec::Vec<AuditLogConfig>,
+#[prost(string, tag = "1")]
+pub service: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub audit_log_configs: ::prost::alloc::vec::Vec<AuditLogConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditLogConfig {
-    #[prost(enumeration = "audit_log_config::LogType", tag = "1")]
-    pub log_type: i32,
-    #[prost(string, repeated, tag = "2")]
-    pub exempted_members: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "audit_log_config::LogType", tag = "1")]
+pub log_type: i32,
+#[prost(string, repeated, tag = "2")]
+pub exempted_members: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `AuditLogConfig`.
 pub mod audit_log_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum LogType {
-        Unspecified = 0,
-        AdminRead = 1,
-        DataWrite = 2,
-        DataRead = 3,
-    }
-    impl LogType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                LogType::Unspecified => "LOG_TYPE_UNSPECIFIED",
-                LogType::AdminRead => "ADMIN_READ",
-                LogType::DataWrite => "DATA_WRITE",
-                LogType::DataRead => "DATA_READ",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "LOG_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ADMIN_READ" => Some(Self::AdminRead),
-                "DATA_WRITE" => Some(Self::DataWrite),
-                "DATA_READ" => Some(Self::DataRead),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LogType {
+Unspecified = 0,
+AdminRead = 1,
+DataWrite = 2,
+DataRead = 3,
+}
+impl LogType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LogType::Unspecified => "LOG_TYPE_UNSPECIFIED",
+LogType::AdminRead => "ADMIN_READ",
+LogType::DataWrite => "DATA_WRITE",
+LogType::DataRead => "DATA_READ",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LOG_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"ADMIN_READ" => Some(Self::AdminRead),
+"DATA_WRITE" => Some(Self::DataWrite),
+"DATA_READ" => Some(Self::DataRead),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PolicyDelta {
-    #[prost(message, repeated, tag = "1")]
-    pub binding_deltas: ::prost::alloc::vec::Vec<BindingDelta>,
-    #[prost(message, repeated, tag = "2")]
-    pub audit_config_deltas: ::prost::alloc::vec::Vec<AuditConfigDelta>,
+#[prost(message, repeated, tag = "1")]
+pub binding_deltas: ::prost::alloc::vec::Vec<BindingDelta>,
+#[prost(message, repeated, tag = "2")]
+pub audit_config_deltas: ::prost::alloc::vec::Vec<AuditConfigDelta>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BindingDelta {
-    #[prost(enumeration = "binding_delta::Action", tag = "1")]
-    pub action: i32,
-    #[prost(string, tag = "2")]
-    pub role: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub member: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub condition: ::core::option::Option<super::super::r#type::Expr>,
+#[prost(enumeration = "binding_delta::Action", tag = "1")]
+pub action: i32,
+#[prost(string, tag = "2")]
+pub role: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub member: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub condition: ::core::option::Option<super::super::r#type::Expr>,
 }
 /// Nested message and enum types in `BindingDelta`.
 pub mod binding_delta {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Action {
-        Unspecified = 0,
-        Add = 1,
-        Remove = 2,
-    }
-    impl Action {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Action::Unspecified => "ACTION_UNSPECIFIED",
-                Action::Add => "ADD",
-                Action::Remove => "REMOVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-                "ADD" => Some(Self::Add),
-                "REMOVE" => Some(Self::Remove),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Action {
+Unspecified = 0,
+Add = 1,
+Remove = 2,
+}
+impl Action {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Action::Unspecified => "ACTION_UNSPECIFIED",
+Action::Add => "ADD",
+Action::Remove => "REMOVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"ADD" => Some(Self::Add),
+"REMOVE" => Some(Self::Remove),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditConfigDelta {
-    #[prost(enumeration = "audit_config_delta::Action", tag = "1")]
-    pub action: i32,
-    #[prost(string, tag = "2")]
-    pub service: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub exempted_member: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub log_type: ::prost::alloc::string::String,
+#[prost(enumeration = "audit_config_delta::Action", tag = "1")]
+pub action: i32,
+#[prost(string, tag = "2")]
+pub service: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub exempted_member: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub log_type: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `AuditConfigDelta`.
 pub mod audit_config_delta {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Action {
-        Unspecified = 0,
-        Add = 1,
-        Remove = 2,
-    }
-    impl Action {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Action::Unspecified => "ACTION_UNSPECIFIED",
-                Action::Add => "ADD",
-                Action::Remove => "REMOVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-                "ADD" => Some(Self::Add),
-                "REMOVE" => Some(Self::Remove),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Action {
+Unspecified = 0,
+Add = 1,
+Remove = 2,
+}
+impl Action {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Action::Unspecified => "ACTION_UNSPECIFIED",
+Action::Add => "ADD",
+Action::Remove => "REMOVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"ADD" => Some(Self::Add),
+"REMOVE" => Some(Self::Remove),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SetIamPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub policy: ::core::option::Option<Policy>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub resource: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub policy: ::core::option::Option<Policy>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetIamPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub options: ::core::option::Option<GetPolicyOptions>,
+#[prost(string, tag = "1")]
+pub resource: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub options: ::core::option::Option<GetPolicyOptions>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TestIamPermissionsRequest {
-    #[prost(string, tag = "1")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub resource: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TestIamPermissionsResponse {
-    #[prost(string, repeated, tag = "1")]
-    pub permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Generated client implementations.
 pub mod iam_policy_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// API Overview
-    ///
-    ///
-    /// Manages Identity and Access Management (IAM) policies.
-    ///
-    /// Any implementation of an API that offers access control features
-    /// implements the google.iam.v1.IAMPolicy interface.
-    ///
-    /// ## Data model
-    ///
-    /// Access control is applied when a principal (user or service account), takes
-    /// some action on a resource exposed by a service. Resources, identified by
-    /// URI-like names, are the unit of access control specification. Service
-    /// implementations can choose the granularity of access control and the
-    /// supported permissions for their resources.
-    /// For example one database service may allow access control to be
-    /// specified only at the Table level, whereas another might allow access control
-    /// to also be specified at the Column level.
-    ///
-    /// ## Policy Structure
-    ///
-    /// See google.iam.v1.Policy
-    ///
-    /// This is intentionally not a CRUD style API because access control policies
-    /// are created and deleted implicitly with the resources to which they are
-    /// attached.
-    #[derive(Debug, Clone)]
-    pub struct IamPolicyClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> IamPolicyClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> IamPolicyClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            IamPolicyClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Sets the access control policy on the specified resource. Replaces any
-        /// existing policy.
-        ///
-        /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-        pub async fn set_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SetIamPolicyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Policy>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.v1.IAMPolicy/SetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.v1.IAMPolicy", "SetIamPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the access control policy for a resource.
-        /// Returns an empty policy if the resource exists and does not have a policy
-        /// set.
-        pub async fn get_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetIamPolicyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Policy>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.v1.IAMPolicy/GetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.v1.IAMPolicy", "GetIamPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns permissions that a caller has on the specified resource.
-        /// If the resource does not exist, this will return an empty set of
-        /// permissions, not a `NOT_FOUND` error.
-        ///
-        /// Note: This operation is designed to be used for building permission-aware
-        /// UIs and command-line tools, not for authorization checking. This operation
-        /// may "fail open" without warning.
-        pub async fn test_iam_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::TestIamPermissionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::TestIamPermissionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.v1.IAMPolicy/TestIamPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.v1.IAMPolicy", "TestIamPermissions"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// API Overview
+///
+///
+/// Manages Identity and Access Management (IAM) policies.
+///
+/// Any implementation of an API that offers access control features
+/// implements the google.iam.v1.IAMPolicy interface.
+///
+/// ## Data model
+///
+/// Access control is applied when a principal (user or service account), takes
+/// some action on a resource exposed by a service. Resources, identified by
+/// URI-like names, are the unit of access control specification. Service
+/// implementations can choose the granularity of access control and the
+/// supported permissions for their resources.
+/// For example one database service may allow access control to be
+/// specified only at the Table level, whereas another might allow access control
+/// to also be specified at the Column level.
+///
+/// ## Policy Structure
+///
+/// See google.iam.v1.Policy
+///
+/// This is intentionally not a CRUD style API because access control policies
+/// are created and deleted implicitly with the resources to which they are
+/// attached.
+#[derive(Debug, Clone)]
+pub struct IamPolicyClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> IamPolicyClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> IamPolicyClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+IamPolicyClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Sets the access control policy on the specified resource. Replaces any
+/// existing policy.
+///
+/// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.v1.IAMPolicy/SetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.v1.IAMPolicy", "SetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the access control policy for a resource.
+/// Returns an empty policy if the resource exists and does not have a policy
+/// set.
+pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.v1.IAMPolicy/GetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.v1.IAMPolicy", "GetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns permissions that a caller has on the specified resource.
+/// If the resource does not exist, this will return an empty set of
+/// permissions, not a `NOT_FOUND` error.
+///
+/// Note: This operation is designed to be used for building permission-aware
+/// UIs and command-line tools, not for authorization checking. This operation
+/// may "fail open" without warning.
+pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::TestIamPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.v1.IAMPolicy/TestIamPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.v1.IAMPolicy", "TestIamPermissions"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

@@ -2,3701 +2,2773 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub app_engine_release: ::prost::alloc::string::String,
-    #[prost(enumeration = "instance::Availability", tag = "4")]
-    pub availability: i32,
-    #[prost(string, tag = "5")]
-    pub vm_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub vm_zone_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub vm_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(int32, tag = "9")]
-    pub requests: i32,
-    #[prost(int32, tag = "10")]
-    pub errors: i32,
-    #[prost(float, tag = "11")]
-    pub qps: f32,
-    #[prost(int32, tag = "12")]
-    pub average_latency: i32,
-    #[prost(int64, tag = "13")]
-    pub memory_usage: i64,
-    #[prost(string, tag = "14")]
-    pub vm_status: ::prost::alloc::string::String,
-    #[prost(bool, tag = "15")]
-    pub vm_debug_enabled: bool,
-    #[prost(string, tag = "16")]
-    pub vm_ip: ::prost::alloc::string::String,
-    #[prost(enumeration = "instance::liveness::LivenessState", tag = "17")]
-    pub vm_liveness: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub app_engine_release: ::prost::alloc::string::String,
+#[prost(enumeration = "instance::Availability", tag = "4")]
+pub availability: i32,
+#[prost(string, tag = "5")]
+pub vm_name: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub vm_zone_name: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub vm_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int32, tag = "9")]
+pub requests: i32,
+#[prost(int32, tag = "10")]
+pub errors: i32,
+#[prost(float, tag = "11")]
+pub qps: f32,
+#[prost(int32, tag = "12")]
+pub average_latency: i32,
+#[prost(int64, tag = "13")]
+pub memory_usage: i64,
+#[prost(string, tag = "14")]
+pub vm_status: ::prost::alloc::string::String,
+#[prost(bool, tag = "15")]
+pub vm_debug_enabled: bool,
+#[prost(string, tag = "16")]
+pub vm_ip: ::prost::alloc::string::String,
+#[prost(enumeration = "instance::liveness::LivenessState", tag = "17")]
+pub vm_liveness: i32,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct Liveness {}
-    /// Nested message and enum types in `Liveness`.
-    pub mod liveness {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum LivenessState {
-            Unspecified = 0,
-            Unknown = 1,
-            Healthy = 2,
-            Unhealthy = 3,
-            Draining = 4,
-            Timeout = 5,
-        }
-        impl LivenessState {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    LivenessState::Unspecified => "LIVENESS_STATE_UNSPECIFIED",
-                    LivenessState::Unknown => "UNKNOWN",
-                    LivenessState::Healthy => "HEALTHY",
-                    LivenessState::Unhealthy => "UNHEALTHY",
-                    LivenessState::Draining => "DRAINING",
-                    LivenessState::Timeout => "TIMEOUT",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "LIVENESS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "UNKNOWN" => Some(Self::Unknown),
-                    "HEALTHY" => Some(Self::Healthy),
-                    "UNHEALTHY" => Some(Self::Unhealthy),
-                    "DRAINING" => Some(Self::Draining),
-                    "TIMEOUT" => Some(Self::Timeout),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Availability {
-        Unspecified = 0,
-        Resident = 1,
-        Dynamic = 2,
-    }
-    impl Availability {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Availability::Unspecified => "UNSPECIFIED",
-                Availability::Resident => "RESIDENT",
-                Availability::Dynamic => "DYNAMIC",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "RESIDENT" => Some(Self::Resident),
-                "DYNAMIC" => Some(Self::Dynamic),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Liveness {}
+/// Nested message and enum types in `Liveness`.
+pub mod liveness {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LivenessState {
+Unspecified = 0,
+Unknown = 1,
+Healthy = 2,
+Unhealthy = 3,
+Draining = 4,
+Timeout = 5,
+}
+impl LivenessState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LivenessState::Unspecified => "LIVENESS_STATE_UNSPECIFIED",
+LivenessState::Unknown => "UNKNOWN",
+LivenessState::Healthy => "HEALTHY",
+LivenessState::Unhealthy => "UNHEALTHY",
+LivenessState::Draining => "DRAINING",
+LivenessState::Timeout => "TIMEOUT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LIVENESS_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"UNKNOWN" => Some(Self::Unknown),
+"HEALTHY" => Some(Self::Healthy),
+"UNHEALTHY" => Some(Self::Unhealthy),
+"DRAINING" => Some(Self::Draining),
+"TIMEOUT" => Some(Self::Timeout),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Availability {
+Unspecified = 0,
+Resident = 1,
+Dynamic = 2,
+}
+impl Availability {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Availability::Unspecified => "UNSPECIFIED",
+Availability::Resident => "RESIDENT",
+Availability::Dynamic => "DYNAMIC",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED" => Some(Self::Unspecified),
+"RESIDENT" => Some(Self::Resident),
+"DYNAMIC" => Some(Self::Dynamic),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Application {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub dispatch_rules: ::prost::alloc::vec::Vec<UrlDispatchRule>,
-    #[prost(string, tag = "6")]
-    pub auth_domain: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub location_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub code_bucket: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "9")]
-    pub default_cookie_expiration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(enumeration = "application::ServingStatus", tag = "10")]
-    pub serving_status: i32,
-    #[prost(string, tag = "11")]
-    pub default_hostname: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub default_bucket: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub service_account: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "14")]
-    pub iap: ::core::option::Option<application::IdentityAwareProxy>,
-    #[prost(string, tag = "16")]
-    pub gcr_domain: ::prost::alloc::string::String,
-    #[prost(enumeration = "application::DatabaseType", tag = "17")]
-    pub database_type: i32,
-    #[prost(message, optional, tag = "18")]
-    pub feature_settings: ::core::option::Option<application::FeatureSettings>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub dispatch_rules: ::prost::alloc::vec::Vec<UrlDispatchRule>,
+#[prost(string, tag = "6")]
+pub auth_domain: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub location_id: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub code_bucket: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "9")]
+pub default_cookie_expiration: ::core::option::Option<::prost_types::Duration>,
+#[prost(enumeration = "application::ServingStatus", tag = "10")]
+pub serving_status: i32,
+#[prost(string, tag = "11")]
+pub default_hostname: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub default_bucket: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub service_account: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "14")]
+pub iap: ::core::option::Option<application::IdentityAwareProxy>,
+#[prost(string, tag = "16")]
+pub gcr_domain: ::prost::alloc::string::String,
+#[prost(enumeration = "application::DatabaseType", tag = "17")]
+pub database_type: i32,
+#[prost(message, optional, tag = "18")]
+pub feature_settings: ::core::option::Option<application::FeatureSettings>,
 }
 /// Nested message and enum types in `Application`.
 pub mod application {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct IdentityAwareProxy {
-        #[prost(bool, tag = "1")]
-        pub enabled: bool,
-        #[prost(string, tag = "2")]
-        pub oauth2_client_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub oauth2_client_secret: ::prost::alloc::string::String,
-        #[prost(string, tag = "4")]
-        pub oauth2_client_secret_sha256: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct FeatureSettings {
-        #[prost(bool, tag = "1")]
-        pub split_health_checks: bool,
-        #[prost(bool, tag = "2")]
-        pub use_container_optimized_os: bool,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ServingStatus {
-        Unspecified = 0,
-        Serving = 1,
-        UserDisabled = 2,
-        SystemDisabled = 3,
-    }
-    impl ServingStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ServingStatus::Unspecified => "UNSPECIFIED",
-                ServingStatus::Serving => "SERVING",
-                ServingStatus::UserDisabled => "USER_DISABLED",
-                ServingStatus::SystemDisabled => "SYSTEM_DISABLED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "SERVING" => Some(Self::Serving),
-                "USER_DISABLED" => Some(Self::UserDisabled),
-                "SYSTEM_DISABLED" => Some(Self::SystemDisabled),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DatabaseType {
-        Unspecified = 0,
-        CloudDatastore = 1,
-        CloudFirestore = 2,
-        CloudDatastoreCompatibility = 3,
-    }
-    impl DatabaseType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DatabaseType::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
-                DatabaseType::CloudDatastore => "CLOUD_DATASTORE",
-                DatabaseType::CloudFirestore => "CLOUD_FIRESTORE",
-                DatabaseType::CloudDatastoreCompatibility => {
-                    "CLOUD_DATASTORE_COMPATIBILITY"
-                }
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DATABASE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CLOUD_DATASTORE" => Some(Self::CloudDatastore),
-                "CLOUD_FIRESTORE" => Some(Self::CloudFirestore),
-                "CLOUD_DATASTORE_COMPATIBILITY" => {
-                    Some(Self::CloudDatastoreCompatibility)
-                }
-                _ => None,
-            }
-        }
-    }
-}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UrlDispatchRule {
-    #[prost(string, tag = "1")]
-    pub domain: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub service: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AuthorizedCertificate {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "4")]
-    pub domain_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub certificate_raw_data: ::core::option::Option<CertificateRawData>,
-    #[prost(message, optional, tag = "7")]
-    pub managed_certificate: ::core::option::Option<ManagedCertificate>,
-    #[prost(string, repeated, tag = "8")]
-    pub visible_domain_mappings: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(int32, tag = "9")]
-    pub domain_mappings_count: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CertificateRawData {
-    #[prost(string, tag = "1")]
-    pub public_certificate: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub private_key: ::prost::alloc::string::String,
+pub struct IdentityAwareProxy {
+#[prost(bool, tag = "1")]
+pub enabled: bool,
+#[prost(string, tag = "2")]
+pub oauth2_client_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub oauth2_client_secret: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub oauth2_client_secret_sha256: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ManagedCertificate {
-    #[prost(message, optional, tag = "1")]
-    pub last_renewal_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "ManagementStatus", tag = "2")]
-    pub status: i32,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ManagementStatus {
-    Unspecified = 0,
-    Ok = 1,
-    Pending = 2,
-    FailedRetryingNotVisible = 4,
-    FailedPermanent = 6,
-    FailedRetryingCaaForbidden = 7,
-    FailedRetryingCaaChecking = 8,
-}
-impl ManagementStatus {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ManagementStatus::Unspecified => "MANAGEMENT_STATUS_UNSPECIFIED",
-            ManagementStatus::Ok => "OK",
-            ManagementStatus::Pending => "PENDING",
-            ManagementStatus::FailedRetryingNotVisible => "FAILED_RETRYING_NOT_VISIBLE",
-            ManagementStatus::FailedPermanent => "FAILED_PERMANENT",
-            ManagementStatus::FailedRetryingCaaForbidden => {
-                "FAILED_RETRYING_CAA_FORBIDDEN"
-            }
-            ManagementStatus::FailedRetryingCaaChecking => "FAILED_RETRYING_CAA_CHECKING",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "MANAGEMENT_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-            "OK" => Some(Self::Ok),
-            "PENDING" => Some(Self::Pending),
-            "FAILED_RETRYING_NOT_VISIBLE" => Some(Self::FailedRetryingNotVisible),
-            "FAILED_PERMANENT" => Some(Self::FailedPermanent),
-            "FAILED_RETRYING_CAA_FORBIDDEN" => Some(Self::FailedRetryingCaaForbidden),
-            "FAILED_RETRYING_CAA_CHECKING" => Some(Self::FailedRetryingCaaChecking),
-            _ => None,
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AuthorizedDomain {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DomainMapping {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub ssl_settings: ::core::option::Option<SslSettings>,
-    #[prost(message, repeated, tag = "4")]
-    pub resource_records: ::prost::alloc::vec::Vec<ResourceRecord>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SslSettings {
-    #[prost(string, tag = "1")]
-    pub certificate_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "ssl_settings::SslManagementType", tag = "3")]
-    pub ssl_management_type: i32,
-    #[prost(string, tag = "4")]
-    pub pending_managed_certificate_id: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `SslSettings`.
-pub mod ssl_settings {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SslManagementType {
-        Unspecified = 0,
-        Automatic = 1,
-        Manual = 2,
-    }
-    impl SslManagementType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SslManagementType::Unspecified => "SSL_MANAGEMENT_TYPE_UNSPECIFIED",
-                SslManagementType::Automatic => "AUTOMATIC",
-                SslManagementType::Manual => "MANUAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SSL_MANAGEMENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "AUTOMATIC" => Some(Self::Automatic),
-                "MANUAL" => Some(Self::Manual),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ResourceRecord {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub rrdata: ::prost::alloc::string::String,
-    #[prost(enumeration = "resource_record::RecordType", tag = "3")]
-    pub r#type: i32,
-}
-/// Nested message and enum types in `ResourceRecord`.
-pub mod resource_record {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RecordType {
-        Unspecified = 0,
-        A = 1,
-        Aaaa = 2,
-        Cname = 3,
-    }
-    impl RecordType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RecordType::Unspecified => "RECORD_TYPE_UNSPECIFIED",
-                RecordType::A => "A",
-                RecordType::Aaaa => "AAAA",
-                RecordType::Cname => "CNAME",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RECORD_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "A" => Some(Self::A),
-                "AAAA" => Some(Self::Aaaa),
-                "CNAME" => Some(Self::Cname),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FirewallRule {
-    #[prost(int32, tag = "1")]
-    pub priority: i32,
-    #[prost(enumeration = "firewall_rule::Action", tag = "2")]
-    pub action: i32,
-    #[prost(string, tag = "3")]
-    pub source_range: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `FirewallRule`.
-pub mod firewall_rule {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Action {
-        UnspecifiedAction = 0,
-        Allow = 1,
-        Deny = 2,
-    }
-    impl Action {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Action::UnspecifiedAction => "UNSPECIFIED_ACTION",
-                Action::Allow => "ALLOW",
-                Action::Deny => "DENY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED_ACTION" => Some(Self::UnspecifiedAction),
-                "ALLOW" => Some(Self::Allow),
-                "DENY" => Some(Self::Deny),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NetworkSettings {
-    #[prost(enumeration = "network_settings::IngressTrafficAllowed", tag = "1")]
-    pub ingress_traffic_allowed: i32,
-}
-/// Nested message and enum types in `NetworkSettings`.
-pub mod network_settings {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum IngressTrafficAllowed {
-        Unspecified = 0,
-        All = 1,
-        InternalOnly = 2,
-        InternalAndLb = 3,
-    }
-    impl IngressTrafficAllowed {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                IngressTrafficAllowed::Unspecified => {
-                    "INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED"
-                }
-                IngressTrafficAllowed::All => "INGRESS_TRAFFIC_ALLOWED_ALL",
-                IngressTrafficAllowed::InternalOnly => {
-                    "INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY"
-                }
-                IngressTrafficAllowed::InternalAndLb => {
-                    "INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB"
-                }
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED" => Some(Self::Unspecified),
-                "INGRESS_TRAFFIC_ALLOWED_ALL" => Some(Self::All),
-                "INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY" => Some(Self::InternalOnly),
-                "INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB" => Some(Self::InternalAndLb),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Service {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub split: ::core::option::Option<TrafficSplit>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "6")]
-    pub network_settings: ::core::option::Option<NetworkSettings>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TrafficSplit {
-    #[prost(enumeration = "traffic_split::ShardBy", tag = "1")]
-    pub shard_by: i32,
-    #[prost(map = "string, double", tag = "2")]
-    pub allocations: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
-}
-/// Nested message and enum types in `TrafficSplit`.
-pub mod traffic_split {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ShardBy {
-        Unspecified = 0,
-        Cookie = 1,
-        Ip = 2,
-        Random = 3,
-    }
-    impl ShardBy {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ShardBy::Unspecified => "UNSPECIFIED",
-                ShardBy::Cookie => "COOKIE",
-                ShardBy::Ip => "IP",
-                ShardBy::Random => "RANDOM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "COOKIE" => Some(Self::Cookie),
-                "IP" => Some(Self::Ip),
-                "RANDOM" => Some(Self::Random),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ApiConfigHandler {
-    #[prost(enumeration = "AuthFailAction", tag = "1")]
-    pub auth_fail_action: i32,
-    #[prost(enumeration = "LoginRequirement", tag = "2")]
-    pub login: i32,
-    #[prost(string, tag = "3")]
-    pub script: ::prost::alloc::string::String,
-    #[prost(enumeration = "SecurityLevel", tag = "4")]
-    pub security_level: i32,
-    #[prost(string, tag = "5")]
-    pub url: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ErrorHandler {
-    #[prost(enumeration = "error_handler::ErrorCode", tag = "1")]
-    pub error_code: i32,
-    #[prost(string, tag = "2")]
-    pub static_file: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub mime_type: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `ErrorHandler`.
-pub mod error_handler {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ErrorCode {
-        Unspecified = 0,
-        OverQuota = 1,
-        DosApiDenial = 2,
-        Timeout = 3,
-    }
-    impl ErrorCode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ErrorCode::Unspecified => "ERROR_CODE_UNSPECIFIED",
-                ErrorCode::OverQuota => "ERROR_CODE_OVER_QUOTA",
-                ErrorCode::DosApiDenial => "ERROR_CODE_DOS_API_DENIAL",
-                ErrorCode::Timeout => "ERROR_CODE_TIMEOUT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ERROR_CODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ERROR_CODE_OVER_QUOTA" => Some(Self::OverQuota),
-                "ERROR_CODE_DOS_API_DENIAL" => Some(Self::DosApiDenial),
-                "ERROR_CODE_TIMEOUT" => Some(Self::Timeout),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UrlMap {
-    #[prost(string, tag = "1")]
-    pub url_regex: ::prost::alloc::string::String,
-    #[prost(enumeration = "SecurityLevel", tag = "5")]
-    pub security_level: i32,
-    #[prost(enumeration = "LoginRequirement", tag = "6")]
-    pub login: i32,
-    #[prost(enumeration = "AuthFailAction", tag = "7")]
-    pub auth_fail_action: i32,
-    #[prost(enumeration = "url_map::RedirectHttpResponseCode", tag = "8")]
-    pub redirect_http_response_code: i32,
-    #[prost(oneof = "url_map::HandlerType", tags = "2, 3, 4")]
-    pub handler_type: ::core::option::Option<url_map::HandlerType>,
-}
-/// Nested message and enum types in `UrlMap`.
-pub mod url_map {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RedirectHttpResponseCode {
-        Unspecified = 0,
-        RedirectHttpResponseCode301 = 1,
-        RedirectHttpResponseCode302 = 2,
-        RedirectHttpResponseCode303 = 3,
-        RedirectHttpResponseCode307 = 4,
-    }
-    impl RedirectHttpResponseCode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RedirectHttpResponseCode::Unspecified => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED"
-                }
-                RedirectHttpResponseCode::RedirectHttpResponseCode301 => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_301"
-                }
-                RedirectHttpResponseCode::RedirectHttpResponseCode302 => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_302"
-                }
-                RedirectHttpResponseCode::RedirectHttpResponseCode303 => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_303"
-                }
-                RedirectHttpResponseCode::RedirectHttpResponseCode307 => {
-                    "REDIRECT_HTTP_RESPONSE_CODE_307"
-                }
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "REDIRECT_HTTP_RESPONSE_CODE_301" => {
-                    Some(Self::RedirectHttpResponseCode301)
-                }
-                "REDIRECT_HTTP_RESPONSE_CODE_302" => {
-                    Some(Self::RedirectHttpResponseCode302)
-                }
-                "REDIRECT_HTTP_RESPONSE_CODE_303" => {
-                    Some(Self::RedirectHttpResponseCode303)
-                }
-                "REDIRECT_HTTP_RESPONSE_CODE_307" => {
-                    Some(Self::RedirectHttpResponseCode307)
-                }
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum HandlerType {
-        #[prost(message, tag = "2")]
-        StaticFiles(super::StaticFilesHandler),
-        #[prost(message, tag = "3")]
-        Script(super::ScriptHandler),
-        #[prost(message, tag = "4")]
-        ApiEndpoint(super::ApiEndpointHandler),
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StaticFilesHandler {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub upload_path_regex: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "3")]
-    pub http_headers: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "4")]
-    pub mime_type: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub expiration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(bool, tag = "6")]
-    pub require_matching_file: bool,
-    #[prost(bool, tag = "7")]
-    pub application_readable: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ScriptHandler {
-    #[prost(string, tag = "1")]
-    pub script_path: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ApiEndpointHandler {
-    #[prost(string, tag = "1")]
-    pub script_path: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct HealthCheck {
-    #[prost(bool, tag = "1")]
-    pub disable_health_check: bool,
-    #[prost(string, tag = "2")]
-    pub host: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "3")]
-    pub healthy_threshold: u32,
-    #[prost(uint32, tag = "4")]
-    pub unhealthy_threshold: u32,
-    #[prost(uint32, tag = "5")]
-    pub restart_threshold: u32,
-    #[prost(message, optional, tag = "6")]
-    pub check_interval: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "7")]
-    pub timeout: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReadinessCheck {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub host: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "3")]
-    pub failure_threshold: u32,
-    #[prost(uint32, tag = "4")]
-    pub success_threshold: u32,
-    #[prost(message, optional, tag = "5")]
-    pub check_interval: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "6")]
-    pub timeout: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "7")]
-    pub app_start_timeout: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LivenessCheck {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub host: ::prost::alloc::string::String,
-    #[prost(uint32, tag = "3")]
-    pub failure_threshold: u32,
-    #[prost(uint32, tag = "4")]
-    pub success_threshold: u32,
-    #[prost(message, optional, tag = "5")]
-    pub check_interval: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "6")]
-    pub timeout: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "7")]
-    pub initial_delay: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Library {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub version: ::prost::alloc::string::String,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum AuthFailAction {
-    Unspecified = 0,
-    Redirect = 1,
-    Unauthorized = 2,
-}
-impl AuthFailAction {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            AuthFailAction::Unspecified => "AUTH_FAIL_ACTION_UNSPECIFIED",
-            AuthFailAction::Redirect => "AUTH_FAIL_ACTION_REDIRECT",
-            AuthFailAction::Unauthorized => "AUTH_FAIL_ACTION_UNAUTHORIZED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "AUTH_FAIL_ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-            "AUTH_FAIL_ACTION_REDIRECT" => Some(Self::Redirect),
-            "AUTH_FAIL_ACTION_UNAUTHORIZED" => Some(Self::Unauthorized),
-            _ => None,
-        }
-    }
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum LoginRequirement {
-    LoginUnspecified = 0,
-    LoginOptional = 1,
-    LoginAdmin = 2,
-    LoginRequired = 3,
-}
-impl LoginRequirement {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            LoginRequirement::LoginUnspecified => "LOGIN_UNSPECIFIED",
-            LoginRequirement::LoginOptional => "LOGIN_OPTIONAL",
-            LoginRequirement::LoginAdmin => "LOGIN_ADMIN",
-            LoginRequirement::LoginRequired => "LOGIN_REQUIRED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "LOGIN_UNSPECIFIED" => Some(Self::LoginUnspecified),
-            "LOGIN_OPTIONAL" => Some(Self::LoginOptional),
-            "LOGIN_ADMIN" => Some(Self::LoginAdmin),
-            "LOGIN_REQUIRED" => Some(Self::LoginRequired),
-            _ => None,
-        }
-    }
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum SecurityLevel {
-    SecureUnspecified = 0,
-    SecureNever = 1,
-    SecureOptional = 2,
-    SecureAlways = 3,
-}
-impl SecurityLevel {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            SecurityLevel::SecureUnspecified => "SECURE_UNSPECIFIED",
-            SecurityLevel::SecureNever => "SECURE_NEVER",
-            SecurityLevel::SecureOptional => "SECURE_OPTIONAL",
-            SecurityLevel::SecureAlways => "SECURE_ALWAYS",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SECURE_UNSPECIFIED" => Some(Self::SecureUnspecified),
-            "SECURE_NEVER" => Some(Self::SecureNever),
-            "SECURE_OPTIONAL" => Some(Self::SecureOptional),
-            "SECURE_ALWAYS" => Some(Self::SecureAlways),
-            _ => None,
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Deployment {
-    #[prost(map = "string, message", tag = "1")]
-    pub files: ::std::collections::HashMap<::prost::alloc::string::String, FileInfo>,
-    #[prost(message, optional, tag = "2")]
-    pub container: ::core::option::Option<ContainerInfo>,
-    #[prost(message, optional, tag = "3")]
-    pub zip: ::core::option::Option<ZipInfo>,
-    #[prost(message, optional, tag = "6")]
-    pub cloud_build_options: ::core::option::Option<CloudBuildOptions>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FileInfo {
-    #[prost(string, tag = "1")]
-    pub source_url: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub sha1_sum: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub mime_type: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ContainerInfo {
-    #[prost(string, tag = "1")]
-    pub image: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CloudBuildOptions {
-    #[prost(string, tag = "1")]
-    pub app_yaml_path: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub cloud_build_timeout: ::core::option::Option<::prost_types::Duration>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ZipInfo {
-    #[prost(string, tag = "3")]
-    pub source_url: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub files_count: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Version {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(enumeration = "InboundServiceType", repeated, tag = "6")]
-    pub inbound_services: ::prost::alloc::vec::Vec<i32>,
-    #[prost(string, tag = "7")]
-    pub instance_class: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub network: ::core::option::Option<Network>,
-    #[prost(string, repeated, tag = "118")]
-    pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub resources: ::core::option::Option<Resources>,
-    #[prost(string, tag = "10")]
-    pub runtime: ::prost::alloc::string::String,
-    #[prost(string, tag = "117")]
-    pub runtime_channel: ::prost::alloc::string::String,
-    #[prost(bool, tag = "11")]
-    pub threadsafe: bool,
-    #[prost(bool, tag = "12")]
-    pub vm: bool,
-    #[prost(bool, tag = "128")]
-    pub app_engine_apis: bool,
-    #[prost(map = "string, string", tag = "13")]
-    pub beta_settings: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "14")]
-    pub env: ::prost::alloc::string::String,
-    #[prost(enumeration = "ServingStatus", tag = "15")]
-    pub serving_status: i32,
-    #[prost(string, tag = "16")]
-    pub created_by: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "17")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(int64, tag = "18")]
-    pub disk_usage_bytes: i64,
-    #[prost(string, tag = "21")]
-    pub runtime_api_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "22")]
-    pub runtime_main_executable_path: ::prost::alloc::string::String,
-    #[prost(string, tag = "127")]
-    pub service_account: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "100")]
-    pub handlers: ::prost::alloc::vec::Vec<UrlMap>,
-    #[prost(message, repeated, tag = "101")]
-    pub error_handlers: ::prost::alloc::vec::Vec<ErrorHandler>,
-    #[prost(message, repeated, tag = "102")]
-    pub libraries: ::prost::alloc::vec::Vec<Library>,
-    #[prost(message, optional, tag = "103")]
-    pub api_config: ::core::option::Option<ApiConfigHandler>,
-    #[prost(map = "string, string", tag = "104")]
-    pub env_variables: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(map = "string, string", tag = "125")]
-    pub build_env_variables: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "105")]
-    pub default_expiration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "106")]
-    pub health_check: ::core::option::Option<HealthCheck>,
-    #[prost(message, optional, tag = "112")]
-    pub readiness_check: ::core::option::Option<ReadinessCheck>,
-    #[prost(message, optional, tag = "113")]
-    pub liveness_check: ::core::option::Option<LivenessCheck>,
-    #[prost(string, tag = "107")]
-    pub nobuild_files_regex: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "108")]
-    pub deployment: ::core::option::Option<Deployment>,
-    #[prost(string, tag = "109")]
-    pub version_url: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "110")]
-    pub endpoints_api_service: ::core::option::Option<EndpointsApiService>,
-    #[prost(message, optional, tag = "122")]
-    pub entrypoint: ::core::option::Option<Entrypoint>,
-    #[prost(message, optional, tag = "121")]
-    pub vpc_access_connector: ::core::option::Option<VpcAccessConnector>,
-    #[prost(oneof = "version::Scaling", tags = "3, 4, 5")]
-    pub scaling: ::core::option::Option<version::Scaling>,
-}
-/// Nested message and enum types in `Version`.
-pub mod version {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Scaling {
-        #[prost(message, tag = "3")]
-        AutomaticScaling(super::AutomaticScaling),
-        #[prost(message, tag = "4")]
-        BasicScaling(super::BasicScaling),
-        #[prost(message, tag = "5")]
-        ManualScaling(super::ManualScaling),
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EndpointsApiService {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub config_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "endpoints_api_service::RolloutStrategy", tag = "3")]
-    pub rollout_strategy: i32,
-    #[prost(bool, tag = "4")]
-    pub disable_trace_sampling: bool,
-}
-/// Nested message and enum types in `EndpointsApiService`.
-pub mod endpoints_api_service {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RolloutStrategy {
-        UnspecifiedRolloutStrategy = 0,
-        Fixed = 1,
-        Managed = 2,
-    }
-    impl RolloutStrategy {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RolloutStrategy::UnspecifiedRolloutStrategy => {
-                    "UNSPECIFIED_ROLLOUT_STRATEGY"
-                }
-                RolloutStrategy::Fixed => "FIXED",
-                RolloutStrategy::Managed => "MANAGED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED_ROLLOUT_STRATEGY" => Some(Self::UnspecifiedRolloutStrategy),
-                "FIXED" => Some(Self::Fixed),
-                "MANAGED" => Some(Self::Managed),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct AutomaticScaling {
-    #[prost(message, optional, tag = "1")]
-    pub cool_down_period: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub cpu_utilization: ::core::option::Option<CpuUtilization>,
-    #[prost(int32, tag = "3")]
-    pub max_concurrent_requests: i32,
-    #[prost(int32, tag = "4")]
-    pub max_idle_instances: i32,
-    #[prost(int32, tag = "5")]
-    pub max_total_instances: i32,
-    #[prost(message, optional, tag = "6")]
-    pub max_pending_latency: ::core::option::Option<::prost_types::Duration>,
-    #[prost(int32, tag = "7")]
-    pub min_idle_instances: i32,
-    #[prost(int32, tag = "8")]
-    pub min_total_instances: i32,
-    #[prost(message, optional, tag = "9")]
-    pub min_pending_latency: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "10")]
-    pub request_utilization: ::core::option::Option<RequestUtilization>,
-    #[prost(message, optional, tag = "11")]
-    pub disk_utilization: ::core::option::Option<DiskUtilization>,
-    #[prost(message, optional, tag = "12")]
-    pub network_utilization: ::core::option::Option<NetworkUtilization>,
-    #[prost(message, optional, tag = "20")]
-    pub standard_scheduler_settings: ::core::option::Option<StandardSchedulerSettings>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct BasicScaling {
-    #[prost(message, optional, tag = "1")]
-    pub idle_timeout: ::core::option::Option<::prost_types::Duration>,
-    #[prost(int32, tag = "2")]
-    pub max_instances: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct ManualScaling {
-    #[prost(int32, tag = "1")]
-    pub instances: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct CpuUtilization {
-    #[prost(message, optional, tag = "1")]
-    pub aggregation_window_length: ::core::option::Option<::prost_types::Duration>,
-    #[prost(double, tag = "2")]
-    pub target_utilization: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct RequestUtilization {
-    #[prost(int32, tag = "1")]
-    pub target_request_count_per_second: i32,
-    #[prost(int32, tag = "2")]
-    pub target_concurrent_requests: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct DiskUtilization {
-    #[prost(int32, tag = "14")]
-    pub target_write_bytes_per_second: i32,
-    #[prost(int32, tag = "15")]
-    pub target_write_ops_per_second: i32,
-    #[prost(int32, tag = "16")]
-    pub target_read_bytes_per_second: i32,
-    #[prost(int32, tag = "17")]
-    pub target_read_ops_per_second: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct NetworkUtilization {
-    #[prost(int32, tag = "1")]
-    pub target_sent_bytes_per_second: i32,
-    #[prost(int32, tag = "11")]
-    pub target_sent_packets_per_second: i32,
-    #[prost(int32, tag = "12")]
-    pub target_received_bytes_per_second: i32,
-    #[prost(int32, tag = "13")]
-    pub target_received_packets_per_second: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
-pub struct StandardSchedulerSettings {
-    #[prost(double, tag = "1")]
-    pub target_cpu_utilization: f64,
-    #[prost(double, tag = "2")]
-    pub target_throughput_utilization: f64,
-    #[prost(int32, tag = "3")]
-    pub min_instances: i32,
-    #[prost(int32, tag = "4")]
-    pub max_instances: i32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Network {
-    #[prost(string, repeated, tag = "1")]
-    pub forwarded_ports: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "2")]
-    pub instance_tag: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub subnetwork_name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub session_affinity: bool,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Volume {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub volume_type: ::prost::alloc::string::String,
-    #[prost(double, tag = "3")]
-    pub size_gb: f64,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Resources {
-    #[prost(double, tag = "1")]
-    pub cpu: f64,
-    #[prost(double, tag = "2")]
-    pub disk_gb: f64,
-    #[prost(double, tag = "3")]
-    pub memory_gb: f64,
-    #[prost(message, repeated, tag = "4")]
-    pub volumes: ::prost::alloc::vec::Vec<Volume>,
-    #[prost(string, tag = "5")]
-    pub kms_key_reference: ::prost::alloc::string::String,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct VpcAccessConnector {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "vpc_access_connector::EgressSetting", tag = "2")]
-    pub egress_setting: i32,
-}
-/// Nested message and enum types in `VpcAccessConnector`.
-pub mod vpc_access_connector {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum EgressSetting {
-        Unspecified = 0,
-        AllTraffic = 1,
-        PrivateIpRanges = 2,
-    }
-    impl EgressSetting {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                EgressSetting::Unspecified => "EGRESS_SETTING_UNSPECIFIED",
-                EgressSetting::AllTraffic => "ALL_TRAFFIC",
-                EgressSetting::PrivateIpRanges => "PRIVATE_IP_RANGES",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "EGRESS_SETTING_UNSPECIFIED" => Some(Self::Unspecified),
-                "ALL_TRAFFIC" => Some(Self::AllTraffic),
-                "PRIVATE_IP_RANGES" => Some(Self::PrivateIpRanges),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Entrypoint {
-    #[prost(oneof = "entrypoint::Command", tags = "1")]
-    pub command: ::core::option::Option<entrypoint::Command>,
-}
-/// Nested message and enum types in `Entrypoint`.
-pub mod entrypoint {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Command {
-        #[prost(string, tag = "1")]
-        Shell(::prost::alloc::string::String),
-    }
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum InboundServiceType {
-    InboundServiceUnspecified = 0,
-    InboundServiceMail = 1,
-    InboundServiceMailBounce = 2,
-    InboundServiceXmppError = 3,
-    InboundServiceXmppMessage = 4,
-    InboundServiceXmppSubscribe = 5,
-    InboundServiceXmppPresence = 6,
-    InboundServiceChannelPresence = 7,
-    InboundServiceWarmup = 9,
-}
-impl InboundServiceType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            InboundServiceType::InboundServiceUnspecified => {
-                "INBOUND_SERVICE_UNSPECIFIED"
-            }
-            InboundServiceType::InboundServiceMail => "INBOUND_SERVICE_MAIL",
-            InboundServiceType::InboundServiceMailBounce => "INBOUND_SERVICE_MAIL_BOUNCE",
-            InboundServiceType::InboundServiceXmppError => "INBOUND_SERVICE_XMPP_ERROR",
-            InboundServiceType::InboundServiceXmppMessage => {
-                "INBOUND_SERVICE_XMPP_MESSAGE"
-            }
-            InboundServiceType::InboundServiceXmppSubscribe => {
-                "INBOUND_SERVICE_XMPP_SUBSCRIBE"
-            }
-            InboundServiceType::InboundServiceXmppPresence => {
-                "INBOUND_SERVICE_XMPP_PRESENCE"
-            }
-            InboundServiceType::InboundServiceChannelPresence => {
-                "INBOUND_SERVICE_CHANNEL_PRESENCE"
-            }
-            InboundServiceType::InboundServiceWarmup => "INBOUND_SERVICE_WARMUP",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "INBOUND_SERVICE_UNSPECIFIED" => Some(Self::InboundServiceUnspecified),
-            "INBOUND_SERVICE_MAIL" => Some(Self::InboundServiceMail),
-            "INBOUND_SERVICE_MAIL_BOUNCE" => Some(Self::InboundServiceMailBounce),
-            "INBOUND_SERVICE_XMPP_ERROR" => Some(Self::InboundServiceXmppError),
-            "INBOUND_SERVICE_XMPP_MESSAGE" => Some(Self::InboundServiceXmppMessage),
-            "INBOUND_SERVICE_XMPP_SUBSCRIBE" => Some(Self::InboundServiceXmppSubscribe),
-            "INBOUND_SERVICE_XMPP_PRESENCE" => Some(Self::InboundServiceXmppPresence),
-            "INBOUND_SERVICE_CHANNEL_PRESENCE" => {
-                Some(Self::InboundServiceChannelPresence)
-            }
-            "INBOUND_SERVICE_WARMUP" => Some(Self::InboundServiceWarmup),
-            _ => None,
-        }
-    }
+pub struct FeatureSettings {
+#[prost(bool, tag = "1")]
+pub split_health_checks: bool,
+#[prost(bool, tag = "2")]
+pub use_container_optimized_os: bool,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ServingStatus {
-    Unspecified = 0,
-    Serving = 1,
-    Stopped = 2,
+Unspecified = 0,
+Serving = 1,
+UserDisabled = 2,
+SystemDisabled = 3,
 }
 impl ServingStatus {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ServingStatus::Unspecified => "SERVING_STATUS_UNSPECIFIED",
-            ServingStatus::Serving => "SERVING",
-            ServingStatus::Stopped => "STOPPED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SERVING_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-            "SERVING" => Some(Self::Serving),
-            "STOPPED" => Some(Self::Stopped),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ServingStatus::Unspecified => "UNSPECIFIED",
+ServingStatus::Serving => "SERVING",
+ServingStatus::UserDisabled => "USER_DISABLED",
+ServingStatus::SystemDisabled => "SYSTEM_DISABLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED" => Some(Self::Unspecified),
+"SERVING" => Some(Self::Serving),
+"USER_DISABLED" => Some(Self::UserDisabled),
+"SYSTEM_DISABLED" => Some(Self::SystemDisabled),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DatabaseType {
+Unspecified = 0,
+CloudDatastore = 1,
+CloudFirestore = 2,
+CloudDatastoreCompatibility = 3,
+}
+impl DatabaseType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DatabaseType::Unspecified => "DATABASE_TYPE_UNSPECIFIED",
+DatabaseType::CloudDatastore => "CLOUD_DATASTORE",
+DatabaseType::CloudFirestore => "CLOUD_FIRESTORE",
+DatabaseType::CloudDatastoreCompatibility => "CLOUD_DATASTORE_COMPATIBILITY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DATABASE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"CLOUD_DATASTORE" => Some(Self::CloudDatastore),
+"CLOUD_FIRESTORE" => Some(Self::CloudFirestore),
+"CLOUD_DATASTORE_COMPATIBILITY" => Some(Self::CloudDatastoreCompatibility),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UrlDispatchRule {
+#[prost(string, tag = "1")]
+pub domain: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub service: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AuthorizedCertificate {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "4")]
+pub domain_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "5")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub certificate_raw_data: ::core::option::Option<CertificateRawData>,
+#[prost(message, optional, tag = "7")]
+pub managed_certificate: ::core::option::Option<ManagedCertificate>,
+#[prost(string, repeated, tag = "8")]
+pub visible_domain_mappings: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, tag = "9")]
+pub domain_mappings_count: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CertificateRawData {
+#[prost(string, tag = "1")]
+pub public_certificate: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub private_key: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ManagedCertificate {
+#[prost(message, optional, tag = "1")]
+pub last_renewal_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "ManagementStatus", tag = "2")]
+pub status: i32,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ManagementStatus {
+Unspecified = 0,
+Ok = 1,
+Pending = 2,
+FailedRetryingNotVisible = 4,
+FailedPermanent = 6,
+FailedRetryingCaaForbidden = 7,
+FailedRetryingCaaChecking = 8,
+}
+impl ManagementStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ManagementStatus::Unspecified => "MANAGEMENT_STATUS_UNSPECIFIED",
+ManagementStatus::Ok => "OK",
+ManagementStatus::Pending => "PENDING",
+ManagementStatus::FailedRetryingNotVisible => "FAILED_RETRYING_NOT_VISIBLE",
+ManagementStatus::FailedPermanent => "FAILED_PERMANENT",
+ManagementStatus::FailedRetryingCaaForbidden => "FAILED_RETRYING_CAA_FORBIDDEN",
+ManagementStatus::FailedRetryingCaaChecking => "FAILED_RETRYING_CAA_CHECKING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MANAGEMENT_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"OK" => Some(Self::Ok),
+"PENDING" => Some(Self::Pending),
+"FAILED_RETRYING_NOT_VISIBLE" => Some(Self::FailedRetryingNotVisible),
+"FAILED_PERMANENT" => Some(Self::FailedPermanent),
+"FAILED_RETRYING_CAA_FORBIDDEN" => Some(Self::FailedRetryingCaaForbidden),
+"FAILED_RETRYING_CAA_CHECKING" => Some(Self::FailedRetryingCaaChecking),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AuthorizedDomain {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DomainMapping {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub ssl_settings: ::core::option::Option<SslSettings>,
+#[prost(message, repeated, tag = "4")]
+pub resource_records: ::prost::alloc::vec::Vec<ResourceRecord>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SslSettings {
+#[prost(string, tag = "1")]
+pub certificate_id: ::prost::alloc::string::String,
+#[prost(enumeration = "ssl_settings::SslManagementType", tag = "3")]
+pub ssl_management_type: i32,
+#[prost(string, tag = "4")]
+pub pending_managed_certificate_id: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `SslSettings`.
+pub mod ssl_settings {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SslManagementType {
+Unspecified = 0,
+Automatic = 1,
+Manual = 2,
+}
+impl SslManagementType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SslManagementType::Unspecified => "SSL_MANAGEMENT_TYPE_UNSPECIFIED",
+SslManagementType::Automatic => "AUTOMATIC",
+SslManagementType::Manual => "MANUAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SSL_MANAGEMENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"AUTOMATIC" => Some(Self::Automatic),
+"MANUAL" => Some(Self::Manual),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ResourceRecord {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub rrdata: ::prost::alloc::string::String,
+#[prost(enumeration = "resource_record::RecordType", tag = "3")]
+pub r#type: i32,
+}
+/// Nested message and enum types in `ResourceRecord`.
+pub mod resource_record {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RecordType {
+Unspecified = 0,
+A = 1,
+Aaaa = 2,
+Cname = 3,
+}
+impl RecordType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RecordType::Unspecified => "RECORD_TYPE_UNSPECIFIED",
+RecordType::A => "A",
+RecordType::Aaaa => "AAAA",
+RecordType::Cname => "CNAME",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RECORD_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"A" => Some(Self::A),
+"AAAA" => Some(Self::Aaaa),
+"CNAME" => Some(Self::Cname),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FirewallRule {
+#[prost(int32, tag = "1")]
+pub priority: i32,
+#[prost(enumeration = "firewall_rule::Action", tag = "2")]
+pub action: i32,
+#[prost(string, tag = "3")]
+pub source_range: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `FirewallRule`.
+pub mod firewall_rule {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Action {
+UnspecifiedAction = 0,
+Allow = 1,
+Deny = 2,
+}
+impl Action {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Action::UnspecifiedAction => "UNSPECIFIED_ACTION",
+Action::Allow => "ALLOW",
+Action::Deny => "DENY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED_ACTION" => Some(Self::UnspecifiedAction),
+"ALLOW" => Some(Self::Allow),
+"DENY" => Some(Self::Deny),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct NetworkSettings {
+#[prost(enumeration = "network_settings::IngressTrafficAllowed", tag = "1")]
+pub ingress_traffic_allowed: i32,
+}
+/// Nested message and enum types in `NetworkSettings`.
+pub mod network_settings {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum IngressTrafficAllowed {
+Unspecified = 0,
+All = 1,
+InternalOnly = 2,
+InternalAndLb = 3,
+}
+impl IngressTrafficAllowed {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+IngressTrafficAllowed::Unspecified => "INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED",
+IngressTrafficAllowed::All => "INGRESS_TRAFFIC_ALLOWED_ALL",
+IngressTrafficAllowed::InternalOnly => "INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY",
+IngressTrafficAllowed::InternalAndLb => "INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED" => Some(Self::Unspecified),
+"INGRESS_TRAFFIC_ALLOWED_ALL" => Some(Self::All),
+"INGRESS_TRAFFIC_ALLOWED_INTERNAL_ONLY" => Some(Self::InternalOnly),
+"INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB" => Some(Self::InternalAndLb),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Service {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub split: ::core::option::Option<TrafficSplit>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "6")]
+pub network_settings: ::core::option::Option<NetworkSettings>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrafficSplit {
+#[prost(enumeration = "traffic_split::ShardBy", tag = "1")]
+pub shard_by: i32,
+#[prost(map = "string, double", tag = "2")]
+pub allocations: ::std::collections::HashMap<::prost::alloc::string::String, f64>,
+}
+/// Nested message and enum types in `TrafficSplit`.
+pub mod traffic_split {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ShardBy {
+Unspecified = 0,
+Cookie = 1,
+Ip = 2,
+Random = 3,
+}
+impl ShardBy {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ShardBy::Unspecified => "UNSPECIFIED",
+ShardBy::Cookie => "COOKIE",
+ShardBy::Ip => "IP",
+ShardBy::Random => "RANDOM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED" => Some(Self::Unspecified),
+"COOKIE" => Some(Self::Cookie),
+"IP" => Some(Self::Ip),
+"RANDOM" => Some(Self::Random),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ApiConfigHandler {
+#[prost(enumeration = "AuthFailAction", tag = "1")]
+pub auth_fail_action: i32,
+#[prost(enumeration = "LoginRequirement", tag = "2")]
+pub login: i32,
+#[prost(string, tag = "3")]
+pub script: ::prost::alloc::string::String,
+#[prost(enumeration = "SecurityLevel", tag = "4")]
+pub security_level: i32,
+#[prost(string, tag = "5")]
+pub url: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ErrorHandler {
+#[prost(enumeration = "error_handler::ErrorCode", tag = "1")]
+pub error_code: i32,
+#[prost(string, tag = "2")]
+pub static_file: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub mime_type: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `ErrorHandler`.
+pub mod error_handler {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ErrorCode {
+Unspecified = 0,
+OverQuota = 1,
+DosApiDenial = 2,
+Timeout = 3,
+}
+impl ErrorCode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ErrorCode::Unspecified => "ERROR_CODE_UNSPECIFIED",
+ErrorCode::OverQuota => "ERROR_CODE_OVER_QUOTA",
+ErrorCode::DosApiDenial => "ERROR_CODE_DOS_API_DENIAL",
+ErrorCode::Timeout => "ERROR_CODE_TIMEOUT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ERROR_CODE_UNSPECIFIED" => Some(Self::Unspecified),
+"ERROR_CODE_OVER_QUOTA" => Some(Self::OverQuota),
+"ERROR_CODE_DOS_API_DENIAL" => Some(Self::DosApiDenial),
+"ERROR_CODE_TIMEOUT" => Some(Self::Timeout),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UrlMap {
+#[prost(string, tag = "1")]
+pub url_regex: ::prost::alloc::string::String,
+#[prost(enumeration = "SecurityLevel", tag = "5")]
+pub security_level: i32,
+#[prost(enumeration = "LoginRequirement", tag = "6")]
+pub login: i32,
+#[prost(enumeration = "AuthFailAction", tag = "7")]
+pub auth_fail_action: i32,
+#[prost(enumeration = "url_map::RedirectHttpResponseCode", tag = "8")]
+pub redirect_http_response_code: i32,
+#[prost(oneof = "url_map::HandlerType", tags = "2, 3, 4")]
+pub handler_type: ::core::option::Option<url_map::HandlerType>,
+}
+/// Nested message and enum types in `UrlMap`.
+pub mod url_map {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RedirectHttpResponseCode {
+Unspecified = 0,
+RedirectHttpResponseCode301 = 1,
+RedirectHttpResponseCode302 = 2,
+RedirectHttpResponseCode303 = 3,
+RedirectHttpResponseCode307 = 4,
+}
+impl RedirectHttpResponseCode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RedirectHttpResponseCode::Unspecified => "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED",
+RedirectHttpResponseCode::RedirectHttpResponseCode301 => "REDIRECT_HTTP_RESPONSE_CODE_301",
+RedirectHttpResponseCode::RedirectHttpResponseCode302 => "REDIRECT_HTTP_RESPONSE_CODE_302",
+RedirectHttpResponseCode::RedirectHttpResponseCode303 => "REDIRECT_HTTP_RESPONSE_CODE_303",
+RedirectHttpResponseCode::RedirectHttpResponseCode307 => "REDIRECT_HTTP_RESPONSE_CODE_307",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED" => Some(Self::Unspecified),
+"REDIRECT_HTTP_RESPONSE_CODE_301" => Some(Self::RedirectHttpResponseCode301),
+"REDIRECT_HTTP_RESPONSE_CODE_302" => Some(Self::RedirectHttpResponseCode302),
+"REDIRECT_HTTP_RESPONSE_CODE_303" => Some(Self::RedirectHttpResponseCode303),
+"REDIRECT_HTTP_RESPONSE_CODE_307" => Some(Self::RedirectHttpResponseCode307),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum HandlerType {
+#[prost(message, tag = "2")]
+StaticFiles(super::StaticFilesHandler),
+#[prost(message, tag = "3")]
+Script(super::ScriptHandler),
+#[prost(message, tag = "4")]
+ApiEndpoint(super::ApiEndpointHandler),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StaticFilesHandler {
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub upload_path_regex: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "3")]
+pub http_headers: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub mime_type: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub expiration: ::core::option::Option<::prost_types::Duration>,
+#[prost(bool, tag = "6")]
+pub require_matching_file: bool,
+#[prost(bool, tag = "7")]
+pub application_readable: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ScriptHandler {
+#[prost(string, tag = "1")]
+pub script_path: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ApiEndpointHandler {
+#[prost(string, tag = "1")]
+pub script_path: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct HealthCheck {
+#[prost(bool, tag = "1")]
+pub disable_health_check: bool,
+#[prost(string, tag = "2")]
+pub host: ::prost::alloc::string::String,
+#[prost(uint32, tag = "3")]
+pub healthy_threshold: u32,
+#[prost(uint32, tag = "4")]
+pub unhealthy_threshold: u32,
+#[prost(uint32, tag = "5")]
+pub restart_threshold: u32,
+#[prost(message, optional, tag = "6")]
+pub check_interval: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "7")]
+pub timeout: ::core::option::Option<::prost_types::Duration>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReadinessCheck {
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub host: ::prost::alloc::string::String,
+#[prost(uint32, tag = "3")]
+pub failure_threshold: u32,
+#[prost(uint32, tag = "4")]
+pub success_threshold: u32,
+#[prost(message, optional, tag = "5")]
+pub check_interval: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "6")]
+pub timeout: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "7")]
+pub app_start_timeout: ::core::option::Option<::prost_types::Duration>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LivenessCheck {
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub host: ::prost::alloc::string::String,
+#[prost(uint32, tag = "3")]
+pub failure_threshold: u32,
+#[prost(uint32, tag = "4")]
+pub success_threshold: u32,
+#[prost(message, optional, tag = "5")]
+pub check_interval: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "6")]
+pub timeout: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "7")]
+pub initial_delay: ::core::option::Option<::prost_types::Duration>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Library {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub version: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AuthFailAction {
+Unspecified = 0,
+Redirect = 1,
+Unauthorized = 2,
+}
+impl AuthFailAction {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AuthFailAction::Unspecified => "AUTH_FAIL_ACTION_UNSPECIFIED",
+AuthFailAction::Redirect => "AUTH_FAIL_ACTION_REDIRECT",
+AuthFailAction::Unauthorized => "AUTH_FAIL_ACTION_UNAUTHORIZED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"AUTH_FAIL_ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"AUTH_FAIL_ACTION_REDIRECT" => Some(Self::Redirect),
+"AUTH_FAIL_ACTION_UNAUTHORIZED" => Some(Self::Unauthorized),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LoginRequirement {
+LoginUnspecified = 0,
+LoginOptional = 1,
+LoginAdmin = 2,
+LoginRequired = 3,
+}
+impl LoginRequirement {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LoginRequirement::LoginUnspecified => "LOGIN_UNSPECIFIED",
+LoginRequirement::LoginOptional => "LOGIN_OPTIONAL",
+LoginRequirement::LoginAdmin => "LOGIN_ADMIN",
+LoginRequirement::LoginRequired => "LOGIN_REQUIRED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LOGIN_UNSPECIFIED" => Some(Self::LoginUnspecified),
+"LOGIN_OPTIONAL" => Some(Self::LoginOptional),
+"LOGIN_ADMIN" => Some(Self::LoginAdmin),
+"LOGIN_REQUIRED" => Some(Self::LoginRequired),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SecurityLevel {
+SecureUnspecified = 0,
+SecureNever = 1,
+SecureOptional = 2,
+SecureAlways = 3,
+}
+impl SecurityLevel {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SecurityLevel::SecureUnspecified => "SECURE_UNSPECIFIED",
+SecurityLevel::SecureNever => "SECURE_NEVER",
+SecurityLevel::SecureOptional => "SECURE_OPTIONAL",
+SecurityLevel::SecureAlways => "SECURE_ALWAYS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SECURE_UNSPECIFIED" => Some(Self::SecureUnspecified),
+"SECURE_NEVER" => Some(Self::SecureNever),
+"SECURE_OPTIONAL" => Some(Self::SecureOptional),
+"SECURE_ALWAYS" => Some(Self::SecureAlways),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Deployment {
+#[prost(map = "string, message", tag = "1")]
+pub files: ::std::collections::HashMap<::prost::alloc::string::String, FileInfo>,
+#[prost(message, optional, tag = "2")]
+pub container: ::core::option::Option<ContainerInfo>,
+#[prost(message, optional, tag = "3")]
+pub zip: ::core::option::Option<ZipInfo>,
+#[prost(message, optional, tag = "6")]
+pub cloud_build_options: ::core::option::Option<CloudBuildOptions>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FileInfo {
+#[prost(string, tag = "1")]
+pub source_url: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub sha1_sum: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub mime_type: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContainerInfo {
+#[prost(string, tag = "1")]
+pub image: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CloudBuildOptions {
+#[prost(string, tag = "1")]
+pub app_yaml_path: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub cloud_build_timeout: ::core::option::Option<::prost_types::Duration>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ZipInfo {
+#[prost(string, tag = "3")]
+pub source_url: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub files_count: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Version {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(enumeration = "InboundServiceType", repeated, tag = "6")]
+pub inbound_services: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "7")]
+pub instance_class: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub network: ::core::option::Option<Network>,
+#[prost(string, repeated, tag = "118")]
+pub zones: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "9")]
+pub resources: ::core::option::Option<Resources>,
+#[prost(string, tag = "10")]
+pub runtime: ::prost::alloc::string::String,
+#[prost(string, tag = "117")]
+pub runtime_channel: ::prost::alloc::string::String,
+#[prost(bool, tag = "11")]
+pub threadsafe: bool,
+#[prost(bool, tag = "12")]
+pub vm: bool,
+#[prost(bool, tag = "128")]
+pub app_engine_apis: bool,
+#[prost(map = "string, string", tag = "13")]
+pub beta_settings: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "14")]
+pub env: ::prost::alloc::string::String,
+#[prost(enumeration = "ServingStatus", tag = "15")]
+pub serving_status: i32,
+#[prost(string, tag = "16")]
+pub created_by: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "17")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int64, tag = "18")]
+pub disk_usage_bytes: i64,
+#[prost(string, tag = "21")]
+pub runtime_api_version: ::prost::alloc::string::String,
+#[prost(string, tag = "22")]
+pub runtime_main_executable_path: ::prost::alloc::string::String,
+#[prost(string, tag = "127")]
+pub service_account: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "100")]
+pub handlers: ::prost::alloc::vec::Vec<UrlMap>,
+#[prost(message, repeated, tag = "101")]
+pub error_handlers: ::prost::alloc::vec::Vec<ErrorHandler>,
+#[prost(message, repeated, tag = "102")]
+pub libraries: ::prost::alloc::vec::Vec<Library>,
+#[prost(message, optional, tag = "103")]
+pub api_config: ::core::option::Option<ApiConfigHandler>,
+#[prost(map = "string, string", tag = "104")]
+pub env_variables: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(map = "string, string", tag = "125")]
+pub build_env_variables: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "105")]
+pub default_expiration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "106")]
+pub health_check: ::core::option::Option<HealthCheck>,
+#[prost(message, optional, tag = "112")]
+pub readiness_check: ::core::option::Option<ReadinessCheck>,
+#[prost(message, optional, tag = "113")]
+pub liveness_check: ::core::option::Option<LivenessCheck>,
+#[prost(string, tag = "107")]
+pub nobuild_files_regex: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "108")]
+pub deployment: ::core::option::Option<Deployment>,
+#[prost(string, tag = "109")]
+pub version_url: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "110")]
+pub endpoints_api_service: ::core::option::Option<EndpointsApiService>,
+#[prost(message, optional, tag = "122")]
+pub entrypoint: ::core::option::Option<Entrypoint>,
+#[prost(message, optional, tag = "121")]
+pub vpc_access_connector: ::core::option::Option<VpcAccessConnector>,
+#[prost(oneof = "version::Scaling", tags = "3, 4, 5")]
+pub scaling: ::core::option::Option<version::Scaling>,
+}
+/// Nested message and enum types in `Version`.
+pub mod version {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Scaling {
+#[prost(message, tag = "3")]
+AutomaticScaling(super::AutomaticScaling),
+#[prost(message, tag = "4")]
+BasicScaling(super::BasicScaling),
+#[prost(message, tag = "5")]
+ManualScaling(super::ManualScaling),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EndpointsApiService {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub config_id: ::prost::alloc::string::String,
+#[prost(enumeration = "endpoints_api_service::RolloutStrategy", tag = "3")]
+pub rollout_strategy: i32,
+#[prost(bool, tag = "4")]
+pub disable_trace_sampling: bool,
+}
+/// Nested message and enum types in `EndpointsApiService`.
+pub mod endpoints_api_service {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RolloutStrategy {
+UnspecifiedRolloutStrategy = 0,
+Fixed = 1,
+Managed = 2,
+}
+impl RolloutStrategy {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RolloutStrategy::UnspecifiedRolloutStrategy => "UNSPECIFIED_ROLLOUT_STRATEGY",
+RolloutStrategy::Fixed => "FIXED",
+RolloutStrategy::Managed => "MANAGED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED_ROLLOUT_STRATEGY" => Some(Self::UnspecifiedRolloutStrategy),
+"FIXED" => Some(Self::Fixed),
+"MANAGED" => Some(Self::Managed),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AutomaticScaling {
+#[prost(message, optional, tag = "1")]
+pub cool_down_period: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub cpu_utilization: ::core::option::Option<CpuUtilization>,
+#[prost(int32, tag = "3")]
+pub max_concurrent_requests: i32,
+#[prost(int32, tag = "4")]
+pub max_idle_instances: i32,
+#[prost(int32, tag = "5")]
+pub max_total_instances: i32,
+#[prost(message, optional, tag = "6")]
+pub max_pending_latency: ::core::option::Option<::prost_types::Duration>,
+#[prost(int32, tag = "7")]
+pub min_idle_instances: i32,
+#[prost(int32, tag = "8")]
+pub min_total_instances: i32,
+#[prost(message, optional, tag = "9")]
+pub min_pending_latency: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "10")]
+pub request_utilization: ::core::option::Option<RequestUtilization>,
+#[prost(message, optional, tag = "11")]
+pub disk_utilization: ::core::option::Option<DiskUtilization>,
+#[prost(message, optional, tag = "12")]
+pub network_utilization: ::core::option::Option<NetworkUtilization>,
+#[prost(message, optional, tag = "20")]
+pub standard_scheduler_settings: ::core::option::Option<StandardSchedulerSettings>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct BasicScaling {
+#[prost(message, optional, tag = "1")]
+pub idle_timeout: ::core::option::Option<::prost_types::Duration>,
+#[prost(int32, tag = "2")]
+pub max_instances: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ManualScaling {
+#[prost(int32, tag = "1")]
+pub instances: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct CpuUtilization {
+#[prost(message, optional, tag = "1")]
+pub aggregation_window_length: ::core::option::Option<::prost_types::Duration>,
+#[prost(double, tag = "2")]
+pub target_utilization: f64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RequestUtilization {
+#[prost(int32, tag = "1")]
+pub target_request_count_per_second: i32,
+#[prost(int32, tag = "2")]
+pub target_concurrent_requests: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DiskUtilization {
+#[prost(int32, tag = "14")]
+pub target_write_bytes_per_second: i32,
+#[prost(int32, tag = "15")]
+pub target_write_ops_per_second: i32,
+#[prost(int32, tag = "16")]
+pub target_read_bytes_per_second: i32,
+#[prost(int32, tag = "17")]
+pub target_read_ops_per_second: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct NetworkUtilization {
+#[prost(int32, tag = "1")]
+pub target_sent_bytes_per_second: i32,
+#[prost(int32, tag = "11")]
+pub target_sent_packets_per_second: i32,
+#[prost(int32, tag = "12")]
+pub target_received_bytes_per_second: i32,
+#[prost(int32, tag = "13")]
+pub target_received_packets_per_second: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct StandardSchedulerSettings {
+#[prost(double, tag = "1")]
+pub target_cpu_utilization: f64,
+#[prost(double, tag = "2")]
+pub target_throughput_utilization: f64,
+#[prost(int32, tag = "3")]
+pub min_instances: i32,
+#[prost(int32, tag = "4")]
+pub max_instances: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Network {
+#[prost(string, repeated, tag = "1")]
+pub forwarded_ports: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub instance_tag: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub subnetwork_name: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub session_affinity: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Volume {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub volume_type: ::prost::alloc::string::String,
+#[prost(double, tag = "3")]
+pub size_gb: f64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Resources {
+#[prost(double, tag = "1")]
+pub cpu: f64,
+#[prost(double, tag = "2")]
+pub disk_gb: f64,
+#[prost(double, tag = "3")]
+pub memory_gb: f64,
+#[prost(message, repeated, tag = "4")]
+pub volumes: ::prost::alloc::vec::Vec<Volume>,
+#[prost(string, tag = "5")]
+pub kms_key_reference: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VpcAccessConnector {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "vpc_access_connector::EgressSetting", tag = "2")]
+pub egress_setting: i32,
+}
+/// Nested message and enum types in `VpcAccessConnector`.
+pub mod vpc_access_connector {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EgressSetting {
+Unspecified = 0,
+AllTraffic = 1,
+PrivateIpRanges = 2,
+}
+impl EgressSetting {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EgressSetting::Unspecified => "EGRESS_SETTING_UNSPECIFIED",
+EgressSetting::AllTraffic => "ALL_TRAFFIC",
+EgressSetting::PrivateIpRanges => "PRIVATE_IP_RANGES",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EGRESS_SETTING_UNSPECIFIED" => Some(Self::Unspecified),
+"ALL_TRAFFIC" => Some(Self::AllTraffic),
+"PRIVATE_IP_RANGES" => Some(Self::PrivateIpRanges),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Entrypoint {
+#[prost(oneof = "entrypoint::Command", tags = "1")]
+pub command: ::core::option::Option<entrypoint::Command>,
+}
+/// Nested message and enum types in `Entrypoint`.
+pub mod entrypoint {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Command {
+#[prost(string, tag = "1")]
+Shell(::prost::alloc::string::String),
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum InboundServiceType {
+InboundServiceUnspecified = 0,
+InboundServiceMail = 1,
+InboundServiceMailBounce = 2,
+InboundServiceXmppError = 3,
+InboundServiceXmppMessage = 4,
+InboundServiceXmppSubscribe = 5,
+InboundServiceXmppPresence = 6,
+InboundServiceChannelPresence = 7,
+InboundServiceWarmup = 9,
+}
+impl InboundServiceType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+InboundServiceType::InboundServiceUnspecified => "INBOUND_SERVICE_UNSPECIFIED",
+InboundServiceType::InboundServiceMail => "INBOUND_SERVICE_MAIL",
+InboundServiceType::InboundServiceMailBounce => "INBOUND_SERVICE_MAIL_BOUNCE",
+InboundServiceType::InboundServiceXmppError => "INBOUND_SERVICE_XMPP_ERROR",
+InboundServiceType::InboundServiceXmppMessage => "INBOUND_SERVICE_XMPP_MESSAGE",
+InboundServiceType::InboundServiceXmppSubscribe => "INBOUND_SERVICE_XMPP_SUBSCRIBE",
+InboundServiceType::InboundServiceXmppPresence => "INBOUND_SERVICE_XMPP_PRESENCE",
+InboundServiceType::InboundServiceChannelPresence => "INBOUND_SERVICE_CHANNEL_PRESENCE",
+InboundServiceType::InboundServiceWarmup => "INBOUND_SERVICE_WARMUP",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INBOUND_SERVICE_UNSPECIFIED" => Some(Self::InboundServiceUnspecified),
+"INBOUND_SERVICE_MAIL" => Some(Self::InboundServiceMail),
+"INBOUND_SERVICE_MAIL_BOUNCE" => Some(Self::InboundServiceMailBounce),
+"INBOUND_SERVICE_XMPP_ERROR" => Some(Self::InboundServiceXmppError),
+"INBOUND_SERVICE_XMPP_MESSAGE" => Some(Self::InboundServiceXmppMessage),
+"INBOUND_SERVICE_XMPP_SUBSCRIBE" => Some(Self::InboundServiceXmppSubscribe),
+"INBOUND_SERVICE_XMPP_PRESENCE" => Some(Self::InboundServiceXmppPresence),
+"INBOUND_SERVICE_CHANNEL_PRESENCE" => Some(Self::InboundServiceChannelPresence),
+"INBOUND_SERVICE_WARMUP" => Some(Self::InboundServiceWarmup),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ServingStatus {
+Unspecified = 0,
+Serving = 1,
+Stopped = 2,
+}
+impl ServingStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ServingStatus::Unspecified => "SERVING_STATUS_UNSPECIFIED",
+ServingStatus::Serving => "SERVING",
+ServingStatus::Stopped => "STOPPED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SERVING_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"SERVING" => Some(Self::Serving),
+"STOPPED" => Some(Self::Stopped),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetApplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateApplicationRequest {
-    #[prost(message, optional, tag = "2")]
-    pub application: ::core::option::Option<Application>,
+#[prost(message, optional, tag = "2")]
+pub application: ::core::option::Option<Application>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateApplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub application: ::core::option::Option<Application>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub application: ::core::option::Option<Application>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RepairApplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub services: ::prost::alloc::vec::Vec<Service>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub services: ::prost::alloc::vec::Vec<Service>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub service: ::core::option::Option<Service>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(bool, tag = "4")]
-    pub migrate_traffic: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub service: ::core::option::Option<Service>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(bool, tag = "4")]
+pub migrate_traffic: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVersionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(enumeration = "VersionView", tag = "2")]
-    pub view: i32,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(enumeration = "VersionView", tag = "2")]
+pub view: i32,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVersionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub versions: ::prost::alloc::vec::Vec<Version>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub versions: ::prost::alloc::vec::Vec<Version>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVersionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "VersionView", tag = "2")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "VersionView", tag = "2")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateVersionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub version: ::core::option::Option<Version>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub version: ::core::option::Option<Version>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateVersionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub version: ::core::option::Option<Version>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub version: ::core::option::Option<Version>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteVersionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub instances: ::prost::alloc::vec::Vec<Instance>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub instances: ::prost::alloc::vec::Vec<Instance>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DebugInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub ssh_key: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub ssh_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIngressRulesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub matching_address: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub matching_address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIngressRulesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub ingress_rules: ::prost::alloc::vec::Vec<FirewallRule>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub ingress_rules: ::prost::alloc::vec::Vec<FirewallRule>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdateIngressRulesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub ingress_rules: ::prost::alloc::vec::Vec<FirewallRule>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub ingress_rules: ::prost::alloc::vec::Vec<FirewallRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdateIngressRulesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub ingress_rules: ::prost::alloc::vec::Vec<FirewallRule>,
+#[prost(message, repeated, tag = "1")]
+pub ingress_rules: ::prost::alloc::vec::Vec<FirewallRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateIngressRuleRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub rule: ::core::option::Option<FirewallRule>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub rule: ::core::option::Option<FirewallRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetIngressRuleRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateIngressRuleRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub rule: ::core::option::Option<FirewallRule>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub rule: ::core::option::Option<FirewallRule>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteIngressRuleRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAuthorizedDomainsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAuthorizedDomainsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub domains: ::prost::alloc::vec::Vec<AuthorizedDomain>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub domains: ::prost::alloc::vec::Vec<AuthorizedDomain>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAuthorizedCertificatesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(enumeration = "AuthorizedCertificateView", tag = "4")]
-    pub view: i32,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(enumeration = "AuthorizedCertificateView", tag = "4")]
+pub view: i32,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAuthorizedCertificatesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub certificates: ::prost::alloc::vec::Vec<AuthorizedCertificate>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub certificates: ::prost::alloc::vec::Vec<AuthorizedCertificate>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAuthorizedCertificateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "AuthorizedCertificateView", tag = "2")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "AuthorizedCertificateView", tag = "2")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAuthorizedCertificateRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub certificate: ::core::option::Option<AuthorizedCertificate>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub certificate: ::core::option::Option<AuthorizedCertificate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAuthorizedCertificateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub certificate: ::core::option::Option<AuthorizedCertificate>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub certificate: ::core::option::Option<AuthorizedCertificate>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAuthorizedCertificateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDomainMappingsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDomainMappingsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub domain_mappings: ::prost::alloc::vec::Vec<DomainMapping>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub domain_mappings: ::prost::alloc::vec::Vec<DomainMapping>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDomainMappingRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDomainMappingRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub domain_mapping: ::core::option::Option<DomainMapping>,
-    #[prost(enumeration = "DomainOverrideStrategy", tag = "4")]
-    pub override_strategy: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub domain_mapping: ::core::option::Option<DomainMapping>,
+#[prost(enumeration = "DomainOverrideStrategy", tag = "4")]
+pub override_strategy: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDomainMappingRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub domain_mapping: ::core::option::Option<DomainMapping>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub domain_mapping: ::core::option::Option<DomainMapping>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDomainMappingRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum VersionView {
-    Basic = 0,
-    Full = 1,
+Basic = 0,
+Full = 1,
 }
 impl VersionView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            VersionView::Basic => "BASIC",
-            VersionView::Full => "FULL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "BASIC" => Some(Self::Basic),
-            "FULL" => Some(Self::Full),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VersionView::Basic => "BASIC",
+VersionView::Full => "FULL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BASIC" => Some(Self::Basic),
+"FULL" => Some(Self::Full),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AuthorizedCertificateView {
-    BasicCertificate = 0,
-    FullCertificate = 1,
+BasicCertificate = 0,
+FullCertificate = 1,
 }
 impl AuthorizedCertificateView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            AuthorizedCertificateView::BasicCertificate => "BASIC_CERTIFICATE",
-            AuthorizedCertificateView::FullCertificate => "FULL_CERTIFICATE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "BASIC_CERTIFICATE" => Some(Self::BasicCertificate),
-            "FULL_CERTIFICATE" => Some(Self::FullCertificate),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AuthorizedCertificateView::BasicCertificate => "BASIC_CERTIFICATE",
+AuthorizedCertificateView::FullCertificate => "FULL_CERTIFICATE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BASIC_CERTIFICATE" => Some(Self::BasicCertificate),
+"FULL_CERTIFICATE" => Some(Self::FullCertificate),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DomainOverrideStrategy {
-    UnspecifiedDomainOverrideStrategy = 0,
-    Strict = 1,
-    Override = 2,
+UnspecifiedDomainOverrideStrategy = 0,
+Strict = 1,
+Override = 2,
 }
 impl DomainOverrideStrategy {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            DomainOverrideStrategy::UnspecifiedDomainOverrideStrategy => {
-                "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY"
-            }
-            DomainOverrideStrategy::Strict => "STRICT",
-            DomainOverrideStrategy::Override => "OVERRIDE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY" => {
-                Some(Self::UnspecifiedDomainOverrideStrategy)
-            }
-            "STRICT" => Some(Self::Strict),
-            "OVERRIDE" => Some(Self::Override),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DomainOverrideStrategy::UnspecifiedDomainOverrideStrategy => "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY",
+DomainOverrideStrategy::Strict => "STRICT",
+DomainOverrideStrategy::Override => "OVERRIDE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY" => Some(Self::UnspecifiedDomainOverrideStrategy),
+"STRICT" => Some(Self::Strict),
+"OVERRIDE" => Some(Self::Override),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod applications_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manages App Engine applications.
-    #[derive(Debug, Clone)]
-    pub struct ApplicationsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ApplicationsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ApplicationsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ApplicationsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets information about an application.
-        pub async fn get_application(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetApplicationRequest>,
-        ) -> std::result::Result<tonic::Response<super::Application>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Applications/GetApplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Applications", "GetApplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates an App Engine application for a Google Cloud Platform project.
-        /// Required fields:
-        ///
-        /// * `id` - The ID of the target Cloud Platform project.
-        /// * *location* - The [region](https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.
-        ///
-        /// For more information about App Engine applications, see [Managing Projects, Applications, and Billing](https://cloud.google.com/appengine/docs/standard/python/console/).
-        pub async fn create_application(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateApplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Applications/CreateApplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.Applications",
-                        "CreateApplication",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the specified Application resource.
-        /// You can update the following fields:
-        ///
-        /// * `auth_domain` - Google authentication domain for controlling user access to the application.
-        /// * `default_cookie_expiration` - Cookie expiration policy for the application.
-        /// * `iap` - Identity-Aware Proxy properties for the application.
-        pub async fn update_application(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateApplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Applications/UpdateApplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.Applications",
-                        "UpdateApplication",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Recreates the required App Engine features for the specified App Engine
-        /// application, for example a Cloud Storage bucket or App Engine service
-        /// account.
-        /// Use this method if you receive an error message about a missing feature,
-        /// for example, *Error retrieving the App Engine service account*.
-        /// If you have deleted your App Engine service account, this will
-        /// not be able to recreate it. Instead, you should attempt to use the
-        /// IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D .
-        /// If the deletion was recent, the numeric ID can be found in the Cloud
-        /// Console Activity Log.
-        pub async fn repair_application(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RepairApplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Applications/RepairApplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.Applications",
-                        "RepairApplication",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manages App Engine applications.
+#[derive(Debug, Clone)]
+pub struct ApplicationsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ApplicationsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ApplicationsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ApplicationsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets information about an application.
+pub async fn get_application(&mut self, request: impl tonic::IntoRequest<super::GetApplicationRequest>) -> std::result::Result<tonic::Response<super::Application>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Applications/GetApplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Applications", "GetApplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates an App Engine application for a Google Cloud Platform project.
+/// Required fields:
+///
+/// * `id` - The ID of the target Cloud Platform project.
+/// * *location* - The [region](https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.
+///
+/// For more information about App Engine applications, see [Managing Projects, Applications, and Billing](https://cloud.google.com/appengine/docs/standard/python/console/).
+pub async fn create_application(&mut self, request: impl tonic::IntoRequest<super::CreateApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Applications/CreateApplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Applications", "CreateApplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the specified Application resource.
+/// You can update the following fields:
+///
+/// * `auth_domain` - Google authentication domain for controlling user access to the application.
+/// * `default_cookie_expiration` - Cookie expiration policy for the application.
+/// * `iap` - Identity-Aware Proxy properties for the application.
+pub async fn update_application(&mut self, request: impl tonic::IntoRequest<super::UpdateApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Applications/UpdateApplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Applications", "UpdateApplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Recreates the required App Engine features for the specified App Engine
+/// application, for example a Cloud Storage bucket or App Engine service
+/// account.
+/// Use this method if you receive an error message about a missing feature,
+/// for example, *Error retrieving the App Engine service account*.
+/// If you have deleted your App Engine service account, this will
+/// not be able to recreate it. Instead, you should attempt to use the
+/// IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D .
+/// If the deletion was recent, the numeric ID can be found in the Cloud
+/// Console Activity Log.
+pub async fn repair_application(&mut self, request: impl tonic::IntoRequest<super::RepairApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Applications/RepairApplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Applications", "RepairApplication"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod services_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manages services of an application.
-    #[derive(Debug, Clone)]
-    pub struct ServicesClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ServicesClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ServicesClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ServicesClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists all the services in the application.
-        pub async fn list_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListServicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Services/ListServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.appengine.v1.Services", "ListServices"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the current configuration of the specified service.
-        pub async fn get_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetServiceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Services/GetService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.appengine.v1.Services", "GetService"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the configuration of the specified service.
-        pub async fn update_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Services/UpdateService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Services", "UpdateService"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the specified service and all enclosed versions.
-        pub async fn delete_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Services/DeleteService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Services", "DeleteService"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manages services of an application.
+#[derive(Debug, Clone)]
+pub struct ServicesClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ServicesClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ServicesClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ServicesClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists all the services in the application.
+pub async fn list_services(&mut self, request: impl tonic::IntoRequest<super::ListServicesRequest>) -> std::result::Result<tonic::Response<super::ListServicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Services/ListServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Services", "ListServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the current configuration of the specified service.
+pub async fn get_service(&mut self, request: impl tonic::IntoRequest<super::GetServiceRequest>) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Services/GetService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Services", "GetService"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the configuration of the specified service.
+pub async fn update_service(&mut self, request: impl tonic::IntoRequest<super::UpdateServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Services/UpdateService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Services", "UpdateService"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the specified service and all enclosed versions.
+pub async fn delete_service(&mut self, request: impl tonic::IntoRequest<super::DeleteServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Services/DeleteService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Services", "DeleteService"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod versions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manages versions of a service.
-    #[derive(Debug, Clone)]
-    pub struct VersionsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> VersionsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> VersionsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            VersionsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists the versions of a service.
-        pub async fn list_versions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListVersionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListVersionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Versions/ListVersions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.appengine.v1.Versions", "ListVersions"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the specified Version resource.
-        /// By default, only a `BASIC_VIEW` will be returned.
-        /// Specify the `FULL_VIEW` parameter to get the full resource.
-        pub async fn get_version(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetVersionRequest>,
-        ) -> std::result::Result<tonic::Response<super::Version>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Versions/GetVersion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.appengine.v1.Versions", "GetVersion"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deploys code and resource files to a new version.
-        pub async fn create_version(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateVersionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Versions/CreateVersion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Versions", "CreateVersion"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the specified Version resource.
-        /// You can specify the following fields depending on the App Engine
-        /// environment and type of scaling that the version resource uses:
-        ///
-        /// **Standard environment**
-        ///
-        /// * [`instance_class`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class)
-        ///
-        /// *automatic scaling* in the standard environment:
-        ///
-        /// * [`automatic_scaling.min_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
-        /// * [`automatic_scaling.max_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
-        /// * [`automaticScaling.standard_scheduler_settings.max_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
-        /// * [`automaticScaling.standard_scheduler_settings.min_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
-        /// * [`automaticScaling.standard_scheduler_settings.target_cpu_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
-        /// * [`automaticScaling.standard_scheduler_settings.target_throughput_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
-        ///
-        /// *basic scaling* or *manual scaling* in the standard environment:
-        ///
-        /// * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)
-        /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
-        ///
-        /// **Flexible environment**
-        ///
-        /// * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)
-        ///
-        /// *automatic scaling* in the flexible environment:
-        ///
-        /// * [`automatic_scaling.min_total_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
-        /// * [`automatic_scaling.max_total_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
-        /// * [`automatic_scaling.cool_down_period_sec`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
-        /// * [`automatic_scaling.cpu_utilization.target_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
-        ///
-        /// *manual scaling* in the flexible environment:
-        ///
-        /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
-        pub async fn update_version(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateVersionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Versions/UpdateVersion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Versions", "UpdateVersion"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes an existing Version resource.
-        pub async fn delete_version(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteVersionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Versions/DeleteVersion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Versions", "DeleteVersion"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manages versions of a service.
+#[derive(Debug, Clone)]
+pub struct VersionsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> VersionsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> VersionsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+VersionsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists the versions of a service.
+pub async fn list_versions(&mut self, request: impl tonic::IntoRequest<super::ListVersionsRequest>) -> std::result::Result<tonic::Response<super::ListVersionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Versions/ListVersions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Versions", "ListVersions"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the specified Version resource.
+/// By default, only a `BASIC_VIEW` will be returned.
+/// Specify the `FULL_VIEW` parameter to get the full resource.
+pub async fn get_version(&mut self, request: impl tonic::IntoRequest<super::GetVersionRequest>) -> std::result::Result<tonic::Response<super::Version>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Versions/GetVersion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Versions", "GetVersion"));
+self.inner.unary(req, path, codec).await
+}
+/// Deploys code and resource files to a new version.
+pub async fn create_version(&mut self, request: impl tonic::IntoRequest<super::CreateVersionRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Versions/CreateVersion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Versions", "CreateVersion"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the specified Version resource.
+/// You can specify the following fields depending on the App Engine
+/// environment and type of scaling that the version resource uses:
+///
+/// **Standard environment**
+///
+/// * [`instance_class`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class)
+///
+/// *automatic scaling* in the standard environment:
+///
+/// * [`automatic_scaling.min_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+/// * [`automatic_scaling.max_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+/// * [`automaticScaling.standard_scheduler_settings.max_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+/// * [`automaticScaling.standard_scheduler_settings.min_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+/// * [`automaticScaling.standard_scheduler_settings.target_cpu_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+/// * [`automaticScaling.standard_scheduler_settings.target_throughput_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+///
+/// *basic scaling* or *manual scaling* in the standard environment:
+///
+/// * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)
+/// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
+///
+/// **Flexible environment**
+///
+/// * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)
+///
+/// *automatic scaling* in the flexible environment:
+///
+/// * [`automatic_scaling.min_total_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+/// * [`automatic_scaling.max_total_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+/// * [`automatic_scaling.cool_down_period_sec`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+/// * [`automatic_scaling.cpu_utilization.target_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+///
+/// *manual scaling* in the flexible environment:
+///
+/// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
+pub async fn update_version(&mut self, request: impl tonic::IntoRequest<super::UpdateVersionRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Versions/UpdateVersion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Versions", "UpdateVersion"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes an existing Version resource.
+pub async fn delete_version(&mut self, request: impl tonic::IntoRequest<super::DeleteVersionRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Versions/DeleteVersion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Versions", "DeleteVersion"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod instances_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manages instances of a version.
-    #[derive(Debug, Clone)]
-    pub struct InstancesClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> InstancesClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> InstancesClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            InstancesClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists the instances of a version.
-        ///
-        /// Tip: To aggregate details about instances over time, see the
-        /// [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-        pub async fn list_instances(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListInstancesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListInstancesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Instances/ListInstances",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Instances", "ListInstances"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets instance information.
-        pub async fn get_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetInstanceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Instances/GetInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.appengine.v1.Instances", "GetInstance"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Stops a running instance.
-        ///
-        /// The instance might be automatically recreated based on the scaling settings
-        /// of the version. For more information, see "How Instances are Managed"
-        /// ([standard environment](https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) |
-        /// [flexible environment](https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).
-        ///
-        /// To ensure that instances are not re-created and avoid getting billed, you
-        /// can stop all instances within the target version by changing the serving
-        /// status of the version to `STOPPED` with the
-        /// [`apps.services.versions.patch`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch)
-        /// method.
-        pub async fn delete_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Instances/DeleteInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Instances", "DeleteInstance"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enables debugging on a VM instance. This allows you to use the SSH
-        /// command to connect to the virtual machine where the instance lives.
-        /// While in "debug mode", the instance continues to serve live traffic.
-        /// You should delete the instance when you are done debugging and then
-        /// allow the system to take over and determine if another instance
-        /// should be started.
-        ///
-        /// Only applicable for instances in App Engine flexible environment.
-        pub async fn debug_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DebugInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Instances/DebugInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Instances", "DebugInstance"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manages instances of a version.
+#[derive(Debug, Clone)]
+pub struct InstancesClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> InstancesClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> InstancesClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+InstancesClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists the instances of a version.
+///
+/// Tip: To aggregate details about instances over time, see the
+/// [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+pub async fn list_instances(&mut self, request: impl tonic::IntoRequest<super::ListInstancesRequest>) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Instances/ListInstances");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Instances", "ListInstances"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets instance information.
+pub async fn get_instance(&mut self, request: impl tonic::IntoRequest<super::GetInstanceRequest>) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Instances/GetInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Instances", "GetInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Stops a running instance.
+///
+/// The instance might be automatically recreated based on the scaling settings
+/// of the version. For more information, see "How Instances are Managed"
+/// ([standard environment](https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) |
+/// [flexible environment](https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).
+///
+/// To ensure that instances are not re-created and avoid getting billed, you
+/// can stop all instances within the target version by changing the serving
+/// status of the version to `STOPPED` with the
+/// [`apps.services.versions.patch`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch)
+/// method.
+pub async fn delete_instance(&mut self, request: impl tonic::IntoRequest<super::DeleteInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Instances/DeleteInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Instances", "DeleteInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Enables debugging on a VM instance. This allows you to use the SSH
+/// command to connect to the virtual machine where the instance lives.
+/// While in "debug mode", the instance continues to serve live traffic.
+/// You should delete the instance when you are done debugging and then
+/// allow the system to take over and determine if another instance
+/// should be started.
+///
+/// Only applicable for instances in App Engine flexible environment.
+pub async fn debug_instance(&mut self, request: impl tonic::IntoRequest<super::DebugInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Instances/DebugInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Instances", "DebugInstance"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod firewall_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Firewall resources are used to define a collection of access control rules
-    /// for an Application. Each rule is defined with a position which specifies
-    /// the rule's order in the sequence of rules, an IP range to be matched against
-    /// requests, and an action to take upon matching requests.
-    ///
-    /// Every request is evaluated against the Firewall rules in priority order.
-    /// Processesing stops at the first rule which matches the request's IP address.
-    /// A final rule always specifies an action that applies to all remaining
-    /// IP addresses. The default final rule for a newly-created application will be
-    /// set to "allow" if not otherwise specified by the user.
-    #[derive(Debug, Clone)]
-    pub struct FirewallClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> FirewallClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> FirewallClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            FirewallClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists the firewall rules of an application.
-        pub async fn list_ingress_rules(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListIngressRulesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListIngressRulesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Firewall/ListIngressRules",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Firewall", "ListIngressRules"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Replaces the entire firewall ruleset in one bulk operation. This overrides
-        /// and replaces the rules of an existing firewall with the new rules.
-        ///
-        /// If the final rule does not match traffic with the '*' wildcard IP range,
-        /// then an "allow all" rule is explicitly added to the end of the list.
-        pub async fn batch_update_ingress_rules(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchUpdateIngressRulesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchUpdateIngressRulesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Firewall/BatchUpdateIngressRules",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.Firewall",
-                        "BatchUpdateIngressRules",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a firewall rule for the application.
-        pub async fn create_ingress_rule(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateIngressRuleRequest>,
-        ) -> std::result::Result<tonic::Response<super::FirewallRule>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Firewall/CreateIngressRule",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Firewall", "CreateIngressRule"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the specified firewall rule.
-        pub async fn get_ingress_rule(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetIngressRuleRequest>,
-        ) -> std::result::Result<tonic::Response<super::FirewallRule>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Firewall/GetIngressRule",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Firewall", "GetIngressRule"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the specified firewall rule.
-        pub async fn update_ingress_rule(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateIngressRuleRequest>,
-        ) -> std::result::Result<tonic::Response<super::FirewallRule>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Firewall/UpdateIngressRule",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Firewall", "UpdateIngressRule"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the specified firewall rule.
-        pub async fn delete_ingress_rule(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteIngressRuleRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.Firewall/DeleteIngressRule",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.appengine.v1.Firewall", "DeleteIngressRule"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Firewall resources are used to define a collection of access control rules
+/// for an Application. Each rule is defined with a position which specifies
+/// the rule's order in the sequence of rules, an IP range to be matched against
+/// requests, and an action to take upon matching requests.
+///
+/// Every request is evaluated against the Firewall rules in priority order.
+/// Processesing stops at the first rule which matches the request's IP address.
+/// A final rule always specifies an action that applies to all remaining
+/// IP addresses. The default final rule for a newly-created application will be
+/// set to "allow" if not otherwise specified by the user.
+#[derive(Debug, Clone)]
+pub struct FirewallClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> FirewallClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> FirewallClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+FirewallClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists the firewall rules of an application.
+pub async fn list_ingress_rules(&mut self, request: impl tonic::IntoRequest<super::ListIngressRulesRequest>) -> std::result::Result<tonic::Response<super::ListIngressRulesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Firewall/ListIngressRules");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Firewall", "ListIngressRules"));
+self.inner.unary(req, path, codec).await
+}
+/// Replaces the entire firewall ruleset in one bulk operation. This overrides
+/// and replaces the rules of an existing firewall with the new rules.
+///
+/// If the final rule does not match traffic with the '*' wildcard IP range,
+/// then an "allow all" rule is explicitly added to the end of the list.
+pub async fn batch_update_ingress_rules(&mut self, request: impl tonic::IntoRequest<super::BatchUpdateIngressRulesRequest>) -> std::result::Result<tonic::Response<super::BatchUpdateIngressRulesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Firewall/BatchUpdateIngressRules");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Firewall", "BatchUpdateIngressRules"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a firewall rule for the application.
+pub async fn create_ingress_rule(&mut self, request: impl tonic::IntoRequest<super::CreateIngressRuleRequest>) -> std::result::Result<tonic::Response<super::FirewallRule>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Firewall/CreateIngressRule");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Firewall", "CreateIngressRule"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the specified firewall rule.
+pub async fn get_ingress_rule(&mut self, request: impl tonic::IntoRequest<super::GetIngressRuleRequest>) -> std::result::Result<tonic::Response<super::FirewallRule>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Firewall/GetIngressRule");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Firewall", "GetIngressRule"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the specified firewall rule.
+pub async fn update_ingress_rule(&mut self, request: impl tonic::IntoRequest<super::UpdateIngressRuleRequest>) -> std::result::Result<tonic::Response<super::FirewallRule>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Firewall/UpdateIngressRule");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Firewall", "UpdateIngressRule"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the specified firewall rule.
+pub async fn delete_ingress_rule(&mut self, request: impl tonic::IntoRequest<super::DeleteIngressRuleRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.Firewall/DeleteIngressRule");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.Firewall", "DeleteIngressRule"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod authorized_domains_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manages domains a user is authorized to administer. To authorize use of a
-    /// domain, verify ownership via
-    /// [Webmaster Central](https://www.google.com/webmasters/verification/home).
-    #[derive(Debug, Clone)]
-    pub struct AuthorizedDomainsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AuthorizedDomainsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AuthorizedDomainsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AuthorizedDomainsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists all domains the user is authorized to administer.
-        pub async fn list_authorized_domains(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListAuthorizedDomainsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListAuthorizedDomainsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.AuthorizedDomains/ListAuthorizedDomains",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.AuthorizedDomains",
-                        "ListAuthorizedDomains",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manages domains a user is authorized to administer. To authorize use of a
+/// domain, verify ownership via
+/// [Webmaster Central](https://www.google.com/webmasters/verification/home).
+#[derive(Debug, Clone)]
+pub struct AuthorizedDomainsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AuthorizedDomainsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AuthorizedDomainsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AuthorizedDomainsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists all domains the user is authorized to administer.
+pub async fn list_authorized_domains(&mut self, request: impl tonic::IntoRequest<super::ListAuthorizedDomainsRequest>) -> std::result::Result<tonic::Response<super::ListAuthorizedDomainsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.AuthorizedDomains/ListAuthorizedDomains");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.AuthorizedDomains", "ListAuthorizedDomains"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod authorized_certificates_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manages SSL certificates a user is authorized to administer. A user can
-    /// administer any SSL certificates applicable to their authorized domains.
-    #[derive(Debug, Clone)]
-    pub struct AuthorizedCertificatesClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AuthorizedCertificatesClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AuthorizedCertificatesClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AuthorizedCertificatesClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists all SSL certificates the user is authorized to administer.
-        pub async fn list_authorized_certificates(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListAuthorizedCertificatesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListAuthorizedCertificatesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.AuthorizedCertificates/ListAuthorizedCertificates",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.AuthorizedCertificates",
-                        "ListAuthorizedCertificates",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the specified SSL certificate.
-        pub async fn get_authorized_certificate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetAuthorizedCertificateRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AuthorizedCertificate>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.AuthorizedCertificates/GetAuthorizedCertificate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.AuthorizedCertificates",
-                        "GetAuthorizedCertificate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Uploads the specified SSL certificate.
-        pub async fn create_authorized_certificate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateAuthorizedCertificateRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AuthorizedCertificate>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.AuthorizedCertificates/CreateAuthorizedCertificate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.AuthorizedCertificates",
-                        "CreateAuthorizedCertificate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the specified SSL certificate. To renew a certificate and maintain
-        /// its existing domain mappings, update `certificate_data` with a new
-        /// certificate. The new certificate must be applicable to the same domains as
-        /// the original certificate. The certificate `display_name` may also be
-        /// updated.
-        pub async fn update_authorized_certificate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateAuthorizedCertificateRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AuthorizedCertificate>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.AuthorizedCertificates/UpdateAuthorizedCertificate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.AuthorizedCertificates",
-                        "UpdateAuthorizedCertificate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the specified SSL certificate.
-        pub async fn delete_authorized_certificate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteAuthorizedCertificateRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.AuthorizedCertificates/DeleteAuthorizedCertificate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.AuthorizedCertificates",
-                        "DeleteAuthorizedCertificate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manages SSL certificates a user is authorized to administer. A user can
+/// administer any SSL certificates applicable to their authorized domains.
+#[derive(Debug, Clone)]
+pub struct AuthorizedCertificatesClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AuthorizedCertificatesClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AuthorizedCertificatesClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AuthorizedCertificatesClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists all SSL certificates the user is authorized to administer.
+pub async fn list_authorized_certificates(&mut self, request: impl tonic::IntoRequest<super::ListAuthorizedCertificatesRequest>) -> std::result::Result<tonic::Response<super::ListAuthorizedCertificatesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.AuthorizedCertificates/ListAuthorizedCertificates");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.AuthorizedCertificates", "ListAuthorizedCertificates"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the specified SSL certificate.
+pub async fn get_authorized_certificate(&mut self, request: impl tonic::IntoRequest<super::GetAuthorizedCertificateRequest>) -> std::result::Result<tonic::Response<super::AuthorizedCertificate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.AuthorizedCertificates/GetAuthorizedCertificate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.AuthorizedCertificates", "GetAuthorizedCertificate"));
+self.inner.unary(req, path, codec).await
+}
+/// Uploads the specified SSL certificate.
+pub async fn create_authorized_certificate(&mut self, request: impl tonic::IntoRequest<super::CreateAuthorizedCertificateRequest>) -> std::result::Result<tonic::Response<super::AuthorizedCertificate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.AuthorizedCertificates/CreateAuthorizedCertificate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.AuthorizedCertificates", "CreateAuthorizedCertificate"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the specified SSL certificate. To renew a certificate and maintain
+/// its existing domain mappings, update `certificate_data` with a new
+/// certificate. The new certificate must be applicable to the same domains as
+/// the original certificate. The certificate `display_name` may also be
+/// updated.
+pub async fn update_authorized_certificate(&mut self, request: impl tonic::IntoRequest<super::UpdateAuthorizedCertificateRequest>) -> std::result::Result<tonic::Response<super::AuthorizedCertificate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.AuthorizedCertificates/UpdateAuthorizedCertificate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.AuthorizedCertificates", "UpdateAuthorizedCertificate"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the specified SSL certificate.
+pub async fn delete_authorized_certificate(&mut self, request: impl tonic::IntoRequest<super::DeleteAuthorizedCertificateRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.AuthorizedCertificates/DeleteAuthorizedCertificate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.AuthorizedCertificates", "DeleteAuthorizedCertificate"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod domain_mappings_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manages domains serving an application.
-    #[derive(Debug, Clone)]
-    pub struct DomainMappingsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> DomainMappingsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> DomainMappingsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            DomainMappingsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists the domain mappings on an application.
-        pub async fn list_domain_mappings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDomainMappingsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDomainMappingsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.DomainMappings/ListDomainMappings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.DomainMappings",
-                        "ListDomainMappings",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the specified domain mapping.
-        pub async fn get_domain_mapping(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDomainMappingRequest>,
-        ) -> std::result::Result<tonic::Response<super::DomainMapping>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.DomainMappings/GetDomainMapping",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.DomainMappings",
-                        "GetDomainMapping",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Maps a domain to an application. A user must be authorized to administer a
-        /// domain in order to map it to an application. For a list of available
-        /// authorized domains, see [`AuthorizedDomains.ListAuthorizedDomains`]().
-        pub async fn create_domain_mapping(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateDomainMappingRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.DomainMappings/CreateDomainMapping",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.DomainMappings",
-                        "CreateDomainMapping",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the specified domain mapping. To map an SSL certificate to a
-        /// domain mapping, update `certificate_id` to point to an `AuthorizedCertificate`
-        /// resource. A user must be authorized to administer the associated domain
-        /// in order to update a `DomainMapping` resource.
-        pub async fn update_domain_mapping(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateDomainMappingRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.DomainMappings/UpdateDomainMapping",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.DomainMappings",
-                        "UpdateDomainMapping",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the specified domain mapping. A user must be authorized to
-        /// administer the associated domain in order to delete a `DomainMapping`
-        /// resource.
-        pub async fn delete_domain_mapping(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteDomainMappingRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.appengine.v1.DomainMappings/DeleteDomainMapping",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.appengine.v1.DomainMappings",
-                        "DeleteDomainMapping",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manages domains serving an application.
+#[derive(Debug, Clone)]
+pub struct DomainMappingsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> DomainMappingsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> DomainMappingsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+DomainMappingsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists the domain mappings on an application.
+pub async fn list_domain_mappings(&mut self, request: impl tonic::IntoRequest<super::ListDomainMappingsRequest>) -> std::result::Result<tonic::Response<super::ListDomainMappingsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.DomainMappings/ListDomainMappings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.DomainMappings", "ListDomainMappings"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the specified domain mapping.
+pub async fn get_domain_mapping(&mut self, request: impl tonic::IntoRequest<super::GetDomainMappingRequest>) -> std::result::Result<tonic::Response<super::DomainMapping>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.DomainMappings/GetDomainMapping");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.DomainMappings", "GetDomainMapping"));
+self.inner.unary(req, path, codec).await
+}
+/// Maps a domain to an application. A user must be authorized to administer a
+/// domain in order to map it to an application. For a list of available
+/// authorized domains, see [`AuthorizedDomains.ListAuthorizedDomains`]().
+pub async fn create_domain_mapping(&mut self, request: impl tonic::IntoRequest<super::CreateDomainMappingRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.DomainMappings/CreateDomainMapping");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.DomainMappings", "CreateDomainMapping"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the specified domain mapping. To map an SSL certificate to a
+/// domain mapping, update `certificate_id` to point to an `AuthorizedCertificate`
+/// resource. A user must be authorized to administer the associated domain
+/// in order to update a `DomainMapping` resource.
+pub async fn update_domain_mapping(&mut self, request: impl tonic::IntoRequest<super::UpdateDomainMappingRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.DomainMappings/UpdateDomainMapping");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.DomainMappings", "UpdateDomainMapping"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the specified domain mapping. A user must be authorized to
+/// administer the associated domain in order to delete a `DomainMapping`
+/// resource.
+pub async fn delete_domain_mapping(&mut self, request: impl tonic::IntoRequest<super::DeleteDomainMappingRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.appengine.v1.DomainMappings/DeleteDomainMapping");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.appengine.v1.DomainMappings", "DeleteDomainMapping"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditData {
-    #[prost(oneof = "audit_data::Method", tags = "1, 2")]
-    pub method: ::core::option::Option<audit_data::Method>,
+#[prost(oneof = "audit_data::Method", tags = "1, 2")]
+pub method: ::core::option::Option<audit_data::Method>,
 }
 /// Nested message and enum types in `AuditData`.
 pub mod audit_data {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Method {
-        #[prost(message, tag = "1")]
-        UpdateService(super::UpdateServiceMethod),
-        #[prost(message, tag = "2")]
-        CreateVersion(super::CreateVersionMethod),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Method {
+#[prost(message, tag = "1")]
+UpdateService(super::UpdateServiceMethod),
+#[prost(message, tag = "2")]
+CreateVersion(super::CreateVersionMethod),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateServiceMethod {
-    #[prost(message, optional, tag = "1")]
-    pub request: ::core::option::Option<UpdateServiceRequest>,
+#[prost(message, optional, tag = "1")]
+pub request: ::core::option::Option<UpdateServiceRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateVersionMethod {
-    #[prost(message, optional, tag = "1")]
-    pub request: ::core::option::Option<CreateVersionRequest>,
+#[prost(message, optional, tag = "1")]
+pub request: ::core::option::Option<CreateVersionRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadataV1 {
-    #[prost(string, tag = "1")]
-    pub method: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub insert_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "4")]
-    pub user: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub ephemeral_message: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "7")]
-    pub warning: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(oneof = "operation_metadata_v1::MethodMetadata", tags = "8")]
-    pub method_metadata: ::core::option::Option<operation_metadata_v1::MethodMetadata>,
+#[prost(string, tag = "1")]
+pub method: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub insert_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "4")]
+pub user: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub ephemeral_message: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "7")]
+pub warning: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(oneof = "operation_metadata_v1::MethodMetadata", tags = "8")]
+pub method_metadata: ::core::option::Option<operation_metadata_v1::MethodMetadata>,
 }
 /// Nested message and enum types in `OperationMetadataV1`.
 pub mod operation_metadata_v1 {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum MethodMetadata {
-        #[prost(message, tag = "8")]
-        CreateVersionMetadata(super::CreateVersionMetadataV1),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum MethodMetadata {
+#[prost(message, tag = "8")]
+CreateVersionMetadata(super::CreateVersionMetadataV1),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateVersionMetadataV1 {
-    #[prost(string, tag = "1")]
-    pub cloud_build_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub cloud_build_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
-    #[prost(bool, tag = "2")]
-    pub standard_environment_available: bool,
-    #[prost(bool, tag = "4")]
-    pub flexible_environment_available: bool,
-    #[prost(bool, tag = "6")]
-    pub search_api_available: bool,
+#[prost(bool, tag = "2")]
+pub standard_environment_available: bool,
+#[prost(bool, tag = "4")]
+pub flexible_environment_available: bool,
+#[prost(bool, tag = "6")]
+pub search_api_available: bool,
 }

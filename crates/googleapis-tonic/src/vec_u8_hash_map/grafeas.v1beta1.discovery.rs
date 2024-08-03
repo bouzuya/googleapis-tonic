@@ -2,116 +2,94 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Discovery {
-    #[prost(enumeration = "super::NoteKind", tag = "1")]
-    pub analysis_kind: i32,
+#[prost(enumeration = "super::NoteKind", tag = "1")]
+pub analysis_kind: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Details {
-    #[prost(message, optional, tag = "1")]
-    pub discovered: ::core::option::Option<Discovered>,
+#[prost(message, optional, tag = "1")]
+pub discovered: ::core::option::Option<Discovered>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Discovered {
-    #[prost(enumeration = "discovered::ContinuousAnalysis", tag = "1")]
-    pub continuous_analysis: i32,
-    #[prost(message, optional, tag = "2")]
-    pub last_analysis_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "discovered::AnalysisStatus", tag = "3")]
-    pub analysis_status: i32,
-    #[prost(message, optional, tag = "4")]
-    pub analysis_status_error: ::core::option::Option<
-        super::super::super::google::rpc::Status,
-    >,
+#[prost(enumeration = "discovered::ContinuousAnalysis", tag = "1")]
+pub continuous_analysis: i32,
+#[prost(message, optional, tag = "2")]
+pub last_analysis_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "discovered::AnalysisStatus", tag = "3")]
+pub analysis_status: i32,
+#[prost(message, optional, tag = "4")]
+pub analysis_status_error: ::core::option::Option<super::super::super::google::rpc::Status>,
 }
 /// Nested message and enum types in `Discovered`.
 pub mod discovered {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ContinuousAnalysis {
-        Unspecified = 0,
-        Active = 1,
-        Inactive = 2,
-    }
-    impl ContinuousAnalysis {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ContinuousAnalysis::Unspecified => "CONTINUOUS_ANALYSIS_UNSPECIFIED",
-                ContinuousAnalysis::Active => "ACTIVE",
-                ContinuousAnalysis::Inactive => "INACTIVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONTINUOUS_ANALYSIS_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "INACTIVE" => Some(Self::Inactive),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AnalysisStatus {
-        Unspecified = 0,
-        Pending = 1,
-        Scanning = 2,
-        FinishedSuccess = 3,
-        FinishedFailed = 4,
-        FinishedUnsupported = 5,
-    }
-    impl AnalysisStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AnalysisStatus::Unspecified => "ANALYSIS_STATUS_UNSPECIFIED",
-                AnalysisStatus::Pending => "PENDING",
-                AnalysisStatus::Scanning => "SCANNING",
-                AnalysisStatus::FinishedSuccess => "FINISHED_SUCCESS",
-                AnalysisStatus::FinishedFailed => "FINISHED_FAILED",
-                AnalysisStatus::FinishedUnsupported => "FINISHED_UNSUPPORTED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ANALYSIS_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                "PENDING" => Some(Self::Pending),
-                "SCANNING" => Some(Self::Scanning),
-                "FINISHED_SUCCESS" => Some(Self::FinishedSuccess),
-                "FINISHED_FAILED" => Some(Self::FinishedFailed),
-                "FINISHED_UNSUPPORTED" => Some(Self::FinishedUnsupported),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ContinuousAnalysis {
+Unspecified = 0,
+Active = 1,
+Inactive = 2,
+}
+impl ContinuousAnalysis {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ContinuousAnalysis::Unspecified => "CONTINUOUS_ANALYSIS_UNSPECIFIED",
+ContinuousAnalysis::Active => "ACTIVE",
+ContinuousAnalysis::Inactive => "INACTIVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONTINUOUS_ANALYSIS_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"INACTIVE" => Some(Self::Inactive),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AnalysisStatus {
+Unspecified = 0,
+Pending = 1,
+Scanning = 2,
+FinishedSuccess = 3,
+FinishedFailed = 4,
+FinishedUnsupported = 5,
+}
+impl AnalysisStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AnalysisStatus::Unspecified => "ANALYSIS_STATUS_UNSPECIFIED",
+AnalysisStatus::Pending => "PENDING",
+AnalysisStatus::Scanning => "SCANNING",
+AnalysisStatus::FinishedSuccess => "FINISHED_SUCCESS",
+AnalysisStatus::FinishedFailed => "FINISHED_FAILED",
+AnalysisStatus::FinishedUnsupported => "FINISHED_UNSUPPORTED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ANALYSIS_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"SCANNING" => Some(Self::Scanning),
+"FINISHED_SUCCESS" => Some(Self::FinishedSuccess),
+"FINISHED_FAILED" => Some(Self::FinishedFailed),
+"FINISHED_UNSUPPORTED" => Some(Self::FinishedUnsupported),
+_ => None,
+}
+}
+}
 }

@@ -2,2139 +2,1420 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogMetric {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub bucket_name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "12")]
-    pub disabled: bool,
-    #[prost(message, optional, tag = "5")]
-    pub metric_descriptor: ::core::option::Option<super::super::api::MetricDescriptor>,
-    #[prost(string, tag = "6")]
-    pub value_extractor: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "7")]
-    pub label_extractors: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "8")]
-    pub bucket_options: ::core::option::Option<
-        super::super::api::distribution::BucketOptions,
-    >,
-    #[prost(message, optional, tag = "9")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "10")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[deprecated]
-    #[prost(enumeration = "log_metric::ApiVersion", tag = "4")]
-    pub version: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub bucket_name: ::prost::alloc::string::String,
+#[prost(bool, tag = "12")]
+pub disabled: bool,
+#[prost(message, optional, tag = "5")]
+pub metric_descriptor: ::core::option::Option<super::super::api::MetricDescriptor>,
+#[prost(string, tag = "6")]
+pub value_extractor: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "7")]
+pub label_extractors: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "8")]
+pub bucket_options: ::core::option::Option<super::super::api::distribution::BucketOptions>,
+#[prost(message, optional, tag = "9")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[deprecated]
+#[prost(enumeration = "log_metric::ApiVersion", tag = "4")]
+pub version: i32,
 }
 /// Nested message and enum types in `LogMetric`.
 pub mod log_metric {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ApiVersion {
-        V2 = 0,
-        V1 = 1,
-    }
-    impl ApiVersion {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ApiVersion::V2 => "V2",
-                ApiVersion::V1 => "V1",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "V2" => Some(Self::V2),
-                "V1" => Some(Self::V1),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ApiVersion {
+V2 = 0,
+V1 = 1,
+}
+impl ApiVersion {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ApiVersion::V2 => "V2",
+ApiVersion::V1 => "V1",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"V2" => Some(Self::V2),
+"V1" => Some(Self::V1),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLogMetricsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLogMetricsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub metrics: ::prost::alloc::vec::Vec<LogMetric>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub metrics: ::prost::alloc::vec::Vec<LogMetric>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLogMetricRequest {
-    #[prost(string, tag = "1")]
-    pub metric_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub metric_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateLogMetricRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub metric: ::core::option::Option<LogMetric>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub metric: ::core::option::Option<LogMetric>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateLogMetricRequest {
-    #[prost(string, tag = "1")]
-    pub metric_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub metric: ::core::option::Option<LogMetric>,
+#[prost(string, tag = "1")]
+pub metric_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub metric: ::core::option::Option<LogMetric>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteLogMetricRequest {
-    #[prost(string, tag = "1")]
-    pub metric_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub metric_name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod metrics_service_v2_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service for configuring logs-based metrics.
-    #[derive(Debug, Clone)]
-    pub struct MetricsServiceV2Client<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> MetricsServiceV2Client<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MetricsServiceV2Client<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            MetricsServiceV2Client::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists logs-based metrics.
-        pub async fn list_log_metrics(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListLogMetricsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListLogMetricsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.MetricsServiceV2/ListLogMetrics",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.MetricsServiceV2",
-                        "ListLogMetrics",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a logs-based metric.
-        pub async fn get_log_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetLogMetricRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogMetric>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.MetricsServiceV2/GetLogMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.MetricsServiceV2", "GetLogMetric"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a logs-based metric.
-        pub async fn create_log_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateLogMetricRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogMetric>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.MetricsServiceV2/CreateLogMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.MetricsServiceV2",
-                        "CreateLogMetric",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates or updates a logs-based metric.
-        pub async fn update_log_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateLogMetricRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogMetric>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.MetricsServiceV2/UpdateLogMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.MetricsServiceV2",
-                        "UpdateLogMetric",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a logs-based metric.
-        pub async fn delete_log_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteLogMetricRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.MetricsServiceV2/DeleteLogMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.MetricsServiceV2",
-                        "DeleteLogMetric",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service for configuring logs-based metrics.
+#[derive(Debug, Clone)]
+pub struct MetricsServiceV2Client<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> MetricsServiceV2Client<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> MetricsServiceV2Client<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+MetricsServiceV2Client::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists logs-based metrics.
+pub async fn list_log_metrics(&mut self, request: impl tonic::IntoRequest<super::ListLogMetricsRequest>) -> std::result::Result<tonic::Response<super::ListLogMetricsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.MetricsServiceV2/ListLogMetrics");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.MetricsServiceV2", "ListLogMetrics"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a logs-based metric.
+pub async fn get_log_metric(&mut self, request: impl tonic::IntoRequest<super::GetLogMetricRequest>) -> std::result::Result<tonic::Response<super::LogMetric>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.MetricsServiceV2/GetLogMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.MetricsServiceV2", "GetLogMetric"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a logs-based metric.
+pub async fn create_log_metric(&mut self, request: impl tonic::IntoRequest<super::CreateLogMetricRequest>) -> std::result::Result<tonic::Response<super::LogMetric>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.MetricsServiceV2/CreateLogMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.MetricsServiceV2", "CreateLogMetric"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates or updates a logs-based metric.
+pub async fn update_log_metric(&mut self, request: impl tonic::IntoRequest<super::UpdateLogMetricRequest>) -> std::result::Result<tonic::Response<super::LogMetric>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.MetricsServiceV2/UpdateLogMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.MetricsServiceV2", "UpdateLogMetric"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a logs-based metric.
+pub async fn delete_log_metric(&mut self, request: impl tonic::IntoRequest<super::DeleteLogMetricRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.MetricsServiceV2/DeleteLogMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.MetricsServiceV2", "DeleteLogMetric"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexConfig {
-    #[prost(string, tag = "1")]
-    pub field_path: ::prost::alloc::string::String,
-    #[prost(enumeration = "IndexType", tag = "2")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub field_path: ::prost::alloc::string::String,
+#[prost(enumeration = "IndexType", tag = "2")]
+pub r#type: i32,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogBucket {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(int32, tag = "11")]
-    pub retention_days: i32,
-    #[prost(bool, tag = "9")]
-    pub locked: bool,
-    #[prost(enumeration = "LifecycleState", tag = "12")]
-    pub lifecycle_state: i32,
-    #[prost(bool, tag = "14")]
-    pub analytics_enabled: bool,
-    #[prost(string, repeated, tag = "15")]
-    pub restricted_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "17")]
-    pub index_configs: ::prost::alloc::vec::Vec<IndexConfig>,
-    #[prost(message, optional, tag = "19")]
-    pub cmek_settings: ::core::option::Option<CmekSettings>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int32, tag = "11")]
+pub retention_days: i32,
+#[prost(bool, tag = "9")]
+pub locked: bool,
+#[prost(enumeration = "LifecycleState", tag = "12")]
+pub lifecycle_state: i32,
+#[prost(bool, tag = "14")]
+pub analytics_enabled: bool,
+#[prost(string, repeated, tag = "15")]
+pub restricted_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "17")]
+pub index_configs: ::prost::alloc::vec::Vec<IndexConfig>,
+#[prost(message, optional, tag = "19")]
+pub cmek_settings: ::core::option::Option<CmekSettings>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogView {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "7")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "7")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogSink {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub destination: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "18")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(bool, tag = "19")]
-    pub disabled: bool,
-    #[prost(message, repeated, tag = "16")]
-    pub exclusions: ::prost::alloc::vec::Vec<LogExclusion>,
-    #[deprecated]
-    #[prost(enumeration = "log_sink::VersionFormat", tag = "6")]
-    pub output_version_format: i32,
-    #[prost(string, tag = "8")]
-    pub writer_identity: ::prost::alloc::string::String,
-    #[prost(bool, tag = "9")]
-    pub include_children: bool,
-    #[prost(message, optional, tag = "13")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "14")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(oneof = "log_sink::Options", tags = "12")]
-    pub options: ::core::option::Option<log_sink::Options>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub destination: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "18")]
+pub description: ::prost::alloc::string::String,
+#[prost(bool, tag = "19")]
+pub disabled: bool,
+#[prost(message, repeated, tag = "16")]
+pub exclusions: ::prost::alloc::vec::Vec<LogExclusion>,
+#[deprecated]
+#[prost(enumeration = "log_sink::VersionFormat", tag = "6")]
+pub output_version_format: i32,
+#[prost(string, tag = "8")]
+pub writer_identity: ::prost::alloc::string::String,
+#[prost(bool, tag = "9")]
+pub include_children: bool,
+#[prost(message, optional, tag = "13")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "14")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(oneof = "log_sink::Options", tags = "12")]
+pub options: ::core::option::Option<log_sink::Options>,
 }
 /// Nested message and enum types in `LogSink`.
 pub mod log_sink {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VersionFormat {
-        Unspecified = 0,
-        V2 = 1,
-        V1 = 2,
-    }
-    impl VersionFormat {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VersionFormat::Unspecified => "VERSION_FORMAT_UNSPECIFIED",
-                VersionFormat::V2 => "V2",
-                VersionFormat::V1 => "V1",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VERSION_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-                "V2" => Some(Self::V2),
-                "V1" => Some(Self::V1),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Options {
-        #[prost(message, tag = "12")]
-        BigqueryOptions(super::BigQueryOptions),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum VersionFormat {
+Unspecified = 0,
+V2 = 1,
+V1 = 2,
+}
+impl VersionFormat {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VersionFormat::Unspecified => "VERSION_FORMAT_UNSPECIFIED",
+VersionFormat::V2 => "V2",
+VersionFormat::V1 => "V1",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VERSION_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+"V2" => Some(Self::V2),
+"V1" => Some(Self::V1),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Options {
+#[prost(message, tag = "12")]
+BigqueryOptions(super::BigQueryOptions),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryDataset {
-    #[prost(string, tag = "1")]
-    pub dataset_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub dataset_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Link {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "LifecycleState", tag = "4")]
-    pub lifecycle_state: i32,
-    #[prost(message, optional, tag = "5")]
-    pub bigquery_dataset: ::core::option::Option<BigQueryDataset>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "LifecycleState", tag = "4")]
+pub lifecycle_state: i32,
+#[prost(message, optional, tag = "5")]
+pub bigquery_dataset: ::core::option::Option<BigQueryDataset>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BigQueryOptions {
-    #[prost(bool, tag = "1")]
-    pub use_partitioned_tables: bool,
-    #[prost(bool, tag = "3")]
-    pub uses_timestamp_column_partitioning: bool,
+#[prost(bool, tag = "1")]
+pub use_partitioned_tables: bool,
+#[prost(bool, tag = "3")]
+pub uses_timestamp_column_partitioning: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBucketsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBucketsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub buckets: ::prost::alloc::vec::Vec<LogBucket>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub buckets: ::prost::alloc::vec::Vec<LogBucket>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBucketRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub bucket_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub bucket: ::core::option::Option<LogBucket>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub bucket_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub bucket: ::core::option::Option<LogBucket>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBucketRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub bucket: ::core::option::Option<LogBucket>,
-    #[prost(message, optional, tag = "4")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub bucket: ::core::option::Option<LogBucket>,
+#[prost(message, optional, tag = "4")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBucketRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBucketRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeleteBucketRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListViewsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListViewsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub views: ::prost::alloc::vec::Vec<LogView>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub views: ::prost::alloc::vec::Vec<LogView>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateViewRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub view_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub view: ::core::option::Option<LogView>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub view_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub view: ::core::option::Option<LogView>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateViewRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub view: ::core::option::Option<LogView>,
-    #[prost(message, optional, tag = "4")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub view: ::core::option::Option<LogView>,
+#[prost(message, optional, tag = "4")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetViewRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteViewRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSinksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSinksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub sinks: ::prost::alloc::vec::Vec<LogSink>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub sinks: ::prost::alloc::vec::Vec<LogSink>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSinkRequest {
-    #[prost(string, tag = "1")]
-    pub sink_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub sink_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSinkRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub sink: ::core::option::Option<LogSink>,
-    #[prost(bool, tag = "3")]
-    pub unique_writer_identity: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub sink: ::core::option::Option<LogSink>,
+#[prost(bool, tag = "3")]
+pub unique_writer_identity: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSinkRequest {
-    #[prost(string, tag = "1")]
-    pub sink_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub sink: ::core::option::Option<LogSink>,
-    #[prost(bool, tag = "3")]
-    pub unique_writer_identity: bool,
-    #[prost(message, optional, tag = "4")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub sink_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub sink: ::core::option::Option<LogSink>,
+#[prost(bool, tag = "3")]
+pub unique_writer_identity: bool,
+#[prost(message, optional, tag = "4")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSinkRequest {
-    #[prost(string, tag = "1")]
-    pub sink_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub sink_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateLinkRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub link: ::core::option::Option<Link>,
-    #[prost(string, tag = "3")]
-    pub link_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub link: ::core::option::Option<Link>,
+#[prost(string, tag = "3")]
+pub link_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteLinkRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLinksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLinksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub links: ::prost::alloc::vec::Vec<Link>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub links: ::prost::alloc::vec::Vec<Link>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLinkRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogExclusion {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub disabled: bool,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub disabled: bool,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExclusionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExclusionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub exclusions: ::prost::alloc::vec::Vec<LogExclusion>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub exclusions: ::prost::alloc::vec::Vec<LogExclusion>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetExclusionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateExclusionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub exclusion: ::core::option::Option<LogExclusion>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub exclusion: ::core::option::Option<LogExclusion>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateExclusionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub exclusion: ::core::option::Option<LogExclusion>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub exclusion: ::core::option::Option<LogExclusion>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteExclusionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCmekSettingsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCmekSettingsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub cmek_settings: ::core::option::Option<CmekSettings>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub cmek_settings: ::core::option::Option<CmekSettings>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CmekSettings {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub kms_key_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub kms_key_version_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub service_account_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub kms_key_name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub kms_key_version_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub service_account_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSettingsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSettingsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub settings: ::core::option::Option<Settings>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub settings: ::core::option::Option<Settings>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Settings {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub kms_key_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub kms_service_account_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub storage_location: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub disable_default_sink: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub kms_key_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub kms_service_account_id: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub storage_location: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub disable_default_sink: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CopyLogEntriesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub destination: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub destination: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CopyLogEntriesMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "OperationState", tag = "3")]
-    pub state: i32,
-    #[prost(bool, tag = "4")]
-    pub cancellation_requested: bool,
-    #[prost(message, optional, tag = "5")]
-    pub request: ::core::option::Option<CopyLogEntriesRequest>,
-    #[prost(int32, tag = "6")]
-    pub progress: i32,
-    #[prost(string, tag = "7")]
-    pub writer_identity: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "OperationState", tag = "3")]
+pub state: i32,
+#[prost(bool, tag = "4")]
+pub cancellation_requested: bool,
+#[prost(message, optional, tag = "5")]
+pub request: ::core::option::Option<CopyLogEntriesRequest>,
+#[prost(int32, tag = "6")]
+pub progress: i32,
+#[prost(string, tag = "7")]
+pub writer_identity: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CopyLogEntriesResponse {
-    #[prost(int64, tag = "1")]
-    pub log_entries_copied_count: i64,
+#[prost(int64, tag = "1")]
+pub log_entries_copied_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BucketMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "OperationState", tag = "3")]
-    pub state: i32,
-    #[prost(oneof = "bucket_metadata::Request", tags = "4, 5")]
-    pub request: ::core::option::Option<bucket_metadata::Request>,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "OperationState", tag = "3")]
+pub state: i32,
+#[prost(oneof = "bucket_metadata::Request", tags = "4, 5")]
+pub request: ::core::option::Option<bucket_metadata::Request>,
 }
 /// Nested message and enum types in `BucketMetadata`.
 pub mod bucket_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Request {
-        #[prost(message, tag = "4")]
-        CreateBucketRequest(super::CreateBucketRequest),
-        #[prost(message, tag = "5")]
-        UpdateBucketRequest(super::UpdateBucketRequest),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Request {
+#[prost(message, tag = "4")]
+CreateBucketRequest(super::CreateBucketRequest),
+#[prost(message, tag = "5")]
+UpdateBucketRequest(super::UpdateBucketRequest),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LinkMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "OperationState", tag = "3")]
-    pub state: i32,
-    #[prost(oneof = "link_metadata::Request", tags = "4, 5")]
-    pub request: ::core::option::Option<link_metadata::Request>,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "OperationState", tag = "3")]
+pub state: i32,
+#[prost(oneof = "link_metadata::Request", tags = "4, 5")]
+pub request: ::core::option::Option<link_metadata::Request>,
 }
 /// Nested message and enum types in `LinkMetadata`.
 pub mod link_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Request {
-        #[prost(message, tag = "4")]
-        CreateLinkRequest(super::CreateLinkRequest),
-        #[prost(message, tag = "5")]
-        DeleteLinkRequest(super::DeleteLinkRequest),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Request {
+#[prost(message, tag = "4")]
+CreateLinkRequest(super::CreateLinkRequest),
+#[prost(message, tag = "5")]
+DeleteLinkRequest(super::DeleteLinkRequest),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
-    #[prost(bool, tag = "1")]
-    pub log_analytics_enabled: bool,
+#[prost(bool, tag = "1")]
+pub log_analytics_enabled: bool,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum OperationState {
-    Unspecified = 0,
-    Scheduled = 1,
-    WaitingForPermissions = 2,
-    Running = 3,
-    Succeeded = 4,
-    Failed = 5,
-    Cancelled = 6,
+Unspecified = 0,
+Scheduled = 1,
+WaitingForPermissions = 2,
+Running = 3,
+Succeeded = 4,
+Failed = 5,
+Cancelled = 6,
 }
 impl OperationState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            OperationState::Unspecified => "OPERATION_STATE_UNSPECIFIED",
-            OperationState::Scheduled => "OPERATION_STATE_SCHEDULED",
-            OperationState::WaitingForPermissions => {
-                "OPERATION_STATE_WAITING_FOR_PERMISSIONS"
-            }
-            OperationState::Running => "OPERATION_STATE_RUNNING",
-            OperationState::Succeeded => "OPERATION_STATE_SUCCEEDED",
-            OperationState::Failed => "OPERATION_STATE_FAILED",
-            OperationState::Cancelled => "OPERATION_STATE_CANCELLED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "OPERATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "OPERATION_STATE_SCHEDULED" => Some(Self::Scheduled),
-            "OPERATION_STATE_WAITING_FOR_PERMISSIONS" => {
-                Some(Self::WaitingForPermissions)
-            }
-            "OPERATION_STATE_RUNNING" => Some(Self::Running),
-            "OPERATION_STATE_SUCCEEDED" => Some(Self::Succeeded),
-            "OPERATION_STATE_FAILED" => Some(Self::Failed),
-            "OPERATION_STATE_CANCELLED" => Some(Self::Cancelled),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OperationState::Unspecified => "OPERATION_STATE_UNSPECIFIED",
+OperationState::Scheduled => "OPERATION_STATE_SCHEDULED",
+OperationState::WaitingForPermissions => "OPERATION_STATE_WAITING_FOR_PERMISSIONS",
+OperationState::Running => "OPERATION_STATE_RUNNING",
+OperationState::Succeeded => "OPERATION_STATE_SUCCEEDED",
+OperationState::Failed => "OPERATION_STATE_FAILED",
+OperationState::Cancelled => "OPERATION_STATE_CANCELLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"OPERATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"OPERATION_STATE_SCHEDULED" => Some(Self::Scheduled),
+"OPERATION_STATE_WAITING_FOR_PERMISSIONS" => Some(Self::WaitingForPermissions),
+"OPERATION_STATE_RUNNING" => Some(Self::Running),
+"OPERATION_STATE_SUCCEEDED" => Some(Self::Succeeded),
+"OPERATION_STATE_FAILED" => Some(Self::Failed),
+"OPERATION_STATE_CANCELLED" => Some(Self::Cancelled),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LifecycleState {
-    Unspecified = 0,
-    Active = 1,
-    DeleteRequested = 2,
-    Updating = 3,
-    Creating = 4,
-    Failed = 5,
+Unspecified = 0,
+Active = 1,
+DeleteRequested = 2,
+Updating = 3,
+Creating = 4,
+Failed = 5,
 }
 impl LifecycleState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            LifecycleState::Unspecified => "LIFECYCLE_STATE_UNSPECIFIED",
-            LifecycleState::Active => "ACTIVE",
-            LifecycleState::DeleteRequested => "DELETE_REQUESTED",
-            LifecycleState::Updating => "UPDATING",
-            LifecycleState::Creating => "CREATING",
-            LifecycleState::Failed => "FAILED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "LIFECYCLE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "ACTIVE" => Some(Self::Active),
-            "DELETE_REQUESTED" => Some(Self::DeleteRequested),
-            "UPDATING" => Some(Self::Updating),
-            "CREATING" => Some(Self::Creating),
-            "FAILED" => Some(Self::Failed),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LifecycleState::Unspecified => "LIFECYCLE_STATE_UNSPECIFIED",
+LifecycleState::Active => "ACTIVE",
+LifecycleState::DeleteRequested => "DELETE_REQUESTED",
+LifecycleState::Updating => "UPDATING",
+LifecycleState::Creating => "CREATING",
+LifecycleState::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LIFECYCLE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"DELETE_REQUESTED" => Some(Self::DeleteRequested),
+"UPDATING" => Some(Self::Updating),
+"CREATING" => Some(Self::Creating),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum IndexType {
-    Unspecified = 0,
-    String = 1,
-    Integer = 2,
+Unspecified = 0,
+String = 1,
+Integer = 2,
 }
 impl IndexType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            IndexType::Unspecified => "INDEX_TYPE_UNSPECIFIED",
-            IndexType::String => "INDEX_TYPE_STRING",
-            IndexType::Integer => "INDEX_TYPE_INTEGER",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "INDEX_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "INDEX_TYPE_STRING" => Some(Self::String),
-            "INDEX_TYPE_INTEGER" => Some(Self::Integer),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+IndexType::Unspecified => "INDEX_TYPE_UNSPECIFIED",
+IndexType::String => "INDEX_TYPE_STRING",
+IndexType::Integer => "INDEX_TYPE_INTEGER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INDEX_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"INDEX_TYPE_STRING" => Some(Self::String),
+"INDEX_TYPE_INTEGER" => Some(Self::Integer),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod config_service_v2_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service for configuring sinks used to route log entries.
-    #[derive(Debug, Clone)]
-    pub struct ConfigServiceV2Client<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ConfigServiceV2Client<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ConfigServiceV2Client<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ConfigServiceV2Client::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists log buckets.
-        pub async fn list_buckets(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListBucketsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListBucketsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/ListBuckets",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListBuckets"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a log bucket.
-        pub async fn get_bucket(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetBucketRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogBucket>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/GetBucket",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetBucket"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a log bucket asynchronously that can be used to store log entries.
-        ///
-        /// After a bucket has been created, the bucket's location cannot be changed.
-        pub async fn create_bucket_async(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateBucketRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/CreateBucketAsync",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "CreateBucketAsync",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a log bucket asynchronously.
-        ///
-        /// If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
-        /// `FAILED_PRECONDITION` will be returned.
-        ///
-        /// After a bucket has been created, the bucket's location cannot be changed.
-        pub async fn update_bucket_async(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateBucketRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/UpdateBucketAsync",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "UpdateBucketAsync",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a log bucket that can be used to store log entries. After a bucket
-        /// has been created, the bucket's location cannot be changed.
-        pub async fn create_bucket(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateBucketRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogBucket>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/CreateBucket",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateBucket"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a log bucket.
-        ///
-        /// If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
-        /// `FAILED_PRECONDITION` will be returned.
-        ///
-        /// After a bucket has been created, the bucket's location cannot be changed.
-        pub async fn update_bucket(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateBucketRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogBucket>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/UpdateBucket",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateBucket"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a log bucket.
-        ///
-        /// Changes the bucket's `lifecycle_state` to the `DELETE_REQUESTED` state.
-        /// After 7 days, the bucket will be purged and all log entries in the bucket
-        /// will be permanently deleted.
-        pub async fn delete_bucket(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteBucketRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/DeleteBucket",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteBucket"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Undeletes a log bucket. A bucket that has been deleted can be undeleted
-        /// within the grace period of 7 days.
-        pub async fn undelete_bucket(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UndeleteBucketRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/UndeleteBucket",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "UndeleteBucket",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists views on a log bucket.
-        pub async fn list_views(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListViewsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListViewsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/ListViews",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListViews"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a view on a log bucket..
-        pub async fn get_view(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetViewRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogView>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/GetView",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetView"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a view over log entries in a log bucket. A bucket may contain a
-        /// maximum of 30 views.
-        pub async fn create_view(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateViewRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogView>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/CreateView",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateView"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a view on a log bucket. This method replaces the following fields
-        /// in the existing view with values from the new view: `filter`.
-        /// If an `UNAVAILABLE` error is returned, this indicates that system is not in
-        /// a state where it can update the view. If this occurs, please try again in a
-        /// few minutes.
-        pub async fn update_view(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateViewRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogView>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/UpdateView",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateView"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a view on a log bucket.
-        /// If an `UNAVAILABLE` error is returned, this indicates that system is not in
-        /// a state where it can delete the view. If this occurs, please try again in a
-        /// few minutes.
-        pub async fn delete_view(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteViewRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/DeleteView",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteView"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists sinks.
-        pub async fn list_sinks(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListSinksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListSinksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/ListSinks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListSinks"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a sink.
-        pub async fn get_sink(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetSinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogSink>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/GetSink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetSink"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a sink that exports specified log entries to a destination. The
-        /// export of newly-ingested log entries begins immediately, unless the sink's
-        /// `writer_identity` is not permitted to write to the destination. A sink can
-        /// export log entries only from the resource owning the sink.
-        pub async fn create_sink(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateSinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogSink>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/CreateSink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateSink"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a sink. This method replaces the following fields in the existing
-        /// sink with values from the new sink: `destination`, and `filter`.
-        ///
-        /// The updated sink might also have a new `writer_identity`; see the
-        /// `unique_writer_identity` field.
-        pub async fn update_sink(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateSinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogSink>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/UpdateSink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateSink"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a sink. If the sink has a unique `writer_identity`, then that
-        /// service account is also deleted.
-        pub async fn delete_sink(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteSinkRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/DeleteSink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteSink"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Asynchronously creates a linked dataset in BigQuery which makes it possible
-        /// to use BigQuery to read the logs stored in the log bucket. A log bucket may
-        /// currently only contain one link.
-        pub async fn create_link(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateLinkRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/CreateLink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateLink"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a link. This will also delete the corresponding BigQuery linked
-        /// dataset.
-        pub async fn delete_link(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteLinkRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/DeleteLink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteLink"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists links.
-        pub async fn list_links(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListLinksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListLinksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/ListLinks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListLinks"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a link.
-        pub async fn get_link(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::Link>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/GetLink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetLink"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all the exclusions on the _Default sink in a parent resource.
-        pub async fn list_exclusions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListExclusionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListExclusionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/ListExclusions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "ListExclusions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the description of an exclusion in the _Default sink.
-        pub async fn get_exclusion(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetExclusionRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogExclusion>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/GetExclusion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetExclusion"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new exclusion in the _Default sink in a specified parent
-        /// resource. Only log entries belonging to that resource can be excluded. You
-        /// can have up to 10 exclusions in a resource.
-        pub async fn create_exclusion(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateExclusionRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogExclusion>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/CreateExclusion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "CreateExclusion",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Changes one or more properties of an existing exclusion in the _Default
-        /// sink.
-        pub async fn update_exclusion(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateExclusionRequest>,
-        ) -> std::result::Result<tonic::Response<super::LogExclusion>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/UpdateExclusion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "UpdateExclusion",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes an exclusion in the _Default sink.
-        pub async fn delete_exclusion(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteExclusionRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/DeleteExclusion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "DeleteExclusion",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the Logging CMEK settings for the given resource.
-        ///
-        /// Note: CMEK for the Log Router can be configured for Google Cloud projects,
-        /// folders, organizations and billing accounts. Once configured for an
-        /// organization, it applies to all projects and folders in the Google Cloud
-        /// organization.
-        ///
-        /// See [Enabling CMEK for Log
-        /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
-        /// for more information.
-        pub async fn get_cmek_settings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCmekSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::CmekSettings>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/GetCmekSettings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "GetCmekSettings",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the Log Router CMEK settings for the given resource.
-        ///
-        /// Note: CMEK for the Log Router can currently only be configured for Google
-        /// Cloud organizations. Once configured, it applies to all projects and
-        /// folders in the Google Cloud organization.
-        ///
-        /// [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings]
-        /// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
-        /// account does not have the required
-        /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
-        /// 3) access to the key is disabled.
-        ///
-        /// See [Enabling CMEK for Log
-        /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
-        /// for more information.
-        pub async fn update_cmek_settings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCmekSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::CmekSettings>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/UpdateCmekSettings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "UpdateCmekSettings",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the Log Router settings for the given resource.
-        ///
-        /// Note: Settings for the Log Router can be get for Google Cloud projects,
-        /// folders, organizations and billing accounts. Currently it can only be
-        /// configured for organizations. Once configured for an organization, it
-        /// applies to all projects and folders in the Google Cloud organization.
-        ///
-        /// See [Enabling CMEK for Log
-        /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
-        /// for more information.
-        pub async fn get_settings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::Settings>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/GetSettings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetSettings"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the Log Router settings for the given resource.
-        ///
-        /// Note: Settings for the Log Router can currently only be configured for
-        /// Google Cloud organizations. Once configured, it applies to all projects and
-        /// folders in the Google Cloud organization.
-        ///
-        /// [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings]
-        /// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
-        /// account does not have the required
-        /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
-        /// 3) access to the key is disabled. 4) `location_id` is not supported by
-        /// Logging. 5) `location_id` violate OrgPolicy.
-        ///
-        /// See [Enabling CMEK for Log
-        /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
-        /// for more information.
-        pub async fn update_settings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateSettingsRequest>,
-        ) -> std::result::Result<tonic::Response<super::Settings>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/UpdateSettings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "UpdateSettings",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Copies a set of log entries from a log bucket to a Cloud Storage bucket.
-        pub async fn copy_log_entries(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CopyLogEntriesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.ConfigServiceV2/CopyLogEntries",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.ConfigServiceV2",
-                        "CopyLogEntries",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service for configuring sinks used to route log entries.
+#[derive(Debug, Clone)]
+pub struct ConfigServiceV2Client<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ConfigServiceV2Client<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ConfigServiceV2Client<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ConfigServiceV2Client::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists log buckets.
+pub async fn list_buckets(&mut self, request: impl tonic::IntoRequest<super::ListBucketsRequest>) -> std::result::Result<tonic::Response<super::ListBucketsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/ListBuckets");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListBuckets"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a log bucket.
+pub async fn get_bucket(&mut self, request: impl tonic::IntoRequest<super::GetBucketRequest>) -> std::result::Result<tonic::Response<super::LogBucket>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/GetBucket");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetBucket"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a log bucket asynchronously that can be used to store log entries.
+///
+/// After a bucket has been created, the bucket's location cannot be changed.
+pub async fn create_bucket_async(&mut self, request: impl tonic::IntoRequest<super::CreateBucketRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/CreateBucketAsync");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateBucketAsync"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a log bucket asynchronously.
+///
+/// If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
+/// `FAILED_PRECONDITION` will be returned.
+///
+/// After a bucket has been created, the bucket's location cannot be changed.
+pub async fn update_bucket_async(&mut self, request: impl tonic::IntoRequest<super::UpdateBucketRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/UpdateBucketAsync");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateBucketAsync"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a log bucket that can be used to store log entries. After a bucket
+/// has been created, the bucket's location cannot be changed.
+pub async fn create_bucket(&mut self, request: impl tonic::IntoRequest<super::CreateBucketRequest>) -> std::result::Result<tonic::Response<super::LogBucket>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/CreateBucket");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateBucket"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a log bucket.
+///
+/// If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
+/// `FAILED_PRECONDITION` will be returned.
+///
+/// After a bucket has been created, the bucket's location cannot be changed.
+pub async fn update_bucket(&mut self, request: impl tonic::IntoRequest<super::UpdateBucketRequest>) -> std::result::Result<tonic::Response<super::LogBucket>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/UpdateBucket");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateBucket"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a log bucket.
+///
+/// Changes the bucket's `lifecycle_state` to the `DELETE_REQUESTED` state.
+/// After 7 days, the bucket will be purged and all log entries in the bucket
+/// will be permanently deleted.
+pub async fn delete_bucket(&mut self, request: impl tonic::IntoRequest<super::DeleteBucketRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/DeleteBucket");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteBucket"));
+self.inner.unary(req, path, codec).await
+}
+/// Undeletes a log bucket. A bucket that has been deleted can be undeleted
+/// within the grace period of 7 days.
+pub async fn undelete_bucket(&mut self, request: impl tonic::IntoRequest<super::UndeleteBucketRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/UndeleteBucket");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UndeleteBucket"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists views on a log bucket.
+pub async fn list_views(&mut self, request: impl tonic::IntoRequest<super::ListViewsRequest>) -> std::result::Result<tonic::Response<super::ListViewsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/ListViews");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListViews"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a view on a log bucket..
+pub async fn get_view(&mut self, request: impl tonic::IntoRequest<super::GetViewRequest>) -> std::result::Result<tonic::Response<super::LogView>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/GetView");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetView"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a view over log entries in a log bucket. A bucket may contain a
+/// maximum of 30 views.
+pub async fn create_view(&mut self, request: impl tonic::IntoRequest<super::CreateViewRequest>) -> std::result::Result<tonic::Response<super::LogView>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/CreateView");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateView"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a view on a log bucket. This method replaces the following fields
+/// in the existing view with values from the new view: `filter`.
+/// If an `UNAVAILABLE` error is returned, this indicates that system is not in
+/// a state where it can update the view. If this occurs, please try again in a
+/// few minutes.
+pub async fn update_view(&mut self, request: impl tonic::IntoRequest<super::UpdateViewRequest>) -> std::result::Result<tonic::Response<super::LogView>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/UpdateView");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateView"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a view on a log bucket.
+/// If an `UNAVAILABLE` error is returned, this indicates that system is not in
+/// a state where it can delete the view. If this occurs, please try again in a
+/// few minutes.
+pub async fn delete_view(&mut self, request: impl tonic::IntoRequest<super::DeleteViewRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/DeleteView");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteView"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists sinks.
+pub async fn list_sinks(&mut self, request: impl tonic::IntoRequest<super::ListSinksRequest>) -> std::result::Result<tonic::Response<super::ListSinksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/ListSinks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListSinks"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a sink.
+pub async fn get_sink(&mut self, request: impl tonic::IntoRequest<super::GetSinkRequest>) -> std::result::Result<tonic::Response<super::LogSink>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/GetSink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetSink"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a sink that exports specified log entries to a destination. The
+/// export of newly-ingested log entries begins immediately, unless the sink's
+/// `writer_identity` is not permitted to write to the destination. A sink can
+/// export log entries only from the resource owning the sink.
+pub async fn create_sink(&mut self, request: impl tonic::IntoRequest<super::CreateSinkRequest>) -> std::result::Result<tonic::Response<super::LogSink>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/CreateSink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateSink"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a sink. This method replaces the following fields in the existing
+/// sink with values from the new sink: `destination`, and `filter`.
+///
+/// The updated sink might also have a new `writer_identity`; see the
+/// `unique_writer_identity` field.
+pub async fn update_sink(&mut self, request: impl tonic::IntoRequest<super::UpdateSinkRequest>) -> std::result::Result<tonic::Response<super::LogSink>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/UpdateSink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateSink"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a sink. If the sink has a unique `writer_identity`, then that
+/// service account is also deleted.
+pub async fn delete_sink(&mut self, request: impl tonic::IntoRequest<super::DeleteSinkRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/DeleteSink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteSink"));
+self.inner.unary(req, path, codec).await
+}
+/// Asynchronously creates a linked dataset in BigQuery which makes it possible
+/// to use BigQuery to read the logs stored in the log bucket. A log bucket may
+/// currently only contain one link.
+pub async fn create_link(&mut self, request: impl tonic::IntoRequest<super::CreateLinkRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/CreateLink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateLink"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a link. This will also delete the corresponding BigQuery linked
+/// dataset.
+pub async fn delete_link(&mut self, request: impl tonic::IntoRequest<super::DeleteLinkRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/DeleteLink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteLink"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists links.
+pub async fn list_links(&mut self, request: impl tonic::IntoRequest<super::ListLinksRequest>) -> std::result::Result<tonic::Response<super::ListLinksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/ListLinks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListLinks"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a link.
+pub async fn get_link(&mut self, request: impl tonic::IntoRequest<super::GetLinkRequest>) -> std::result::Result<tonic::Response<super::Link>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/GetLink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetLink"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all the exclusions on the _Default sink in a parent resource.
+pub async fn list_exclusions(&mut self, request: impl tonic::IntoRequest<super::ListExclusionsRequest>) -> std::result::Result<tonic::Response<super::ListExclusionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/ListExclusions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "ListExclusions"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the description of an exclusion in the _Default sink.
+pub async fn get_exclusion(&mut self, request: impl tonic::IntoRequest<super::GetExclusionRequest>) -> std::result::Result<tonic::Response<super::LogExclusion>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/GetExclusion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetExclusion"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new exclusion in the _Default sink in a specified parent
+/// resource. Only log entries belonging to that resource can be excluded. You
+/// can have up to 10 exclusions in a resource.
+pub async fn create_exclusion(&mut self, request: impl tonic::IntoRequest<super::CreateExclusionRequest>) -> std::result::Result<tonic::Response<super::LogExclusion>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/CreateExclusion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CreateExclusion"));
+self.inner.unary(req, path, codec).await
+}
+/// Changes one or more properties of an existing exclusion in the _Default
+/// sink.
+pub async fn update_exclusion(&mut self, request: impl tonic::IntoRequest<super::UpdateExclusionRequest>) -> std::result::Result<tonic::Response<super::LogExclusion>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/UpdateExclusion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateExclusion"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes an exclusion in the _Default sink.
+pub async fn delete_exclusion(&mut self, request: impl tonic::IntoRequest<super::DeleteExclusionRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/DeleteExclusion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "DeleteExclusion"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the Logging CMEK settings for the given resource.
+///
+/// Note: CMEK for the Log Router can be configured for Google Cloud projects,
+/// folders, organizations and billing accounts. Once configured for an
+/// organization, it applies to all projects and folders in the Google Cloud
+/// organization.
+///
+/// See [Enabling CMEK for Log
+/// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+/// for more information.
+pub async fn get_cmek_settings(&mut self, request: impl tonic::IntoRequest<super::GetCmekSettingsRequest>) -> std::result::Result<tonic::Response<super::CmekSettings>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/GetCmekSettings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetCmekSettings"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the Log Router CMEK settings for the given resource.
+///
+/// Note: CMEK for the Log Router can currently only be configured for Google
+/// Cloud organizations. Once configured, it applies to all projects and
+/// folders in the Google Cloud organization.
+///
+/// [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings]
+/// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+/// account does not have the required
+/// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+/// 3) access to the key is disabled.
+///
+/// See [Enabling CMEK for Log
+/// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+/// for more information.
+pub async fn update_cmek_settings(&mut self, request: impl tonic::IntoRequest<super::UpdateCmekSettingsRequest>) -> std::result::Result<tonic::Response<super::CmekSettings>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/UpdateCmekSettings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateCmekSettings"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the Log Router settings for the given resource.
+///
+/// Note: Settings for the Log Router can be get for Google Cloud projects,
+/// folders, organizations and billing accounts. Currently it can only be
+/// configured for organizations. Once configured for an organization, it
+/// applies to all projects and folders in the Google Cloud organization.
+///
+/// See [Enabling CMEK for Log
+/// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+/// for more information.
+pub async fn get_settings(&mut self, request: impl tonic::IntoRequest<super::GetSettingsRequest>) -> std::result::Result<tonic::Response<super::Settings>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/GetSettings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "GetSettings"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the Log Router settings for the given resource.
+///
+/// Note: Settings for the Log Router can currently only be configured for
+/// Google Cloud organizations. Once configured, it applies to all projects and
+/// folders in the Google Cloud organization.
+///
+/// [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings]
+/// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+/// account does not have the required
+/// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+/// 3) access to the key is disabled. 4) `location_id` is not supported by
+/// Logging. 5) `location_id` violate OrgPolicy.
+///
+/// See [Enabling CMEK for Log
+/// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+/// for more information.
+pub async fn update_settings(&mut self, request: impl tonic::IntoRequest<super::UpdateSettingsRequest>) -> std::result::Result<tonic::Response<super::Settings>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/UpdateSettings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "UpdateSettings"));
+self.inner.unary(req, path, codec).await
+}
+/// Copies a set of log entries from a log bucket to a Cloud Storage bucket.
+pub async fn copy_log_entries(&mut self, request: impl tonic::IntoRequest<super::CopyLogEntriesRequest>) -> std::result::Result<tonic::Response<super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.ConfigServiceV2/CopyLogEntries");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.ConfigServiceV2", "CopyLogEntries"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogEntry {
-    #[prost(string, tag = "12")]
-    pub log_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub resource: ::core::option::Option<super::super::api::MonitoredResource>,
-    #[prost(message, optional, tag = "9")]
-    pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "24")]
-    pub receive_timestamp: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "super::r#type::LogSeverity", tag = "10")]
-    pub severity: i32,
-    #[prost(string, tag = "4")]
-    pub insert_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub http_request: ::core::option::Option<super::r#type::HttpRequest>,
-    #[prost(btree_map = "string, string", tag = "11")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "15")]
-    pub operation: ::core::option::Option<LogEntryOperation>,
-    #[prost(string, tag = "22")]
-    pub trace: ::prost::alloc::string::String,
-    #[prost(string, tag = "27")]
-    pub span_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "30")]
-    pub trace_sampled: bool,
-    #[prost(message, optional, tag = "23")]
-    pub source_location: ::core::option::Option<LogEntrySourceLocation>,
-    #[prost(message, optional, tag = "35")]
-    pub split: ::core::option::Option<LogSplit>,
-    #[prost(oneof = "log_entry::Payload", tags = "2, 3, 6")]
-    pub payload: ::core::option::Option<log_entry::Payload>,
+#[prost(string, tag = "12")]
+pub log_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub resource: ::core::option::Option<super::super::api::MonitoredResource>,
+#[prost(message, optional, tag = "9")]
+pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "24")]
+pub receive_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "super::r#type::LogSeverity", tag = "10")]
+pub severity: i32,
+#[prost(string, tag = "4")]
+pub insert_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub http_request: ::core::option::Option<super::r#type::HttpRequest>,
+#[prost(btree_map = "string, string", tag = "11")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "15")]
+pub operation: ::core::option::Option<LogEntryOperation>,
+#[prost(string, tag = "22")]
+pub trace: ::prost::alloc::string::String,
+#[prost(string, tag = "27")]
+pub span_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "30")]
+pub trace_sampled: bool,
+#[prost(message, optional, tag = "23")]
+pub source_location: ::core::option::Option<LogEntrySourceLocation>,
+#[prost(message, optional, tag = "35")]
+pub split: ::core::option::Option<LogSplit>,
+#[prost(oneof = "log_entry::Payload", tags = "2, 3, 6")]
+pub payload: ::core::option::Option<log_entry::Payload>,
 }
 /// Nested message and enum types in `LogEntry`.
 pub mod log_entry {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Payload {
-        #[prost(message, tag = "2")]
-        ProtoPayload(::prost_types::Any),
-        #[prost(string, tag = "3")]
-        TextPayload(::prost::alloc::string::String),
-        #[prost(message, tag = "6")]
-        JsonPayload(::prost_types::Struct),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Payload {
+#[prost(message, tag = "2")]
+ProtoPayload(::prost_types::Any),
+#[prost(string, tag = "3")]
+TextPayload(::prost::alloc::string::String),
+#[prost(message, tag = "6")]
+JsonPayload(::prost_types::Struct),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogEntryOperation {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub producer: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub first: bool,
-    #[prost(bool, tag = "4")]
-    pub last: bool,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub producer: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub first: bool,
+#[prost(bool, tag = "4")]
+pub last: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogEntrySourceLocation {
-    #[prost(string, tag = "1")]
-    pub file: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub line: i64,
-    #[prost(string, tag = "3")]
-    pub function: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub file: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub line: i64,
+#[prost(string, tag = "3")]
+pub function: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogSplit {
-    #[prost(string, tag = "1")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub index: i32,
-    #[prost(int32, tag = "3")]
-    pub total_splits: i32,
+#[prost(string, tag = "1")]
+pub uid: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub index: i32,
+#[prost(int32, tag = "3")]
+pub total_splits: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteLogRequest {
-    #[prost(string, tag = "1")]
-    pub log_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub log_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WriteLogEntriesRequest {
-    #[prost(string, tag = "1")]
-    pub log_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub resource: ::core::option::Option<super::super::api::MonitoredResource>,
-    #[prost(btree_map = "string, string", tag = "3")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, repeated, tag = "4")]
-    pub entries: ::prost::alloc::vec::Vec<LogEntry>,
-    #[prost(bool, tag = "5")]
-    pub partial_success: bool,
-    #[prost(bool, tag = "6")]
-    pub dry_run: bool,
+#[prost(string, tag = "1")]
+pub log_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub resource: ::core::option::Option<super::super::api::MonitoredResource>,
+#[prost(btree_map = "string, string", tag = "3")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "4")]
+pub entries: ::prost::alloc::vec::Vec<LogEntry>,
+#[prost(bool, tag = "5")]
+pub partial_success: bool,
+#[prost(bool, tag = "6")]
+pub dry_run: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -2142,414 +1423,260 @@ pub struct WriteLogEntriesResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WriteLogEntriesPartialErrors {
-    #[prost(btree_map = "int32, message", tag = "1")]
-    pub log_entry_errors: ::prost::alloc::collections::BTreeMap<
-        i32,
-        super::super::rpc::Status,
-    >,
+#[prost(btree_map = "int32, message", tag = "1")]
+pub log_entry_errors: ::prost::alloc::collections::BTreeMap<i32, super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLogEntriesRequest {
-    #[prost(string, repeated, tag = "8")]
-    pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub page_size: i32,
-    #[prost(string, tag = "5")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "8")]
+pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub page_size: i32,
+#[prost(string, tag = "5")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLogEntriesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub entries: ::prost::alloc::vec::Vec<LogEntry>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub entries: ::prost::alloc::vec::Vec<LogEntry>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMonitoredResourceDescriptorsRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMonitoredResourceDescriptorsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub resource_descriptors: ::prost::alloc::vec::Vec<
-        super::super::api::MonitoredResourceDescriptor,
-    >,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub resource_descriptors: ::prost::alloc::vec::Vec<super::super::api::MonitoredResourceDescriptor>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLogsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "8")]
-    pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "8")]
+pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLogsResponse {
-    #[prost(string, repeated, tag = "3")]
-    pub log_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub log_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TailLogEntriesRequest {
-    #[prost(string, repeated, tag = "1")]
-    pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub buffer_window: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, repeated, tag = "1")]
+pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub buffer_window: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TailLogEntriesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub entries: ::prost::alloc::vec::Vec<LogEntry>,
-    #[prost(message, repeated, tag = "2")]
-    pub suppression_info: ::prost::alloc::vec::Vec<
-        tail_log_entries_response::SuppressionInfo,
-    >,
+#[prost(message, repeated, tag = "1")]
+pub entries: ::prost::alloc::vec::Vec<LogEntry>,
+#[prost(message, repeated, tag = "2")]
+pub suppression_info: ::prost::alloc::vec::Vec<tail_log_entries_response::SuppressionInfo>,
 }
 /// Nested message and enum types in `TailLogEntriesResponse`.
 pub mod tail_log_entries_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SuppressionInfo {
-        #[prost(enumeration = "suppression_info::Reason", tag = "1")]
-        pub reason: i32,
-        #[prost(int32, tag = "2")]
-        pub suppressed_count: i32,
-    }
-    /// Nested message and enum types in `SuppressionInfo`.
-    pub mod suppression_info {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            RateLimit = 1,
-            NotConsumed = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::RateLimit => "RATE_LIMIT",
-                    Reason::NotConsumed => "NOT_CONSUMED",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "RATE_LIMIT" => Some(Self::RateLimit),
-                    "NOT_CONSUMED" => Some(Self::NotConsumed),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SuppressionInfo {
+#[prost(enumeration = "suppression_info::Reason", tag = "1")]
+pub reason: i32,
+#[prost(int32, tag = "2")]
+pub suppressed_count: i32,
+}
+/// Nested message and enum types in `SuppressionInfo`.
+pub mod suppression_info {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+RateLimit = 1,
+NotConsumed = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::RateLimit => "RATE_LIMIT",
+Reason::NotConsumed => "NOT_CONSUMED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"RATE_LIMIT" => Some(Self::RateLimit),
+"NOT_CONSUMED" => Some(Self::NotConsumed),
+_ => None,
+}
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod logging_service_v2_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service for ingesting and querying logs.
-    #[derive(Debug, Clone)]
-    pub struct LoggingServiceV2Client<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> LoggingServiceV2Client<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> LoggingServiceV2Client<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            LoggingServiceV2Client::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Deletes all the log entries in a log for the _Default Log Bucket. The log
-        /// reappears if it receives new entries. Log entries written shortly before
-        /// the delete operation might not be deleted. Entries received after the
-        /// delete operation with a timestamp before the operation will be deleted.
-        pub async fn delete_log(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteLogRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.LoggingServiceV2/DeleteLog",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.LoggingServiceV2", "DeleteLog"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Writes log entries to Logging. This API method is the
-        /// only way to send log entries to Logging. This method
-        /// is used, directly or indirectly, by the Logging agent
-        /// (fluentd) and all logging libraries configured to use Logging.
-        /// A single request may contain log entries for a maximum of 1000
-        /// different resources (projects, organizations, billing accounts or
-        /// folders)
-        pub async fn write_log_entries(
-            &mut self,
-            request: impl tonic::IntoRequest<super::WriteLogEntriesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::WriteLogEntriesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.LoggingServiceV2/WriteLogEntries",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.LoggingServiceV2",
-                        "WriteLogEntries",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists log entries.  Use this method to retrieve log entries that originated
-        /// from a project/folder/organization/billing account.  For ways to export log
-        /// entries, see [Exporting
-        /// Logs](https://cloud.google.com/logging/docs/export).
-        pub async fn list_log_entries(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListLogEntriesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListLogEntriesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.LoggingServiceV2/ListLogEntries",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.LoggingServiceV2",
-                        "ListLogEntries",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the descriptors for monitored resource types used by Logging.
-        pub async fn list_monitored_resource_descriptors(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::ListMonitoredResourceDescriptorsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::ListMonitoredResourceDescriptorsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.LoggingServiceV2/ListMonitoredResourceDescriptors",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.LoggingServiceV2",
-                        "ListMonitoredResourceDescriptors",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the logs in projects, organizations, folders, or billing accounts.
-        /// Only logs that have entries are listed.
-        pub async fn list_logs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListLogsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListLogsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.LoggingServiceV2/ListLogs",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.logging.v2.LoggingServiceV2", "ListLogs"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Streaming read of log entries as they are ingested. Until the stream is
-        /// terminated, it will continue reading logs.
-        pub async fn tail_log_entries(
-            &mut self,
-            request: impl tonic::IntoStreamingRequest<
-                Message = super::TailLogEntriesRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::TailLogEntriesResponse>>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.logging.v2.LoggingServiceV2/TailLogEntries",
-            );
-            let mut req = request.into_streaming_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.logging.v2.LoggingServiceV2",
-                        "TailLogEntries",
-                    ),
-                );
-            self.inner.streaming(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service for ingesting and querying logs.
+#[derive(Debug, Clone)]
+pub struct LoggingServiceV2Client<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> LoggingServiceV2Client<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> LoggingServiceV2Client<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+LoggingServiceV2Client::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Deletes all the log entries in a log for the _Default Log Bucket. The log
+/// reappears if it receives new entries. Log entries written shortly before
+/// the delete operation might not be deleted. Entries received after the
+/// delete operation with a timestamp before the operation will be deleted.
+pub async fn delete_log(&mut self, request: impl tonic::IntoRequest<super::DeleteLogRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.LoggingServiceV2/DeleteLog");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.LoggingServiceV2", "DeleteLog"));
+self.inner.unary(req, path, codec).await
+}
+/// Writes log entries to Logging. This API method is the
+/// only way to send log entries to Logging. This method
+/// is used, directly or indirectly, by the Logging agent
+/// (fluentd) and all logging libraries configured to use Logging.
+/// A single request may contain log entries for a maximum of 1000
+/// different resources (projects, organizations, billing accounts or
+/// folders)
+pub async fn write_log_entries(&mut self, request: impl tonic::IntoRequest<super::WriteLogEntriesRequest>) -> std::result::Result<tonic::Response<super::WriteLogEntriesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.LoggingServiceV2/WriteLogEntries");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.LoggingServiceV2", "WriteLogEntries"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists log entries.  Use this method to retrieve log entries that originated
+/// from a project/folder/organization/billing account.  For ways to export log
+/// entries, see [Exporting
+/// Logs](https://cloud.google.com/logging/docs/export).
+pub async fn list_log_entries(&mut self, request: impl tonic::IntoRequest<super::ListLogEntriesRequest>) -> std::result::Result<tonic::Response<super::ListLogEntriesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.LoggingServiceV2/ListLogEntries");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.LoggingServiceV2", "ListLogEntries"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the descriptors for monitored resource types used by Logging.
+pub async fn list_monitored_resource_descriptors(&mut self, request: impl tonic::IntoRequest<super::ListMonitoredResourceDescriptorsRequest>) -> std::result::Result<tonic::Response<super::ListMonitoredResourceDescriptorsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.LoggingServiceV2/ListMonitoredResourceDescriptors");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.LoggingServiceV2", "ListMonitoredResourceDescriptors"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the logs in projects, organizations, folders, or billing accounts.
+/// Only logs that have entries are listed.
+pub async fn list_logs(&mut self, request: impl tonic::IntoRequest<super::ListLogsRequest>) -> std::result::Result<tonic::Response<super::ListLogsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.LoggingServiceV2/ListLogs");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.LoggingServiceV2", "ListLogs"));
+self.inner.unary(req, path, codec).await
+}
+/// Streaming read of log entries as they are ingested. Until the stream is
+/// terminated, it will continue reading logs.
+pub async fn tail_log_entries(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::TailLogEntriesRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::TailLogEntriesResponse>>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.logging.v2.LoggingServiceV2/TailLogEntries");
+let mut req = request.into_streaming_request();
+req.extensions_mut().insert(GrpcMethod::new("google.logging.v2.LoggingServiceV2", "TailLogEntries"));
+self.inner.streaming(req, path, codec).await
+}
+}
 }

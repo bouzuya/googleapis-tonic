@@ -2,246 +2,216 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct File {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub mime_type: ::prost::alloc::string::String,
-    #[prost(int64, tag = "4")]
-    pub size_bytes: i64,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(bytes = "bytes", tag = "8")]
-    pub sha256_hash: ::prost::bytes::Bytes,
-    #[prost(string, tag = "9")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(enumeration = "file::State", tag = "10")]
-    pub state: i32,
-    #[prost(message, optional, tag = "11")]
-    pub error: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(oneof = "file::Metadata", tags = "12")]
-    pub metadata: ::core::option::Option<file::Metadata>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub mime_type: ::prost::alloc::string::String,
+#[prost(int64, tag = "4")]
+pub size_bytes: i64,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(bytes = "bytes", tag = "8")]
+pub sha256_hash: ::prost::bytes::Bytes,
+#[prost(string, tag = "9")]
+pub uri: ::prost::alloc::string::String,
+#[prost(enumeration = "file::State", tag = "10")]
+pub state: i32,
+#[prost(message, optional, tag = "11")]
+pub error: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(oneof = "file::Metadata", tags = "12")]
+pub metadata: ::core::option::Option<file::Metadata>,
 }
 /// Nested message and enum types in `File`.
 pub mod file {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Processing = 1,
-        Active = 2,
-        Failed = 10,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Processing => "PROCESSING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PROCESSING" => Some(Self::Processing),
-                "ACTIVE" => Some(Self::Active),
-                "FAILED" => Some(Self::Failed),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Metadata {
-        #[prost(message, tag = "12")]
-        VideoMetadata(super::VideoMetadata),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Processing = 1,
+Active = 2,
+Failed = 10,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Processing => "PROCESSING",
+State::Active => "ACTIVE",
+State::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PROCESSING" => Some(Self::Processing),
+"ACTIVE" => Some(Self::Active),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Metadata {
+#[prost(message, tag = "12")]
+VideoMetadata(super::VideoMetadata),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct VideoMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub video_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub video_duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Content {
-    #[prost(message, repeated, tag = "1")]
-    pub parts: ::prost::alloc::vec::Vec<Part>,
-    #[prost(string, tag = "2")]
-    pub role: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub parts: ::prost::alloc::vec::Vec<Part>,
+#[prost(string, tag = "2")]
+pub role: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Part {
-    #[prost(oneof = "part::Data", tags = "2, 3, 4, 5, 6, 9, 10")]
-    pub data: ::core::option::Option<part::Data>,
+#[prost(oneof = "part::Data", tags = "2, 3, 4, 5, 6, 9, 10")]
+pub data: ::core::option::Option<part::Data>,
 }
 /// Nested message and enum types in `Part`.
 pub mod part {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Data {
-        #[prost(string, tag = "2")]
-        Text(::prost::alloc::string::String),
-        #[prost(message, tag = "3")]
-        InlineData(super::Blob),
-        #[prost(message, tag = "4")]
-        FunctionCall(super::FunctionCall),
-        #[prost(message, tag = "5")]
-        FunctionResponse(super::FunctionResponse),
-        #[prost(message, tag = "6")]
-        FileData(super::FileData),
-        #[prost(message, tag = "9")]
-        ExecutableCode(super::ExecutableCode),
-        #[prost(message, tag = "10")]
-        CodeExecutionResult(super::CodeExecutionResult),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Data {
+#[prost(string, tag = "2")]
+Text(::prost::alloc::string::String),
+#[prost(message, tag = "3")]
+InlineData(super::Blob),
+#[prost(message, tag = "4")]
+FunctionCall(super::FunctionCall),
+#[prost(message, tag = "5")]
+FunctionResponse(super::FunctionResponse),
+#[prost(message, tag = "6")]
+FileData(super::FileData),
+#[prost(message, tag = "9")]
+ExecutableCode(super::ExecutableCode),
+#[prost(message, tag = "10")]
+CodeExecutionResult(super::CodeExecutionResult),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Blob {
-    #[prost(string, tag = "1")]
-    pub mime_type: ::prost::alloc::string::String,
-    #[prost(bytes = "bytes", tag = "2")]
-    pub data: ::prost::bytes::Bytes,
+#[prost(string, tag = "1")]
+pub mime_type: ::prost::alloc::string::String,
+#[prost(bytes = "bytes", tag = "2")]
+pub data: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileData {
-    #[prost(string, tag = "1")]
-    pub mime_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub file_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub mime_type: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub file_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutableCode {
-    #[prost(enumeration = "executable_code::Language", tag = "1")]
-    pub language: i32,
-    #[prost(string, tag = "2")]
-    pub code: ::prost::alloc::string::String,
+#[prost(enumeration = "executable_code::Language", tag = "1")]
+pub language: i32,
+#[prost(string, tag = "2")]
+pub code: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ExecutableCode`.
 pub mod executable_code {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Language {
-        Unspecified = 0,
-        Python = 1,
-    }
-    impl Language {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Language::Unspecified => "LANGUAGE_UNSPECIFIED",
-                Language::Python => "PYTHON",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "LANGUAGE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PYTHON" => Some(Self::Python),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Language {
+Unspecified = 0,
+Python = 1,
+}
+impl Language {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Language::Unspecified => "LANGUAGE_UNSPECIFIED",
+Language::Python => "PYTHON",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LANGUAGE_UNSPECIFIED" => Some(Self::Unspecified),
+"PYTHON" => Some(Self::Python),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CodeExecutionResult {
-    #[prost(enumeration = "code_execution_result::Outcome", tag = "1")]
-    pub outcome: i32,
-    #[prost(string, tag = "2")]
-    pub output: ::prost::alloc::string::String,
+#[prost(enumeration = "code_execution_result::Outcome", tag = "1")]
+pub outcome: i32,
+#[prost(string, tag = "2")]
+pub output: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `CodeExecutionResult`.
 pub mod code_execution_result {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Outcome {
-        Unspecified = 0,
-        Ok = 1,
-        Failed = 2,
-        DeadlineExceeded = 3,
-    }
-    impl Outcome {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Outcome::Unspecified => "OUTCOME_UNSPECIFIED",
-                Outcome::Ok => "OUTCOME_OK",
-                Outcome::Failed => "OUTCOME_FAILED",
-                Outcome::DeadlineExceeded => "OUTCOME_DEADLINE_EXCEEDED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "OUTCOME_UNSPECIFIED" => Some(Self::Unspecified),
-                "OUTCOME_OK" => Some(Self::Ok),
-                "OUTCOME_FAILED" => Some(Self::Failed),
-                "OUTCOME_DEADLINE_EXCEEDED" => Some(Self::DeadlineExceeded),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Outcome {
+Unspecified = 0,
+Ok = 1,
+Failed = 2,
+DeadlineExceeded = 3,
+}
+impl Outcome {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Outcome::Unspecified => "OUTCOME_UNSPECIFIED",
+Outcome::Ok => "OUTCOME_OK",
+Outcome::Failed => "OUTCOME_FAILED",
+Outcome::DeadlineExceeded => "OUTCOME_DEADLINE_EXCEEDED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"OUTCOME_UNSPECIFIED" => Some(Self::Unspecified),
+"OUTCOME_OK" => Some(Self::Ok),
+"OUTCOME_FAILED" => Some(Self::Failed),
+"OUTCOME_DEADLINE_EXCEEDED" => Some(Self::DeadlineExceeded),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Tool {
-    #[prost(message, repeated, tag = "1")]
-    pub function_declarations: ::prost::alloc::vec::Vec<FunctionDeclaration>,
-    #[prost(message, optional, tag = "3")]
-    pub code_execution: ::core::option::Option<CodeExecution>,
+#[prost(message, repeated, tag = "1")]
+pub function_declarations: ::prost::alloc::vec::Vec<FunctionDeclaration>,
+#[prost(message, optional, tag = "3")]
+pub code_execution: ::core::option::Option<CodeExecution>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -249,4284 +219,2956 @@ pub struct CodeExecution {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ToolConfig {
-    #[prost(message, optional, tag = "1")]
-    pub function_calling_config: ::core::option::Option<FunctionCallingConfig>,
+#[prost(message, optional, tag = "1")]
+pub function_calling_config: ::core::option::Option<FunctionCallingConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FunctionCallingConfig {
-    #[prost(enumeration = "function_calling_config::Mode", tag = "1")]
-    pub mode: i32,
-    #[prost(string, repeated, tag = "2")]
-    pub allowed_function_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "function_calling_config::Mode", tag = "1")]
+pub mode: i32,
+#[prost(string, repeated, tag = "2")]
+pub allowed_function_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `FunctionCallingConfig`.
 pub mod function_calling_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Mode {
-        Unspecified = 0,
-        Auto = 1,
-        Any = 2,
-        None = 3,
-    }
-    impl Mode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Auto => "AUTO",
-                Mode::Any => "ANY",
-                Mode::None => "NONE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "AUTO" => Some(Self::Auto),
-                "ANY" => Some(Self::Any),
-                "NONE" => Some(Self::None),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Mode {
+Unspecified = 0,
+Auto = 1,
+Any = 2,
+None = 3,
+}
+impl Mode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Mode::Unspecified => "MODE_UNSPECIFIED",
+Mode::Auto => "AUTO",
+Mode::Any => "ANY",
+Mode::None => "NONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"AUTO" => Some(Self::Auto),
+"ANY" => Some(Self::Any),
+"NONE" => Some(Self::None),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FunctionDeclaration {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub parameters: ::core::option::Option<Schema>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub parameters: ::core::option::Option<Schema>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FunctionCall {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub args: ::core::option::Option<::prost_types::Struct>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub args: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FunctionResponse {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub response: ::core::option::Option<::prost_types::Struct>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub response: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Schema {
-    #[prost(enumeration = "Type", tag = "1")]
-    pub r#type: i32,
-    #[prost(string, tag = "2")]
-    pub format: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub nullable: bool,
-    #[prost(string, repeated, tag = "5")]
-    pub r#enum: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, boxed, tag = "6")]
-    pub items: ::core::option::Option<::prost::alloc::boxed::Box<Schema>>,
-    #[prost(btree_map = "string, message", tag = "7")]
-    pub properties: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        Schema,
-    >,
-    #[prost(string, repeated, tag = "8")]
-    pub required: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "Type", tag = "1")]
+pub r#type: i32,
+#[prost(string, tag = "2")]
+pub format: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub nullable: bool,
+#[prost(string, repeated, tag = "5")]
+pub r#enum: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, boxed, tag = "6")]
+pub items: ::core::option::Option<::prost::alloc::boxed::Box<Schema>>,
+#[prost(btree_map = "string, message", tag = "7")]
+pub properties: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, Schema>,
+#[prost(string, repeated, tag = "8")]
+pub required: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GroundingPassage {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub content: ::core::option::Option<Content>,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub content: ::core::option::Option<Content>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GroundingPassages {
-    #[prost(message, repeated, tag = "1")]
-    pub passages: ::prost::alloc::vec::Vec<GroundingPassage>,
+#[prost(message, repeated, tag = "1")]
+pub passages: ::prost::alloc::vec::Vec<GroundingPassage>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Type {
-    Unspecified = 0,
-    String = 1,
-    Number = 2,
-    Integer = 3,
-    Boolean = 4,
-    Array = 5,
-    Object = 6,
+Unspecified = 0,
+String = 1,
+Number = 2,
+Integer = 3,
+Boolean = 4,
+Array = 5,
+Object = 6,
 }
 impl Type {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Type::Unspecified => "TYPE_UNSPECIFIED",
-            Type::String => "STRING",
-            Type::Number => "NUMBER",
-            Type::Integer => "INTEGER",
-            Type::Boolean => "BOOLEAN",
-            Type::Array => "ARRAY",
-            Type::Object => "OBJECT",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "STRING" => Some(Self::String),
-            "NUMBER" => Some(Self::Number),
-            "INTEGER" => Some(Self::Integer),
-            "BOOLEAN" => Some(Self::Boolean),
-            "ARRAY" => Some(Self::Array),
-            "OBJECT" => Some(Self::Object),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::String => "STRING",
+Type::Number => "NUMBER",
+Type::Integer => "INTEGER",
+Type::Boolean => "BOOLEAN",
+Type::Array => "ARRAY",
+Type::Object => "OBJECT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"STRING" => Some(Self::String),
+"NUMBER" => Some(Self::Number),
+"INTEGER" => Some(Self::Integer),
+"BOOLEAN" => Some(Self::Boolean),
+"ARRAY" => Some(Self::Array),
+"OBJECT" => Some(Self::Object),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CachedContent {
-    #[prost(string, optional, tag = "1")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "11")]
-    pub display_name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "2")]
-    pub model: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub system_instruction: ::core::option::Option<Content>,
-    #[prost(message, repeated, tag = "4")]
-    pub contents: ::prost::alloc::vec::Vec<Content>,
-    #[prost(message, repeated, tag = "5")]
-    pub tools: ::prost::alloc::vec::Vec<Tool>,
-    #[prost(message, optional, tag = "6")]
-    pub tool_config: ::core::option::Option<ToolConfig>,
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "12")]
-    pub usage_metadata: ::core::option::Option<cached_content::UsageMetadata>,
-    #[prost(oneof = "cached_content::Expiration", tags = "9, 10")]
-    pub expiration: ::core::option::Option<cached_content::Expiration>,
+#[prost(string, optional, tag = "1")]
+pub name: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "11")]
+pub display_name: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "2")]
+pub model: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "3")]
+pub system_instruction: ::core::option::Option<Content>,
+#[prost(message, repeated, tag = "4")]
+pub contents: ::prost::alloc::vec::Vec<Content>,
+#[prost(message, repeated, tag = "5")]
+pub tools: ::prost::alloc::vec::Vec<Tool>,
+#[prost(message, optional, tag = "6")]
+pub tool_config: ::core::option::Option<ToolConfig>,
+#[prost(message, optional, tag = "7")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "12")]
+pub usage_metadata: ::core::option::Option<cached_content::UsageMetadata>,
+#[prost(oneof = "cached_content::Expiration", tags = "9, 10")]
+pub expiration: ::core::option::Option<cached_content::Expiration>,
 }
 /// Nested message and enum types in `CachedContent`.
 pub mod cached_content {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct UsageMetadata {
-        #[prost(int32, tag = "1")]
-        pub total_token_count: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Expiration {
-        #[prost(message, tag = "9")]
-        ExpireTime(::prost_types::Timestamp),
-        #[prost(message, tag = "10")]
-        Ttl(::prost_types::Duration),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UsageMetadata {
+#[prost(int32, tag = "1")]
+pub total_token_count: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Expiration {
+#[prost(message, tag = "9")]
+ExpireTime(::prost_types::Timestamp),
+#[prost(message, tag = "10")]
+Ttl(::prost_types::Duration),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCachedContentsRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCachedContentsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub cached_contents: ::prost::alloc::vec::Vec<CachedContent>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub cached_contents: ::prost::alloc::vec::Vec<CachedContent>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCachedContentRequest {
-    #[prost(message, optional, tag = "1")]
-    pub cached_content: ::core::option::Option<CachedContent>,
+#[prost(message, optional, tag = "1")]
+pub cached_content: ::core::option::Option<CachedContent>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCachedContentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCachedContentRequest {
-    #[prost(message, optional, tag = "1")]
-    pub cached_content: ::core::option::Option<CachedContent>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub cached_content: ::core::option::Option<CachedContent>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCachedContentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod cache_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// API for managing cache of content (CachedContent resources) that can be used
-    /// in GenerativeService requests. This way generate content requests can benefit
-    /// from preprocessing work being done earlier, possibly lowering their
-    /// computational cost. It is intended to be used with large contexts.
-    #[derive(Debug, Clone)]
-    pub struct CacheServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> CacheServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> CacheServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            CacheServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists CachedContents.
-        pub async fn list_cached_contents(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCachedContentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCachedContentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.CacheService/ListCachedContents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.CacheService",
-                        "ListCachedContents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates CachedContent resource.
-        pub async fn create_cached_content(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCachedContentRequest>,
-        ) -> std::result::Result<tonic::Response<super::CachedContent>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.CacheService/CreateCachedContent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.CacheService",
-                        "CreateCachedContent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Reads CachedContent resource.
-        pub async fn get_cached_content(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCachedContentRequest>,
-        ) -> std::result::Result<tonic::Response<super::CachedContent>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.CacheService/GetCachedContent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.CacheService",
-                        "GetCachedContent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates CachedContent resource (only expiration is updatable).
-        pub async fn update_cached_content(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCachedContentRequest>,
-        ) -> std::result::Result<tonic::Response<super::CachedContent>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.CacheService/UpdateCachedContent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.CacheService",
-                        "UpdateCachedContent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes CachedContent resource.
-        pub async fn delete_cached_content(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteCachedContentRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.CacheService/DeleteCachedContent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.CacheService",
-                        "DeleteCachedContent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// API for managing cache of content (CachedContent resources) that can be used
+/// in GenerativeService requests. This way generate content requests can benefit
+/// from preprocessing work being done earlier, possibly lowering their
+/// computational cost. It is intended to be used with large contexts.
+#[derive(Debug, Clone)]
+pub struct CacheServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> CacheServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> CacheServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+CacheServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists CachedContents.
+pub async fn list_cached_contents(&mut self, request: impl tonic::IntoRequest<super::ListCachedContentsRequest>) -> std::result::Result<tonic::Response<super::ListCachedContentsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.CacheService/ListCachedContents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.CacheService", "ListCachedContents"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates CachedContent resource.
+pub async fn create_cached_content(&mut self, request: impl tonic::IntoRequest<super::CreateCachedContentRequest>) -> std::result::Result<tonic::Response<super::CachedContent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.CacheService/CreateCachedContent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.CacheService", "CreateCachedContent"));
+self.inner.unary(req, path, codec).await
+}
+/// Reads CachedContent resource.
+pub async fn get_cached_content(&mut self, request: impl tonic::IntoRequest<super::GetCachedContentRequest>) -> std::result::Result<tonic::Response<super::CachedContent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.CacheService/GetCachedContent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.CacheService", "GetCachedContent"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates CachedContent resource (only expiration is updatable).
+pub async fn update_cached_content(&mut self, request: impl tonic::IntoRequest<super::UpdateCachedContentRequest>) -> std::result::Result<tonic::Response<super::CachedContent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.CacheService/UpdateCachedContent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.CacheService", "UpdateCachedContent"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes CachedContent resource.
+pub async fn delete_cached_content(&mut self, request: impl tonic::IntoRequest<super::DeleteCachedContentRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.CacheService/DeleteCachedContent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.CacheService", "DeleteCachedContent"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Corpus {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Document {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub custom_metadata: ::prost::alloc::vec::Vec<CustomMetadata>,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub custom_metadata: ::prost::alloc::vec::Vec<CustomMetadata>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StringList {
-    #[prost(string, repeated, tag = "1")]
-    pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomMetadata {
-    #[prost(string, tag = "1")]
-    pub key: ::prost::alloc::string::String,
-    #[prost(oneof = "custom_metadata::Value", tags = "2, 6, 7")]
-    pub value: ::core::option::Option<custom_metadata::Value>,
+#[prost(string, tag = "1")]
+pub key: ::prost::alloc::string::String,
+#[prost(oneof = "custom_metadata::Value", tags = "2, 6, 7")]
+pub value: ::core::option::Option<custom_metadata::Value>,
 }
 /// Nested message and enum types in `CustomMetadata`.
 pub mod custom_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Value {
-        #[prost(string, tag = "2")]
-        StringValue(::prost::alloc::string::String),
-        #[prost(message, tag = "6")]
-        StringListValue(super::StringList),
-        #[prost(float, tag = "7")]
-        NumericValue(f32),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Value {
+#[prost(string, tag = "2")]
+StringValue(::prost::alloc::string::String),
+#[prost(message, tag = "6")]
+StringListValue(super::StringList),
+#[prost(float, tag = "7")]
+NumericValue(f32),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetadataFilter {
-    #[prost(string, tag = "1")]
-    pub key: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub conditions: ::prost::alloc::vec::Vec<Condition>,
+#[prost(string, tag = "1")]
+pub key: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub conditions: ::prost::alloc::vec::Vec<Condition>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Condition {
-    #[prost(enumeration = "condition::Operator", tag = "5")]
-    pub operation: i32,
-    #[prost(oneof = "condition::Value", tags = "1, 6")]
-    pub value: ::core::option::Option<condition::Value>,
+#[prost(enumeration = "condition::Operator", tag = "5")]
+pub operation: i32,
+#[prost(oneof = "condition::Value", tags = "1, 6")]
+pub value: ::core::option::Option<condition::Value>,
 }
 /// Nested message and enum types in `Condition`.
 pub mod condition {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Operator {
-        Unspecified = 0,
-        Less = 1,
-        LessEqual = 2,
-        Equal = 3,
-        GreaterEqual = 4,
-        Greater = 5,
-        NotEqual = 6,
-        Includes = 7,
-        Excludes = 8,
-    }
-    impl Operator {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Operator::Unspecified => "OPERATOR_UNSPECIFIED",
-                Operator::Less => "LESS",
-                Operator::LessEqual => "LESS_EQUAL",
-                Operator::Equal => "EQUAL",
-                Operator::GreaterEqual => "GREATER_EQUAL",
-                Operator::Greater => "GREATER",
-                Operator::NotEqual => "NOT_EQUAL",
-                Operator::Includes => "INCLUDES",
-                Operator::Excludes => "EXCLUDES",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
-                "LESS" => Some(Self::Less),
-                "LESS_EQUAL" => Some(Self::LessEqual),
-                "EQUAL" => Some(Self::Equal),
-                "GREATER_EQUAL" => Some(Self::GreaterEqual),
-                "GREATER" => Some(Self::Greater),
-                "NOT_EQUAL" => Some(Self::NotEqual),
-                "INCLUDES" => Some(Self::Includes),
-                "EXCLUDES" => Some(Self::Excludes),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Value {
-        #[prost(string, tag = "1")]
-        StringValue(::prost::alloc::string::String),
-        #[prost(float, tag = "6")]
-        NumericValue(f32),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Operator {
+Unspecified = 0,
+Less = 1,
+LessEqual = 2,
+Equal = 3,
+GreaterEqual = 4,
+Greater = 5,
+NotEqual = 6,
+Includes = 7,
+Excludes = 8,
+}
+impl Operator {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Operator::Unspecified => "OPERATOR_UNSPECIFIED",
+Operator::Less => "LESS",
+Operator::LessEqual => "LESS_EQUAL",
+Operator::Equal => "EQUAL",
+Operator::GreaterEqual => "GREATER_EQUAL",
+Operator::Greater => "GREATER",
+Operator::NotEqual => "NOT_EQUAL",
+Operator::Includes => "INCLUDES",
+Operator::Excludes => "EXCLUDES",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
+"LESS" => Some(Self::Less),
+"LESS_EQUAL" => Some(Self::LessEqual),
+"EQUAL" => Some(Self::Equal),
+"GREATER_EQUAL" => Some(Self::GreaterEqual),
+"GREATER" => Some(Self::Greater),
+"NOT_EQUAL" => Some(Self::NotEqual),
+"INCLUDES" => Some(Self::Includes),
+"EXCLUDES" => Some(Self::Excludes),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Value {
+#[prost(string, tag = "1")]
+StringValue(::prost::alloc::string::String),
+#[prost(float, tag = "6")]
+NumericValue(f32),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Chunk {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub data: ::core::option::Option<ChunkData>,
-    #[prost(message, repeated, tag = "3")]
-    pub custom_metadata: ::prost::alloc::vec::Vec<CustomMetadata>,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "chunk::State", tag = "6")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub data: ::core::option::Option<ChunkData>,
+#[prost(message, repeated, tag = "3")]
+pub custom_metadata: ::prost::alloc::vec::Vec<CustomMetadata>,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "chunk::State", tag = "6")]
+pub state: i32,
 }
 /// Nested message and enum types in `Chunk`.
 pub mod chunk {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        PendingProcessing = 1,
-        Active = 2,
-        Failed = 10,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::PendingProcessing => "STATE_PENDING_PROCESSING",
-                State::Active => "STATE_ACTIVE",
-                State::Failed => "STATE_FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STATE_PENDING_PROCESSING" => Some(Self::PendingProcessing),
-                "STATE_ACTIVE" => Some(Self::Active),
-                "STATE_FAILED" => Some(Self::Failed),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+PendingProcessing = 1,
+Active = 2,
+Failed = 10,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::PendingProcessing => "STATE_PENDING_PROCESSING",
+State::Active => "STATE_ACTIVE",
+State::Failed => "STATE_FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"STATE_PENDING_PROCESSING" => Some(Self::PendingProcessing),
+"STATE_ACTIVE" => Some(Self::Active),
+"STATE_FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChunkData {
-    #[prost(oneof = "chunk_data::Data", tags = "1")]
-    pub data: ::core::option::Option<chunk_data::Data>,
+#[prost(oneof = "chunk_data::Data", tags = "1")]
+pub data: ::core::option::Option<chunk_data::Data>,
 }
 /// Nested message and enum types in `ChunkData`.
 pub mod chunk_data {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Data {
-        #[prost(string, tag = "1")]
-        StringValue(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Data {
+#[prost(string, tag = "1")]
+StringValue(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CitationMetadata {
-    #[prost(message, repeated, tag = "1")]
-    pub citation_sources: ::prost::alloc::vec::Vec<CitationSource>,
+#[prost(message, repeated, tag = "1")]
+pub citation_sources: ::prost::alloc::vec::Vec<CitationSource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CitationSource {
-    #[prost(int32, optional, tag = "1")]
-    pub start_index: ::core::option::Option<i32>,
-    #[prost(int32, optional, tag = "2")]
-    pub end_index: ::core::option::Option<i32>,
-    #[prost(string, optional, tag = "3")]
-    pub uri: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "4")]
-    pub license: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int32, optional, tag = "1")]
+pub start_index: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "2")]
+pub end_index: ::core::option::Option<i32>,
+#[prost(string, optional, tag = "3")]
+pub uri: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "4")]
+pub license: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContentFilter {
-    #[prost(enumeration = "content_filter::BlockedReason", tag = "1")]
-    pub reason: i32,
-    #[prost(string, optional, tag = "2")]
-    pub message: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(enumeration = "content_filter::BlockedReason", tag = "1")]
+pub reason: i32,
+#[prost(string, optional, tag = "2")]
+pub message: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `ContentFilter`.
 pub mod content_filter {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum BlockedReason {
-        Unspecified = 0,
-        Safety = 1,
-        Other = 2,
-    }
-    impl BlockedReason {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                BlockedReason::Unspecified => "BLOCKED_REASON_UNSPECIFIED",
-                BlockedReason::Safety => "SAFETY",
-                BlockedReason::Other => "OTHER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "BLOCKED_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                "SAFETY" => Some(Self::Safety),
-                "OTHER" => Some(Self::Other),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum BlockedReason {
+Unspecified = 0,
+Safety = 1,
+Other = 2,
+}
+impl BlockedReason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+BlockedReason::Unspecified => "BLOCKED_REASON_UNSPECIFIED",
+BlockedReason::Safety => "SAFETY",
+BlockedReason::Other => "OTHER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BLOCKED_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"SAFETY" => Some(Self::Safety),
+"OTHER" => Some(Self::Other),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SafetyFeedback {
-    #[prost(message, optional, tag = "1")]
-    pub rating: ::core::option::Option<SafetyRating>,
-    #[prost(message, optional, tag = "2")]
-    pub setting: ::core::option::Option<SafetySetting>,
+#[prost(message, optional, tag = "1")]
+pub rating: ::core::option::Option<SafetyRating>,
+#[prost(message, optional, tag = "2")]
+pub setting: ::core::option::Option<SafetySetting>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SafetyRating {
-    #[prost(enumeration = "HarmCategory", tag = "3")]
-    pub category: i32,
-    #[prost(enumeration = "safety_rating::HarmProbability", tag = "4")]
-    pub probability: i32,
-    #[prost(bool, tag = "5")]
-    pub blocked: bool,
+#[prost(enumeration = "HarmCategory", tag = "3")]
+pub category: i32,
+#[prost(enumeration = "safety_rating::HarmProbability", tag = "4")]
+pub probability: i32,
+#[prost(bool, tag = "5")]
+pub blocked: bool,
 }
 /// Nested message and enum types in `SafetyRating`.
 pub mod safety_rating {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum HarmProbability {
-        Unspecified = 0,
-        Negligible = 1,
-        Low = 2,
-        Medium = 3,
-        High = 4,
-    }
-    impl HarmProbability {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                HarmProbability::Unspecified => "HARM_PROBABILITY_UNSPECIFIED",
-                HarmProbability::Negligible => "NEGLIGIBLE",
-                HarmProbability::Low => "LOW",
-                HarmProbability::Medium => "MEDIUM",
-                HarmProbability::High => "HIGH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "HARM_PROBABILITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "NEGLIGIBLE" => Some(Self::Negligible),
-                "LOW" => Some(Self::Low),
-                "MEDIUM" => Some(Self::Medium),
-                "HIGH" => Some(Self::High),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum HarmProbability {
+Unspecified = 0,
+Negligible = 1,
+Low = 2,
+Medium = 3,
+High = 4,
+}
+impl HarmProbability {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+HarmProbability::Unspecified => "HARM_PROBABILITY_UNSPECIFIED",
+HarmProbability::Negligible => "NEGLIGIBLE",
+HarmProbability::Low => "LOW",
+HarmProbability::Medium => "MEDIUM",
+HarmProbability::High => "HIGH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"HARM_PROBABILITY_UNSPECIFIED" => Some(Self::Unspecified),
+"NEGLIGIBLE" => Some(Self::Negligible),
+"LOW" => Some(Self::Low),
+"MEDIUM" => Some(Self::Medium),
+"HIGH" => Some(Self::High),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SafetySetting {
-    #[prost(enumeration = "HarmCategory", tag = "3")]
-    pub category: i32,
-    #[prost(enumeration = "safety_setting::HarmBlockThreshold", tag = "4")]
-    pub threshold: i32,
+#[prost(enumeration = "HarmCategory", tag = "3")]
+pub category: i32,
+#[prost(enumeration = "safety_setting::HarmBlockThreshold", tag = "4")]
+pub threshold: i32,
 }
 /// Nested message and enum types in `SafetySetting`.
 pub mod safety_setting {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum HarmBlockThreshold {
-        Unspecified = 0,
-        BlockLowAndAbove = 1,
-        BlockMediumAndAbove = 2,
-        BlockOnlyHigh = 3,
-        BlockNone = 4,
-    }
-    impl HarmBlockThreshold {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                HarmBlockThreshold::Unspecified => "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
-                HarmBlockThreshold::BlockLowAndAbove => "BLOCK_LOW_AND_ABOVE",
-                HarmBlockThreshold::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
-                HarmBlockThreshold::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
-                HarmBlockThreshold::BlockNone => "BLOCK_NONE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "HARM_BLOCK_THRESHOLD_UNSPECIFIED" => Some(Self::Unspecified),
-                "BLOCK_LOW_AND_ABOVE" => Some(Self::BlockLowAndAbove),
-                "BLOCK_MEDIUM_AND_ABOVE" => Some(Self::BlockMediumAndAbove),
-                "BLOCK_ONLY_HIGH" => Some(Self::BlockOnlyHigh),
-                "BLOCK_NONE" => Some(Self::BlockNone),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum HarmBlockThreshold {
+Unspecified = 0,
+BlockLowAndAbove = 1,
+BlockMediumAndAbove = 2,
+BlockOnlyHigh = 3,
+BlockNone = 4,
+}
+impl HarmBlockThreshold {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+HarmBlockThreshold::Unspecified => "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+HarmBlockThreshold::BlockLowAndAbove => "BLOCK_LOW_AND_ABOVE",
+HarmBlockThreshold::BlockMediumAndAbove => "BLOCK_MEDIUM_AND_ABOVE",
+HarmBlockThreshold::BlockOnlyHigh => "BLOCK_ONLY_HIGH",
+HarmBlockThreshold::BlockNone => "BLOCK_NONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"HARM_BLOCK_THRESHOLD_UNSPECIFIED" => Some(Self::Unspecified),
+"BLOCK_LOW_AND_ABOVE" => Some(Self::BlockLowAndAbove),
+"BLOCK_MEDIUM_AND_ABOVE" => Some(Self::BlockMediumAndAbove),
+"BLOCK_ONLY_HIGH" => Some(Self::BlockOnlyHigh),
+"BLOCK_NONE" => Some(Self::BlockNone),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum HarmCategory {
-    Unspecified = 0,
-    Derogatory = 1,
-    Toxicity = 2,
-    Violence = 3,
-    Sexual = 4,
-    Medical = 5,
-    Dangerous = 6,
-    Harassment = 7,
-    HateSpeech = 8,
-    SexuallyExplicit = 9,
-    DangerousContent = 10,
+Unspecified = 0,
+Derogatory = 1,
+Toxicity = 2,
+Violence = 3,
+Sexual = 4,
+Medical = 5,
+Dangerous = 6,
+Harassment = 7,
+HateSpeech = 8,
+SexuallyExplicit = 9,
+DangerousContent = 10,
 }
 impl HarmCategory {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            HarmCategory::Unspecified => "HARM_CATEGORY_UNSPECIFIED",
-            HarmCategory::Derogatory => "HARM_CATEGORY_DEROGATORY",
-            HarmCategory::Toxicity => "HARM_CATEGORY_TOXICITY",
-            HarmCategory::Violence => "HARM_CATEGORY_VIOLENCE",
-            HarmCategory::Sexual => "HARM_CATEGORY_SEXUAL",
-            HarmCategory::Medical => "HARM_CATEGORY_MEDICAL",
-            HarmCategory::Dangerous => "HARM_CATEGORY_DANGEROUS",
-            HarmCategory::Harassment => "HARM_CATEGORY_HARASSMENT",
-            HarmCategory::HateSpeech => "HARM_CATEGORY_HATE_SPEECH",
-            HarmCategory::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-            HarmCategory::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "HARM_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
-            "HARM_CATEGORY_DEROGATORY" => Some(Self::Derogatory),
-            "HARM_CATEGORY_TOXICITY" => Some(Self::Toxicity),
-            "HARM_CATEGORY_VIOLENCE" => Some(Self::Violence),
-            "HARM_CATEGORY_SEXUAL" => Some(Self::Sexual),
-            "HARM_CATEGORY_MEDICAL" => Some(Self::Medical),
-            "HARM_CATEGORY_DANGEROUS" => Some(Self::Dangerous),
-            "HARM_CATEGORY_HARASSMENT" => Some(Self::Harassment),
-            "HARM_CATEGORY_HATE_SPEECH" => Some(Self::HateSpeech),
-            "HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
-            "HARM_CATEGORY_DANGEROUS_CONTENT" => Some(Self::DangerousContent),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+HarmCategory::Unspecified => "HARM_CATEGORY_UNSPECIFIED",
+HarmCategory::Derogatory => "HARM_CATEGORY_DEROGATORY",
+HarmCategory::Toxicity => "HARM_CATEGORY_TOXICITY",
+HarmCategory::Violence => "HARM_CATEGORY_VIOLENCE",
+HarmCategory::Sexual => "HARM_CATEGORY_SEXUAL",
+HarmCategory::Medical => "HARM_CATEGORY_MEDICAL",
+HarmCategory::Dangerous => "HARM_CATEGORY_DANGEROUS",
+HarmCategory::Harassment => "HARM_CATEGORY_HARASSMENT",
+HarmCategory::HateSpeech => "HARM_CATEGORY_HATE_SPEECH",
+HarmCategory::SexuallyExplicit => "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+HarmCategory::DangerousContent => "HARM_CATEGORY_DANGEROUS_CONTENT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"HARM_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+"HARM_CATEGORY_DEROGATORY" => Some(Self::Derogatory),
+"HARM_CATEGORY_TOXICITY" => Some(Self::Toxicity),
+"HARM_CATEGORY_VIOLENCE" => Some(Self::Violence),
+"HARM_CATEGORY_SEXUAL" => Some(Self::Sexual),
+"HARM_CATEGORY_MEDICAL" => Some(Self::Medical),
+"HARM_CATEGORY_DANGEROUS" => Some(Self::Dangerous),
+"HARM_CATEGORY_HARASSMENT" => Some(Self::Harassment),
+"HARM_CATEGORY_HATE_SPEECH" => Some(Self::HateSpeech),
+"HARM_CATEGORY_SEXUALLY_EXPLICIT" => Some(Self::SexuallyExplicit),
+"HARM_CATEGORY_DANGEROUS_CONTENT" => Some(Self::DangerousContent),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateTextRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub prompt: ::core::option::Option<TextPrompt>,
-    #[prost(float, optional, tag = "3")]
-    pub temperature: ::core::option::Option<f32>,
-    #[prost(int32, optional, tag = "4")]
-    pub candidate_count: ::core::option::Option<i32>,
-    #[prost(int32, optional, tag = "5")]
-    pub max_output_tokens: ::core::option::Option<i32>,
-    #[prost(float, optional, tag = "6")]
-    pub top_p: ::core::option::Option<f32>,
-    #[prost(int32, optional, tag = "7")]
-    pub top_k: ::core::option::Option<i32>,
-    #[prost(message, repeated, tag = "8")]
-    pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
-    #[prost(string, repeated, tag = "9")]
-    pub stop_sequences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub prompt: ::core::option::Option<TextPrompt>,
+#[prost(float, optional, tag = "3")]
+pub temperature: ::core::option::Option<f32>,
+#[prost(int32, optional, tag = "4")]
+pub candidate_count: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "5")]
+pub max_output_tokens: ::core::option::Option<i32>,
+#[prost(float, optional, tag = "6")]
+pub top_p: ::core::option::Option<f32>,
+#[prost(int32, optional, tag = "7")]
+pub top_k: ::core::option::Option<i32>,
+#[prost(message, repeated, tag = "8")]
+pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
+#[prost(string, repeated, tag = "9")]
+pub stop_sequences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateTextResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub candidates: ::prost::alloc::vec::Vec<TextCompletion>,
-    #[prost(message, repeated, tag = "3")]
-    pub filters: ::prost::alloc::vec::Vec<ContentFilter>,
-    #[prost(message, repeated, tag = "4")]
-    pub safety_feedback: ::prost::alloc::vec::Vec<SafetyFeedback>,
+#[prost(message, repeated, tag = "1")]
+pub candidates: ::prost::alloc::vec::Vec<TextCompletion>,
+#[prost(message, repeated, tag = "3")]
+pub filters: ::prost::alloc::vec::Vec<ContentFilter>,
+#[prost(message, repeated, tag = "4")]
+pub safety_feedback: ::prost::alloc::vec::Vec<SafetyFeedback>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextPrompt {
-    #[prost(string, tag = "1")]
-    pub text: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub text: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextCompletion {
-    #[prost(string, tag = "1")]
-    pub output: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub safety_ratings: ::prost::alloc::vec::Vec<SafetyRating>,
-    #[prost(message, optional, tag = "3")]
-    pub citation_metadata: ::core::option::Option<CitationMetadata>,
+#[prost(string, tag = "1")]
+pub output: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub safety_ratings: ::prost::alloc::vec::Vec<SafetyRating>,
+#[prost(message, optional, tag = "3")]
+pub citation_metadata: ::core::option::Option<CitationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EmbedTextRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub text: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub text: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EmbedTextResponse {
-    #[prost(message, optional, tag = "1")]
-    pub embedding: ::core::option::Option<Embedding>,
+#[prost(message, optional, tag = "1")]
+pub embedding: ::core::option::Option<Embedding>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchEmbedTextRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub texts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "3")]
-    pub requests: ::prost::alloc::vec::Vec<EmbedTextRequest>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub texts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "3")]
+pub requests: ::prost::alloc::vec::Vec<EmbedTextRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchEmbedTextResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub embeddings: ::prost::alloc::vec::Vec<Embedding>,
+#[prost(message, repeated, tag = "1")]
+pub embeddings: ::prost::alloc::vec::Vec<Embedding>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Embedding {
-    #[prost(float, repeated, tag = "1")]
-    pub value: ::prost::alloc::vec::Vec<f32>,
+#[prost(float, repeated, tag = "1")]
+pub value: ::prost::alloc::vec::Vec<f32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CountTextTokensRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub prompt: ::core::option::Option<TextPrompt>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub prompt: ::core::option::Option<TextPrompt>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CountTextTokensResponse {
-    #[prost(int32, tag = "1")]
-    pub token_count: i32,
+#[prost(int32, tag = "1")]
+pub token_count: i32,
 }
 /// Generated client implementations.
 pub mod text_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// API for using Generative Language Models (GLMs) trained to generate text.
-    ///
-    /// Also known as Large Language Models (LLM)s, these generate text given an
-    /// input prompt from the user.
-    #[derive(Debug, Clone)]
-    pub struct TextServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> TextServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> TextServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            TextServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Generates a response from the model given an input message.
-        pub async fn generate_text(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateTextRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GenerateTextResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.TextService/GenerateText",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.TextService",
-                        "GenerateText",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Generates an embedding from the model given an input message.
-        pub async fn embed_text(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EmbedTextRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::EmbedTextResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.TextService/EmbedText",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.TextService",
-                        "EmbedText",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Generates multiple embeddings from the model given input text in a
-        /// synchronous call.
-        pub async fn batch_embed_text(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchEmbedTextRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchEmbedTextResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.TextService/BatchEmbedText",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.TextService",
-                        "BatchEmbedText",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Runs a model's tokenizer on a text and returns the token count.
-        pub async fn count_text_tokens(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CountTextTokensRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CountTextTokensResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.TextService/CountTextTokens",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.TextService",
-                        "CountTextTokens",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// API for using Generative Language Models (GLMs) trained to generate text.
+///
+/// Also known as Large Language Models (LLM)s, these generate text given an
+/// input prompt from the user.
+#[derive(Debug, Clone)]
+pub struct TextServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> TextServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> TextServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+TextServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Generates a response from the model given an input message.
+pub async fn generate_text(&mut self, request: impl tonic::IntoRequest<super::GenerateTextRequest>) -> std::result::Result<tonic::Response<super::GenerateTextResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.TextService/GenerateText");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.TextService", "GenerateText"));
+self.inner.unary(req, path, codec).await
+}
+/// Generates an embedding from the model given an input message.
+pub async fn embed_text(&mut self, request: impl tonic::IntoRequest<super::EmbedTextRequest>) -> std::result::Result<tonic::Response<super::EmbedTextResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.TextService/EmbedText");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.TextService", "EmbedText"));
+self.inner.unary(req, path, codec).await
+}
+/// Generates multiple embeddings from the model given input text in a
+/// synchronous call.
+pub async fn batch_embed_text(&mut self, request: impl tonic::IntoRequest<super::BatchEmbedTextRequest>) -> std::result::Result<tonic::Response<super::BatchEmbedTextResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.TextService/BatchEmbedText");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.TextService", "BatchEmbedText"));
+self.inner.unary(req, path, codec).await
+}
+/// Runs a model's tokenizer on a text and returns the token count.
+pub async fn count_text_tokens(&mut self, request: impl tonic::IntoRequest<super::CountTextTokensRequest>) -> std::result::Result<tonic::Response<super::CountTextTokensResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.TextService/CountTextTokens");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.TextService", "CountTextTokens"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateContentRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub system_instruction: ::core::option::Option<Content>,
-    #[prost(message, repeated, tag = "2")]
-    pub contents: ::prost::alloc::vec::Vec<Content>,
-    #[prost(message, repeated, tag = "5")]
-    pub tools: ::prost::alloc::vec::Vec<Tool>,
-    #[prost(message, optional, tag = "7")]
-    pub tool_config: ::core::option::Option<ToolConfig>,
-    #[prost(message, repeated, tag = "3")]
-    pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
-    #[prost(message, optional, tag = "4")]
-    pub generation_config: ::core::option::Option<GenerationConfig>,
-    #[prost(string, optional, tag = "9")]
-    pub cached_content: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub system_instruction: ::core::option::Option<Content>,
+#[prost(message, repeated, tag = "2")]
+pub contents: ::prost::alloc::vec::Vec<Content>,
+#[prost(message, repeated, tag = "5")]
+pub tools: ::prost::alloc::vec::Vec<Tool>,
+#[prost(message, optional, tag = "7")]
+pub tool_config: ::core::option::Option<ToolConfig>,
+#[prost(message, repeated, tag = "3")]
+pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
+#[prost(message, optional, tag = "4")]
+pub generation_config: ::core::option::Option<GenerationConfig>,
+#[prost(string, optional, tag = "9")]
+pub cached_content: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerationConfig {
-    #[prost(int32, optional, tag = "1")]
-    pub candidate_count: ::core::option::Option<i32>,
-    #[prost(string, repeated, tag = "2")]
-    pub stop_sequences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(int32, optional, tag = "4")]
-    pub max_output_tokens: ::core::option::Option<i32>,
-    #[prost(float, optional, tag = "5")]
-    pub temperature: ::core::option::Option<f32>,
-    #[prost(float, optional, tag = "6")]
-    pub top_p: ::core::option::Option<f32>,
-    #[prost(int32, optional, tag = "7")]
-    pub top_k: ::core::option::Option<i32>,
-    #[prost(string, tag = "13")]
-    pub response_mime_type: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "14")]
-    pub response_schema: ::core::option::Option<Schema>,
+#[prost(int32, optional, tag = "1")]
+pub candidate_count: ::core::option::Option<i32>,
+#[prost(string, repeated, tag = "2")]
+pub stop_sequences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, optional, tag = "4")]
+pub max_output_tokens: ::core::option::Option<i32>,
+#[prost(float, optional, tag = "5")]
+pub temperature: ::core::option::Option<f32>,
+#[prost(float, optional, tag = "6")]
+pub top_p: ::core::option::Option<f32>,
+#[prost(int32, optional, tag = "7")]
+pub top_k: ::core::option::Option<i32>,
+#[prost(string, tag = "13")]
+pub response_mime_type: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "14")]
+pub response_schema: ::core::option::Option<Schema>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SemanticRetrieverConfig {
-    #[prost(string, tag = "1")]
-    pub source: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub query: ::core::option::Option<Content>,
-    #[prost(message, repeated, tag = "3")]
-    pub metadata_filters: ::prost::alloc::vec::Vec<MetadataFilter>,
-    #[prost(int32, optional, tag = "4")]
-    pub max_chunks_count: ::core::option::Option<i32>,
-    #[prost(float, optional, tag = "5")]
-    pub minimum_relevance_score: ::core::option::Option<f32>,
+#[prost(string, tag = "1")]
+pub source: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub query: ::core::option::Option<Content>,
+#[prost(message, repeated, tag = "3")]
+pub metadata_filters: ::prost::alloc::vec::Vec<MetadataFilter>,
+#[prost(int32, optional, tag = "4")]
+pub max_chunks_count: ::core::option::Option<i32>,
+#[prost(float, optional, tag = "5")]
+pub minimum_relevance_score: ::core::option::Option<f32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateContentResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub candidates: ::prost::alloc::vec::Vec<Candidate>,
-    #[prost(message, optional, tag = "2")]
-    pub prompt_feedback: ::core::option::Option<
-        generate_content_response::PromptFeedback,
-    >,
-    #[prost(message, optional, tag = "3")]
-    pub usage_metadata: ::core::option::Option<generate_content_response::UsageMetadata>,
+#[prost(message, repeated, tag = "1")]
+pub candidates: ::prost::alloc::vec::Vec<Candidate>,
+#[prost(message, optional, tag = "2")]
+pub prompt_feedback: ::core::option::Option<generate_content_response::PromptFeedback>,
+#[prost(message, optional, tag = "3")]
+pub usage_metadata: ::core::option::Option<generate_content_response::UsageMetadata>,
 }
 /// Nested message and enum types in `GenerateContentResponse`.
 pub mod generate_content_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct PromptFeedback {
-        #[prost(enumeration = "prompt_feedback::BlockReason", tag = "1")]
-        pub block_reason: i32,
-        #[prost(message, repeated, tag = "2")]
-        pub safety_ratings: ::prost::alloc::vec::Vec<super::SafetyRating>,
-    }
-    /// Nested message and enum types in `PromptFeedback`.
-    pub mod prompt_feedback {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum BlockReason {
-            Unspecified = 0,
-            Safety = 1,
-            Other = 2,
-        }
-        impl BlockReason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    BlockReason::Unspecified => "BLOCK_REASON_UNSPECIFIED",
-                    BlockReason::Safety => "SAFETY",
-                    BlockReason::Other => "OTHER",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "BLOCK_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "SAFETY" => Some(Self::Safety),
-                    "OTHER" => Some(Self::Other),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct UsageMetadata {
-        #[prost(int32, tag = "1")]
-        pub prompt_token_count: i32,
-        #[prost(int32, tag = "4")]
-        pub cached_content_token_count: i32,
-        #[prost(int32, tag = "2")]
-        pub candidates_token_count: i32,
-        #[prost(int32, tag = "3")]
-        pub total_token_count: i32,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PromptFeedback {
+#[prost(enumeration = "prompt_feedback::BlockReason", tag = "1")]
+pub block_reason: i32,
+#[prost(message, repeated, tag = "2")]
+pub safety_ratings: ::prost::alloc::vec::Vec<super::SafetyRating>,
+}
+/// Nested message and enum types in `PromptFeedback`.
+pub mod prompt_feedback {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum BlockReason {
+Unspecified = 0,
+Safety = 1,
+Other = 2,
+}
+impl BlockReason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+BlockReason::Unspecified => "BLOCK_REASON_UNSPECIFIED",
+BlockReason::Safety => "SAFETY",
+BlockReason::Other => "OTHER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BLOCK_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"SAFETY" => Some(Self::Safety),
+"OTHER" => Some(Self::Other),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UsageMetadata {
+#[prost(int32, tag = "1")]
+pub prompt_token_count: i32,
+#[prost(int32, tag = "4")]
+pub cached_content_token_count: i32,
+#[prost(int32, tag = "2")]
+pub candidates_token_count: i32,
+#[prost(int32, tag = "3")]
+pub total_token_count: i32,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Candidate {
-    #[prost(int32, optional, tag = "3")]
-    pub index: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "1")]
-    pub content: ::core::option::Option<Content>,
-    #[prost(enumeration = "candidate::FinishReason", tag = "2")]
-    pub finish_reason: i32,
-    #[prost(message, repeated, tag = "5")]
-    pub safety_ratings: ::prost::alloc::vec::Vec<SafetyRating>,
-    #[prost(message, optional, tag = "6")]
-    pub citation_metadata: ::core::option::Option<CitationMetadata>,
-    #[prost(int32, tag = "7")]
-    pub token_count: i32,
-    #[prost(message, repeated, tag = "8")]
-    pub grounding_attributions: ::prost::alloc::vec::Vec<GroundingAttribution>,
+#[prost(int32, optional, tag = "3")]
+pub index: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "1")]
+pub content: ::core::option::Option<Content>,
+#[prost(enumeration = "candidate::FinishReason", tag = "2")]
+pub finish_reason: i32,
+#[prost(message, repeated, tag = "5")]
+pub safety_ratings: ::prost::alloc::vec::Vec<SafetyRating>,
+#[prost(message, optional, tag = "6")]
+pub citation_metadata: ::core::option::Option<CitationMetadata>,
+#[prost(int32, tag = "7")]
+pub token_count: i32,
+#[prost(message, repeated, tag = "8")]
+pub grounding_attributions: ::prost::alloc::vec::Vec<GroundingAttribution>,
 }
 /// Nested message and enum types in `Candidate`.
 pub mod candidate {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum FinishReason {
-        Unspecified = 0,
-        Stop = 1,
-        MaxTokens = 2,
-        Safety = 3,
-        Recitation = 4,
-        Other = 5,
-    }
-    impl FinishReason {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                FinishReason::Unspecified => "FINISH_REASON_UNSPECIFIED",
-                FinishReason::Stop => "STOP",
-                FinishReason::MaxTokens => "MAX_TOKENS",
-                FinishReason::Safety => "SAFETY",
-                FinishReason::Recitation => "RECITATION",
-                FinishReason::Other => "OTHER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "FINISH_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                "STOP" => Some(Self::Stop),
-                "MAX_TOKENS" => Some(Self::MaxTokens),
-                "SAFETY" => Some(Self::Safety),
-                "RECITATION" => Some(Self::Recitation),
-                "OTHER" => Some(Self::Other),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum FinishReason {
+Unspecified = 0,
+Stop = 1,
+MaxTokens = 2,
+Safety = 3,
+Recitation = 4,
+Other = 5,
+}
+impl FinishReason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+FinishReason::Unspecified => "FINISH_REASON_UNSPECIFIED",
+FinishReason::Stop => "STOP",
+FinishReason::MaxTokens => "MAX_TOKENS",
+FinishReason::Safety => "SAFETY",
+FinishReason::Recitation => "RECITATION",
+FinishReason::Other => "OTHER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FINISH_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"STOP" => Some(Self::Stop),
+"MAX_TOKENS" => Some(Self::MaxTokens),
+"SAFETY" => Some(Self::Safety),
+"RECITATION" => Some(Self::Recitation),
+"OTHER" => Some(Self::Other),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttributionSourceId {
-    #[prost(oneof = "attribution_source_id::Source", tags = "1, 2")]
-    pub source: ::core::option::Option<attribution_source_id::Source>,
+#[prost(oneof = "attribution_source_id::Source", tags = "1, 2")]
+pub source: ::core::option::Option<attribution_source_id::Source>,
 }
 /// Nested message and enum types in `AttributionSourceId`.
 pub mod attribution_source_id {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GroundingPassageId {
-        #[prost(string, tag = "1")]
-        pub passage_id: ::prost::alloc::string::String,
-        #[prost(int32, tag = "2")]
-        pub part_index: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SemanticRetrieverChunk {
-        #[prost(string, tag = "1")]
-        pub source: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub chunk: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "1")]
-        GroundingPassage(GroundingPassageId),
-        #[prost(message, tag = "2")]
-        SemanticRetrieverChunk(SemanticRetrieverChunk),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GroundingPassageId {
+#[prost(string, tag = "1")]
+pub passage_id: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub part_index: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SemanticRetrieverChunk {
+#[prost(string, tag = "1")]
+pub source: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub chunk: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "1")]
+GroundingPassage(GroundingPassageId),
+#[prost(message, tag = "2")]
+SemanticRetrieverChunk(SemanticRetrieverChunk),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GroundingAttribution {
-    #[prost(message, optional, tag = "3")]
-    pub source_id: ::core::option::Option<AttributionSourceId>,
-    #[prost(message, optional, tag = "2")]
-    pub content: ::core::option::Option<Content>,
+#[prost(message, optional, tag = "3")]
+pub source_id: ::core::option::Option<AttributionSourceId>,
+#[prost(message, optional, tag = "2")]
+pub content: ::core::option::Option<Content>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAnswerRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub contents: ::prost::alloc::vec::Vec<Content>,
-    #[prost(enumeration = "generate_answer_request::AnswerStyle", tag = "5")]
-    pub answer_style: i32,
-    #[prost(message, repeated, tag = "3")]
-    pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
-    #[prost(float, optional, tag = "4")]
-    pub temperature: ::core::option::Option<f32>,
-    #[prost(oneof = "generate_answer_request::GroundingSource", tags = "6, 7")]
-    pub grounding_source: ::core::option::Option<
-        generate_answer_request::GroundingSource,
-    >,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub contents: ::prost::alloc::vec::Vec<Content>,
+#[prost(enumeration = "generate_answer_request::AnswerStyle", tag = "5")]
+pub answer_style: i32,
+#[prost(message, repeated, tag = "3")]
+pub safety_settings: ::prost::alloc::vec::Vec<SafetySetting>,
+#[prost(float, optional, tag = "4")]
+pub temperature: ::core::option::Option<f32>,
+#[prost(oneof = "generate_answer_request::GroundingSource", tags = "6, 7")]
+pub grounding_source: ::core::option::Option<generate_answer_request::GroundingSource>,
 }
 /// Nested message and enum types in `GenerateAnswerRequest`.
 pub mod generate_answer_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AnswerStyle {
-        Unspecified = 0,
-        Abstractive = 1,
-        Extractive = 2,
-        Verbose = 3,
-    }
-    impl AnswerStyle {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AnswerStyle::Unspecified => "ANSWER_STYLE_UNSPECIFIED",
-                AnswerStyle::Abstractive => "ABSTRACTIVE",
-                AnswerStyle::Extractive => "EXTRACTIVE",
-                AnswerStyle::Verbose => "VERBOSE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ANSWER_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ABSTRACTIVE" => Some(Self::Abstractive),
-                "EXTRACTIVE" => Some(Self::Extractive),
-                "VERBOSE" => Some(Self::Verbose),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum GroundingSource {
-        #[prost(message, tag = "6")]
-        InlinePassages(super::GroundingPassages),
-        #[prost(message, tag = "7")]
-        SemanticRetriever(super::SemanticRetrieverConfig),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AnswerStyle {
+Unspecified = 0,
+Abstractive = 1,
+Extractive = 2,
+Verbose = 3,
+}
+impl AnswerStyle {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AnswerStyle::Unspecified => "ANSWER_STYLE_UNSPECIFIED",
+AnswerStyle::Abstractive => "ABSTRACTIVE",
+AnswerStyle::Extractive => "EXTRACTIVE",
+AnswerStyle::Verbose => "VERBOSE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ANSWER_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
+"ABSTRACTIVE" => Some(Self::Abstractive),
+"EXTRACTIVE" => Some(Self::Extractive),
+"VERBOSE" => Some(Self::Verbose),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum GroundingSource {
+#[prost(message, tag = "6")]
+InlinePassages(super::GroundingPassages),
+#[prost(message, tag = "7")]
+SemanticRetriever(super::SemanticRetrieverConfig),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateAnswerResponse {
-    #[prost(message, optional, tag = "1")]
-    pub answer: ::core::option::Option<Candidate>,
-    #[prost(float, optional, tag = "2")]
-    pub answerable_probability: ::core::option::Option<f32>,
-    #[prost(message, optional, tag = "3")]
-    pub input_feedback: ::core::option::Option<generate_answer_response::InputFeedback>,
+#[prost(message, optional, tag = "1")]
+pub answer: ::core::option::Option<Candidate>,
+#[prost(float, optional, tag = "2")]
+pub answerable_probability: ::core::option::Option<f32>,
+#[prost(message, optional, tag = "3")]
+pub input_feedback: ::core::option::Option<generate_answer_response::InputFeedback>,
 }
 /// Nested message and enum types in `GenerateAnswerResponse`.
 pub mod generate_answer_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct InputFeedback {
-        #[prost(enumeration = "input_feedback::BlockReason", optional, tag = "1")]
-        pub block_reason: ::core::option::Option<i32>,
-        #[prost(message, repeated, tag = "2")]
-        pub safety_ratings: ::prost::alloc::vec::Vec<super::SafetyRating>,
-    }
-    /// Nested message and enum types in `InputFeedback`.
-    pub mod input_feedback {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum BlockReason {
-            Unspecified = 0,
-            Safety = 1,
-            Other = 2,
-        }
-        impl BlockReason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    BlockReason::Unspecified => "BLOCK_REASON_UNSPECIFIED",
-                    BlockReason::Safety => "SAFETY",
-                    BlockReason::Other => "OTHER",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "BLOCK_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "SAFETY" => Some(Self::Safety),
-                    "OTHER" => Some(Self::Other),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InputFeedback {
+#[prost(enumeration = "input_feedback::BlockReason", optional, tag = "1")]
+pub block_reason: ::core::option::Option<i32>,
+#[prost(message, repeated, tag = "2")]
+pub safety_ratings: ::prost::alloc::vec::Vec<super::SafetyRating>,
+}
+/// Nested message and enum types in `InputFeedback`.
+pub mod input_feedback {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum BlockReason {
+Unspecified = 0,
+Safety = 1,
+Other = 2,
+}
+impl BlockReason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+BlockReason::Unspecified => "BLOCK_REASON_UNSPECIFIED",
+BlockReason::Safety => "SAFETY",
+BlockReason::Other => "OTHER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BLOCK_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"SAFETY" => Some(Self::Safety),
+"OTHER" => Some(Self::Other),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EmbedContentRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub content: ::core::option::Option<Content>,
-    #[prost(enumeration = "TaskType", optional, tag = "3")]
-    pub task_type: ::core::option::Option<i32>,
-    #[prost(string, optional, tag = "4")]
-    pub title: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(int32, optional, tag = "5")]
-    pub output_dimensionality: ::core::option::Option<i32>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub content: ::core::option::Option<Content>,
+#[prost(enumeration = "TaskType", optional, tag = "3")]
+pub task_type: ::core::option::Option<i32>,
+#[prost(string, optional, tag = "4")]
+pub title: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int32, optional, tag = "5")]
+pub output_dimensionality: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContentEmbedding {
-    #[prost(float, repeated, tag = "1")]
-    pub values: ::prost::alloc::vec::Vec<f32>,
+#[prost(float, repeated, tag = "1")]
+pub values: ::prost::alloc::vec::Vec<f32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EmbedContentResponse {
-    #[prost(message, optional, tag = "1")]
-    pub embedding: ::core::option::Option<ContentEmbedding>,
+#[prost(message, optional, tag = "1")]
+pub embedding: ::core::option::Option<ContentEmbedding>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchEmbedContentsRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub requests: ::prost::alloc::vec::Vec<EmbedContentRequest>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub requests: ::prost::alloc::vec::Vec<EmbedContentRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchEmbedContentsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub embeddings: ::prost::alloc::vec::Vec<ContentEmbedding>,
+#[prost(message, repeated, tag = "1")]
+pub embeddings: ::prost::alloc::vec::Vec<ContentEmbedding>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CountTokensRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub contents: ::prost::alloc::vec::Vec<Content>,
-    #[prost(message, optional, tag = "3")]
-    pub generate_content_request: ::core::option::Option<GenerateContentRequest>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub contents: ::prost::alloc::vec::Vec<Content>,
+#[prost(message, optional, tag = "3")]
+pub generate_content_request: ::core::option::Option<GenerateContentRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CountTokensResponse {
-    #[prost(int32, tag = "1")]
-    pub total_tokens: i32,
-    #[prost(int32, tag = "5")]
-    pub cached_content_token_count: i32,
+#[prost(int32, tag = "1")]
+pub total_tokens: i32,
+#[prost(int32, tag = "5")]
+pub cached_content_token_count: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TaskType {
-    Unspecified = 0,
-    RetrievalQuery = 1,
-    RetrievalDocument = 2,
-    SemanticSimilarity = 3,
-    Classification = 4,
-    Clustering = 5,
-    QuestionAnswering = 6,
-    FactVerification = 7,
+Unspecified = 0,
+RetrievalQuery = 1,
+RetrievalDocument = 2,
+SemanticSimilarity = 3,
+Classification = 4,
+Clustering = 5,
+QuestionAnswering = 6,
+FactVerification = 7,
 }
 impl TaskType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TaskType::Unspecified => "TASK_TYPE_UNSPECIFIED",
-            TaskType::RetrievalQuery => "RETRIEVAL_QUERY",
-            TaskType::RetrievalDocument => "RETRIEVAL_DOCUMENT",
-            TaskType::SemanticSimilarity => "SEMANTIC_SIMILARITY",
-            TaskType::Classification => "CLASSIFICATION",
-            TaskType::Clustering => "CLUSTERING",
-            TaskType::QuestionAnswering => "QUESTION_ANSWERING",
-            TaskType::FactVerification => "FACT_VERIFICATION",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TASK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "RETRIEVAL_QUERY" => Some(Self::RetrievalQuery),
-            "RETRIEVAL_DOCUMENT" => Some(Self::RetrievalDocument),
-            "SEMANTIC_SIMILARITY" => Some(Self::SemanticSimilarity),
-            "CLASSIFICATION" => Some(Self::Classification),
-            "CLUSTERING" => Some(Self::Clustering),
-            "QUESTION_ANSWERING" => Some(Self::QuestionAnswering),
-            "FACT_VERIFICATION" => Some(Self::FactVerification),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TaskType::Unspecified => "TASK_TYPE_UNSPECIFIED",
+TaskType::RetrievalQuery => "RETRIEVAL_QUERY",
+TaskType::RetrievalDocument => "RETRIEVAL_DOCUMENT",
+TaskType::SemanticSimilarity => "SEMANTIC_SIMILARITY",
+TaskType::Classification => "CLASSIFICATION",
+TaskType::Clustering => "CLUSTERING",
+TaskType::QuestionAnswering => "QUESTION_ANSWERING",
+TaskType::FactVerification => "FACT_VERIFICATION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TASK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"RETRIEVAL_QUERY" => Some(Self::RetrievalQuery),
+"RETRIEVAL_DOCUMENT" => Some(Self::RetrievalDocument),
+"SEMANTIC_SIMILARITY" => Some(Self::SemanticSimilarity),
+"CLASSIFICATION" => Some(Self::Classification),
+"CLUSTERING" => Some(Self::Clustering),
+"QUESTION_ANSWERING" => Some(Self::QuestionAnswering),
+"FACT_VERIFICATION" => Some(Self::FactVerification),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod generative_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// API for using Large Models that generate multimodal content and have
-    /// additional capabilities beyond text generation.
-    #[derive(Debug, Clone)]
-    pub struct GenerativeServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> GenerativeServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> GenerativeServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            GenerativeServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Generates a response from the model given an input
-        /// `GenerateContentRequest`.
-        ///
-        /// Input capabilities differ between models, including tuned models. See the
-        /// [model guide](https://ai.google.dev/models/gemini) and
-        /// [tuning guide](https://ai.google.dev/docs/model_tuning_guidance) for
-        /// details.
-        pub async fn generate_content(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateContentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GenerateContentResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.GenerativeService/GenerateContent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.GenerativeService",
-                        "GenerateContent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Generates a grounded answer from the model given an input
-        /// `GenerateAnswerRequest`.
-        pub async fn generate_answer(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateAnswerRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GenerateAnswerResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.GenerativeService/GenerateAnswer",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.GenerativeService",
-                        "GenerateAnswer",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Generates a streamed response from the model given an input
-        /// `GenerateContentRequest`.
-        pub async fn stream_generate_content(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateContentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::GenerateContentResponse>>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.GenerativeService/StreamGenerateContent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.GenerativeService",
-                        "StreamGenerateContent",
-                    ),
-                );
-            self.inner.server_streaming(req, path, codec).await
-        }
-        /// Generates an embedding from the model given an input `Content`.
-        pub async fn embed_content(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EmbedContentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::EmbedContentResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.GenerativeService/EmbedContent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.GenerativeService",
-                        "EmbedContent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Generates multiple embeddings from the model given input text in a
-        /// synchronous call.
-        pub async fn batch_embed_contents(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchEmbedContentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchEmbedContentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.GenerativeService/BatchEmbedContents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.GenerativeService",
-                        "BatchEmbedContents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Runs a model's tokenizer on input content and returns the token count.
-        pub async fn count_tokens(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CountTokensRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CountTokensResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.GenerativeService/CountTokens",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.GenerativeService",
-                        "CountTokens",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// API for using Large Models that generate multimodal content and have
+/// additional capabilities beyond text generation.
+#[derive(Debug, Clone)]
+pub struct GenerativeServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> GenerativeServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> GenerativeServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+GenerativeServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Generates a response from the model given an input
+/// `GenerateContentRequest`.
+///
+/// Input capabilities differ between models, including tuned models. See the
+/// [model guide](https://ai.google.dev/models/gemini) and
+/// [tuning guide](https://ai.google.dev/docs/model_tuning_guidance) for
+/// details.
+pub async fn generate_content(&mut self, request: impl tonic::IntoRequest<super::GenerateContentRequest>) -> std::result::Result<tonic::Response<super::GenerateContentResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.GenerativeService/GenerateContent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.GenerativeService", "GenerateContent"));
+self.inner.unary(req, path, codec).await
+}
+/// Generates a grounded answer from the model given an input
+/// `GenerateAnswerRequest`.
+pub async fn generate_answer(&mut self, request: impl tonic::IntoRequest<super::GenerateAnswerRequest>) -> std::result::Result<tonic::Response<super::GenerateAnswerResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.GenerativeService/GenerateAnswer");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.GenerativeService", "GenerateAnswer"));
+self.inner.unary(req, path, codec).await
+}
+/// Generates a streamed response from the model given an input
+/// `GenerateContentRequest`.
+pub async fn stream_generate_content(&mut self, request: impl tonic::IntoRequest<super::GenerateContentRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::GenerateContentResponse>>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.GenerativeService/StreamGenerateContent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.GenerativeService", "StreamGenerateContent"));
+self.inner.server_streaming(req, path, codec).await
+}
+/// Generates an embedding from the model given an input `Content`.
+pub async fn embed_content(&mut self, request: impl tonic::IntoRequest<super::EmbedContentRequest>) -> std::result::Result<tonic::Response<super::EmbedContentResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.GenerativeService/EmbedContent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.GenerativeService", "EmbedContent"));
+self.inner.unary(req, path, codec).await
+}
+/// Generates multiple embeddings from the model given input text in a
+/// synchronous call.
+pub async fn batch_embed_contents(&mut self, request: impl tonic::IntoRequest<super::BatchEmbedContentsRequest>) -> std::result::Result<tonic::Response<super::BatchEmbedContentsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.GenerativeService/BatchEmbedContents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.GenerativeService", "BatchEmbedContents"));
+self.inner.unary(req, path, codec).await
+}
+/// Runs a model's tokenizer on input content and returns the token count.
+pub async fn count_tokens(&mut self, request: impl tonic::IntoRequest<super::CountTokensRequest>) -> std::result::Result<tonic::Response<super::CountTokensResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.GenerativeService/CountTokens");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.GenerativeService", "CountTokens"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Permission {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "permission::GranteeType", optional, tag = "2")]
-    pub grantee_type: ::core::option::Option<i32>,
-    #[prost(string, optional, tag = "3")]
-    pub email_address: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(enumeration = "permission::Role", optional, tag = "4")]
-    pub role: ::core::option::Option<i32>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "permission::GranteeType", optional, tag = "2")]
+pub grantee_type: ::core::option::Option<i32>,
+#[prost(string, optional, tag = "3")]
+pub email_address: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(enumeration = "permission::Role", optional, tag = "4")]
+pub role: ::core::option::Option<i32>,
 }
 /// Nested message and enum types in `Permission`.
 pub mod permission {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum GranteeType {
-        Unspecified = 0,
-        User = 1,
-        Group = 2,
-        Everyone = 3,
-    }
-    impl GranteeType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                GranteeType::Unspecified => "GRANTEE_TYPE_UNSPECIFIED",
-                GranteeType::User => "USER",
-                GranteeType::Group => "GROUP",
-                GranteeType::Everyone => "EVERYONE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "GRANTEE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "USER" => Some(Self::User),
-                "GROUP" => Some(Self::Group),
-                "EVERYONE" => Some(Self::Everyone),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Role {
-        Unspecified = 0,
-        Owner = 1,
-        Writer = 2,
-        Reader = 3,
-    }
-    impl Role {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Role::Unspecified => "ROLE_UNSPECIFIED",
-                Role::Owner => "OWNER",
-                Role::Writer => "WRITER",
-                Role::Reader => "READER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ROLE_UNSPECIFIED" => Some(Self::Unspecified),
-                "OWNER" => Some(Self::Owner),
-                "WRITER" => Some(Self::Writer),
-                "READER" => Some(Self::Reader),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum GranteeType {
+Unspecified = 0,
+User = 1,
+Group = 2,
+Everyone = 3,
+}
+impl GranteeType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+GranteeType::Unspecified => "GRANTEE_TYPE_UNSPECIFIED",
+GranteeType::User => "USER",
+GranteeType::Group => "GROUP",
+GranteeType::Everyone => "EVERYONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"GRANTEE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"USER" => Some(Self::User),
+"GROUP" => Some(Self::Group),
+"EVERYONE" => Some(Self::Everyone),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Role {
+Unspecified = 0,
+Owner = 1,
+Writer = 2,
+Reader = 3,
+}
+impl Role {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Role::Unspecified => "ROLE_UNSPECIFIED",
+Role::Owner => "OWNER",
+Role::Writer => "WRITER",
+Role::Reader => "READER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ROLE_UNSPECIFIED" => Some(Self::Unspecified),
+"OWNER" => Some(Self::Owner),
+"WRITER" => Some(Self::Writer),
+"READER" => Some(Self::Reader),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateMessageRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub prompt: ::core::option::Option<MessagePrompt>,
-    #[prost(float, optional, tag = "3")]
-    pub temperature: ::core::option::Option<f32>,
-    #[prost(int32, optional, tag = "4")]
-    pub candidate_count: ::core::option::Option<i32>,
-    #[prost(float, optional, tag = "5")]
-    pub top_p: ::core::option::Option<f32>,
-    #[prost(int32, optional, tag = "6")]
-    pub top_k: ::core::option::Option<i32>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub prompt: ::core::option::Option<MessagePrompt>,
+#[prost(float, optional, tag = "3")]
+pub temperature: ::core::option::Option<f32>,
+#[prost(int32, optional, tag = "4")]
+pub candidate_count: ::core::option::Option<i32>,
+#[prost(float, optional, tag = "5")]
+pub top_p: ::core::option::Option<f32>,
+#[prost(int32, optional, tag = "6")]
+pub top_k: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateMessageResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub candidates: ::prost::alloc::vec::Vec<Message>,
-    #[prost(message, repeated, tag = "2")]
-    pub messages: ::prost::alloc::vec::Vec<Message>,
-    #[prost(message, repeated, tag = "3")]
-    pub filters: ::prost::alloc::vec::Vec<ContentFilter>,
+#[prost(message, repeated, tag = "1")]
+pub candidates: ::prost::alloc::vec::Vec<Message>,
+#[prost(message, repeated, tag = "2")]
+pub messages: ::prost::alloc::vec::Vec<Message>,
+#[prost(message, repeated, tag = "3")]
+pub filters: ::prost::alloc::vec::Vec<ContentFilter>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Message {
-    #[prost(string, tag = "1")]
-    pub author: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub content: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub citation_metadata: ::core::option::Option<CitationMetadata>,
+#[prost(string, tag = "1")]
+pub author: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub content: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub citation_metadata: ::core::option::Option<CitationMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MessagePrompt {
-    #[prost(string, tag = "1")]
-    pub context: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub examples: ::prost::alloc::vec::Vec<Example>,
-    #[prost(message, repeated, tag = "3")]
-    pub messages: ::prost::alloc::vec::Vec<Message>,
+#[prost(string, tag = "1")]
+pub context: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub examples: ::prost::alloc::vec::Vec<Example>,
+#[prost(message, repeated, tag = "3")]
+pub messages: ::prost::alloc::vec::Vec<Message>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Example {
-    #[prost(message, optional, tag = "1")]
-    pub input: ::core::option::Option<Message>,
-    #[prost(message, optional, tag = "2")]
-    pub output: ::core::option::Option<Message>,
+#[prost(message, optional, tag = "1")]
+pub input: ::core::option::Option<Message>,
+#[prost(message, optional, tag = "2")]
+pub output: ::core::option::Option<Message>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CountMessageTokensRequest {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub prompt: ::core::option::Option<MessagePrompt>,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub prompt: ::core::option::Option<MessagePrompt>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CountMessageTokensResponse {
-    #[prost(int32, tag = "1")]
-    pub token_count: i32,
+#[prost(int32, tag = "1")]
+pub token_count: i32,
 }
 /// Generated client implementations.
 pub mod discuss_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// An API for using Generative Language Models (GLMs) in dialog applications.
-    ///
-    /// Also known as large language models (LLMs), this API provides models that
-    /// are trained for multi-turn dialog.
-    #[derive(Debug, Clone)]
-    pub struct DiscussServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> DiscussServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> DiscussServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            DiscussServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Generates a response from the model given an input `MessagePrompt`.
-        pub async fn generate_message(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateMessageRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GenerateMessageResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.DiscussService/GenerateMessage",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.DiscussService",
-                        "GenerateMessage",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Runs a model's tokenizer on a string and returns the token count.
-        pub async fn count_message_tokens(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CountMessageTokensRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CountMessageTokensResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.DiscussService/CountMessageTokens",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.DiscussService",
-                        "CountMessageTokens",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// An API for using Generative Language Models (GLMs) in dialog applications.
+///
+/// Also known as large language models (LLMs), this API provides models that
+/// are trained for multi-turn dialog.
+#[derive(Debug, Clone)]
+pub struct DiscussServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> DiscussServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> DiscussServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+DiscussServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Generates a response from the model given an input `MessagePrompt`.
+pub async fn generate_message(&mut self, request: impl tonic::IntoRequest<super::GenerateMessageRequest>) -> std::result::Result<tonic::Response<super::GenerateMessageResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.DiscussService/GenerateMessage");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.DiscussService", "GenerateMessage"));
+self.inner.unary(req, path, codec).await
+}
+/// Runs a model's tokenizer on a string and returns the token count.
+pub async fn count_message_tokens(&mut self, request: impl tonic::IntoRequest<super::CountMessageTokensRequest>) -> std::result::Result<tonic::Response<super::CountMessageTokensResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.DiscussService/CountMessageTokens");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.DiscussService", "CountMessageTokens"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TunedModel {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(float, optional, tag = "11")]
-    pub temperature: ::core::option::Option<f32>,
-    #[prost(float, optional, tag = "12")]
-    pub top_p: ::core::option::Option<f32>,
-    #[prost(int32, optional, tag = "13")]
-    pub top_k: ::core::option::Option<i32>,
-    #[prost(enumeration = "tuned_model::State", tag = "7")]
-    pub state: i32,
-    #[prost(message, optional, tag = "8")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "10")]
-    pub tuning_task: ::core::option::Option<TuningTask>,
-    #[prost(oneof = "tuned_model::SourceModel", tags = "3, 4")]
-    pub source_model: ::core::option::Option<tuned_model::SourceModel>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub description: ::prost::alloc::string::String,
+#[prost(float, optional, tag = "11")]
+pub temperature: ::core::option::Option<f32>,
+#[prost(float, optional, tag = "12")]
+pub top_p: ::core::option::Option<f32>,
+#[prost(int32, optional, tag = "13")]
+pub top_k: ::core::option::Option<i32>,
+#[prost(enumeration = "tuned_model::State", tag = "7")]
+pub state: i32,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub tuning_task: ::core::option::Option<TuningTask>,
+#[prost(oneof = "tuned_model::SourceModel", tags = "3, 4")]
+pub source_model: ::core::option::Option<tuned_model::SourceModel>,
 }
 /// Nested message and enum types in `TunedModel`.
 pub mod tuned_model {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Active = 2,
-        Failed = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "FAILED" => Some(Self::Failed),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum SourceModel {
-        #[prost(message, tag = "3")]
-        TunedModelSource(super::TunedModelSource),
-        #[prost(string, tag = "4")]
-        BaseModel(::prost::alloc::string::String),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Failed = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum SourceModel {
+#[prost(message, tag = "3")]
+TunedModelSource(super::TunedModelSource),
+#[prost(string, tag = "4")]
+BaseModel(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TunedModelSource {
-    #[prost(string, tag = "1")]
-    pub tuned_model: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub base_model: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub tuned_model: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub base_model: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TuningTask {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub complete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, repeated, tag = "3")]
-    pub snapshots: ::prost::alloc::vec::Vec<TuningSnapshot>,
-    #[prost(message, optional, tag = "4")]
-    pub training_data: ::core::option::Option<Dataset>,
-    #[prost(message, optional, tag = "5")]
-    pub hyperparameters: ::core::option::Option<Hyperparameters>,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub complete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, repeated, tag = "3")]
+pub snapshots: ::prost::alloc::vec::Vec<TuningSnapshot>,
+#[prost(message, optional, tag = "4")]
+pub training_data: ::core::option::Option<Dataset>,
+#[prost(message, optional, tag = "5")]
+pub hyperparameters: ::core::option::Option<Hyperparameters>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Hyperparameters {
-    #[prost(int32, optional, tag = "14")]
-    pub epoch_count: ::core::option::Option<i32>,
-    #[prost(int32, optional, tag = "15")]
-    pub batch_size: ::core::option::Option<i32>,
-    #[prost(oneof = "hyperparameters::LearningRateOption", tags = "16, 17")]
-    pub learning_rate_option: ::core::option::Option<
-        hyperparameters::LearningRateOption,
-    >,
+#[prost(int32, optional, tag = "14")]
+pub epoch_count: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "15")]
+pub batch_size: ::core::option::Option<i32>,
+#[prost(oneof = "hyperparameters::LearningRateOption", tags = "16, 17")]
+pub learning_rate_option: ::core::option::Option<hyperparameters::LearningRateOption>,
 }
 /// Nested message and enum types in `Hyperparameters`.
 pub mod hyperparameters {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum LearningRateOption {
-        #[prost(float, tag = "16")]
-        LearningRate(f32),
-        #[prost(float, tag = "17")]
-        LearningRateMultiplier(f32),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum LearningRateOption {
+#[prost(float, tag = "16")]
+LearningRate(f32),
+#[prost(float, tag = "17")]
+LearningRateMultiplier(f32),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dataset {
-    #[prost(oneof = "dataset::Dataset", tags = "1")]
-    pub dataset: ::core::option::Option<dataset::Dataset>,
+#[prost(oneof = "dataset::Dataset", tags = "1")]
+pub dataset: ::core::option::Option<dataset::Dataset>,
 }
 /// Nested message and enum types in `Dataset`.
 pub mod dataset {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Dataset {
-        #[prost(message, tag = "1")]
-        Examples(super::TuningExamples),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Dataset {
+#[prost(message, tag = "1")]
+Examples(super::TuningExamples),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TuningExamples {
-    #[prost(message, repeated, tag = "1")]
-    pub examples: ::prost::alloc::vec::Vec<TuningExample>,
+#[prost(message, repeated, tag = "1")]
+pub examples: ::prost::alloc::vec::Vec<TuningExample>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TuningExample {
-    #[prost(string, tag = "3")]
-    pub output: ::prost::alloc::string::String,
-    #[prost(oneof = "tuning_example::ModelInput", tags = "1")]
-    pub model_input: ::core::option::Option<tuning_example::ModelInput>,
+#[prost(string, tag = "3")]
+pub output: ::prost::alloc::string::String,
+#[prost(oneof = "tuning_example::ModelInput", tags = "1")]
+pub model_input: ::core::option::Option<tuning_example::ModelInput>,
 }
 /// Nested message and enum types in `TuningExample`.
 pub mod tuning_example {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum ModelInput {
-        #[prost(string, tag = "1")]
-        TextInput(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum ModelInput {
+#[prost(string, tag = "1")]
+TextInput(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TuningSnapshot {
-    #[prost(int32, tag = "1")]
-    pub step: i32,
-    #[prost(int32, tag = "2")]
-    pub epoch: i32,
-    #[prost(float, tag = "3")]
-    pub mean_loss: f32,
-    #[prost(message, optional, tag = "4")]
-    pub compute_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int32, tag = "1")]
+pub step: i32,
+#[prost(int32, tag = "2")]
+pub epoch: i32,
+#[prost(float, tag = "3")]
+pub mean_loss: f32,
+#[prost(message, optional, tag = "4")]
+pub compute_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCorpusRequest {
-    #[prost(message, optional, tag = "1")]
-    pub corpus: ::core::option::Option<Corpus>,
+#[prost(message, optional, tag = "1")]
+pub corpus: ::core::option::Option<Corpus>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCorpusRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCorpusRequest {
-    #[prost(message, optional, tag = "1")]
-    pub corpus: ::core::option::Option<Corpus>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub corpus: ::core::option::Option<Corpus>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCorpusRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCorporaRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCorporaResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub corpora: ::prost::alloc::vec::Vec<Corpus>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub corpora: ::prost::alloc::vec::Vec<Corpus>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryCorpusRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub query: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub metadata_filters: ::prost::alloc::vec::Vec<MetadataFilter>,
-    #[prost(int32, tag = "4")]
-    pub results_count: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub query: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub metadata_filters: ::prost::alloc::vec::Vec<MetadataFilter>,
+#[prost(int32, tag = "4")]
+pub results_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryCorpusResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub relevant_chunks: ::prost::alloc::vec::Vec<RelevantChunk>,
+#[prost(message, repeated, tag = "1")]
+pub relevant_chunks: ::prost::alloc::vec::Vec<RelevantChunk>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelevantChunk {
-    #[prost(float, tag = "1")]
-    pub chunk_relevance_score: f32,
-    #[prost(message, optional, tag = "2")]
-    pub chunk: ::core::option::Option<Chunk>,
+#[prost(float, tag = "1")]
+pub chunk_relevance_score: f32,
+#[prost(message, optional, tag = "2")]
+pub chunk: ::core::option::Option<Chunk>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDocumentRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub document: ::core::option::Option<Document>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub document: ::core::option::Option<Document>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDocumentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDocumentRequest {
-    #[prost(message, optional, tag = "1")]
-    pub document: ::core::option::Option<Document>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub document: ::core::option::Option<Document>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDocumentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDocumentsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDocumentsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub documents: ::prost::alloc::vec::Vec<Document>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub documents: ::prost::alloc::vec::Vec<Document>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryDocumentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub query: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub results_count: i32,
-    #[prost(message, repeated, tag = "4")]
-    pub metadata_filters: ::prost::alloc::vec::Vec<MetadataFilter>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub query: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub results_count: i32,
+#[prost(message, repeated, tag = "4")]
+pub metadata_filters: ::prost::alloc::vec::Vec<MetadataFilter>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryDocumentResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub relevant_chunks: ::prost::alloc::vec::Vec<RelevantChunk>,
+#[prost(message, repeated, tag = "1")]
+pub relevant_chunks: ::prost::alloc::vec::Vec<RelevantChunk>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateChunkRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub chunk: ::core::option::Option<Chunk>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub chunk: ::core::option::Option<Chunk>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateChunksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub requests: ::prost::alloc::vec::Vec<CreateChunkRequest>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub requests: ::prost::alloc::vec::Vec<CreateChunkRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateChunksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub chunks: ::prost::alloc::vec::Vec<Chunk>,
+#[prost(message, repeated, tag = "1")]
+pub chunks: ::prost::alloc::vec::Vec<Chunk>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetChunkRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateChunkRequest {
-    #[prost(message, optional, tag = "1")]
-    pub chunk: ::core::option::Option<Chunk>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub chunk: ::core::option::Option<Chunk>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdateChunksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub requests: ::prost::alloc::vec::Vec<UpdateChunkRequest>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub requests: ::prost::alloc::vec::Vec<UpdateChunkRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdateChunksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub chunks: ::prost::alloc::vec::Vec<Chunk>,
+#[prost(message, repeated, tag = "1")]
+pub chunks: ::prost::alloc::vec::Vec<Chunk>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteChunkRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeleteChunksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub requests: ::prost::alloc::vec::Vec<DeleteChunkRequest>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub requests: ::prost::alloc::vec::Vec<DeleteChunkRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChunksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListChunksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub chunks: ::prost::alloc::vec::Vec<Chunk>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub chunks: ::prost::alloc::vec::Vec<Chunk>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod retriever_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// An API for semantic search over a corpus of user uploaded content.
-    #[derive(Debug, Clone)]
-    pub struct RetrieverServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> RetrieverServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> RetrieverServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            RetrieverServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates an empty `Corpus`.
-        pub async fn create_corpus(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCorpusRequest>,
-        ) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/CreateCorpus",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "CreateCorpus",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets information about a specific `Corpus`.
-        pub async fn get_corpus(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCorpusRequest>,
-        ) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/GetCorpus",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "GetCorpus",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a `Corpus`.
-        pub async fn update_corpus(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCorpusRequest>,
-        ) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/UpdateCorpus",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "UpdateCorpus",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a `Corpus`.
-        pub async fn delete_corpus(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteCorpusRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/DeleteCorpus",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "DeleteCorpus",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all `Corpora` owned by the user.
-        pub async fn list_corpora(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCorporaRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCorporaResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/ListCorpora",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "ListCorpora",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Performs semantic search over a `Corpus`.
-        pub async fn query_corpus(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryCorpusRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryCorpusResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/QueryCorpus",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "QueryCorpus",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates an empty `Document`.
-        pub async fn create_document(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateDocumentRequest>,
-        ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/CreateDocument",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "CreateDocument",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets information about a specific `Document`.
-        pub async fn get_document(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDocumentRequest>,
-        ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/GetDocument",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "GetDocument",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a `Document`.
-        pub async fn update_document(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateDocumentRequest>,
-        ) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/UpdateDocument",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "UpdateDocument",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a `Document`.
-        pub async fn delete_document(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteDocumentRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/DeleteDocument",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "DeleteDocument",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all `Document`s in a `Corpus`.
-        pub async fn list_documents(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDocumentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDocumentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/ListDocuments",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "ListDocuments",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Performs semantic search over a `Document`.
-        pub async fn query_document(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryDocumentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryDocumentResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/QueryDocument",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "QueryDocument",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a `Chunk`.
-        pub async fn create_chunk(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateChunkRequest>,
-        ) -> std::result::Result<tonic::Response<super::Chunk>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/CreateChunk",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "CreateChunk",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Batch create `Chunk`s.
-        pub async fn batch_create_chunks(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchCreateChunksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchCreateChunksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/BatchCreateChunks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "BatchCreateChunks",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets information about a specific `Chunk`.
-        pub async fn get_chunk(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetChunkRequest>,
-        ) -> std::result::Result<tonic::Response<super::Chunk>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/GetChunk",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "GetChunk",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a `Chunk`.
-        pub async fn update_chunk(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateChunkRequest>,
-        ) -> std::result::Result<tonic::Response<super::Chunk>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/UpdateChunk",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "UpdateChunk",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Batch update `Chunk`s.
-        pub async fn batch_update_chunks(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchUpdateChunksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchUpdateChunksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/BatchUpdateChunks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "BatchUpdateChunks",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a `Chunk`.
-        pub async fn delete_chunk(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteChunkRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/DeleteChunk",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "DeleteChunk",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Batch delete `Chunk`s.
-        pub async fn batch_delete_chunks(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchDeleteChunksRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/BatchDeleteChunks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "BatchDeleteChunks",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all `Chunk`s in a `Document`.
-        pub async fn list_chunks(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListChunksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListChunksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.RetrieverService/ListChunks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.RetrieverService",
-                        "ListChunks",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// An API for semantic search over a corpus of user uploaded content.
+#[derive(Debug, Clone)]
+pub struct RetrieverServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> RetrieverServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> RetrieverServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+RetrieverServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates an empty `Corpus`.
+pub async fn create_corpus(&mut self, request: impl tonic::IntoRequest<super::CreateCorpusRequest>) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/CreateCorpus");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "CreateCorpus"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets information about a specific `Corpus`.
+pub async fn get_corpus(&mut self, request: impl tonic::IntoRequest<super::GetCorpusRequest>) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/GetCorpus");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "GetCorpus"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a `Corpus`.
+pub async fn update_corpus(&mut self, request: impl tonic::IntoRequest<super::UpdateCorpusRequest>) -> std::result::Result<tonic::Response<super::Corpus>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/UpdateCorpus");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "UpdateCorpus"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a `Corpus`.
+pub async fn delete_corpus(&mut self, request: impl tonic::IntoRequest<super::DeleteCorpusRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/DeleteCorpus");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "DeleteCorpus"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all `Corpora` owned by the user.
+pub async fn list_corpora(&mut self, request: impl tonic::IntoRequest<super::ListCorporaRequest>) -> std::result::Result<tonic::Response<super::ListCorporaResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/ListCorpora");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "ListCorpora"));
+self.inner.unary(req, path, codec).await
+}
+/// Performs semantic search over a `Corpus`.
+pub async fn query_corpus(&mut self, request: impl tonic::IntoRequest<super::QueryCorpusRequest>) -> std::result::Result<tonic::Response<super::QueryCorpusResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/QueryCorpus");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "QueryCorpus"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates an empty `Document`.
+pub async fn create_document(&mut self, request: impl tonic::IntoRequest<super::CreateDocumentRequest>) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/CreateDocument");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "CreateDocument"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets information about a specific `Document`.
+pub async fn get_document(&mut self, request: impl tonic::IntoRequest<super::GetDocumentRequest>) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/GetDocument");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "GetDocument"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a `Document`.
+pub async fn update_document(&mut self, request: impl tonic::IntoRequest<super::UpdateDocumentRequest>) -> std::result::Result<tonic::Response<super::Document>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/UpdateDocument");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "UpdateDocument"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a `Document`.
+pub async fn delete_document(&mut self, request: impl tonic::IntoRequest<super::DeleteDocumentRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/DeleteDocument");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "DeleteDocument"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all `Document`s in a `Corpus`.
+pub async fn list_documents(&mut self, request: impl tonic::IntoRequest<super::ListDocumentsRequest>) -> std::result::Result<tonic::Response<super::ListDocumentsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/ListDocuments");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "ListDocuments"));
+self.inner.unary(req, path, codec).await
+}
+/// Performs semantic search over a `Document`.
+pub async fn query_document(&mut self, request: impl tonic::IntoRequest<super::QueryDocumentRequest>) -> std::result::Result<tonic::Response<super::QueryDocumentResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/QueryDocument");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "QueryDocument"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a `Chunk`.
+pub async fn create_chunk(&mut self, request: impl tonic::IntoRequest<super::CreateChunkRequest>) -> std::result::Result<tonic::Response<super::Chunk>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/CreateChunk");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "CreateChunk"));
+self.inner.unary(req, path, codec).await
+}
+/// Batch create `Chunk`s.
+pub async fn batch_create_chunks(&mut self, request: impl tonic::IntoRequest<super::BatchCreateChunksRequest>) -> std::result::Result<tonic::Response<super::BatchCreateChunksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/BatchCreateChunks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "BatchCreateChunks"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets information about a specific `Chunk`.
+pub async fn get_chunk(&mut self, request: impl tonic::IntoRequest<super::GetChunkRequest>) -> std::result::Result<tonic::Response<super::Chunk>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/GetChunk");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "GetChunk"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a `Chunk`.
+pub async fn update_chunk(&mut self, request: impl tonic::IntoRequest<super::UpdateChunkRequest>) -> std::result::Result<tonic::Response<super::Chunk>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/UpdateChunk");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "UpdateChunk"));
+self.inner.unary(req, path, codec).await
+}
+/// Batch update `Chunk`s.
+pub async fn batch_update_chunks(&mut self, request: impl tonic::IntoRequest<super::BatchUpdateChunksRequest>) -> std::result::Result<tonic::Response<super::BatchUpdateChunksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/BatchUpdateChunks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "BatchUpdateChunks"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a `Chunk`.
+pub async fn delete_chunk(&mut self, request: impl tonic::IntoRequest<super::DeleteChunkRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/DeleteChunk");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "DeleteChunk"));
+self.inner.unary(req, path, codec).await
+}
+/// Batch delete `Chunk`s.
+pub async fn batch_delete_chunks(&mut self, request: impl tonic::IntoRequest<super::BatchDeleteChunksRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/BatchDeleteChunks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "BatchDeleteChunks"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all `Chunk`s in a `Document`.
+pub async fn list_chunks(&mut self, request: impl tonic::IntoRequest<super::ListChunksRequest>) -> std::result::Result<tonic::Response<super::ListChunksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.RetrieverService/ListChunks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.RetrieverService", "ListChunks"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Model {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub base_model_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub version: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(int32, tag = "6")]
-    pub input_token_limit: i32,
-    #[prost(int32, tag = "7")]
-    pub output_token_limit: i32,
-    #[prost(string, repeated, tag = "8")]
-    pub supported_generation_methods: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(float, optional, tag = "9")]
-    pub temperature: ::core::option::Option<f32>,
-    #[prost(float, optional, tag = "13")]
-    pub max_temperature: ::core::option::Option<f32>,
-    #[prost(float, optional, tag = "10")]
-    pub top_p: ::core::option::Option<f32>,
-    #[prost(int32, optional, tag = "11")]
-    pub top_k: ::core::option::Option<i32>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub base_model_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub version: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(int32, tag = "6")]
+pub input_token_limit: i32,
+#[prost(int32, tag = "7")]
+pub output_token_limit: i32,
+#[prost(string, repeated, tag = "8")]
+pub supported_generation_methods: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(float, optional, tag = "9")]
+pub temperature: ::core::option::Option<f32>,
+#[prost(float, optional, tag = "13")]
+pub max_temperature: ::core::option::Option<f32>,
+#[prost(float, optional, tag = "10")]
+pub top_p: ::core::option::Option<f32>,
+#[prost(int32, optional, tag = "11")]
+pub top_k: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateFileRequest {
-    #[prost(message, optional, tag = "1")]
-    pub file: ::core::option::Option<File>,
+#[prost(message, optional, tag = "1")]
+pub file: ::core::option::Option<File>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateFileResponse {
-    #[prost(message, optional, tag = "1")]
-    pub file: ::core::option::Option<File>,
+#[prost(message, optional, tag = "1")]
+pub file: ::core::option::Option<File>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFilesRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFilesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub files: ::prost::alloc::vec::Vec<File>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub files: ::prost::alloc::vec::Vec<File>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFileRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteFileRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod file_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// An API for uploading and managing files.
-    #[derive(Debug, Clone)]
-    pub struct FileServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> FileServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> FileServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            FileServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a `File`.
-        pub async fn create_file(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateFileRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CreateFileResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.FileService/CreateFile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.FileService",
-                        "CreateFile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the metadata for `File`s owned by the requesting project.
-        pub async fn list_files(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListFilesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListFilesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.FileService/ListFiles",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.FileService",
-                        "ListFiles",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the metadata for the given `File`.
-        pub async fn get_file(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetFileRequest>,
-        ) -> std::result::Result<tonic::Response<super::File>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.FileService/GetFile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.FileService",
-                        "GetFile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the `File`.
-        pub async fn delete_file(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteFileRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.FileService/DeleteFile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.FileService",
-                        "DeleteFile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// An API for uploading and managing files.
+#[derive(Debug, Clone)]
+pub struct FileServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> FileServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> FileServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+FileServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a `File`.
+pub async fn create_file(&mut self, request: impl tonic::IntoRequest<super::CreateFileRequest>) -> std::result::Result<tonic::Response<super::CreateFileResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.FileService/CreateFile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.FileService", "CreateFile"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the metadata for `File`s owned by the requesting project.
+pub async fn list_files(&mut self, request: impl tonic::IntoRequest<super::ListFilesRequest>) -> std::result::Result<tonic::Response<super::ListFilesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.FileService/ListFiles");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.FileService", "ListFiles"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the metadata for the given `File`.
+pub async fn get_file(&mut self, request: impl tonic::IntoRequest<super::GetFileRequest>) -> std::result::Result<tonic::Response<super::File>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.FileService/GetFile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.FileService", "GetFile"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the `File`.
+pub async fn delete_file(&mut self, request: impl tonic::IntoRequest<super::DeleteFileRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.FileService/DeleteFile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.FileService", "DeleteFile"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePermissionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub permission: ::core::option::Option<Permission>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub permission: ::core::option::Option<Permission>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPermissionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPermissionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPermissionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub permissions: ::prost::alloc::vec::Vec<Permission>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub permissions: ::prost::alloc::vec::Vec<Permission>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePermissionRequest {
-    #[prost(message, optional, tag = "1")]
-    pub permission: ::core::option::Option<Permission>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub permission: ::core::option::Option<Permission>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePermissionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferOwnershipRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub email_address: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub email_address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TransferOwnershipResponse {}
 /// Generated client implementations.
 pub mod permission_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Provides methods for managing permissions to PaLM API resources.
-    #[derive(Debug, Clone)]
-    pub struct PermissionServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> PermissionServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> PermissionServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            PermissionServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Create a permission to a specific resource.
-        pub async fn create_permission(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePermissionRequest>,
-        ) -> std::result::Result<tonic::Response<super::Permission>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.PermissionService/CreatePermission",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.PermissionService",
-                        "CreatePermission",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets information about a specific Permission.
-        pub async fn get_permission(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPermissionRequest>,
-        ) -> std::result::Result<tonic::Response<super::Permission>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.PermissionService/GetPermission",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.PermissionService",
-                        "GetPermission",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists permissions for the specific resource.
-        pub async fn list_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPermissionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPermissionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.PermissionService/ListPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.PermissionService",
-                        "ListPermissions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the permission.
-        pub async fn update_permission(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdatePermissionRequest>,
-        ) -> std::result::Result<tonic::Response<super::Permission>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.PermissionService/UpdatePermission",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.PermissionService",
-                        "UpdatePermission",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the permission.
-        pub async fn delete_permission(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePermissionRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.PermissionService/DeletePermission",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.PermissionService",
-                        "DeletePermission",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Transfers ownership of the tuned model.
-        /// This is the only way to change ownership of the tuned model.
-        /// The current owner will be downgraded to writer role.
-        pub async fn transfer_ownership(
-            &mut self,
-            request: impl tonic::IntoRequest<super::TransferOwnershipRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::TransferOwnershipResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.PermissionService/TransferOwnership",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.PermissionService",
-                        "TransferOwnership",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Provides methods for managing permissions to PaLM API resources.
+#[derive(Debug, Clone)]
+pub struct PermissionServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> PermissionServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> PermissionServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+PermissionServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Create a permission to a specific resource.
+pub async fn create_permission(&mut self, request: impl tonic::IntoRequest<super::CreatePermissionRequest>) -> std::result::Result<tonic::Response<super::Permission>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.PermissionService/CreatePermission");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.PermissionService", "CreatePermission"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets information about a specific Permission.
+pub async fn get_permission(&mut self, request: impl tonic::IntoRequest<super::GetPermissionRequest>) -> std::result::Result<tonic::Response<super::Permission>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.PermissionService/GetPermission");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.PermissionService", "GetPermission"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists permissions for the specific resource.
+pub async fn list_permissions(&mut self, request: impl tonic::IntoRequest<super::ListPermissionsRequest>) -> std::result::Result<tonic::Response<super::ListPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.PermissionService/ListPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.PermissionService", "ListPermissions"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the permission.
+pub async fn update_permission(&mut self, request: impl tonic::IntoRequest<super::UpdatePermissionRequest>) -> std::result::Result<tonic::Response<super::Permission>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.PermissionService/UpdatePermission");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.PermissionService", "UpdatePermission"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the permission.
+pub async fn delete_permission(&mut self, request: impl tonic::IntoRequest<super::DeletePermissionRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.PermissionService/DeletePermission");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.PermissionService", "DeletePermission"));
+self.inner.unary(req, path, codec).await
+}
+/// Transfers ownership of the tuned model.
+/// This is the only way to change ownership of the tuned model.
+/// The current owner will be downgraded to writer role.
+pub async fn transfer_ownership(&mut self, request: impl tonic::IntoRequest<super::TransferOwnershipRequest>) -> std::result::Result<tonic::Response<super::TransferOwnershipResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.PermissionService/TransferOwnership");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.PermissionService", "TransferOwnership"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetModelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelsRequest {
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub models: ::prost::alloc::vec::Vec<Model>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub models: ::prost::alloc::vec::Vec<Model>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTunedModelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTunedModelsRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTunedModelsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub tuned_models: ::prost::alloc::vec::Vec<TunedModel>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub tuned_models: ::prost::alloc::vec::Vec<TunedModel>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTunedModelRequest {
-    #[prost(string, optional, tag = "1")]
-    pub tuned_model_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub tuned_model: ::core::option::Option<TunedModel>,
+#[prost(string, optional, tag = "1")]
+pub tuned_model_id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "2")]
+pub tuned_model: ::core::option::Option<TunedModel>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTunedModelMetadata {
-    #[prost(string, tag = "5")]
-    pub tuned_model: ::prost::alloc::string::String,
-    #[prost(int32, tag = "1")]
-    pub total_steps: i32,
-    #[prost(int32, tag = "2")]
-    pub completed_steps: i32,
-    #[prost(float, tag = "3")]
-    pub completed_percent: f32,
-    #[prost(message, repeated, tag = "4")]
-    pub snapshots: ::prost::alloc::vec::Vec<TuningSnapshot>,
+#[prost(string, tag = "5")]
+pub tuned_model: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub total_steps: i32,
+#[prost(int32, tag = "2")]
+pub completed_steps: i32,
+#[prost(float, tag = "3")]
+pub completed_percent: f32,
+#[prost(message, repeated, tag = "4")]
+pub snapshots: ::prost::alloc::vec::Vec<TuningSnapshot>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTunedModelRequest {
-    #[prost(message, optional, tag = "1")]
-    pub tuned_model: ::core::option::Option<TunedModel>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub tuned_model: ::core::option::Option<TunedModel>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTunedModelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod model_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Provides methods for getting metadata information about Generative Models.
-    #[derive(Debug, Clone)]
-    pub struct ModelServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ModelServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ModelServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ModelServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets information about a specific Model.
-        pub async fn get_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetModelRequest>,
-        ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.ModelService/GetModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.ModelService",
-                        "GetModel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists models available through the API.
-        pub async fn list_models(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListModelsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListModelsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.ModelService/ListModels",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.ModelService",
-                        "ListModels",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets information about a specific TunedModel.
-        pub async fn get_tuned_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTunedModelRequest>,
-        ) -> std::result::Result<tonic::Response<super::TunedModel>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.ModelService/GetTunedModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.ModelService",
-                        "GetTunedModel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists tuned models owned by the user.
-        pub async fn list_tuned_models(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTunedModelsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTunedModelsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.ModelService/ListTunedModels",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.ModelService",
-                        "ListTunedModels",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a tuned model.
-        /// Intermediate tuning progress (if any) is accessed through the
-        /// [google.longrunning.Operations] service.
-        ///
-        /// Status and results can be accessed through the Operations service.
-        /// Example:
-        ///   GET /v1/tunedModels/az2mb0bpw6i/operations/000-111-222
-        pub async fn create_tuned_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateTunedModelRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.ModelService/CreateTunedModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.ModelService",
-                        "CreateTunedModel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a tuned model.
-        pub async fn update_tuned_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateTunedModelRequest>,
-        ) -> std::result::Result<tonic::Response<super::TunedModel>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.ModelService/UpdateTunedModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.ModelService",
-                        "UpdateTunedModel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a tuned model.
-        pub async fn delete_tuned_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteTunedModelRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.ai.generativelanguage.v1beta.ModelService/DeleteTunedModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.ai.generativelanguage.v1beta.ModelService",
-                        "DeleteTunedModel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Provides methods for getting metadata information about Generative Models.
+#[derive(Debug, Clone)]
+pub struct ModelServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ModelServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ModelServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ModelServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets information about a specific Model.
+pub async fn get_model(&mut self, request: impl tonic::IntoRequest<super::GetModelRequest>) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.ModelService/GetModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.ModelService", "GetModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists models available through the API.
+pub async fn list_models(&mut self, request: impl tonic::IntoRequest<super::ListModelsRequest>) -> std::result::Result<tonic::Response<super::ListModelsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.ModelService/ListModels");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.ModelService", "ListModels"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets information about a specific TunedModel.
+pub async fn get_tuned_model(&mut self, request: impl tonic::IntoRequest<super::GetTunedModelRequest>) -> std::result::Result<tonic::Response<super::TunedModel>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.ModelService/GetTunedModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.ModelService", "GetTunedModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists tuned models owned by the user.
+pub async fn list_tuned_models(&mut self, request: impl tonic::IntoRequest<super::ListTunedModelsRequest>) -> std::result::Result<tonic::Response<super::ListTunedModelsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.ModelService/ListTunedModels");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.ModelService", "ListTunedModels"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a tuned model.
+/// Intermediate tuning progress (if any) is accessed through the
+/// [google.longrunning.Operations] service.
+///
+/// Status and results can be accessed through the Operations service.
+/// Example:
+///   GET /v1/tunedModels/az2mb0bpw6i/operations/000-111-222
+pub async fn create_tuned_model(&mut self, request: impl tonic::IntoRequest<super::CreateTunedModelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.ModelService/CreateTunedModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.ModelService", "CreateTunedModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a tuned model.
+pub async fn update_tuned_model(&mut self, request: impl tonic::IntoRequest<super::UpdateTunedModelRequest>) -> std::result::Result<tonic::Response<super::TunedModel>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.ModelService/UpdateTunedModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.ModelService", "UpdateTunedModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a tuned model.
+pub async fn delete_tuned_model(&mut self, request: impl tonic::IntoRequest<super::DeleteTunedModelRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.ai.generativelanguage.v1beta.ModelService/DeleteTunedModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.ai.generativelanguage.v1beta.ModelService", "DeleteTunedModel"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

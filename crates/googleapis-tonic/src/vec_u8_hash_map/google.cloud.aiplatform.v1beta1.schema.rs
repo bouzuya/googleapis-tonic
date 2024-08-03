@@ -2,332 +2,332 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageDatasetMetadata {
-    #[prost(string, tag = "1")]
-    pub data_item_schema_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub gcs_bucket: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub data_item_schema_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub gcs_bucket: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextDatasetMetadata {
-    #[prost(string, tag = "1")]
-    pub data_item_schema_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub gcs_bucket: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub data_item_schema_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub gcs_bucket: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoDatasetMetadata {
-    #[prost(string, tag = "1")]
-    pub data_item_schema_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub gcs_bucket: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub data_item_schema_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub gcs_bucket: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TablesDatasetMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub input_config: ::core::option::Option<tables_dataset_metadata::InputConfig>,
+#[prost(message, optional, tag = "1")]
+pub input_config: ::core::option::Option<tables_dataset_metadata::InputConfig>,
 }
 /// Nested message and enum types in `TablesDatasetMetadata`.
 pub mod tables_dataset_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct InputConfig {
-        #[prost(oneof = "input_config::Source", tags = "1, 2")]
-        pub source: ::core::option::Option<input_config::Source>,
-    }
-    /// Nested message and enum types in `InputConfig`.
-    pub mod input_config {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Source {
-            #[prost(message, tag = "1")]
-            GcsSource(super::GcsSource),
-            #[prost(message, tag = "2")]
-            BigquerySource(super::BigQuerySource),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GcsSource {
-        #[prost(string, repeated, tag = "1")]
-        pub uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct BigQuerySource {
-        #[prost(string, tag = "1")]
-        pub uri: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InputConfig {
+#[prost(oneof = "input_config::Source", tags = "1, 2")]
+pub source: ::core::option::Option<input_config::Source>,
+}
+/// Nested message and enum types in `InputConfig`.
+pub mod input_config {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "1")]
+GcsSource(super::GcsSource),
+#[prost(message, tag = "2")]
+BigquerySource(super::BigQuerySource),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GcsSource {
+#[prost(string, repeated, tag = "1")]
+pub uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BigQuerySource {
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TimeSeriesDatasetMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub input_config: ::core::option::Option<time_series_dataset_metadata::InputConfig>,
-    #[prost(string, tag = "2")]
-    pub time_series_identifier_column: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub time_column: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub input_config: ::core::option::Option<time_series_dataset_metadata::InputConfig>,
+#[prost(string, tag = "2")]
+pub time_series_identifier_column: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub time_column: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `TimeSeriesDatasetMetadata`.
 pub mod time_series_dataset_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct InputConfig {
-        #[prost(oneof = "input_config::Source", tags = "1, 2")]
-        pub source: ::core::option::Option<input_config::Source>,
-    }
-    /// Nested message and enum types in `InputConfig`.
-    pub mod input_config {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Source {
-            #[prost(message, tag = "1")]
-            GcsSource(super::GcsSource),
-            #[prost(message, tag = "2")]
-            BigquerySource(super::BigQuerySource),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GcsSource {
-        #[prost(string, repeated, tag = "1")]
-        pub uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct BigQuerySource {
-        #[prost(string, tag = "1")]
-        pub uri: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InputConfig {
+#[prost(oneof = "input_config::Source", tags = "1, 2")]
+pub source: ::core::option::Option<input_config::Source>,
+}
+/// Nested message and enum types in `InputConfig`.
+pub mod input_config {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "1")]
+GcsSource(super::GcsSource),
+#[prost(message, tag = "2")]
+BigquerySource(super::BigQuerySource),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GcsSource {
+#[prost(string, repeated, tag = "1")]
+pub uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BigQuerySource {
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageDataItem {
-    #[prost(string, tag = "1")]
-    pub gcs_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub mime_type: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub gcs_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub mime_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoDataItem {
-    #[prost(string, tag = "1")]
-    pub gcs_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub mime_type: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub gcs_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub mime_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextDataItem {
-    #[prost(string, tag = "1")]
-    pub gcs_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub gcs_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotationSpecColor {
-    #[prost(message, optional, tag = "1")]
-    pub color: ::core::option::Option<super::super::super::super::r#type::Color>,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub color: ::core::option::Option<super::super::super::super::r#type::Color>,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Vertex {
-    #[prost(double, tag = "1")]
-    pub x: f64,
-    #[prost(double, tag = "2")]
-    pub y: f64,
+#[prost(double, tag = "1")]
+pub x: f64,
+#[prost(double, tag = "2")]
+pub y: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictionResult {
-    #[prost(message, optional, tag = "3")]
-    pub prediction: ::core::option::Option<::prost_types::Value>,
-    #[prost(message, optional, tag = "4")]
-    pub error: ::core::option::Option<prediction_result::Error>,
-    #[prost(oneof = "prediction_result::Input", tags = "1, 2")]
-    pub input: ::core::option::Option<prediction_result::Input>,
+#[prost(message, optional, tag = "3")]
+pub prediction: ::core::option::Option<::prost_types::Value>,
+#[prost(message, optional, tag = "4")]
+pub error: ::core::option::Option<prediction_result::Error>,
+#[prost(oneof = "prediction_result::Input", tags = "1, 2")]
+pub input: ::core::option::Option<prediction_result::Input>,
 }
 /// Nested message and enum types in `PredictionResult`.
 pub mod prediction_result {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Error {
-        #[prost(enumeration = "super::super::super::super::super::rpc::Code", tag = "1")]
-        pub status: i32,
-        #[prost(string, tag = "2")]
-        pub message: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Input {
-        #[prost(message, tag = "1")]
-        Instance(::prost_types::Struct),
-        #[prost(string, tag = "2")]
-        Key(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Error {
+#[prost(enumeration = "super::super::super::super::super::rpc::Code", tag = "1")]
+pub status: i32,
+#[prost(string, tag = "2")]
+pub message: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Input {
+#[prost(message, tag = "1")]
+Instance(::prost_types::Struct),
+#[prost(string, tag = "2")]
+Key(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageClassificationAnnotation {
-    #[prost(string, tag = "1")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageBoundingBoxAnnotation {
-    #[prost(string, tag = "1")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(double, tag = "3")]
-    pub x_min: f64,
-    #[prost(double, tag = "4")]
-    pub x_max: f64,
-    #[prost(double, tag = "5")]
-    pub y_min: f64,
-    #[prost(double, tag = "6")]
-    pub y_max: f64,
+#[prost(string, tag = "1")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(double, tag = "3")]
+pub x_min: f64,
+#[prost(double, tag = "4")]
+pub x_max: f64,
+#[prost(double, tag = "5")]
+pub y_min: f64,
+#[prost(double, tag = "6")]
+pub y_max: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageSegmentationAnnotation {
-    #[prost(oneof = "image_segmentation_annotation::Annotation", tags = "3, 4, 5")]
-    pub annotation: ::core::option::Option<image_segmentation_annotation::Annotation>,
+#[prost(oneof = "image_segmentation_annotation::Annotation", tags = "3, 4, 5")]
+pub annotation: ::core::option::Option<image_segmentation_annotation::Annotation>,
 }
 /// Nested message and enum types in `ImageSegmentationAnnotation`.
 pub mod image_segmentation_annotation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct MaskAnnotation {
-        #[prost(string, tag = "1")]
-        pub mask_gcs_uri: ::prost::alloc::string::String,
-        #[prost(message, repeated, tag = "2")]
-        pub annotation_spec_colors: ::prost::alloc::vec::Vec<super::AnnotationSpecColor>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct PolygonAnnotation {
-        #[prost(message, repeated, tag = "1")]
-        pub vertexes: ::prost::alloc::vec::Vec<super::Vertex>,
-        #[prost(string, tag = "2")]
-        pub annotation_spec_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub display_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct PolylineAnnotation {
-        #[prost(message, repeated, tag = "1")]
-        pub vertexes: ::prost::alloc::vec::Vec<super::Vertex>,
-        #[prost(string, tag = "2")]
-        pub annotation_spec_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub display_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Annotation {
-        #[prost(message, tag = "3")]
-        MaskAnnotation(MaskAnnotation),
-        #[prost(message, tag = "4")]
-        PolygonAnnotation(PolygonAnnotation),
-        #[prost(message, tag = "5")]
-        PolylineAnnotation(PolylineAnnotation),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MaskAnnotation {
+#[prost(string, tag = "1")]
+pub mask_gcs_uri: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub annotation_spec_colors: ::prost::alloc::vec::Vec<super::AnnotationSpecColor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PolygonAnnotation {
+#[prost(message, repeated, tag = "1")]
+pub vertexes: ::prost::alloc::vec::Vec<super::Vertex>,
+#[prost(string, tag = "2")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PolylineAnnotation {
+#[prost(message, repeated, tag = "1")]
+pub vertexes: ::prost::alloc::vec::Vec<super::Vertex>,
+#[prost(string, tag = "2")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Annotation {
+#[prost(message, tag = "3")]
+MaskAnnotation(MaskAnnotation),
+#[prost(message, tag = "4")]
+PolygonAnnotation(PolygonAnnotation),
+#[prost(message, tag = "5")]
+PolylineAnnotation(PolylineAnnotation),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextClassificationAnnotation {
-    #[prost(string, tag = "1")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextExtractionAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub text_segment: ::core::option::Option<TextSegment>,
-    #[prost(string, tag = "2")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub text_segment: ::core::option::Option<TextSegment>,
+#[prost(string, tag = "2")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextSegment {
-    #[prost(uint64, tag = "1")]
-    pub start_offset: u64,
-    #[prost(uint64, tag = "2")]
-    pub end_offset: u64,
-    #[prost(string, tag = "3")]
-    pub content: ::prost::alloc::string::String,
+#[prost(uint64, tag = "1")]
+pub start_offset: u64,
+#[prost(uint64, tag = "2")]
+pub end_offset: u64,
+#[prost(string, tag = "3")]
+pub content: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextSentimentAnnotation {
-    #[prost(int32, tag = "1")]
-    pub sentiment: i32,
-    #[prost(int32, tag = "2")]
-    pub sentiment_max: i32,
-    #[prost(string, tag = "3")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub sentiment: i32,
+#[prost(int32, tag = "2")]
+pub sentiment_max: i32,
+#[prost(string, tag = "3")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoClassificationAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub time_segment: ::core::option::Option<TimeSegment>,
-    #[prost(string, tag = "2")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub time_segment: ::core::option::Option<TimeSegment>,
+#[prost(string, tag = "2")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TimeSegment {
-    #[prost(message, optional, tag = "1")]
-    pub start_time_offset: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub start_time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub end_time_offset: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoObjectTrackingAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub time_offset: ::core::option::Option<::prost_types::Duration>,
-    #[prost(double, tag = "2")]
-    pub x_min: f64,
-    #[prost(double, tag = "3")]
-    pub x_max: f64,
-    #[prost(double, tag = "4")]
-    pub y_min: f64,
-    #[prost(double, tag = "5")]
-    pub y_max: f64,
-    #[prost(int64, tag = "6")]
-    pub instance_id: i64,
-    #[prost(string, tag = "7")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(double, tag = "2")]
+pub x_min: f64,
+#[prost(double, tag = "3")]
+pub x_max: f64,
+#[prost(double, tag = "4")]
+pub y_min: f64,
+#[prost(double, tag = "5")]
+pub y_max: f64,
+#[prost(int64, tag = "6")]
+pub instance_id: i64,
+#[prost(string, tag = "7")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoActionRecognitionAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub time_segment: ::core::option::Option<TimeSegment>,
-    #[prost(string, tag = "2")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub time_segment: ::core::option::Option<TimeSegment>,
+#[prost(string, tag = "2")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
 }

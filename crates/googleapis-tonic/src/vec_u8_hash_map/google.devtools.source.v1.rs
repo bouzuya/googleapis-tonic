@@ -2,178 +2,165 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourceContext {
-    #[prost(oneof = "source_context::Context", tags = "1, 2, 3, 6")]
-    pub context: ::core::option::Option<source_context::Context>,
+#[prost(oneof = "source_context::Context", tags = "1, 2, 3, 6")]
+pub context: ::core::option::Option<source_context::Context>,
 }
 /// Nested message and enum types in `SourceContext`.
 pub mod source_context {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Context {
-        #[prost(message, tag = "1")]
-        CloudRepo(super::CloudRepoSourceContext),
-        #[prost(message, tag = "2")]
-        CloudWorkspace(super::CloudWorkspaceSourceContext),
-        #[prost(message, tag = "3")]
-        Gerrit(super::GerritSourceContext),
-        #[prost(message, tag = "6")]
-        Git(super::GitSourceContext),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Context {
+#[prost(message, tag = "1")]
+CloudRepo(super::CloudRepoSourceContext),
+#[prost(message, tag = "2")]
+CloudWorkspace(super::CloudWorkspaceSourceContext),
+#[prost(message, tag = "3")]
+Gerrit(super::GerritSourceContext),
+#[prost(message, tag = "6")]
+Git(super::GitSourceContext),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExtendedSourceContext {
-    #[prost(message, optional, tag = "1")]
-    pub context: ::core::option::Option<SourceContext>,
-    #[prost(map = "string, string", tag = "2")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(message, optional, tag = "1")]
+pub context: ::core::option::Option<SourceContext>,
+#[prost(map = "string, string", tag = "2")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AliasContext {
-    #[prost(enumeration = "alias_context::Kind", tag = "1")]
-    pub kind: i32,
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "alias_context::Kind", tag = "1")]
+pub kind: i32,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `AliasContext`.
 pub mod alias_context {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Kind {
-        Any = 0,
-        Fixed = 1,
-        Movable = 2,
-        Other = 4,
-    }
-    impl Kind {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Kind::Any => "ANY",
-                Kind::Fixed => "FIXED",
-                Kind::Movable => "MOVABLE",
-                Kind::Other => "OTHER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ANY" => Some(Self::Any),
-                "FIXED" => Some(Self::Fixed),
-                "MOVABLE" => Some(Self::Movable),
-                "OTHER" => Some(Self::Other),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Kind {
+Any = 0,
+Fixed = 1,
+Movable = 2,
+Other = 4,
+}
+impl Kind {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Kind::Any => "ANY",
+Kind::Fixed => "FIXED",
+Kind::Movable => "MOVABLE",
+Kind::Other => "OTHER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ANY" => Some(Self::Any),
+"FIXED" => Some(Self::Fixed),
+"MOVABLE" => Some(Self::Movable),
+"OTHER" => Some(Self::Other),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudRepoSourceContext {
-    #[prost(message, optional, tag = "1")]
-    pub repo_id: ::core::option::Option<RepoId>,
-    #[prost(oneof = "cloud_repo_source_context::Revision", tags = "2, 3, 4")]
-    pub revision: ::core::option::Option<cloud_repo_source_context::Revision>,
+#[prost(message, optional, tag = "1")]
+pub repo_id: ::core::option::Option<RepoId>,
+#[prost(oneof = "cloud_repo_source_context::Revision", tags = "2, 3, 4")]
+pub revision: ::core::option::Option<cloud_repo_source_context::Revision>,
 }
 /// Nested message and enum types in `CloudRepoSourceContext`.
 pub mod cloud_repo_source_context {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Revision {
-        #[prost(string, tag = "2")]
-        RevisionId(::prost::alloc::string::String),
-        #[prost(string, tag = "3")]
-        AliasName(::prost::alloc::string::String),
-        #[prost(message, tag = "4")]
-        AliasContext(super::AliasContext),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Revision {
+#[prost(string, tag = "2")]
+RevisionId(::prost::alloc::string::String),
+#[prost(string, tag = "3")]
+AliasName(::prost::alloc::string::String),
+#[prost(message, tag = "4")]
+AliasContext(super::AliasContext),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudWorkspaceSourceContext {
-    #[prost(message, optional, tag = "1")]
-    pub workspace_id: ::core::option::Option<CloudWorkspaceId>,
-    #[prost(string, tag = "2")]
-    pub snapshot_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub workspace_id: ::core::option::Option<CloudWorkspaceId>,
+#[prost(string, tag = "2")]
+pub snapshot_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GerritSourceContext {
-    #[prost(string, tag = "1")]
-    pub host_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub gerrit_project: ::prost::alloc::string::String,
-    #[prost(oneof = "gerrit_source_context::Revision", tags = "3, 4, 5")]
-    pub revision: ::core::option::Option<gerrit_source_context::Revision>,
+#[prost(string, tag = "1")]
+pub host_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub gerrit_project: ::prost::alloc::string::String,
+#[prost(oneof = "gerrit_source_context::Revision", tags = "3, 4, 5")]
+pub revision: ::core::option::Option<gerrit_source_context::Revision>,
 }
 /// Nested message and enum types in `GerritSourceContext`.
 pub mod gerrit_source_context {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Revision {
-        #[prost(string, tag = "3")]
-        RevisionId(::prost::alloc::string::String),
-        #[prost(string, tag = "4")]
-        AliasName(::prost::alloc::string::String),
-        #[prost(message, tag = "5")]
-        AliasContext(super::AliasContext),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Revision {
+#[prost(string, tag = "3")]
+RevisionId(::prost::alloc::string::String),
+#[prost(string, tag = "4")]
+AliasName(::prost::alloc::string::String),
+#[prost(message, tag = "5")]
+AliasContext(super::AliasContext),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GitSourceContext {
-    #[prost(string, tag = "1")]
-    pub url: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub revision_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub url: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub revision_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RepoId {
-    #[prost(oneof = "repo_id::Id", tags = "1, 2")]
-    pub id: ::core::option::Option<repo_id::Id>,
+#[prost(oneof = "repo_id::Id", tags = "1, 2")]
+pub id: ::core::option::Option<repo_id::Id>,
 }
 /// Nested message and enum types in `RepoId`.
 pub mod repo_id {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Id {
-        #[prost(message, tag = "1")]
-        ProjectRepoId(super::ProjectRepoId),
-        #[prost(string, tag = "2")]
-        Uid(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Id {
+#[prost(message, tag = "1")]
+ProjectRepoId(super::ProjectRepoId),
+#[prost(string, tag = "2")]
+Uid(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProjectRepoId {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub repo_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub repo_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudWorkspaceId {
-    #[prost(message, optional, tag = "1")]
-    pub repo_id: ::core::option::Option<RepoId>,
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub repo_id: ::core::option::Option<RepoId>,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
 }

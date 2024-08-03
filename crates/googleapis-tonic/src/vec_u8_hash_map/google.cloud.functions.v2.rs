@@ -2,1231 +2,937 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Function {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub build_config: ::core::option::Option<BuildConfig>,
-    #[prost(message, optional, tag = "4")]
-    pub service_config: ::core::option::Option<ServiceConfig>,
-    #[prost(message, optional, tag = "5")]
-    pub event_trigger: ::core::option::Option<EventTrigger>,
-    #[prost(enumeration = "function::State", tag = "6")]
-    pub state: i32,
-    #[prost(message, optional, tag = "7")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "8")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, repeated, tag = "9")]
-    pub state_messages: ::prost::alloc::vec::Vec<StateMessage>,
-    #[prost(enumeration = "Environment", tag = "10")]
-    pub environment: i32,
-    #[prost(string, tag = "14")]
-    pub url: ::prost::alloc::string::String,
-    #[prost(string, tag = "25")]
-    pub kms_key_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub build_config: ::core::option::Option<BuildConfig>,
+#[prost(message, optional, tag = "4")]
+pub service_config: ::core::option::Option<ServiceConfig>,
+#[prost(message, optional, tag = "5")]
+pub event_trigger: ::core::option::Option<EventTrigger>,
+#[prost(enumeration = "function::State", tag = "6")]
+pub state: i32,
+#[prost(message, optional, tag = "7")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "8")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "9")]
+pub state_messages: ::prost::alloc::vec::Vec<StateMessage>,
+#[prost(enumeration = "Environment", tag = "10")]
+pub environment: i32,
+#[prost(string, tag = "14")]
+pub url: ::prost::alloc::string::String,
+#[prost(string, tag = "25")]
+pub kms_key_name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Function`.
 pub mod function {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Failed = 2,
-        Deploying = 3,
-        Deleting = 4,
-        Unknown = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
-                State::Deploying => "DEPLOYING",
-                State::Deleting => "DELETING",
-                State::Unknown => "UNKNOWN",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "FAILED" => Some(Self::Failed),
-                "DEPLOYING" => Some(Self::Deploying),
-                "DELETING" => Some(Self::Deleting),
-                "UNKNOWN" => Some(Self::Unknown),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Failed = 2,
+Deploying = 3,
+Deleting = 4,
+Unknown = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Failed => "FAILED",
+State::Deploying => "DEPLOYING",
+State::Deleting => "DELETING",
+State::Unknown => "UNKNOWN",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"FAILED" => Some(Self::Failed),
+"DEPLOYING" => Some(Self::Deploying),
+"DELETING" => Some(Self::Deleting),
+"UNKNOWN" => Some(Self::Unknown),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StateMessage {
-    #[prost(enumeration = "state_message::Severity", tag = "1")]
-    pub severity: i32,
-    #[prost(string, tag = "2")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub message: ::prost::alloc::string::String,
+#[prost(enumeration = "state_message::Severity", tag = "1")]
+pub severity: i32,
+#[prost(string, tag = "2")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub message: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `StateMessage`.
 pub mod state_message {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Severity {
-        Unspecified = 0,
-        Error = 1,
-        Warning = 2,
-        Info = 3,
-    }
-    impl Severity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Error => "ERROR",
-                Severity::Warning => "WARNING",
-                Severity::Info => "INFO",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "ERROR" => Some(Self::Error),
-                "WARNING" => Some(Self::Warning),
-                "INFO" => Some(Self::Info),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Severity {
+Unspecified = 0,
+Error = 1,
+Warning = 2,
+Info = 3,
+}
+impl Severity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+Severity::Error => "ERROR",
+Severity::Warning => "WARNING",
+Severity::Info => "INFO",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"ERROR" => Some(Self::Error),
+"WARNING" => Some(Self::Warning),
+"INFO" => Some(Self::Info),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StorageSource {
-    #[prost(string, tag = "1")]
-    pub bucket: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub object: ::prost::alloc::string::String,
-    #[prost(int64, tag = "3")]
-    pub generation: i64,
+#[prost(string, tag = "1")]
+pub bucket: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub object: ::prost::alloc::string::String,
+#[prost(int64, tag = "3")]
+pub generation: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RepoSource {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub repo_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub dir: ::prost::alloc::string::String,
-    #[prost(bool, tag = "7")]
-    pub invert_regex: bool,
-    #[prost(oneof = "repo_source::Revision", tags = "3, 4, 5")]
-    pub revision: ::core::option::Option<repo_source::Revision>,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub repo_name: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub dir: ::prost::alloc::string::String,
+#[prost(bool, tag = "7")]
+pub invert_regex: bool,
+#[prost(oneof = "repo_source::Revision", tags = "3, 4, 5")]
+pub revision: ::core::option::Option<repo_source::Revision>,
 }
 /// Nested message and enum types in `RepoSource`.
 pub mod repo_source {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Revision {
-        #[prost(string, tag = "3")]
-        BranchName(::prost::alloc::string::String),
-        #[prost(string, tag = "4")]
-        TagName(::prost::alloc::string::String),
-        #[prost(string, tag = "5")]
-        CommitSha(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Revision {
+#[prost(string, tag = "3")]
+BranchName(::prost::alloc::string::String),
+#[prost(string, tag = "4")]
+TagName(::prost::alloc::string::String),
+#[prost(string, tag = "5")]
+CommitSha(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Source {
-    #[prost(oneof = "source::Source", tags = "1, 2")]
-    pub source: ::core::option::Option<source::Source>,
+#[prost(oneof = "source::Source", tags = "1, 2")]
+pub source: ::core::option::Option<source::Source>,
 }
 /// Nested message and enum types in `Source`.
 pub mod source {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "1")]
-        StorageSource(super::StorageSource),
-        #[prost(message, tag = "2")]
-        RepoSource(super::RepoSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "1")]
+StorageSource(super::StorageSource),
+#[prost(message, tag = "2")]
+RepoSource(super::RepoSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourceProvenance {
-    #[prost(message, optional, tag = "1")]
-    pub resolved_storage_source: ::core::option::Option<StorageSource>,
-    #[prost(message, optional, tag = "2")]
-    pub resolved_repo_source: ::core::option::Option<RepoSource>,
+#[prost(message, optional, tag = "1")]
+pub resolved_storage_source: ::core::option::Option<StorageSource>,
+#[prost(message, optional, tag = "2")]
+pub resolved_repo_source: ::core::option::Option<RepoSource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildConfig {
-    #[prost(string, tag = "1")]
-    pub build: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub runtime: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub entry_point: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub source: ::core::option::Option<Source>,
-    #[prost(message, optional, tag = "8")]
-    pub source_provenance: ::core::option::Option<SourceProvenance>,
-    #[prost(string, tag = "5")]
-    pub worker_pool: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "6")]
-    pub environment_variables: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(enumeration = "build_config::DockerRegistry", tag = "10")]
-    pub docker_registry: i32,
-    #[prost(string, tag = "7")]
-    pub docker_repository: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub build: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub runtime: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub entry_point: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub source: ::core::option::Option<Source>,
+#[prost(message, optional, tag = "8")]
+pub source_provenance: ::core::option::Option<SourceProvenance>,
+#[prost(string, tag = "5")]
+pub worker_pool: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "6")]
+pub environment_variables: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(enumeration = "build_config::DockerRegistry", tag = "10")]
+pub docker_registry: i32,
+#[prost(string, tag = "7")]
+pub docker_repository: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `BuildConfig`.
 pub mod build_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DockerRegistry {
-        Unspecified = 0,
-        ContainerRegistry = 1,
-        ArtifactRegistry = 2,
-    }
-    impl DockerRegistry {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DockerRegistry::Unspecified => "DOCKER_REGISTRY_UNSPECIFIED",
-                DockerRegistry::ContainerRegistry => "CONTAINER_REGISTRY",
-                DockerRegistry::ArtifactRegistry => "ARTIFACT_REGISTRY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DOCKER_REGISTRY_UNSPECIFIED" => Some(Self::Unspecified),
-                "CONTAINER_REGISTRY" => Some(Self::ContainerRegistry),
-                "ARTIFACT_REGISTRY" => Some(Self::ArtifactRegistry),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DockerRegistry {
+Unspecified = 0,
+ContainerRegistry = 1,
+ArtifactRegistry = 2,
+}
+impl DockerRegistry {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DockerRegistry::Unspecified => "DOCKER_REGISTRY_UNSPECIFIED",
+DockerRegistry::ContainerRegistry => "CONTAINER_REGISTRY",
+DockerRegistry::ArtifactRegistry => "ARTIFACT_REGISTRY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DOCKER_REGISTRY_UNSPECIFIED" => Some(Self::Unspecified),
+"CONTAINER_REGISTRY" => Some(Self::ContainerRegistry),
+"ARTIFACT_REGISTRY" => Some(Self::ArtifactRegistry),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceConfig {
-    #[prost(string, tag = "1")]
-    pub service: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub timeout_seconds: i32,
-    #[prost(string, tag = "13")]
-    pub available_memory: ::prost::alloc::string::String,
-    #[prost(string, tag = "22")]
-    pub available_cpu: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "4")]
-    pub environment_variables: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(int32, tag = "5")]
-    pub max_instance_count: i32,
-    #[prost(int32, tag = "12")]
-    pub min_instance_count: i32,
-    #[prost(string, tag = "6")]
-    pub vpc_connector: ::prost::alloc::string::String,
-    #[prost(enumeration = "service_config::VpcConnectorEgressSettings", tag = "7")]
-    pub vpc_connector_egress_settings: i32,
-    #[prost(enumeration = "service_config::IngressSettings", tag = "8")]
-    pub ingress_settings: i32,
-    #[prost(string, tag = "9")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "10")]
-    pub service_account_email: ::prost::alloc::string::String,
-    #[prost(bool, tag = "16")]
-    pub all_traffic_on_latest_revision: bool,
-    #[prost(message, repeated, tag = "17")]
-    pub secret_environment_variables: ::prost::alloc::vec::Vec<SecretEnvVar>,
-    #[prost(message, repeated, tag = "19")]
-    pub secret_volumes: ::prost::alloc::vec::Vec<SecretVolume>,
-    #[prost(string, tag = "18")]
-    pub revision: ::prost::alloc::string::String,
-    #[prost(int32, tag = "20")]
-    pub max_instance_request_concurrency: i32,
-    #[prost(enumeration = "service_config::SecurityLevel", tag = "21")]
-    pub security_level: i32,
+#[prost(string, tag = "1")]
+pub service: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub timeout_seconds: i32,
+#[prost(string, tag = "13")]
+pub available_memory: ::prost::alloc::string::String,
+#[prost(string, tag = "22")]
+pub available_cpu: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "4")]
+pub environment_variables: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(int32, tag = "5")]
+pub max_instance_count: i32,
+#[prost(int32, tag = "12")]
+pub min_instance_count: i32,
+#[prost(string, tag = "6")]
+pub vpc_connector: ::prost::alloc::string::String,
+#[prost(enumeration = "service_config::VpcConnectorEgressSettings", tag = "7")]
+pub vpc_connector_egress_settings: i32,
+#[prost(enumeration = "service_config::IngressSettings", tag = "8")]
+pub ingress_settings: i32,
+#[prost(string, tag = "9")]
+pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "10")]
+pub service_account_email: ::prost::alloc::string::String,
+#[prost(bool, tag = "16")]
+pub all_traffic_on_latest_revision: bool,
+#[prost(message, repeated, tag = "17")]
+pub secret_environment_variables: ::prost::alloc::vec::Vec<SecretEnvVar>,
+#[prost(message, repeated, tag = "19")]
+pub secret_volumes: ::prost::alloc::vec::Vec<SecretVolume>,
+#[prost(string, tag = "18")]
+pub revision: ::prost::alloc::string::String,
+#[prost(int32, tag = "20")]
+pub max_instance_request_concurrency: i32,
+#[prost(enumeration = "service_config::SecurityLevel", tag = "21")]
+pub security_level: i32,
 }
 /// Nested message and enum types in `ServiceConfig`.
 pub mod service_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VpcConnectorEgressSettings {
-        Unspecified = 0,
-        PrivateRangesOnly = 1,
-        AllTraffic = 2,
-    }
-    impl VpcConnectorEgressSettings {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VpcConnectorEgressSettings::Unspecified => {
-                    "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED"
-                }
-                VpcConnectorEgressSettings::PrivateRangesOnly => "PRIVATE_RANGES_ONLY",
-                VpcConnectorEgressSettings::AllTraffic => "ALL_TRAFFIC",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
-                "PRIVATE_RANGES_ONLY" => Some(Self::PrivateRangesOnly),
-                "ALL_TRAFFIC" => Some(Self::AllTraffic),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum IngressSettings {
-        Unspecified = 0,
-        AllowAll = 1,
-        AllowInternalOnly = 2,
-        AllowInternalAndGclb = 3,
-    }
-    impl IngressSettings {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                IngressSettings::Unspecified => "INGRESS_SETTINGS_UNSPECIFIED",
-                IngressSettings::AllowAll => "ALLOW_ALL",
-                IngressSettings::AllowInternalOnly => "ALLOW_INTERNAL_ONLY",
-                IngressSettings::AllowInternalAndGclb => "ALLOW_INTERNAL_AND_GCLB",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INGRESS_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
-                "ALLOW_ALL" => Some(Self::AllowAll),
-                "ALLOW_INTERNAL_ONLY" => Some(Self::AllowInternalOnly),
-                "ALLOW_INTERNAL_AND_GCLB" => Some(Self::AllowInternalAndGclb),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SecurityLevel {
-        Unspecified = 0,
-        SecureAlways = 1,
-        SecureOptional = 2,
-    }
-    impl SecurityLevel {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SecurityLevel::Unspecified => "SECURITY_LEVEL_UNSPECIFIED",
-                SecurityLevel::SecureAlways => "SECURE_ALWAYS",
-                SecurityLevel::SecureOptional => "SECURE_OPTIONAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SECURITY_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-                "SECURE_ALWAYS" => Some(Self::SecureAlways),
-                "SECURE_OPTIONAL" => Some(Self::SecureOptional),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum VpcConnectorEgressSettings {
+Unspecified = 0,
+PrivateRangesOnly = 1,
+AllTraffic = 2,
+}
+impl VpcConnectorEgressSettings {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VpcConnectorEgressSettings::Unspecified => "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
+VpcConnectorEgressSettings::PrivateRangesOnly => "PRIVATE_RANGES_ONLY",
+VpcConnectorEgressSettings::AllTraffic => "ALL_TRAFFIC",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
+"PRIVATE_RANGES_ONLY" => Some(Self::PrivateRangesOnly),
+"ALL_TRAFFIC" => Some(Self::AllTraffic),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum IngressSettings {
+Unspecified = 0,
+AllowAll = 1,
+AllowInternalOnly = 2,
+AllowInternalAndGclb = 3,
+}
+impl IngressSettings {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+IngressSettings::Unspecified => "INGRESS_SETTINGS_UNSPECIFIED",
+IngressSettings::AllowAll => "ALLOW_ALL",
+IngressSettings::AllowInternalOnly => "ALLOW_INTERNAL_ONLY",
+IngressSettings::AllowInternalAndGclb => "ALLOW_INTERNAL_AND_GCLB",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INGRESS_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
+"ALLOW_ALL" => Some(Self::AllowAll),
+"ALLOW_INTERNAL_ONLY" => Some(Self::AllowInternalOnly),
+"ALLOW_INTERNAL_AND_GCLB" => Some(Self::AllowInternalAndGclb),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SecurityLevel {
+Unspecified = 0,
+SecureAlways = 1,
+SecureOptional = 2,
+}
+impl SecurityLevel {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SecurityLevel::Unspecified => "SECURITY_LEVEL_UNSPECIFIED",
+SecurityLevel::SecureAlways => "SECURE_ALWAYS",
+SecurityLevel::SecureOptional => "SECURE_OPTIONAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SECURITY_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+"SECURE_ALWAYS" => Some(Self::SecureAlways),
+"SECURE_OPTIONAL" => Some(Self::SecureOptional),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecretEnvVar {
-    #[prost(string, tag = "1")]
-    pub key: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub secret: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub key: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub secret: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecretVolume {
-    #[prost(string, tag = "1")]
-    pub mount_path: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub secret: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub versions: ::prost::alloc::vec::Vec<secret_volume::SecretVersion>,
+#[prost(string, tag = "1")]
+pub mount_path: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub secret: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub versions: ::prost::alloc::vec::Vec<secret_volume::SecretVersion>,
 }
 /// Nested message and enum types in `SecretVolume`.
 pub mod secret_volume {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SecretVersion {
-        #[prost(string, tag = "1")]
-        pub version: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub path: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SecretVersion {
+#[prost(string, tag = "1")]
+pub version: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventTrigger {
-    #[prost(string, tag = "1")]
-    pub trigger: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub trigger_region: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub event_type: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub event_filters: ::prost::alloc::vec::Vec<EventFilter>,
-    #[prost(string, tag = "5")]
-    pub pubsub_topic: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub service_account_email: ::prost::alloc::string::String,
-    #[prost(enumeration = "event_trigger::RetryPolicy", tag = "7")]
-    pub retry_policy: i32,
-    #[prost(string, tag = "8")]
-    pub channel: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub trigger: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub trigger_region: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub event_type: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub event_filters: ::prost::alloc::vec::Vec<EventFilter>,
+#[prost(string, tag = "5")]
+pub pubsub_topic: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub service_account_email: ::prost::alloc::string::String,
+#[prost(enumeration = "event_trigger::RetryPolicy", tag = "7")]
+pub retry_policy: i32,
+#[prost(string, tag = "8")]
+pub channel: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `EventTrigger`.
 pub mod event_trigger {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RetryPolicy {
-        Unspecified = 0,
-        DoNotRetry = 1,
-        Retry = 2,
-    }
-    impl RetryPolicy {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RetryPolicy::Unspecified => "RETRY_POLICY_UNSPECIFIED",
-                RetryPolicy::DoNotRetry => "RETRY_POLICY_DO_NOT_RETRY",
-                RetryPolicy::Retry => "RETRY_POLICY_RETRY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RETRY_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
-                "RETRY_POLICY_DO_NOT_RETRY" => Some(Self::DoNotRetry),
-                "RETRY_POLICY_RETRY" => Some(Self::Retry),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RetryPolicy {
+Unspecified = 0,
+DoNotRetry = 1,
+Retry = 2,
+}
+impl RetryPolicy {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RetryPolicy::Unspecified => "RETRY_POLICY_UNSPECIFIED",
+RetryPolicy::DoNotRetry => "RETRY_POLICY_DO_NOT_RETRY",
+RetryPolicy::Retry => "RETRY_POLICY_RETRY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RETRY_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
+"RETRY_POLICY_DO_NOT_RETRY" => Some(Self::DoNotRetry),
+"RETRY_POLICY_RETRY" => Some(Self::Retry),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventFilter {
-    #[prost(string, tag = "1")]
-    pub attribute: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub value: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub operator: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub attribute: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub operator: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFunctionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFunctionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFunctionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub functions: ::prost::alloc::vec::Vec<Function>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub functions: ::prost::alloc::vec::Vec<Function>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateFunctionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub function: ::core::option::Option<Function>,
-    #[prost(string, tag = "3")]
-    pub function_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub function: ::core::option::Option<Function>,
+#[prost(string, tag = "3")]
+pub function_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateFunctionRequest {
-    #[prost(message, optional, tag = "1")]
-    pub function: ::core::option::Option<Function>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub function: ::core::option::Option<Function>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteFunctionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateUploadUrlRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub kms_key_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub kms_key_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateUploadUrlResponse {
-    #[prost(string, tag = "1")]
-    pub upload_url: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub storage_source: ::core::option::Option<StorageSource>,
+#[prost(string, tag = "1")]
+pub upload_url: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub storage_source: ::core::option::Option<StorageSource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateDownloadUrlRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateDownloadUrlResponse {
-    #[prost(string, tag = "1")]
-    pub download_url: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub download_url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRuntimesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRuntimesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub runtimes: ::prost::alloc::vec::Vec<list_runtimes_response::Runtime>,
+#[prost(message, repeated, tag = "1")]
+pub runtimes: ::prost::alloc::vec::Vec<list_runtimes_response::Runtime>,
 }
 /// Nested message and enum types in `ListRuntimesResponse`.
 pub mod list_runtimes_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Runtime {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, tag = "5")]
-        pub display_name: ::prost::alloc::string::String,
-        #[prost(enumeration = "RuntimeStage", tag = "2")]
-        pub stage: i32,
-        #[prost(string, repeated, tag = "3")]
-        pub warnings: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(enumeration = "super::Environment", tag = "4")]
-        pub environment: i32,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RuntimeStage {
-        Unspecified = 0,
-        Development = 1,
-        Alpha = 2,
-        Beta = 3,
-        Ga = 4,
-        Deprecated = 5,
-        Decommissioned = 6,
-    }
-    impl RuntimeStage {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RuntimeStage::Unspecified => "RUNTIME_STAGE_UNSPECIFIED",
-                RuntimeStage::Development => "DEVELOPMENT",
-                RuntimeStage::Alpha => "ALPHA",
-                RuntimeStage::Beta => "BETA",
-                RuntimeStage::Ga => "GA",
-                RuntimeStage::Deprecated => "DEPRECATED",
-                RuntimeStage::Decommissioned => "DECOMMISSIONED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RUNTIME_STAGE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DEVELOPMENT" => Some(Self::Development),
-                "ALPHA" => Some(Self::Alpha),
-                "BETA" => Some(Self::Beta),
-                "GA" => Some(Self::Ga),
-                "DEPRECATED" => Some(Self::Deprecated),
-                "DECOMMISSIONED" => Some(Self::Decommissioned),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Runtime {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(enumeration = "RuntimeStage", tag = "2")]
+pub stage: i32,
+#[prost(string, repeated, tag = "3")]
+pub warnings: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "super::Environment", tag = "4")]
+pub environment: i32,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RuntimeStage {
+Unspecified = 0,
+Development = 1,
+Alpha = 2,
+Beta = 3,
+Ga = 4,
+Deprecated = 5,
+Decommissioned = 6,
+}
+impl RuntimeStage {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RuntimeStage::Unspecified => "RUNTIME_STAGE_UNSPECIFIED",
+RuntimeStage::Development => "DEVELOPMENT",
+RuntimeStage::Alpha => "ALPHA",
+RuntimeStage::Beta => "BETA",
+RuntimeStage::Ga => "GA",
+RuntimeStage::Deprecated => "DEPRECATED",
+RuntimeStage::Decommissioned => "DECOMMISSIONED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RUNTIME_STAGE_UNSPECIFIED" => Some(Self::Unspecified),
+"DEVELOPMENT" => Some(Self::Development),
+"ALPHA" => Some(Self::Alpha),
+"BETA" => Some(Self::Beta),
+"GA" => Some(Self::Ga),
+"DEPRECATED" => Some(Self::Deprecated),
+"DECOMMISSIONED" => Some(Self::Decommissioned),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_detail: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub cancel_requested: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub request_resource: ::core::option::Option<::prost_types::Any>,
-    #[prost(message, repeated, tag = "9")]
-    pub stages: ::prost::alloc::vec::Vec<Stage>,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_detail: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub cancel_requested: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub request_resource: ::core::option::Option<::prost_types::Any>,
+#[prost(message, repeated, tag = "9")]
+pub stages: ::prost::alloc::vec::Vec<Stage>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
-    #[prost(enumeration = "Environment", repeated, tag = "1")]
-    pub environments: ::prost::alloc::vec::Vec<i32>,
+#[prost(enumeration = "Environment", repeated, tag = "1")]
+pub environments: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Stage {
-    #[prost(enumeration = "stage::Name", tag = "1")]
-    pub name: i32,
-    #[prost(string, tag = "2")]
-    pub message: ::prost::alloc::string::String,
-    #[prost(enumeration = "stage::State", tag = "3")]
-    pub state: i32,
-    #[prost(string, tag = "4")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub resource_uri: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "6")]
-    pub state_messages: ::prost::alloc::vec::Vec<StateMessage>,
+#[prost(enumeration = "stage::Name", tag = "1")]
+pub name: i32,
+#[prost(string, tag = "2")]
+pub message: ::prost::alloc::string::String,
+#[prost(enumeration = "stage::State", tag = "3")]
+pub state: i32,
+#[prost(string, tag = "4")]
+pub resource: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub resource_uri: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "6")]
+pub state_messages: ::prost::alloc::vec::Vec<StateMessage>,
 }
 /// Nested message and enum types in `Stage`.
 pub mod stage {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Name {
-        Unspecified = 0,
-        ArtifactRegistry = 1,
-        Build = 2,
-        Service = 3,
-        Trigger = 4,
-        ServiceRollback = 5,
-        TriggerRollback = 6,
-    }
-    impl Name {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Name::Unspecified => "NAME_UNSPECIFIED",
-                Name::ArtifactRegistry => "ARTIFACT_REGISTRY",
-                Name::Build => "BUILD",
-                Name::Service => "SERVICE",
-                Name::Trigger => "TRIGGER",
-                Name::ServiceRollback => "SERVICE_ROLLBACK",
-                Name::TriggerRollback => "TRIGGER_ROLLBACK",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "NAME_UNSPECIFIED" => Some(Self::Unspecified),
-                "ARTIFACT_REGISTRY" => Some(Self::ArtifactRegistry),
-                "BUILD" => Some(Self::Build),
-                "SERVICE" => Some(Self::Service),
-                "TRIGGER" => Some(Self::Trigger),
-                "SERVICE_ROLLBACK" => Some(Self::ServiceRollback),
-                "TRIGGER_ROLLBACK" => Some(Self::TriggerRollback),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        NotStarted = 1,
-        InProgress = 2,
-        Complete = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::NotStarted => "NOT_STARTED",
-                State::InProgress => "IN_PROGRESS",
-                State::Complete => "COMPLETE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "NOT_STARTED" => Some(Self::NotStarted),
-                "IN_PROGRESS" => Some(Self::InProgress),
-                "COMPLETE" => Some(Self::Complete),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Name {
+Unspecified = 0,
+ArtifactRegistry = 1,
+Build = 2,
+Service = 3,
+Trigger = 4,
+ServiceRollback = 5,
+TriggerRollback = 6,
+}
+impl Name {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Name::Unspecified => "NAME_UNSPECIFIED",
+Name::ArtifactRegistry => "ARTIFACT_REGISTRY",
+Name::Build => "BUILD",
+Name::Service => "SERVICE",
+Name::Trigger => "TRIGGER",
+Name::ServiceRollback => "SERVICE_ROLLBACK",
+Name::TriggerRollback => "TRIGGER_ROLLBACK",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"NAME_UNSPECIFIED" => Some(Self::Unspecified),
+"ARTIFACT_REGISTRY" => Some(Self::ArtifactRegistry),
+"BUILD" => Some(Self::Build),
+"SERVICE" => Some(Self::Service),
+"TRIGGER" => Some(Self::Trigger),
+"SERVICE_ROLLBACK" => Some(Self::ServiceRollback),
+"TRIGGER_ROLLBACK" => Some(Self::TriggerRollback),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+NotStarted = 1,
+InProgress = 2,
+Complete = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::NotStarted => "NOT_STARTED",
+State::InProgress => "IN_PROGRESS",
+State::Complete => "COMPLETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"NOT_STARTED" => Some(Self::NotStarted),
+"IN_PROGRESS" => Some(Self::InProgress),
+"COMPLETE" => Some(Self::Complete),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Environment {
-    Unspecified = 0,
-    Gen1 = 1,
-    Gen2 = 2,
+Unspecified = 0,
+Gen1 = 1,
+Gen2 = 2,
 }
 impl Environment {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Environment::Unspecified => "ENVIRONMENT_UNSPECIFIED",
-            Environment::Gen1 => "GEN_1",
-            Environment::Gen2 => "GEN_2",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ENVIRONMENT_UNSPECIFIED" => Some(Self::Unspecified),
-            "GEN_1" => Some(Self::Gen1),
-            "GEN_2" => Some(Self::Gen2),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Environment::Unspecified => "ENVIRONMENT_UNSPECIFIED",
+Environment::Gen1 => "GEN_1",
+Environment::Gen2 => "GEN_2",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENVIRONMENT_UNSPECIFIED" => Some(Self::Unspecified),
+"GEN_1" => Some(Self::Gen1),
+"GEN_2" => Some(Self::Gen2),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod function_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Google Cloud Functions is used to deploy functions that are executed by
-    /// Google in response to various events. Data connected with that event is
-    /// passed to a function as the input data.
-    ///
-    /// A **function** is a resource which describes a function that should be
-    /// executed and how it is triggered.
-    #[derive(Debug, Clone)]
-    pub struct FunctionServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> FunctionServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> FunctionServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            FunctionServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Returns a function with the given name from the requested project.
-        pub async fn get_function(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetFunctionRequest>,
-        ) -> std::result::Result<tonic::Response<super::Function>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.functions.v2.FunctionService/GetFunction",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.functions.v2.FunctionService",
-                        "GetFunction",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a list of functions that belong to the requested project.
-        pub async fn list_functions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListFunctionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListFunctionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.functions.v2.FunctionService/ListFunctions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.functions.v2.FunctionService",
-                        "ListFunctions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new function. If a function with the given name already exists in
-        /// the specified project, the long running operation will return
-        /// `ALREADY_EXISTS` error.
-        pub async fn create_function(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateFunctionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.functions.v2.FunctionService/CreateFunction",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.functions.v2.FunctionService",
-                        "CreateFunction",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates existing function.
-        pub async fn update_function(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateFunctionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.functions.v2.FunctionService/UpdateFunction",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.functions.v2.FunctionService",
-                        "UpdateFunction",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a function with the given name from the specified project. If the
-        /// given function is used by some trigger, the trigger will be updated to
-        /// remove this function.
-        pub async fn delete_function(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteFunctionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.functions.v2.FunctionService/DeleteFunction",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.functions.v2.FunctionService",
-                        "DeleteFunction",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a signed URL for uploading a function source code.
-        /// For more information about the signed URL usage see:
-        /// https://cloud.google.com/storage/docs/access-control/signed-urls.
-        /// Once the function source code upload is complete, the used signed
-        /// URL should be provided in CreateFunction or UpdateFunction request
-        /// as a reference to the function source code.
-        ///
-        /// When uploading source code to the generated signed URL, please follow
-        /// these restrictions:
-        ///
-        /// * Source file type should be a zip file.
-        /// * No credentials should be attached - the signed URLs provide access to the
-        ///   target bucket using internal service identity; if credentials were
-        ///   attached, the identity from the credentials would be used, but that
-        ///   identity does not have permissions to upload files to the URL.
-        ///
-        /// When making a HTTP PUT request, these two headers need to be specified:
-        ///
-        /// * `content-type: application/zip`
-        ///
-        /// And this header SHOULD NOT be specified:
-        ///
-        /// * `Authorization: Bearer YOUR_TOKEN`
-        pub async fn generate_upload_url(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateUploadUrlRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GenerateUploadUrlResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.functions.v2.FunctionService/GenerateUploadUrl",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.functions.v2.FunctionService",
-                        "GenerateUploadUrl",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a signed URL for downloading deployed function source code.
-        /// The URL is only valid for a limited period and should be used within
-        /// 30 minutes of generation.
-        /// For more information about the signed URL usage see:
-        /// https://cloud.google.com/storage/docs/access-control/signed-urls
-        pub async fn generate_download_url(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateDownloadUrlRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GenerateDownloadUrlResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.functions.v2.FunctionService/GenerateDownloadUrl",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.functions.v2.FunctionService",
-                        "GenerateDownloadUrl",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a list of runtimes that are supported for the requested project.
-        pub async fn list_runtimes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRuntimesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRuntimesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.functions.v2.FunctionService/ListRuntimes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.functions.v2.FunctionService",
-                        "ListRuntimes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Google Cloud Functions is used to deploy functions that are executed by
+/// Google in response to various events. Data connected with that event is
+/// passed to a function as the input data.
+///
+/// A **function** is a resource which describes a function that should be
+/// executed and how it is triggered.
+#[derive(Debug, Clone)]
+pub struct FunctionServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> FunctionServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> FunctionServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+FunctionServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Returns a function with the given name from the requested project.
+pub async fn get_function(&mut self, request: impl tonic::IntoRequest<super::GetFunctionRequest>) -> std::result::Result<tonic::Response<super::Function>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v2.FunctionService/GetFunction");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v2.FunctionService", "GetFunction"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a list of functions that belong to the requested project.
+pub async fn list_functions(&mut self, request: impl tonic::IntoRequest<super::ListFunctionsRequest>) -> std::result::Result<tonic::Response<super::ListFunctionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v2.FunctionService/ListFunctions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v2.FunctionService", "ListFunctions"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new function. If a function with the given name already exists in
+/// the specified project, the long running operation will return
+/// `ALREADY_EXISTS` error.
+pub async fn create_function(&mut self, request: impl tonic::IntoRequest<super::CreateFunctionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v2.FunctionService/CreateFunction");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v2.FunctionService", "CreateFunction"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates existing function.
+pub async fn update_function(&mut self, request: impl tonic::IntoRequest<super::UpdateFunctionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v2.FunctionService/UpdateFunction");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v2.FunctionService", "UpdateFunction"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a function with the given name from the specified project. If the
+/// given function is used by some trigger, the trigger will be updated to
+/// remove this function.
+pub async fn delete_function(&mut self, request: impl tonic::IntoRequest<super::DeleteFunctionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v2.FunctionService/DeleteFunction");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v2.FunctionService", "DeleteFunction"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a signed URL for uploading a function source code.
+/// For more information about the signed URL usage see:
+/// https://cloud.google.com/storage/docs/access-control/signed-urls.
+/// Once the function source code upload is complete, the used signed
+/// URL should be provided in CreateFunction or UpdateFunction request
+/// as a reference to the function source code.
+///
+/// When uploading source code to the generated signed URL, please follow
+/// these restrictions:
+///
+/// * Source file type should be a zip file.
+/// * No credentials should be attached - the signed URLs provide access to the
+///   target bucket using internal service identity; if credentials were
+///   attached, the identity from the credentials would be used, but that
+///   identity does not have permissions to upload files to the URL.
+///
+/// When making a HTTP PUT request, these two headers need to be specified:
+///
+/// * `content-type: application/zip`
+///
+/// And this header SHOULD NOT be specified:
+///
+/// * `Authorization: Bearer YOUR_TOKEN`
+pub async fn generate_upload_url(&mut self, request: impl tonic::IntoRequest<super::GenerateUploadUrlRequest>) -> std::result::Result<tonic::Response<super::GenerateUploadUrlResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v2.FunctionService/GenerateUploadUrl");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v2.FunctionService", "GenerateUploadUrl"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a signed URL for downloading deployed function source code.
+/// The URL is only valid for a limited period and should be used within
+/// 30 minutes of generation.
+/// For more information about the signed URL usage see:
+/// https://cloud.google.com/storage/docs/access-control/signed-urls
+pub async fn generate_download_url(&mut self, request: impl tonic::IntoRequest<super::GenerateDownloadUrlRequest>) -> std::result::Result<tonic::Response<super::GenerateDownloadUrlResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v2.FunctionService/GenerateDownloadUrl");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v2.FunctionService", "GenerateDownloadUrl"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a list of runtimes that are supported for the requested project.
+pub async fn list_runtimes(&mut self, request: impl tonic::IntoRequest<super::ListRuntimesRequest>) -> std::result::Result<tonic::Response<super::ListRuntimesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.functions.v2.FunctionService/ListRuntimes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.functions.v2.FunctionService", "ListRuntimes"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

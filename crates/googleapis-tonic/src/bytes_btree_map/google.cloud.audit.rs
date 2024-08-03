@@ -2,2076 +2,1764 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditLog {
-    #[prost(string, tag = "7")]
-    pub service_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub method_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "11")]
-    pub resource_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "20")]
-    pub resource_location: ::core::option::Option<ResourceLocation>,
-    #[prost(message, optional, tag = "19")]
-    pub resource_original_state: ::core::option::Option<::prost_types::Struct>,
-    #[prost(int64, tag = "12")]
-    pub num_response_items: i64,
-    #[prost(message, optional, tag = "2")]
-    pub status: ::core::option::Option<super::super::rpc::Status>,
-    #[prost(message, optional, tag = "3")]
-    pub authentication_info: ::core::option::Option<AuthenticationInfo>,
-    #[prost(message, repeated, tag = "9")]
-    pub authorization_info: ::prost::alloc::vec::Vec<AuthorizationInfo>,
-    #[prost(message, optional, tag = "25")]
-    pub policy_violation_info: ::core::option::Option<PolicyViolationInfo>,
-    #[prost(message, optional, tag = "4")]
-    pub request_metadata: ::core::option::Option<RequestMetadata>,
-    #[prost(message, optional, tag = "16")]
-    pub request: ::core::option::Option<::prost_types::Struct>,
-    #[prost(message, optional, tag = "17")]
-    pub response: ::core::option::Option<::prost_types::Struct>,
-    #[prost(message, optional, tag = "18")]
-    pub metadata: ::core::option::Option<::prost_types::Struct>,
-    #[deprecated]
-    #[prost(message, optional, tag = "15")]
-    pub service_data: ::core::option::Option<::prost_types::Any>,
+#[prost(string, tag = "7")]
+pub service_name: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub method_name: ::prost::alloc::string::String,
+#[prost(string, tag = "11")]
+pub resource_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "20")]
+pub resource_location: ::core::option::Option<ResourceLocation>,
+#[prost(message, optional, tag = "19")]
+pub resource_original_state: ::core::option::Option<::prost_types::Struct>,
+#[prost(int64, tag = "12")]
+pub num_response_items: i64,
+#[prost(message, optional, tag = "2")]
+pub status: ::core::option::Option<super::super::rpc::Status>,
+#[prost(message, optional, tag = "3")]
+pub authentication_info: ::core::option::Option<AuthenticationInfo>,
+#[prost(message, repeated, tag = "9")]
+pub authorization_info: ::prost::alloc::vec::Vec<AuthorizationInfo>,
+#[prost(message, optional, tag = "25")]
+pub policy_violation_info: ::core::option::Option<PolicyViolationInfo>,
+#[prost(message, optional, tag = "4")]
+pub request_metadata: ::core::option::Option<RequestMetadata>,
+#[prost(message, optional, tag = "16")]
+pub request: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "17")]
+pub response: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "18")]
+pub metadata: ::core::option::Option<::prost_types::Struct>,
+#[deprecated]
+#[prost(message, optional, tag = "15")]
+pub service_data: ::core::option::Option<::prost_types::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthenticationInfo {
-    #[prost(string, tag = "1")]
-    pub principal_email: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub authority_selector: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub third_party_principal: ::core::option::Option<::prost_types::Struct>,
-    #[prost(string, tag = "5")]
-    pub service_account_key_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "6")]
-    pub service_account_delegation_info: ::prost::alloc::vec::Vec<
-        ServiceAccountDelegationInfo,
-    >,
-    #[prost(string, tag = "8")]
-    pub principal_subject: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub principal_email: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub authority_selector: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub third_party_principal: ::core::option::Option<::prost_types::Struct>,
+#[prost(string, tag = "5")]
+pub service_account_key_name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "6")]
+pub service_account_delegation_info: ::prost::alloc::vec::Vec<ServiceAccountDelegationInfo>,
+#[prost(string, tag = "8")]
+pub principal_subject: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthorizationInfo {
-    #[prost(string, tag = "1")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub permission: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub granted: bool,
-    #[prost(message, optional, tag = "5")]
-    pub resource_attributes: ::core::option::Option<
-        super::super::rpc::context::attribute_context::Resource,
-    >,
+#[prost(string, tag = "1")]
+pub resource: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub permission: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub granted: bool,
+#[prost(message, optional, tag = "5")]
+pub resource_attributes: ::core::option::Option<super::super::rpc::context::attribute_context::Resource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequestMetadata {
-    #[prost(string, tag = "1")]
-    pub caller_ip: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub caller_supplied_user_agent: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub caller_network: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub request_attributes: ::core::option::Option<
-        super::super::rpc::context::attribute_context::Request,
-    >,
-    #[prost(message, optional, tag = "8")]
-    pub destination_attributes: ::core::option::Option<
-        super::super::rpc::context::attribute_context::Peer,
-    >,
+#[prost(string, tag = "1")]
+pub caller_ip: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub caller_supplied_user_agent: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub caller_network: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub request_attributes: ::core::option::Option<super::super::rpc::context::attribute_context::Request>,
+#[prost(message, optional, tag = "8")]
+pub destination_attributes: ::core::option::Option<super::super::rpc::context::attribute_context::Peer>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceLocation {
-    #[prost(string, repeated, tag = "1")]
-    pub current_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "2")]
-    pub original_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub current_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub original_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceAccountDelegationInfo {
-    #[prost(string, tag = "3")]
-    pub principal_subject: ::prost::alloc::string::String,
-    #[prost(oneof = "service_account_delegation_info::Authority", tags = "1, 2")]
-    pub authority: ::core::option::Option<service_account_delegation_info::Authority>,
+#[prost(string, tag = "3")]
+pub principal_subject: ::prost::alloc::string::String,
+#[prost(oneof = "service_account_delegation_info::Authority", tags = "1, 2")]
+pub authority: ::core::option::Option<service_account_delegation_info::Authority>,
 }
 /// Nested message and enum types in `ServiceAccountDelegationInfo`.
 pub mod service_account_delegation_info {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FirstPartyPrincipal {
-        #[prost(string, tag = "1")]
-        pub principal_email: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub service_metadata: ::core::option::Option<::prost_types::Struct>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ThirdPartyPrincipal {
-        #[prost(message, optional, tag = "1")]
-        pub third_party_claims: ::core::option::Option<::prost_types::Struct>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Authority {
-        #[prost(message, tag = "1")]
-        FirstPartyPrincipal(FirstPartyPrincipal),
-        #[prost(message, tag = "2")]
-        ThirdPartyPrincipal(ThirdPartyPrincipal),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FirstPartyPrincipal {
+#[prost(string, tag = "1")]
+pub principal_email: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub service_metadata: ::core::option::Option<::prost_types::Struct>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ThirdPartyPrincipal {
+#[prost(message, optional, tag = "1")]
+pub third_party_claims: ::core::option::Option<::prost_types::Struct>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Authority {
+#[prost(message, tag = "1")]
+FirstPartyPrincipal(FirstPartyPrincipal),
+#[prost(message, tag = "2")]
+ThirdPartyPrincipal(ThirdPartyPrincipal),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PolicyViolationInfo {
-    #[prost(message, optional, tag = "1")]
-    pub org_policy_violation_info: ::core::option::Option<OrgPolicyViolationInfo>,
+#[prost(message, optional, tag = "1")]
+pub org_policy_violation_info: ::core::option::Option<OrgPolicyViolationInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrgPolicyViolationInfo {
-    #[prost(message, optional, tag = "1")]
-    pub payload: ::core::option::Option<::prost_types::Struct>,
-    #[prost(string, tag = "2")]
-    pub resource_type: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "3")]
-    pub resource_tags: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, repeated, tag = "4")]
-    pub violation_info: ::prost::alloc::vec::Vec<ViolationInfo>,
+#[prost(message, optional, tag = "1")]
+pub payload: ::core::option::Option<::prost_types::Struct>,
+#[prost(string, tag = "2")]
+pub resource_type: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "3")]
+pub resource_tags: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "4")]
+pub violation_info: ::prost::alloc::vec::Vec<ViolationInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ViolationInfo {
-    #[prost(string, tag = "1")]
-    pub constraint: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub error_message: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub checked_value: ::prost::alloc::string::String,
-    #[prost(enumeration = "violation_info::PolicyType", tag = "4")]
-    pub policy_type: i32,
+#[prost(string, tag = "1")]
+pub constraint: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub error_message: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub checked_value: ::prost::alloc::string::String,
+#[prost(enumeration = "violation_info::PolicyType", tag = "4")]
+pub policy_type: i32,
 }
 /// Nested message and enum types in `ViolationInfo`.
 pub mod violation_info {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PolicyType {
-        Unspecified = 0,
-        BooleanConstraint = 1,
-        ListConstraint = 2,
-        CustomConstraint = 3,
-    }
-    impl PolicyType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PolicyType::Unspecified => "POLICY_TYPE_UNSPECIFIED",
-                PolicyType::BooleanConstraint => "BOOLEAN_CONSTRAINT",
-                PolicyType::ListConstraint => "LIST_CONSTRAINT",
-                PolicyType::CustomConstraint => "CUSTOM_CONSTRAINT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "POLICY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "BOOLEAN_CONSTRAINT" => Some(Self::BooleanConstraint),
-                "LIST_CONSTRAINT" => Some(Self::ListConstraint),
-                "CUSTOM_CONSTRAINT" => Some(Self::CustomConstraint),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PolicyType {
+Unspecified = 0,
+BooleanConstraint = 1,
+ListConstraint = 2,
+CustomConstraint = 3,
+}
+impl PolicyType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PolicyType::Unspecified => "POLICY_TYPE_UNSPECIFIED",
+PolicyType::BooleanConstraint => "BOOLEAN_CONSTRAINT",
+PolicyType::ListConstraint => "LIST_CONSTRAINT",
+PolicyType::CustomConstraint => "CUSTOM_CONSTRAINT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"POLICY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"BOOLEAN_CONSTRAINT" => Some(Self::BooleanConstraint),
+"LIST_CONSTRAINT" => Some(Self::ListConstraint),
+"CUSTOM_CONSTRAINT" => Some(Self::CustomConstraint),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryAuditMetadata {
-    #[prost(message, optional, tag = "24")]
-    pub first_party_app_metadata: ::core::option::Option<
-        big_query_audit_metadata::FirstPartyAppMetadata,
-    >,
-    #[prost(
-        oneof = "big_query_audit_metadata::Event",
-        tags = "1, 2, 23, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 19, 16, 17, 18, 20, 21, 22, 25"
-    )]
-    pub event: ::core::option::Option<big_query_audit_metadata::Event>,
+#[prost(message, optional, tag = "24")]
+pub first_party_app_metadata: ::core::option::Option<big_query_audit_metadata::FirstPartyAppMetadata>,
+#[prost(oneof = "big_query_audit_metadata::Event", tags = "1, 2, 23, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 19, 16, 17, 18, 20, 21, 22, 25")]
+pub event: ::core::option::Option<big_query_audit_metadata::Event>,
 }
 /// Nested message and enum types in `BigQueryAuditMetadata`.
 pub mod big_query_audit_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct JobInsertion {
-        #[prost(message, optional, tag = "1")]
-        pub job: ::core::option::Option<Job>,
-        #[prost(enumeration = "job_insertion::Reason", tag = "2")]
-        pub reason: i32,
-    }
-    /// Nested message and enum types in `JobInsertion`.
-    pub mod job_insertion {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            JobInsertRequest = 1,
-            QueryRequest = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::JobInsertRequest => "JOB_INSERT_REQUEST",
-                    Reason::QueryRequest => "QUERY_REQUEST",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "JOB_INSERT_REQUEST" => Some(Self::JobInsertRequest),
-                    "QUERY_REQUEST" => Some(Self::QueryRequest),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct JobChange {
-        #[prost(enumeration = "JobState", tag = "1")]
-        pub before: i32,
-        #[prost(enumeration = "JobState", tag = "2")]
-        pub after: i32,
-        #[prost(message, optional, tag = "3")]
-        pub job: ::core::option::Option<Job>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct JobDeletion {
-        #[prost(string, tag = "1")]
-        pub job_name: ::prost::alloc::string::String,
-        #[prost(enumeration = "job_deletion::Reason", tag = "2")]
-        pub reason: i32,
-    }
-    /// Nested message and enum types in `JobDeletion`.
-    pub mod job_deletion {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            JobDeleteRequest = 1,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::JobDeleteRequest => "JOB_DELETE_REQUEST",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "JOB_DELETE_REQUEST" => Some(Self::JobDeleteRequest),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DatasetCreation {
-        #[prost(message, optional, tag = "1")]
-        pub dataset: ::core::option::Option<Dataset>,
-        #[prost(enumeration = "dataset_creation::Reason", tag = "2")]
-        pub reason: i32,
-        #[prost(string, tag = "3")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `DatasetCreation`.
-    pub mod dataset_creation {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Create = 1,
-            Query = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Create => "CREATE",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "CREATE" => Some(Self::Create),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DatasetChange {
-        #[prost(message, optional, tag = "1")]
-        pub dataset: ::core::option::Option<Dataset>,
-        #[prost(enumeration = "dataset_change::Reason", tag = "2")]
-        pub reason: i32,
-        #[prost(string, tag = "3")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `DatasetChange`.
-    pub mod dataset_change {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Update = 1,
-            SetIamPolicy = 2,
-            Query = 3,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Update => "UPDATE",
-                    Reason::SetIamPolicy => "SET_IAM_POLICY",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "UPDATE" => Some(Self::Update),
-                    "SET_IAM_POLICY" => Some(Self::SetIamPolicy),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DatasetDeletion {
-        #[prost(enumeration = "dataset_deletion::Reason", tag = "1")]
-        pub reason: i32,
-        #[prost(string, tag = "2")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `DatasetDeletion`.
-    pub mod dataset_deletion {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Delete = 1,
-            Query = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Delete => "DELETE",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "DELETE" => Some(Self::Delete),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TableCreation {
-        #[prost(message, optional, tag = "1")]
-        pub table: ::core::option::Option<Table>,
-        #[prost(enumeration = "table_creation::Reason", tag = "3")]
-        pub reason: i32,
-        #[prost(string, tag = "4")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `TableCreation`.
-    pub mod table_creation {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Job = 1,
-            Query = 2,
-            TableInsertRequest = 3,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Job => "JOB",
-                    Reason::Query => "QUERY",
-                    Reason::TableInsertRequest => "TABLE_INSERT_REQUEST",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "JOB" => Some(Self::Job),
-                    "QUERY" => Some(Self::Query),
-                    "TABLE_INSERT_REQUEST" => Some(Self::TableInsertRequest),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ModelCreation {
-        #[prost(message, optional, tag = "1")]
-        pub model: ::core::option::Option<Model>,
-        #[prost(enumeration = "model_creation::Reason", tag = "3")]
-        pub reason: i32,
-        #[prost(string, tag = "4")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `ModelCreation`.
-    pub mod model_creation {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Query = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RoutineCreation {
-        #[prost(message, optional, tag = "1")]
-        pub routine: ::core::option::Option<Routine>,
-        #[prost(enumeration = "routine_creation::Reason", tag = "3")]
-        pub reason: i32,
-        #[prost(string, tag = "4")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `RoutineCreation`.
-    pub mod routine_creation {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Query = 1,
-            RoutineInsertRequest = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Query => "QUERY",
-                    Reason::RoutineInsertRequest => "ROUTINE_INSERT_REQUEST",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "QUERY" => Some(Self::Query),
-                    "ROUTINE_INSERT_REQUEST" => Some(Self::RoutineInsertRequest),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TableDataRead {
-        #[prost(string, repeated, tag = "2")]
-        pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(bool, tag = "8")]
-        pub fields_truncated: bool,
-        #[prost(string, repeated, tag = "9")]
-        pub policy_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(bool, tag = "10")]
-        pub policy_tags_truncated: bool,
-        #[prost(enumeration = "table_data_read::Reason", tag = "3")]
-        pub reason: i32,
-        #[prost(string, tag = "4")]
-        pub job_name: ::prost::alloc::string::String,
-        #[prost(string, tag = "5")]
-        pub session_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `TableDataRead`.
-    pub mod table_data_read {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Job = 1,
-            TabledataListRequest = 2,
-            GetQueryResultsRequest = 3,
-            QueryRequest = 4,
-            CreateReadSession = 5,
-            MaterializedViewRefresh = 6,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Job => "JOB",
-                    Reason::TabledataListRequest => "TABLEDATA_LIST_REQUEST",
-                    Reason::GetQueryResultsRequest => "GET_QUERY_RESULTS_REQUEST",
-                    Reason::QueryRequest => "QUERY_REQUEST",
-                    Reason::CreateReadSession => "CREATE_READ_SESSION",
-                    Reason::MaterializedViewRefresh => "MATERIALIZED_VIEW_REFRESH",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "JOB" => Some(Self::Job),
-                    "TABLEDATA_LIST_REQUEST" => Some(Self::TabledataListRequest),
-                    "GET_QUERY_RESULTS_REQUEST" => Some(Self::GetQueryResultsRequest),
-                    "QUERY_REQUEST" => Some(Self::QueryRequest),
-                    "CREATE_READ_SESSION" => Some(Self::CreateReadSession),
-                    "MATERIALIZED_VIEW_REFRESH" => Some(Self::MaterializedViewRefresh),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TableChange {
-        #[prost(message, optional, tag = "1")]
-        pub table: ::core::option::Option<Table>,
-        #[prost(bool, tag = "4")]
-        pub truncated: bool,
-        #[prost(enumeration = "table_change::Reason", tag = "5")]
-        pub reason: i32,
-        #[prost(string, tag = "6")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `TableChange`.
-    pub mod table_change {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            TableUpdateRequest = 1,
-            Job = 2,
-            Query = 3,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::TableUpdateRequest => "TABLE_UPDATE_REQUEST",
-                    Reason::Job => "JOB",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "TABLE_UPDATE_REQUEST" => Some(Self::TableUpdateRequest),
-                    "JOB" => Some(Self::Job),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ModelMetadataChange {
-        #[prost(message, optional, tag = "1")]
-        pub model: ::core::option::Option<Model>,
-        #[prost(enumeration = "model_metadata_change::Reason", tag = "2")]
-        pub reason: i32,
-        #[prost(string, tag = "3")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `ModelMetadataChange`.
-    pub mod model_metadata_change {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            ModelPatchRequest = 1,
-            Query = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::ModelPatchRequest => "MODEL_PATCH_REQUEST",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "MODEL_PATCH_REQUEST" => Some(Self::ModelPatchRequest),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RoutineChange {
-        #[prost(message, optional, tag = "1")]
-        pub routine: ::core::option::Option<Routine>,
-        #[prost(enumeration = "routine_change::Reason", tag = "3")]
-        pub reason: i32,
-        #[prost(string, tag = "4")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `RoutineChange`.
-    pub mod routine_change {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Query = 1,
-            RoutineUpdateRequest = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Query => "QUERY",
-                    Reason::RoutineUpdateRequest => "ROUTINE_UPDATE_REQUEST",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "QUERY" => Some(Self::Query),
-                    "ROUTINE_UPDATE_REQUEST" => Some(Self::RoutineUpdateRequest),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TableDataChange {
-        #[prost(int64, tag = "1")]
-        pub deleted_rows_count: i64,
-        #[prost(int64, tag = "2")]
-        pub inserted_rows_count: i64,
-        #[prost(bool, tag = "3")]
-        pub truncated: bool,
-        #[prost(enumeration = "table_data_change::Reason", tag = "4")]
-        pub reason: i32,
-        #[prost(string, tag = "5")]
-        pub job_name: ::prost::alloc::string::String,
-        #[prost(string, tag = "6")]
-        pub stream_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `TableDataChange`.
-    pub mod table_data_change {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Job = 1,
-            Query = 2,
-            MaterializedViewRefresh = 3,
-            WriteApi = 4,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Job => "JOB",
-                    Reason::Query => "QUERY",
-                    Reason::MaterializedViewRefresh => "MATERIALIZED_VIEW_REFRESH",
-                    Reason::WriteApi => "WRITE_API",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "JOB" => Some(Self::Job),
-                    "QUERY" => Some(Self::Query),
-                    "MATERIALIZED_VIEW_REFRESH" => Some(Self::MaterializedViewRefresh),
-                    "WRITE_API" => Some(Self::WriteApi),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ModelDataChange {
-        #[prost(enumeration = "model_data_change::Reason", tag = "1")]
-        pub reason: i32,
-        #[prost(string, tag = "2")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `ModelDataChange`.
-    pub mod model_data_change {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Query = 1,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ModelDataRead {
-        #[prost(enumeration = "model_data_read::Reason", tag = "1")]
-        pub reason: i32,
-        #[prost(string, tag = "2")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `ModelDataRead`.
-    pub mod model_data_read {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Job = 1,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Job => "JOB",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "JOB" => Some(Self::Job),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TableDeletion {
-        #[prost(enumeration = "table_deletion::Reason", tag = "1")]
-        pub reason: i32,
-        #[prost(string, tag = "2")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `TableDeletion`.
-    pub mod table_deletion {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            TableDeleteRequest = 2,
-            Expired = 3,
-            Query = 4,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::TableDeleteRequest => "TABLE_DELETE_REQUEST",
-                    Reason::Expired => "EXPIRED",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "TABLE_DELETE_REQUEST" => Some(Self::TableDeleteRequest),
-                    "EXPIRED" => Some(Self::Expired),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ModelDeletion {
-        #[prost(enumeration = "model_deletion::Reason", tag = "1")]
-        pub reason: i32,
-        #[prost(string, tag = "2")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `ModelDeletion`.
-    pub mod model_deletion {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            ModelDeleteRequest = 1,
-            Expired = 2,
-            Query = 3,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::ModelDeleteRequest => "MODEL_DELETE_REQUEST",
-                    Reason::Expired => "EXPIRED",
-                    Reason::Query => "QUERY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "MODEL_DELETE_REQUEST" => Some(Self::ModelDeleteRequest),
-                    "EXPIRED" => Some(Self::Expired),
-                    "QUERY" => Some(Self::Query),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RoutineDeletion {
-        #[prost(message, optional, tag = "1")]
-        pub routine: ::core::option::Option<Routine>,
-        #[prost(enumeration = "routine_deletion::Reason", tag = "3")]
-        pub reason: i32,
-        #[prost(string, tag = "4")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `RoutineDeletion`.
-    pub mod routine_deletion {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            Query = 1,
-            RoutineDeleteRequest = 2,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::Query => "QUERY",
-                    Reason::RoutineDeleteRequest => "ROUTINE_DELETE_REQUEST",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "QUERY" => Some(Self::Query),
-                    "ROUTINE_DELETE_REQUEST" => Some(Self::RoutineDeleteRequest),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RowAccessPolicyCreation {
-        #[prost(message, optional, tag = "1")]
-        pub row_access_policy: ::core::option::Option<RowAccessPolicy>,
-        #[prost(string, tag = "2")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RowAccessPolicyChange {
-        #[prost(message, optional, tag = "1")]
-        pub row_access_policy: ::core::option::Option<RowAccessPolicy>,
-        #[prost(string, tag = "2")]
-        pub job_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RowAccessPolicyDeletion {
-        #[prost(message, repeated, tag = "1")]
-        pub row_access_policies: ::prost::alloc::vec::Vec<RowAccessPolicy>,
-        #[prost(string, tag = "2")]
-        pub job_name: ::prost::alloc::string::String,
-        #[prost(bool, tag = "3")]
-        pub all_row_access_policies_dropped: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct UnlinkDataset {
-        #[prost(string, tag = "1")]
-        pub linked_dataset: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub source_dataset: ::prost::alloc::string::String,
-        #[prost(enumeration = "unlink_dataset::Reason", tag = "3")]
-        pub reason: i32,
-    }
-    /// Nested message and enum types in `UnlinkDataset`.
-    pub mod unlink_dataset {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            UnlinkApi = 1,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::UnlinkApi => "UNLINK_API",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "UNLINK_API" => Some(Self::UnlinkApi),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Job {
-        #[prost(string, tag = "1")]
-        pub job_name: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub job_config: ::core::option::Option<JobConfig>,
-        #[prost(message, optional, tag = "3")]
-        pub job_status: ::core::option::Option<JobStatus>,
-        #[prost(message, optional, tag = "4")]
-        pub job_stats: ::core::option::Option<JobStats>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct JobConfig {
-        #[prost(enumeration = "job_config::Type", tag = "1")]
-        pub r#type: i32,
-        #[prost(btree_map = "string, string", tag = "6")]
-        pub labels: ::prost::alloc::collections::BTreeMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(oneof = "job_config::Config", tags = "2, 3, 4, 5")]
-        pub config: ::core::option::Option<job_config::Config>,
-    }
-    /// Nested message and enum types in `JobConfig`.
-    pub mod job_config {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Query {
-            #[prost(string, tag = "1")]
-            pub query: ::prost::alloc::string::String,
-            #[prost(bool, tag = "10")]
-            pub query_truncated: bool,
-            #[prost(string, tag = "2")]
-            pub destination_table: ::prost::alloc::string::String,
-            #[prost(enumeration = "super::CreateDisposition", tag = "3")]
-            pub create_disposition: i32,
-            #[prost(enumeration = "super::WriteDisposition", tag = "4")]
-            pub write_disposition: i32,
-            #[prost(string, tag = "5")]
-            pub default_dataset: ::prost::alloc::string::String,
-            #[prost(message, repeated, tag = "6")]
-            pub table_definitions: ::prost::alloc::vec::Vec<super::TableDefinition>,
-            #[prost(enumeration = "query::Priority", tag = "7")]
-            pub priority: i32,
-            #[prost(message, optional, tag = "8")]
-            pub destination_table_encryption: ::core::option::Option<
-                super::EncryptionInfo,
-            >,
-            #[prost(enumeration = "super::QueryStatementType", tag = "9")]
-            pub statement_type: i32,
-        }
-        /// Nested message and enum types in `Query`.
-        pub mod query {
-            #[derive(
-                Clone,
-                Copy,
-                Debug,
-                PartialEq,
-                Eq,
-                Hash,
-                PartialOrd,
-                Ord,
-                ::prost::Enumeration
-            )]
-            #[repr(i32)]
-            pub enum Priority {
-                Unspecified = 0,
-                QueryInteractive = 1,
-                QueryBatch = 2,
-            }
-            impl Priority {
-                /// String value of the enum field names used in the ProtoBuf definition.
-                ///
-                /// The values are not transformed in any way and thus are considered stable
-                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-                pub fn as_str_name(&self) -> &'static str {
-                    match self {
-                        Priority::Unspecified => "PRIORITY_UNSPECIFIED",
-                        Priority::QueryInteractive => "QUERY_INTERACTIVE",
-                        Priority::QueryBatch => "QUERY_BATCH",
-                    }
-                }
-                /// Creates an enum from field names used in the ProtoBuf definition.
-                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                    match value {
-                        "PRIORITY_UNSPECIFIED" => Some(Self::Unspecified),
-                        "QUERY_INTERACTIVE" => Some(Self::QueryInteractive),
-                        "QUERY_BATCH" => Some(Self::QueryBatch),
-                        _ => None,
-                    }
-                }
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Load {
-            #[prost(string, repeated, tag = "1")]
-            pub source_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-            #[prost(bool, tag = "7")]
-            pub source_uris_truncated: bool,
-            #[prost(string, tag = "2")]
-            pub schema_json: ::prost::alloc::string::String,
-            #[prost(bool, tag = "8")]
-            pub schema_json_truncated: bool,
-            #[prost(string, tag = "3")]
-            pub destination_table: ::prost::alloc::string::String,
-            #[prost(enumeration = "super::CreateDisposition", tag = "4")]
-            pub create_disposition: i32,
-            #[prost(enumeration = "super::WriteDisposition", tag = "5")]
-            pub write_disposition: i32,
-            #[prost(message, optional, tag = "6")]
-            pub destination_table_encryption: ::core::option::Option<
-                super::EncryptionInfo,
-            >,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Extract {
-            #[prost(string, repeated, tag = "1")]
-            pub destination_uris: ::prost::alloc::vec::Vec<
-                ::prost::alloc::string::String,
-            >,
-            #[prost(bool, tag = "3")]
-            pub destination_uris_truncated: bool,
-            #[prost(oneof = "extract::Source", tags = "2, 4")]
-            pub source: ::core::option::Option<extract::Source>,
-        }
-        /// Nested message and enum types in `Extract`.
-        pub mod extract {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Oneof)]
-            pub enum Source {
-                #[prost(string, tag = "2")]
-                SourceTable(::prost::alloc::string::String),
-                #[prost(string, tag = "4")]
-                SourceModel(::prost::alloc::string::String),
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct TableCopy {
-            #[prost(string, repeated, tag = "1")]
-            pub source_tables: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-            #[prost(bool, tag = "6")]
-            pub source_tables_truncated: bool,
-            #[prost(string, tag = "2")]
-            pub destination_table: ::prost::alloc::string::String,
-            #[prost(enumeration = "super::CreateDisposition", tag = "3")]
-            pub create_disposition: i32,
-            #[prost(enumeration = "super::WriteDisposition", tag = "4")]
-            pub write_disposition: i32,
-            #[prost(message, optional, tag = "5")]
-            pub destination_table_encryption: ::core::option::Option<
-                super::EncryptionInfo,
-            >,
-            #[prost(enumeration = "super::OperationType", tag = "7")]
-            pub operation_type: i32,
-            #[prost(message, optional, tag = "8")]
-            pub destination_expiration_time: ::core::option::Option<
-                ::prost_types::Timestamp,
-            >,
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Type {
-            Unspecified = 0,
-            Query = 1,
-            Copy = 2,
-            Export = 3,
-            Import = 4,
-        }
-        impl Type {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::Query => "QUERY",
-                    Type::Copy => "COPY",
-                    Type::Export => "EXPORT",
-                    Type::Import => "IMPORT",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "QUERY" => Some(Self::Query),
-                    "COPY" => Some(Self::Copy),
-                    "EXPORT" => Some(Self::Export),
-                    "IMPORT" => Some(Self::Import),
-                    _ => None,
-                }
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Config {
-            #[prost(message, tag = "2")]
-            QueryConfig(Query),
-            #[prost(message, tag = "3")]
-            LoadConfig(Load),
-            #[prost(message, tag = "4")]
-            ExtractConfig(Extract),
-            #[prost(message, tag = "5")]
-            TableCopyConfig(TableCopy),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TableDefinition {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, repeated, tag = "2")]
-        pub source_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct JobStatus {
-        #[prost(enumeration = "JobState", tag = "1")]
-        pub job_state: i32,
-        #[prost(message, optional, tag = "2")]
-        pub error_result: ::core::option::Option<super::super::super::rpc::Status>,
-        #[prost(message, repeated, tag = "3")]
-        pub errors: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct JobStats {
-        #[prost(message, optional, tag = "1")]
-        pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "2")]
-        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "3")]
-        pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(int64, tag = "10")]
-        pub total_slot_ms: i64,
-        #[deprecated]
-        #[prost(message, repeated, tag = "11")]
-        pub reservation_usage: ::prost::alloc::vec::Vec<
-            job_stats::ReservationResourceUsage,
-        >,
-        #[prost(string, tag = "14")]
-        pub reservation: ::prost::alloc::string::String,
-        #[prost(string, tag = "12")]
-        pub parent_job_name: ::prost::alloc::string::String,
-        #[prost(oneof = "job_stats::Extended", tags = "8, 9, 13")]
-        pub extended: ::core::option::Option<job_stats::Extended>,
-    }
-    /// Nested message and enum types in `JobStats`.
-    pub mod job_stats {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Query {
-            #[prost(int64, tag = "1")]
-            pub total_processed_bytes: i64,
-            #[prost(int64, tag = "2")]
-            pub total_billed_bytes: i64,
-            #[prost(int32, tag = "3")]
-            pub billing_tier: i32,
-            #[prost(string, repeated, tag = "6")]
-            pub referenced_tables: ::prost::alloc::vec::Vec<
-                ::prost::alloc::string::String,
-            >,
-            #[prost(string, repeated, tag = "7")]
-            pub referenced_views: ::prost::alloc::vec::Vec<
-                ::prost::alloc::string::String,
-            >,
-            #[prost(string, repeated, tag = "10")]
-            pub referenced_routines: ::prost::alloc::vec::Vec<
-                ::prost::alloc::string::String,
-            >,
-            #[prost(int64, tag = "8")]
-            pub output_row_count: i64,
-            #[prost(bool, tag = "9")]
-            pub cache_hit: bool,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct Load {
-            #[prost(int64, tag = "1")]
-            pub total_output_bytes: i64,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct Extract {
-            #[prost(int64, tag = "1")]
-            pub total_input_bytes: i64,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ReservationResourceUsage {
-            #[prost(string, tag = "1")]
-            pub name: ::prost::alloc::string::String,
-            #[prost(int64, tag = "2")]
-            pub slot_ms: i64,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Extended {
-            #[prost(message, tag = "8")]
-            QueryStats(Query),
-            #[prost(message, tag = "9")]
-            LoadStats(Load),
-            #[prost(message, tag = "13")]
-            ExtractStats(Extract),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Table {
-        #[prost(string, tag = "1")]
-        pub table_name: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "10")]
-        pub table_info: ::core::option::Option<EntityInfo>,
-        #[prost(string, tag = "3")]
-        pub schema_json: ::prost::alloc::string::String,
-        #[prost(bool, tag = "11")]
-        pub schema_json_truncated: bool,
-        #[prost(message, optional, tag = "4")]
-        pub view: ::core::option::Option<TableViewDefinition>,
-        #[prost(message, optional, tag = "5")]
-        pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "6")]
-        pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "7")]
-        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "8")]
-        pub truncate_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "9")]
-        pub encryption: ::core::option::Option<EncryptionInfo>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Model {
-        #[prost(string, tag = "1")]
-        pub model_name: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub model_info: ::core::option::Option<EntityInfo>,
-        #[prost(message, optional, tag = "5")]
-        pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "6")]
-        pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "7")]
-        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "8")]
-        pub encryption: ::core::option::Option<EncryptionInfo>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Routine {
-        #[prost(string, tag = "1")]
-        pub routine_name: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "5")]
-        pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "6")]
-        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct EntityInfo {
-        #[prost(string, tag = "1")]
-        pub friendly_name: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub description: ::prost::alloc::string::String,
-        #[prost(btree_map = "string, string", tag = "3")]
-        pub labels: ::prost::alloc::collections::BTreeMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TableViewDefinition {
-        #[prost(string, tag = "1")]
-        pub query: ::prost::alloc::string::String,
-        #[prost(bool, tag = "2")]
-        pub query_truncated: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Dataset {
-        #[prost(string, tag = "1")]
-        pub dataset_name: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "7")]
-        pub dataset_info: ::core::option::Option<EntityInfo>,
-        #[prost(message, optional, tag = "3")]
-        pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "4")]
-        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "5")]
-        pub acl: ::core::option::Option<BigQueryAcl>,
-        #[prost(message, optional, tag = "6")]
-        pub default_table_expire_duration: ::core::option::Option<
-            ::prost_types::Duration,
-        >,
-        #[prost(message, optional, tag = "8")]
-        pub default_encryption: ::core::option::Option<EncryptionInfo>,
-        #[prost(string, tag = "9")]
-        pub default_collation: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct BigQueryAcl {
-        #[prost(message, optional, tag = "1")]
-        pub policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
-        #[prost(string, repeated, tag = "2")]
-        pub authorized_views: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct EncryptionInfo {
-        #[prost(string, tag = "1")]
-        pub kms_key_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RowAccessPolicy {
-        #[prost(string, tag = "1")]
-        pub row_access_policy_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FirstPartyAppMetadata {
-        #[prost(oneof = "first_party_app_metadata::Metadata", tags = "1")]
-        pub metadata: ::core::option::Option<first_party_app_metadata::Metadata>,
-    }
-    /// Nested message and enum types in `FirstPartyAppMetadata`.
-    pub mod first_party_app_metadata {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Metadata {
-            #[prost(message, tag = "1")]
-            SheetsMetadata(super::SheetsMetadata),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SheetsMetadata {
-        #[prost(string, tag = "1")]
-        pub doc_id: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum CreateDisposition {
-        Unspecified = 0,
-        CreateNever = 1,
-        CreateIfNeeded = 2,
-    }
-    impl CreateDisposition {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                CreateDisposition::Unspecified => "CREATE_DISPOSITION_UNSPECIFIED",
-                CreateDisposition::CreateNever => "CREATE_NEVER",
-                CreateDisposition::CreateIfNeeded => "CREATE_IF_NEEDED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CREATE_DISPOSITION_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATE_NEVER" => Some(Self::CreateNever),
-                "CREATE_IF_NEEDED" => Some(Self::CreateIfNeeded),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum WriteDisposition {
-        Unspecified = 0,
-        WriteEmpty = 1,
-        WriteTruncate = 2,
-        WriteAppend = 3,
-    }
-    impl WriteDisposition {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                WriteDisposition::Unspecified => "WRITE_DISPOSITION_UNSPECIFIED",
-                WriteDisposition::WriteEmpty => "WRITE_EMPTY",
-                WriteDisposition::WriteTruncate => "WRITE_TRUNCATE",
-                WriteDisposition::WriteAppend => "WRITE_APPEND",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "WRITE_DISPOSITION_UNSPECIFIED" => Some(Self::Unspecified),
-                "WRITE_EMPTY" => Some(Self::WriteEmpty),
-                "WRITE_TRUNCATE" => Some(Self::WriteTruncate),
-                "WRITE_APPEND" => Some(Self::WriteAppend),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum OperationType {
-        Unspecified = 0,
-        Copy = 1,
-        Snapshot = 2,
-        Restore = 3,
-    }
-    impl OperationType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                OperationType::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
-                OperationType::Copy => "COPY",
-                OperationType::Snapshot => "SNAPSHOT",
-                OperationType::Restore => "RESTORE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "OPERATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "COPY" => Some(Self::Copy),
-                "SNAPSHOT" => Some(Self::Snapshot),
-                "RESTORE" => Some(Self::Restore),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum JobState {
-        Unspecified = 0,
-        Pending = 1,
-        Running = 2,
-        Done = 3,
-    }
-    impl JobState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                JobState::Unspecified => "JOB_STATE_UNSPECIFIED",
-                JobState::Pending => "PENDING",
-                JobState::Running => "RUNNING",
-                JobState::Done => "DONE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "JOB_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PENDING" => Some(Self::Pending),
-                "RUNNING" => Some(Self::Running),
-                "DONE" => Some(Self::Done),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum QueryStatementType {
-        Unspecified = 0,
-        Select = 1,
-        Assert = 23,
-        Insert = 2,
-        Update = 3,
-        Delete = 4,
-        Merge = 5,
-        CreateTable = 6,
-        CreateTableAsSelect = 7,
-        CreateView = 8,
-        CreateModel = 9,
-        CreateMaterializedView = 13,
-        CreateFunction = 14,
-        CreateTableFunction = 56,
-        CreateProcedure = 20,
-        CreateRowAccessPolicy = 24,
-        CreateSchema = 53,
-        CreateSnapshotTable = 59,
-        DropTable = 10,
-        DropExternalTable = 33,
-        DropView = 11,
-        DropModel = 12,
-        DropMaterializedView = 15,
-        DropFunction = 16,
-        DropProcedure = 21,
-        DropSchema = 54,
-        DropRowAccessPolicy = 25,
-        DropSnapshotTable = 62,
-        AlterTable = 17,
-        AlterView = 18,
-        AlterMaterializedView = 22,
-        AlterSchema = 55,
-        Script = 19,
-        TruncateTable = 26,
-        CreateExternalTable = 27,
-        ExportData = 28,
-        Call = 29,
-    }
-    impl QueryStatementType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                QueryStatementType::Unspecified => "QUERY_STATEMENT_TYPE_UNSPECIFIED",
-                QueryStatementType::Select => "SELECT",
-                QueryStatementType::Assert => "ASSERT",
-                QueryStatementType::Insert => "INSERT",
-                QueryStatementType::Update => "UPDATE",
-                QueryStatementType::Delete => "DELETE",
-                QueryStatementType::Merge => "MERGE",
-                QueryStatementType::CreateTable => "CREATE_TABLE",
-                QueryStatementType::CreateTableAsSelect => "CREATE_TABLE_AS_SELECT",
-                QueryStatementType::CreateView => "CREATE_VIEW",
-                QueryStatementType::CreateModel => "CREATE_MODEL",
-                QueryStatementType::CreateMaterializedView => "CREATE_MATERIALIZED_VIEW",
-                QueryStatementType::CreateFunction => "CREATE_FUNCTION",
-                QueryStatementType::CreateTableFunction => "CREATE_TABLE_FUNCTION",
-                QueryStatementType::CreateProcedure => "CREATE_PROCEDURE",
-                QueryStatementType::CreateRowAccessPolicy => "CREATE_ROW_ACCESS_POLICY",
-                QueryStatementType::CreateSchema => "CREATE_SCHEMA",
-                QueryStatementType::CreateSnapshotTable => "CREATE_SNAPSHOT_TABLE",
-                QueryStatementType::DropTable => "DROP_TABLE",
-                QueryStatementType::DropExternalTable => "DROP_EXTERNAL_TABLE",
-                QueryStatementType::DropView => "DROP_VIEW",
-                QueryStatementType::DropModel => "DROP_MODEL",
-                QueryStatementType::DropMaterializedView => "DROP_MATERIALIZED_VIEW",
-                QueryStatementType::DropFunction => "DROP_FUNCTION",
-                QueryStatementType::DropProcedure => "DROP_PROCEDURE",
-                QueryStatementType::DropSchema => "DROP_SCHEMA",
-                QueryStatementType::DropRowAccessPolicy => "DROP_ROW_ACCESS_POLICY",
-                QueryStatementType::DropSnapshotTable => "DROP_SNAPSHOT_TABLE",
-                QueryStatementType::AlterTable => "ALTER_TABLE",
-                QueryStatementType::AlterView => "ALTER_VIEW",
-                QueryStatementType::AlterMaterializedView => "ALTER_MATERIALIZED_VIEW",
-                QueryStatementType::AlterSchema => "ALTER_SCHEMA",
-                QueryStatementType::Script => "SCRIPT",
-                QueryStatementType::TruncateTable => "TRUNCATE_TABLE",
-                QueryStatementType::CreateExternalTable => "CREATE_EXTERNAL_TABLE",
-                QueryStatementType::ExportData => "EXPORT_DATA",
-                QueryStatementType::Call => "CALL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "QUERY_STATEMENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SELECT" => Some(Self::Select),
-                "ASSERT" => Some(Self::Assert),
-                "INSERT" => Some(Self::Insert),
-                "UPDATE" => Some(Self::Update),
-                "DELETE" => Some(Self::Delete),
-                "MERGE" => Some(Self::Merge),
-                "CREATE_TABLE" => Some(Self::CreateTable),
-                "CREATE_TABLE_AS_SELECT" => Some(Self::CreateTableAsSelect),
-                "CREATE_VIEW" => Some(Self::CreateView),
-                "CREATE_MODEL" => Some(Self::CreateModel),
-                "CREATE_MATERIALIZED_VIEW" => Some(Self::CreateMaterializedView),
-                "CREATE_FUNCTION" => Some(Self::CreateFunction),
-                "CREATE_TABLE_FUNCTION" => Some(Self::CreateTableFunction),
-                "CREATE_PROCEDURE" => Some(Self::CreateProcedure),
-                "CREATE_ROW_ACCESS_POLICY" => Some(Self::CreateRowAccessPolicy),
-                "CREATE_SCHEMA" => Some(Self::CreateSchema),
-                "CREATE_SNAPSHOT_TABLE" => Some(Self::CreateSnapshotTable),
-                "DROP_TABLE" => Some(Self::DropTable),
-                "DROP_EXTERNAL_TABLE" => Some(Self::DropExternalTable),
-                "DROP_VIEW" => Some(Self::DropView),
-                "DROP_MODEL" => Some(Self::DropModel),
-                "DROP_MATERIALIZED_VIEW" => Some(Self::DropMaterializedView),
-                "DROP_FUNCTION" => Some(Self::DropFunction),
-                "DROP_PROCEDURE" => Some(Self::DropProcedure),
-                "DROP_SCHEMA" => Some(Self::DropSchema),
-                "DROP_ROW_ACCESS_POLICY" => Some(Self::DropRowAccessPolicy),
-                "DROP_SNAPSHOT_TABLE" => Some(Self::DropSnapshotTable),
-                "ALTER_TABLE" => Some(Self::AlterTable),
-                "ALTER_VIEW" => Some(Self::AlterView),
-                "ALTER_MATERIALIZED_VIEW" => Some(Self::AlterMaterializedView),
-                "ALTER_SCHEMA" => Some(Self::AlterSchema),
-                "SCRIPT" => Some(Self::Script),
-                "TRUNCATE_TABLE" => Some(Self::TruncateTable),
-                "CREATE_EXTERNAL_TABLE" => Some(Self::CreateExternalTable),
-                "EXPORT_DATA" => Some(Self::ExportData),
-                "CALL" => Some(Self::Call),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Event {
-        #[prost(message, tag = "1")]
-        JobInsertion(JobInsertion),
-        #[prost(message, tag = "2")]
-        JobChange(JobChange),
-        #[prost(message, tag = "23")]
-        JobDeletion(JobDeletion),
-        #[prost(message, tag = "3")]
-        DatasetCreation(DatasetCreation),
-        #[prost(message, tag = "4")]
-        DatasetChange(DatasetChange),
-        #[prost(message, tag = "5")]
-        DatasetDeletion(DatasetDeletion),
-        #[prost(message, tag = "6")]
-        TableCreation(TableCreation),
-        #[prost(message, tag = "8")]
-        TableChange(TableChange),
-        #[prost(message, tag = "9")]
-        TableDeletion(TableDeletion),
-        #[prost(message, tag = "10")]
-        TableDataRead(TableDataRead),
-        #[prost(message, tag = "11")]
-        TableDataChange(TableDataChange),
-        #[prost(message, tag = "12")]
-        ModelDeletion(ModelDeletion),
-        #[prost(message, tag = "13")]
-        ModelCreation(ModelCreation),
-        #[prost(message, tag = "14")]
-        ModelMetadataChange(ModelMetadataChange),
-        #[prost(message, tag = "15")]
-        ModelDataChange(ModelDataChange),
-        #[prost(message, tag = "19")]
-        ModelDataRead(ModelDataRead),
-        #[prost(message, tag = "16")]
-        RoutineCreation(RoutineCreation),
-        #[prost(message, tag = "17")]
-        RoutineChange(RoutineChange),
-        #[prost(message, tag = "18")]
-        RoutineDeletion(RoutineDeletion),
-        #[prost(message, tag = "20")]
-        RowAccessPolicyCreation(RowAccessPolicyCreation),
-        #[prost(message, tag = "21")]
-        RowAccessPolicyChange(RowAccessPolicyChange),
-        #[prost(message, tag = "22")]
-        RowAccessPolicyDeletion(RowAccessPolicyDeletion),
-        #[prost(message, tag = "25")]
-        UnlinkDataset(UnlinkDataset),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobInsertion {
+#[prost(message, optional, tag = "1")]
+pub job: ::core::option::Option<Job>,
+#[prost(enumeration = "job_insertion::Reason", tag = "2")]
+pub reason: i32,
+}
+/// Nested message and enum types in `JobInsertion`.
+pub mod job_insertion {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+JobInsertRequest = 1,
+QueryRequest = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::JobInsertRequest => "JOB_INSERT_REQUEST",
+Reason::QueryRequest => "QUERY_REQUEST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"JOB_INSERT_REQUEST" => Some(Self::JobInsertRequest),
+"QUERY_REQUEST" => Some(Self::QueryRequest),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobChange {
+#[prost(enumeration = "JobState", tag = "1")]
+pub before: i32,
+#[prost(enumeration = "JobState", tag = "2")]
+pub after: i32,
+#[prost(message, optional, tag = "3")]
+pub job: ::core::option::Option<Job>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobDeletion {
+#[prost(string, tag = "1")]
+pub job_name: ::prost::alloc::string::String,
+#[prost(enumeration = "job_deletion::Reason", tag = "2")]
+pub reason: i32,
+}
+/// Nested message and enum types in `JobDeletion`.
+pub mod job_deletion {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+JobDeleteRequest = 1,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::JobDeleteRequest => "JOB_DELETE_REQUEST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"JOB_DELETE_REQUEST" => Some(Self::JobDeleteRequest),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DatasetCreation {
+#[prost(message, optional, tag = "1")]
+pub dataset: ::core::option::Option<Dataset>,
+#[prost(enumeration = "dataset_creation::Reason", tag = "2")]
+pub reason: i32,
+#[prost(string, tag = "3")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `DatasetCreation`.
+pub mod dataset_creation {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Create = 1,
+Query = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Create => "CREATE",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATE" => Some(Self::Create),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DatasetChange {
+#[prost(message, optional, tag = "1")]
+pub dataset: ::core::option::Option<Dataset>,
+#[prost(enumeration = "dataset_change::Reason", tag = "2")]
+pub reason: i32,
+#[prost(string, tag = "3")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `DatasetChange`.
+pub mod dataset_change {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Update = 1,
+SetIamPolicy = 2,
+Query = 3,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Update => "UPDATE",
+Reason::SetIamPolicy => "SET_IAM_POLICY",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"UPDATE" => Some(Self::Update),
+"SET_IAM_POLICY" => Some(Self::SetIamPolicy),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DatasetDeletion {
+#[prost(enumeration = "dataset_deletion::Reason", tag = "1")]
+pub reason: i32,
+#[prost(string, tag = "2")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `DatasetDeletion`.
+pub mod dataset_deletion {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Delete = 1,
+Query = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Delete => "DELETE",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"DELETE" => Some(Self::Delete),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableCreation {
+#[prost(message, optional, tag = "1")]
+pub table: ::core::option::Option<Table>,
+#[prost(enumeration = "table_creation::Reason", tag = "3")]
+pub reason: i32,
+#[prost(string, tag = "4")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `TableCreation`.
+pub mod table_creation {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Job = 1,
+Query = 2,
+TableInsertRequest = 3,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Job => "JOB",
+Reason::Query => "QUERY",
+Reason::TableInsertRequest => "TABLE_INSERT_REQUEST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"JOB" => Some(Self::Job),
+"QUERY" => Some(Self::Query),
+"TABLE_INSERT_REQUEST" => Some(Self::TableInsertRequest),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ModelCreation {
+#[prost(message, optional, tag = "1")]
+pub model: ::core::option::Option<Model>,
+#[prost(enumeration = "model_creation::Reason", tag = "3")]
+pub reason: i32,
+#[prost(string, tag = "4")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `ModelCreation`.
+pub mod model_creation {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Query = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RoutineCreation {
+#[prost(message, optional, tag = "1")]
+pub routine: ::core::option::Option<Routine>,
+#[prost(enumeration = "routine_creation::Reason", tag = "3")]
+pub reason: i32,
+#[prost(string, tag = "4")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `RoutineCreation`.
+pub mod routine_creation {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Query = 1,
+RoutineInsertRequest = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Query => "QUERY",
+Reason::RoutineInsertRequest => "ROUTINE_INSERT_REQUEST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"QUERY" => Some(Self::Query),
+"ROUTINE_INSERT_REQUEST" => Some(Self::RoutineInsertRequest),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableDataRead {
+#[prost(string, repeated, tag = "2")]
+pub fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "8")]
+pub fields_truncated: bool,
+#[prost(string, repeated, tag = "9")]
+pub policy_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "10")]
+pub policy_tags_truncated: bool,
+#[prost(enumeration = "table_data_read::Reason", tag = "3")]
+pub reason: i32,
+#[prost(string, tag = "4")]
+pub job_name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub session_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `TableDataRead`.
+pub mod table_data_read {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Job = 1,
+TabledataListRequest = 2,
+GetQueryResultsRequest = 3,
+QueryRequest = 4,
+CreateReadSession = 5,
+MaterializedViewRefresh = 6,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Job => "JOB",
+Reason::TabledataListRequest => "TABLEDATA_LIST_REQUEST",
+Reason::GetQueryResultsRequest => "GET_QUERY_RESULTS_REQUEST",
+Reason::QueryRequest => "QUERY_REQUEST",
+Reason::CreateReadSession => "CREATE_READ_SESSION",
+Reason::MaterializedViewRefresh => "MATERIALIZED_VIEW_REFRESH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"JOB" => Some(Self::Job),
+"TABLEDATA_LIST_REQUEST" => Some(Self::TabledataListRequest),
+"GET_QUERY_RESULTS_REQUEST" => Some(Self::GetQueryResultsRequest),
+"QUERY_REQUEST" => Some(Self::QueryRequest),
+"CREATE_READ_SESSION" => Some(Self::CreateReadSession),
+"MATERIALIZED_VIEW_REFRESH" => Some(Self::MaterializedViewRefresh),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableChange {
+#[prost(message, optional, tag = "1")]
+pub table: ::core::option::Option<Table>,
+#[prost(bool, tag = "4")]
+pub truncated: bool,
+#[prost(enumeration = "table_change::Reason", tag = "5")]
+pub reason: i32,
+#[prost(string, tag = "6")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `TableChange`.
+pub mod table_change {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+TableUpdateRequest = 1,
+Job = 2,
+Query = 3,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::TableUpdateRequest => "TABLE_UPDATE_REQUEST",
+Reason::Job => "JOB",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"TABLE_UPDATE_REQUEST" => Some(Self::TableUpdateRequest),
+"JOB" => Some(Self::Job),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ModelMetadataChange {
+#[prost(message, optional, tag = "1")]
+pub model: ::core::option::Option<Model>,
+#[prost(enumeration = "model_metadata_change::Reason", tag = "2")]
+pub reason: i32,
+#[prost(string, tag = "3")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `ModelMetadataChange`.
+pub mod model_metadata_change {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+ModelPatchRequest = 1,
+Query = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::ModelPatchRequest => "MODEL_PATCH_REQUEST",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"MODEL_PATCH_REQUEST" => Some(Self::ModelPatchRequest),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RoutineChange {
+#[prost(message, optional, tag = "1")]
+pub routine: ::core::option::Option<Routine>,
+#[prost(enumeration = "routine_change::Reason", tag = "3")]
+pub reason: i32,
+#[prost(string, tag = "4")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `RoutineChange`.
+pub mod routine_change {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Query = 1,
+RoutineUpdateRequest = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Query => "QUERY",
+Reason::RoutineUpdateRequest => "ROUTINE_UPDATE_REQUEST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"QUERY" => Some(Self::Query),
+"ROUTINE_UPDATE_REQUEST" => Some(Self::RoutineUpdateRequest),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableDataChange {
+#[prost(int64, tag = "1")]
+pub deleted_rows_count: i64,
+#[prost(int64, tag = "2")]
+pub inserted_rows_count: i64,
+#[prost(bool, tag = "3")]
+pub truncated: bool,
+#[prost(enumeration = "table_data_change::Reason", tag = "4")]
+pub reason: i32,
+#[prost(string, tag = "5")]
+pub job_name: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub stream_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `TableDataChange`.
+pub mod table_data_change {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Job = 1,
+Query = 2,
+MaterializedViewRefresh = 3,
+WriteApi = 4,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Job => "JOB",
+Reason::Query => "QUERY",
+Reason::MaterializedViewRefresh => "MATERIALIZED_VIEW_REFRESH",
+Reason::WriteApi => "WRITE_API",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"JOB" => Some(Self::Job),
+"QUERY" => Some(Self::Query),
+"MATERIALIZED_VIEW_REFRESH" => Some(Self::MaterializedViewRefresh),
+"WRITE_API" => Some(Self::WriteApi),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ModelDataChange {
+#[prost(enumeration = "model_data_change::Reason", tag = "1")]
+pub reason: i32,
+#[prost(string, tag = "2")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `ModelDataChange`.
+pub mod model_data_change {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Query = 1,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ModelDataRead {
+#[prost(enumeration = "model_data_read::Reason", tag = "1")]
+pub reason: i32,
+#[prost(string, tag = "2")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `ModelDataRead`.
+pub mod model_data_read {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Job = 1,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Job => "JOB",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"JOB" => Some(Self::Job),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableDeletion {
+#[prost(enumeration = "table_deletion::Reason", tag = "1")]
+pub reason: i32,
+#[prost(string, tag = "2")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `TableDeletion`.
+pub mod table_deletion {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+TableDeleteRequest = 2,
+Expired = 3,
+Query = 4,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::TableDeleteRequest => "TABLE_DELETE_REQUEST",
+Reason::Expired => "EXPIRED",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"TABLE_DELETE_REQUEST" => Some(Self::TableDeleteRequest),
+"EXPIRED" => Some(Self::Expired),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ModelDeletion {
+#[prost(enumeration = "model_deletion::Reason", tag = "1")]
+pub reason: i32,
+#[prost(string, tag = "2")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `ModelDeletion`.
+pub mod model_deletion {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+ModelDeleteRequest = 1,
+Expired = 2,
+Query = 3,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::ModelDeleteRequest => "MODEL_DELETE_REQUEST",
+Reason::Expired => "EXPIRED",
+Reason::Query => "QUERY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"MODEL_DELETE_REQUEST" => Some(Self::ModelDeleteRequest),
+"EXPIRED" => Some(Self::Expired),
+"QUERY" => Some(Self::Query),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RoutineDeletion {
+#[prost(message, optional, tag = "1")]
+pub routine: ::core::option::Option<Routine>,
+#[prost(enumeration = "routine_deletion::Reason", tag = "3")]
+pub reason: i32,
+#[prost(string, tag = "4")]
+pub job_name: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `RoutineDeletion`.
+pub mod routine_deletion {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+Query = 1,
+RoutineDeleteRequest = 2,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::Query => "QUERY",
+Reason::RoutineDeleteRequest => "ROUTINE_DELETE_REQUEST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"QUERY" => Some(Self::Query),
+"ROUTINE_DELETE_REQUEST" => Some(Self::RoutineDeleteRequest),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RowAccessPolicyCreation {
+#[prost(message, optional, tag = "1")]
+pub row_access_policy: ::core::option::Option<RowAccessPolicy>,
+#[prost(string, tag = "2")]
+pub job_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RowAccessPolicyChange {
+#[prost(message, optional, tag = "1")]
+pub row_access_policy: ::core::option::Option<RowAccessPolicy>,
+#[prost(string, tag = "2")]
+pub job_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RowAccessPolicyDeletion {
+#[prost(message, repeated, tag = "1")]
+pub row_access_policies: ::prost::alloc::vec::Vec<RowAccessPolicy>,
+#[prost(string, tag = "2")]
+pub job_name: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub all_row_access_policies_dropped: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UnlinkDataset {
+#[prost(string, tag = "1")]
+pub linked_dataset: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub source_dataset: ::prost::alloc::string::String,
+#[prost(enumeration = "unlink_dataset::Reason", tag = "3")]
+pub reason: i32,
+}
+/// Nested message and enum types in `UnlinkDataset`.
+pub mod unlink_dataset {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+UnlinkApi = 1,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::UnlinkApi => "UNLINK_API",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"UNLINK_API" => Some(Self::UnlinkApi),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Job {
+#[prost(string, tag = "1")]
+pub job_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub job_config: ::core::option::Option<JobConfig>,
+#[prost(message, optional, tag = "3")]
+pub job_status: ::core::option::Option<JobStatus>,
+#[prost(message, optional, tag = "4")]
+pub job_stats: ::core::option::Option<JobStats>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobConfig {
+#[prost(enumeration = "job_config::Type", tag = "1")]
+pub r#type: i32,
+#[prost(btree_map = "string, string", tag = "6")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "job_config::Config", tags = "2, 3, 4, 5")]
+pub config: ::core::option::Option<job_config::Config>,
+}
+/// Nested message and enum types in `JobConfig`.
+pub mod job_config {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Query {
+#[prost(string, tag = "1")]
+pub query: ::prost::alloc::string::String,
+#[prost(bool, tag = "10")]
+pub query_truncated: bool,
+#[prost(string, tag = "2")]
+pub destination_table: ::prost::alloc::string::String,
+#[prost(enumeration = "super::CreateDisposition", tag = "3")]
+pub create_disposition: i32,
+#[prost(enumeration = "super::WriteDisposition", tag = "4")]
+pub write_disposition: i32,
+#[prost(string, tag = "5")]
+pub default_dataset: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "6")]
+pub table_definitions: ::prost::alloc::vec::Vec<super::TableDefinition>,
+#[prost(enumeration = "query::Priority", tag = "7")]
+pub priority: i32,
+#[prost(message, optional, tag = "8")]
+pub destination_table_encryption: ::core::option::Option<super::EncryptionInfo>,
+#[prost(enumeration = "super::QueryStatementType", tag = "9")]
+pub statement_type: i32,
+}
+/// Nested message and enum types in `Query`.
+pub mod query {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Priority {
+Unspecified = 0,
+QueryInteractive = 1,
+QueryBatch = 2,
+}
+impl Priority {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Priority::Unspecified => "PRIORITY_UNSPECIFIED",
+Priority::QueryInteractive => "QUERY_INTERACTIVE",
+Priority::QueryBatch => "QUERY_BATCH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PRIORITY_UNSPECIFIED" => Some(Self::Unspecified),
+"QUERY_INTERACTIVE" => Some(Self::QueryInteractive),
+"QUERY_BATCH" => Some(Self::QueryBatch),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Load {
+#[prost(string, repeated, tag = "1")]
+pub source_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "7")]
+pub source_uris_truncated: bool,
+#[prost(string, tag = "2")]
+pub schema_json: ::prost::alloc::string::String,
+#[prost(bool, tag = "8")]
+pub schema_json_truncated: bool,
+#[prost(string, tag = "3")]
+pub destination_table: ::prost::alloc::string::String,
+#[prost(enumeration = "super::CreateDisposition", tag = "4")]
+pub create_disposition: i32,
+#[prost(enumeration = "super::WriteDisposition", tag = "5")]
+pub write_disposition: i32,
+#[prost(message, optional, tag = "6")]
+pub destination_table_encryption: ::core::option::Option<super::EncryptionInfo>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Extract {
+#[prost(string, repeated, tag = "1")]
+pub destination_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "3")]
+pub destination_uris_truncated: bool,
+#[prost(oneof = "extract::Source", tags = "2, 4")]
+pub source: ::core::option::Option<extract::Source>,
+}
+/// Nested message and enum types in `Extract`.
+pub mod extract {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(string, tag = "2")]
+SourceTable(::prost::alloc::string::String),
+#[prost(string, tag = "4")]
+SourceModel(::prost::alloc::string::String),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableCopy {
+#[prost(string, repeated, tag = "1")]
+pub source_tables: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "6")]
+pub source_tables_truncated: bool,
+#[prost(string, tag = "2")]
+pub destination_table: ::prost::alloc::string::String,
+#[prost(enumeration = "super::CreateDisposition", tag = "3")]
+pub create_disposition: i32,
+#[prost(enumeration = "super::WriteDisposition", tag = "4")]
+pub write_disposition: i32,
+#[prost(message, optional, tag = "5")]
+pub destination_table_encryption: ::core::option::Option<super::EncryptionInfo>,
+#[prost(enumeration = "super::OperationType", tag = "7")]
+pub operation_type: i32,
+#[prost(message, optional, tag = "8")]
+pub destination_expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+Query = 1,
+Copy = 2,
+Export = 3,
+Import = 4,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::Query => "QUERY",
+Type::Copy => "COPY",
+Type::Export => "EXPORT",
+Type::Import => "IMPORT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"QUERY" => Some(Self::Query),
+"COPY" => Some(Self::Copy),
+"EXPORT" => Some(Self::Export),
+"IMPORT" => Some(Self::Import),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Config {
+#[prost(message, tag = "2")]
+QueryConfig(Query),
+#[prost(message, tag = "3")]
+LoadConfig(Load),
+#[prost(message, tag = "4")]
+ExtractConfig(Extract),
+#[prost(message, tag = "5")]
+TableCopyConfig(TableCopy),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableDefinition {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub source_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobStatus {
+#[prost(enumeration = "JobState", tag = "1")]
+pub job_state: i32,
+#[prost(message, optional, tag = "2")]
+pub error_result: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(message, repeated, tag = "3")]
+pub errors: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobStats {
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int64, tag = "10")]
+pub total_slot_ms: i64,
+#[deprecated]
+#[prost(message, repeated, tag = "11")]
+pub reservation_usage: ::prost::alloc::vec::Vec<job_stats::ReservationResourceUsage>,
+#[prost(string, tag = "14")]
+pub reservation: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub parent_job_name: ::prost::alloc::string::String,
+#[prost(oneof = "job_stats::Extended", tags = "8, 9, 13")]
+pub extended: ::core::option::Option<job_stats::Extended>,
+}
+/// Nested message and enum types in `JobStats`.
+pub mod job_stats {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Query {
+#[prost(int64, tag = "1")]
+pub total_processed_bytes: i64,
+#[prost(int64, tag = "2")]
+pub total_billed_bytes: i64,
+#[prost(int32, tag = "3")]
+pub billing_tier: i32,
+#[prost(string, repeated, tag = "6")]
+pub referenced_tables: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "7")]
+pub referenced_views: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "10")]
+pub referenced_routines: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int64, tag = "8")]
+pub output_row_count: i64,
+#[prost(bool, tag = "9")]
+pub cache_hit: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Load {
+#[prost(int64, tag = "1")]
+pub total_output_bytes: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Extract {
+#[prost(int64, tag = "1")]
+pub total_input_bytes: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReservationResourceUsage {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub slot_ms: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Extended {
+#[prost(message, tag = "8")]
+QueryStats(Query),
+#[prost(message, tag = "9")]
+LoadStats(Load),
+#[prost(message, tag = "13")]
+ExtractStats(Extract),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Table {
+#[prost(string, tag = "1")]
+pub table_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub table_info: ::core::option::Option<EntityInfo>,
+#[prost(string, tag = "3")]
+pub schema_json: ::prost::alloc::string::String,
+#[prost(bool, tag = "11")]
+pub schema_json_truncated: bool,
+#[prost(message, optional, tag = "4")]
+pub view: ::core::option::Option<TableViewDefinition>,
+#[prost(message, optional, tag = "5")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub truncate_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub encryption: ::core::option::Option<EncryptionInfo>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Model {
+#[prost(string, tag = "1")]
+pub model_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub model_info: ::core::option::Option<EntityInfo>,
+#[prost(message, optional, tag = "5")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub encryption: ::core::option::Option<EncryptionInfo>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Routine {
+#[prost(string, tag = "1")]
+pub routine_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EntityInfo {
+#[prost(string, tag = "1")]
+pub friendly_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "3")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableViewDefinition {
+#[prost(string, tag = "1")]
+pub query: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub query_truncated: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Dataset {
+#[prost(string, tag = "1")]
+pub dataset_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub dataset_info: ::core::option::Option<EntityInfo>,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub acl: ::core::option::Option<BigQueryAcl>,
+#[prost(message, optional, tag = "6")]
+pub default_table_expire_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "8")]
+pub default_encryption: ::core::option::Option<EncryptionInfo>,
+#[prost(string, tag = "9")]
+pub default_collation: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BigQueryAcl {
+#[prost(message, optional, tag = "1")]
+pub policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
+#[prost(string, repeated, tag = "2")]
+pub authorized_views: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EncryptionInfo {
+#[prost(string, tag = "1")]
+pub kms_key_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RowAccessPolicy {
+#[prost(string, tag = "1")]
+pub row_access_policy_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FirstPartyAppMetadata {
+#[prost(oneof = "first_party_app_metadata::Metadata", tags = "1")]
+pub metadata: ::core::option::Option<first_party_app_metadata::Metadata>,
+}
+/// Nested message and enum types in `FirstPartyAppMetadata`.
+pub mod first_party_app_metadata {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Metadata {
+#[prost(message, tag = "1")]
+SheetsMetadata(super::SheetsMetadata),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SheetsMetadata {
+#[prost(string, tag = "1")]
+pub doc_id: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CreateDisposition {
+Unspecified = 0,
+CreateNever = 1,
+CreateIfNeeded = 2,
+}
+impl CreateDisposition {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CreateDisposition::Unspecified => "CREATE_DISPOSITION_UNSPECIFIED",
+CreateDisposition::CreateNever => "CREATE_NEVER",
+CreateDisposition::CreateIfNeeded => "CREATE_IF_NEEDED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CREATE_DISPOSITION_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATE_NEVER" => Some(Self::CreateNever),
+"CREATE_IF_NEEDED" => Some(Self::CreateIfNeeded),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum WriteDisposition {
+Unspecified = 0,
+WriteEmpty = 1,
+WriteTruncate = 2,
+WriteAppend = 3,
+}
+impl WriteDisposition {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+WriteDisposition::Unspecified => "WRITE_DISPOSITION_UNSPECIFIED",
+WriteDisposition::WriteEmpty => "WRITE_EMPTY",
+WriteDisposition::WriteTruncate => "WRITE_TRUNCATE",
+WriteDisposition::WriteAppend => "WRITE_APPEND",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"WRITE_DISPOSITION_UNSPECIFIED" => Some(Self::Unspecified),
+"WRITE_EMPTY" => Some(Self::WriteEmpty),
+"WRITE_TRUNCATE" => Some(Self::WriteTruncate),
+"WRITE_APPEND" => Some(Self::WriteAppend),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OperationType {
+Unspecified = 0,
+Copy = 1,
+Snapshot = 2,
+Restore = 3,
+}
+impl OperationType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OperationType::Unspecified => "OPERATION_TYPE_UNSPECIFIED",
+OperationType::Copy => "COPY",
+OperationType::Snapshot => "SNAPSHOT",
+OperationType::Restore => "RESTORE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"OPERATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"COPY" => Some(Self::Copy),
+"SNAPSHOT" => Some(Self::Snapshot),
+"RESTORE" => Some(Self::Restore),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum JobState {
+Unspecified = 0,
+Pending = 1,
+Running = 2,
+Done = 3,
+}
+impl JobState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+JobState::Unspecified => "JOB_STATE_UNSPECIFIED",
+JobState::Pending => "PENDING",
+JobState::Running => "RUNNING",
+JobState::Done => "DONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"JOB_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"RUNNING" => Some(Self::Running),
+"DONE" => Some(Self::Done),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum QueryStatementType {
+Unspecified = 0,
+Select = 1,
+Assert = 23,
+Insert = 2,
+Update = 3,
+Delete = 4,
+Merge = 5,
+CreateTable = 6,
+CreateTableAsSelect = 7,
+CreateView = 8,
+CreateModel = 9,
+CreateMaterializedView = 13,
+CreateFunction = 14,
+CreateTableFunction = 56,
+CreateProcedure = 20,
+CreateRowAccessPolicy = 24,
+CreateSchema = 53,
+CreateSnapshotTable = 59,
+DropTable = 10,
+DropExternalTable = 33,
+DropView = 11,
+DropModel = 12,
+DropMaterializedView = 15,
+DropFunction = 16,
+DropProcedure = 21,
+DropSchema = 54,
+DropRowAccessPolicy = 25,
+DropSnapshotTable = 62,
+AlterTable = 17,
+AlterView = 18,
+AlterMaterializedView = 22,
+AlterSchema = 55,
+Script = 19,
+TruncateTable = 26,
+CreateExternalTable = 27,
+ExportData = 28,
+Call = 29,
+}
+impl QueryStatementType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+QueryStatementType::Unspecified => "QUERY_STATEMENT_TYPE_UNSPECIFIED",
+QueryStatementType::Select => "SELECT",
+QueryStatementType::Assert => "ASSERT",
+QueryStatementType::Insert => "INSERT",
+QueryStatementType::Update => "UPDATE",
+QueryStatementType::Delete => "DELETE",
+QueryStatementType::Merge => "MERGE",
+QueryStatementType::CreateTable => "CREATE_TABLE",
+QueryStatementType::CreateTableAsSelect => "CREATE_TABLE_AS_SELECT",
+QueryStatementType::CreateView => "CREATE_VIEW",
+QueryStatementType::CreateModel => "CREATE_MODEL",
+QueryStatementType::CreateMaterializedView => "CREATE_MATERIALIZED_VIEW",
+QueryStatementType::CreateFunction => "CREATE_FUNCTION",
+QueryStatementType::CreateTableFunction => "CREATE_TABLE_FUNCTION",
+QueryStatementType::CreateProcedure => "CREATE_PROCEDURE",
+QueryStatementType::CreateRowAccessPolicy => "CREATE_ROW_ACCESS_POLICY",
+QueryStatementType::CreateSchema => "CREATE_SCHEMA",
+QueryStatementType::CreateSnapshotTable => "CREATE_SNAPSHOT_TABLE",
+QueryStatementType::DropTable => "DROP_TABLE",
+QueryStatementType::DropExternalTable => "DROP_EXTERNAL_TABLE",
+QueryStatementType::DropView => "DROP_VIEW",
+QueryStatementType::DropModel => "DROP_MODEL",
+QueryStatementType::DropMaterializedView => "DROP_MATERIALIZED_VIEW",
+QueryStatementType::DropFunction => "DROP_FUNCTION",
+QueryStatementType::DropProcedure => "DROP_PROCEDURE",
+QueryStatementType::DropSchema => "DROP_SCHEMA",
+QueryStatementType::DropRowAccessPolicy => "DROP_ROW_ACCESS_POLICY",
+QueryStatementType::DropSnapshotTable => "DROP_SNAPSHOT_TABLE",
+QueryStatementType::AlterTable => "ALTER_TABLE",
+QueryStatementType::AlterView => "ALTER_VIEW",
+QueryStatementType::AlterMaterializedView => "ALTER_MATERIALIZED_VIEW",
+QueryStatementType::AlterSchema => "ALTER_SCHEMA",
+QueryStatementType::Script => "SCRIPT",
+QueryStatementType::TruncateTable => "TRUNCATE_TABLE",
+QueryStatementType::CreateExternalTable => "CREATE_EXTERNAL_TABLE",
+QueryStatementType::ExportData => "EXPORT_DATA",
+QueryStatementType::Call => "CALL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"QUERY_STATEMENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SELECT" => Some(Self::Select),
+"ASSERT" => Some(Self::Assert),
+"INSERT" => Some(Self::Insert),
+"UPDATE" => Some(Self::Update),
+"DELETE" => Some(Self::Delete),
+"MERGE" => Some(Self::Merge),
+"CREATE_TABLE" => Some(Self::CreateTable),
+"CREATE_TABLE_AS_SELECT" => Some(Self::CreateTableAsSelect),
+"CREATE_VIEW" => Some(Self::CreateView),
+"CREATE_MODEL" => Some(Self::CreateModel),
+"CREATE_MATERIALIZED_VIEW" => Some(Self::CreateMaterializedView),
+"CREATE_FUNCTION" => Some(Self::CreateFunction),
+"CREATE_TABLE_FUNCTION" => Some(Self::CreateTableFunction),
+"CREATE_PROCEDURE" => Some(Self::CreateProcedure),
+"CREATE_ROW_ACCESS_POLICY" => Some(Self::CreateRowAccessPolicy),
+"CREATE_SCHEMA" => Some(Self::CreateSchema),
+"CREATE_SNAPSHOT_TABLE" => Some(Self::CreateSnapshotTable),
+"DROP_TABLE" => Some(Self::DropTable),
+"DROP_EXTERNAL_TABLE" => Some(Self::DropExternalTable),
+"DROP_VIEW" => Some(Self::DropView),
+"DROP_MODEL" => Some(Self::DropModel),
+"DROP_MATERIALIZED_VIEW" => Some(Self::DropMaterializedView),
+"DROP_FUNCTION" => Some(Self::DropFunction),
+"DROP_PROCEDURE" => Some(Self::DropProcedure),
+"DROP_SCHEMA" => Some(Self::DropSchema),
+"DROP_ROW_ACCESS_POLICY" => Some(Self::DropRowAccessPolicy),
+"DROP_SNAPSHOT_TABLE" => Some(Self::DropSnapshotTable),
+"ALTER_TABLE" => Some(Self::AlterTable),
+"ALTER_VIEW" => Some(Self::AlterView),
+"ALTER_MATERIALIZED_VIEW" => Some(Self::AlterMaterializedView),
+"ALTER_SCHEMA" => Some(Self::AlterSchema),
+"SCRIPT" => Some(Self::Script),
+"TRUNCATE_TABLE" => Some(Self::TruncateTable),
+"CREATE_EXTERNAL_TABLE" => Some(Self::CreateExternalTable),
+"EXPORT_DATA" => Some(Self::ExportData),
+"CALL" => Some(Self::Call),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Event {
+#[prost(message, tag = "1")]
+JobInsertion(JobInsertion),
+#[prost(message, tag = "2")]
+JobChange(JobChange),
+#[prost(message, tag = "23")]
+JobDeletion(JobDeletion),
+#[prost(message, tag = "3")]
+DatasetCreation(DatasetCreation),
+#[prost(message, tag = "4")]
+DatasetChange(DatasetChange),
+#[prost(message, tag = "5")]
+DatasetDeletion(DatasetDeletion),
+#[prost(message, tag = "6")]
+TableCreation(TableCreation),
+#[prost(message, tag = "8")]
+TableChange(TableChange),
+#[prost(message, tag = "9")]
+TableDeletion(TableDeletion),
+#[prost(message, tag = "10")]
+TableDataRead(TableDataRead),
+#[prost(message, tag = "11")]
+TableDataChange(TableDataChange),
+#[prost(message, tag = "12")]
+ModelDeletion(ModelDeletion),
+#[prost(message, tag = "13")]
+ModelCreation(ModelCreation),
+#[prost(message, tag = "14")]
+ModelMetadataChange(ModelMetadataChange),
+#[prost(message, tag = "15")]
+ModelDataChange(ModelDataChange),
+#[prost(message, tag = "19")]
+ModelDataRead(ModelDataRead),
+#[prost(message, tag = "16")]
+RoutineCreation(RoutineCreation),
+#[prost(message, tag = "17")]
+RoutineChange(RoutineChange),
+#[prost(message, tag = "18")]
+RoutineDeletion(RoutineDeletion),
+#[prost(message, tag = "20")]
+RowAccessPolicyCreation(RowAccessPolicyCreation),
+#[prost(message, tag = "21")]
+RowAccessPolicyChange(RowAccessPolicyChange),
+#[prost(message, tag = "22")]
+RowAccessPolicyDeletion(RowAccessPolicyDeletion),
+#[prost(message, tag = "25")]
+UnlinkDataset(UnlinkDataset),
+}
 }

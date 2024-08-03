@@ -2,2728 +2,2052 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Container {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub image: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub command: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "4")]
-    pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "5")]
-    pub env: ::prost::alloc::vec::Vec<EnvVar>,
-    #[prost(message, optional, tag = "6")]
-    pub resources: ::core::option::Option<ResourceRequirements>,
-    #[prost(message, repeated, tag = "7")]
-    pub ports: ::prost::alloc::vec::Vec<ContainerPort>,
-    #[prost(message, repeated, tag = "8")]
-    pub volume_mounts: ::prost::alloc::vec::Vec<VolumeMount>,
-    #[prost(string, tag = "9")]
-    pub working_dir: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub liveness_probe: ::core::option::Option<Probe>,
-    #[prost(message, optional, tag = "11")]
-    pub startup_probe: ::core::option::Option<Probe>,
-    #[prost(string, repeated, tag = "12")]
-    pub depends_on: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub image: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub command: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "4")]
+pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "5")]
+pub env: ::prost::alloc::vec::Vec<EnvVar>,
+#[prost(message, optional, tag = "6")]
+pub resources: ::core::option::Option<ResourceRequirements>,
+#[prost(message, repeated, tag = "7")]
+pub ports: ::prost::alloc::vec::Vec<ContainerPort>,
+#[prost(message, repeated, tag = "8")]
+pub volume_mounts: ::prost::alloc::vec::Vec<VolumeMount>,
+#[prost(string, tag = "9")]
+pub working_dir: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub liveness_probe: ::core::option::Option<Probe>,
+#[prost(message, optional, tag = "11")]
+pub startup_probe: ::core::option::Option<Probe>,
+#[prost(string, repeated, tag = "12")]
+pub depends_on: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceRequirements {
-    #[prost(btree_map = "string, string", tag = "1")]
-    pub limits: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(bool, tag = "2")]
-    pub cpu_idle: bool,
-    #[prost(bool, tag = "3")]
-    pub startup_cpu_boost: bool,
+#[prost(btree_map = "string, string", tag = "1")]
+pub limits: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(bool, tag = "2")]
+pub cpu_idle: bool,
+#[prost(bool, tag = "3")]
+pub startup_cpu_boost: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnvVar {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(oneof = "env_var::Values", tags = "2, 3")]
-    pub values: ::core::option::Option<env_var::Values>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(oneof = "env_var::Values", tags = "2, 3")]
+pub values: ::core::option::Option<env_var::Values>,
 }
 /// Nested message and enum types in `EnvVar`.
 pub mod env_var {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Values {
-        #[prost(string, tag = "2")]
-        Value(::prost::alloc::string::String),
-        #[prost(message, tag = "3")]
-        ValueSource(super::EnvVarSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Values {
+#[prost(string, tag = "2")]
+Value(::prost::alloc::string::String),
+#[prost(message, tag = "3")]
+ValueSource(super::EnvVarSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnvVarSource {
-    #[prost(message, optional, tag = "1")]
-    pub secret_key_ref: ::core::option::Option<SecretKeySelector>,
+#[prost(message, optional, tag = "1")]
+pub secret_key_ref: ::core::option::Option<SecretKeySelector>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecretKeySelector {
-    #[prost(string, tag = "1")]
-    pub secret: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub secret: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContainerPort {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub container_port: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub container_port: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VolumeMount {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub mount_path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub mount_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Volume {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(oneof = "volume::VolumeType", tags = "2, 3, 4, 5, 6")]
-    pub volume_type: ::core::option::Option<volume::VolumeType>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(oneof = "volume::VolumeType", tags = "2, 3, 4, 5, 6")]
+pub volume_type: ::core::option::Option<volume::VolumeType>,
 }
 /// Nested message and enum types in `Volume`.
 pub mod volume {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum VolumeType {
-        #[prost(message, tag = "2")]
-        Secret(super::SecretVolumeSource),
-        #[prost(message, tag = "3")]
-        CloudSqlInstance(super::CloudSqlInstance),
-        #[prost(message, tag = "4")]
-        EmptyDir(super::EmptyDirVolumeSource),
-        #[prost(message, tag = "5")]
-        Nfs(super::NfsVolumeSource),
-        #[prost(message, tag = "6")]
-        Gcs(super::GcsVolumeSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum VolumeType {
+#[prost(message, tag = "2")]
+Secret(super::SecretVolumeSource),
+#[prost(message, tag = "3")]
+CloudSqlInstance(super::CloudSqlInstance),
+#[prost(message, tag = "4")]
+EmptyDir(super::EmptyDirVolumeSource),
+#[prost(message, tag = "5")]
+Nfs(super::NfsVolumeSource),
+#[prost(message, tag = "6")]
+Gcs(super::GcsVolumeSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecretVolumeSource {
-    #[prost(string, tag = "1")]
-    pub secret: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub items: ::prost::alloc::vec::Vec<VersionToPath>,
-    #[prost(int32, tag = "3")]
-    pub default_mode: i32,
+#[prost(string, tag = "1")]
+pub secret: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub items: ::prost::alloc::vec::Vec<VersionToPath>,
+#[prost(int32, tag = "3")]
+pub default_mode: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VersionToPath {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub version: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub mode: i32,
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub version: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub mode: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudSqlInstance {
-    #[prost(string, repeated, tag = "1")]
-    pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub instances: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EmptyDirVolumeSource {
-    #[prost(enumeration = "empty_dir_volume_source::Medium", tag = "1")]
-    pub medium: i32,
-    #[prost(string, tag = "2")]
-    pub size_limit: ::prost::alloc::string::String,
+#[prost(enumeration = "empty_dir_volume_source::Medium", tag = "1")]
+pub medium: i32,
+#[prost(string, tag = "2")]
+pub size_limit: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `EmptyDirVolumeSource`.
 pub mod empty_dir_volume_source {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Medium {
-        Unspecified = 0,
-        Memory = 1,
-    }
-    impl Medium {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Medium::Unspecified => "MEDIUM_UNSPECIFIED",
-                Medium::Memory => "MEMORY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MEDIUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "MEMORY" => Some(Self::Memory),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Medium {
+Unspecified = 0,
+Memory = 1,
+}
+impl Medium {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Medium::Unspecified => "MEDIUM_UNSPECIFIED",
+Medium::Memory => "MEMORY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MEDIUM_UNSPECIFIED" => Some(Self::Unspecified),
+"MEMORY" => Some(Self::Memory),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NfsVolumeSource {
-    #[prost(string, tag = "1")]
-    pub server: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub read_only: bool,
+#[prost(string, tag = "1")]
+pub server: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub read_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsVolumeSource {
-    #[prost(string, tag = "1")]
-    pub bucket: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub read_only: bool,
+#[prost(string, tag = "1")]
+pub bucket: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub read_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Probe {
-    #[prost(int32, tag = "1")]
-    pub initial_delay_seconds: i32,
-    #[prost(int32, tag = "2")]
-    pub timeout_seconds: i32,
-    #[prost(int32, tag = "3")]
-    pub period_seconds: i32,
-    #[prost(int32, tag = "4")]
-    pub failure_threshold: i32,
-    #[prost(oneof = "probe::ProbeType", tags = "5, 6, 7")]
-    pub probe_type: ::core::option::Option<probe::ProbeType>,
+#[prost(int32, tag = "1")]
+pub initial_delay_seconds: i32,
+#[prost(int32, tag = "2")]
+pub timeout_seconds: i32,
+#[prost(int32, tag = "3")]
+pub period_seconds: i32,
+#[prost(int32, tag = "4")]
+pub failure_threshold: i32,
+#[prost(oneof = "probe::ProbeType", tags = "5, 6, 7")]
+pub probe_type: ::core::option::Option<probe::ProbeType>,
 }
 /// Nested message and enum types in `Probe`.
 pub mod probe {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum ProbeType {
-        #[prost(message, tag = "5")]
-        HttpGet(super::HttpGetAction),
-        #[prost(message, tag = "6")]
-        TcpSocket(super::TcpSocketAction),
-        #[prost(message, tag = "7")]
-        Grpc(super::GrpcAction),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum ProbeType {
+#[prost(message, tag = "5")]
+HttpGet(super::HttpGetAction),
+#[prost(message, tag = "6")]
+TcpSocket(super::TcpSocketAction),
+#[prost(message, tag = "7")]
+Grpc(super::GrpcAction),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpGetAction {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub http_headers: ::prost::alloc::vec::Vec<HttpHeader>,
-    #[prost(int32, tag = "5")]
-    pub port: i32,
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub http_headers: ::prost::alloc::vec::Vec<HttpHeader>,
+#[prost(int32, tag = "5")]
+pub port: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HttpHeader {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub value: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TcpSocketAction {
-    #[prost(int32, tag = "1")]
-    pub port: i32,
+#[prost(int32, tag = "1")]
+pub port: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GrpcAction {
-    #[prost(int32, tag = "1")]
-    pub port: i32,
-    #[prost(string, tag = "2")]
-    pub service: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub port: i32,
+#[prost(string, tag = "2")]
+pub service: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VpcAccess {
-    #[prost(string, tag = "1")]
-    pub connector: ::prost::alloc::string::String,
-    #[prost(enumeration = "vpc_access::VpcEgress", tag = "2")]
-    pub egress: i32,
-    #[prost(message, repeated, tag = "3")]
-    pub network_interfaces: ::prost::alloc::vec::Vec<vpc_access::NetworkInterface>,
+#[prost(string, tag = "1")]
+pub connector: ::prost::alloc::string::String,
+#[prost(enumeration = "vpc_access::VpcEgress", tag = "2")]
+pub egress: i32,
+#[prost(message, repeated, tag = "3")]
+pub network_interfaces: ::prost::alloc::vec::Vec<vpc_access::NetworkInterface>,
 }
 /// Nested message and enum types in `VpcAccess`.
 pub mod vpc_access {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct NetworkInterface {
-        #[prost(string, tag = "1")]
-        pub network: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub subnetwork: ::prost::alloc::string::String,
-        #[prost(string, repeated, tag = "3")]
-        pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VpcEgress {
-        Unspecified = 0,
-        AllTraffic = 1,
-        PrivateRangesOnly = 2,
-    }
-    impl VpcEgress {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VpcEgress::Unspecified => "VPC_EGRESS_UNSPECIFIED",
-                VpcEgress::AllTraffic => "ALL_TRAFFIC",
-                VpcEgress::PrivateRangesOnly => "PRIVATE_RANGES_ONLY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VPC_EGRESS_UNSPECIFIED" => Some(Self::Unspecified),
-                "ALL_TRAFFIC" => Some(Self::AllTraffic),
-                "PRIVATE_RANGES_ONLY" => Some(Self::PrivateRangesOnly),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NetworkInterface {
+#[prost(string, tag = "1")]
+pub network: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub subnetwork: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum VpcEgress {
+Unspecified = 0,
+AllTraffic = 1,
+PrivateRangesOnly = 2,
+}
+impl VpcEgress {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VpcEgress::Unspecified => "VPC_EGRESS_UNSPECIFIED",
+VpcEgress::AllTraffic => "ALL_TRAFFIC",
+VpcEgress::PrivateRangesOnly => "PRIVATE_RANGES_ONLY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VPC_EGRESS_UNSPECIFIED" => Some(Self::Unspecified),
+"ALL_TRAFFIC" => Some(Self::AllTraffic),
+"PRIVATE_RANGES_ONLY" => Some(Self::PrivateRangesOnly),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BinaryAuthorization {
-    #[prost(string, tag = "2")]
-    pub breakglass_justification: ::prost::alloc::string::String,
-    #[prost(oneof = "binary_authorization::BinauthzMethod", tags = "1, 3")]
-    pub binauthz_method: ::core::option::Option<binary_authorization::BinauthzMethod>,
+#[prost(string, tag = "2")]
+pub breakglass_justification: ::prost::alloc::string::String,
+#[prost(oneof = "binary_authorization::BinauthzMethod", tags = "1, 3")]
+pub binauthz_method: ::core::option::Option<binary_authorization::BinauthzMethod>,
 }
 /// Nested message and enum types in `BinaryAuthorization`.
 pub mod binary_authorization {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum BinauthzMethod {
-        #[prost(bool, tag = "1")]
-        UseDefault(bool),
-        #[prost(string, tag = "3")]
-        Policy(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum BinauthzMethod {
+#[prost(bool, tag = "1")]
+UseDefault(bool),
+#[prost(string, tag = "3")]
+Policy(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RevisionScaling {
-    #[prost(int32, tag = "1")]
-    pub min_instance_count: i32,
-    #[prost(int32, tag = "2")]
-    pub max_instance_count: i32,
+#[prost(int32, tag = "1")]
+pub min_instance_count: i32,
+#[prost(int32, tag = "2")]
+pub max_instance_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ServiceScaling {
-    #[prost(int32, tag = "1")]
-    pub min_instance_count: i32,
+#[prost(int32, tag = "1")]
+pub min_instance_count: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum IngressTraffic {
-    Unspecified = 0,
-    All = 1,
-    InternalOnly = 2,
-    InternalLoadBalancer = 3,
+Unspecified = 0,
+All = 1,
+InternalOnly = 2,
+InternalLoadBalancer = 3,
 }
 impl IngressTraffic {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            IngressTraffic::Unspecified => "INGRESS_TRAFFIC_UNSPECIFIED",
-            IngressTraffic::All => "INGRESS_TRAFFIC_ALL",
-            IngressTraffic::InternalOnly => "INGRESS_TRAFFIC_INTERNAL_ONLY",
-            IngressTraffic::InternalLoadBalancer => {
-                "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "INGRESS_TRAFFIC_UNSPECIFIED" => Some(Self::Unspecified),
-            "INGRESS_TRAFFIC_ALL" => Some(Self::All),
-            "INGRESS_TRAFFIC_INTERNAL_ONLY" => Some(Self::InternalOnly),
-            "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER" => Some(Self::InternalLoadBalancer),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+IngressTraffic::Unspecified => "INGRESS_TRAFFIC_UNSPECIFIED",
+IngressTraffic::All => "INGRESS_TRAFFIC_ALL",
+IngressTraffic::InternalOnly => "INGRESS_TRAFFIC_INTERNAL_ONLY",
+IngressTraffic::InternalLoadBalancer => "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INGRESS_TRAFFIC_UNSPECIFIED" => Some(Self::Unspecified),
+"INGRESS_TRAFFIC_ALL" => Some(Self::All),
+"INGRESS_TRAFFIC_INTERNAL_ONLY" => Some(Self::InternalOnly),
+"INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER" => Some(Self::InternalLoadBalancer),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ExecutionEnvironment {
-    Unspecified = 0,
-    Gen1 = 1,
-    Gen2 = 2,
+Unspecified = 0,
+Gen1 = 1,
+Gen2 = 2,
 }
 impl ExecutionEnvironment {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ExecutionEnvironment::Unspecified => "EXECUTION_ENVIRONMENT_UNSPECIFIED",
-            ExecutionEnvironment::Gen1 => "EXECUTION_ENVIRONMENT_GEN1",
-            ExecutionEnvironment::Gen2 => "EXECUTION_ENVIRONMENT_GEN2",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "EXECUTION_ENVIRONMENT_UNSPECIFIED" => Some(Self::Unspecified),
-            "EXECUTION_ENVIRONMENT_GEN1" => Some(Self::Gen1),
-            "EXECUTION_ENVIRONMENT_GEN2" => Some(Self::Gen2),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ExecutionEnvironment::Unspecified => "EXECUTION_ENVIRONMENT_UNSPECIFIED",
+ExecutionEnvironment::Gen1 => "EXECUTION_ENVIRONMENT_GEN1",
+ExecutionEnvironment::Gen2 => "EXECUTION_ENVIRONMENT_GEN2",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EXECUTION_ENVIRONMENT_UNSPECIFIED" => Some(Self::Unspecified),
+"EXECUTION_ENVIRONMENT_GEN1" => Some(Self::Gen1),
+"EXECUTION_ENVIRONMENT_GEN2" => Some(Self::Gen2),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum EncryptionKeyRevocationAction {
-    Unspecified = 0,
-    PreventNew = 1,
-    Shutdown = 2,
+Unspecified = 0,
+PreventNew = 1,
+Shutdown = 2,
 }
 impl EncryptionKeyRevocationAction {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EncryptionKeyRevocationAction::Unspecified => {
-                "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED"
-            }
-            EncryptionKeyRevocationAction::PreventNew => "PREVENT_NEW",
-            EncryptionKeyRevocationAction::Shutdown => "SHUTDOWN",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-            "PREVENT_NEW" => Some(Self::PreventNew),
-            "SHUTDOWN" => Some(Self::Shutdown),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EncryptionKeyRevocationAction::Unspecified => "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED",
+EncryptionKeyRevocationAction::PreventNew => "PREVENT_NEW",
+EncryptionKeyRevocationAction::Shutdown => "SHUTDOWN",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"PREVENT_NEW" => Some(Self::PreventNew),
+"SHUTDOWN" => Some(Self::Shutdown),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskTemplate {
-    #[prost(message, repeated, tag = "1")]
-    pub containers: ::prost::alloc::vec::Vec<Container>,
-    #[prost(message, repeated, tag = "2")]
-    pub volumes: ::prost::alloc::vec::Vec<Volume>,
-    #[prost(message, optional, tag = "4")]
-    pub timeout: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag = "5")]
-    pub service_account: ::prost::alloc::string::String,
-    #[prost(enumeration = "ExecutionEnvironment", tag = "6")]
-    pub execution_environment: i32,
-    #[prost(string, tag = "7")]
-    pub encryption_key: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub vpc_access: ::core::option::Option<VpcAccess>,
-    #[prost(oneof = "task_template::Retries", tags = "3")]
-    pub retries: ::core::option::Option<task_template::Retries>,
+#[prost(message, repeated, tag = "1")]
+pub containers: ::prost::alloc::vec::Vec<Container>,
+#[prost(message, repeated, tag = "2")]
+pub volumes: ::prost::alloc::vec::Vec<Volume>,
+#[prost(message, optional, tag = "4")]
+pub timeout: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "5")]
+pub service_account: ::prost::alloc::string::String,
+#[prost(enumeration = "ExecutionEnvironment", tag = "6")]
+pub execution_environment: i32,
+#[prost(string, tag = "7")]
+pub encryption_key: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub vpc_access: ::core::option::Option<VpcAccess>,
+#[prost(oneof = "task_template::Retries", tags = "3")]
+pub retries: ::core::option::Option<task_template::Retries>,
 }
 /// Nested message and enum types in `TaskTemplate`.
 pub mod task_template {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Retries {
-        #[prost(int32, tag = "3")]
-        MaxRetries(i32),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Retries {
+#[prost(int32, tag = "3")]
+MaxRetries(i32),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutionTemplate {
-    #[prost(btree_map = "string, string", tag = "1")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(int32, tag = "3")]
-    pub parallelism: i32,
-    #[prost(int32, tag = "4")]
-    pub task_count: i32,
-    #[prost(message, optional, tag = "5")]
-    pub template: ::core::option::Option<TaskTemplate>,
+#[prost(btree_map = "string, string", tag = "1")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "2")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(int32, tag = "3")]
+pub parallelism: i32,
+#[prost(int32, tag = "4")]
+pub task_count: i32,
+#[prost(message, optional, tag = "5")]
+pub template: ::core::option::Option<TaskTemplate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrafficTarget {
-    #[prost(enumeration = "TrafficTargetAllocationType", tag = "1")]
-    pub r#type: i32,
-    #[prost(string, tag = "2")]
-    pub revision: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub percent: i32,
-    #[prost(string, tag = "4")]
-    pub tag: ::prost::alloc::string::String,
+#[prost(enumeration = "TrafficTargetAllocationType", tag = "1")]
+pub r#type: i32,
+#[prost(string, tag = "2")]
+pub revision: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub percent: i32,
+#[prost(string, tag = "4")]
+pub tag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrafficTargetStatus {
-    #[prost(enumeration = "TrafficTargetAllocationType", tag = "1")]
-    pub r#type: i32,
-    #[prost(string, tag = "2")]
-    pub revision: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub percent: i32,
-    #[prost(string, tag = "4")]
-    pub tag: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(enumeration = "TrafficTargetAllocationType", tag = "1")]
+pub r#type: i32,
+#[prost(string, tag = "2")]
+pub revision: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub percent: i32,
+#[prost(string, tag = "4")]
+pub tag: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub uri: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TrafficTargetAllocationType {
-    Unspecified = 0,
-    Latest = 1,
-    Revision = 2,
+Unspecified = 0,
+Latest = 1,
+Revision = 2,
 }
 impl TrafficTargetAllocationType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TrafficTargetAllocationType::Unspecified => {
-                "TRAFFIC_TARGET_ALLOCATION_TYPE_UNSPECIFIED"
-            }
-            TrafficTargetAllocationType::Latest => {
-                "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
-            }
-            TrafficTargetAllocationType::Revision => {
-                "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TRAFFIC_TARGET_ALLOCATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST" => Some(Self::Latest),
-            "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION" => Some(Self::Revision),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TrafficTargetAllocationType::Unspecified => "TRAFFIC_TARGET_ALLOCATION_TYPE_UNSPECIFIED",
+TrafficTargetAllocationType::Latest => "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST",
+TrafficTargetAllocationType::Revision => "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TRAFFIC_TARGET_ALLOCATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST" => Some(Self::Latest),
+"TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION" => Some(Self::Revision),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Condition {
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(enumeration = "condition::State", tag = "2")]
-    pub state: i32,
-    #[prost(string, tag = "3")]
-    pub message: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub last_transition_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "condition::Severity", tag = "5")]
-    pub severity: i32,
-    #[prost(oneof = "condition::Reasons", tags = "6, 9, 11")]
-    pub reasons: ::core::option::Option<condition::Reasons>,
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(enumeration = "condition::State", tag = "2")]
+pub state: i32,
+#[prost(string, tag = "3")]
+pub message: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub last_transition_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "condition::Severity", tag = "5")]
+pub severity: i32,
+#[prost(oneof = "condition::Reasons", tags = "6, 9, 11")]
+pub reasons: ::core::option::Option<condition::Reasons>,
 }
 /// Nested message and enum types in `Condition`.
 pub mod condition {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        ConditionPending = 1,
-        ConditionReconciling = 2,
-        ConditionFailed = 3,
-        ConditionSucceeded = 4,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::ConditionPending => "CONDITION_PENDING",
-                State::ConditionReconciling => "CONDITION_RECONCILING",
-                State::ConditionFailed => "CONDITION_FAILED",
-                State::ConditionSucceeded => "CONDITION_SUCCEEDED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CONDITION_PENDING" => Some(Self::ConditionPending),
-                "CONDITION_RECONCILING" => Some(Self::ConditionReconciling),
-                "CONDITION_FAILED" => Some(Self::ConditionFailed),
-                "CONDITION_SUCCEEDED" => Some(Self::ConditionSucceeded),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Severity {
-        Unspecified = 0,
-        Error = 1,
-        Warning = 2,
-        Info = 3,
-    }
-    impl Severity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Error => "ERROR",
-                Severity::Warning => "WARNING",
-                Severity::Info => "INFO",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "ERROR" => Some(Self::Error),
-                "WARNING" => Some(Self::Warning),
-                "INFO" => Some(Self::Info),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum CommonReason {
-        Undefined = 0,
-        Unknown = 1,
-        RevisionFailed = 3,
-        ProgressDeadlineExceeded = 4,
-        ContainerMissing = 6,
-        ContainerPermissionDenied = 7,
-        ContainerImageUnauthorized = 8,
-        ContainerImageAuthorizationCheckFailed = 9,
-        EncryptionKeyPermissionDenied = 10,
-        EncryptionKeyCheckFailed = 11,
-        SecretsAccessCheckFailed = 12,
-        WaitingForOperation = 13,
-        ImmediateRetry = 14,
-        PostponedRetry = 15,
-        Internal = 16,
-    }
-    impl CommonReason {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                CommonReason::Undefined => "COMMON_REASON_UNDEFINED",
-                CommonReason::Unknown => "UNKNOWN",
-                CommonReason::RevisionFailed => "REVISION_FAILED",
-                CommonReason::ProgressDeadlineExceeded => "PROGRESS_DEADLINE_EXCEEDED",
-                CommonReason::ContainerMissing => "CONTAINER_MISSING",
-                CommonReason::ContainerPermissionDenied => "CONTAINER_PERMISSION_DENIED",
-                CommonReason::ContainerImageUnauthorized => {
-                    "CONTAINER_IMAGE_UNAUTHORIZED"
-                }
-                CommonReason::ContainerImageAuthorizationCheckFailed => {
-                    "CONTAINER_IMAGE_AUTHORIZATION_CHECK_FAILED"
-                }
-                CommonReason::EncryptionKeyPermissionDenied => {
-                    "ENCRYPTION_KEY_PERMISSION_DENIED"
-                }
-                CommonReason::EncryptionKeyCheckFailed => "ENCRYPTION_KEY_CHECK_FAILED",
-                CommonReason::SecretsAccessCheckFailed => "SECRETS_ACCESS_CHECK_FAILED",
-                CommonReason::WaitingForOperation => "WAITING_FOR_OPERATION",
-                CommonReason::ImmediateRetry => "IMMEDIATE_RETRY",
-                CommonReason::PostponedRetry => "POSTPONED_RETRY",
-                CommonReason::Internal => "INTERNAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "COMMON_REASON_UNDEFINED" => Some(Self::Undefined),
-                "UNKNOWN" => Some(Self::Unknown),
-                "REVISION_FAILED" => Some(Self::RevisionFailed),
-                "PROGRESS_DEADLINE_EXCEEDED" => Some(Self::ProgressDeadlineExceeded),
-                "CONTAINER_MISSING" => Some(Self::ContainerMissing),
-                "CONTAINER_PERMISSION_DENIED" => Some(Self::ContainerPermissionDenied),
-                "CONTAINER_IMAGE_UNAUTHORIZED" => Some(Self::ContainerImageUnauthorized),
-                "CONTAINER_IMAGE_AUTHORIZATION_CHECK_FAILED" => {
-                    Some(Self::ContainerImageAuthorizationCheckFailed)
-                }
-                "ENCRYPTION_KEY_PERMISSION_DENIED" => {
-                    Some(Self::EncryptionKeyPermissionDenied)
-                }
-                "ENCRYPTION_KEY_CHECK_FAILED" => Some(Self::EncryptionKeyCheckFailed),
-                "SECRETS_ACCESS_CHECK_FAILED" => Some(Self::SecretsAccessCheckFailed),
-                "WAITING_FOR_OPERATION" => Some(Self::WaitingForOperation),
-                "IMMEDIATE_RETRY" => Some(Self::ImmediateRetry),
-                "POSTPONED_RETRY" => Some(Self::PostponedRetry),
-                "INTERNAL" => Some(Self::Internal),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RevisionReason {
-        Undefined = 0,
-        Pending = 1,
-        Reserve = 2,
-        Retired = 3,
-        Retiring = 4,
-        Recreating = 5,
-        HealthCheckContainerError = 6,
-        CustomizedPathResponsePending = 7,
-        MinInstancesNotProvisioned = 8,
-        ActiveRevisionLimitReached = 9,
-        NoDeployment = 10,
-        HealthCheckSkipped = 11,
-        MinInstancesWarming = 12,
-    }
-    impl RevisionReason {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RevisionReason::Undefined => "REVISION_REASON_UNDEFINED",
-                RevisionReason::Pending => "PENDING",
-                RevisionReason::Reserve => "RESERVE",
-                RevisionReason::Retired => "RETIRED",
-                RevisionReason::Retiring => "RETIRING",
-                RevisionReason::Recreating => "RECREATING",
-                RevisionReason::HealthCheckContainerError => {
-                    "HEALTH_CHECK_CONTAINER_ERROR"
-                }
-                RevisionReason::CustomizedPathResponsePending => {
-                    "CUSTOMIZED_PATH_RESPONSE_PENDING"
-                }
-                RevisionReason::MinInstancesNotProvisioned => {
-                    "MIN_INSTANCES_NOT_PROVISIONED"
-                }
-                RevisionReason::ActiveRevisionLimitReached => {
-                    "ACTIVE_REVISION_LIMIT_REACHED"
-                }
-                RevisionReason::NoDeployment => "NO_DEPLOYMENT",
-                RevisionReason::HealthCheckSkipped => "HEALTH_CHECK_SKIPPED",
-                RevisionReason::MinInstancesWarming => "MIN_INSTANCES_WARMING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REVISION_REASON_UNDEFINED" => Some(Self::Undefined),
-                "PENDING" => Some(Self::Pending),
-                "RESERVE" => Some(Self::Reserve),
-                "RETIRED" => Some(Self::Retired),
-                "RETIRING" => Some(Self::Retiring),
-                "RECREATING" => Some(Self::Recreating),
-                "HEALTH_CHECK_CONTAINER_ERROR" => Some(Self::HealthCheckContainerError),
-                "CUSTOMIZED_PATH_RESPONSE_PENDING" => {
-                    Some(Self::CustomizedPathResponsePending)
-                }
-                "MIN_INSTANCES_NOT_PROVISIONED" => Some(Self::MinInstancesNotProvisioned),
-                "ACTIVE_REVISION_LIMIT_REACHED" => Some(Self::ActiveRevisionLimitReached),
-                "NO_DEPLOYMENT" => Some(Self::NoDeployment),
-                "HEALTH_CHECK_SKIPPED" => Some(Self::HealthCheckSkipped),
-                "MIN_INSTANCES_WARMING" => Some(Self::MinInstancesWarming),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ExecutionReason {
-        Undefined = 0,
-        JobStatusServicePollingError = 1,
-        NonZeroExitCode = 2,
-        Cancelled = 3,
-        Cancelling = 4,
-        Deleted = 5,
-    }
-    impl ExecutionReason {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ExecutionReason::Undefined => "EXECUTION_REASON_UNDEFINED",
-                ExecutionReason::JobStatusServicePollingError => {
-                    "JOB_STATUS_SERVICE_POLLING_ERROR"
-                }
-                ExecutionReason::NonZeroExitCode => "NON_ZERO_EXIT_CODE",
-                ExecutionReason::Cancelled => "CANCELLED",
-                ExecutionReason::Cancelling => "CANCELLING",
-                ExecutionReason::Deleted => "DELETED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "EXECUTION_REASON_UNDEFINED" => Some(Self::Undefined),
-                "JOB_STATUS_SERVICE_POLLING_ERROR" => {
-                    Some(Self::JobStatusServicePollingError)
-                }
-                "NON_ZERO_EXIT_CODE" => Some(Self::NonZeroExitCode),
-                "CANCELLED" => Some(Self::Cancelled),
-                "CANCELLING" => Some(Self::Cancelling),
-                "DELETED" => Some(Self::Deleted),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Reasons {
-        #[prost(enumeration = "CommonReason", tag = "6")]
-        Reason(i32),
-        #[prost(enumeration = "RevisionReason", tag = "9")]
-        RevisionReason(i32),
-        #[prost(enumeration = "ExecutionReason", tag = "11")]
-        ExecutionReason(i32),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+ConditionPending = 1,
+ConditionReconciling = 2,
+ConditionFailed = 3,
+ConditionSucceeded = 4,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::ConditionPending => "CONDITION_PENDING",
+State::ConditionReconciling => "CONDITION_RECONCILING",
+State::ConditionFailed => "CONDITION_FAILED",
+State::ConditionSucceeded => "CONDITION_SUCCEEDED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CONDITION_PENDING" => Some(Self::ConditionPending),
+"CONDITION_RECONCILING" => Some(Self::ConditionReconciling),
+"CONDITION_FAILED" => Some(Self::ConditionFailed),
+"CONDITION_SUCCEEDED" => Some(Self::ConditionSucceeded),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Severity {
+Unspecified = 0,
+Error = 1,
+Warning = 2,
+Info = 3,
+}
+impl Severity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+Severity::Error => "ERROR",
+Severity::Warning => "WARNING",
+Severity::Info => "INFO",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"ERROR" => Some(Self::Error),
+"WARNING" => Some(Self::Warning),
+"INFO" => Some(Self::Info),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CommonReason {
+Undefined = 0,
+Unknown = 1,
+RevisionFailed = 3,
+ProgressDeadlineExceeded = 4,
+ContainerMissing = 6,
+ContainerPermissionDenied = 7,
+ContainerImageUnauthorized = 8,
+ContainerImageAuthorizationCheckFailed = 9,
+EncryptionKeyPermissionDenied = 10,
+EncryptionKeyCheckFailed = 11,
+SecretsAccessCheckFailed = 12,
+WaitingForOperation = 13,
+ImmediateRetry = 14,
+PostponedRetry = 15,
+Internal = 16,
+}
+impl CommonReason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CommonReason::Undefined => "COMMON_REASON_UNDEFINED",
+CommonReason::Unknown => "UNKNOWN",
+CommonReason::RevisionFailed => "REVISION_FAILED",
+CommonReason::ProgressDeadlineExceeded => "PROGRESS_DEADLINE_EXCEEDED",
+CommonReason::ContainerMissing => "CONTAINER_MISSING",
+CommonReason::ContainerPermissionDenied => "CONTAINER_PERMISSION_DENIED",
+CommonReason::ContainerImageUnauthorized => "CONTAINER_IMAGE_UNAUTHORIZED",
+CommonReason::ContainerImageAuthorizationCheckFailed => "CONTAINER_IMAGE_AUTHORIZATION_CHECK_FAILED",
+CommonReason::EncryptionKeyPermissionDenied => "ENCRYPTION_KEY_PERMISSION_DENIED",
+CommonReason::EncryptionKeyCheckFailed => "ENCRYPTION_KEY_CHECK_FAILED",
+CommonReason::SecretsAccessCheckFailed => "SECRETS_ACCESS_CHECK_FAILED",
+CommonReason::WaitingForOperation => "WAITING_FOR_OPERATION",
+CommonReason::ImmediateRetry => "IMMEDIATE_RETRY",
+CommonReason::PostponedRetry => "POSTPONED_RETRY",
+CommonReason::Internal => "INTERNAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"COMMON_REASON_UNDEFINED" => Some(Self::Undefined),
+"UNKNOWN" => Some(Self::Unknown),
+"REVISION_FAILED" => Some(Self::RevisionFailed),
+"PROGRESS_DEADLINE_EXCEEDED" => Some(Self::ProgressDeadlineExceeded),
+"CONTAINER_MISSING" => Some(Self::ContainerMissing),
+"CONTAINER_PERMISSION_DENIED" => Some(Self::ContainerPermissionDenied),
+"CONTAINER_IMAGE_UNAUTHORIZED" => Some(Self::ContainerImageUnauthorized),
+"CONTAINER_IMAGE_AUTHORIZATION_CHECK_FAILED" => Some(Self::ContainerImageAuthorizationCheckFailed),
+"ENCRYPTION_KEY_PERMISSION_DENIED" => Some(Self::EncryptionKeyPermissionDenied),
+"ENCRYPTION_KEY_CHECK_FAILED" => Some(Self::EncryptionKeyCheckFailed),
+"SECRETS_ACCESS_CHECK_FAILED" => Some(Self::SecretsAccessCheckFailed),
+"WAITING_FOR_OPERATION" => Some(Self::WaitingForOperation),
+"IMMEDIATE_RETRY" => Some(Self::ImmediateRetry),
+"POSTPONED_RETRY" => Some(Self::PostponedRetry),
+"INTERNAL" => Some(Self::Internal),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RevisionReason {
+Undefined = 0,
+Pending = 1,
+Reserve = 2,
+Retired = 3,
+Retiring = 4,
+Recreating = 5,
+HealthCheckContainerError = 6,
+CustomizedPathResponsePending = 7,
+MinInstancesNotProvisioned = 8,
+ActiveRevisionLimitReached = 9,
+NoDeployment = 10,
+HealthCheckSkipped = 11,
+MinInstancesWarming = 12,
+}
+impl RevisionReason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RevisionReason::Undefined => "REVISION_REASON_UNDEFINED",
+RevisionReason::Pending => "PENDING",
+RevisionReason::Reserve => "RESERVE",
+RevisionReason::Retired => "RETIRED",
+RevisionReason::Retiring => "RETIRING",
+RevisionReason::Recreating => "RECREATING",
+RevisionReason::HealthCheckContainerError => "HEALTH_CHECK_CONTAINER_ERROR",
+RevisionReason::CustomizedPathResponsePending => "CUSTOMIZED_PATH_RESPONSE_PENDING",
+RevisionReason::MinInstancesNotProvisioned => "MIN_INSTANCES_NOT_PROVISIONED",
+RevisionReason::ActiveRevisionLimitReached => "ACTIVE_REVISION_LIMIT_REACHED",
+RevisionReason::NoDeployment => "NO_DEPLOYMENT",
+RevisionReason::HealthCheckSkipped => "HEALTH_CHECK_SKIPPED",
+RevisionReason::MinInstancesWarming => "MIN_INSTANCES_WARMING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REVISION_REASON_UNDEFINED" => Some(Self::Undefined),
+"PENDING" => Some(Self::Pending),
+"RESERVE" => Some(Self::Reserve),
+"RETIRED" => Some(Self::Retired),
+"RETIRING" => Some(Self::Retiring),
+"RECREATING" => Some(Self::Recreating),
+"HEALTH_CHECK_CONTAINER_ERROR" => Some(Self::HealthCheckContainerError),
+"CUSTOMIZED_PATH_RESPONSE_PENDING" => Some(Self::CustomizedPathResponsePending),
+"MIN_INSTANCES_NOT_PROVISIONED" => Some(Self::MinInstancesNotProvisioned),
+"ACTIVE_REVISION_LIMIT_REACHED" => Some(Self::ActiveRevisionLimitReached),
+"NO_DEPLOYMENT" => Some(Self::NoDeployment),
+"HEALTH_CHECK_SKIPPED" => Some(Self::HealthCheckSkipped),
+"MIN_INSTANCES_WARMING" => Some(Self::MinInstancesWarming),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ExecutionReason {
+Undefined = 0,
+JobStatusServicePollingError = 1,
+NonZeroExitCode = 2,
+Cancelled = 3,
+Cancelling = 4,
+Deleted = 5,
+}
+impl ExecutionReason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ExecutionReason::Undefined => "EXECUTION_REASON_UNDEFINED",
+ExecutionReason::JobStatusServicePollingError => "JOB_STATUS_SERVICE_POLLING_ERROR",
+ExecutionReason::NonZeroExitCode => "NON_ZERO_EXIT_CODE",
+ExecutionReason::Cancelled => "CANCELLED",
+ExecutionReason::Cancelling => "CANCELLING",
+ExecutionReason::Deleted => "DELETED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EXECUTION_REASON_UNDEFINED" => Some(Self::Undefined),
+"JOB_STATUS_SERVICE_POLLING_ERROR" => Some(Self::JobStatusServicePollingError),
+"NON_ZERO_EXIT_CODE" => Some(Self::NonZeroExitCode),
+"CANCELLED" => Some(Self::Cancelled),
+"CANCELLING" => Some(Self::Cancelling),
+"DELETED" => Some(Self::Deleted),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Reasons {
+#[prost(enumeration = "CommonReason", tag = "6")]
+Reason(i32),
+#[prost(enumeration = "RevisionReason", tag = "9")]
+RevisionReason(i32),
+#[prost(enumeration = "ExecutionReason", tag = "11")]
+ExecutionReason(i32),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTaskRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTasksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub show_deleted: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub show_deleted: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTasksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub tasks: ::prost::alloc::vec::Vec<Task>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub tasks: ::prost::alloc::vec::Vec<Task>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Task {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(int64, tag = "3")]
-    pub generation: i64,
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "5")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "34")]
-    pub scheduled_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "27")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "10")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "12")]
-    pub job: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub execution: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "14")]
-    pub containers: ::prost::alloc::vec::Vec<Container>,
-    #[prost(message, repeated, tag = "15")]
-    pub volumes: ::prost::alloc::vec::Vec<Volume>,
-    #[prost(int32, tag = "16")]
-    pub max_retries: i32,
-    #[prost(message, optional, tag = "17")]
-    pub timeout: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag = "18")]
-    pub service_account: ::prost::alloc::string::String,
-    #[prost(enumeration = "ExecutionEnvironment", tag = "20")]
-    pub execution_environment: i32,
-    #[prost(bool, tag = "21")]
-    pub reconciling: bool,
-    #[prost(message, repeated, tag = "22")]
-    pub conditions: ::prost::alloc::vec::Vec<Condition>,
-    #[prost(int64, tag = "23")]
-    pub observed_generation: i64,
-    #[prost(int32, tag = "24")]
-    pub index: i32,
-    #[prost(int32, tag = "25")]
-    pub retried: i32,
-    #[prost(message, optional, tag = "26")]
-    pub last_attempt_result: ::core::option::Option<TaskAttemptResult>,
-    #[prost(string, tag = "28")]
-    pub encryption_key: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "29")]
-    pub vpc_access: ::core::option::Option<VpcAccess>,
-    #[prost(string, tag = "32")]
-    pub log_uri: ::prost::alloc::string::String,
-    #[prost(bool, tag = "33")]
-    pub satisfies_pzs: bool,
-    #[prost(string, tag = "99")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub uid: ::prost::alloc::string::String,
+#[prost(int64, tag = "3")]
+pub generation: i64,
+#[prost(btree_map = "string, string", tag = "4")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "5")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "34")]
+pub scheduled_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "27")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "12")]
+pub job: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub execution: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "14")]
+pub containers: ::prost::alloc::vec::Vec<Container>,
+#[prost(message, repeated, tag = "15")]
+pub volumes: ::prost::alloc::vec::Vec<Volume>,
+#[prost(int32, tag = "16")]
+pub max_retries: i32,
+#[prost(message, optional, tag = "17")]
+pub timeout: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "18")]
+pub service_account: ::prost::alloc::string::String,
+#[prost(enumeration = "ExecutionEnvironment", tag = "20")]
+pub execution_environment: i32,
+#[prost(bool, tag = "21")]
+pub reconciling: bool,
+#[prost(message, repeated, tag = "22")]
+pub conditions: ::prost::alloc::vec::Vec<Condition>,
+#[prost(int64, tag = "23")]
+pub observed_generation: i64,
+#[prost(int32, tag = "24")]
+pub index: i32,
+#[prost(int32, tag = "25")]
+pub retried: i32,
+#[prost(message, optional, tag = "26")]
+pub last_attempt_result: ::core::option::Option<TaskAttemptResult>,
+#[prost(string, tag = "28")]
+pub encryption_key: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "29")]
+pub vpc_access: ::core::option::Option<VpcAccess>,
+#[prost(string, tag = "32")]
+pub log_uri: ::prost::alloc::string::String,
+#[prost(bool, tag = "33")]
+pub satisfies_pzs: bool,
+#[prost(string, tag = "99")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskAttemptResult {
-    #[prost(message, optional, tag = "1")]
-    pub status: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(int32, tag = "2")]
-    pub exit_code: i32,
+#[prost(message, optional, tag = "1")]
+pub status: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(int32, tag = "2")]
+pub exit_code: i32,
 }
 /// Generated client implementations.
 pub mod tasks_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Cloud Run Task Control Plane API.
-    #[derive(Debug, Clone)]
-    pub struct TasksClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> TasksClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> TasksClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            TasksClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets information about a Task.
-        pub async fn get_task(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTaskRequest>,
-        ) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Tasks/GetTask",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Tasks", "GetTask"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Tasks from an Execution of a Job.
-        pub async fn list_tasks(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTasksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTasksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Tasks/ListTasks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Tasks", "ListTasks"));
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Cloud Run Task Control Plane API.
+#[derive(Debug, Clone)]
+pub struct TasksClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> TasksClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> TasksClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+TasksClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets information about a Task.
+pub async fn get_task(&mut self, request: impl tonic::IntoRequest<super::GetTaskRequest>) -> std::result::Result<tonic::Response<super::Task>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Tasks/GetTask");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Tasks", "GetTask"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Tasks from an Execution of a Job.
+pub async fn list_tasks(&mut self, request: impl tonic::IntoRequest<super::ListTasksRequest>) -> std::result::Result<tonic::Response<super::ListTasksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Tasks/ListTasks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Tasks", "ListTasks"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RevisionScalingStatus {
-    #[prost(int32, tag = "1")]
-    pub desired_min_instance_count: i32,
+#[prost(int32, tag = "1")]
+pub desired_min_instance_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateJobRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub job: ::core::option::Option<Job>,
-    #[prost(string, tag = "3")]
-    pub job_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub validate_only: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub job: ::core::option::Option<Job>,
+#[prost(string, tag = "3")]
+pub job_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetJobRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateJobRequest {
-    #[prost(message, optional, tag = "1")]
-    pub job: ::core::option::Option<Job>,
-    #[prost(bool, tag = "3")]
-    pub validate_only: bool,
-    #[prost(bool, tag = "4")]
-    pub allow_missing: bool,
+#[prost(message, optional, tag = "1")]
+pub job: ::core::option::Option<Job>,
+#[prost(bool, tag = "3")]
+pub validate_only: bool,
+#[prost(bool, tag = "4")]
+pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub show_deleted: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub show_deleted: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListJobsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub jobs: ::prost::alloc::vec::Vec<Job>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub jobs: ::prost::alloc::vec::Vec<Job>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteJobRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub validate_only: bool,
-    #[prost(string, tag = "4")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub validate_only: bool,
+#[prost(string, tag = "4")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunJobRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub validate_only: bool,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub overrides: ::core::option::Option<run_job_request::Overrides>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub validate_only: bool,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub overrides: ::core::option::Option<run_job_request::Overrides>,
 }
 /// Nested message and enum types in `RunJobRequest`.
 pub mod run_job_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Overrides {
-        #[prost(message, repeated, tag = "1")]
-        pub container_overrides: ::prost::alloc::vec::Vec<overrides::ContainerOverride>,
-        #[prost(int32, tag = "2")]
-        pub task_count: i32,
-        #[prost(message, optional, tag = "4")]
-        pub timeout: ::core::option::Option<::prost_types::Duration>,
-    }
-    /// Nested message and enum types in `Overrides`.
-    pub mod overrides {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ContainerOverride {
-            #[prost(string, tag = "1")]
-            pub name: ::prost::alloc::string::String,
-            #[prost(string, repeated, tag = "2")]
-            pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-            #[prost(message, repeated, tag = "3")]
-            pub env: ::prost::alloc::vec::Vec<super::super::EnvVar>,
-            #[prost(bool, tag = "4")]
-            pub clear_args: bool,
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Overrides {
+#[prost(message, repeated, tag = "1")]
+pub container_overrides: ::prost::alloc::vec::Vec<overrides::ContainerOverride>,
+#[prost(int32, tag = "2")]
+pub task_count: i32,
+#[prost(message, optional, tag = "4")]
+pub timeout: ::core::option::Option<::prost_types::Duration>,
+}
+/// Nested message and enum types in `Overrides`.
+pub mod overrides {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ContainerOverride {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "3")]
+pub env: ::prost::alloc::vec::Vec<super::super::EnvVar>,
+#[prost(bool, tag = "4")]
+pub clear_args: bool,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Job {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(int64, tag = "3")]
-    pub generation: i64,
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "5")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "10")]
-    pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag = "11")]
-    pub last_modifier: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub client: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub client_version: ::prost::alloc::string::String,
-    #[prost(enumeration = "super::super::super::api::LaunchStage", tag = "14")]
-    pub launch_stage: i32,
-    #[prost(message, optional, tag = "15")]
-    pub binary_authorization: ::core::option::Option<BinaryAuthorization>,
-    #[prost(message, optional, tag = "16")]
-    pub template: ::core::option::Option<ExecutionTemplate>,
-    #[prost(int64, tag = "17")]
-    pub observed_generation: i64,
-    #[prost(message, optional, tag = "18")]
-    pub terminal_condition: ::core::option::Option<Condition>,
-    #[prost(message, repeated, tag = "19")]
-    pub conditions: ::prost::alloc::vec::Vec<Condition>,
-    #[prost(int32, tag = "20")]
-    pub execution_count: i32,
-    #[prost(message, optional, tag = "22")]
-    pub latest_created_execution: ::core::option::Option<ExecutionReference>,
-    #[prost(bool, tag = "23")]
-    pub reconciling: bool,
-    #[prost(bool, tag = "25")]
-    pub satisfies_pzs: bool,
-    #[prost(string, tag = "99")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(oneof = "job::CreateExecution", tags = "26, 27")]
-    pub create_execution: ::core::option::Option<job::CreateExecution>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub uid: ::prost::alloc::string::String,
+#[prost(int64, tag = "3")]
+pub generation: i64,
+#[prost(btree_map = "string, string", tag = "4")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "5")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "10")]
+pub creator: ::prost::alloc::string::String,
+#[prost(string, tag = "11")]
+pub last_modifier: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub client: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub client_version: ::prost::alloc::string::String,
+#[prost(enumeration = "super::super::super::api::LaunchStage", tag = "14")]
+pub launch_stage: i32,
+#[prost(message, optional, tag = "15")]
+pub binary_authorization: ::core::option::Option<BinaryAuthorization>,
+#[prost(message, optional, tag = "16")]
+pub template: ::core::option::Option<ExecutionTemplate>,
+#[prost(int64, tag = "17")]
+pub observed_generation: i64,
+#[prost(message, optional, tag = "18")]
+pub terminal_condition: ::core::option::Option<Condition>,
+#[prost(message, repeated, tag = "19")]
+pub conditions: ::prost::alloc::vec::Vec<Condition>,
+#[prost(int32, tag = "20")]
+pub execution_count: i32,
+#[prost(message, optional, tag = "22")]
+pub latest_created_execution: ::core::option::Option<ExecutionReference>,
+#[prost(bool, tag = "23")]
+pub reconciling: bool,
+#[prost(bool, tag = "25")]
+pub satisfies_pzs: bool,
+#[prost(string, tag = "99")]
+pub etag: ::prost::alloc::string::String,
+#[prost(oneof = "job::CreateExecution", tags = "26, 27")]
+pub create_execution: ::core::option::Option<job::CreateExecution>,
 }
 /// Nested message and enum types in `Job`.
 pub mod job {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum CreateExecution {
-        #[prost(string, tag = "26")]
-        StartExecutionToken(::prost::alloc::string::String),
-        #[prost(string, tag = "27")]
-        RunExecutionToken(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum CreateExecution {
+#[prost(string, tag = "26")]
+StartExecutionToken(::prost::alloc::string::String),
+#[prost(string, tag = "27")]
+RunExecutionToken(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecutionReference {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "execution_reference::CompletionStatus", tag = "4")]
-    pub completion_status: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "execution_reference::CompletionStatus", tag = "4")]
+pub completion_status: i32,
 }
 /// Nested message and enum types in `ExecutionReference`.
 pub mod execution_reference {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum CompletionStatus {
-        Unspecified = 0,
-        ExecutionSucceeded = 1,
-        ExecutionFailed = 2,
-        ExecutionRunning = 3,
-        ExecutionPending = 4,
-        ExecutionCancelled = 5,
-    }
-    impl CompletionStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                CompletionStatus::Unspecified => "COMPLETION_STATUS_UNSPECIFIED",
-                CompletionStatus::ExecutionSucceeded => "EXECUTION_SUCCEEDED",
-                CompletionStatus::ExecutionFailed => "EXECUTION_FAILED",
-                CompletionStatus::ExecutionRunning => "EXECUTION_RUNNING",
-                CompletionStatus::ExecutionPending => "EXECUTION_PENDING",
-                CompletionStatus::ExecutionCancelled => "EXECUTION_CANCELLED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "COMPLETION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                "EXECUTION_SUCCEEDED" => Some(Self::ExecutionSucceeded),
-                "EXECUTION_FAILED" => Some(Self::ExecutionFailed),
-                "EXECUTION_RUNNING" => Some(Self::ExecutionRunning),
-                "EXECUTION_PENDING" => Some(Self::ExecutionPending),
-                "EXECUTION_CANCELLED" => Some(Self::ExecutionCancelled),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CompletionStatus {
+Unspecified = 0,
+ExecutionSucceeded = 1,
+ExecutionFailed = 2,
+ExecutionRunning = 3,
+ExecutionPending = 4,
+ExecutionCancelled = 5,
+}
+impl CompletionStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CompletionStatus::Unspecified => "COMPLETION_STATUS_UNSPECIFIED",
+CompletionStatus::ExecutionSucceeded => "EXECUTION_SUCCEEDED",
+CompletionStatus::ExecutionFailed => "EXECUTION_FAILED",
+CompletionStatus::ExecutionRunning => "EXECUTION_RUNNING",
+CompletionStatus::ExecutionPending => "EXECUTION_PENDING",
+CompletionStatus::ExecutionCancelled => "EXECUTION_CANCELLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"COMPLETION_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"EXECUTION_SUCCEEDED" => Some(Self::ExecutionSucceeded),
+"EXECUTION_FAILED" => Some(Self::ExecutionFailed),
+"EXECUTION_RUNNING" => Some(Self::ExecutionRunning),
+"EXECUTION_PENDING" => Some(Self::ExecutionPending),
+"EXECUTION_CANCELLED" => Some(Self::ExecutionCancelled),
+_ => None,
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod jobs_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Cloud Run Job Control Plane API.
-    #[derive(Debug, Clone)]
-    pub struct JobsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> JobsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> JobsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            JobsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a Job.
-        pub async fn create_job(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateJobRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/CreateJob",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "CreateJob"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets information about a Job.
-        pub async fn get_job(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetJobRequest>,
-        ) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/GetJob",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "GetJob"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Jobs. Results are sorted by creation time, descending.
-        pub async fn list_jobs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListJobsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListJobsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/ListJobs",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "ListJobs"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Job.
-        pub async fn update_job(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateJobRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/UpdateJob",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "UpdateJob"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Job.
-        pub async fn delete_job(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteJobRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/DeleteJob",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "DeleteJob"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Triggers creation of a new Execution of this Job.
-        pub async fn run_job(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RunJobRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/RunJob",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "RunJob"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the IAM Access Control policy currently in effect for the given Job.
-        /// This result does not include any inherited policies.
-        pub async fn get_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::GetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/GetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "GetIamPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Sets the IAM Access control policy for the specified Job. Overwrites
-        /// any existing policy.
-        pub async fn set_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::SetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/SetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "SetIamPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns permissions that a caller has on the specified Project.
-        ///
-        /// There are no permissions required for making this API call.
-        pub async fn test_iam_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::TestIamPermissionsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::iam::v1::TestIamPermissionsResponse,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Jobs/TestIamPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Jobs", "TestIamPermissions"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Cloud Run Job Control Plane API.
+#[derive(Debug, Clone)]
+pub struct JobsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> JobsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> JobsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+JobsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a Job.
+pub async fn create_job(&mut self, request: impl tonic::IntoRequest<super::CreateJobRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/CreateJob");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "CreateJob"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets information about a Job.
+pub async fn get_job(&mut self, request: impl tonic::IntoRequest<super::GetJobRequest>) -> std::result::Result<tonic::Response<super::Job>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/GetJob");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "GetJob"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Jobs. Results are sorted by creation time, descending.
+pub async fn list_jobs(&mut self, request: impl tonic::IntoRequest<super::ListJobsRequest>) -> std::result::Result<tonic::Response<super::ListJobsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/ListJobs");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "ListJobs"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Job.
+pub async fn update_job(&mut self, request: impl tonic::IntoRequest<super::UpdateJobRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/UpdateJob");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "UpdateJob"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Job.
+pub async fn delete_job(&mut self, request: impl tonic::IntoRequest<super::DeleteJobRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/DeleteJob");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "DeleteJob"));
+self.inner.unary(req, path, codec).await
+}
+/// Triggers creation of a new Execution of this Job.
+pub async fn run_job(&mut self, request: impl tonic::IntoRequest<super::RunJobRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/RunJob");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "RunJob"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the IAM Access Control policy currently in effect for the given Job.
+/// This result does not include any inherited policies.
+pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/GetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "GetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Sets the IAM Access control policy for the specified Job. Overwrites
+/// any existing policy.
+pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/SetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "SetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns permissions that a caller has on the specified Project.
+///
+/// There are no permissions required for making this API call.
+pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Jobs/TestIamPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Jobs", "TestIamPermissions"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRevisionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRevisionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub show_deleted: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub show_deleted: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRevisionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub revisions: ::prost::alloc::vec::Vec<Revision>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub revisions: ::prost::alloc::vec::Vec<Revision>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRevisionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub validate_only: bool,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub validate_only: bool,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Revision {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(int64, tag = "3")]
-    pub generation: i64,
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "5")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "super::super::super::api::LaunchStage", tag = "10")]
-    pub launch_stage: i32,
-    #[prost(string, tag = "11")]
-    pub service: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "12")]
-    pub scaling: ::core::option::Option<RevisionScaling>,
-    #[prost(message, optional, tag = "13")]
-    pub vpc_access: ::core::option::Option<VpcAccess>,
-    #[prost(int32, tag = "34")]
-    pub max_instance_request_concurrency: i32,
-    #[prost(message, optional, tag = "15")]
-    pub timeout: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag = "16")]
-    pub service_account: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "17")]
-    pub containers: ::prost::alloc::vec::Vec<Container>,
-    #[prost(message, repeated, tag = "18")]
-    pub volumes: ::prost::alloc::vec::Vec<Volume>,
-    #[prost(enumeration = "ExecutionEnvironment", tag = "20")]
-    pub execution_environment: i32,
-    #[prost(string, tag = "21")]
-    pub encryption_key: ::prost::alloc::string::String,
-    #[prost(enumeration = "EncryptionKeyRevocationAction", tag = "23")]
-    pub encryption_key_revocation_action: i32,
-    #[prost(message, optional, tag = "24")]
-    pub encryption_key_shutdown_duration: ::core::option::Option<
-        ::prost_types::Duration,
-    >,
-    #[prost(bool, tag = "30")]
-    pub reconciling: bool,
-    #[prost(message, repeated, tag = "31")]
-    pub conditions: ::prost::alloc::vec::Vec<Condition>,
-    #[prost(int64, tag = "32")]
-    pub observed_generation: i64,
-    #[prost(string, tag = "33")]
-    pub log_uri: ::prost::alloc::string::String,
-    #[prost(bool, tag = "37")]
-    pub satisfies_pzs: bool,
-    #[prost(bool, tag = "38")]
-    pub session_affinity: bool,
-    #[prost(message, optional, tag = "39")]
-    pub scaling_status: ::core::option::Option<RevisionScalingStatus>,
-    #[prost(string, tag = "99")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub uid: ::prost::alloc::string::String,
+#[prost(int64, tag = "3")]
+pub generation: i64,
+#[prost(btree_map = "string, string", tag = "4")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "5")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "super::super::super::api::LaunchStage", tag = "10")]
+pub launch_stage: i32,
+#[prost(string, tag = "11")]
+pub service: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "12")]
+pub scaling: ::core::option::Option<RevisionScaling>,
+#[prost(message, optional, tag = "13")]
+pub vpc_access: ::core::option::Option<VpcAccess>,
+#[prost(int32, tag = "34")]
+pub max_instance_request_concurrency: i32,
+#[prost(message, optional, tag = "15")]
+pub timeout: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "16")]
+pub service_account: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "17")]
+pub containers: ::prost::alloc::vec::Vec<Container>,
+#[prost(message, repeated, tag = "18")]
+pub volumes: ::prost::alloc::vec::Vec<Volume>,
+#[prost(enumeration = "ExecutionEnvironment", tag = "20")]
+pub execution_environment: i32,
+#[prost(string, tag = "21")]
+pub encryption_key: ::prost::alloc::string::String,
+#[prost(enumeration = "EncryptionKeyRevocationAction", tag = "23")]
+pub encryption_key_revocation_action: i32,
+#[prost(message, optional, tag = "24")]
+pub encryption_key_shutdown_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(bool, tag = "30")]
+pub reconciling: bool,
+#[prost(message, repeated, tag = "31")]
+pub conditions: ::prost::alloc::vec::Vec<Condition>,
+#[prost(int64, tag = "32")]
+pub observed_generation: i64,
+#[prost(string, tag = "33")]
+pub log_uri: ::prost::alloc::string::String,
+#[prost(bool, tag = "37")]
+pub satisfies_pzs: bool,
+#[prost(bool, tag = "38")]
+pub session_affinity: bool,
+#[prost(message, optional, tag = "39")]
+pub scaling_status: ::core::option::Option<RevisionScalingStatus>,
+#[prost(string, tag = "99")]
+pub etag: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod revisions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Cloud Run Revision Control Plane API.
-    #[derive(Debug, Clone)]
-    pub struct RevisionsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> RevisionsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> RevisionsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            RevisionsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets information about a Revision.
-        pub async fn get_revision(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRevisionRequest>,
-        ) -> std::result::Result<tonic::Response<super::Revision>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Revisions/GetRevision",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Revisions", "GetRevision"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Revisions from a given Service, or from a given location.  Results
-        /// are sorted by creation time, descending.
-        pub async fn list_revisions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRevisionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRevisionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Revisions/ListRevisions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Revisions", "ListRevisions"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Revision.
-        pub async fn delete_revision(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteRevisionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Revisions/DeleteRevision",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Revisions", "DeleteRevision"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Cloud Run Revision Control Plane API.
+#[derive(Debug, Clone)]
+pub struct RevisionsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> RevisionsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> RevisionsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+RevisionsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets information about a Revision.
+pub async fn get_revision(&mut self, request: impl tonic::IntoRequest<super::GetRevisionRequest>) -> std::result::Result<tonic::Response<super::Revision>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Revisions/GetRevision");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Revisions", "GetRevision"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Revisions from a given Service, or from a given location.  Results
+/// are sorted by creation time, descending.
+pub async fn list_revisions(&mut self, request: impl tonic::IntoRequest<super::ListRevisionsRequest>) -> std::result::Result<tonic::Response<super::ListRevisionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Revisions/ListRevisions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Revisions", "ListRevisions"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Revision.
+pub async fn delete_revision(&mut self, request: impl tonic::IntoRequest<super::DeleteRevisionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Revisions/DeleteRevision");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Revisions", "DeleteRevision"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetExecutionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExecutionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub show_deleted: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub show_deleted: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListExecutionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub executions: ::prost::alloc::vec::Vec<Execution>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub executions: ::prost::alloc::vec::Vec<Execution>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteExecutionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub validate_only: bool,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub validate_only: bool,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelExecutionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub validate_only: bool,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub validate_only: bool,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Execution {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(int64, tag = "3")]
-    pub generation: i64,
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "5")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "22")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "10")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "super::super::super::api::LaunchStage", tag = "11")]
-    pub launch_stage: i32,
-    #[prost(string, tag = "12")]
-    pub job: ::prost::alloc::string::String,
-    #[prost(int32, tag = "13")]
-    pub parallelism: i32,
-    #[prost(int32, tag = "14")]
-    pub task_count: i32,
-    #[prost(message, optional, tag = "15")]
-    pub template: ::core::option::Option<TaskTemplate>,
-    #[prost(bool, tag = "16")]
-    pub reconciling: bool,
-    #[prost(message, repeated, tag = "17")]
-    pub conditions: ::prost::alloc::vec::Vec<Condition>,
-    #[prost(int64, tag = "18")]
-    pub observed_generation: i64,
-    #[prost(int32, tag = "19")]
-    pub running_count: i32,
-    #[prost(int32, tag = "20")]
-    pub succeeded_count: i32,
-    #[prost(int32, tag = "21")]
-    pub failed_count: i32,
-    #[prost(int32, tag = "24")]
-    pub cancelled_count: i32,
-    #[prost(int32, tag = "25")]
-    pub retried_count: i32,
-    #[prost(string, tag = "26")]
-    pub log_uri: ::prost::alloc::string::String,
-    #[prost(bool, tag = "27")]
-    pub satisfies_pzs: bool,
-    #[prost(string, tag = "99")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub uid: ::prost::alloc::string::String,
+#[prost(int64, tag = "3")]
+pub generation: i64,
+#[prost(btree_map = "string, string", tag = "4")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "5")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "22")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub completion_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "super::super::super::api::LaunchStage", tag = "11")]
+pub launch_stage: i32,
+#[prost(string, tag = "12")]
+pub job: ::prost::alloc::string::String,
+#[prost(int32, tag = "13")]
+pub parallelism: i32,
+#[prost(int32, tag = "14")]
+pub task_count: i32,
+#[prost(message, optional, tag = "15")]
+pub template: ::core::option::Option<TaskTemplate>,
+#[prost(bool, tag = "16")]
+pub reconciling: bool,
+#[prost(message, repeated, tag = "17")]
+pub conditions: ::prost::alloc::vec::Vec<Condition>,
+#[prost(int64, tag = "18")]
+pub observed_generation: i64,
+#[prost(int32, tag = "19")]
+pub running_count: i32,
+#[prost(int32, tag = "20")]
+pub succeeded_count: i32,
+#[prost(int32, tag = "21")]
+pub failed_count: i32,
+#[prost(int32, tag = "24")]
+pub cancelled_count: i32,
+#[prost(int32, tag = "25")]
+pub retried_count: i32,
+#[prost(string, tag = "26")]
+pub log_uri: ::prost::alloc::string::String,
+#[prost(bool, tag = "27")]
+pub satisfies_pzs: bool,
+#[prost(string, tag = "99")]
+pub etag: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod executions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Cloud Run Execution Control Plane API.
-    #[derive(Debug, Clone)]
-    pub struct ExecutionsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ExecutionsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ExecutionsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ExecutionsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets information about an Execution.
-        pub async fn get_execution(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetExecutionRequest>,
-        ) -> std::result::Result<tonic::Response<super::Execution>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Executions/GetExecution",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Executions", "GetExecution"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Executions from a Job. Results are sorted by creation time,
-        /// descending.
-        pub async fn list_executions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListExecutionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListExecutionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Executions/ListExecutions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Executions", "ListExecutions"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes an Execution.
-        pub async fn delete_execution(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteExecutionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Executions/DeleteExecution",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Executions", "DeleteExecution"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Cancels an Execution.
-        pub async fn cancel_execution(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CancelExecutionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Executions/CancelExecution",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Executions", "CancelExecution"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Cloud Run Execution Control Plane API.
+#[derive(Debug, Clone)]
+pub struct ExecutionsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ExecutionsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ExecutionsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ExecutionsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets information about an Execution.
+pub async fn get_execution(&mut self, request: impl tonic::IntoRequest<super::GetExecutionRequest>) -> std::result::Result<tonic::Response<super::Execution>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Executions/GetExecution");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Executions", "GetExecution"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Executions from a Job. Results are sorted by creation time,
+/// descending.
+pub async fn list_executions(&mut self, request: impl tonic::IntoRequest<super::ListExecutionsRequest>) -> std::result::Result<tonic::Response<super::ListExecutionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Executions/ListExecutions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Executions", "ListExecutions"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes an Execution.
+pub async fn delete_execution(&mut self, request: impl tonic::IntoRequest<super::DeleteExecutionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Executions/DeleteExecution");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Executions", "DeleteExecution"));
+self.inner.unary(req, path, codec).await
+}
+/// Cancels an Execution.
+pub async fn cancel_execution(&mut self, request: impl tonic::IntoRequest<super::CancelExecutionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Executions/CancelExecution");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Executions", "CancelExecution"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RevisionTemplate {
-    #[prost(string, tag = "1")]
-    pub revision: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "3")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "4")]
-    pub scaling: ::core::option::Option<RevisionScaling>,
-    #[prost(message, optional, tag = "6")]
-    pub vpc_access: ::core::option::Option<VpcAccess>,
-    #[prost(message, optional, tag = "8")]
-    pub timeout: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag = "9")]
-    pub service_account: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "10")]
-    pub containers: ::prost::alloc::vec::Vec<Container>,
-    #[prost(message, repeated, tag = "11")]
-    pub volumes: ::prost::alloc::vec::Vec<Volume>,
-    #[prost(enumeration = "ExecutionEnvironment", tag = "13")]
-    pub execution_environment: i32,
-    #[prost(string, tag = "14")]
-    pub encryption_key: ::prost::alloc::string::String,
-    #[prost(int32, tag = "15")]
-    pub max_instance_request_concurrency: i32,
-    #[prost(bool, tag = "19")]
-    pub session_affinity: bool,
-    #[prost(bool, tag = "20")]
-    pub health_check_disabled: bool,
+#[prost(string, tag = "1")]
+pub revision: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "3")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "4")]
+pub scaling: ::core::option::Option<RevisionScaling>,
+#[prost(message, optional, tag = "6")]
+pub vpc_access: ::core::option::Option<VpcAccess>,
+#[prost(message, optional, tag = "8")]
+pub timeout: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "9")]
+pub service_account: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "10")]
+pub containers: ::prost::alloc::vec::Vec<Container>,
+#[prost(message, repeated, tag = "11")]
+pub volumes: ::prost::alloc::vec::Vec<Volume>,
+#[prost(enumeration = "ExecutionEnvironment", tag = "13")]
+pub execution_environment: i32,
+#[prost(string, tag = "14")]
+pub encryption_key: ::prost::alloc::string::String,
+#[prost(int32, tag = "15")]
+pub max_instance_request_concurrency: i32,
+#[prost(bool, tag = "19")]
+pub session_affinity: bool,
+#[prost(bool, tag = "20")]
+pub health_check_disabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServiceRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub service: ::core::option::Option<Service>,
-    #[prost(string, tag = "3")]
-    pub service_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub validate_only: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub service: ::core::option::Option<Service>,
+#[prost(string, tag = "3")]
+pub service_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateServiceRequest {
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "1")]
-    pub service: ::core::option::Option<Service>,
-    #[prost(bool, tag = "3")]
-    pub validate_only: bool,
-    #[prost(bool, tag = "4")]
-    pub allow_missing: bool,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub service: ::core::option::Option<Service>,
+#[prost(bool, tag = "3")]
+pub validate_only: bool,
+#[prost(bool, tag = "4")]
+pub allow_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub show_deleted: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub show_deleted: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub services: ::prost::alloc::vec::Vec<Service>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub services: ::prost::alloc::vec::Vec<Service>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub validate_only: bool,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub validate_only: bool,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Service {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(int64, tag = "4")]
-    pub generation: i64,
-    #[prost(btree_map = "string, string", tag = "5")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "6")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "10")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "11")]
-    pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub last_modifier: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub client: ::prost::alloc::string::String,
-    #[prost(string, tag = "14")]
-    pub client_version: ::prost::alloc::string::String,
-    #[prost(enumeration = "IngressTraffic", tag = "15")]
-    pub ingress: i32,
-    #[prost(enumeration = "super::super::super::api::LaunchStage", tag = "16")]
-    pub launch_stage: i32,
-    #[prost(message, optional, tag = "17")]
-    pub binary_authorization: ::core::option::Option<BinaryAuthorization>,
-    #[prost(message, optional, tag = "18")]
-    pub template: ::core::option::Option<RevisionTemplate>,
-    #[prost(message, repeated, tag = "19")]
-    pub traffic: ::prost::alloc::vec::Vec<TrafficTarget>,
-    #[prost(message, optional, tag = "20")]
-    pub scaling: ::core::option::Option<ServiceScaling>,
-    #[prost(bool, tag = "22")]
-    pub default_uri_disabled: bool,
-    #[prost(int64, tag = "30")]
-    pub observed_generation: i64,
-    #[prost(message, optional, tag = "31")]
-    pub terminal_condition: ::core::option::Option<Condition>,
-    #[prost(message, repeated, tag = "32")]
-    pub conditions: ::prost::alloc::vec::Vec<Condition>,
-    #[prost(string, tag = "33")]
-    pub latest_ready_revision: ::prost::alloc::string::String,
-    #[prost(string, tag = "34")]
-    pub latest_created_revision: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "35")]
-    pub traffic_statuses: ::prost::alloc::vec::Vec<TrafficTargetStatus>,
-    #[prost(string, tag = "36")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "37")]
-    pub custom_audiences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(bool, tag = "38")]
-    pub satisfies_pzs: bool,
-    #[prost(bool, tag = "98")]
-    pub reconciling: bool,
-    #[prost(string, tag = "99")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub uid: ::prost::alloc::string::String,
+#[prost(int64, tag = "4")]
+pub generation: i64,
+#[prost(btree_map = "string, string", tag = "5")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "6")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "7")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "11")]
+pub creator: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub last_modifier: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub client: ::prost::alloc::string::String,
+#[prost(string, tag = "14")]
+pub client_version: ::prost::alloc::string::String,
+#[prost(enumeration = "IngressTraffic", tag = "15")]
+pub ingress: i32,
+#[prost(enumeration = "super::super::super::api::LaunchStage", tag = "16")]
+pub launch_stage: i32,
+#[prost(message, optional, tag = "17")]
+pub binary_authorization: ::core::option::Option<BinaryAuthorization>,
+#[prost(message, optional, tag = "18")]
+pub template: ::core::option::Option<RevisionTemplate>,
+#[prost(message, repeated, tag = "19")]
+pub traffic: ::prost::alloc::vec::Vec<TrafficTarget>,
+#[prost(message, optional, tag = "20")]
+pub scaling: ::core::option::Option<ServiceScaling>,
+#[prost(bool, tag = "22")]
+pub default_uri_disabled: bool,
+#[prost(int64, tag = "30")]
+pub observed_generation: i64,
+#[prost(message, optional, tag = "31")]
+pub terminal_condition: ::core::option::Option<Condition>,
+#[prost(message, repeated, tag = "32")]
+pub conditions: ::prost::alloc::vec::Vec<Condition>,
+#[prost(string, tag = "33")]
+pub latest_ready_revision: ::prost::alloc::string::String,
+#[prost(string, tag = "34")]
+pub latest_created_revision: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "35")]
+pub traffic_statuses: ::prost::alloc::vec::Vec<TrafficTargetStatus>,
+#[prost(string, tag = "36")]
+pub uri: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "37")]
+pub custom_audiences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "38")]
+pub satisfies_pzs: bool,
+#[prost(bool, tag = "98")]
+pub reconciling: bool,
+#[prost(string, tag = "99")]
+pub etag: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod services_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Cloud Run Service Control Plane API
-    #[derive(Debug, Clone)]
-    pub struct ServicesClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ServicesClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ServicesClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ServicesClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a new Service in a given project and location.
-        pub async fn create_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Services/CreateService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Services", "CreateService"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets information about a Service.
-        pub async fn get_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetServiceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Services/GetService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Services", "GetService"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Services. Results are sorted by creation time, descending.
-        pub async fn list_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListServicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Services/ListServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Services", "ListServices"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Service.
-        pub async fn update_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Services/UpdateService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Services", "UpdateService"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Service.
-        /// This will cause the Service to stop serving traffic and will delete all
-        /// revisions.
-        pub async fn delete_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Services/DeleteService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Services", "DeleteService"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the IAM Access Control policy currently in effect for the given
-        /// Cloud Run Service. This result does not include any inherited policies.
-        pub async fn get_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::GetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Services/GetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Services", "GetIamPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Sets the IAM Access control policy for the specified Service. Overwrites
-        /// any existing policy.
-        pub async fn set_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::SetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Services/SetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.run.v2.Services", "SetIamPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns permissions that a caller has on the specified Project.
-        ///
-        /// There are no permissions required for making this API call.
-        pub async fn test_iam_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::TestIamPermissionsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::iam::v1::TestIamPermissionsResponse,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.run.v2.Services/TestIamPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.run.v2.Services", "TestIamPermissions"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Cloud Run Service Control Plane API
+#[derive(Debug, Clone)]
+pub struct ServicesClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ServicesClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ServicesClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ServicesClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a new Service in a given project and location.
+pub async fn create_service(&mut self, request: impl tonic::IntoRequest<super::CreateServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Services/CreateService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Services", "CreateService"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets information about a Service.
+pub async fn get_service(&mut self, request: impl tonic::IntoRequest<super::GetServiceRequest>) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Services/GetService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Services", "GetService"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Services. Results are sorted by creation time, descending.
+pub async fn list_services(&mut self, request: impl tonic::IntoRequest<super::ListServicesRequest>) -> std::result::Result<tonic::Response<super::ListServicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Services/ListServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Services", "ListServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Service.
+pub async fn update_service(&mut self, request: impl tonic::IntoRequest<super::UpdateServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Services/UpdateService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Services", "UpdateService"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Service.
+/// This will cause the Service to stop serving traffic and will delete all
+/// revisions.
+pub async fn delete_service(&mut self, request: impl tonic::IntoRequest<super::DeleteServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Services/DeleteService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Services", "DeleteService"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the IAM Access Control policy currently in effect for the given
+/// Cloud Run Service. This result does not include any inherited policies.
+pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Services/GetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Services", "GetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Sets the IAM Access control policy for the specified Service. Overwrites
+/// any existing policy.
+pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Services/SetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Services", "SetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns permissions that a caller has on the specified Project.
+///
+/// There are no permissions required for making this API call.
+pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.run.v2.Services/TestIamPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.run.v2.Services", "TestIamPermissions"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

@@ -2,3494 +2,2350 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
-    #[prost(enumeration = "ServiceLevel", repeated, packed = "false", tag = "1")]
-    pub supported_service_levels: ::prost::alloc::vec::Vec<i32>,
+#[prost(enumeration = "ServiceLevel", repeated, packed = "false", tag = "1")]
+pub supported_service_levels: ::prost::alloc::vec::Vec<i32>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ServiceLevel {
-    Unspecified = 0,
-    Premium = 1,
-    Extreme = 2,
-    Standard = 3,
-    Flex = 4,
+Unspecified = 0,
+Premium = 1,
+Extreme = 2,
+Standard = 3,
+Flex = 4,
 }
 impl ServiceLevel {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ServiceLevel::Unspecified => "SERVICE_LEVEL_UNSPECIFIED",
-            ServiceLevel::Premium => "PREMIUM",
-            ServiceLevel::Extreme => "EXTREME",
-            ServiceLevel::Standard => "STANDARD",
-            ServiceLevel::Flex => "FLEX",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SERVICE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-            "PREMIUM" => Some(Self::Premium),
-            "EXTREME" => Some(Self::Extreme),
-            "STANDARD" => Some(Self::Standard),
-            "FLEX" => Some(Self::Flex),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ServiceLevel::Unspecified => "SERVICE_LEVEL_UNSPECIFIED",
+ServiceLevel::Premium => "PREMIUM",
+ServiceLevel::Extreme => "EXTREME",
+ServiceLevel::Standard => "STANDARD",
+ServiceLevel::Flex => "FLEX",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SERVICE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+"PREMIUM" => Some(Self::Premium),
+"EXTREME" => Some(Self::Extreme),
+"STANDARD" => Some(Self::Standard),
+"FLEX" => Some(Self::Flex),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum EncryptionType {
-    Unspecified = 0,
-    ServiceManaged = 1,
-    CloudKms = 2,
+Unspecified = 0,
+ServiceManaged = 1,
+CloudKms = 2,
 }
 impl EncryptionType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EncryptionType::Unspecified => "ENCRYPTION_TYPE_UNSPECIFIED",
-            EncryptionType::ServiceManaged => "SERVICE_MANAGED",
-            EncryptionType::CloudKms => "CLOUD_KMS",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ENCRYPTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "SERVICE_MANAGED" => Some(Self::ServiceManaged),
-            "CLOUD_KMS" => Some(Self::CloudKms),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EncryptionType::Unspecified => "ENCRYPTION_TYPE_UNSPECIFIED",
+EncryptionType::ServiceManaged => "SERVICE_MANAGED",
+EncryptionType::CloudKms => "CLOUD_KMS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENCRYPTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SERVICE_MANAGED" => Some(Self::ServiceManaged),
+"CLOUD_KMS" => Some(Self::CloudKms),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVolumesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVolumesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub volumes: ::prost::alloc::vec::Vec<Volume>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub volumes: ::prost::alloc::vec::Vec<Volume>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVolumeRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateVolumeRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub volume_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub volume: ::core::option::Option<Volume>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub volume_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub volume: ::core::option::Option<Volume>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateVolumeRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub volume: ::core::option::Option<Volume>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub volume: ::core::option::Option<Volume>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteVolumeRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RevertVolumeRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub snapshot_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub snapshot_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Volume {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "volume::State", tag = "2")]
-    pub state: i32,
-    #[prost(string, tag = "3")]
-    pub state_details: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "5")]
-    pub share_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub psa_range: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub storage_pool: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub network: ::prost::alloc::string::String,
-    #[prost(enumeration = "ServiceLevel", tag = "9")]
-    pub service_level: i32,
-    #[prost(int64, tag = "10")]
-    pub capacity_gib: i64,
-    #[prost(message, optional, tag = "11")]
-    pub export_policy: ::core::option::Option<ExportPolicy>,
-    #[prost(enumeration = "Protocols", repeated, packed = "false", tag = "12")]
-    pub protocols: ::prost::alloc::vec::Vec<i32>,
-    #[prost(enumeration = "SmbSettings", repeated, packed = "false", tag = "13")]
-    pub smb_settings: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, repeated, tag = "14")]
-    pub mount_options: ::prost::alloc::vec::Vec<MountOption>,
-    #[prost(string, tag = "15")]
-    pub unix_permissions: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "16")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "17")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "18")]
-    pub snapshot_policy: ::core::option::Option<SnapshotPolicy>,
-    #[prost(double, tag = "19")]
-    pub snap_reserve: f64,
-    #[prost(bool, tag = "20")]
-    pub snapshot_directory: bool,
-    #[prost(int64, tag = "21")]
-    pub used_gib: i64,
-    #[prost(enumeration = "SecurityStyle", tag = "22")]
-    pub security_style: i32,
-    #[prost(bool, tag = "23")]
-    pub kerberos_enabled: bool,
-    #[prost(bool, tag = "24")]
-    pub ldap_enabled: bool,
-    #[prost(string, tag = "25")]
-    pub active_directory: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "26")]
-    pub restore_parameters: ::core::option::Option<RestoreParameters>,
-    #[prost(string, tag = "27")]
-    pub kms_config: ::prost::alloc::string::String,
-    #[prost(enumeration = "EncryptionType", tag = "28")]
-    pub encryption_type: i32,
-    #[prost(bool, tag = "29")]
-    pub has_replication: bool,
-    #[prost(message, optional, tag = "30")]
-    pub backup_config: ::core::option::Option<BackupConfig>,
-    #[prost(enumeration = "RestrictedAction", repeated, packed = "false", tag = "31")]
-    pub restricted_actions: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, optional, tag = "34")]
-    pub tiering_policy: ::core::option::Option<TieringPolicy>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "volume::State", tag = "2")]
+pub state: i32,
+#[prost(string, tag = "3")]
+pub state_details: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "5")]
+pub share_name: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub psa_range: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub storage_pool: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub network: ::prost::alloc::string::String,
+#[prost(enumeration = "ServiceLevel", tag = "9")]
+pub service_level: i32,
+#[prost(int64, tag = "10")]
+pub capacity_gib: i64,
+#[prost(message, optional, tag = "11")]
+pub export_policy: ::core::option::Option<ExportPolicy>,
+#[prost(enumeration = "Protocols", repeated, packed = "false", tag = "12")]
+pub protocols: ::prost::alloc::vec::Vec<i32>,
+#[prost(enumeration = "SmbSettings", repeated, packed = "false", tag = "13")]
+pub smb_settings: ::prost::alloc::vec::Vec<i32>,
+#[prost(message, repeated, tag = "14")]
+pub mount_options: ::prost::alloc::vec::Vec<MountOption>,
+#[prost(string, tag = "15")]
+pub unix_permissions: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "16")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "17")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "18")]
+pub snapshot_policy: ::core::option::Option<SnapshotPolicy>,
+#[prost(double, tag = "19")]
+pub snap_reserve: f64,
+#[prost(bool, tag = "20")]
+pub snapshot_directory: bool,
+#[prost(int64, tag = "21")]
+pub used_gib: i64,
+#[prost(enumeration = "SecurityStyle", tag = "22")]
+pub security_style: i32,
+#[prost(bool, tag = "23")]
+pub kerberos_enabled: bool,
+#[prost(bool, tag = "24")]
+pub ldap_enabled: bool,
+#[prost(string, tag = "25")]
+pub active_directory: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "26")]
+pub restore_parameters: ::core::option::Option<RestoreParameters>,
+#[prost(string, tag = "27")]
+pub kms_config: ::prost::alloc::string::String,
+#[prost(enumeration = "EncryptionType", tag = "28")]
+pub encryption_type: i32,
+#[prost(bool, tag = "29")]
+pub has_replication: bool,
+#[prost(message, optional, tag = "30")]
+pub backup_config: ::core::option::Option<BackupConfig>,
+#[prost(enumeration = "RestrictedAction", repeated, packed = "false", tag = "31")]
+pub restricted_actions: ::prost::alloc::vec::Vec<i32>,
+#[prost(message, optional, tag = "34")]
+pub tiering_policy: ::core::option::Option<TieringPolicy>,
 }
 /// Nested message and enum types in `Volume`.
 pub mod volume {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Ready = 1,
-        Creating = 2,
-        Deleting = 3,
-        Updating = 4,
-        Restoring = 5,
-        Disabled = 6,
-        Error = 7,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-                State::Restoring => "RESTORING",
-                State::Disabled => "DISABLED",
-                State::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "READY" => Some(Self::Ready),
-                "CREATING" => Some(Self::Creating),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                "RESTORING" => Some(Self::Restoring),
-                "DISABLED" => Some(Self::Disabled),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Ready = 1,
+Creating = 2,
+Deleting = 3,
+Updating = 4,
+Restoring = 5,
+Disabled = 6,
+Error = 7,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Ready => "READY",
+State::Creating => "CREATING",
+State::Deleting => "DELETING",
+State::Updating => "UPDATING",
+State::Restoring => "RESTORING",
+State::Disabled => "DISABLED",
+State::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"READY" => Some(Self::Ready),
+"CREATING" => Some(Self::Creating),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+"RESTORING" => Some(Self::Restoring),
+"DISABLED" => Some(Self::Disabled),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportPolicy {
-    #[prost(message, repeated, tag = "1")]
-    pub rules: ::prost::alloc::vec::Vec<SimpleExportPolicyRule>,
+#[prost(message, repeated, tag = "1")]
+pub rules: ::prost::alloc::vec::Vec<SimpleExportPolicyRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SimpleExportPolicyRule {
-    #[prost(string, optional, tag = "1")]
-    pub allowed_clients: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "2")]
-    pub has_root_access: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(enumeration = "AccessType", optional, tag = "3")]
-    pub access_type: ::core::option::Option<i32>,
-    #[prost(bool, optional, tag = "4")]
-    pub nfsv3: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "5")]
-    pub nfsv4: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "6")]
-    pub kerberos_5_read_only: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "7")]
-    pub kerberos_5_read_write: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "8")]
-    pub kerberos_5i_read_only: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "9")]
-    pub kerberos_5i_read_write: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "10")]
-    pub kerberos_5p_read_only: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "11")]
-    pub kerberos_5p_read_write: ::core::option::Option<bool>,
+#[prost(string, optional, tag = "1")]
+pub allowed_clients: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "2")]
+pub has_root_access: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(enumeration = "AccessType", optional, tag = "3")]
+pub access_type: ::core::option::Option<i32>,
+#[prost(bool, optional, tag = "4")]
+pub nfsv3: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "5")]
+pub nfsv4: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "6")]
+pub kerberos_5_read_only: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "7")]
+pub kerberos_5_read_write: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "8")]
+pub kerberos_5i_read_only: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "9")]
+pub kerberos_5i_read_write: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "10")]
+pub kerberos_5p_read_only: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "11")]
+pub kerberos_5p_read_write: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SnapshotPolicy {
-    #[prost(bool, optional, tag = "1")]
-    pub enabled: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "2")]
-    pub hourly_schedule: ::core::option::Option<HourlySchedule>,
-    #[prost(message, optional, tag = "3")]
-    pub daily_schedule: ::core::option::Option<DailySchedule>,
-    #[prost(message, optional, tag = "4")]
-    pub weekly_schedule: ::core::option::Option<WeeklySchedule>,
-    #[prost(message, optional, tag = "5")]
-    pub monthly_schedule: ::core::option::Option<MonthlySchedule>,
+#[prost(bool, optional, tag = "1")]
+pub enabled: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "2")]
+pub hourly_schedule: ::core::option::Option<HourlySchedule>,
+#[prost(message, optional, tag = "3")]
+pub daily_schedule: ::core::option::Option<DailySchedule>,
+#[prost(message, optional, tag = "4")]
+pub weekly_schedule: ::core::option::Option<WeeklySchedule>,
+#[prost(message, optional, tag = "5")]
+pub monthly_schedule: ::core::option::Option<MonthlySchedule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct HourlySchedule {
-    #[prost(double, optional, tag = "1")]
-    pub snapshots_to_keep: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "2")]
-    pub minute: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "1")]
+pub snapshots_to_keep: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "2")]
+pub minute: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DailySchedule {
-    #[prost(double, optional, tag = "1")]
-    pub snapshots_to_keep: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "2")]
-    pub minute: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "3")]
-    pub hour: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "1")]
+pub snapshots_to_keep: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "2")]
+pub minute: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "3")]
+pub hour: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WeeklySchedule {
-    #[prost(double, optional, tag = "1")]
-    pub snapshots_to_keep: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "2")]
-    pub minute: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "3")]
-    pub hour: ::core::option::Option<f64>,
-    #[prost(string, optional, tag = "4")]
-    pub day: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(double, optional, tag = "1")]
+pub snapshots_to_keep: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "2")]
+pub minute: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "3")]
+pub hour: ::core::option::Option<f64>,
+#[prost(string, optional, tag = "4")]
+pub day: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MonthlySchedule {
-    #[prost(double, optional, tag = "1")]
-    pub snapshots_to_keep: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "2")]
-    pub minute: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "3")]
-    pub hour: ::core::option::Option<f64>,
-    #[prost(string, optional, tag = "4")]
-    pub days_of_month: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(double, optional, tag = "1")]
+pub snapshots_to_keep: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "2")]
+pub minute: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "3")]
+pub hour: ::core::option::Option<f64>,
+#[prost(string, optional, tag = "4")]
+pub days_of_month: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MountOption {
-    #[prost(string, tag = "1")]
-    pub export: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub export_full: ::prost::alloc::string::String,
-    #[prost(enumeration = "Protocols", tag = "3")]
-    pub protocol: i32,
-    #[prost(string, tag = "4")]
-    pub instructions: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub export: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub export_full: ::prost::alloc::string::String,
+#[prost(enumeration = "Protocols", tag = "3")]
+pub protocol: i32,
+#[prost(string, tag = "4")]
+pub instructions: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestoreParameters {
-    #[prost(oneof = "restore_parameters::Source", tags = "1, 2")]
-    pub source: ::core::option::Option<restore_parameters::Source>,
+#[prost(oneof = "restore_parameters::Source", tags = "1, 2")]
+pub source: ::core::option::Option<restore_parameters::Source>,
 }
 /// Nested message and enum types in `RestoreParameters`.
 pub mod restore_parameters {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(string, tag = "1")]
-        SourceSnapshot(::prost::alloc::string::String),
-        #[prost(string, tag = "2")]
-        SourceBackup(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(string, tag = "1")]
+SourceSnapshot(::prost::alloc::string::String),
+#[prost(string, tag = "2")]
+SourceBackup(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackupConfig {
-    #[prost(string, repeated, tag = "1")]
-    pub backup_policies: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "2")]
-    pub backup_vault: ::prost::alloc::string::String,
-    #[prost(bool, optional, tag = "3")]
-    pub scheduled_backup_enabled: ::core::option::Option<bool>,
-    #[prost(int64, optional, tag = "4")]
-    pub backup_chain_bytes: ::core::option::Option<i64>,
+#[prost(string, repeated, tag = "1")]
+pub backup_policies: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub backup_vault: ::prost::alloc::string::String,
+#[prost(bool, optional, tag = "3")]
+pub scheduled_backup_enabled: ::core::option::Option<bool>,
+#[prost(int64, optional, tag = "4")]
+pub backup_chain_bytes: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TieringPolicy {
-    #[prost(enumeration = "tiering_policy::TierAction", optional, tag = "1")]
-    pub tier_action: ::core::option::Option<i32>,
-    #[prost(int32, optional, tag = "2")]
-    pub cooling_threshold_days: ::core::option::Option<i32>,
+#[prost(enumeration = "tiering_policy::TierAction", optional, tag = "1")]
+pub tier_action: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "2")]
+pub cooling_threshold_days: ::core::option::Option<i32>,
 }
 /// Nested message and enum types in `TieringPolicy`.
 pub mod tiering_policy {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum TierAction {
-        Unspecified = 0,
-        Enabled = 1,
-        Paused = 2,
-    }
-    impl TierAction {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                TierAction::Unspecified => "TIER_ACTION_UNSPECIFIED",
-                TierAction::Enabled => "ENABLED",
-                TierAction::Paused => "PAUSED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TIER_ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-                "ENABLED" => Some(Self::Enabled),
-                "PAUSED" => Some(Self::Paused),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum TierAction {
+Unspecified = 0,
+Enabled = 1,
+Paused = 2,
+}
+impl TierAction {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TierAction::Unspecified => "TIER_ACTION_UNSPECIFIED",
+TierAction::Enabled => "ENABLED",
+TierAction::Paused => "PAUSED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TIER_ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"ENABLED" => Some(Self::Enabled),
+"PAUSED" => Some(Self::Paused),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Protocols {
-    Unspecified = 0,
-    Nfsv3 = 1,
-    Nfsv4 = 2,
-    Smb = 3,
+Unspecified = 0,
+Nfsv3 = 1,
+Nfsv4 = 2,
+Smb = 3,
 }
 impl Protocols {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Protocols::Unspecified => "PROTOCOLS_UNSPECIFIED",
-            Protocols::Nfsv3 => "NFSV3",
-            Protocols::Nfsv4 => "NFSV4",
-            Protocols::Smb => "SMB",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "PROTOCOLS_UNSPECIFIED" => Some(Self::Unspecified),
-            "NFSV3" => Some(Self::Nfsv3),
-            "NFSV4" => Some(Self::Nfsv4),
-            "SMB" => Some(Self::Smb),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Protocols::Unspecified => "PROTOCOLS_UNSPECIFIED",
+Protocols::Nfsv3 => "NFSV3",
+Protocols::Nfsv4 => "NFSV4",
+Protocols::Smb => "SMB",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PROTOCOLS_UNSPECIFIED" => Some(Self::Unspecified),
+"NFSV3" => Some(Self::Nfsv3),
+"NFSV4" => Some(Self::Nfsv4),
+"SMB" => Some(Self::Smb),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AccessType {
-    Unspecified = 0,
-    ReadOnly = 1,
-    ReadWrite = 2,
-    ReadNone = 3,
+Unspecified = 0,
+ReadOnly = 1,
+ReadWrite = 2,
+ReadNone = 3,
 }
 impl AccessType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            AccessType::Unspecified => "ACCESS_TYPE_UNSPECIFIED",
-            AccessType::ReadOnly => "READ_ONLY",
-            AccessType::ReadWrite => "READ_WRITE",
-            AccessType::ReadNone => "READ_NONE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ACCESS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "READ_ONLY" => Some(Self::ReadOnly),
-            "READ_WRITE" => Some(Self::ReadWrite),
-            "READ_NONE" => Some(Self::ReadNone),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AccessType::Unspecified => "ACCESS_TYPE_UNSPECIFIED",
+AccessType::ReadOnly => "READ_ONLY",
+AccessType::ReadWrite => "READ_WRITE",
+AccessType::ReadNone => "READ_NONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACCESS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"READ_ONLY" => Some(Self::ReadOnly),
+"READ_WRITE" => Some(Self::ReadWrite),
+"READ_NONE" => Some(Self::ReadNone),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SmbSettings {
-    Unspecified = 0,
-    EncryptData = 1,
-    Browsable = 2,
-    ChangeNotify = 3,
-    NonBrowsable = 4,
-    Oplocks = 5,
-    ShowSnapshot = 6,
-    ShowPreviousVersions = 7,
-    AccessBasedEnumeration = 8,
-    ContinuouslyAvailable = 9,
+Unspecified = 0,
+EncryptData = 1,
+Browsable = 2,
+ChangeNotify = 3,
+NonBrowsable = 4,
+Oplocks = 5,
+ShowSnapshot = 6,
+ShowPreviousVersions = 7,
+AccessBasedEnumeration = 8,
+ContinuouslyAvailable = 9,
 }
 impl SmbSettings {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            SmbSettings::Unspecified => "SMB_SETTINGS_UNSPECIFIED",
-            SmbSettings::EncryptData => "ENCRYPT_DATA",
-            SmbSettings::Browsable => "BROWSABLE",
-            SmbSettings::ChangeNotify => "CHANGE_NOTIFY",
-            SmbSettings::NonBrowsable => "NON_BROWSABLE",
-            SmbSettings::Oplocks => "OPLOCKS",
-            SmbSettings::ShowSnapshot => "SHOW_SNAPSHOT",
-            SmbSettings::ShowPreviousVersions => "SHOW_PREVIOUS_VERSIONS",
-            SmbSettings::AccessBasedEnumeration => "ACCESS_BASED_ENUMERATION",
-            SmbSettings::ContinuouslyAvailable => "CONTINUOUSLY_AVAILABLE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SMB_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
-            "ENCRYPT_DATA" => Some(Self::EncryptData),
-            "BROWSABLE" => Some(Self::Browsable),
-            "CHANGE_NOTIFY" => Some(Self::ChangeNotify),
-            "NON_BROWSABLE" => Some(Self::NonBrowsable),
-            "OPLOCKS" => Some(Self::Oplocks),
-            "SHOW_SNAPSHOT" => Some(Self::ShowSnapshot),
-            "SHOW_PREVIOUS_VERSIONS" => Some(Self::ShowPreviousVersions),
-            "ACCESS_BASED_ENUMERATION" => Some(Self::AccessBasedEnumeration),
-            "CONTINUOUSLY_AVAILABLE" => Some(Self::ContinuouslyAvailable),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SmbSettings::Unspecified => "SMB_SETTINGS_UNSPECIFIED",
+SmbSettings::EncryptData => "ENCRYPT_DATA",
+SmbSettings::Browsable => "BROWSABLE",
+SmbSettings::ChangeNotify => "CHANGE_NOTIFY",
+SmbSettings::NonBrowsable => "NON_BROWSABLE",
+SmbSettings::Oplocks => "OPLOCKS",
+SmbSettings::ShowSnapshot => "SHOW_SNAPSHOT",
+SmbSettings::ShowPreviousVersions => "SHOW_PREVIOUS_VERSIONS",
+SmbSettings::AccessBasedEnumeration => "ACCESS_BASED_ENUMERATION",
+SmbSettings::ContinuouslyAvailable => "CONTINUOUSLY_AVAILABLE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SMB_SETTINGS_UNSPECIFIED" => Some(Self::Unspecified),
+"ENCRYPT_DATA" => Some(Self::EncryptData),
+"BROWSABLE" => Some(Self::Browsable),
+"CHANGE_NOTIFY" => Some(Self::ChangeNotify),
+"NON_BROWSABLE" => Some(Self::NonBrowsable),
+"OPLOCKS" => Some(Self::Oplocks),
+"SHOW_SNAPSHOT" => Some(Self::ShowSnapshot),
+"SHOW_PREVIOUS_VERSIONS" => Some(Self::ShowPreviousVersions),
+"ACCESS_BASED_ENUMERATION" => Some(Self::AccessBasedEnumeration),
+"CONTINUOUSLY_AVAILABLE" => Some(Self::ContinuouslyAvailable),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SecurityStyle {
-    Unspecified = 0,
-    Ntfs = 1,
-    Unix = 2,
+Unspecified = 0,
+Ntfs = 1,
+Unix = 2,
 }
 impl SecurityStyle {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            SecurityStyle::Unspecified => "SECURITY_STYLE_UNSPECIFIED",
-            SecurityStyle::Ntfs => "NTFS",
-            SecurityStyle::Unix => "UNIX",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SECURITY_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
-            "NTFS" => Some(Self::Ntfs),
-            "UNIX" => Some(Self::Unix),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SecurityStyle::Unspecified => "SECURITY_STYLE_UNSPECIFIED",
+SecurityStyle::Ntfs => "NTFS",
+SecurityStyle::Unix => "UNIX",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SECURITY_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
+"NTFS" => Some(Self::Ntfs),
+"UNIX" => Some(Self::Unix),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RestrictedAction {
-    Unspecified = 0,
-    Delete = 1,
+Unspecified = 0,
+Delete = 1,
 }
 impl RestrictedAction {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            RestrictedAction::Unspecified => "RESTRICTED_ACTION_UNSPECIFIED",
-            RestrictedAction::Delete => "DELETE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "RESTRICTED_ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-            "DELETE" => Some(Self::Delete),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RestrictedAction::Unspecified => "RESTRICTED_ACTION_UNSPECIFIED",
+RestrictedAction::Delete => "DELETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RESTRICTED_ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"DELETE" => Some(Self::Delete),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackupVault {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "backup_vault::State", tag = "2")]
-    pub state: i32,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "5")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "backup_vault::State", tag = "2")]
+pub state: i32,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "5")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `BackupVault`.
 pub mod backup_vault {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Ready = 2,
-        Deleting = 3,
-        Error = 4,
-        Updating = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
-                State::Updating => "UPDATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "READY" => Some(Self::Ready),
-                "DELETING" => Some(Self::Deleting),
-                "ERROR" => Some(Self::Error),
-                "UPDATING" => Some(Self::Updating),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Ready = 2,
+Deleting = 3,
+Error = 4,
+Updating = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Ready => "READY",
+State::Deleting => "DELETING",
+State::Error => "ERROR",
+State::Updating => "UPDATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"READY" => Some(Self::Ready),
+"DELETING" => Some(Self::Deleting),
+"ERROR" => Some(Self::Error),
+"UPDATING" => Some(Self::Updating),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBackupVaultRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupVaultsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupVaultsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub backup_vaults: ::prost::alloc::vec::Vec<BackupVault>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub backup_vaults: ::prost::alloc::vec::Vec<BackupVault>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBackupVaultRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub backup_vault_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub backup_vault: ::core::option::Option<BackupVault>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub backup_vault_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub backup_vault: ::core::option::Option<BackupVault>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBackupVaultRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBackupVaultRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub backup_vault: ::core::option::Option<BackupVault>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub backup_vault: ::core::option::Option<BackupVault>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BackupPolicy {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, optional, tag = "2")]
-    pub daily_backup_limit: ::core::option::Option<i32>,
-    #[prost(int32, optional, tag = "3")]
-    pub weekly_backup_limit: ::core::option::Option<i32>,
-    #[prost(int32, optional, tag = "4")]
-    pub monthly_backup_limit: ::core::option::Option<i32>,
-    #[prost(string, optional, tag = "5")]
-    pub description: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(bool, optional, tag = "6")]
-    pub enabled: ::core::option::Option<bool>,
-    #[prost(int32, optional, tag = "7")]
-    pub assigned_volume_count: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "8")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "9")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(enumeration = "backup_policy::State", tag = "10")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, optional, tag = "2")]
+pub daily_backup_limit: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "3")]
+pub weekly_backup_limit: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "4")]
+pub monthly_backup_limit: ::core::option::Option<i32>,
+#[prost(string, optional, tag = "5")]
+pub description: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(bool, optional, tag = "6")]
+pub enabled: ::core::option::Option<bool>,
+#[prost(int32, optional, tag = "7")]
+pub assigned_volume_count: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "9")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(enumeration = "backup_policy::State", tag = "10")]
+pub state: i32,
 }
 /// Nested message and enum types in `BackupPolicy`.
 pub mod backup_policy {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Ready = 2,
-        Deleting = 3,
-        Error = 4,
-        Updating = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
-                State::Updating => "UPDATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "READY" => Some(Self::Ready),
-                "DELETING" => Some(Self::Deleting),
-                "ERROR" => Some(Self::Error),
-                "UPDATING" => Some(Self::Updating),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Ready = 2,
+Deleting = 3,
+Error = 4,
+Updating = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Ready => "READY",
+State::Deleting => "DELETING",
+State::Error => "ERROR",
+State::Updating => "UPDATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"READY" => Some(Self::Ready),
+"DELETING" => Some(Self::Deleting),
+"ERROR" => Some(Self::Error),
+"UPDATING" => Some(Self::Updating),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBackupPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub backup_policy: ::core::option::Option<BackupPolicy>,
-    #[prost(string, tag = "3")]
-    pub backup_policy_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub backup_policy: ::core::option::Option<BackupPolicy>,
+#[prost(string, tag = "3")]
+pub backup_policy_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBackupPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupPoliciesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupPoliciesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub backup_policies: ::prost::alloc::vec::Vec<BackupPolicy>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub backup_policies: ::prost::alloc::vec::Vec<BackupPolicy>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBackupPolicyRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub backup_policy: ::core::option::Option<BackupPolicy>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub backup_policy: ::core::option::Option<BackupPolicy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBackupPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Backup {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "backup::State", tag = "2")]
-    pub state: i32,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(int64, tag = "4")]
-    pub volume_usage_bytes: i64,
-    #[prost(enumeration = "backup::Type", tag = "5")]
-    pub backup_type: i32,
-    #[prost(string, tag = "6")]
-    pub source_volume: ::prost::alloc::string::String,
-    #[prost(string, optional, tag = "7")]
-    pub source_snapshot: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "9")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(int64, tag = "10")]
-    pub chain_storage_bytes: i64,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "backup::State", tag = "2")]
+pub state: i32,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(int64, tag = "4")]
+pub volume_usage_bytes: i64,
+#[prost(enumeration = "backup::Type", tag = "5")]
+pub backup_type: i32,
+#[prost(string, tag = "6")]
+pub source_volume: ::prost::alloc::string::String,
+#[prost(string, optional, tag = "7")]
+pub source_snapshot: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "9")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(int64, tag = "10")]
+pub chain_storage_bytes: i64,
 }
 /// Nested message and enum types in `Backup`.
 pub mod backup {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Uploading = 2,
-        Ready = 3,
-        Deleting = 4,
-        Error = 5,
-        Updating = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Uploading => "UPLOADING",
-                State::Ready => "READY",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
-                State::Updating => "UPDATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "UPLOADING" => Some(Self::Uploading),
-                "READY" => Some(Self::Ready),
-                "DELETING" => Some(Self::Deleting),
-                "ERROR" => Some(Self::Error),
-                "UPDATING" => Some(Self::Updating),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        Manual = 1,
-        Scheduled = 2,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Manual => "MANUAL",
-                Type::Scheduled => "SCHEDULED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "MANUAL" => Some(Self::Manual),
-                "SCHEDULED" => Some(Self::Scheduled),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Uploading = 2,
+Ready = 3,
+Deleting = 4,
+Error = 5,
+Updating = 6,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Uploading => "UPLOADING",
+State::Ready => "READY",
+State::Deleting => "DELETING",
+State::Error => "ERROR",
+State::Updating => "UPDATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"UPLOADING" => Some(Self::Uploading),
+"READY" => Some(Self::Ready),
+"DELETING" => Some(Self::Deleting),
+"ERROR" => Some(Self::Error),
+"UPDATING" => Some(Self::Updating),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+Manual = 1,
+Scheduled = 2,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::Manual => "MANUAL",
+Type::Scheduled => "SCHEDULED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"MANUAL" => Some(Self::Manual),
+"SCHEDULED" => Some(Self::Scheduled),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBackupsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub backups: ::prost::alloc::vec::Vec<Backup>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub backups: ::prost::alloc::vec::Vec<Backup>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBackupRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBackupRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub backup_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub backup: ::core::option::Option<Backup>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub backup_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub backup: ::core::option::Option<Backup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBackupRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBackupRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub backup: ::core::option::Option<Backup>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub backup: ::core::option::Option<Backup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetKmsConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListKmsConfigsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListKmsConfigsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub kms_configs: ::prost::alloc::vec::Vec<KmsConfig>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub kms_configs: ::prost::alloc::vec::Vec<KmsConfig>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateKmsConfigRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub kms_config_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub kms_config: ::core::option::Option<KmsConfig>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub kms_config_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub kms_config: ::core::option::Option<KmsConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateKmsConfigRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub kms_config: ::core::option::Option<KmsConfig>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub kms_config: ::core::option::Option<KmsConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteKmsConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptVolumesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VerifyKmsConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VerifyKmsConfigResponse {
-    #[prost(bool, tag = "1")]
-    pub healthy: bool,
-    #[prost(string, tag = "2")]
-    pub health_error: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub instructions: ::prost::alloc::string::String,
+#[prost(bool, tag = "1")]
+pub healthy: bool,
+#[prost(string, tag = "2")]
+pub health_error: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub instructions: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KmsConfig {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub crypto_key_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "kms_config::State", tag = "3")]
-    pub state: i32,
-    #[prost(string, tag = "4")]
-    pub state_details: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "6")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "7")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "8")]
-    pub instructions: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub service_account: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub crypto_key_name: ::prost::alloc::string::String,
+#[prost(enumeration = "kms_config::State", tag = "3")]
+pub state: i32,
+#[prost(string, tag = "4")]
+pub state_details: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "6")]
+pub description: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "7")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "8")]
+pub instructions: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub service_account: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `KmsConfig`.
 pub mod kms_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Ready = 1,
-        Creating = 2,
-        Deleting = 3,
-        Updating = 4,
-        InUse = 5,
-        Error = 6,
-        KeyCheckPending = 7,
-        KeyNotReachable = 8,
-        Disabling = 9,
-        Disabled = 10,
-        Migrating = 11,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-                State::InUse => "IN_USE",
-                State::Error => "ERROR",
-                State::KeyCheckPending => "KEY_CHECK_PENDING",
-                State::KeyNotReachable => "KEY_NOT_REACHABLE",
-                State::Disabling => "DISABLING",
-                State::Disabled => "DISABLED",
-                State::Migrating => "MIGRATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "READY" => Some(Self::Ready),
-                "CREATING" => Some(Self::Creating),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                "IN_USE" => Some(Self::InUse),
-                "ERROR" => Some(Self::Error),
-                "KEY_CHECK_PENDING" => Some(Self::KeyCheckPending),
-                "KEY_NOT_REACHABLE" => Some(Self::KeyNotReachable),
-                "DISABLING" => Some(Self::Disabling),
-                "DISABLED" => Some(Self::Disabled),
-                "MIGRATING" => Some(Self::Migrating),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Ready = 1,
+Creating = 2,
+Deleting = 3,
+Updating = 4,
+InUse = 5,
+Error = 6,
+KeyCheckPending = 7,
+KeyNotReachable = 8,
+Disabling = 9,
+Disabled = 10,
+Migrating = 11,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Ready => "READY",
+State::Creating => "CREATING",
+State::Deleting => "DELETING",
+State::Updating => "UPDATING",
+State::InUse => "IN_USE",
+State::Error => "ERROR",
+State::KeyCheckPending => "KEY_CHECK_PENDING",
+State::KeyNotReachable => "KEY_NOT_REACHABLE",
+State::Disabling => "DISABLING",
+State::Disabled => "DISABLED",
+State::Migrating => "MIGRATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"READY" => Some(Self::Ready),
+"CREATING" => Some(Self::Creating),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+"IN_USE" => Some(Self::InUse),
+"ERROR" => Some(Self::Error),
+"KEY_CHECK_PENDING" => Some(Self::KeyCheckPending),
+"KEY_NOT_REACHABLE" => Some(Self::KeyNotReachable),
+"DISABLING" => Some(Self::Disabling),
+"DISABLED" => Some(Self::Disabled),
+"MIGRATING" => Some(Self::Migrating),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferStats {
-    #[prost(int64, optional, tag = "1")]
-    pub transfer_bytes: ::core::option::Option<i64>,
-    #[prost(message, optional, tag = "2")]
-    pub total_transfer_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(int64, optional, tag = "3")]
-    pub last_transfer_bytes: ::core::option::Option<i64>,
-    #[prost(message, optional, tag = "4")]
-    pub last_transfer_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "5")]
-    pub lag_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub last_transfer_end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, optional, tag = "8")]
-    pub last_transfer_error: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "1")]
+pub transfer_bytes: ::core::option::Option<i64>,
+#[prost(message, optional, tag = "2")]
+pub total_transfer_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(int64, optional, tag = "3")]
+pub last_transfer_bytes: ::core::option::Option<i64>,
+#[prost(message, optional, tag = "4")]
+pub last_transfer_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "5")]
+pub lag_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub last_transfer_end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, optional, tag = "8")]
+pub last_transfer_error: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Replication {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "replication::State", tag = "2")]
-    pub state: i32,
-    #[prost(string, tag = "3")]
-    pub state_details: ::prost::alloc::string::String,
-    #[prost(enumeration = "replication::ReplicationRole", tag = "4")]
-    pub role: i32,
-    #[prost(enumeration = "replication::ReplicationSchedule", tag = "5")]
-    pub replication_schedule: i32,
-    #[prost(enumeration = "replication::MirrorState", tag = "6")]
-    pub mirror_state: i32,
-    #[prost(bool, optional, tag = "8")]
-    pub healthy: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "9")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "10")]
-    pub destination_volume: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "11")]
-    pub transfer_stats: ::core::option::Option<TransferStats>,
-    #[prost(map = "string, string", tag = "12")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, optional, tag = "13")]
-    pub description: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "14")]
-    pub destination_volume_parameters: ::core::option::Option<
-        DestinationVolumeParameters,
-    >,
-    #[prost(string, tag = "15")]
-    pub source_volume: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "replication::State", tag = "2")]
+pub state: i32,
+#[prost(string, tag = "3")]
+pub state_details: ::prost::alloc::string::String,
+#[prost(enumeration = "replication::ReplicationRole", tag = "4")]
+pub role: i32,
+#[prost(enumeration = "replication::ReplicationSchedule", tag = "5")]
+pub replication_schedule: i32,
+#[prost(enumeration = "replication::MirrorState", tag = "6")]
+pub mirror_state: i32,
+#[prost(bool, optional, tag = "8")]
+pub healthy: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "9")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "10")]
+pub destination_volume: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "11")]
+pub transfer_stats: ::core::option::Option<TransferStats>,
+#[prost(map = "string, string", tag = "12")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, optional, tag = "13")]
+pub description: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "14")]
+pub destination_volume_parameters: ::core::option::Option<DestinationVolumeParameters>,
+#[prost(string, tag = "15")]
+pub source_volume: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Replication`.
 pub mod replication {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Ready = 2,
-        Updating = 3,
-        Deleting = 5,
-        Error = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "READY" => Some(Self::Ready),
-                "UPDATING" => Some(Self::Updating),
-                "DELETING" => Some(Self::Deleting),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ReplicationRole {
-        Unspecified = 0,
-        Source = 1,
-        Destination = 2,
-    }
-    impl ReplicationRole {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ReplicationRole::Unspecified => "REPLICATION_ROLE_UNSPECIFIED",
-                ReplicationRole::Source => "SOURCE",
-                ReplicationRole::Destination => "DESTINATION",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REPLICATION_ROLE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SOURCE" => Some(Self::Source),
-                "DESTINATION" => Some(Self::Destination),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ReplicationSchedule {
-        Unspecified = 0,
-        Every10Minutes = 1,
-        Hourly = 2,
-        Daily = 3,
-    }
-    impl ReplicationSchedule {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ReplicationSchedule::Unspecified => "REPLICATION_SCHEDULE_UNSPECIFIED",
-                ReplicationSchedule::Every10Minutes => "EVERY_10_MINUTES",
-                ReplicationSchedule::Hourly => "HOURLY",
-                ReplicationSchedule::Daily => "DAILY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REPLICATION_SCHEDULE_UNSPECIFIED" => Some(Self::Unspecified),
-                "EVERY_10_MINUTES" => Some(Self::Every10Minutes),
-                "HOURLY" => Some(Self::Hourly),
-                "DAILY" => Some(Self::Daily),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MirrorState {
-        Unspecified = 0,
-        Preparing = 1,
-        Mirrored = 2,
-        Stopped = 3,
-        Transferring = 4,
-    }
-    impl MirrorState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MirrorState::Unspecified => "MIRROR_STATE_UNSPECIFIED",
-                MirrorState::Preparing => "PREPARING",
-                MirrorState::Mirrored => "MIRRORED",
-                MirrorState::Stopped => "STOPPED",
-                MirrorState::Transferring => "TRANSFERRING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MIRROR_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PREPARING" => Some(Self::Preparing),
-                "MIRRORED" => Some(Self::Mirrored),
-                "STOPPED" => Some(Self::Stopped),
-                "TRANSFERRING" => Some(Self::Transferring),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Ready = 2,
+Updating = 3,
+Deleting = 5,
+Error = 6,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Ready => "READY",
+State::Updating => "UPDATING",
+State::Deleting => "DELETING",
+State::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"READY" => Some(Self::Ready),
+"UPDATING" => Some(Self::Updating),
+"DELETING" => Some(Self::Deleting),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ReplicationRole {
+Unspecified = 0,
+Source = 1,
+Destination = 2,
+}
+impl ReplicationRole {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ReplicationRole::Unspecified => "REPLICATION_ROLE_UNSPECIFIED",
+ReplicationRole::Source => "SOURCE",
+ReplicationRole::Destination => "DESTINATION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REPLICATION_ROLE_UNSPECIFIED" => Some(Self::Unspecified),
+"SOURCE" => Some(Self::Source),
+"DESTINATION" => Some(Self::Destination),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ReplicationSchedule {
+Unspecified = 0,
+Every10Minutes = 1,
+Hourly = 2,
+Daily = 3,
+}
+impl ReplicationSchedule {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ReplicationSchedule::Unspecified => "REPLICATION_SCHEDULE_UNSPECIFIED",
+ReplicationSchedule::Every10Minutes => "EVERY_10_MINUTES",
+ReplicationSchedule::Hourly => "HOURLY",
+ReplicationSchedule::Daily => "DAILY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REPLICATION_SCHEDULE_UNSPECIFIED" => Some(Self::Unspecified),
+"EVERY_10_MINUTES" => Some(Self::Every10Minutes),
+"HOURLY" => Some(Self::Hourly),
+"DAILY" => Some(Self::Daily),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MirrorState {
+Unspecified = 0,
+Preparing = 1,
+Mirrored = 2,
+Stopped = 3,
+Transferring = 4,
+}
+impl MirrorState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MirrorState::Unspecified => "MIRROR_STATE_UNSPECIFIED",
+MirrorState::Preparing => "PREPARING",
+MirrorState::Mirrored => "MIRRORED",
+MirrorState::Stopped => "STOPPED",
+MirrorState::Transferring => "TRANSFERRING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MIRROR_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PREPARING" => Some(Self::Preparing),
+"MIRRORED" => Some(Self::Mirrored),
+"STOPPED" => Some(Self::Stopped),
+"TRANSFERRING" => Some(Self::Transferring),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListReplicationsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListReplicationsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub replications: ::prost::alloc::vec::Vec<Replication>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub replications: ::prost::alloc::vec::Vec<Replication>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetReplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DestinationVolumeParameters {
-    #[prost(string, tag = "1")]
-    pub storage_pool: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub volume_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub share_name: ::prost::alloc::string::String,
-    #[prost(string, optional, tag = "4")]
-    pub description: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub storage_pool: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub volume_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub share_name: ::prost::alloc::string::String,
+#[prost(string, optional, tag = "4")]
+pub description: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateReplicationRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub replication: ::core::option::Option<Replication>,
-    #[prost(string, tag = "3")]
-    pub replication_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub replication: ::core::option::Option<Replication>,
+#[prost(string, tag = "3")]
+pub replication_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteReplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateReplicationRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub replication: ::core::option::Option<Replication>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub replication: ::core::option::Option<Replication>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StopReplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResumeReplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReverseReplicationDirectionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListActiveDirectoriesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListActiveDirectoriesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub active_directories: ::prost::alloc::vec::Vec<ActiveDirectory>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub active_directories: ::prost::alloc::vec::Vec<ActiveDirectory>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetActiveDirectoryRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateActiveDirectoryRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub active_directory: ::core::option::Option<ActiveDirectory>,
-    #[prost(string, tag = "3")]
-    pub active_directory_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub active_directory: ::core::option::Option<ActiveDirectory>,
+#[prost(string, tag = "3")]
+pub active_directory_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateActiveDirectoryRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub active_directory: ::core::option::Option<ActiveDirectory>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub active_directory: ::core::option::Option<ActiveDirectory>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteActiveDirectoryRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActiveDirectory {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "active_directory::State", tag = "3")]
-    pub state: i32,
-    #[prost(string, tag = "4")]
-    pub domain: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub site: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub dns: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub net_bios_prefix: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub organizational_unit: ::prost::alloc::string::String,
-    #[prost(bool, tag = "9")]
-    pub aes_encryption: bool,
-    #[prost(string, tag = "10")]
-    pub username: ::prost::alloc::string::String,
-    #[prost(string, tag = "11")]
-    pub password: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "12")]
-    pub backup_operators: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "13")]
-    pub security_operators: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "14")]
-    pub kdc_hostname: ::prost::alloc::string::String,
-    #[prost(string, tag = "15")]
-    pub kdc_ip: ::prost::alloc::string::String,
-    #[prost(bool, tag = "16")]
-    pub nfs_users_with_ldap: bool,
-    #[prost(string, tag = "17")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(bool, tag = "18")]
-    pub ldap_signing: bool,
-    #[prost(bool, tag = "19")]
-    pub encrypt_dc_connections: bool,
-    #[prost(map = "string, string", tag = "20")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "21")]
-    pub state_details: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "active_directory::State", tag = "3")]
+pub state: i32,
+#[prost(string, tag = "4")]
+pub domain: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub site: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub dns: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub net_bios_prefix: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub organizational_unit: ::prost::alloc::string::String,
+#[prost(bool, tag = "9")]
+pub aes_encryption: bool,
+#[prost(string, tag = "10")]
+pub username: ::prost::alloc::string::String,
+#[prost(string, tag = "11")]
+pub password: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "12")]
+pub backup_operators: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "13")]
+pub security_operators: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "14")]
+pub kdc_hostname: ::prost::alloc::string::String,
+#[prost(string, tag = "15")]
+pub kdc_ip: ::prost::alloc::string::String,
+#[prost(bool, tag = "16")]
+pub nfs_users_with_ldap: bool,
+#[prost(string, tag = "17")]
+pub description: ::prost::alloc::string::String,
+#[prost(bool, tag = "18")]
+pub ldap_signing: bool,
+#[prost(bool, tag = "19")]
+pub encrypt_dc_connections: bool,
+#[prost(map = "string, string", tag = "20")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "21")]
+pub state_details: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ActiveDirectory`.
 pub mod active_directory {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Ready = 2,
-        Updating = 3,
-        InUse = 4,
-        Deleting = 5,
-        Error = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Updating => "UPDATING",
-                State::InUse => "IN_USE",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "READY" => Some(Self::Ready),
-                "UPDATING" => Some(Self::Updating),
-                "IN_USE" => Some(Self::InUse),
-                "DELETING" => Some(Self::Deleting),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Ready = 2,
+Updating = 3,
+InUse = 4,
+Deleting = 5,
+Error = 6,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Ready => "READY",
+State::Updating => "UPDATING",
+State::InUse => "IN_USE",
+State::Deleting => "DELETING",
+State::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"READY" => Some(Self::Ready),
+"UPDATING" => Some(Self::Updating),
+"IN_USE" => Some(Self::InUse),
+"DELETING" => Some(Self::Deleting),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSnapshotsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSnapshotsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub snapshots: ::prost::alloc::vec::Vec<Snapshot>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub snapshots: ::prost::alloc::vec::Vec<Snapshot>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSnapshotRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSnapshotRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub snapshot: ::core::option::Option<Snapshot>,
-    #[prost(string, tag = "3")]
-    pub snapshot_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub snapshot: ::core::option::Option<Snapshot>,
+#[prost(string, tag = "3")]
+pub snapshot_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSnapshotRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSnapshotRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub snapshot: ::core::option::Option<Snapshot>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub snapshot: ::core::option::Option<Snapshot>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Snapshot {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "snapshot::State", tag = "2")]
-    pub state: i32,
-    #[prost(string, tag = "3")]
-    pub state_details: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(double, tag = "5")]
-    pub used_bytes: f64,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "7")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "snapshot::State", tag = "2")]
+pub state: i32,
+#[prost(string, tag = "3")]
+pub state_details: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(double, tag = "5")]
+pub used_bytes: f64,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "7")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `Snapshot`.
 pub mod snapshot {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Ready = 1,
-        Creating = 2,
-        Deleting = 3,
-        Updating = 4,
-        Disabled = 5,
-        Error = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-                State::Disabled => "DISABLED",
-                State::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "READY" => Some(Self::Ready),
-                "CREATING" => Some(Self::Creating),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                "DISABLED" => Some(Self::Disabled),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Ready = 1,
+Creating = 2,
+Deleting = 3,
+Updating = 4,
+Disabled = 5,
+Error = 6,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Ready => "READY",
+State::Creating => "CREATING",
+State::Deleting => "DELETING",
+State::Updating => "UPDATING",
+State::Disabled => "DISABLED",
+State::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"READY" => Some(Self::Ready),
+"CREATING" => Some(Self::Creating),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+"DISABLED" => Some(Self::Disabled),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetStoragePoolRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListStoragePoolsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListStoragePoolsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub storage_pools: ::prost::alloc::vec::Vec<StoragePool>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub storage_pools: ::prost::alloc::vec::Vec<StoragePool>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateStoragePoolRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub storage_pool_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub storage_pool: ::core::option::Option<StoragePool>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub storage_pool_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub storage_pool: ::core::option::Option<StoragePool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateStoragePoolRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub storage_pool: ::core::option::Option<StoragePool>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub storage_pool: ::core::option::Option<StoragePool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteStoragePoolRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StoragePool {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "ServiceLevel", tag = "2")]
-    pub service_level: i32,
-    #[prost(int64, tag = "3")]
-    pub capacity_gib: i64,
-    #[prost(int64, tag = "4")]
-    pub volume_capacity_gib: i64,
-    #[prost(int32, tag = "5")]
-    pub volume_count: i32,
-    #[prost(enumeration = "storage_pool::State", tag = "6")]
-    pub state: i32,
-    #[prost(string, tag = "7")]
-    pub state_details: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "9")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "10")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "11")]
-    pub network: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub active_directory: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub kms_config: ::prost::alloc::string::String,
-    #[prost(bool, tag = "14")]
-    pub ldap_enabled: bool,
-    #[prost(string, tag = "15")]
-    pub psa_range: ::prost::alloc::string::String,
-    #[prost(enumeration = "EncryptionType", tag = "16")]
-    pub encryption_type: i32,
-    #[deprecated]
-    #[prost(bool, optional, tag = "17")]
-    pub global_access_allowed: ::core::option::Option<bool>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "ServiceLevel", tag = "2")]
+pub service_level: i32,
+#[prost(int64, tag = "3")]
+pub capacity_gib: i64,
+#[prost(int64, tag = "4")]
+pub volume_capacity_gib: i64,
+#[prost(int32, tag = "5")]
+pub volume_count: i32,
+#[prost(enumeration = "storage_pool::State", tag = "6")]
+pub state: i32,
+#[prost(string, tag = "7")]
+pub state_details: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "9")]
+pub description: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "10")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "11")]
+pub network: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub active_directory: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub kms_config: ::prost::alloc::string::String,
+#[prost(bool, tag = "14")]
+pub ldap_enabled: bool,
+#[prost(string, tag = "15")]
+pub psa_range: ::prost::alloc::string::String,
+#[prost(enumeration = "EncryptionType", tag = "16")]
+pub encryption_type: i32,
+#[deprecated]
+#[prost(bool, optional, tag = "17")]
+pub global_access_allowed: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `StoragePool`.
 pub mod storage_pool {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Ready = 1,
-        Creating = 2,
-        Deleting = 3,
-        Updating = 4,
-        Restoring = 5,
-        Disabled = 6,
-        Error = 7,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Ready => "READY",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-                State::Restoring => "RESTORING",
-                State::Disabled => "DISABLED",
-                State::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "READY" => Some(Self::Ready),
-                "CREATING" => Some(Self::Creating),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                "RESTORING" => Some(Self::Restoring),
-                "DISABLED" => Some(Self::Disabled),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Ready = 1,
+Creating = 2,
+Deleting = 3,
+Updating = 4,
+Restoring = 5,
+Disabled = 6,
+Error = 7,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Ready => "READY",
+State::Creating => "CREATING",
+State::Deleting => "DELETING",
+State::Updating => "UPDATING",
+State::Restoring => "RESTORING",
+State::Disabled => "DISABLED",
+State::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"READY" => Some(Self::Ready),
+"CREATING" => Some(Self::Creating),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+"RESTORING" => Some(Self::Restoring),
+"DISABLED" => Some(Self::Disabled),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_message: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub requested_cancellation: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub requested_cancellation: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod net_app_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// NetApp Files Google Cloud Service
-    #[derive(Debug, Clone)]
-    pub struct NetAppClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> NetAppClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> NetAppClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            NetAppClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Returns descriptions of all storage pools owned by the caller.
-        pub async fn list_storage_pools(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListStoragePoolsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListStoragePoolsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListStoragePools",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListStoragePools"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new storage pool.
-        pub async fn create_storage_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateStoragePoolRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateStoragePool",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateStoragePool"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the description of the specified storage pool by poolId.
-        pub async fn get_storage_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetStoragePoolRequest>,
-        ) -> std::result::Result<tonic::Response<super::StoragePool>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetStoragePool",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetStoragePool"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the storage pool properties with the full spec
-        pub async fn update_storage_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateStoragePoolRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateStoragePool",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateStoragePool"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Warning! This operation will permanently delete the storage pool.
-        pub async fn delete_storage_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteStoragePoolRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteStoragePool",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteStoragePool"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Volumes in a given project.
-        pub async fn list_volumes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListVolumesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListVolumesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListVolumes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListVolumes"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single Volume.
-        pub async fn get_volume(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetVolumeRequest>,
-        ) -> std::result::Result<tonic::Response<super::Volume>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetVolume",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetVolume"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Volume in a given project and location.
-        pub async fn create_volume(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateVolumeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateVolume",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateVolume"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the parameters of a single Volume.
-        pub async fn update_volume(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateVolumeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateVolume",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateVolume"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single Volume.
-        pub async fn delete_volume(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteVolumeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteVolume",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteVolume"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Revert an existing volume to a specified snapshot.
-        /// Warning! This operation will permanently revert all changes made after the
-        /// snapshot was created.
-        pub async fn revert_volume(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RevertVolumeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/RevertVolume",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "RevertVolume"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns descriptions of all snapshots for a volume.
-        pub async fn list_snapshots(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListSnapshotsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListSnapshotsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListSnapshots",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListSnapshots"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Describe a snapshot for a volume.
-        pub async fn get_snapshot(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetSnapshotRequest>,
-        ) -> std::result::Result<tonic::Response<super::Snapshot>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetSnapshot",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetSnapshot"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Create a new snapshot for a volume.
-        pub async fn create_snapshot(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateSnapshotRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateSnapshot",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateSnapshot"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a snapshot.
-        pub async fn delete_snapshot(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteSnapshotRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteSnapshot",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteSnapshot"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the settings of a specific snapshot.
-        pub async fn update_snapshot(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateSnapshotRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateSnapshot",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateSnapshot"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists active directories.
-        pub async fn list_active_directories(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListActiveDirectoriesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListActiveDirectoriesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListActiveDirectories",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "ListActiveDirectories",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Describes a specified active directory.
-        pub async fn get_active_directory(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetActiveDirectoryRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ActiveDirectory>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetActiveDirectory",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "GetActiveDirectory",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// CreateActiveDirectory
-        /// Creates the active directory specified in the request.
-        pub async fn create_active_directory(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateActiveDirectoryRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateActiveDirectory",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "CreateActiveDirectory",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update the parameters of an active directories.
-        pub async fn update_active_directory(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateActiveDirectoryRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateActiveDirectory",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "UpdateActiveDirectory",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Delete the active directory specified in the request.
-        pub async fn delete_active_directory(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteActiveDirectoryRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteActiveDirectory",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "DeleteActiveDirectory",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns descriptions of all KMS configs owned by the caller.
-        pub async fn list_kms_configs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListKmsConfigsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListKmsConfigsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListKmsConfigs",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListKmsConfigs"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new KMS config.
-        pub async fn create_kms_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateKmsConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateKmsConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateKmsConfig"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the description of the specified KMS config by kms_config_id.
-        pub async fn get_kms_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetKmsConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::KmsConfig>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetKmsConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetKmsConfig"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the Kms config properties with the full spec
-        pub async fn update_kms_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateKmsConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateKmsConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateKmsConfig"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Encrypt the existing volumes without CMEK encryption with the desired the
-        /// KMS config for the whole region.
-        pub async fn encrypt_volumes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EncryptVolumesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/EncryptVolumes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "EncryptVolumes"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Verifies KMS config reachability.
-        pub async fn verify_kms_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::VerifyKmsConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::VerifyKmsConfigResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/VerifyKmsConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "VerifyKmsConfig"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Warning! This operation will permanently delete the Kms config.
-        pub async fn delete_kms_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteKmsConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteKmsConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteKmsConfig"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns descriptions of all replications for a volume.
-        pub async fn list_replications(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListReplicationsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListReplicationsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListReplications",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListReplications"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Describe a replication for a volume.
-        pub async fn get_replication(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetReplicationRequest>,
-        ) -> std::result::Result<tonic::Response<super::Replication>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetReplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetReplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Create a new replication for a volume.
-        pub async fn create_replication(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateReplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateReplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateReplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a replication.
-        pub async fn delete_replication(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteReplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteReplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteReplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the settings of a specific replication.
-        pub async fn update_replication(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateReplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateReplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateReplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Stop Cross Region Replication.
-        pub async fn stop_replication(
-            &mut self,
-            request: impl tonic::IntoRequest<super::StopReplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/StopReplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "StopReplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Resume Cross Region Replication.
-        pub async fn resume_replication(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ResumeReplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ResumeReplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ResumeReplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Reverses direction of replication. Source becomes destination and
-        /// destination becomes source.
-        pub async fn reverse_replication_direction(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ReverseReplicationDirectionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ReverseReplicationDirection",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "ReverseReplicationDirection",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates new backup vault
-        pub async fn create_backup_vault(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateBackupVaultRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateBackupVault",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateBackupVault"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the description of the specified backup vault
-        pub async fn get_backup_vault(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetBackupVaultRequest>,
-        ) -> std::result::Result<tonic::Response<super::BackupVault>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetBackupVault",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetBackupVault"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns list of all available backup vaults.
-        pub async fn list_backup_vaults(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListBackupVaultsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListBackupVaultsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListBackupVaults",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListBackupVaults"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the settings of a specific backup vault.
-        pub async fn update_backup_vault(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateBackupVaultRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateBackupVault",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateBackupVault"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Warning! This operation will permanently delete the backup vault.
-        pub async fn delete_backup_vault(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteBackupVaultRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteBackupVault",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteBackupVault"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a backup from the volume specified in the request
-        /// The backup can be created from the given snapshot if specified in the
-        /// request. If no snapshot specified, there'll be a new snapshot taken to
-        /// initiate the backup creation.
-        pub async fn create_backup(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateBackupRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateBackup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateBackup"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the description of the specified backup
-        pub async fn get_backup(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetBackupRequest>,
-        ) -> std::result::Result<tonic::Response<super::Backup>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetBackup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetBackup"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns descriptions of all backups for a backupVault.
-        pub async fn list_backups(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListBackupsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListBackupsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListBackups",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListBackups"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Warning! This operation will permanently delete the backup.
-        pub async fn delete_backup(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteBackupRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteBackup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteBackup"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update backup with full spec.
-        pub async fn update_backup(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateBackupRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateBackup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateBackup"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates new backup policy
-        pub async fn create_backup_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateBackupPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/CreateBackupPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "CreateBackupPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the description of the specified backup policy by backup_policy_id.
-        pub async fn get_backup_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetBackupPolicyRequest>,
-        ) -> std::result::Result<tonic::Response<super::BackupPolicy>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/GetBackupPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetBackupPolicy"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns list of all available backup policies.
-        pub async fn list_backup_policies(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListBackupPoliciesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListBackupPoliciesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/ListBackupPolicies",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "ListBackupPolicies",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates settings of a specific backup policy.
-        pub async fn update_backup_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateBackupPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/UpdateBackupPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "UpdateBackupPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Warning! This operation will permanently delete the backup policy.
-        pub async fn delete_backup_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteBackupPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.netapp.v1.NetApp/DeleteBackupPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.netapp.v1.NetApp",
-                        "DeleteBackupPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// NetApp Files Google Cloud Service
+#[derive(Debug, Clone)]
+pub struct NetAppClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> NetAppClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> NetAppClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+NetAppClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Returns descriptions of all storage pools owned by the caller.
+pub async fn list_storage_pools(&mut self, request: impl tonic::IntoRequest<super::ListStoragePoolsRequest>) -> std::result::Result<tonic::Response<super::ListStoragePoolsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListStoragePools");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListStoragePools"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new storage pool.
+pub async fn create_storage_pool(&mut self, request: impl tonic::IntoRequest<super::CreateStoragePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateStoragePool");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateStoragePool"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the description of the specified storage pool by poolId.
+pub async fn get_storage_pool(&mut self, request: impl tonic::IntoRequest<super::GetStoragePoolRequest>) -> std::result::Result<tonic::Response<super::StoragePool>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetStoragePool");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetStoragePool"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the storage pool properties with the full spec
+pub async fn update_storage_pool(&mut self, request: impl tonic::IntoRequest<super::UpdateStoragePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateStoragePool");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateStoragePool"));
+self.inner.unary(req, path, codec).await
+}
+/// Warning! This operation will permanently delete the storage pool.
+pub async fn delete_storage_pool(&mut self, request: impl tonic::IntoRequest<super::DeleteStoragePoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteStoragePool");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteStoragePool"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Volumes in a given project.
+pub async fn list_volumes(&mut self, request: impl tonic::IntoRequest<super::ListVolumesRequest>) -> std::result::Result<tonic::Response<super::ListVolumesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListVolumes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListVolumes"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single Volume.
+pub async fn get_volume(&mut self, request: impl tonic::IntoRequest<super::GetVolumeRequest>) -> std::result::Result<tonic::Response<super::Volume>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetVolume");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetVolume"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Volume in a given project and location.
+pub async fn create_volume(&mut self, request: impl tonic::IntoRequest<super::CreateVolumeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateVolume");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateVolume"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the parameters of a single Volume.
+pub async fn update_volume(&mut self, request: impl tonic::IntoRequest<super::UpdateVolumeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateVolume");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateVolume"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single Volume.
+pub async fn delete_volume(&mut self, request: impl tonic::IntoRequest<super::DeleteVolumeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteVolume");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteVolume"));
+self.inner.unary(req, path, codec).await
+}
+/// Revert an existing volume to a specified snapshot.
+/// Warning! This operation will permanently revert all changes made after the
+/// snapshot was created.
+pub async fn revert_volume(&mut self, request: impl tonic::IntoRequest<super::RevertVolumeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/RevertVolume");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "RevertVolume"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns descriptions of all snapshots for a volume.
+pub async fn list_snapshots(&mut self, request: impl tonic::IntoRequest<super::ListSnapshotsRequest>) -> std::result::Result<tonic::Response<super::ListSnapshotsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListSnapshots");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListSnapshots"));
+self.inner.unary(req, path, codec).await
+}
+/// Describe a snapshot for a volume.
+pub async fn get_snapshot(&mut self, request: impl tonic::IntoRequest<super::GetSnapshotRequest>) -> std::result::Result<tonic::Response<super::Snapshot>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetSnapshot");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetSnapshot"));
+self.inner.unary(req, path, codec).await
+}
+/// Create a new snapshot for a volume.
+pub async fn create_snapshot(&mut self, request: impl tonic::IntoRequest<super::CreateSnapshotRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateSnapshot");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateSnapshot"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a snapshot.
+pub async fn delete_snapshot(&mut self, request: impl tonic::IntoRequest<super::DeleteSnapshotRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteSnapshot");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteSnapshot"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the settings of a specific snapshot.
+pub async fn update_snapshot(&mut self, request: impl tonic::IntoRequest<super::UpdateSnapshotRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateSnapshot");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateSnapshot"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists active directories.
+pub async fn list_active_directories(&mut self, request: impl tonic::IntoRequest<super::ListActiveDirectoriesRequest>) -> std::result::Result<tonic::Response<super::ListActiveDirectoriesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListActiveDirectories");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListActiveDirectories"));
+self.inner.unary(req, path, codec).await
+}
+/// Describes a specified active directory.
+pub async fn get_active_directory(&mut self, request: impl tonic::IntoRequest<super::GetActiveDirectoryRequest>) -> std::result::Result<tonic::Response<super::ActiveDirectory>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetActiveDirectory");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetActiveDirectory"));
+self.inner.unary(req, path, codec).await
+}
+/// CreateActiveDirectory
+/// Creates the active directory specified in the request.
+pub async fn create_active_directory(&mut self, request: impl tonic::IntoRequest<super::CreateActiveDirectoryRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateActiveDirectory");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateActiveDirectory"));
+self.inner.unary(req, path, codec).await
+}
+/// Update the parameters of an active directories.
+pub async fn update_active_directory(&mut self, request: impl tonic::IntoRequest<super::UpdateActiveDirectoryRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateActiveDirectory");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateActiveDirectory"));
+self.inner.unary(req, path, codec).await
+}
+/// Delete the active directory specified in the request.
+pub async fn delete_active_directory(&mut self, request: impl tonic::IntoRequest<super::DeleteActiveDirectoryRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteActiveDirectory");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteActiveDirectory"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns descriptions of all KMS configs owned by the caller.
+pub async fn list_kms_configs(&mut self, request: impl tonic::IntoRequest<super::ListKmsConfigsRequest>) -> std::result::Result<tonic::Response<super::ListKmsConfigsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListKmsConfigs");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListKmsConfigs"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new KMS config.
+pub async fn create_kms_config(&mut self, request: impl tonic::IntoRequest<super::CreateKmsConfigRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateKmsConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateKmsConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the description of the specified KMS config by kms_config_id.
+pub async fn get_kms_config(&mut self, request: impl tonic::IntoRequest<super::GetKmsConfigRequest>) -> std::result::Result<tonic::Response<super::KmsConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetKmsConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetKmsConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the Kms config properties with the full spec
+pub async fn update_kms_config(&mut self, request: impl tonic::IntoRequest<super::UpdateKmsConfigRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateKmsConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateKmsConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Encrypt the existing volumes without CMEK encryption with the desired the
+/// KMS config for the whole region.
+pub async fn encrypt_volumes(&mut self, request: impl tonic::IntoRequest<super::EncryptVolumesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/EncryptVolumes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "EncryptVolumes"));
+self.inner.unary(req, path, codec).await
+}
+/// Verifies KMS config reachability.
+pub async fn verify_kms_config(&mut self, request: impl tonic::IntoRequest<super::VerifyKmsConfigRequest>) -> std::result::Result<tonic::Response<super::VerifyKmsConfigResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/VerifyKmsConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "VerifyKmsConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Warning! This operation will permanently delete the Kms config.
+pub async fn delete_kms_config(&mut self, request: impl tonic::IntoRequest<super::DeleteKmsConfigRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteKmsConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteKmsConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns descriptions of all replications for a volume.
+pub async fn list_replications(&mut self, request: impl tonic::IntoRequest<super::ListReplicationsRequest>) -> std::result::Result<tonic::Response<super::ListReplicationsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListReplications");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListReplications"));
+self.inner.unary(req, path, codec).await
+}
+/// Describe a replication for a volume.
+pub async fn get_replication(&mut self, request: impl tonic::IntoRequest<super::GetReplicationRequest>) -> std::result::Result<tonic::Response<super::Replication>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetReplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetReplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Create a new replication for a volume.
+pub async fn create_replication(&mut self, request: impl tonic::IntoRequest<super::CreateReplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateReplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateReplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a replication.
+pub async fn delete_replication(&mut self, request: impl tonic::IntoRequest<super::DeleteReplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteReplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteReplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the settings of a specific replication.
+pub async fn update_replication(&mut self, request: impl tonic::IntoRequest<super::UpdateReplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateReplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateReplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Stop Cross Region Replication.
+pub async fn stop_replication(&mut self, request: impl tonic::IntoRequest<super::StopReplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/StopReplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "StopReplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Resume Cross Region Replication.
+pub async fn resume_replication(&mut self, request: impl tonic::IntoRequest<super::ResumeReplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ResumeReplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ResumeReplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Reverses direction of replication. Source becomes destination and
+/// destination becomes source.
+pub async fn reverse_replication_direction(&mut self, request: impl tonic::IntoRequest<super::ReverseReplicationDirectionRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ReverseReplicationDirection");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ReverseReplicationDirection"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates new backup vault
+pub async fn create_backup_vault(&mut self, request: impl tonic::IntoRequest<super::CreateBackupVaultRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateBackupVault");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateBackupVault"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the description of the specified backup vault
+pub async fn get_backup_vault(&mut self, request: impl tonic::IntoRequest<super::GetBackupVaultRequest>) -> std::result::Result<tonic::Response<super::BackupVault>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetBackupVault");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetBackupVault"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns list of all available backup vaults.
+pub async fn list_backup_vaults(&mut self, request: impl tonic::IntoRequest<super::ListBackupVaultsRequest>) -> std::result::Result<tonic::Response<super::ListBackupVaultsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListBackupVaults");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListBackupVaults"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the settings of a specific backup vault.
+pub async fn update_backup_vault(&mut self, request: impl tonic::IntoRequest<super::UpdateBackupVaultRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateBackupVault");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateBackupVault"));
+self.inner.unary(req, path, codec).await
+}
+/// Warning! This operation will permanently delete the backup vault.
+pub async fn delete_backup_vault(&mut self, request: impl tonic::IntoRequest<super::DeleteBackupVaultRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteBackupVault");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteBackupVault"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a backup from the volume specified in the request
+/// The backup can be created from the given snapshot if specified in the
+/// request. If no snapshot specified, there'll be a new snapshot taken to
+/// initiate the backup creation.
+pub async fn create_backup(&mut self, request: impl tonic::IntoRequest<super::CreateBackupRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateBackup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateBackup"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the description of the specified backup
+pub async fn get_backup(&mut self, request: impl tonic::IntoRequest<super::GetBackupRequest>) -> std::result::Result<tonic::Response<super::Backup>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetBackup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetBackup"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns descriptions of all backups for a backupVault.
+pub async fn list_backups(&mut self, request: impl tonic::IntoRequest<super::ListBackupsRequest>) -> std::result::Result<tonic::Response<super::ListBackupsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListBackups");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListBackups"));
+self.inner.unary(req, path, codec).await
+}
+/// Warning! This operation will permanently delete the backup.
+pub async fn delete_backup(&mut self, request: impl tonic::IntoRequest<super::DeleteBackupRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteBackup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteBackup"));
+self.inner.unary(req, path, codec).await
+}
+/// Update backup with full spec.
+pub async fn update_backup(&mut self, request: impl tonic::IntoRequest<super::UpdateBackupRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateBackup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateBackup"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates new backup policy
+pub async fn create_backup_policy(&mut self, request: impl tonic::IntoRequest<super::CreateBackupPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/CreateBackupPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "CreateBackupPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the description of the specified backup policy by backup_policy_id.
+pub async fn get_backup_policy(&mut self, request: impl tonic::IntoRequest<super::GetBackupPolicyRequest>) -> std::result::Result<tonic::Response<super::BackupPolicy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/GetBackupPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "GetBackupPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns list of all available backup policies.
+pub async fn list_backup_policies(&mut self, request: impl tonic::IntoRequest<super::ListBackupPoliciesRequest>) -> std::result::Result<tonic::Response<super::ListBackupPoliciesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/ListBackupPolicies");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "ListBackupPolicies"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates settings of a specific backup policy.
+pub async fn update_backup_policy(&mut self, request: impl tonic::IntoRequest<super::UpdateBackupPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/UpdateBackupPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "UpdateBackupPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Warning! This operation will permanently delete the backup policy.
+pub async fn delete_backup_policy(&mut self, request: impl tonic::IntoRequest<super::DeleteBackupPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.netapp.v1.NetApp/DeleteBackupPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.netapp.v1.NetApp", "DeleteBackupPolicy"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

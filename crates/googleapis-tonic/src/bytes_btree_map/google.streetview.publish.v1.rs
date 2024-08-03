@@ -2,1411 +2,1054 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UploadRef {
-    #[prost(oneof = "upload_ref::FileSource", tags = "1")]
-    pub file_source: ::core::option::Option<upload_ref::FileSource>,
+#[prost(oneof = "upload_ref::FileSource", tags = "1")]
+pub file_source: ::core::option::Option<upload_ref::FileSource>,
 }
 /// Nested message and enum types in `UploadRef`.
 pub mod upload_ref {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum FileSource {
-        #[prost(string, tag = "1")]
-        UploadUrl(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum FileSource {
+#[prost(string, tag = "1")]
+UploadUrl(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PhotoId {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Level {
-    #[prost(double, tag = "1")]
-    pub number: f64,
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
+#[prost(double, tag = "1")]
+pub number: f64,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Pose {
-    #[prost(message, optional, tag = "1")]
-    pub lat_lng_pair: ::core::option::Option<super::super::super::r#type::LatLng>,
-    #[prost(double, tag = "2")]
-    pub altitude: f64,
-    #[prost(double, tag = "3")]
-    pub heading: f64,
-    #[prost(double, tag = "4")]
-    pub pitch: f64,
-    #[prost(double, tag = "5")]
-    pub roll: f64,
-    #[prost(message, optional, tag = "6")]
-    pub gps_record_timestamp_unix_epoch: ::core::option::Option<
-        ::prost_types::Timestamp,
-    >,
-    #[prost(message, optional, tag = "7")]
-    pub level: ::core::option::Option<Level>,
-    #[prost(float, tag = "9")]
-    pub accuracy_meters: f32,
+#[prost(message, optional, tag = "1")]
+pub lat_lng_pair: ::core::option::Option<super::super::super::r#type::LatLng>,
+#[prost(double, tag = "2")]
+pub altitude: f64,
+#[prost(double, tag = "3")]
+pub heading: f64,
+#[prost(double, tag = "4")]
+pub pitch: f64,
+#[prost(double, tag = "5")]
+pub roll: f64,
+#[prost(message, optional, tag = "6")]
+pub gps_record_timestamp_unix_epoch: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub level: ::core::option::Option<Level>,
+#[prost(float, tag = "9")]
+pub accuracy_meters: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Imu {
-    #[prost(message, repeated, tag = "1")]
-    pub accel_mpsps: ::prost::alloc::vec::Vec<imu::Measurement3d>,
-    #[prost(message, repeated, tag = "2")]
-    pub gyro_rps: ::prost::alloc::vec::Vec<imu::Measurement3d>,
-    #[prost(message, repeated, tag = "3")]
-    pub mag_ut: ::prost::alloc::vec::Vec<imu::Measurement3d>,
+#[prost(message, repeated, tag = "1")]
+pub accel_mpsps: ::prost::alloc::vec::Vec<imu::Measurement3d>,
+#[prost(message, repeated, tag = "2")]
+pub gyro_rps: ::prost::alloc::vec::Vec<imu::Measurement3d>,
+#[prost(message, repeated, tag = "3")]
+pub mag_ut: ::prost::alloc::vec::Vec<imu::Measurement3d>,
 }
 /// Nested message and enum types in `Imu`.
 pub mod imu {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct Measurement3d {
-        #[prost(message, optional, tag = "1")]
-        pub capture_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(float, tag = "2")]
-        pub x: f32,
-        #[prost(float, tag = "3")]
-        pub y: f32,
-        #[prost(float, tag = "4")]
-        pub z: f32,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Measurement3d {
+#[prost(message, optional, tag = "1")]
+pub capture_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(float, tag = "2")]
+pub x: f32,
+#[prost(float, tag = "3")]
+pub y: f32,
+#[prost(float, tag = "4")]
+pub z: f32,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Place {
-    #[prost(string, tag = "1")]
-    pub place_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub place_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Connection {
-    #[prost(message, optional, tag = "1")]
-    pub target: ::core::option::Option<PhotoId>,
+#[prost(message, optional, tag = "1")]
+pub target: ::core::option::Option<PhotoId>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Photo {
-    #[prost(message, optional, tag = "1")]
-    pub photo_id: ::core::option::Option<PhotoId>,
-    #[prost(message, optional, tag = "2")]
-    pub upload_reference: ::core::option::Option<UploadRef>,
-    #[prost(string, tag = "3")]
-    pub download_url: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub thumbnail_url: ::prost::alloc::string::String,
-    #[prost(string, tag = "11")]
-    pub share_link: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub pose: ::core::option::Option<Pose>,
-    #[prost(message, repeated, tag = "5")]
-    pub connections: ::prost::alloc::vec::Vec<Connection>,
-    #[prost(message, optional, tag = "6")]
-    pub capture_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "14")]
-    pub upload_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, repeated, tag = "7")]
-    pub places: ::prost::alloc::vec::Vec<Place>,
-    #[prost(int64, tag = "10")]
-    pub view_count: i64,
-    #[prost(enumeration = "photo::TransferStatus", tag = "12")]
-    pub transfer_status: i32,
-    #[prost(enumeration = "photo::MapsPublishStatus", tag = "13")]
-    pub maps_publish_status: i32,
+#[prost(message, optional, tag = "1")]
+pub photo_id: ::core::option::Option<PhotoId>,
+#[prost(message, optional, tag = "2")]
+pub upload_reference: ::core::option::Option<UploadRef>,
+#[prost(string, tag = "3")]
+pub download_url: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub thumbnail_url: ::prost::alloc::string::String,
+#[prost(string, tag = "11")]
+pub share_link: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub pose: ::core::option::Option<Pose>,
+#[prost(message, repeated, tag = "5")]
+pub connections: ::prost::alloc::vec::Vec<Connection>,
+#[prost(message, optional, tag = "6")]
+pub capture_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "14")]
+pub upload_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, repeated, tag = "7")]
+pub places: ::prost::alloc::vec::Vec<Place>,
+#[prost(int64, tag = "10")]
+pub view_count: i64,
+#[prost(enumeration = "photo::TransferStatus", tag = "12")]
+pub transfer_status: i32,
+#[prost(enumeration = "photo::MapsPublishStatus", tag = "13")]
+pub maps_publish_status: i32,
 }
 /// Nested message and enum types in `Photo`.
 pub mod photo {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum TransferStatus {
-        Unknown = 0,
-        NeverTransferred = 1,
-        Pending = 2,
-        Completed = 3,
-        Rejected = 4,
-        Expired = 5,
-        Cancelled = 6,
-        ReceivedViaTransfer = 7,
-    }
-    impl TransferStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                TransferStatus::Unknown => "TRANSFER_STATUS_UNKNOWN",
-                TransferStatus::NeverTransferred => "NEVER_TRANSFERRED",
-                TransferStatus::Pending => "PENDING",
-                TransferStatus::Completed => "COMPLETED",
-                TransferStatus::Rejected => "REJECTED",
-                TransferStatus::Expired => "EXPIRED",
-                TransferStatus::Cancelled => "CANCELLED",
-                TransferStatus::ReceivedViaTransfer => "RECEIVED_VIA_TRANSFER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TRANSFER_STATUS_UNKNOWN" => Some(Self::Unknown),
-                "NEVER_TRANSFERRED" => Some(Self::NeverTransferred),
-                "PENDING" => Some(Self::Pending),
-                "COMPLETED" => Some(Self::Completed),
-                "REJECTED" => Some(Self::Rejected),
-                "EXPIRED" => Some(Self::Expired),
-                "CANCELLED" => Some(Self::Cancelled),
-                "RECEIVED_VIA_TRANSFER" => Some(Self::ReceivedViaTransfer),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MapsPublishStatus {
-        UnspecifiedMapsPublishStatus = 0,
-        Published = 1,
-        RejectedUnknown = 2,
-    }
-    impl MapsPublishStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MapsPublishStatus::UnspecifiedMapsPublishStatus => {
-                    "UNSPECIFIED_MAPS_PUBLISH_STATUS"
-                }
-                MapsPublishStatus::Published => "PUBLISHED",
-                MapsPublishStatus::RejectedUnknown => "REJECTED_UNKNOWN",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED_MAPS_PUBLISH_STATUS" => {
-                    Some(Self::UnspecifiedMapsPublishStatus)
-                }
-                "PUBLISHED" => Some(Self::Published),
-                "REJECTED_UNKNOWN" => Some(Self::RejectedUnknown),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum TransferStatus {
+Unknown = 0,
+NeverTransferred = 1,
+Pending = 2,
+Completed = 3,
+Rejected = 4,
+Expired = 5,
+Cancelled = 6,
+ReceivedViaTransfer = 7,
+}
+impl TransferStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TransferStatus::Unknown => "TRANSFER_STATUS_UNKNOWN",
+TransferStatus::NeverTransferred => "NEVER_TRANSFERRED",
+TransferStatus::Pending => "PENDING",
+TransferStatus::Completed => "COMPLETED",
+TransferStatus::Rejected => "REJECTED",
+TransferStatus::Expired => "EXPIRED",
+TransferStatus::Cancelled => "CANCELLED",
+TransferStatus::ReceivedViaTransfer => "RECEIVED_VIA_TRANSFER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TRANSFER_STATUS_UNKNOWN" => Some(Self::Unknown),
+"NEVER_TRANSFERRED" => Some(Self::NeverTransferred),
+"PENDING" => Some(Self::Pending),
+"COMPLETED" => Some(Self::Completed),
+"REJECTED" => Some(Self::Rejected),
+"EXPIRED" => Some(Self::Expired),
+"CANCELLED" => Some(Self::Cancelled),
+"RECEIVED_VIA_TRANSFER" => Some(Self::ReceivedViaTransfer),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MapsPublishStatus {
+UnspecifiedMapsPublishStatus = 0,
+Published = 1,
+RejectedUnknown = 2,
+}
+impl MapsPublishStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MapsPublishStatus::UnspecifiedMapsPublishStatus => "UNSPECIFIED_MAPS_PUBLISH_STATUS",
+MapsPublishStatus::Published => "PUBLISHED",
+MapsPublishStatus::RejectedUnknown => "REJECTED_UNKNOWN",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED_MAPS_PUBLISH_STATUS" => Some(Self::UnspecifiedMapsPublishStatus),
+"PUBLISHED" => Some(Self::Published),
+"REJECTED_UNKNOWN" => Some(Self::RejectedUnknown),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PhotoSequence {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub photos: ::prost::alloc::vec::Vec<Photo>,
-    #[prost(message, optional, tag = "3")]
-    pub upload_reference: ::core::option::Option<UploadRef>,
-    #[prost(message, optional, tag = "4")]
-    pub capture_time_override: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "18")]
-    pub upload_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, repeated, tag = "7")]
-    pub raw_gps_timeline: ::prost::alloc::vec::Vec<Pose>,
-    #[prost(enumeration = "photo_sequence::GpsSource", tag = "8")]
-    pub gps_source: i32,
-    #[prost(message, optional, tag = "11")]
-    pub imu: ::core::option::Option<Imu>,
-    #[prost(enumeration = "ProcessingState", tag = "12")]
-    pub processing_state: i32,
-    #[prost(enumeration = "ProcessingFailureReason", tag = "13")]
-    pub failure_reason: i32,
-    #[prost(message, optional, tag = "23")]
-    pub failure_details: ::core::option::Option<ProcessingFailureDetails>,
-    #[prost(double, tag = "16")]
-    pub distance_meters: f64,
-    #[prost(message, optional, tag = "20")]
-    pub sequence_bounds: ::core::option::Option<LatLngBounds>,
-    #[prost(int64, tag = "21")]
-    pub view_count: i64,
-    #[prost(string, tag = "22")]
-    pub filename: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub photos: ::prost::alloc::vec::Vec<Photo>,
+#[prost(message, optional, tag = "3")]
+pub upload_reference: ::core::option::Option<UploadRef>,
+#[prost(message, optional, tag = "4")]
+pub capture_time_override: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "18")]
+pub upload_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, repeated, tag = "7")]
+pub raw_gps_timeline: ::prost::alloc::vec::Vec<Pose>,
+#[prost(enumeration = "photo_sequence::GpsSource", tag = "8")]
+pub gps_source: i32,
+#[prost(message, optional, tag = "11")]
+pub imu: ::core::option::Option<Imu>,
+#[prost(enumeration = "ProcessingState", tag = "12")]
+pub processing_state: i32,
+#[prost(enumeration = "ProcessingFailureReason", tag = "13")]
+pub failure_reason: i32,
+#[prost(message, optional, tag = "23")]
+pub failure_details: ::core::option::Option<ProcessingFailureDetails>,
+#[prost(double, tag = "16")]
+pub distance_meters: f64,
+#[prost(message, optional, tag = "20")]
+pub sequence_bounds: ::core::option::Option<LatLngBounds>,
+#[prost(int64, tag = "21")]
+pub view_count: i64,
+#[prost(string, tag = "22")]
+pub filename: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `PhotoSequence`.
 pub mod photo_sequence {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum GpsSource {
-        PhotoSequence = 0,
-        CameraMotionMetadataTrack = 1,
-    }
-    impl GpsSource {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                GpsSource::PhotoSequence => "PHOTO_SEQUENCE",
-                GpsSource::CameraMotionMetadataTrack => "CAMERA_MOTION_METADATA_TRACK",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PHOTO_SEQUENCE" => Some(Self::PhotoSequence),
-                "CAMERA_MOTION_METADATA_TRACK" => Some(Self::CameraMotionMetadataTrack),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum GpsSource {
+PhotoSequence = 0,
+CameraMotionMetadataTrack = 1,
+}
+impl GpsSource {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+GpsSource::PhotoSequence => "PHOTO_SEQUENCE",
+GpsSource::CameraMotionMetadataTrack => "CAMERA_MOTION_METADATA_TRACK",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PHOTO_SEQUENCE" => Some(Self::PhotoSequence),
+"CAMERA_MOTION_METADATA_TRACK" => Some(Self::CameraMotionMetadataTrack),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LatLngBounds {
-    #[prost(message, optional, tag = "1")]
-    pub southwest: ::core::option::Option<super::super::super::r#type::LatLng>,
-    #[prost(message, optional, tag = "2")]
-    pub northeast: ::core::option::Option<super::super::super::r#type::LatLng>,
+#[prost(message, optional, tag = "1")]
+pub southwest: ::core::option::Option<super::super::super::r#type::LatLng>,
+#[prost(message, optional, tag = "2")]
+pub northeast: ::core::option::Option<super::super::super::r#type::LatLng>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ProcessingFailureDetails {
-    #[prost(oneof = "processing_failure_details::Details", tags = "1, 2, 3, 4, 5")]
-    pub details: ::core::option::Option<processing_failure_details::Details>,
+#[prost(oneof = "processing_failure_details::Details", tags = "1, 2, 3, 4, 5")]
+pub details: ::core::option::Option<processing_failure_details::Details>,
 }
 /// Nested message and enum types in `ProcessingFailureDetails`.
 pub mod processing_failure_details {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Details {
-        #[prost(message, tag = "1")]
-        InsufficientGpsDetails(super::InsufficientGpsFailureDetails),
-        #[prost(message, tag = "2")]
-        GpsDataGapDetails(super::GpsDataGapFailureDetails),
-        #[prost(message, tag = "3")]
-        ImuDataGapDetails(super::ImuDataGapFailureDetails),
-        #[prost(message, tag = "4")]
-        NotOutdoorsDetails(super::NotOutdoorsFailureDetails),
-        #[prost(message, tag = "5")]
-        NoOverlapGpsDetails(super::NoOverlapGpsFailureDetails),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Details {
+#[prost(message, tag = "1")]
+InsufficientGpsDetails(super::InsufficientGpsFailureDetails),
+#[prost(message, tag = "2")]
+GpsDataGapDetails(super::GpsDataGapFailureDetails),
+#[prost(message, tag = "3")]
+ImuDataGapDetails(super::ImuDataGapFailureDetails),
+#[prost(message, tag = "4")]
+NotOutdoorsDetails(super::NotOutdoorsFailureDetails),
+#[prost(message, tag = "5")]
+NoOverlapGpsDetails(super::NoOverlapGpsFailureDetails),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct InsufficientGpsFailureDetails {
-    #[prost(int32, optional, tag = "1")]
-    pub gps_points_found: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "1")]
+pub gps_points_found: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GpsDataGapFailureDetails {
-    #[prost(message, optional, tag = "1")]
-    pub gap_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub gap_start_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub gap_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub gap_start_time: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImuDataGapFailureDetails {
-    #[prost(message, optional, tag = "1")]
-    pub gap_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub gap_start_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub gap_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub gap_start_time: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NotOutdoorsFailureDetails {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NoOverlapGpsFailureDetails {
-    #[prost(message, optional, tag = "1")]
-    pub gps_start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub gps_end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub video_start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub video_end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "1")]
+pub gps_start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub gps_end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub video_start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub video_end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ProcessingState {
-    Unspecified = 0,
-    Pending = 1,
-    Processing = 2,
-    Processed = 3,
-    Failed = 4,
+Unspecified = 0,
+Pending = 1,
+Processing = 2,
+Processed = 3,
+Failed = 4,
 }
 impl ProcessingState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ProcessingState::Unspecified => "PROCESSING_STATE_UNSPECIFIED",
-            ProcessingState::Pending => "PENDING",
-            ProcessingState::Processing => "PROCESSING",
-            ProcessingState::Processed => "PROCESSED",
-            ProcessingState::Failed => "FAILED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "PROCESSING_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "PENDING" => Some(Self::Pending),
-            "PROCESSING" => Some(Self::Processing),
-            "PROCESSED" => Some(Self::Processed),
-            "FAILED" => Some(Self::Failed),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ProcessingState::Unspecified => "PROCESSING_STATE_UNSPECIFIED",
+ProcessingState::Pending => "PENDING",
+ProcessingState::Processing => "PROCESSING",
+ProcessingState::Processed => "PROCESSED",
+ProcessingState::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PROCESSING_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"PROCESSING" => Some(Self::Processing),
+"PROCESSED" => Some(Self::Processed),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ProcessingFailureReason {
-    Unspecified = 0,
-    LowResolution = 1,
-    Duplicate = 2,
-    InsufficientGps = 3,
-    NoOverlapGps = 4,
-    InvalidGps = 5,
-    FailedToRefinePositions = 6,
-    Takedown = 7,
-    CorruptVideo = 8,
-    Internal = 9,
-    InvalidVideoFormat = 10,
-    InvalidVideoDimensions = 11,
-    InvalidCaptureTime = 12,
-    GpsDataGap = 13,
-    JumpyGps = 14,
-    InvalidImu = 15,
-    InsufficientImu = 21,
-    InsufficientOverlapTimeSeries = 22,
-    ImuDataGap = 16,
-    UnsupportedCamera = 17,
-    NotOutdoors = 18,
-    InsufficientVideoFrames = 19,
-    InsufficientMovement = 20,
-    MastDown = 27,
-    CameraCovered = 28,
+Unspecified = 0,
+LowResolution = 1,
+Duplicate = 2,
+InsufficientGps = 3,
+NoOverlapGps = 4,
+InvalidGps = 5,
+FailedToRefinePositions = 6,
+Takedown = 7,
+CorruptVideo = 8,
+Internal = 9,
+InvalidVideoFormat = 10,
+InvalidVideoDimensions = 11,
+InvalidCaptureTime = 12,
+GpsDataGap = 13,
+JumpyGps = 14,
+InvalidImu = 15,
+InsufficientImu = 21,
+InsufficientOverlapTimeSeries = 22,
+ImuDataGap = 16,
+UnsupportedCamera = 17,
+NotOutdoors = 18,
+InsufficientVideoFrames = 19,
+InsufficientMovement = 20,
+MastDown = 27,
+CameraCovered = 28,
 }
 impl ProcessingFailureReason {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ProcessingFailureReason::Unspecified => {
-                "PROCESSING_FAILURE_REASON_UNSPECIFIED"
-            }
-            ProcessingFailureReason::LowResolution => "LOW_RESOLUTION",
-            ProcessingFailureReason::Duplicate => "DUPLICATE",
-            ProcessingFailureReason::InsufficientGps => "INSUFFICIENT_GPS",
-            ProcessingFailureReason::NoOverlapGps => "NO_OVERLAP_GPS",
-            ProcessingFailureReason::InvalidGps => "INVALID_GPS",
-            ProcessingFailureReason::FailedToRefinePositions => {
-                "FAILED_TO_REFINE_POSITIONS"
-            }
-            ProcessingFailureReason::Takedown => "TAKEDOWN",
-            ProcessingFailureReason::CorruptVideo => "CORRUPT_VIDEO",
-            ProcessingFailureReason::Internal => "INTERNAL",
-            ProcessingFailureReason::InvalidVideoFormat => "INVALID_VIDEO_FORMAT",
-            ProcessingFailureReason::InvalidVideoDimensions => "INVALID_VIDEO_DIMENSIONS",
-            ProcessingFailureReason::InvalidCaptureTime => "INVALID_CAPTURE_TIME",
-            ProcessingFailureReason::GpsDataGap => "GPS_DATA_GAP",
-            ProcessingFailureReason::JumpyGps => "JUMPY_GPS",
-            ProcessingFailureReason::InvalidImu => "INVALID_IMU",
-            ProcessingFailureReason::InsufficientImu => "INSUFFICIENT_IMU",
-            ProcessingFailureReason::InsufficientOverlapTimeSeries => {
-                "INSUFFICIENT_OVERLAP_TIME_SERIES"
-            }
-            ProcessingFailureReason::ImuDataGap => "IMU_DATA_GAP",
-            ProcessingFailureReason::UnsupportedCamera => "UNSUPPORTED_CAMERA",
-            ProcessingFailureReason::NotOutdoors => "NOT_OUTDOORS",
-            ProcessingFailureReason::InsufficientVideoFrames => {
-                "INSUFFICIENT_VIDEO_FRAMES"
-            }
-            ProcessingFailureReason::InsufficientMovement => "INSUFFICIENT_MOVEMENT",
-            ProcessingFailureReason::MastDown => "MAST_DOWN",
-            ProcessingFailureReason::CameraCovered => "CAMERA_COVERED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "PROCESSING_FAILURE_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-            "LOW_RESOLUTION" => Some(Self::LowResolution),
-            "DUPLICATE" => Some(Self::Duplicate),
-            "INSUFFICIENT_GPS" => Some(Self::InsufficientGps),
-            "NO_OVERLAP_GPS" => Some(Self::NoOverlapGps),
-            "INVALID_GPS" => Some(Self::InvalidGps),
-            "FAILED_TO_REFINE_POSITIONS" => Some(Self::FailedToRefinePositions),
-            "TAKEDOWN" => Some(Self::Takedown),
-            "CORRUPT_VIDEO" => Some(Self::CorruptVideo),
-            "INTERNAL" => Some(Self::Internal),
-            "INVALID_VIDEO_FORMAT" => Some(Self::InvalidVideoFormat),
-            "INVALID_VIDEO_DIMENSIONS" => Some(Self::InvalidVideoDimensions),
-            "INVALID_CAPTURE_TIME" => Some(Self::InvalidCaptureTime),
-            "GPS_DATA_GAP" => Some(Self::GpsDataGap),
-            "JUMPY_GPS" => Some(Self::JumpyGps),
-            "INVALID_IMU" => Some(Self::InvalidImu),
-            "INSUFFICIENT_IMU" => Some(Self::InsufficientImu),
-            "INSUFFICIENT_OVERLAP_TIME_SERIES" => {
-                Some(Self::InsufficientOverlapTimeSeries)
-            }
-            "IMU_DATA_GAP" => Some(Self::ImuDataGap),
-            "UNSUPPORTED_CAMERA" => Some(Self::UnsupportedCamera),
-            "NOT_OUTDOORS" => Some(Self::NotOutdoors),
-            "INSUFFICIENT_VIDEO_FRAMES" => Some(Self::InsufficientVideoFrames),
-            "INSUFFICIENT_MOVEMENT" => Some(Self::InsufficientMovement),
-            "MAST_DOWN" => Some(Self::MastDown),
-            "CAMERA_COVERED" => Some(Self::CameraCovered),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ProcessingFailureReason::Unspecified => "PROCESSING_FAILURE_REASON_UNSPECIFIED",
+ProcessingFailureReason::LowResolution => "LOW_RESOLUTION",
+ProcessingFailureReason::Duplicate => "DUPLICATE",
+ProcessingFailureReason::InsufficientGps => "INSUFFICIENT_GPS",
+ProcessingFailureReason::NoOverlapGps => "NO_OVERLAP_GPS",
+ProcessingFailureReason::InvalidGps => "INVALID_GPS",
+ProcessingFailureReason::FailedToRefinePositions => "FAILED_TO_REFINE_POSITIONS",
+ProcessingFailureReason::Takedown => "TAKEDOWN",
+ProcessingFailureReason::CorruptVideo => "CORRUPT_VIDEO",
+ProcessingFailureReason::Internal => "INTERNAL",
+ProcessingFailureReason::InvalidVideoFormat => "INVALID_VIDEO_FORMAT",
+ProcessingFailureReason::InvalidVideoDimensions => "INVALID_VIDEO_DIMENSIONS",
+ProcessingFailureReason::InvalidCaptureTime => "INVALID_CAPTURE_TIME",
+ProcessingFailureReason::GpsDataGap => "GPS_DATA_GAP",
+ProcessingFailureReason::JumpyGps => "JUMPY_GPS",
+ProcessingFailureReason::InvalidImu => "INVALID_IMU",
+ProcessingFailureReason::InsufficientImu => "INSUFFICIENT_IMU",
+ProcessingFailureReason::InsufficientOverlapTimeSeries => "INSUFFICIENT_OVERLAP_TIME_SERIES",
+ProcessingFailureReason::ImuDataGap => "IMU_DATA_GAP",
+ProcessingFailureReason::UnsupportedCamera => "UNSUPPORTED_CAMERA",
+ProcessingFailureReason::NotOutdoors => "NOT_OUTDOORS",
+ProcessingFailureReason::InsufficientVideoFrames => "INSUFFICIENT_VIDEO_FRAMES",
+ProcessingFailureReason::InsufficientMovement => "INSUFFICIENT_MOVEMENT",
+ProcessingFailureReason::MastDown => "MAST_DOWN",
+ProcessingFailureReason::CameraCovered => "CAMERA_COVERED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PROCESSING_FAILURE_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"LOW_RESOLUTION" => Some(Self::LowResolution),
+"DUPLICATE" => Some(Self::Duplicate),
+"INSUFFICIENT_GPS" => Some(Self::InsufficientGps),
+"NO_OVERLAP_GPS" => Some(Self::NoOverlapGps),
+"INVALID_GPS" => Some(Self::InvalidGps),
+"FAILED_TO_REFINE_POSITIONS" => Some(Self::FailedToRefinePositions),
+"TAKEDOWN" => Some(Self::Takedown),
+"CORRUPT_VIDEO" => Some(Self::CorruptVideo),
+"INTERNAL" => Some(Self::Internal),
+"INVALID_VIDEO_FORMAT" => Some(Self::InvalidVideoFormat),
+"INVALID_VIDEO_DIMENSIONS" => Some(Self::InvalidVideoDimensions),
+"INVALID_CAPTURE_TIME" => Some(Self::InvalidCaptureTime),
+"GPS_DATA_GAP" => Some(Self::GpsDataGap),
+"JUMPY_GPS" => Some(Self::JumpyGps),
+"INVALID_IMU" => Some(Self::InvalidImu),
+"INSUFFICIENT_IMU" => Some(Self::InsufficientImu),
+"INSUFFICIENT_OVERLAP_TIME_SERIES" => Some(Self::InsufficientOverlapTimeSeries),
+"IMU_DATA_GAP" => Some(Self::ImuDataGap),
+"UNSUPPORTED_CAMERA" => Some(Self::UnsupportedCamera),
+"NOT_OUTDOORS" => Some(Self::NotOutdoors),
+"INSUFFICIENT_VIDEO_FRAMES" => Some(Self::InsufficientVideoFrames),
+"INSUFFICIENT_MOVEMENT" => Some(Self::InsufficientMovement),
+"MAST_DOWN" => Some(Self::MastDown),
+"CAMERA_COVERED" => Some(Self::CameraCovered),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePhotoRequest {
-    #[prost(message, optional, tag = "1")]
-    pub photo: ::core::option::Option<Photo>,
+#[prost(message, optional, tag = "1")]
+pub photo: ::core::option::Option<Photo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPhotoRequest {
-    #[prost(string, tag = "1")]
-    pub photo_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "PhotoView", tag = "2")]
-    pub view: i32,
-    #[prost(string, tag = "3")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub photo_id: ::prost::alloc::string::String,
+#[prost(enumeration = "PhotoView", tag = "2")]
+pub view: i32,
+#[prost(string, tag = "3")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchGetPhotosRequest {
-    #[prost(string, repeated, tag = "1")]
-    pub photo_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(enumeration = "PhotoView", tag = "2")]
-    pub view: i32,
-    #[prost(string, tag = "3")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "1")]
+pub photo_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "PhotoView", tag = "2")]
+pub view: i32,
+#[prost(string, tag = "3")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchGetPhotosResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub results: ::prost::alloc::vec::Vec<PhotoResponse>,
+#[prost(message, repeated, tag = "1")]
+pub results: ::prost::alloc::vec::Vec<PhotoResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PhotoResponse {
-    #[prost(message, optional, tag = "1")]
-    pub status: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "2")]
-    pub photo: ::core::option::Option<Photo>,
+#[prost(message, optional, tag = "1")]
+pub status: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "2")]
+pub photo: ::core::option::Option<Photo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPhotosRequest {
-    #[prost(enumeration = "PhotoView", tag = "1")]
-    pub view: i32,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(enumeration = "PhotoView", tag = "1")]
+pub view: i32,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPhotosResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub photos: ::prost::alloc::vec::Vec<Photo>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub photos: ::prost::alloc::vec::Vec<Photo>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePhotoRequest {
-    #[prost(message, optional, tag = "1")]
-    pub photo: ::core::option::Option<Photo>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub photo: ::core::option::Option<Photo>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdatePhotosRequest {
-    #[prost(message, repeated, tag = "1")]
-    pub update_photo_requests: ::prost::alloc::vec::Vec<UpdatePhotoRequest>,
+#[prost(message, repeated, tag = "1")]
+pub update_photo_requests: ::prost::alloc::vec::Vec<UpdatePhotoRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdatePhotosResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub results: ::prost::alloc::vec::Vec<PhotoResponse>,
+#[prost(message, repeated, tag = "1")]
+pub results: ::prost::alloc::vec::Vec<PhotoResponse>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePhotoRequest {
-    #[prost(string, tag = "1")]
-    pub photo_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub photo_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeletePhotosRequest {
-    #[prost(string, repeated, tag = "1")]
-    pub photo_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub photo_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePhotoSequenceRequest {
-    #[prost(message, optional, tag = "1")]
-    pub photo_sequence: ::core::option::Option<PhotoSequence>,
-    #[prost(enumeration = "create_photo_sequence_request::InputType", tag = "2")]
-    pub input_type: i32,
+#[prost(message, optional, tag = "1")]
+pub photo_sequence: ::core::option::Option<PhotoSequence>,
+#[prost(enumeration = "create_photo_sequence_request::InputType", tag = "2")]
+pub input_type: i32,
 }
 /// Nested message and enum types in `CreatePhotoSequenceRequest`.
 pub mod create_photo_sequence_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum InputType {
-        Unspecified = 0,
-        Video = 1,
-        Xdm = 2,
-    }
-    impl InputType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                InputType::Unspecified => "INPUT_TYPE_UNSPECIFIED",
-                InputType::Video => "VIDEO",
-                InputType::Xdm => "XDM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INPUT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "VIDEO" => Some(Self::Video),
-                "XDM" => Some(Self::Xdm),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum InputType {
+Unspecified = 0,
+Video = 1,
+Xdm = 2,
+}
+impl InputType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+InputType::Unspecified => "INPUT_TYPE_UNSPECIFIED",
+InputType::Video => "VIDEO",
+InputType::Xdm => "XDM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INPUT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"VIDEO" => Some(Self::Video),
+"XDM" => Some(Self::Xdm),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPhotoSequenceRequest {
-    #[prost(string, tag = "1")]
-    pub sequence_id: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(enumeration = "PhotoView", tag = "2")]
-    pub view: i32,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub sequence_id: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(enumeration = "PhotoView", tag = "2")]
+pub view: i32,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePhotoSequenceRequest {
-    #[prost(string, tag = "1")]
-    pub sequence_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub sequence_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeletePhotosResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub status: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
+#[prost(message, repeated, tag = "1")]
+pub status: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPhotoSequencesRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPhotoSequencesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub photo_sequences: ::prost::alloc::vec::Vec<
-        super::super::super::longrunning::Operation,
-    >,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub photo_sequences: ::prost::alloc::vec::Vec<super::super::super::longrunning::Operation>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PhotoView {
-    Basic = 0,
-    IncludeDownloadUrl = 1,
+Basic = 0,
+IncludeDownloadUrl = 1,
 }
 impl PhotoView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            PhotoView::Basic => "BASIC",
-            PhotoView::IncludeDownloadUrl => "INCLUDE_DOWNLOAD_URL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "BASIC" => Some(Self::Basic),
-            "INCLUDE_DOWNLOAD_URL" => Some(Self::IncludeDownloadUrl),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PhotoView::Basic => "BASIC",
+PhotoView::IncludeDownloadUrl => "INCLUDE_DOWNLOAD_URL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BASIC" => Some(Self::Basic),
+"INCLUDE_DOWNLOAD_URL" => Some(Self::IncludeDownloadUrl),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod street_view_publish_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Publishes and connects user-contributed photos on Street View.
-    #[derive(Debug, Clone)]
-    pub struct StreetViewPublishServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> StreetViewPublishServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> StreetViewPublishServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            StreetViewPublishServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates an upload session to start uploading photo bytes.  The method uses
-        /// the upload URL of the returned
-        /// [UploadRef][google.streetview.publish.v1.UploadRef] to upload the bytes for
-        /// the [Photo][google.streetview.publish.v1.Photo].
-        ///
-        /// In addition to the photo requirements shown in
-        /// https://support.google.com/maps/answer/7012050?ref_topic=6275604,
-        /// the photo must meet the following requirements:
-        ///
-        /// * Photo Sphere XMP metadata must be included in the photo metadata. See
-        /// https://developers.google.com/streetview/spherical-metadata for the
-        /// required fields.
-        /// * The pixel size of the photo must meet the size requirements listed in
-        /// https://support.google.com/maps/answer/7012050?ref_topic=6275604, and
-        /// the photo must be a full 360 horizontally.
-        ///
-        /// After the upload completes, the method uses
-        /// [UploadRef][google.streetview.publish.v1.UploadRef] with
-        /// [CreatePhoto][google.streetview.publish.v1.StreetViewPublishService.CreatePhoto]
-        /// to create the [Photo][google.streetview.publish.v1.Photo] object entry.
-        pub async fn start_upload(
-            &mut self,
-            request: impl tonic::IntoRequest<()>,
-        ) -> std::result::Result<tonic::Response<super::UploadRef>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/StartUpload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "StartUpload",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// After the client finishes uploading the photo with the returned
-        /// [UploadRef][google.streetview.publish.v1.UploadRef],
-        /// [CreatePhoto][google.streetview.publish.v1.StreetViewPublishService.CreatePhoto]
-        /// publishes the uploaded [Photo][google.streetview.publish.v1.Photo] to
-        /// Street View on Google Maps.
-        ///
-        /// Currently, the only way to set heading, pitch, and roll in CreatePhoto is
-        /// through the [Photo Sphere XMP
-        /// metadata](https://developers.google.com/streetview/spherical-metadata) in
-        /// the photo bytes. CreatePhoto ignores the  `pose.heading`, `pose.pitch`,
-        /// `pose.roll`, `pose.altitude`, and `pose.level` fields in Pose.
-        ///
-        /// This method returns the following error codes:
-        ///
-        /// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
-        /// the request is malformed or if the uploaded photo is not a 360 photo.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the upload
-        /// reference does not exist.
-        /// * [google.rpc.Code.RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
-        /// if the account has reached the storage limit.
-        pub async fn create_photo(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePhotoRequest>,
-        ) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/CreatePhoto",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "CreatePhoto",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the metadata of the specified
-        /// [Photo][google.streetview.publish.v1.Photo].
-        ///
-        /// This method returns the following error codes:
-        ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested
-        /// [Photo][google.streetview.publish.v1.Photo].
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
-        /// [Photo][google.streetview.publish.v1.Photo] does not exist.
-        /// * [google.rpc.Code.UNAVAILABLE][google.rpc.Code.UNAVAILABLE] if the
-        /// requested [Photo][google.streetview.publish.v1.Photo] is still being
-        /// indexed.
-        pub async fn get_photo(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPhotoRequest>,
-        ) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/GetPhoto",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "GetPhoto",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the metadata of the specified
-        /// [Photo][google.streetview.publish.v1.Photo] batch.
-        ///
-        /// Note that if
-        /// [BatchGetPhotos][google.streetview.publish.v1.StreetViewPublishService.BatchGetPhotos]
-        /// fails, either critical fields are missing or there is an authentication
-        /// error. Even if
-        /// [BatchGetPhotos][google.streetview.publish.v1.StreetViewPublishService.BatchGetPhotos]
-        /// succeeds, individual photos in the batch may have failures.
-        /// These failures are specified in each
-        /// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
-        /// in
-        /// [BatchGetPhotosResponse.results][google.streetview.publish.v1.BatchGetPhotosResponse.results].
-        /// See
-        /// [GetPhoto][google.streetview.publish.v1.StreetViewPublishService.GetPhoto]
-        /// for specific failures that can occur per photo.
-        pub async fn batch_get_photos(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchGetPhotosRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchGetPhotosResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/BatchGetPhotos",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "BatchGetPhotos",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all the [Photos][google.streetview.publish.v1.Photo] that belong to
-        /// the user.
-        ///
-        /// > Note: Recently created photos that are still
-        /// being indexed are not returned in the response.
-        pub async fn list_photos(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPhotosRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPhotosResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/ListPhotos",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "ListPhotos",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the metadata of a [Photo][google.streetview.publish.v1.Photo], such
-        /// as pose, place association, connections, etc. Changing the pixels of a
-        /// photo is not supported.
-        ///
-        /// Only the fields specified in the
-        /// [updateMask][google.streetview.publish.v1.UpdatePhotoRequest.update_mask]
-        /// field are used. If `updateMask` is not present, the update applies to all
-        /// fields.
-        ///
-        /// This method returns the following error codes:
-        ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested photo.
-        /// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
-        /// the request is malformed.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
-        /// photo does not exist.
-        /// * [google.rpc.Code.UNAVAILABLE][google.rpc.Code.UNAVAILABLE] if the
-        /// requested [Photo][google.streetview.publish.v1.Photo] is still being
-        /// indexed.
-        pub async fn update_photo(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdatePhotoRequest>,
-        ) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/UpdatePhoto",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "UpdatePhoto",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the metadata of [Photos][google.streetview.publish.v1.Photo], such
-        /// as pose, place association, connections, etc. Changing the pixels of photos
-        /// is not supported.
-        ///
-        /// Note that if
-        /// [BatchUpdatePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchUpdatePhotos]
-        /// fails, either critical fields are missing or there is an authentication
-        /// error. Even if
-        /// [BatchUpdatePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchUpdatePhotos]
-        /// succeeds, individual photos in the batch may have failures.
-        /// These failures are specified in each
-        /// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
-        /// in
-        /// [BatchUpdatePhotosResponse.results][google.streetview.publish.v1.BatchUpdatePhotosResponse.results].
-        /// See
-        /// [UpdatePhoto][google.streetview.publish.v1.StreetViewPublishService.UpdatePhoto]
-        /// for specific failures that can occur per photo.
-        ///
-        /// Only the fields specified in
-        /// [updateMask][google.streetview.publish.v1.UpdatePhotoRequest.update_mask]
-        /// field are used. If `updateMask` is not present, the update applies to all
-        /// fields.
-        ///
-        /// The number of
-        /// [UpdatePhotoRequest][google.streetview.publish.v1.UpdatePhotoRequest]
-        /// messages in a
-        /// [BatchUpdatePhotosRequest][google.streetview.publish.v1.BatchUpdatePhotosRequest]
-        /// must not exceed 20.
-        ///
-        /// > Note: To update
-        /// [Pose.altitude][google.streetview.publish.v1.Pose.altitude],
-        /// [Pose.latLngPair][google.streetview.publish.v1.Pose.lat_lng_pair] has to be
-        /// filled as well. Otherwise, the request will fail.
-        pub async fn batch_update_photos(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchUpdatePhotosRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchUpdatePhotosResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/BatchUpdatePhotos",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "BatchUpdatePhotos",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a [Photo][google.streetview.publish.v1.Photo] and its metadata.
-        ///
-        /// This method returns the following error codes:
-        ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested photo.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the photo ID
-        /// does not exist.
-        pub async fn delete_photo(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePhotoRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/DeletePhoto",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "DeletePhoto",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a list of [Photos][google.streetview.publish.v1.Photo] and their
-        /// metadata.
-        ///
-        /// Note that if
-        /// [BatchDeletePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchDeletePhotos]
-        /// fails, either critical fields are missing or there is an authentication
-        /// error. Even if
-        /// [BatchDeletePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchDeletePhotos]
-        /// succeeds, individual photos in the batch may have failures.
-        /// These failures are specified in each
-        /// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
-        /// in
-        /// [BatchDeletePhotosResponse.results][google.streetview.publish.v1.BatchDeletePhotosResponse.status].
-        /// See
-        /// [DeletePhoto][google.streetview.publish.v1.StreetViewPublishService.DeletePhoto]
-        /// for specific failures that can occur per photo.
-        pub async fn batch_delete_photos(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchDeletePhotosRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchDeletePhotosResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/BatchDeletePhotos",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "BatchDeletePhotos",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates an upload session to start uploading photo sequence data.
-        /// The upload URL of the returned
-        /// [UploadRef][google.streetview.publish.v1.UploadRef] is used to upload the
-        /// data for the `photoSequence`.
-        ///
-        /// After the upload is complete, the
-        /// [UploadRef][google.streetview.publish.v1.UploadRef] is used with
-        /// [CreatePhotoSequence][google.streetview.publish.v1.StreetViewPublishService.CreatePhotoSequence]
-        /// to create the [PhotoSequence][google.streetview.publish.v1.PhotoSequence]
-        /// object entry.
-        pub async fn start_photo_sequence_upload(
-            &mut self,
-            request: impl tonic::IntoRequest<()>,
-        ) -> std::result::Result<tonic::Response<super::UploadRef>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/StartPhotoSequenceUpload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "StartPhotoSequenceUpload",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// After the client finishes uploading the
-        /// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] with the
-        /// returned [UploadRef][google.streetview.publish.v1.UploadRef],
-        /// [CreatePhotoSequence][google.streetview.publish.v1.StreetViewPublishService.CreatePhotoSequence]
-        /// extracts a sequence of 360 photos from a video or Extensible Device
-        /// Metadata (XDM, http://www.xdm.org/) to be published to Street View on
-        /// Google Maps.
-        ///
-        /// `CreatePhotoSequence` returns an [Operation][google.longrunning.Operation],
-        /// with the [PhotoSequence][google.streetview.publish.v1.PhotoSequence] Id set
-        /// in the `Operation.name` field.
-        ///
-        /// This method returns the following error codes:
-        ///
-        /// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
-        /// the request is malformed.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the upload
-        /// reference does not exist.
-        pub async fn create_photo_sequence(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePhotoSequenceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/CreatePhotoSequence",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "CreatePhotoSequence",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the metadata of the specified
-        /// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] via the
-        /// [Operation][google.longrunning.Operation] interface.
-        ///
-        /// This method returns the following three types of responses:
-        ///
-        /// * `Operation.done` = false, if the processing of
-        ///   [PhotoSequence][google.streetview.publish.v1.PhotoSequence] is not
-        ///   finished yet.
-        /// * `Operation.done` = true and `Operation.error` is populated, if there was
-        ///   an error in processing.
-        /// * `Operation.done` = true and `Operation.response` is poulated, which
-        ///   contains a [PhotoSequence][google.streetview.publish.v1.PhotoSequence]
-        ///   message.
-        ///
-        /// This method returns the following error codes:
-        ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested
-        /// [PhotoSequence][google.streetview.publish.v1.PhotoSequence].
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
-        /// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] does not exist.
-        pub async fn get_photo_sequence(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPhotoSequenceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/GetPhotoSequence",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "GetPhotoSequence",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all the [PhotoSequences][google.streetview.publish.v1.PhotoSequence]
-        /// that belong to the user, in descending CreatePhotoSequence timestamp order.
-        pub async fn list_photo_sequences(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPhotoSequencesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPhotoSequencesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/ListPhotoSequences",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "ListPhotoSequences",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a [PhotoSequence][google.streetview.publish.v1.PhotoSequence] and
-        /// its metadata.
-        ///
-        /// This method returns the following error codes:
-        ///
-        /// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
-        /// the requesting user did not create the requested photo sequence.
-        /// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the photo
-        /// sequence ID does not exist.
-        /// * [google.rpc.Code.FAILED_PRECONDITION][google.rpc.Code.FAILED_PRECONDITION] if the photo sequence ID is not
-        /// yet finished processing.
-        pub async fn delete_photo_sequence(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePhotoSequenceRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.streetview.publish.v1.StreetViewPublishService/DeletePhotoSequence",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.streetview.publish.v1.StreetViewPublishService",
-                        "DeletePhotoSequence",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Publishes and connects user-contributed photos on Street View.
+#[derive(Debug, Clone)]
+pub struct StreetViewPublishServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> StreetViewPublishServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> StreetViewPublishServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+StreetViewPublishServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates an upload session to start uploading photo bytes.  The method uses
+/// the upload URL of the returned
+/// [UploadRef][google.streetview.publish.v1.UploadRef] to upload the bytes for
+/// the [Photo][google.streetview.publish.v1.Photo].
+///
+/// In addition to the photo requirements shown in
+/// https://support.google.com/maps/answer/7012050?ref_topic=6275604,
+/// the photo must meet the following requirements:
+///
+/// * Photo Sphere XMP metadata must be included in the photo metadata. See
+/// https://developers.google.com/streetview/spherical-metadata for the
+/// required fields.
+/// * The pixel size of the photo must meet the size requirements listed in
+/// https://support.google.com/maps/answer/7012050?ref_topic=6275604, and
+/// the photo must be a full 360 horizontally.
+///
+/// After the upload completes, the method uses
+/// [UploadRef][google.streetview.publish.v1.UploadRef] with
+/// [CreatePhoto][google.streetview.publish.v1.StreetViewPublishService.CreatePhoto]
+/// to create the [Photo][google.streetview.publish.v1.Photo] object entry.
+pub async fn start_upload(&mut self, request: impl tonic::IntoRequest<()>) -> std::result::Result<tonic::Response<super::UploadRef>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/StartUpload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "StartUpload"));
+self.inner.unary(req, path, codec).await
+}
+/// After the client finishes uploading the photo with the returned
+/// [UploadRef][google.streetview.publish.v1.UploadRef],
+/// [CreatePhoto][google.streetview.publish.v1.StreetViewPublishService.CreatePhoto]
+/// publishes the uploaded [Photo][google.streetview.publish.v1.Photo] to
+/// Street View on Google Maps.
+///
+/// Currently, the only way to set heading, pitch, and roll in CreatePhoto is
+/// through the [Photo Sphere XMP
+/// metadata](https://developers.google.com/streetview/spherical-metadata) in
+/// the photo bytes. CreatePhoto ignores the  `pose.heading`, `pose.pitch`,
+/// `pose.roll`, `pose.altitude`, and `pose.level` fields in Pose.
+///
+/// This method returns the following error codes:
+///
+/// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
+/// the request is malformed or if the uploaded photo is not a 360 photo.
+/// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the upload
+/// reference does not exist.
+/// * [google.rpc.Code.RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED]
+/// if the account has reached the storage limit.
+pub async fn create_photo(&mut self, request: impl tonic::IntoRequest<super::CreatePhotoRequest>) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/CreatePhoto");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "CreatePhoto"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the metadata of the specified
+/// [Photo][google.streetview.publish.v1.Photo].
+///
+/// This method returns the following error codes:
+///
+/// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
+/// the requesting user did not create the requested
+/// [Photo][google.streetview.publish.v1.Photo].
+/// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
+/// [Photo][google.streetview.publish.v1.Photo] does not exist.
+/// * [google.rpc.Code.UNAVAILABLE][google.rpc.Code.UNAVAILABLE] if the
+/// requested [Photo][google.streetview.publish.v1.Photo] is still being
+/// indexed.
+pub async fn get_photo(&mut self, request: impl tonic::IntoRequest<super::GetPhotoRequest>) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/GetPhoto");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "GetPhoto"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the metadata of the specified
+/// [Photo][google.streetview.publish.v1.Photo] batch.
+///
+/// Note that if
+/// [BatchGetPhotos][google.streetview.publish.v1.StreetViewPublishService.BatchGetPhotos]
+/// fails, either critical fields are missing or there is an authentication
+/// error. Even if
+/// [BatchGetPhotos][google.streetview.publish.v1.StreetViewPublishService.BatchGetPhotos]
+/// succeeds, individual photos in the batch may have failures.
+/// These failures are specified in each
+/// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
+/// in
+/// [BatchGetPhotosResponse.results][google.streetview.publish.v1.BatchGetPhotosResponse.results].
+/// See
+/// [GetPhoto][google.streetview.publish.v1.StreetViewPublishService.GetPhoto]
+/// for specific failures that can occur per photo.
+pub async fn batch_get_photos(&mut self, request: impl tonic::IntoRequest<super::BatchGetPhotosRequest>) -> std::result::Result<tonic::Response<super::BatchGetPhotosResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/BatchGetPhotos");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "BatchGetPhotos"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all the [Photos][google.streetview.publish.v1.Photo] that belong to
+/// the user.
+///
+/// > Note: Recently created photos that are still
+/// being indexed are not returned in the response.
+pub async fn list_photos(&mut self, request: impl tonic::IntoRequest<super::ListPhotosRequest>) -> std::result::Result<tonic::Response<super::ListPhotosResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/ListPhotos");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "ListPhotos"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the metadata of a [Photo][google.streetview.publish.v1.Photo], such
+/// as pose, place association, connections, etc. Changing the pixels of a
+/// photo is not supported.
+///
+/// Only the fields specified in the
+/// [updateMask][google.streetview.publish.v1.UpdatePhotoRequest.update_mask]
+/// field are used. If `updateMask` is not present, the update applies to all
+/// fields.
+///
+/// This method returns the following error codes:
+///
+/// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
+/// the requesting user did not create the requested photo.
+/// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
+/// the request is malformed.
+/// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
+/// photo does not exist.
+/// * [google.rpc.Code.UNAVAILABLE][google.rpc.Code.UNAVAILABLE] if the
+/// requested [Photo][google.streetview.publish.v1.Photo] is still being
+/// indexed.
+pub async fn update_photo(&mut self, request: impl tonic::IntoRequest<super::UpdatePhotoRequest>) -> std::result::Result<tonic::Response<super::Photo>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/UpdatePhoto");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "UpdatePhoto"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the metadata of [Photos][google.streetview.publish.v1.Photo], such
+/// as pose, place association, connections, etc. Changing the pixels of photos
+/// is not supported.
+///
+/// Note that if
+/// [BatchUpdatePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchUpdatePhotos]
+/// fails, either critical fields are missing or there is an authentication
+/// error. Even if
+/// [BatchUpdatePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchUpdatePhotos]
+/// succeeds, individual photos in the batch may have failures.
+/// These failures are specified in each
+/// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
+/// in
+/// [BatchUpdatePhotosResponse.results][google.streetview.publish.v1.BatchUpdatePhotosResponse.results].
+/// See
+/// [UpdatePhoto][google.streetview.publish.v1.StreetViewPublishService.UpdatePhoto]
+/// for specific failures that can occur per photo.
+///
+/// Only the fields specified in
+/// [updateMask][google.streetview.publish.v1.UpdatePhotoRequest.update_mask]
+/// field are used. If `updateMask` is not present, the update applies to all
+/// fields.
+///
+/// The number of
+/// [UpdatePhotoRequest][google.streetview.publish.v1.UpdatePhotoRequest]
+/// messages in a
+/// [BatchUpdatePhotosRequest][google.streetview.publish.v1.BatchUpdatePhotosRequest]
+/// must not exceed 20.
+///
+/// > Note: To update
+/// [Pose.altitude][google.streetview.publish.v1.Pose.altitude],
+/// [Pose.latLngPair][google.streetview.publish.v1.Pose.lat_lng_pair] has to be
+/// filled as well. Otherwise, the request will fail.
+pub async fn batch_update_photos(&mut self, request: impl tonic::IntoRequest<super::BatchUpdatePhotosRequest>) -> std::result::Result<tonic::Response<super::BatchUpdatePhotosResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/BatchUpdatePhotos");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "BatchUpdatePhotos"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a [Photo][google.streetview.publish.v1.Photo] and its metadata.
+///
+/// This method returns the following error codes:
+///
+/// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
+/// the requesting user did not create the requested photo.
+/// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the photo ID
+/// does not exist.
+pub async fn delete_photo(&mut self, request: impl tonic::IntoRequest<super::DeletePhotoRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/DeletePhoto");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "DeletePhoto"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a list of [Photos][google.streetview.publish.v1.Photo] and their
+/// metadata.
+///
+/// Note that if
+/// [BatchDeletePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchDeletePhotos]
+/// fails, either critical fields are missing or there is an authentication
+/// error. Even if
+/// [BatchDeletePhotos][google.streetview.publish.v1.StreetViewPublishService.BatchDeletePhotos]
+/// succeeds, individual photos in the batch may have failures.
+/// These failures are specified in each
+/// [PhotoResponse.status][google.streetview.publish.v1.PhotoResponse.status]
+/// in
+/// [BatchDeletePhotosResponse.results][google.streetview.publish.v1.BatchDeletePhotosResponse.status].
+/// See
+/// [DeletePhoto][google.streetview.publish.v1.StreetViewPublishService.DeletePhoto]
+/// for specific failures that can occur per photo.
+pub async fn batch_delete_photos(&mut self, request: impl tonic::IntoRequest<super::BatchDeletePhotosRequest>) -> std::result::Result<tonic::Response<super::BatchDeletePhotosResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/BatchDeletePhotos");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "BatchDeletePhotos"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates an upload session to start uploading photo sequence data.
+/// The upload URL of the returned
+/// [UploadRef][google.streetview.publish.v1.UploadRef] is used to upload the
+/// data for the `photoSequence`.
+///
+/// After the upload is complete, the
+/// [UploadRef][google.streetview.publish.v1.UploadRef] is used with
+/// [CreatePhotoSequence][google.streetview.publish.v1.StreetViewPublishService.CreatePhotoSequence]
+/// to create the [PhotoSequence][google.streetview.publish.v1.PhotoSequence]
+/// object entry.
+pub async fn start_photo_sequence_upload(&mut self, request: impl tonic::IntoRequest<()>) -> std::result::Result<tonic::Response<super::UploadRef>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/StartPhotoSequenceUpload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "StartPhotoSequenceUpload"));
+self.inner.unary(req, path, codec).await
+}
+/// After the client finishes uploading the
+/// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] with the
+/// returned [UploadRef][google.streetview.publish.v1.UploadRef],
+/// [CreatePhotoSequence][google.streetview.publish.v1.StreetViewPublishService.CreatePhotoSequence]
+/// extracts a sequence of 360 photos from a video or Extensible Device
+/// Metadata (XDM, http://www.xdm.org/) to be published to Street View on
+/// Google Maps.
+///
+/// `CreatePhotoSequence` returns an [Operation][google.longrunning.Operation],
+/// with the [PhotoSequence][google.streetview.publish.v1.PhotoSequence] Id set
+/// in the `Operation.name` field.
+///
+/// This method returns the following error codes:
+///
+/// * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] if
+/// the request is malformed.
+/// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the upload
+/// reference does not exist.
+pub async fn create_photo_sequence(&mut self, request: impl tonic::IntoRequest<super::CreatePhotoSequenceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/CreatePhotoSequence");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "CreatePhotoSequence"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the metadata of the specified
+/// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] via the
+/// [Operation][google.longrunning.Operation] interface.
+///
+/// This method returns the following three types of responses:
+///
+/// * `Operation.done` = false, if the processing of
+///   [PhotoSequence][google.streetview.publish.v1.PhotoSequence] is not
+///   finished yet.
+/// * `Operation.done` = true and `Operation.error` is populated, if there was
+///   an error in processing.
+/// * `Operation.done` = true and `Operation.response` is poulated, which
+///   contains a [PhotoSequence][google.streetview.publish.v1.PhotoSequence]
+///   message.
+///
+/// This method returns the following error codes:
+///
+/// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
+/// the requesting user did not create the requested
+/// [PhotoSequence][google.streetview.publish.v1.PhotoSequence].
+/// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested
+/// [PhotoSequence][google.streetview.publish.v1.PhotoSequence] does not exist.
+pub async fn get_photo_sequence(&mut self, request: impl tonic::IntoRequest<super::GetPhotoSequenceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/GetPhotoSequence");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "GetPhotoSequence"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all the [PhotoSequences][google.streetview.publish.v1.PhotoSequence]
+/// that belong to the user, in descending CreatePhotoSequence timestamp order.
+pub async fn list_photo_sequences(&mut self, request: impl tonic::IntoRequest<super::ListPhotoSequencesRequest>) -> std::result::Result<tonic::Response<super::ListPhotoSequencesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/ListPhotoSequences");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "ListPhotoSequences"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a [PhotoSequence][google.streetview.publish.v1.PhotoSequence] and
+/// its metadata.
+///
+/// This method returns the following error codes:
+///
+/// * [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED] if
+/// the requesting user did not create the requested photo sequence.
+/// * [google.rpc.Code.NOT_FOUND][google.rpc.Code.NOT_FOUND] if the photo
+/// sequence ID does not exist.
+/// * [google.rpc.Code.FAILED_PRECONDITION][google.rpc.Code.FAILED_PRECONDITION] if the photo sequence ID is not
+/// yet finished processing.
+pub async fn delete_photo_sequence(&mut self, request: impl tonic::IntoRequest<super::DeletePhotoSequenceRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.streetview.publish.v1.StreetViewPublishService/DeletePhotoSequence");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.streetview.publish.v1.StreetViewPublishService", "DeletePhotoSequence"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

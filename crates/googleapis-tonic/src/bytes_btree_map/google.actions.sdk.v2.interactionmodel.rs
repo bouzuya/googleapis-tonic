@@ -2,176 +2,174 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntitySet {
-    #[prost(message, repeated, tag = "1")]
-    pub entities: ::prost::alloc::vec::Vec<entity_set::Entity>,
+#[prost(message, repeated, tag = "1")]
+pub entities: ::prost::alloc::vec::Vec<entity_set::Entity>,
 }
 /// Nested message and enum types in `EntitySet`.
 pub mod entity_set {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Entity {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Entity {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventHandler {
-    #[prost(string, tag = "1")]
-    pub webhook_handler: ::prost::alloc::string::String,
-    #[prost(oneof = "event_handler::Prompt", tags = "2, 3")]
-    pub prompt: ::core::option::Option<event_handler::Prompt>,
+#[prost(string, tag = "1")]
+pub webhook_handler: ::prost::alloc::string::String,
+#[prost(oneof = "event_handler::Prompt", tags = "2, 3")]
+pub prompt: ::core::option::Option<event_handler::Prompt>,
 }
 /// Nested message and enum types in `EventHandler`.
 pub mod event_handler {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Prompt {
-        #[prost(message, tag = "2")]
-        StaticPrompt(super::prompt::StaticPrompt),
-        #[prost(string, tag = "3")]
-        StaticPromptName(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Prompt {
+#[prost(message, tag = "2")]
+StaticPrompt(super::prompt::StaticPrompt),
+#[prost(string, tag = "3")]
+StaticPromptName(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GlobalIntentEvent {
-    #[prost(string, tag = "1")]
-    pub transition_to_scene: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub handler: ::core::option::Option<EventHandler>,
+#[prost(string, tag = "1")]
+pub transition_to_scene: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub handler: ::core::option::Option<EventHandler>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Intent {
-    #[prost(message, repeated, tag = "1")]
-    pub parameters: ::prost::alloc::vec::Vec<intent::IntentParameter>,
-    #[prost(string, repeated, tag = "2")]
-    pub training_phrases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub parameters: ::prost::alloc::vec::Vec<intent::IntentParameter>,
+#[prost(string, repeated, tag = "2")]
+pub training_phrases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `Intent`.
 pub mod intent {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct IntentParameter {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(oneof = "intent_parameter::ParameterType", tags = "2, 3")]
-        pub parameter_type: ::core::option::Option<intent_parameter::ParameterType>,
-    }
-    /// Nested message and enum types in `IntentParameter`.
-    pub mod intent_parameter {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct EntitySetReferences {
-            #[prost(message, repeated, tag = "1")]
-            pub entity_set_references: ::prost::alloc::vec::Vec<
-                entity_set_references::EntitySetReference,
-            >,
-        }
-        /// Nested message and enum types in `EntitySetReferences`.
-        pub mod entity_set_references {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct EntitySetReference {
-                #[prost(string, tag = "1")]
-                pub entity_set: ::prost::alloc::string::String,
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum ParameterType {
-            #[prost(message, tag = "2")]
-            Type(super::super::r#type::ClassReference),
-            #[prost(message, tag = "3")]
-            EntitySetReferences(EntitySetReferences),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IntentParameter {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(oneof = "intent_parameter::ParameterType", tags = "2, 3")]
+pub parameter_type: ::core::option::Option<intent_parameter::ParameterType>,
+}
+/// Nested message and enum types in `IntentParameter`.
+pub mod intent_parameter {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EntitySetReferences {
+#[prost(message, repeated, tag = "1")]
+pub entity_set_references: ::prost::alloc::vec::Vec<entity_set_references::EntitySetReference>,
+}
+/// Nested message and enum types in `EntitySetReferences`.
+pub mod entity_set_references {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EntitySetReference {
+#[prost(string, tag = "1")]
+pub entity_set: ::prost::alloc::string::String,
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum ParameterType {
+#[prost(message, tag = "2")]
+Type(super::super::r#type::ClassReference),
+#[prost(message, tag = "3")]
+EntitySetReferences(EntitySetReferences),
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConditionalEvent {
-    #[prost(string, tag = "1")]
-    pub condition: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub transition_to_scene: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub handler: ::core::option::Option<EventHandler>,
+#[prost(string, tag = "1")]
+pub condition: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub transition_to_scene: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub handler: ::core::option::Option<EventHandler>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IntentEvent {
-    #[prost(string, tag = "1")]
-    pub intent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub transition_to_scene: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub handler: ::core::option::Option<EventHandler>,
+#[prost(string, tag = "1")]
+pub intent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub transition_to_scene: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub handler: ::core::option::Option<EventHandler>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Slot {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub r#type: ::core::option::Option<r#type::ClassReference>,
-    #[prost(bool, tag = "3")]
-    pub required: bool,
-    #[prost(message, optional, tag = "4")]
-    pub prompt_settings: ::core::option::Option<slot::PromptSettings>,
-    #[prost(message, optional, tag = "5")]
-    pub commit_behavior: ::core::option::Option<slot::CommitBehavior>,
-    #[prost(message, optional, tag = "6")]
-    pub config: ::core::option::Option<::prost_types::Value>,
-    #[prost(message, optional, tag = "7")]
-    pub default_value: ::core::option::Option<slot::DefaultValue>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub r#type: ::core::option::Option<r#type::ClassReference>,
+#[prost(bool, tag = "3")]
+pub required: bool,
+#[prost(message, optional, tag = "4")]
+pub prompt_settings: ::core::option::Option<slot::PromptSettings>,
+#[prost(message, optional, tag = "5")]
+pub commit_behavior: ::core::option::Option<slot::CommitBehavior>,
+#[prost(message, optional, tag = "6")]
+pub config: ::core::option::Option<::prost_types::Value>,
+#[prost(message, optional, tag = "7")]
+pub default_value: ::core::option::Option<slot::DefaultValue>,
 }
 /// Nested message and enum types in `Slot`.
 pub mod slot {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct PromptSettings {
-        #[prost(message, optional, tag = "1")]
-        pub initial_prompt: ::core::option::Option<super::EventHandler>,
-        #[prost(message, optional, tag = "2")]
-        pub no_match_prompt1: ::core::option::Option<super::EventHandler>,
-        #[prost(message, optional, tag = "3")]
-        pub no_match_prompt2: ::core::option::Option<super::EventHandler>,
-        #[prost(message, optional, tag = "4")]
-        pub no_match_final_prompt: ::core::option::Option<super::EventHandler>,
-        #[prost(message, optional, tag = "5")]
-        pub no_input_prompt1: ::core::option::Option<super::EventHandler>,
-        #[prost(message, optional, tag = "6")]
-        pub no_input_prompt2: ::core::option::Option<super::EventHandler>,
-        #[prost(message, optional, tag = "7")]
-        pub no_input_final_prompt: ::core::option::Option<super::EventHandler>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CommitBehavior {
-        #[prost(string, tag = "1")]
-        pub write_session_param: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DefaultValue {
-        #[prost(string, tag = "1")]
-        pub session_param: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub constant: ::core::option::Option<::prost_types::Value>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PromptSettings {
+#[prost(message, optional, tag = "1")]
+pub initial_prompt: ::core::option::Option<super::EventHandler>,
+#[prost(message, optional, tag = "2")]
+pub no_match_prompt1: ::core::option::Option<super::EventHandler>,
+#[prost(message, optional, tag = "3")]
+pub no_match_prompt2: ::core::option::Option<super::EventHandler>,
+#[prost(message, optional, tag = "4")]
+pub no_match_final_prompt: ::core::option::Option<super::EventHandler>,
+#[prost(message, optional, tag = "5")]
+pub no_input_prompt1: ::core::option::Option<super::EventHandler>,
+#[prost(message, optional, tag = "6")]
+pub no_input_prompt2: ::core::option::Option<super::EventHandler>,
+#[prost(message, optional, tag = "7")]
+pub no_input_final_prompt: ::core::option::Option<super::EventHandler>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CommitBehavior {
+#[prost(string, tag = "1")]
+pub write_session_param: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DefaultValue {
+#[prost(string, tag = "1")]
+pub session_param: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub constant: ::core::option::Option<::prost_types::Value>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Scene {
-    #[prost(message, optional, tag = "1")]
-    pub on_enter: ::core::option::Option<EventHandler>,
-    #[prost(message, repeated, tag = "2")]
-    pub intent_events: ::prost::alloc::vec::Vec<IntentEvent>,
-    #[prost(message, repeated, tag = "3")]
-    pub conditional_events: ::prost::alloc::vec::Vec<ConditionalEvent>,
-    #[prost(message, repeated, tag = "4")]
-    pub slots: ::prost::alloc::vec::Vec<Slot>,
-    #[prost(message, optional, tag = "5")]
-    pub on_slot_updated: ::core::option::Option<EventHandler>,
+#[prost(message, optional, tag = "1")]
+pub on_enter: ::core::option::Option<EventHandler>,
+#[prost(message, repeated, tag = "2")]
+pub intent_events: ::prost::alloc::vec::Vec<IntentEvent>,
+#[prost(message, repeated, tag = "3")]
+pub conditional_events: ::prost::alloc::vec::Vec<ConditionalEvent>,
+#[prost(message, repeated, tag = "4")]
+pub slots: ::prost::alloc::vec::Vec<Slot>,
+#[prost(message, optional, tag = "5")]
+pub on_slot_updated: ::core::option::Option<EventHandler>,
 }

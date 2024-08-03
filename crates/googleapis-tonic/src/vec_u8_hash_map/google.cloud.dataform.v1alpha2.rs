@@ -2,391 +2,367 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Repository {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub git_remote_settings: ::core::option::Option<repository::GitRemoteSettings>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub git_remote_settings: ::core::option::Option<repository::GitRemoteSettings>,
 }
 /// Nested message and enum types in `Repository`.
 pub mod repository {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GitRemoteSettings {
-        #[prost(string, tag = "1")]
-        pub url: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub default_branch: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub authentication_token_secret_version: ::prost::alloc::string::String,
-        #[prost(enumeration = "git_remote_settings::TokenStatus", tag = "4")]
-        pub token_status: i32,
-    }
-    /// Nested message and enum types in `GitRemoteSettings`.
-    pub mod git_remote_settings {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum TokenStatus {
-            Unspecified = 0,
-            NotFound = 1,
-            Invalid = 2,
-            Valid = 3,
-        }
-        impl TokenStatus {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    TokenStatus::Unspecified => "TOKEN_STATUS_UNSPECIFIED",
-                    TokenStatus::NotFound => "NOT_FOUND",
-                    TokenStatus::Invalid => "INVALID",
-                    TokenStatus::Valid => "VALID",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "TOKEN_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                    "NOT_FOUND" => Some(Self::NotFound),
-                    "INVALID" => Some(Self::Invalid),
-                    "VALID" => Some(Self::Valid),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GitRemoteSettings {
+#[prost(string, tag = "1")]
+pub url: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub default_branch: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub authentication_token_secret_version: ::prost::alloc::string::String,
+#[prost(enumeration = "git_remote_settings::TokenStatus", tag = "4")]
+pub token_status: i32,
+}
+/// Nested message and enum types in `GitRemoteSettings`.
+pub mod git_remote_settings {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum TokenStatus {
+Unspecified = 0,
+NotFound = 1,
+Invalid = 2,
+Valid = 3,
+}
+impl TokenStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TokenStatus::Unspecified => "TOKEN_STATUS_UNSPECIFIED",
+TokenStatus::NotFound => "NOT_FOUND",
+TokenStatus::Invalid => "INVALID",
+TokenStatus::Valid => "VALID",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TOKEN_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"NOT_FOUND" => Some(Self::NotFound),
+"INVALID" => Some(Self::Invalid),
+"VALID" => Some(Self::Valid),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRepositoriesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRepositoriesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub repositories: ::prost::alloc::vec::Vec<Repository>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub repositories: ::prost::alloc::vec::Vec<Repository>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRepositoryRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateRepositoryRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub repository: ::core::option::Option<Repository>,
-    #[prost(string, tag = "3")]
-    pub repository_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub repository: ::core::option::Option<Repository>,
+#[prost(string, tag = "3")]
+pub repository_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRepositoryRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub repository: ::core::option::Option<Repository>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub repository: ::core::option::Option<Repository>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRepositoryRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchRemoteBranchesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchRemoteBranchesResponse {
-    #[prost(string, repeated, tag = "1")]
-    pub branches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub branches: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Workspace {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkspacesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkspacesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub workspaces: ::prost::alloc::vec::Vec<Workspace>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub workspaces: ::prost::alloc::vec::Vec<Workspace>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkspaceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkspaceRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub workspace: ::core::option::Option<Workspace>,
-    #[prost(string, tag = "3")]
-    pub workspace_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub workspace: ::core::option::Option<Workspace>,
+#[prost(string, tag = "3")]
+pub workspace_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteWorkspaceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitAuthor {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub email_address: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub email_address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PullGitCommitsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub remote_branch: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub author: ::core::option::Option<CommitAuthor>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub remote_branch: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub author: ::core::option::Option<CommitAuthor>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PushGitCommitsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub remote_branch: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub remote_branch: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchFileGitStatusesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchFileGitStatusesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub uncommitted_file_changes: ::prost::alloc::vec::Vec<
-        fetch_file_git_statuses_response::UncommittedFileChange,
-    >,
+#[prost(message, repeated, tag = "1")]
+pub uncommitted_file_changes: ::prost::alloc::vec::Vec<fetch_file_git_statuses_response::UncommittedFileChange>,
 }
 /// Nested message and enum types in `FetchFileGitStatusesResponse`.
 pub mod fetch_file_git_statuses_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct UncommittedFileChange {
-        #[prost(string, tag = "1")]
-        pub path: ::prost::alloc::string::String,
-        #[prost(enumeration = "uncommitted_file_change::State", tag = "2")]
-        pub state: i32,
-    }
-    /// Nested message and enum types in `UncommittedFileChange`.
-    pub mod uncommitted_file_change {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum State {
-            Unspecified = 0,
-            Added = 1,
-            Deleted = 2,
-            Modified = 3,
-            HasConflicts = 4,
-        }
-        impl State {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Added => "ADDED",
-                    State::Deleted => "DELETED",
-                    State::Modified => "MODIFIED",
-                    State::HasConflicts => "HAS_CONFLICTS",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "ADDED" => Some(Self::Added),
-                    "DELETED" => Some(Self::Deleted),
-                    "MODIFIED" => Some(Self::Modified),
-                    "HAS_CONFLICTS" => Some(Self::HasConflicts),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UncommittedFileChange {
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(enumeration = "uncommitted_file_change::State", tag = "2")]
+pub state: i32,
+}
+/// Nested message and enum types in `UncommittedFileChange`.
+pub mod uncommitted_file_change {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Added = 1,
+Deleted = 2,
+Modified = 3,
+HasConflicts = 4,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Added => "ADDED",
+State::Deleted => "DELETED",
+State::Modified => "MODIFIED",
+State::HasConflicts => "HAS_CONFLICTS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ADDED" => Some(Self::Added),
+"DELETED" => Some(Self::Deleted),
+"MODIFIED" => Some(Self::Modified),
+"HAS_CONFLICTS" => Some(Self::HasConflicts),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchGitAheadBehindRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub remote_branch: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub remote_branch: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FetchGitAheadBehindResponse {
-    #[prost(int32, tag = "1")]
-    pub commits_ahead: i32,
-    #[prost(int32, tag = "2")]
-    pub commits_behind: i32,
+#[prost(int32, tag = "1")]
+pub commits_ahead: i32,
+#[prost(int32, tag = "2")]
+pub commits_behind: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommitWorkspaceChangesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub author: ::core::option::Option<CommitAuthor>,
-    #[prost(string, tag = "2")]
-    pub commit_message: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub paths: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub author: ::core::option::Option<CommitAuthor>,
+#[prost(string, tag = "2")]
+pub commit_message: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub paths: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResetWorkspaceChangesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub paths: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(bool, tag = "3")]
-    pub clean: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub paths: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "3")]
+pub clean: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchFileDiffRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchFileDiffResponse {
-    #[prost(string, tag = "1")]
-    pub formatted_diff: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub formatted_diff: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryDirectoryContentsRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryDirectoryContentsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub directory_entries: ::prost::alloc::vec::Vec<
-        query_directory_contents_response::DirectoryEntry,
-    >,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub directory_entries: ::prost::alloc::vec::Vec<query_directory_contents_response::DirectoryEntry>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `QueryDirectoryContentsResponse`.
 pub mod query_directory_contents_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DirectoryEntry {
-        #[prost(oneof = "directory_entry::Entry", tags = "1, 2")]
-        pub entry: ::core::option::Option<directory_entry::Entry>,
-    }
-    /// Nested message and enum types in `DirectoryEntry`.
-    pub mod directory_entry {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Entry {
-            #[prost(string, tag = "1")]
-            File(::prost::alloc::string::String),
-            #[prost(string, tag = "2")]
-            Directory(::prost::alloc::string::String),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DirectoryEntry {
+#[prost(oneof = "directory_entry::Entry", tags = "1, 2")]
+pub entry: ::core::option::Option<directory_entry::Entry>,
+}
+/// Nested message and enum types in `DirectoryEntry`.
+pub mod directory_entry {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Entry {
+#[prost(string, tag = "1")]
+File(::prost::alloc::string::String),
+#[prost(string, tag = "2")]
+Directory(::prost::alloc::string::String),
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MakeDirectoryRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -394,20 +370,20 @@ pub struct MakeDirectoryResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveDirectoryRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MoveDirectoryRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub new_path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub new_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -415,34 +391,34 @@ pub struct MoveDirectoryResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadFileRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadFileResponse {
-    #[prost(bytes = "vec", tag = "1")]
-    pub file_contents: ::prost::alloc::vec::Vec<u8>,
+#[prost(bytes = "vec", tag = "1")]
+pub file_contents: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoveFileRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MoveFileRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub new_path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub new_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -450,12 +426,12 @@ pub struct MoveFileResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WriteFileRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "3")]
-    pub contents: ::prost::alloc::vec::Vec<u8>,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub path: ::prost::alloc::string::String,
+#[prost(bytes = "vec", tag = "3")]
+pub contents: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -463,8 +439,8 @@ pub struct WriteFileResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstallNpmPackagesRequest {
-    #[prost(string, tag = "1")]
-    pub workspace: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub workspace: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -472,1705 +448,887 @@ pub struct InstallNpmPackagesResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CompilationResult {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub code_compilation_config: ::core::option::Option<
-        compilation_result::CodeCompilationConfig,
-    >,
-    #[prost(string, tag = "5")]
-    pub dataform_core_version: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "6")]
-    pub compilation_errors: ::prost::alloc::vec::Vec<
-        compilation_result::CompilationError,
-    >,
-    #[prost(oneof = "compilation_result::Source", tags = "2, 3")]
-    pub source: ::core::option::Option<compilation_result::Source>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub code_compilation_config: ::core::option::Option<compilation_result::CodeCompilationConfig>,
+#[prost(string, tag = "5")]
+pub dataform_core_version: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "6")]
+pub compilation_errors: ::prost::alloc::vec::Vec<compilation_result::CompilationError>,
+#[prost(oneof = "compilation_result::Source", tags = "2, 3")]
+pub source: ::core::option::Option<compilation_result::Source>,
 }
 /// Nested message and enum types in `CompilationResult`.
 pub mod compilation_result {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CodeCompilationConfig {
-        #[prost(string, tag = "1")]
-        pub default_database: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub default_schema: ::prost::alloc::string::String,
-        #[prost(string, tag = "8")]
-        pub default_location: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub assertion_schema: ::prost::alloc::string::String,
-        #[prost(map = "string, string", tag = "4")]
-        pub vars: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, tag = "5")]
-        pub database_suffix: ::prost::alloc::string::String,
-        #[prost(string, tag = "6")]
-        pub schema_suffix: ::prost::alloc::string::String,
-        #[prost(string, tag = "7")]
-        pub table_prefix: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CompilationError {
-        #[prost(string, tag = "1")]
-        pub message: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub stack: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub path: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "4")]
-        pub action_target: ::core::option::Option<super::Target>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(string, tag = "2")]
-        GitCommitish(::prost::alloc::string::String),
-        #[prost(string, tag = "3")]
-        Workspace(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CodeCompilationConfig {
+#[prost(string, tag = "1")]
+pub default_database: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub default_schema: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub default_location: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub assertion_schema: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "4")]
+pub vars: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub database_suffix: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub schema_suffix: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub table_prefix: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CompilationError {
+#[prost(string, tag = "1")]
+pub message: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub stack: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub path: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub action_target: ::core::option::Option<super::Target>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(string, tag = "2")]
+GitCommitish(::prost::alloc::string::String),
+#[prost(string, tag = "3")]
+Workspace(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCompilationResultsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCompilationResultsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub compilation_results: ::prost::alloc::vec::Vec<CompilationResult>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub compilation_results: ::prost::alloc::vec::Vec<CompilationResult>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCompilationResultRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCompilationResultRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub compilation_result: ::core::option::Option<CompilationResult>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub compilation_result: ::core::option::Option<CompilationResult>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Target {
-    #[prost(string, tag = "1")]
-    pub database: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub schema: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub database: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub schema: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelationDescriptor {
-    #[prost(string, tag = "1")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub columns: ::prost::alloc::vec::Vec<relation_descriptor::ColumnDescriptor>,
-    #[prost(map = "string, string", tag = "3")]
-    pub bigquery_labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub columns: ::prost::alloc::vec::Vec<relation_descriptor::ColumnDescriptor>,
+#[prost(map = "string, string", tag = "3")]
+pub bigquery_labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `RelationDescriptor`.
 pub mod relation_descriptor {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ColumnDescriptor {
-        #[prost(string, repeated, tag = "1")]
-        pub path: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, tag = "2")]
-        pub description: ::prost::alloc::string::String,
-        #[prost(string, repeated, tag = "3")]
-        pub bigquery_policy_tags: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ColumnDescriptor {
+#[prost(string, repeated, tag = "1")]
+pub path: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub bigquery_policy_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CompilationResultAction {
-    #[prost(message, optional, tag = "1")]
-    pub target: ::core::option::Option<Target>,
-    #[prost(message, optional, tag = "2")]
-    pub canonical_target: ::core::option::Option<Target>,
-    #[prost(string, tag = "3")]
-    pub file_path: ::prost::alloc::string::String,
-    #[prost(oneof = "compilation_result_action::CompiledObject", tags = "4, 5, 6, 7")]
-    pub compiled_object: ::core::option::Option<
-        compilation_result_action::CompiledObject,
-    >,
+#[prost(message, optional, tag = "1")]
+pub target: ::core::option::Option<Target>,
+#[prost(message, optional, tag = "2")]
+pub canonical_target: ::core::option::Option<Target>,
+#[prost(string, tag = "3")]
+pub file_path: ::prost::alloc::string::String,
+#[prost(oneof = "compilation_result_action::CompiledObject", tags = "4, 5, 6, 7")]
+pub compiled_object: ::core::option::Option<compilation_result_action::CompiledObject>,
 }
 /// Nested message and enum types in `CompilationResultAction`.
 pub mod compilation_result_action {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Relation {
-        #[prost(message, repeated, tag = "1")]
-        pub dependency_targets: ::prost::alloc::vec::Vec<super::Target>,
-        #[prost(bool, tag = "2")]
-        pub disabled: bool,
-        #[prost(string, repeated, tag = "3")]
-        pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(message, optional, tag = "4")]
-        pub relation_descriptor: ::core::option::Option<super::RelationDescriptor>,
-        #[prost(enumeration = "relation::RelationType", tag = "5")]
-        pub relation_type: i32,
-        #[prost(string, tag = "6")]
-        pub select_query: ::prost::alloc::string::String,
-        #[prost(string, repeated, tag = "7")]
-        pub pre_operations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "8")]
-        pub post_operations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(message, optional, tag = "9")]
-        pub incremental_table_config: ::core::option::Option<
-            relation::IncrementalTableConfig,
-        >,
-        #[prost(string, tag = "10")]
-        pub partition_expression: ::prost::alloc::string::String,
-        #[prost(string, repeated, tag = "11")]
-        pub cluster_expressions: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-        #[prost(int32, tag = "12")]
-        pub partition_expiration_days: i32,
-        #[prost(bool, tag = "13")]
-        pub require_partition_filter: bool,
-        #[prost(map = "string, string", tag = "14")]
-        pub additional_options: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-    }
-    /// Nested message and enum types in `Relation`.
-    pub mod relation {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct IncrementalTableConfig {
-            #[prost(string, tag = "1")]
-            pub incremental_select_query: ::prost::alloc::string::String,
-            #[prost(bool, tag = "2")]
-            pub refresh_disabled: bool,
-            #[prost(string, repeated, tag = "3")]
-            pub unique_key_parts: ::prost::alloc::vec::Vec<
-                ::prost::alloc::string::String,
-            >,
-            #[prost(string, tag = "4")]
-            pub update_partition_filter: ::prost::alloc::string::String,
-            #[prost(string, repeated, tag = "5")]
-            pub incremental_pre_operations: ::prost::alloc::vec::Vec<
-                ::prost::alloc::string::String,
-            >,
-            #[prost(string, repeated, tag = "6")]
-            pub incremental_post_operations: ::prost::alloc::vec::Vec<
-                ::prost::alloc::string::String,
-            >,
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum RelationType {
-            Unspecified = 0,
-            Table = 1,
-            View = 2,
-            IncrementalTable = 3,
-            MaterializedView = 4,
-        }
-        impl RelationType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    RelationType::Unspecified => "RELATION_TYPE_UNSPECIFIED",
-                    RelationType::Table => "TABLE",
-                    RelationType::View => "VIEW",
-                    RelationType::IncrementalTable => "INCREMENTAL_TABLE",
-                    RelationType::MaterializedView => "MATERIALIZED_VIEW",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "RELATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "TABLE" => Some(Self::Table),
-                    "VIEW" => Some(Self::View),
-                    "INCREMENTAL_TABLE" => Some(Self::IncrementalTable),
-                    "MATERIALIZED_VIEW" => Some(Self::MaterializedView),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Operations {
-        #[prost(message, repeated, tag = "1")]
-        pub dependency_targets: ::prost::alloc::vec::Vec<super::Target>,
-        #[prost(bool, tag = "2")]
-        pub disabled: bool,
-        #[prost(string, repeated, tag = "3")]
-        pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(message, optional, tag = "6")]
-        pub relation_descriptor: ::core::option::Option<super::RelationDescriptor>,
-        #[prost(string, repeated, tag = "4")]
-        pub queries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(bool, tag = "5")]
-        pub has_output: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Assertion {
-        #[prost(message, repeated, tag = "1")]
-        pub dependency_targets: ::prost::alloc::vec::Vec<super::Target>,
-        #[prost(message, optional, tag = "5")]
-        pub parent_action: ::core::option::Option<super::Target>,
-        #[prost(bool, tag = "2")]
-        pub disabled: bool,
-        #[prost(string, repeated, tag = "3")]
-        pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, tag = "4")]
-        pub select_query: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "6")]
-        pub relation_descriptor: ::core::option::Option<super::RelationDescriptor>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Declaration {
-        #[prost(message, optional, tag = "1")]
-        pub relation_descriptor: ::core::option::Option<super::RelationDescriptor>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum CompiledObject {
-        #[prost(message, tag = "4")]
-        Relation(Relation),
-        #[prost(message, tag = "5")]
-        Operations(Operations),
-        #[prost(message, tag = "6")]
-        Assertion(Assertion),
-        #[prost(message, tag = "7")]
-        Declaration(Declaration),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Relation {
+#[prost(message, repeated, tag = "1")]
+pub dependency_targets: ::prost::alloc::vec::Vec<super::Target>,
+#[prost(bool, tag = "2")]
+pub disabled: bool,
+#[prost(string, repeated, tag = "3")]
+pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "4")]
+pub relation_descriptor: ::core::option::Option<super::RelationDescriptor>,
+#[prost(enumeration = "relation::RelationType", tag = "5")]
+pub relation_type: i32,
+#[prost(string, tag = "6")]
+pub select_query: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "7")]
+pub pre_operations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "8")]
+pub post_operations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "9")]
+pub incremental_table_config: ::core::option::Option<relation::IncrementalTableConfig>,
+#[prost(string, tag = "10")]
+pub partition_expression: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "11")]
+pub cluster_expressions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, tag = "12")]
+pub partition_expiration_days: i32,
+#[prost(bool, tag = "13")]
+pub require_partition_filter: bool,
+#[prost(map = "string, string", tag = "14")]
+pub additional_options: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `Relation`.
+pub mod relation {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IncrementalTableConfig {
+#[prost(string, tag = "1")]
+pub incremental_select_query: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub refresh_disabled: bool,
+#[prost(string, repeated, tag = "3")]
+pub unique_key_parts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub update_partition_filter: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "5")]
+pub incremental_pre_operations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "6")]
+pub incremental_post_operations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RelationType {
+Unspecified = 0,
+Table = 1,
+View = 2,
+IncrementalTable = 3,
+MaterializedView = 4,
+}
+impl RelationType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RelationType::Unspecified => "RELATION_TYPE_UNSPECIFIED",
+RelationType::Table => "TABLE",
+RelationType::View => "VIEW",
+RelationType::IncrementalTable => "INCREMENTAL_TABLE",
+RelationType::MaterializedView => "MATERIALIZED_VIEW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RELATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"TABLE" => Some(Self::Table),
+"VIEW" => Some(Self::View),
+"INCREMENTAL_TABLE" => Some(Self::IncrementalTable),
+"MATERIALIZED_VIEW" => Some(Self::MaterializedView),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Operations {
+#[prost(message, repeated, tag = "1")]
+pub dependency_targets: ::prost::alloc::vec::Vec<super::Target>,
+#[prost(bool, tag = "2")]
+pub disabled: bool,
+#[prost(string, repeated, tag = "3")]
+pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "6")]
+pub relation_descriptor: ::core::option::Option<super::RelationDescriptor>,
+#[prost(string, repeated, tag = "4")]
+pub queries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "5")]
+pub has_output: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Assertion {
+#[prost(message, repeated, tag = "1")]
+pub dependency_targets: ::prost::alloc::vec::Vec<super::Target>,
+#[prost(message, optional, tag = "5")]
+pub parent_action: ::core::option::Option<super::Target>,
+#[prost(bool, tag = "2")]
+pub disabled: bool,
+#[prost(string, repeated, tag = "3")]
+pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub select_query: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "6")]
+pub relation_descriptor: ::core::option::Option<super::RelationDescriptor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Declaration {
+#[prost(message, optional, tag = "1")]
+pub relation_descriptor: ::core::option::Option<super::RelationDescriptor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum CompiledObject {
+#[prost(message, tag = "4")]
+Relation(Relation),
+#[prost(message, tag = "5")]
+Operations(Operations),
+#[prost(message, tag = "6")]
+Assertion(Assertion),
+#[prost(message, tag = "7")]
+Declaration(Declaration),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryCompilationResultActionsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryCompilationResultActionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub compilation_result_actions: ::prost::alloc::vec::Vec<CompilationResultAction>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub compilation_result_actions: ::prost::alloc::vec::Vec<CompilationResultAction>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkflowInvocation {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub compilation_result: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub invocation_config: ::core::option::Option<workflow_invocation::InvocationConfig>,
-    #[prost(enumeration = "workflow_invocation::State", tag = "4")]
-    pub state: i32,
-    #[prost(message, optional, tag = "5")]
-    pub invocation_timing: ::core::option::Option<super::super::super::r#type::Interval>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub compilation_result: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub invocation_config: ::core::option::Option<workflow_invocation::InvocationConfig>,
+#[prost(enumeration = "workflow_invocation::State", tag = "4")]
+pub state: i32,
+#[prost(message, optional, tag = "5")]
+pub invocation_timing: ::core::option::Option<super::super::super::r#type::Interval>,
 }
 /// Nested message and enum types in `WorkflowInvocation`.
 pub mod workflow_invocation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct InvocationConfig {
-        #[prost(message, repeated, tag = "1")]
-        pub included_targets: ::prost::alloc::vec::Vec<super::Target>,
-        #[prost(string, repeated, tag = "2")]
-        pub included_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(bool, tag = "3")]
-        pub transitive_dependencies_included: bool,
-        #[prost(bool, tag = "4")]
-        pub transitive_dependents_included: bool,
-        #[prost(bool, tag = "5")]
-        pub fully_refresh_incremental_tables_enabled: bool,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Running = 1,
-        Succeeded = 2,
-        Cancelled = 3,
-        Failed = 4,
-        Canceling = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Cancelled => "CANCELLED",
-                State::Failed => "FAILED",
-                State::Canceling => "CANCELING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "RUNNING" => Some(Self::Running),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "CANCELLED" => Some(Self::Cancelled),
-                "FAILED" => Some(Self::Failed),
-                "CANCELING" => Some(Self::Canceling),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InvocationConfig {
+#[prost(message, repeated, tag = "1")]
+pub included_targets: ::prost::alloc::vec::Vec<super::Target>,
+#[prost(string, repeated, tag = "2")]
+pub included_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "3")]
+pub transitive_dependencies_included: bool,
+#[prost(bool, tag = "4")]
+pub transitive_dependents_included: bool,
+#[prost(bool, tag = "5")]
+pub fully_refresh_incremental_tables_enabled: bool,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Running = 1,
+Succeeded = 2,
+Cancelled = 3,
+Failed = 4,
+Canceling = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Running => "RUNNING",
+State::Succeeded => "SUCCEEDED",
+State::Cancelled => "CANCELLED",
+State::Failed => "FAILED",
+State::Canceling => "CANCELING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"RUNNING" => Some(Self::Running),
+"SUCCEEDED" => Some(Self::Succeeded),
+"CANCELLED" => Some(Self::Cancelled),
+"FAILED" => Some(Self::Failed),
+"CANCELING" => Some(Self::Canceling),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkflowInvocationsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkflowInvocationsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub workflow_invocations: ::prost::alloc::vec::Vec<WorkflowInvocation>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub workflow_invocations: ::prost::alloc::vec::Vec<WorkflowInvocation>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkflowInvocationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkflowInvocationRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub workflow_invocation: ::core::option::Option<WorkflowInvocation>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub workflow_invocation: ::core::option::Option<WorkflowInvocation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteWorkflowInvocationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelWorkflowInvocationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkflowInvocationAction {
-    #[prost(message, optional, tag = "1")]
-    pub target: ::core::option::Option<Target>,
-    #[prost(message, optional, tag = "2")]
-    pub canonical_target: ::core::option::Option<Target>,
-    #[prost(enumeration = "workflow_invocation_action::State", tag = "4")]
-    pub state: i32,
-    #[prost(string, tag = "7")]
-    pub failure_reason: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub invocation_timing: ::core::option::Option<super::super::super::r#type::Interval>,
-    #[prost(message, optional, tag = "6")]
-    pub bigquery_action: ::core::option::Option<
-        workflow_invocation_action::BigQueryAction,
-    >,
+#[prost(message, optional, tag = "1")]
+pub target: ::core::option::Option<Target>,
+#[prost(message, optional, tag = "2")]
+pub canonical_target: ::core::option::Option<Target>,
+#[prost(enumeration = "workflow_invocation_action::State", tag = "4")]
+pub state: i32,
+#[prost(string, tag = "7")]
+pub failure_reason: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub invocation_timing: ::core::option::Option<super::super::super::r#type::Interval>,
+#[prost(message, optional, tag = "6")]
+pub bigquery_action: ::core::option::Option<workflow_invocation_action::BigQueryAction>,
 }
 /// Nested message and enum types in `WorkflowInvocationAction`.
 pub mod workflow_invocation_action {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct BigQueryAction {
-        #[prost(string, tag = "1")]
-        pub sql_script: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Pending = 0,
-        Running = 1,
-        Skipped = 2,
-        Disabled = 3,
-        Succeeded = 4,
-        Cancelled = 5,
-        Failed = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Skipped => "SKIPPED",
-                State::Disabled => "DISABLED",
-                State::Succeeded => "SUCCEEDED",
-                State::Cancelled => "CANCELLED",
-                State::Failed => "FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PENDING" => Some(Self::Pending),
-                "RUNNING" => Some(Self::Running),
-                "SKIPPED" => Some(Self::Skipped),
-                "DISABLED" => Some(Self::Disabled),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "CANCELLED" => Some(Self::Cancelled),
-                "FAILED" => Some(Self::Failed),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BigQueryAction {
+#[prost(string, tag = "1")]
+pub sql_script: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Pending = 0,
+Running = 1,
+Skipped = 2,
+Disabled = 3,
+Succeeded = 4,
+Cancelled = 5,
+Failed = 6,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Pending => "PENDING",
+State::Running => "RUNNING",
+State::Skipped => "SKIPPED",
+State::Disabled => "DISABLED",
+State::Succeeded => "SUCCEEDED",
+State::Cancelled => "CANCELLED",
+State::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PENDING" => Some(Self::Pending),
+"RUNNING" => Some(Self::Running),
+"SKIPPED" => Some(Self::Skipped),
+"DISABLED" => Some(Self::Disabled),
+"SUCCEEDED" => Some(Self::Succeeded),
+"CANCELLED" => Some(Self::Cancelled),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryWorkflowInvocationActionsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryWorkflowInvocationActionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub workflow_invocation_actions: ::prost::alloc::vec::Vec<WorkflowInvocationAction>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub workflow_invocation_actions: ::prost::alloc::vec::Vec<WorkflowInvocationAction>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod dataform_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Dataform is a service to develop, create, document, test, and update curated
-    /// tables in BigQuery.
-    #[derive(Debug, Clone)]
-    pub struct DataformClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> DataformClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> DataformClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            DataformClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists Repositories in a given project and location.
-        pub async fn list_repositories(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRepositoriesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRepositoriesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/ListRepositories",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "ListRepositories",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches a single Repository.
-        pub async fn get_repository(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRepositoryRequest>,
-        ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/GetRepository",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "GetRepository",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Repository in a given project and location.
-        pub async fn create_repository(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateRepositoryRequest>,
-        ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/CreateRepository",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "CreateRepository",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a single Repository.
-        pub async fn update_repository(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateRepositoryRequest>,
-        ) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/UpdateRepository",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "UpdateRepository",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single Repository.
-        pub async fn delete_repository(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteRepositoryRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/DeleteRepository",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "DeleteRepository",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches a Repository's remote branches.
-        pub async fn fetch_remote_branches(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchRemoteBranchesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FetchRemoteBranchesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/FetchRemoteBranches",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "FetchRemoteBranches",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Workspaces in a given Repository.
-        pub async fn list_workspaces(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListWorkspacesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListWorkspacesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/ListWorkspaces",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "ListWorkspaces",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches a single Workspace.
-        pub async fn get_workspace(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetWorkspaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Workspace>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/GetWorkspace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "GetWorkspace",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Workspace in a given Repository.
-        pub async fn create_workspace(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateWorkspaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Workspace>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/CreateWorkspace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "CreateWorkspace",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single Workspace.
-        pub async fn delete_workspace(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteWorkspaceRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/DeleteWorkspace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "DeleteWorkspace",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Installs dependency NPM packages (inside a Workspace).
-        pub async fn install_npm_packages(
-            &mut self,
-            request: impl tonic::IntoRequest<super::InstallNpmPackagesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::InstallNpmPackagesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/InstallNpmPackages",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "InstallNpmPackages",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Pulls Git commits from the Repository's remote into a Workspace.
-        pub async fn pull_git_commits(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PullGitCommitsRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/PullGitCommits",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "PullGitCommits",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Pushes Git commits from a Workspace to the Repository's remote.
-        pub async fn push_git_commits(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PushGitCommitsRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/PushGitCommits",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "PushGitCommits",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches Git statuses for the files in a Workspace.
-        pub async fn fetch_file_git_statuses(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchFileGitStatusesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FetchFileGitStatusesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/FetchFileGitStatuses",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "FetchFileGitStatuses",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches Git ahead/behind against a remote branch.
-        pub async fn fetch_git_ahead_behind(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchGitAheadBehindRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FetchGitAheadBehindResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/FetchGitAheadBehind",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "FetchGitAheadBehind",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Applies a Git commit for uncommitted files in a Workspace.
-        pub async fn commit_workspace_changes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CommitWorkspaceChangesRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/CommitWorkspaceChanges",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "CommitWorkspaceChanges",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Performs a Git reset for uncommitted files in a Workspace.
-        pub async fn reset_workspace_changes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ResetWorkspaceChangesRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/ResetWorkspaceChanges",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "ResetWorkspaceChanges",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches Git diff for an uncommitted file in a Workspace.
-        pub async fn fetch_file_diff(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchFileDiffRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FetchFileDiffResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/FetchFileDiff",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "FetchFileDiff",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the contents of a given Workspace directory.
-        pub async fn query_directory_contents(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryDirectoryContentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryDirectoryContentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/QueryDirectoryContents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "QueryDirectoryContents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a directory inside a Workspace.
-        pub async fn make_directory(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MakeDirectoryRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::MakeDirectoryResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/MakeDirectory",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "MakeDirectory",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a directory (inside a Workspace) and all of its contents.
-        pub async fn remove_directory(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RemoveDirectoryRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/RemoveDirectory",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "RemoveDirectory",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Moves a directory (inside a Workspace), and all of its contents, to a new
-        /// location.
-        pub async fn move_directory(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MoveDirectoryRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::MoveDirectoryResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/MoveDirectory",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "MoveDirectory",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the contents of a file (inside a Workspace).
-        pub async fn read_file(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ReadFileRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ReadFileResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/ReadFile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "ReadFile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a file (inside a Workspace).
-        pub async fn remove_file(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RemoveFileRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/RemoveFile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "RemoveFile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Moves a file (inside a Workspace) to a new location.
-        pub async fn move_file(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MoveFileRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::MoveFileResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/MoveFile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "MoveFile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Writes to a file (inside a Workspace).
-        pub async fn write_file(
-            &mut self,
-            request: impl tonic::IntoRequest<super::WriteFileRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::WriteFileResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/WriteFile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "WriteFile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists CompilationResults in a given Repository.
-        pub async fn list_compilation_results(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCompilationResultsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCompilationResultsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/ListCompilationResults",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "ListCompilationResults",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches a single CompilationResult.
-        pub async fn get_compilation_result(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCompilationResultRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CompilationResult>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/GetCompilationResult",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "GetCompilationResult",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new CompilationResult in a given project and location.
-        pub async fn create_compilation_result(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCompilationResultRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CompilationResult>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/CreateCompilationResult",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "CreateCompilationResult",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns CompilationResultActions in a given CompilationResult.
-        pub async fn query_compilation_result_actions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryCompilationResultActionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryCompilationResultActionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/QueryCompilationResultActions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "QueryCompilationResultActions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists WorkflowInvocations in a given Repository.
-        pub async fn list_workflow_invocations(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListWorkflowInvocationsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListWorkflowInvocationsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/ListWorkflowInvocations",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "ListWorkflowInvocations",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches a single WorkflowInvocation.
-        pub async fn get_workflow_invocation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetWorkflowInvocationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::WorkflowInvocation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/GetWorkflowInvocation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "GetWorkflowInvocation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new WorkflowInvocation in a given Repository.
-        pub async fn create_workflow_invocation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateWorkflowInvocationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::WorkflowInvocation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/CreateWorkflowInvocation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "CreateWorkflowInvocation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single WorkflowInvocation.
-        pub async fn delete_workflow_invocation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteWorkflowInvocationRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/DeleteWorkflowInvocation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "DeleteWorkflowInvocation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Requests cancellation of a running WorkflowInvocation.
-        pub async fn cancel_workflow_invocation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CancelWorkflowInvocationRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/CancelWorkflowInvocation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "CancelWorkflowInvocation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns WorkflowInvocationActions in a given WorkflowInvocation.
-        pub async fn query_workflow_invocation_actions(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::QueryWorkflowInvocationActionsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryWorkflowInvocationActionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.dataform.v1alpha2.Dataform/QueryWorkflowInvocationActions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.dataform.v1alpha2.Dataform",
-                        "QueryWorkflowInvocationActions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Dataform is a service to develop, create, document, test, and update curated
+/// tables in BigQuery.
+#[derive(Debug, Clone)]
+pub struct DataformClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> DataformClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> DataformClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+DataformClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists Repositories in a given project and location.
+pub async fn list_repositories(&mut self, request: impl tonic::IntoRequest<super::ListRepositoriesRequest>) -> std::result::Result<tonic::Response<super::ListRepositoriesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/ListRepositories");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "ListRepositories"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches a single Repository.
+pub async fn get_repository(&mut self, request: impl tonic::IntoRequest<super::GetRepositoryRequest>) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/GetRepository");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "GetRepository"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Repository in a given project and location.
+pub async fn create_repository(&mut self, request: impl tonic::IntoRequest<super::CreateRepositoryRequest>) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/CreateRepository");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "CreateRepository"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a single Repository.
+pub async fn update_repository(&mut self, request: impl tonic::IntoRequest<super::UpdateRepositoryRequest>) -> std::result::Result<tonic::Response<super::Repository>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/UpdateRepository");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "UpdateRepository"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single Repository.
+pub async fn delete_repository(&mut self, request: impl tonic::IntoRequest<super::DeleteRepositoryRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/DeleteRepository");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "DeleteRepository"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches a Repository's remote branches.
+pub async fn fetch_remote_branches(&mut self, request: impl tonic::IntoRequest<super::FetchRemoteBranchesRequest>) -> std::result::Result<tonic::Response<super::FetchRemoteBranchesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/FetchRemoteBranches");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "FetchRemoteBranches"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Workspaces in a given Repository.
+pub async fn list_workspaces(&mut self, request: impl tonic::IntoRequest<super::ListWorkspacesRequest>) -> std::result::Result<tonic::Response<super::ListWorkspacesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/ListWorkspaces");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "ListWorkspaces"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches a single Workspace.
+pub async fn get_workspace(&mut self, request: impl tonic::IntoRequest<super::GetWorkspaceRequest>) -> std::result::Result<tonic::Response<super::Workspace>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/GetWorkspace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "GetWorkspace"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Workspace in a given Repository.
+pub async fn create_workspace(&mut self, request: impl tonic::IntoRequest<super::CreateWorkspaceRequest>) -> std::result::Result<tonic::Response<super::Workspace>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/CreateWorkspace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "CreateWorkspace"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single Workspace.
+pub async fn delete_workspace(&mut self, request: impl tonic::IntoRequest<super::DeleteWorkspaceRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/DeleteWorkspace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "DeleteWorkspace"));
+self.inner.unary(req, path, codec).await
+}
+/// Installs dependency NPM packages (inside a Workspace).
+pub async fn install_npm_packages(&mut self, request: impl tonic::IntoRequest<super::InstallNpmPackagesRequest>) -> std::result::Result<tonic::Response<super::InstallNpmPackagesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/InstallNpmPackages");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "InstallNpmPackages"));
+self.inner.unary(req, path, codec).await
+}
+/// Pulls Git commits from the Repository's remote into a Workspace.
+pub async fn pull_git_commits(&mut self, request: impl tonic::IntoRequest<super::PullGitCommitsRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/PullGitCommits");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "PullGitCommits"));
+self.inner.unary(req, path, codec).await
+}
+/// Pushes Git commits from a Workspace to the Repository's remote.
+pub async fn push_git_commits(&mut self, request: impl tonic::IntoRequest<super::PushGitCommitsRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/PushGitCommits");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "PushGitCommits"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches Git statuses for the files in a Workspace.
+pub async fn fetch_file_git_statuses(&mut self, request: impl tonic::IntoRequest<super::FetchFileGitStatusesRequest>) -> std::result::Result<tonic::Response<super::FetchFileGitStatusesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/FetchFileGitStatuses");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "FetchFileGitStatuses"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches Git ahead/behind against a remote branch.
+pub async fn fetch_git_ahead_behind(&mut self, request: impl tonic::IntoRequest<super::FetchGitAheadBehindRequest>) -> std::result::Result<tonic::Response<super::FetchGitAheadBehindResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/FetchGitAheadBehind");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "FetchGitAheadBehind"));
+self.inner.unary(req, path, codec).await
+}
+/// Applies a Git commit for uncommitted files in a Workspace.
+pub async fn commit_workspace_changes(&mut self, request: impl tonic::IntoRequest<super::CommitWorkspaceChangesRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/CommitWorkspaceChanges");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "CommitWorkspaceChanges"));
+self.inner.unary(req, path, codec).await
+}
+/// Performs a Git reset for uncommitted files in a Workspace.
+pub async fn reset_workspace_changes(&mut self, request: impl tonic::IntoRequest<super::ResetWorkspaceChangesRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/ResetWorkspaceChanges");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "ResetWorkspaceChanges"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches Git diff for an uncommitted file in a Workspace.
+pub async fn fetch_file_diff(&mut self, request: impl tonic::IntoRequest<super::FetchFileDiffRequest>) -> std::result::Result<tonic::Response<super::FetchFileDiffResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/FetchFileDiff");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "FetchFileDiff"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the contents of a given Workspace directory.
+pub async fn query_directory_contents(&mut self, request: impl tonic::IntoRequest<super::QueryDirectoryContentsRequest>) -> std::result::Result<tonic::Response<super::QueryDirectoryContentsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/QueryDirectoryContents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "QueryDirectoryContents"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a directory inside a Workspace.
+pub async fn make_directory(&mut self, request: impl tonic::IntoRequest<super::MakeDirectoryRequest>) -> std::result::Result<tonic::Response<super::MakeDirectoryResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/MakeDirectory");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "MakeDirectory"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a directory (inside a Workspace) and all of its contents.
+pub async fn remove_directory(&mut self, request: impl tonic::IntoRequest<super::RemoveDirectoryRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/RemoveDirectory");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "RemoveDirectory"));
+self.inner.unary(req, path, codec).await
+}
+/// Moves a directory (inside a Workspace), and all of its contents, to a new
+/// location.
+pub async fn move_directory(&mut self, request: impl tonic::IntoRequest<super::MoveDirectoryRequest>) -> std::result::Result<tonic::Response<super::MoveDirectoryResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/MoveDirectory");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "MoveDirectory"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the contents of a file (inside a Workspace).
+pub async fn read_file(&mut self, request: impl tonic::IntoRequest<super::ReadFileRequest>) -> std::result::Result<tonic::Response<super::ReadFileResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/ReadFile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "ReadFile"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a file (inside a Workspace).
+pub async fn remove_file(&mut self, request: impl tonic::IntoRequest<super::RemoveFileRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/RemoveFile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "RemoveFile"));
+self.inner.unary(req, path, codec).await
+}
+/// Moves a file (inside a Workspace) to a new location.
+pub async fn move_file(&mut self, request: impl tonic::IntoRequest<super::MoveFileRequest>) -> std::result::Result<tonic::Response<super::MoveFileResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/MoveFile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "MoveFile"));
+self.inner.unary(req, path, codec).await
+}
+/// Writes to a file (inside a Workspace).
+pub async fn write_file(&mut self, request: impl tonic::IntoRequest<super::WriteFileRequest>) -> std::result::Result<tonic::Response<super::WriteFileResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/WriteFile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "WriteFile"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists CompilationResults in a given Repository.
+pub async fn list_compilation_results(&mut self, request: impl tonic::IntoRequest<super::ListCompilationResultsRequest>) -> std::result::Result<tonic::Response<super::ListCompilationResultsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/ListCompilationResults");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "ListCompilationResults"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches a single CompilationResult.
+pub async fn get_compilation_result(&mut self, request: impl tonic::IntoRequest<super::GetCompilationResultRequest>) -> std::result::Result<tonic::Response<super::CompilationResult>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/GetCompilationResult");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "GetCompilationResult"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new CompilationResult in a given project and location.
+pub async fn create_compilation_result(&mut self, request: impl tonic::IntoRequest<super::CreateCompilationResultRequest>) -> std::result::Result<tonic::Response<super::CompilationResult>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/CreateCompilationResult");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "CreateCompilationResult"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns CompilationResultActions in a given CompilationResult.
+pub async fn query_compilation_result_actions(&mut self, request: impl tonic::IntoRequest<super::QueryCompilationResultActionsRequest>) -> std::result::Result<tonic::Response<super::QueryCompilationResultActionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/QueryCompilationResultActions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "QueryCompilationResultActions"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists WorkflowInvocations in a given Repository.
+pub async fn list_workflow_invocations(&mut self, request: impl tonic::IntoRequest<super::ListWorkflowInvocationsRequest>) -> std::result::Result<tonic::Response<super::ListWorkflowInvocationsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/ListWorkflowInvocations");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "ListWorkflowInvocations"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches a single WorkflowInvocation.
+pub async fn get_workflow_invocation(&mut self, request: impl tonic::IntoRequest<super::GetWorkflowInvocationRequest>) -> std::result::Result<tonic::Response<super::WorkflowInvocation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/GetWorkflowInvocation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "GetWorkflowInvocation"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new WorkflowInvocation in a given Repository.
+pub async fn create_workflow_invocation(&mut self, request: impl tonic::IntoRequest<super::CreateWorkflowInvocationRequest>) -> std::result::Result<tonic::Response<super::WorkflowInvocation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/CreateWorkflowInvocation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "CreateWorkflowInvocation"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single WorkflowInvocation.
+pub async fn delete_workflow_invocation(&mut self, request: impl tonic::IntoRequest<super::DeleteWorkflowInvocationRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/DeleteWorkflowInvocation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "DeleteWorkflowInvocation"));
+self.inner.unary(req, path, codec).await
+}
+/// Requests cancellation of a running WorkflowInvocation.
+pub async fn cancel_workflow_invocation(&mut self, request: impl tonic::IntoRequest<super::CancelWorkflowInvocationRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/CancelWorkflowInvocation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "CancelWorkflowInvocation"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns WorkflowInvocationActions in a given WorkflowInvocation.
+pub async fn query_workflow_invocation_actions(&mut self, request: impl tonic::IntoRequest<super::QueryWorkflowInvocationActionsRequest>) -> std::result::Result<tonic::Response<super::QueryWorkflowInvocationActionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.dataform.v1alpha2.Dataform/QueryWorkflowInvocationActions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.dataform.v1alpha2.Dataform", "QueryWorkflowInvocationActions"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

@@ -2,18 +2,18 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_detail: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub cancel_requested: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_detail: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub cancel_requested: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
 }

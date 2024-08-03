@@ -2,10 +2,10 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GSuiteAddOnsLogEntry {
-    #[prost(string, tag = "1")]
-    pub deployment: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub error: ::core::option::Option<super::super::super::super::rpc::Status>,
-    #[prost(string, tag = "3")]
-    pub deployment_function: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub deployment: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub error: ::core::option::Option<super::super::super::super::rpc::Status>,
+#[prost(string, tag = "3")]
+pub deployment_function: ::prost::alloc::string::String,
 }

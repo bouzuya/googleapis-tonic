@@ -2,855 +2,622 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FormatMessage {
-    #[prost(string, tag = "1")]
-    pub format: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub parameters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub format: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub parameters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StatusMessage {
-    #[prost(bool, tag = "1")]
-    pub is_error: bool,
-    #[prost(enumeration = "status_message::Reference", tag = "2")]
-    pub refers_to: i32,
-    #[prost(message, optional, tag = "3")]
-    pub description: ::core::option::Option<FormatMessage>,
+#[prost(bool, tag = "1")]
+pub is_error: bool,
+#[prost(enumeration = "status_message::Reference", tag = "2")]
+pub refers_to: i32,
+#[prost(message, optional, tag = "3")]
+pub description: ::core::option::Option<FormatMessage>,
 }
 /// Nested message and enum types in `StatusMessage`.
 pub mod status_message {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Reference {
-        Unspecified = 0,
-        BreakpointSourceLocation = 3,
-        BreakpointCondition = 4,
-        BreakpointExpression = 7,
-        BreakpointAge = 8,
-        VariableName = 5,
-        VariableValue = 6,
-    }
-    impl Reference {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Reference::Unspecified => "UNSPECIFIED",
-                Reference::BreakpointSourceLocation => "BREAKPOINT_SOURCE_LOCATION",
-                Reference::BreakpointCondition => "BREAKPOINT_CONDITION",
-                Reference::BreakpointExpression => "BREAKPOINT_EXPRESSION",
-                Reference::BreakpointAge => "BREAKPOINT_AGE",
-                Reference::VariableName => "VARIABLE_NAME",
-                Reference::VariableValue => "VARIABLE_VALUE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "BREAKPOINT_SOURCE_LOCATION" => Some(Self::BreakpointSourceLocation),
-                "BREAKPOINT_CONDITION" => Some(Self::BreakpointCondition),
-                "BREAKPOINT_EXPRESSION" => Some(Self::BreakpointExpression),
-                "BREAKPOINT_AGE" => Some(Self::BreakpointAge),
-                "VARIABLE_NAME" => Some(Self::VariableName),
-                "VARIABLE_VALUE" => Some(Self::VariableValue),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reference {
+Unspecified = 0,
+BreakpointSourceLocation = 3,
+BreakpointCondition = 4,
+BreakpointExpression = 7,
+BreakpointAge = 8,
+VariableName = 5,
+VariableValue = 6,
+}
+impl Reference {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reference::Unspecified => "UNSPECIFIED",
+Reference::BreakpointSourceLocation => "BREAKPOINT_SOURCE_LOCATION",
+Reference::BreakpointCondition => "BREAKPOINT_CONDITION",
+Reference::BreakpointExpression => "BREAKPOINT_EXPRESSION",
+Reference::BreakpointAge => "BREAKPOINT_AGE",
+Reference::VariableName => "VARIABLE_NAME",
+Reference::VariableValue => "VARIABLE_VALUE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED" => Some(Self::Unspecified),
+"BREAKPOINT_SOURCE_LOCATION" => Some(Self::BreakpointSourceLocation),
+"BREAKPOINT_CONDITION" => Some(Self::BreakpointCondition),
+"BREAKPOINT_EXPRESSION" => Some(Self::BreakpointExpression),
+"BREAKPOINT_AGE" => Some(Self::BreakpointAge),
+"VARIABLE_NAME" => Some(Self::VariableName),
+"VARIABLE_VALUE" => Some(Self::VariableValue),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourceLocation {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub line: i32,
-    #[prost(int32, tag = "3")]
-    pub column: i32,
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub line: i32,
+#[prost(int32, tag = "3")]
+pub column: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Variable {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub value: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub members: ::prost::alloc::vec::Vec<Variable>,
-    #[prost(message, optional, tag = "4")]
-    pub var_table_index: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "5")]
-    pub status: ::core::option::Option<StatusMessage>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub members: ::prost::alloc::vec::Vec<Variable>,
+#[prost(message, optional, tag = "4")]
+pub var_table_index: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "5")]
+pub status: ::core::option::Option<StatusMessage>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StackFrame {
-    #[prost(string, tag = "1")]
-    pub function: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub location: ::core::option::Option<SourceLocation>,
-    #[prost(message, repeated, tag = "3")]
-    pub arguments: ::prost::alloc::vec::Vec<Variable>,
-    #[prost(message, repeated, tag = "4")]
-    pub locals: ::prost::alloc::vec::Vec<Variable>,
+#[prost(string, tag = "1")]
+pub function: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub location: ::core::option::Option<SourceLocation>,
+#[prost(message, repeated, tag = "3")]
+pub arguments: ::prost::alloc::vec::Vec<Variable>,
+#[prost(message, repeated, tag = "4")]
+pub locals: ::prost::alloc::vec::Vec<Variable>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Breakpoint {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(enumeration = "breakpoint::Action", tag = "13")]
-    pub action: i32,
-    #[prost(message, optional, tag = "2")]
-    pub location: ::core::option::Option<SourceLocation>,
-    #[prost(string, tag = "3")]
-    pub condition: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "4")]
-    pub expressions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "14")]
-    pub log_message_format: ::prost::alloc::string::String,
-    #[prost(enumeration = "breakpoint::LogLevel", tag = "15")]
-    pub log_level: i32,
-    #[prost(bool, tag = "5")]
-    pub is_final_state: bool,
-    #[prost(message, optional, tag = "11")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "12")]
-    pub final_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "16")]
-    pub user_email: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub status: ::core::option::Option<StatusMessage>,
-    #[prost(message, repeated, tag = "7")]
-    pub stack_frames: ::prost::alloc::vec::Vec<StackFrame>,
-    #[prost(message, repeated, tag = "8")]
-    pub evaluated_expressions: ::prost::alloc::vec::Vec<Variable>,
-    #[prost(message, repeated, tag = "9")]
-    pub variable_table: ::prost::alloc::vec::Vec<Variable>,
-    #[prost(map = "string, string", tag = "17")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(enumeration = "breakpoint::Action", tag = "13")]
+pub action: i32,
+#[prost(message, optional, tag = "2")]
+pub location: ::core::option::Option<SourceLocation>,
+#[prost(string, tag = "3")]
+pub condition: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "4")]
+pub expressions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "14")]
+pub log_message_format: ::prost::alloc::string::String,
+#[prost(enumeration = "breakpoint::LogLevel", tag = "15")]
+pub log_level: i32,
+#[prost(bool, tag = "5")]
+pub is_final_state: bool,
+#[prost(message, optional, tag = "11")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "12")]
+pub final_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "16")]
+pub user_email: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub status: ::core::option::Option<StatusMessage>,
+#[prost(message, repeated, tag = "7")]
+pub stack_frames: ::prost::alloc::vec::Vec<StackFrame>,
+#[prost(message, repeated, tag = "8")]
+pub evaluated_expressions: ::prost::alloc::vec::Vec<Variable>,
+#[prost(message, repeated, tag = "9")]
+pub variable_table: ::prost::alloc::vec::Vec<Variable>,
+#[prost(map = "string, string", tag = "17")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `Breakpoint`.
 pub mod breakpoint {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Action {
-        Capture = 0,
-        Log = 1,
-    }
-    impl Action {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Action::Capture => "CAPTURE",
-                Action::Log => "LOG",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CAPTURE" => Some(Self::Capture),
-                "LOG" => Some(Self::Log),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum LogLevel {
-        Info = 0,
-        Warning = 1,
-        Error = 2,
-    }
-    impl LogLevel {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                LogLevel::Info => "INFO",
-                LogLevel::Warning => "WARNING",
-                LogLevel::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INFO" => Some(Self::Info),
-                "WARNING" => Some(Self::Warning),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Action {
+Capture = 0,
+Log = 1,
+}
+impl Action {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Action::Capture => "CAPTURE",
+Action::Log => "LOG",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CAPTURE" => Some(Self::Capture),
+"LOG" => Some(Self::Log),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LogLevel {
+Info = 0,
+Warning = 1,
+Error = 2,
+}
+impl LogLevel {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LogLevel::Info => "INFO",
+LogLevel::Warning => "WARNING",
+LogLevel::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INFO" => Some(Self::Info),
+"WARNING" => Some(Self::Warning),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Debuggee {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub project: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub uniquifier: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub is_inactive: bool,
-    #[prost(string, tag = "6")]
-    pub agent_version: ::prost::alloc::string::String,
-    #[prost(bool, tag = "7")]
-    pub is_disabled: bool,
-    #[prost(message, optional, tag = "8")]
-    pub status: ::core::option::Option<StatusMessage>,
-    #[prost(message, repeated, tag = "9")]
-    pub source_contexts: ::prost::alloc::vec::Vec<
-        super::super::source::v1::SourceContext,
-    >,
-    #[deprecated]
-    #[prost(message, repeated, tag = "13")]
-    pub ext_source_contexts: ::prost::alloc::vec::Vec<
-        super::super::source::v1::ExtendedSourceContext,
-    >,
-    #[prost(map = "string, string", tag = "11")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub project: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub uniquifier: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub is_inactive: bool,
+#[prost(string, tag = "6")]
+pub agent_version: ::prost::alloc::string::String,
+#[prost(bool, tag = "7")]
+pub is_disabled: bool,
+#[prost(message, optional, tag = "8")]
+pub status: ::core::option::Option<StatusMessage>,
+#[prost(message, repeated, tag = "9")]
+pub source_contexts: ::prost::alloc::vec::Vec<super::super::source::v1::SourceContext>,
+#[deprecated]
+#[prost(message, repeated, tag = "13")]
+pub ext_source_contexts: ::prost::alloc::vec::Vec<super::super::source::v1::ExtendedSourceContext>,
+#[prost(map = "string, string", tag = "11")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SetBreakpointRequest {
-    #[prost(string, tag = "1")]
-    pub debuggee_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub breakpoint: ::core::option::Option<Breakpoint>,
-    #[prost(string, tag = "4")]
-    pub client_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub debuggee_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub breakpoint: ::core::option::Option<Breakpoint>,
+#[prost(string, tag = "4")]
+pub client_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SetBreakpointResponse {
-    #[prost(message, optional, tag = "1")]
-    pub breakpoint: ::core::option::Option<Breakpoint>,
+#[prost(message, optional, tag = "1")]
+pub breakpoint: ::core::option::Option<Breakpoint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBreakpointRequest {
-    #[prost(string, tag = "1")]
-    pub debuggee_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub breakpoint_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub client_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub debuggee_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub breakpoint_id: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub client_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBreakpointResponse {
-    #[prost(message, optional, tag = "1")]
-    pub breakpoint: ::core::option::Option<Breakpoint>,
+#[prost(message, optional, tag = "1")]
+pub breakpoint: ::core::option::Option<Breakpoint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBreakpointRequest {
-    #[prost(string, tag = "1")]
-    pub debuggee_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub breakpoint_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub client_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub debuggee_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub breakpoint_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub client_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBreakpointsRequest {
-    #[prost(string, tag = "1")]
-    pub debuggee_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub include_all_users: bool,
-    #[prost(bool, tag = "3")]
-    pub include_inactive: bool,
-    #[prost(message, optional, tag = "4")]
-    pub action: ::core::option::Option<list_breakpoints_request::BreakpointActionValue>,
-    #[deprecated]
-    #[prost(bool, tag = "5")]
-    pub strip_results: bool,
-    #[prost(string, tag = "6")]
-    pub wait_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub client_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub debuggee_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub include_all_users: bool,
+#[prost(bool, tag = "3")]
+pub include_inactive: bool,
+#[prost(message, optional, tag = "4")]
+pub action: ::core::option::Option<list_breakpoints_request::BreakpointActionValue>,
+#[deprecated]
+#[prost(bool, tag = "5")]
+pub strip_results: bool,
+#[prost(string, tag = "6")]
+pub wait_token: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub client_version: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ListBreakpointsRequest`.
 pub mod list_breakpoints_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct BreakpointActionValue {
-        #[prost(enumeration = "super::breakpoint::Action", tag = "1")]
-        pub value: i32,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct BreakpointActionValue {
+#[prost(enumeration = "super::breakpoint::Action", tag = "1")]
+pub value: i32,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBreakpointsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub breakpoints: ::prost::alloc::vec::Vec<Breakpoint>,
-    #[prost(string, tag = "2")]
-    pub next_wait_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub breakpoints: ::prost::alloc::vec::Vec<Breakpoint>,
+#[prost(string, tag = "2")]
+pub next_wait_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDebuggeesRequest {
-    #[prost(string, tag = "2")]
-    pub project: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub include_inactive: bool,
-    #[prost(string, tag = "4")]
-    pub client_version: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub project: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub include_inactive: bool,
+#[prost(string, tag = "4")]
+pub client_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDebuggeesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub debuggees: ::prost::alloc::vec::Vec<Debuggee>,
+#[prost(message, repeated, tag = "1")]
+pub debuggees: ::prost::alloc::vec::Vec<Debuggee>,
 }
 /// Generated client implementations.
 pub mod debugger2_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The Debugger service provides the API that allows users to collect run-time
-    /// information from a running application, without stopping or slowing it down
-    /// and without modifying its state.  An application may include one or
-    /// more replicated processes performing the same work.
-    ///
-    /// A debugged application is represented using the Debuggee concept. The
-    /// Debugger service provides a way to query for available debuggees, but does
-    /// not provide a way to create one.  A debuggee is created using the Controller
-    /// service, usually by running a debugger agent with the application.
-    ///
-    /// The Debugger service enables the client to set one or more Breakpoints on a
-    /// Debuggee and collect the results of the set Breakpoints.
-    #[derive(Debug, Clone)]
-    pub struct Debugger2Client<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> Debugger2Client<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> Debugger2Client<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            Debugger2Client::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Sets the breakpoint to the debuggee.
-        pub async fn set_breakpoint(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SetBreakpointRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SetBreakpointResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.clouddebugger.v2.Debugger2/SetBreakpoint",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.clouddebugger.v2.Debugger2",
-                        "SetBreakpoint",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets breakpoint information.
-        pub async fn get_breakpoint(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetBreakpointRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GetBreakpointResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.clouddebugger.v2.Debugger2/GetBreakpoint",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.clouddebugger.v2.Debugger2",
-                        "GetBreakpoint",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the breakpoint from the debuggee.
-        pub async fn delete_breakpoint(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteBreakpointRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.clouddebugger.v2.Debugger2/DeleteBreakpoint",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.clouddebugger.v2.Debugger2",
-                        "DeleteBreakpoint",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all breakpoints for the debuggee.
-        pub async fn list_breakpoints(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListBreakpointsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListBreakpointsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.clouddebugger.v2.Debugger2/ListBreakpoints",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.clouddebugger.v2.Debugger2",
-                        "ListBreakpoints",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all the debuggees that the user has access to.
-        pub async fn list_debuggees(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDebuggeesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDebuggeesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.clouddebugger.v2.Debugger2/ListDebuggees",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.clouddebugger.v2.Debugger2",
-                        "ListDebuggees",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The Debugger service provides the API that allows users to collect run-time
+/// information from a running application, without stopping or slowing it down
+/// and without modifying its state.  An application may include one or
+/// more replicated processes performing the same work.
+///
+/// A debugged application is represented using the Debuggee concept. The
+/// Debugger service provides a way to query for available debuggees, but does
+/// not provide a way to create one.  A debuggee is created using the Controller
+/// service, usually by running a debugger agent with the application.
+///
+/// The Debugger service enables the client to set one or more Breakpoints on a
+/// Debuggee and collect the results of the set Breakpoints.
+#[derive(Debug, Clone)]
+pub struct Debugger2Client<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> Debugger2Client<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> Debugger2Client<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+Debugger2Client::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Sets the breakpoint to the debuggee.
+pub async fn set_breakpoint(&mut self, request: impl tonic::IntoRequest<super::SetBreakpointRequest>) -> std::result::Result<tonic::Response<super::SetBreakpointResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.clouddebugger.v2.Debugger2/SetBreakpoint");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouddebugger.v2.Debugger2", "SetBreakpoint"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets breakpoint information.
+pub async fn get_breakpoint(&mut self, request: impl tonic::IntoRequest<super::GetBreakpointRequest>) -> std::result::Result<tonic::Response<super::GetBreakpointResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.clouddebugger.v2.Debugger2/GetBreakpoint");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouddebugger.v2.Debugger2", "GetBreakpoint"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the breakpoint from the debuggee.
+pub async fn delete_breakpoint(&mut self, request: impl tonic::IntoRequest<super::DeleteBreakpointRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.clouddebugger.v2.Debugger2/DeleteBreakpoint");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouddebugger.v2.Debugger2", "DeleteBreakpoint"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all breakpoints for the debuggee.
+pub async fn list_breakpoints(&mut self, request: impl tonic::IntoRequest<super::ListBreakpointsRequest>) -> std::result::Result<tonic::Response<super::ListBreakpointsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.clouddebugger.v2.Debugger2/ListBreakpoints");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouddebugger.v2.Debugger2", "ListBreakpoints"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all the debuggees that the user has access to.
+pub async fn list_debuggees(&mut self, request: impl tonic::IntoRequest<super::ListDebuggeesRequest>) -> std::result::Result<tonic::Response<super::ListDebuggeesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.clouddebugger.v2.Debugger2/ListDebuggees");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouddebugger.v2.Debugger2", "ListDebuggees"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegisterDebuggeeRequest {
-    #[prost(message, optional, tag = "1")]
-    pub debuggee: ::core::option::Option<Debuggee>,
+#[prost(message, optional, tag = "1")]
+pub debuggee: ::core::option::Option<Debuggee>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegisterDebuggeeResponse {
-    #[prost(message, optional, tag = "1")]
-    pub debuggee: ::core::option::Option<Debuggee>,
+#[prost(message, optional, tag = "1")]
+pub debuggee: ::core::option::Option<Debuggee>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListActiveBreakpointsRequest {
-    #[prost(string, tag = "1")]
-    pub debuggee_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub wait_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub success_on_timeout: bool,
+#[prost(string, tag = "1")]
+pub debuggee_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub wait_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub success_on_timeout: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListActiveBreakpointsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub breakpoints: ::prost::alloc::vec::Vec<Breakpoint>,
-    #[prost(string, tag = "2")]
-    pub next_wait_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub wait_expired: bool,
+#[prost(message, repeated, tag = "1")]
+pub breakpoints: ::prost::alloc::vec::Vec<Breakpoint>,
+#[prost(string, tag = "2")]
+pub next_wait_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub wait_expired: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateActiveBreakpointRequest {
-    #[prost(string, tag = "1")]
-    pub debuggee_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub breakpoint: ::core::option::Option<Breakpoint>,
+#[prost(string, tag = "1")]
+pub debuggee_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub breakpoint: ::core::option::Option<Breakpoint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UpdateActiveBreakpointResponse {}
 /// Generated client implementations.
 pub mod controller2_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The Controller service provides the API for orchestrating a collection of
-    /// debugger agents to perform debugging tasks. These agents are each attached
-    /// to a process of an application which may include one or more replicas.
-    ///
-    /// The debugger agents register with the Controller to identify the application
-    /// being debugged, the Debuggee. All agents that register with the same data,
-    /// represent the same Debuggee, and are assigned the same `debuggee_id`.
-    ///
-    /// The debugger agents call the Controller to retrieve  the list of active
-    /// Breakpoints. Agents with the same `debuggee_id` get the same breakpoints
-    /// list. An agent that can fulfill the breakpoint request updates the
-    /// Controller with the breakpoint result. The controller selects the first
-    /// result received and discards the rest of the results.
-    /// Agents that poll again for active breakpoints will no longer have
-    /// the completed breakpoint in the list and should remove that breakpoint from
-    /// their attached process.
-    ///
-    /// The Controller service does not provide a way to retrieve the results of
-    /// a completed breakpoint. This functionality is available using the Debugger
-    /// service.
-    #[derive(Debug, Clone)]
-    pub struct Controller2Client<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> Controller2Client<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> Controller2Client<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            Controller2Client::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Registers the debuggee with the controller service.
-        ///
-        /// All agents attached to the same application must call this method with
-        /// exactly the same request content to get back the same stable `debuggee_id`.
-        /// Agents should call this method again whenever `google.rpc.Code.NOT_FOUND`
-        /// is returned from any controller method.
-        ///
-        /// This protocol allows the controller service to disable debuggees, recover
-        /// from data loss, or change the `debuggee_id` format. Agents must handle
-        /// `debuggee_id` value changing upon re-registration.
-        pub async fn register_debuggee(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RegisterDebuggeeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::RegisterDebuggeeResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.clouddebugger.v2.Controller2/RegisterDebuggee",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.clouddebugger.v2.Controller2",
-                        "RegisterDebuggee",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the list of all active breakpoints for the debuggee.
-        ///
-        /// The breakpoint specification (`location`, `condition`, and `expressions`
-        /// fields) is semantically immutable, although the field values may
-        /// change. For example, an agent may update the location line number
-        /// to reflect the actual line where the breakpoint was set, but this
-        /// doesn't change the breakpoint semantics.
-        ///
-        /// This means that an agent does not need to check if a breakpoint has changed
-        /// when it encounters the same breakpoint on a successive call.
-        /// Moreover, an agent should remember the breakpoints that are completed
-        /// until the controller removes them from the active list to avoid
-        /// setting those breakpoints again.
-        pub async fn list_active_breakpoints(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListActiveBreakpointsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListActiveBreakpointsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.clouddebugger.v2.Controller2/ListActiveBreakpoints",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.clouddebugger.v2.Controller2",
-                        "ListActiveBreakpoints",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the breakpoint state or mutable fields.
-        /// The entire Breakpoint message must be sent back to the controller service.
-        ///
-        /// Updates to active breakpoint fields are only allowed if the new value
-        /// does not change the breakpoint specification. Updates to the `location`,
-        /// `condition` and `expressions` fields should not alter the breakpoint
-        /// semantics. These may only make changes such as canonicalizing a value
-        /// or snapping the location to the correct line of code.
-        pub async fn update_active_breakpoint(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateActiveBreakpointRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UpdateActiveBreakpointResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.clouddebugger.v2.Controller2/UpdateActiveBreakpoint",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.clouddebugger.v2.Controller2",
-                        "UpdateActiveBreakpoint",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The Controller service provides the API for orchestrating a collection of
+/// debugger agents to perform debugging tasks. These agents are each attached
+/// to a process of an application which may include one or more replicas.
+///
+/// The debugger agents register with the Controller to identify the application
+/// being debugged, the Debuggee. All agents that register with the same data,
+/// represent the same Debuggee, and are assigned the same `debuggee_id`.
+///
+/// The debugger agents call the Controller to retrieve  the list of active
+/// Breakpoints. Agents with the same `debuggee_id` get the same breakpoints
+/// list. An agent that can fulfill the breakpoint request updates the
+/// Controller with the breakpoint result. The controller selects the first
+/// result received and discards the rest of the results.
+/// Agents that poll again for active breakpoints will no longer have
+/// the completed breakpoint in the list and should remove that breakpoint from
+/// their attached process.
+///
+/// The Controller service does not provide a way to retrieve the results of
+/// a completed breakpoint. This functionality is available using the Debugger
+/// service.
+#[derive(Debug, Clone)]
+pub struct Controller2Client<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> Controller2Client<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> Controller2Client<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+Controller2Client::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Registers the debuggee with the controller service.
+///
+/// All agents attached to the same application must call this method with
+/// exactly the same request content to get back the same stable `debuggee_id`.
+/// Agents should call this method again whenever `google.rpc.Code.NOT_FOUND`
+/// is returned from any controller method.
+///
+/// This protocol allows the controller service to disable debuggees, recover
+/// from data loss, or change the `debuggee_id` format. Agents must handle
+/// `debuggee_id` value changing upon re-registration.
+pub async fn register_debuggee(&mut self, request: impl tonic::IntoRequest<super::RegisterDebuggeeRequest>) -> std::result::Result<tonic::Response<super::RegisterDebuggeeResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.clouddebugger.v2.Controller2/RegisterDebuggee");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouddebugger.v2.Controller2", "RegisterDebuggee"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the list of all active breakpoints for the debuggee.
+///
+/// The breakpoint specification (`location`, `condition`, and `expressions`
+/// fields) is semantically immutable, although the field values may
+/// change. For example, an agent may update the location line number
+/// to reflect the actual line where the breakpoint was set, but this
+/// doesn't change the breakpoint semantics.
+///
+/// This means that an agent does not need to check if a breakpoint has changed
+/// when it encounters the same breakpoint on a successive call.
+/// Moreover, an agent should remember the breakpoints that are completed
+/// until the controller removes them from the active list to avoid
+/// setting those breakpoints again.
+pub async fn list_active_breakpoints(&mut self, request: impl tonic::IntoRequest<super::ListActiveBreakpointsRequest>) -> std::result::Result<tonic::Response<super::ListActiveBreakpointsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.clouddebugger.v2.Controller2/ListActiveBreakpoints");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouddebugger.v2.Controller2", "ListActiveBreakpoints"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the breakpoint state or mutable fields.
+/// The entire Breakpoint message must be sent back to the controller service.
+///
+/// Updates to active breakpoint fields are only allowed if the new value
+/// does not change the breakpoint specification. Updates to the `location`,
+/// `condition` and `expressions` fields should not alter the breakpoint
+/// semantics. These may only make changes such as canonicalizing a value
+/// or snapping the location to the correct line of code.
+pub async fn update_active_breakpoint(&mut self, request: impl tonic::IntoRequest<super::UpdateActiveBreakpointRequest>) -> std::result::Result<tonic::Response<super::UpdateActiveBreakpointResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.clouddebugger.v2.Controller2/UpdateActiveBreakpoint");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.clouddebugger.v2.Controller2", "UpdateActiveBreakpoint"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

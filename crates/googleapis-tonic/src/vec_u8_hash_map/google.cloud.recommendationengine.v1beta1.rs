@@ -2,1430 +2,1026 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FeatureMap {
-    #[prost(map = "string, message", tag = "1")]
-    pub categorical_features: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        feature_map::StringList,
-    >,
-    #[prost(map = "string, message", tag = "2")]
-    pub numerical_features: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        feature_map::FloatList,
-    >,
+#[prost(map = "string, message", tag = "1")]
+pub categorical_features: ::std::collections::HashMap<::prost::alloc::string::String, feature_map::StringList>,
+#[prost(map = "string, message", tag = "2")]
+pub numerical_features: ::std::collections::HashMap<::prost::alloc::string::String, feature_map::FloatList>,
 }
 /// Nested message and enum types in `FeatureMap`.
 pub mod feature_map {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct StringList {
-        #[prost(string, repeated, tag = "1")]
-        pub value: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FloatList {
-        #[prost(float, repeated, tag = "1")]
-        pub value: ::prost::alloc::vec::Vec<f32>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StringList {
+#[prost(string, repeated, tag = "1")]
+pub value: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FloatList {
+#[prost(float, repeated, tag = "1")]
+pub value: ::prost::alloc::vec::Vec<f32>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CatalogItem {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub category_hierarchies: ::prost::alloc::vec::Vec<catalog_item::CategoryHierarchy>,
-    #[prost(string, tag = "3")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub item_attributes: ::core::option::Option<FeatureMap>,
-    #[prost(string, tag = "6")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "8")]
-    pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "9")]
-    pub item_group_id: ::prost::alloc::string::String,
-    #[prost(oneof = "catalog_item::RecommendationType", tags = "10")]
-    pub recommendation_type: ::core::option::Option<catalog_item::RecommendationType>,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub category_hierarchies: ::prost::alloc::vec::Vec<catalog_item::CategoryHierarchy>,
+#[prost(string, tag = "3")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub item_attributes: ::core::option::Option<FeatureMap>,
+#[prost(string, tag = "6")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "8")]
+pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "9")]
+pub item_group_id: ::prost::alloc::string::String,
+#[prost(oneof = "catalog_item::RecommendationType", tags = "10")]
+pub recommendation_type: ::core::option::Option<catalog_item::RecommendationType>,
 }
 /// Nested message and enum types in `CatalogItem`.
 pub mod catalog_item {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CategoryHierarchy {
-        #[prost(string, repeated, tag = "1")]
-        pub categories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum RecommendationType {
-        #[prost(message, tag = "10")]
-        ProductMetadata(super::ProductCatalogItem),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CategoryHierarchy {
+#[prost(string, repeated, tag = "1")]
+pub categories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum RecommendationType {
+#[prost(message, tag = "10")]
+ProductMetadata(super::ProductCatalogItem),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductCatalogItem {
-    #[prost(map = "string, float", tag = "3")]
-    pub costs: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
-    #[prost(string, tag = "4")]
-    pub currency_code: ::prost::alloc::string::String,
-    #[prost(enumeration = "product_catalog_item::StockState", tag = "5")]
-    pub stock_state: i32,
-    #[prost(int64, tag = "6")]
-    pub available_quantity: i64,
-    #[prost(string, tag = "7")]
-    pub canonical_product_uri: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "8")]
-    pub images: ::prost::alloc::vec::Vec<Image>,
-    #[prost(oneof = "product_catalog_item::Price", tags = "1, 2")]
-    pub price: ::core::option::Option<product_catalog_item::Price>,
+#[prost(map = "string, float", tag = "3")]
+pub costs: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
+#[prost(string, tag = "4")]
+pub currency_code: ::prost::alloc::string::String,
+#[prost(enumeration = "product_catalog_item::StockState", tag = "5")]
+pub stock_state: i32,
+#[prost(int64, tag = "6")]
+pub available_quantity: i64,
+#[prost(string, tag = "7")]
+pub canonical_product_uri: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "8")]
+pub images: ::prost::alloc::vec::Vec<Image>,
+#[prost(oneof = "product_catalog_item::Price", tags = "1, 2")]
+pub price: ::core::option::Option<product_catalog_item::Price>,
 }
 /// Nested message and enum types in `ProductCatalogItem`.
 pub mod product_catalog_item {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ExactPrice {
-        #[prost(float, tag = "1")]
-        pub display_price: f32,
-        #[prost(float, tag = "2")]
-        pub original_price: f32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct PriceRange {
-        #[prost(float, tag = "1")]
-        pub min: f32,
-        #[prost(float, tag = "2")]
-        pub max: f32,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum StockState {
-        Unspecified = 0,
-        OutOfStock = 1,
-        Preorder = 2,
-        Backorder = 3,
-    }
-    impl StockState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                StockState::Unspecified => "STOCK_STATE_UNSPECIFIED",
-                StockState::OutOfStock => "OUT_OF_STOCK",
-                StockState::Preorder => "PREORDER",
-                StockState::Backorder => "BACKORDER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STOCK_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "OUT_OF_STOCK" => Some(Self::OutOfStock),
-                "PREORDER" => Some(Self::Preorder),
-                "BACKORDER" => Some(Self::Backorder),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Price {
-        #[prost(message, tag = "1")]
-        ExactPrice(ExactPrice),
-        #[prost(message, tag = "2")]
-        PriceRange(PriceRange),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ExactPrice {
+#[prost(float, tag = "1")]
+pub display_price: f32,
+#[prost(float, tag = "2")]
+pub original_price: f32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct PriceRange {
+#[prost(float, tag = "1")]
+pub min: f32,
+#[prost(float, tag = "2")]
+pub max: f32,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum StockState {
+Unspecified = 0,
+OutOfStock = 1,
+Preorder = 2,
+Backorder = 3,
+}
+impl StockState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+StockState::Unspecified => "STOCK_STATE_UNSPECIFIED",
+StockState::OutOfStock => "OUT_OF_STOCK",
+StockState::Preorder => "PREORDER",
+StockState::Backorder => "BACKORDER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STOCK_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"OUT_OF_STOCK" => Some(Self::OutOfStock),
+"PREORDER" => Some(Self::Preorder),
+"BACKORDER" => Some(Self::Backorder),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Price {
+#[prost(message, tag = "1")]
+ExactPrice(ExactPrice),
+#[prost(message, tag = "2")]
+PriceRange(PriceRange),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Image {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub height: i32,
-    #[prost(int32, tag = "3")]
-    pub width: i32,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub height: i32,
+#[prost(int32, tag = "3")]
+pub width: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserEvent {
-    #[prost(string, tag = "1")]
-    pub event_type: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub user_info: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "3")]
-    pub event_detail: ::core::option::Option<EventDetail>,
-    #[prost(message, optional, tag = "4")]
-    pub product_event_detail: ::core::option::Option<ProductEventDetail>,
-    #[prost(message, optional, tag = "5")]
-    pub event_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "user_event::EventSource", tag = "6")]
-    pub event_source: i32,
+#[prost(string, tag = "1")]
+pub event_type: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub user_info: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "3")]
+pub event_detail: ::core::option::Option<EventDetail>,
+#[prost(message, optional, tag = "4")]
+pub product_event_detail: ::core::option::Option<ProductEventDetail>,
+#[prost(message, optional, tag = "5")]
+pub event_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "user_event::EventSource", tag = "6")]
+pub event_source: i32,
 }
 /// Nested message and enum types in `UserEvent`.
 pub mod user_event {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum EventSource {
-        Unspecified = 0,
-        Automl = 1,
-        Ecommerce = 2,
-        BatchUpload = 3,
-    }
-    impl EventSource {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                EventSource::Unspecified => "EVENT_SOURCE_UNSPECIFIED",
-                EventSource::Automl => "AUTOML",
-                EventSource::Ecommerce => "ECOMMERCE",
-                EventSource::BatchUpload => "BATCH_UPLOAD",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "EVENT_SOURCE_UNSPECIFIED" => Some(Self::Unspecified),
-                "AUTOML" => Some(Self::Automl),
-                "ECOMMERCE" => Some(Self::Ecommerce),
-                "BATCH_UPLOAD" => Some(Self::BatchUpload),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EventSource {
+Unspecified = 0,
+Automl = 1,
+Ecommerce = 2,
+BatchUpload = 3,
+}
+impl EventSource {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EventSource::Unspecified => "EVENT_SOURCE_UNSPECIFIED",
+EventSource::Automl => "AUTOML",
+EventSource::Ecommerce => "ECOMMERCE",
+EventSource::BatchUpload => "BATCH_UPLOAD",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EVENT_SOURCE_UNSPECIFIED" => Some(Self::Unspecified),
+"AUTOML" => Some(Self::Automl),
+"ECOMMERCE" => Some(Self::Ecommerce),
+"BATCH_UPLOAD" => Some(Self::BatchUpload),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserInfo {
-    #[prost(string, tag = "1")]
-    pub visitor_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub user_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub ip_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub user_agent: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub direct_user_request: bool,
+#[prost(string, tag = "1")]
+pub visitor_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub user_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub ip_address: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub user_agent: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub direct_user_request: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventDetail {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub referrer_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub page_view_id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub experiment_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "4")]
-    pub recommendation_token: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub event_attributes: ::core::option::Option<FeatureMap>,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub referrer_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub page_view_id: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub experiment_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub recommendation_token: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub event_attributes: ::core::option::Option<FeatureMap>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductEventDetail {
-    #[prost(string, tag = "1")]
-    pub search_query: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub page_categories: ::prost::alloc::vec::Vec<catalog_item::CategoryHierarchy>,
-    #[prost(message, repeated, tag = "3")]
-    pub product_details: ::prost::alloc::vec::Vec<ProductDetail>,
-    #[prost(string, tag = "4")]
-    pub list_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub cart_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "6")]
-    pub purchase_transaction: ::core::option::Option<PurchaseTransaction>,
+#[prost(string, tag = "1")]
+pub search_query: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub page_categories: ::prost::alloc::vec::Vec<catalog_item::CategoryHierarchy>,
+#[prost(message, repeated, tag = "3")]
+pub product_details: ::prost::alloc::vec::Vec<ProductDetail>,
+#[prost(string, tag = "4")]
+pub list_id: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub cart_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "6")]
+pub purchase_transaction: ::core::option::Option<PurchaseTransaction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PurchaseTransaction {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(float, tag = "2")]
-    pub revenue: f32,
-    #[prost(map = "string, float", tag = "3")]
-    pub taxes: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
-    #[prost(map = "string, float", tag = "4")]
-    pub costs: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
-    #[prost(string, tag = "6")]
-    pub currency_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(float, tag = "2")]
+pub revenue: f32,
+#[prost(map = "string, float", tag = "3")]
+pub taxes: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
+#[prost(map = "string, float", tag = "4")]
+pub costs: ::std::collections::HashMap<::prost::alloc::string::String, f32>,
+#[prost(string, tag = "6")]
+pub currency_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductDetail {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub currency_code: ::prost::alloc::string::String,
-    #[prost(float, tag = "3")]
-    pub original_price: f32,
-    #[prost(float, tag = "4")]
-    pub display_price: f32,
-    #[prost(enumeration = "product_catalog_item::StockState", tag = "5")]
-    pub stock_state: i32,
-    #[prost(int32, tag = "6")]
-    pub quantity: i32,
-    #[prost(int32, tag = "7")]
-    pub available_quantity: i32,
-    #[prost(message, optional, tag = "8")]
-    pub item_attributes: ::core::option::Option<FeatureMap>,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub currency_code: ::prost::alloc::string::String,
+#[prost(float, tag = "3")]
+pub original_price: f32,
+#[prost(float, tag = "4")]
+pub display_price: f32,
+#[prost(enumeration = "product_catalog_item::StockState", tag = "5")]
+pub stock_state: i32,
+#[prost(int32, tag = "6")]
+pub quantity: i32,
+#[prost(int32, tag = "7")]
+pub available_quantity: i32,
+#[prost(message, optional, tag = "8")]
+pub item_attributes: ::core::option::Option<FeatureMap>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsSource {
-    #[prost(string, repeated, tag = "1")]
-    pub input_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub input_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CatalogInlineSource {
-    #[prost(message, repeated, tag = "1")]
-    pub catalog_items: ::prost::alloc::vec::Vec<CatalogItem>,
+#[prost(message, repeated, tag = "1")]
+pub catalog_items: ::prost::alloc::vec::Vec<CatalogItem>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserEventInlineSource {
-    #[prost(message, repeated, tag = "1")]
-    pub user_events: ::prost::alloc::vec::Vec<UserEvent>,
+#[prost(message, repeated, tag = "1")]
+pub user_events: ::prost::alloc::vec::Vec<UserEvent>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportErrorsConfig {
-    #[prost(oneof = "import_errors_config::Destination", tags = "1")]
-    pub destination: ::core::option::Option<import_errors_config::Destination>,
+#[prost(oneof = "import_errors_config::Destination", tags = "1")]
+pub destination: ::core::option::Option<import_errors_config::Destination>,
 }
 /// Nested message and enum types in `ImportErrorsConfig`.
 pub mod import_errors_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(string, tag = "1")]
-        GcsPrefix(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(string, tag = "1")]
+GcsPrefix(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportCatalogItemsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub input_config: ::core::option::Option<InputConfig>,
-    #[prost(message, optional, tag = "4")]
-    pub errors_config: ::core::option::Option<ImportErrorsConfig>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub input_config: ::core::option::Option<InputConfig>,
+#[prost(message, optional, tag = "4")]
+pub errors_config: ::core::option::Option<ImportErrorsConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportUserEventsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub input_config: ::core::option::Option<InputConfig>,
-    #[prost(message, optional, tag = "4")]
-    pub errors_config: ::core::option::Option<ImportErrorsConfig>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub input_config: ::core::option::Option<InputConfig>,
+#[prost(message, optional, tag = "4")]
+pub errors_config: ::core::option::Option<ImportErrorsConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InputConfig {
-    #[prost(oneof = "input_config::Source", tags = "1, 2, 3")]
-    pub source: ::core::option::Option<input_config::Source>,
+#[prost(oneof = "input_config::Source", tags = "1, 2, 3")]
+pub source: ::core::option::Option<input_config::Source>,
 }
 /// Nested message and enum types in `InputConfig`.
 pub mod input_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "1")]
-        CatalogInlineSource(super::CatalogInlineSource),
-        #[prost(message, tag = "2")]
-        GcsSource(super::GcsSource),
-        #[prost(message, tag = "3")]
-        UserEventInlineSource(super::UserEventInlineSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "1")]
+CatalogInlineSource(super::CatalogInlineSource),
+#[prost(message, tag = "2")]
+GcsSource(super::GcsSource),
+#[prost(message, tag = "3")]
+UserEventInlineSource(super::UserEventInlineSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportMetadata {
-    #[prost(string, tag = "5")]
-    pub operation_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(int64, tag = "1")]
-    pub success_count: i64,
-    #[prost(int64, tag = "2")]
-    pub failure_count: i64,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "5")]
+pub operation_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int64, tag = "1")]
+pub success_count: i64,
+#[prost(int64, tag = "2")]
+pub failure_count: i64,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportCatalogItemsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub error_samples: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "2")]
-    pub errors_config: ::core::option::Option<ImportErrorsConfig>,
+#[prost(message, repeated, tag = "1")]
+pub error_samples: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "2")]
+pub errors_config: ::core::option::Option<ImportErrorsConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportUserEventsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub error_samples: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "2")]
-    pub errors_config: ::core::option::Option<ImportErrorsConfig>,
-    #[prost(message, optional, tag = "3")]
-    pub import_summary: ::core::option::Option<UserEventImportSummary>,
+#[prost(message, repeated, tag = "1")]
+pub error_samples: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "2")]
+pub errors_config: ::core::option::Option<ImportErrorsConfig>,
+#[prost(message, optional, tag = "3")]
+pub import_summary: ::core::option::Option<UserEventImportSummary>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UserEventImportSummary {
-    #[prost(int64, tag = "1")]
-    pub joined_events_count: i64,
-    #[prost(int64, tag = "2")]
-    pub unjoined_events_count: i64,
+#[prost(int64, tag = "1")]
+pub joined_events_count: i64,
+#[prost(int64, tag = "2")]
+pub unjoined_events_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PurgeUserEventsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PurgeUserEventsMetadata {
-    #[prost(string, tag = "1")]
-    pub operation_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub operation_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PurgeUserEventsResponse {
-    #[prost(int64, tag = "1")]
-    pub purged_events_count: i64,
-    #[prost(message, repeated, tag = "2")]
-    pub user_events_sample: ::prost::alloc::vec::Vec<UserEvent>,
+#[prost(int64, tag = "1")]
+pub purged_events_count: i64,
+#[prost(message, repeated, tag = "2")]
+pub user_events_sample: ::prost::alloc::vec::Vec<UserEvent>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WriteUserEventRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub user_event: ::core::option::Option<UserEvent>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub user_event: ::core::option::Option<UserEvent>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CollectUserEventRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub user_event: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(int64, tag = "4")]
-    pub ets: i64,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub user_event: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub uri: ::prost::alloc::string::String,
+#[prost(int64, tag = "4")]
+pub ets: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListUserEventsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListUserEventsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub user_events: ::prost::alloc::vec::Vec<UserEvent>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub user_events: ::prost::alloc::vec::Vec<UserEvent>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod user_event_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service for ingesting end user actions on the customer website.
-    #[derive(Debug, Clone)]
-    pub struct UserEventServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> UserEventServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> UserEventServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            UserEventServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Writes a single user event.
-        pub async fn write_user_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::WriteUserEventRequest>,
-        ) -> std::result::Result<tonic::Response<super::UserEvent>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.UserEventService/WriteUserEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.UserEventService",
-                        "WriteUserEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Writes a single user event from the browser. This uses a GET request to
-        /// due to browser restriction of POST-ing to a 3rd party domain.
-        ///
-        /// This method is used only by the Recommendations AI JavaScript pixel.
-        /// Users should not call this method directly.
-        pub async fn collect_user_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CollectUserEventRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::api::HttpBody>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.UserEventService/CollectUserEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.UserEventService",
-                        "CollectUserEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a list of user events within a time range, with potential filtering.
-        pub async fn list_user_events(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListUserEventsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListUserEventsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.UserEventService/ListUserEvents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.UserEventService",
-                        "ListUserEvents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes permanently all user events specified by the filter provided.
-        /// Depending on the number of events specified by the filter, this operation
-        /// could take hours or days to complete. To test a filter, use the list
-        /// command first.
-        pub async fn purge_user_events(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PurgeUserEventsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.UserEventService/PurgeUserEvents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.UserEventService",
-                        "PurgeUserEvents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Bulk import of User events. Request processing might be
-        /// synchronous. Events that already exist are skipped.
-        /// Use this method for backfilling historical user events.
-        ///
-        /// Operation.response is of type ImportResponse. Note that it is
-        /// possible for a subset of the items to be successfully inserted.
-        /// Operation.metadata is of type ImportMetadata.
-        pub async fn import_user_events(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportUserEventsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.UserEventService/ImportUserEvents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.UserEventService",
-                        "ImportUserEvents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service for ingesting end user actions on the customer website.
+#[derive(Debug, Clone)]
+pub struct UserEventServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> UserEventServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> UserEventServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+UserEventServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Writes a single user event.
+pub async fn write_user_event(&mut self, request: impl tonic::IntoRequest<super::WriteUserEventRequest>) -> std::result::Result<tonic::Response<super::UserEvent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.UserEventService/WriteUserEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.UserEventService", "WriteUserEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Writes a single user event from the browser. This uses a GET request to
+/// due to browser restriction of POST-ing to a 3rd party domain.
+///
+/// This method is used only by the Recommendations AI JavaScript pixel.
+/// Users should not call this method directly.
+pub async fn collect_user_event(&mut self, request: impl tonic::IntoRequest<super::CollectUserEventRequest>) -> std::result::Result<tonic::Response<super::super::super::super::api::HttpBody>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.UserEventService/CollectUserEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.UserEventService", "CollectUserEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a list of user events within a time range, with potential filtering.
+pub async fn list_user_events(&mut self, request: impl tonic::IntoRequest<super::ListUserEventsRequest>) -> std::result::Result<tonic::Response<super::ListUserEventsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.UserEventService/ListUserEvents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.UserEventService", "ListUserEvents"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes permanently all user events specified by the filter provided.
+/// Depending on the number of events specified by the filter, this operation
+/// could take hours or days to complete. To test a filter, use the list
+/// command first.
+pub async fn purge_user_events(&mut self, request: impl tonic::IntoRequest<super::PurgeUserEventsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.UserEventService/PurgeUserEvents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.UserEventService", "PurgeUserEvents"));
+self.inner.unary(req, path, codec).await
+}
+/// Bulk import of User events. Request processing might be
+/// synchronous. Events that already exist are skipped.
+/// Use this method for backfilling historical user events.
+///
+/// Operation.response is of type ImportResponse. Note that it is
+/// possible for a subset of the items to be successfully inserted.
+/// Operation.metadata is of type ImportMetadata.
+pub async fn import_user_events(&mut self, request: impl tonic::IntoRequest<super::ImportUserEventsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.UserEventService/ImportUserEvents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.UserEventService", "ImportUserEvents"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictionApiKeyRegistration {
-    #[prost(string, tag = "1")]
-    pub api_key: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub api_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePredictionApiKeyRegistrationRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub prediction_api_key_registration: ::core::option::Option<
-        PredictionApiKeyRegistration,
-    >,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub prediction_api_key_registration: ::core::option::Option<PredictionApiKeyRegistration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPredictionApiKeyRegistrationsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPredictionApiKeyRegistrationsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub prediction_api_key_registrations: ::prost::alloc::vec::Vec<
-        PredictionApiKeyRegistration,
-    >,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub prediction_api_key_registrations: ::prost::alloc::vec::Vec<PredictionApiKeyRegistration>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePredictionApiKeyRegistrationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod prediction_api_key_registry_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service for registering API keys for use with the `predict` method. If you
-    /// use an API key to request predictions, you must first register the API key.
-    /// Otherwise, your prediction request is rejected. If you use OAuth to
-    /// authenticate your `predict` method call, you do not need to register an API
-    /// key. You can register up to 20 API keys per project.
-    #[derive(Debug, Clone)]
-    pub struct PredictionApiKeyRegistryClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> PredictionApiKeyRegistryClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> PredictionApiKeyRegistryClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            PredictionApiKeyRegistryClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Register an API key for use with predict method.
-        pub async fn create_prediction_api_key_registration(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::CreatePredictionApiKeyRegistrationRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::PredictionApiKeyRegistration>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry",
-                        "CreatePredictionApiKeyRegistration",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// List the registered apiKeys for use with predict method.
-        pub async fn list_prediction_api_key_registrations(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::ListPredictionApiKeyRegistrationsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPredictionApiKeyRegistrationsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/ListPredictionApiKeyRegistrations",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry",
-                        "ListPredictionApiKeyRegistrations",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Unregister an apiKey from using for predict method.
-        pub async fn delete_prediction_api_key_registration(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::DeletePredictionApiKeyRegistrationRequest,
-            >,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/DeletePredictionApiKeyRegistration",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry",
-                        "DeletePredictionApiKeyRegistration",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service for registering API keys for use with the `predict` method. If you
+/// use an API key to request predictions, you must first register the API key.
+/// Otherwise, your prediction request is rejected. If you use OAuth to
+/// authenticate your `predict` method call, you do not need to register an API
+/// key. You can register up to 20 API keys per project.
+#[derive(Debug, Clone)]
+pub struct PredictionApiKeyRegistryClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> PredictionApiKeyRegistryClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> PredictionApiKeyRegistryClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+PredictionApiKeyRegistryClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Register an API key for use with predict method.
+pub async fn create_prediction_api_key_registration(&mut self, request: impl tonic::IntoRequest<super::CreatePredictionApiKeyRegistrationRequest>) -> std::result::Result<tonic::Response<super::PredictionApiKeyRegistration>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry", "CreatePredictionApiKeyRegistration"));
+self.inner.unary(req, path, codec).await
+}
+/// List the registered apiKeys for use with predict method.
+pub async fn list_prediction_api_key_registrations(&mut self, request: impl tonic::IntoRequest<super::ListPredictionApiKeyRegistrationsRequest>) -> std::result::Result<tonic::Response<super::ListPredictionApiKeyRegistrationsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/ListPredictionApiKeyRegistrations");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry", "ListPredictionApiKeyRegistrations"));
+self.inner.unary(req, path, codec).await
+}
+/// Unregister an apiKey from using for predict method.
+pub async fn delete_prediction_api_key_registration(&mut self, request: impl tonic::IntoRequest<super::DeletePredictionApiKeyRegistrationRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/DeletePredictionApiKeyRegistration");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry", "DeletePredictionApiKeyRegistration"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub user_event: ::core::option::Option<UserEvent>,
-    #[prost(int32, tag = "7")]
-    pub page_size: i32,
-    #[prost(string, tag = "8")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub dry_run: bool,
-    #[prost(map = "string, message", tag = "6")]
-    pub params: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost_types::Value,
-    >,
-    #[prost(map = "string, string", tag = "9")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub user_event: ::core::option::Option<UserEvent>,
+#[prost(int32, tag = "7")]
+pub page_size: i32,
+#[prost(string, tag = "8")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub dry_run: bool,
+#[prost(map = "string, message", tag = "6")]
+pub params: ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
+#[prost(map = "string, string", tag = "9")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub results: ::prost::alloc::vec::Vec<predict_response::PredictionResult>,
-    #[prost(string, tag = "2")]
-    pub recommendation_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub items_missing_in_catalog: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(bool, tag = "4")]
-    pub dry_run: bool,
-    #[prost(map = "string, message", tag = "5")]
-    pub metadata: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost_types::Value,
-    >,
-    #[prost(string, tag = "6")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub results: ::prost::alloc::vec::Vec<predict_response::PredictionResult>,
+#[prost(string, tag = "2")]
+pub recommendation_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub items_missing_in_catalog: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "4")]
+pub dry_run: bool,
+#[prost(map = "string, message", tag = "5")]
+pub metadata: ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
+#[prost(string, tag = "6")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `PredictResponse`.
 pub mod predict_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct PredictionResult {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(map = "string, message", tag = "2")]
-        pub item_metadata: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost_types::Value,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PredictionResult {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(map = "string, message", tag = "2")]
+pub item_metadata: ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
+}
 }
 /// Generated client implementations.
 pub mod prediction_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service for making recommendation prediction.
-    #[derive(Debug, Clone)]
-    pub struct PredictionServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> PredictionServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> PredictionServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            PredictionServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Makes a recommendation prediction. If using API Key based authentication,
-        /// the API Key must be registered using the
-        /// [PredictionApiKeyRegistry][google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry]
-        /// service. [Learn more](/recommendations-ai/docs/setting-up#register-key).
-        pub async fn predict(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PredictRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::PredictResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.PredictionService/Predict",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.PredictionService",
-                        "Predict",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service for making recommendation prediction.
+#[derive(Debug, Clone)]
+pub struct PredictionServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> PredictionServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> PredictionServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+PredictionServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Makes a recommendation prediction. If using API Key based authentication,
+/// the API Key must be registered using the
+/// [PredictionApiKeyRegistry][google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry]
+/// service. [Learn more](/recommendations-ai/docs/setting-up#register-key).
+pub async fn predict(&mut self, request: impl tonic::IntoRequest<super::PredictRequest>) -> std::result::Result<tonic::Response<super::PredictResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.PredictionService/Predict");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.PredictionService", "Predict"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCatalogItemRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub catalog_item: ::core::option::Option<CatalogItem>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub catalog_item: ::core::option::Option<CatalogItem>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCatalogItemRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCatalogItemsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCatalogItemsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub catalog_items: ::prost::alloc::vec::Vec<CatalogItem>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub catalog_items: ::prost::alloc::vec::Vec<CatalogItem>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCatalogItemRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub catalog_item: ::core::option::Option<CatalogItem>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub catalog_item: ::core::option::Option<CatalogItem>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCatalogItemRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod catalog_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service for ingesting catalog information of the customer's website.
-    #[derive(Debug, Clone)]
-    pub struct CatalogServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> CatalogServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> CatalogServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            CatalogServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a catalog item.
-        pub async fn create_catalog_item(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCatalogItemRequest>,
-        ) -> std::result::Result<tonic::Response<super::CatalogItem>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.CatalogService/CreateCatalogItem",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.CatalogService",
-                        "CreateCatalogItem",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a specific catalog item.
-        pub async fn get_catalog_item(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCatalogItemRequest>,
-        ) -> std::result::Result<tonic::Response<super::CatalogItem>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.CatalogService/GetCatalogItem",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.CatalogService",
-                        "GetCatalogItem",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a list of catalog items.
-        pub async fn list_catalog_items(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCatalogItemsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCatalogItemsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.CatalogService/ListCatalogItems",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.CatalogService",
-                        "ListCatalogItems",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a catalog item. Partial updating is supported. Non-existing
-        /// items will be created.
-        pub async fn update_catalog_item(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCatalogItemRequest>,
-        ) -> std::result::Result<tonic::Response<super::CatalogItem>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.CatalogService/UpdateCatalogItem",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.CatalogService",
-                        "UpdateCatalogItem",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a catalog item.
-        pub async fn delete_catalog_item(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteCatalogItemRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.CatalogService/DeleteCatalogItem",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.CatalogService",
-                        "DeleteCatalogItem",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Bulk import of multiple catalog items. Request processing may be
-        /// synchronous. No partial updating supported. Non-existing items will be
-        /// created.
-        ///
-        /// Operation.response is of type ImportResponse. Note that it is
-        /// possible for a subset of the items to be successfully updated.
-        pub async fn import_catalog_items(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportCatalogItemsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommendationengine.v1beta1.CatalogService/ImportCatalogItems",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommendationengine.v1beta1.CatalogService",
-                        "ImportCatalogItems",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service for ingesting catalog information of the customer's website.
+#[derive(Debug, Clone)]
+pub struct CatalogServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> CatalogServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> CatalogServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+CatalogServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a catalog item.
+pub async fn create_catalog_item(&mut self, request: impl tonic::IntoRequest<super::CreateCatalogItemRequest>) -> std::result::Result<tonic::Response<super::CatalogItem>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.CatalogService/CreateCatalogItem");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.CatalogService", "CreateCatalogItem"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a specific catalog item.
+pub async fn get_catalog_item(&mut self, request: impl tonic::IntoRequest<super::GetCatalogItemRequest>) -> std::result::Result<tonic::Response<super::CatalogItem>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.CatalogService/GetCatalogItem");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.CatalogService", "GetCatalogItem"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a list of catalog items.
+pub async fn list_catalog_items(&mut self, request: impl tonic::IntoRequest<super::ListCatalogItemsRequest>) -> std::result::Result<tonic::Response<super::ListCatalogItemsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.CatalogService/ListCatalogItems");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.CatalogService", "ListCatalogItems"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a catalog item. Partial updating is supported. Non-existing
+/// items will be created.
+pub async fn update_catalog_item(&mut self, request: impl tonic::IntoRequest<super::UpdateCatalogItemRequest>) -> std::result::Result<tonic::Response<super::CatalogItem>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.CatalogService/UpdateCatalogItem");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.CatalogService", "UpdateCatalogItem"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a catalog item.
+pub async fn delete_catalog_item(&mut self, request: impl tonic::IntoRequest<super::DeleteCatalogItemRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.CatalogService/DeleteCatalogItem");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.CatalogService", "DeleteCatalogItem"));
+self.inner.unary(req, path, codec).await
+}
+/// Bulk import of multiple catalog items. Request processing may be
+/// synchronous. No partial updating supported. Non-existing items will be
+/// created.
+///
+/// Operation.response is of type ImportResponse. Note that it is
+/// possible for a subset of the items to be successfully updated.
+pub async fn import_catalog_items(&mut self, request: impl tonic::IntoRequest<super::ImportCatalogItemsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommendationengine.v1beta1.CatalogService/ImportCatalogItems");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommendationengine.v1beta1.CatalogService", "ImportCatalogItems"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

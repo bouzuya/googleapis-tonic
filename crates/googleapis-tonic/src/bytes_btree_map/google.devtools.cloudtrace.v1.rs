@@ -2,340 +2,247 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Trace {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub trace_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub spans: ::prost::alloc::vec::Vec<TraceSpan>,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub trace_id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub spans: ::prost::alloc::vec::Vec<TraceSpan>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Traces {
-    #[prost(message, repeated, tag = "1")]
-    pub traces: ::prost::alloc::vec::Vec<Trace>,
+#[prost(message, repeated, tag = "1")]
+pub traces: ::prost::alloc::vec::Vec<Trace>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TraceSpan {
-    #[prost(fixed64, tag = "1")]
-    pub span_id: u64,
-    #[prost(enumeration = "trace_span::SpanKind", tag = "2")]
-    pub kind: i32,
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(fixed64, tag = "6")]
-    pub parent_span_id: u64,
-    #[prost(btree_map = "string, string", tag = "7")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(fixed64, tag = "1")]
+pub span_id: u64,
+#[prost(enumeration = "trace_span::SpanKind", tag = "2")]
+pub kind: i32,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(fixed64, tag = "6")]
+pub parent_span_id: u64,
+#[prost(btree_map = "string, string", tag = "7")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `TraceSpan`.
 pub mod trace_span {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SpanKind {
-        Unspecified = 0,
-        RpcServer = 1,
-        RpcClient = 2,
-    }
-    impl SpanKind {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SpanKind::Unspecified => "SPAN_KIND_UNSPECIFIED",
-                SpanKind::RpcServer => "RPC_SERVER",
-                SpanKind::RpcClient => "RPC_CLIENT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SPAN_KIND_UNSPECIFIED" => Some(Self::Unspecified),
-                "RPC_SERVER" => Some(Self::RpcServer),
-                "RPC_CLIENT" => Some(Self::RpcClient),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SpanKind {
+Unspecified = 0,
+RpcServer = 1,
+RpcClient = 2,
+}
+impl SpanKind {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SpanKind::Unspecified => "SPAN_KIND_UNSPECIFIED",
+SpanKind::RpcServer => "RPC_SERVER",
+SpanKind::RpcClient => "RPC_CLIENT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SPAN_KIND_UNSPECIFIED" => Some(Self::Unspecified),
+"RPC_SERVER" => Some(Self::RpcServer),
+"RPC_CLIENT" => Some(Self::RpcClient),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTracesRequest {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "list_traces_request::ViewType", tag = "2")]
-    pub view: i32,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "7")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(enumeration = "list_traces_request::ViewType", tag = "2")]
+pub view: i32,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "7")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub order_by: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ListTracesRequest`.
 pub mod list_traces_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ViewType {
-        Unspecified = 0,
-        Minimal = 1,
-        Rootspan = 2,
-        Complete = 3,
-    }
-    impl ViewType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ViewType::Unspecified => "VIEW_TYPE_UNSPECIFIED",
-                ViewType::Minimal => "MINIMAL",
-                ViewType::Rootspan => "ROOTSPAN",
-                ViewType::Complete => "COMPLETE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VIEW_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "MINIMAL" => Some(Self::Minimal),
-                "ROOTSPAN" => Some(Self::Rootspan),
-                "COMPLETE" => Some(Self::Complete),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ViewType {
+Unspecified = 0,
+Minimal = 1,
+Rootspan = 2,
+Complete = 3,
+}
+impl ViewType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ViewType::Unspecified => "VIEW_TYPE_UNSPECIFIED",
+ViewType::Minimal => "MINIMAL",
+ViewType::Rootspan => "ROOTSPAN",
+ViewType::Complete => "COMPLETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VIEW_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"MINIMAL" => Some(Self::Minimal),
+"ROOTSPAN" => Some(Self::Rootspan),
+"COMPLETE" => Some(Self::Complete),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTracesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub traces: ::prost::alloc::vec::Vec<Trace>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub traces: ::prost::alloc::vec::Vec<Trace>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTraceRequest {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub trace_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub trace_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PatchTracesRequest {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub traces: ::core::option::Option<Traces>,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub traces: ::core::option::Option<Traces>,
 }
 /// Generated client implementations.
 pub mod trace_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// This file describes an API for collecting and viewing traces and spans
-    /// within a trace.  A Trace is a collection of spans corresponding to a single
-    /// operation or set of operations for an application. A span is an individual
-    /// timed event which forms a node of the trace tree. Spans for a single trace
-    /// may span multiple services.
-    #[derive(Debug, Clone)]
-    pub struct TraceServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> TraceServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> TraceServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            TraceServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Returns of a list of traces that match the specified filter conditions.
-        pub async fn list_traces(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTracesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTracesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.cloudtrace.v1.TraceService/ListTraces",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.cloudtrace.v1.TraceService",
-                        "ListTraces",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a single trace by its ID.
-        pub async fn get_trace(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTraceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Trace>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.cloudtrace.v1.TraceService/GetTrace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.cloudtrace.v1.TraceService",
-                        "GetTrace",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Sends new traces to Stackdriver Trace or updates existing traces. If the ID
-        /// of a trace that you send matches that of an existing trace, any fields
-        /// in the existing trace and its spans are overwritten by the provided values,
-        /// and any new fields provided are merged with the existing trace data. If the
-        /// ID does not match, a new trace is created.
-        pub async fn patch_traces(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PatchTracesRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.cloudtrace.v1.TraceService/PatchTraces",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.cloudtrace.v1.TraceService",
-                        "PatchTraces",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// This file describes an API for collecting and viewing traces and spans
+/// within a trace.  A Trace is a collection of spans corresponding to a single
+/// operation or set of operations for an application. A span is an individual
+/// timed event which forms a node of the trace tree. Spans for a single trace
+/// may span multiple services.
+#[derive(Debug, Clone)]
+pub struct TraceServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> TraceServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> TraceServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+TraceServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Returns of a list of traces that match the specified filter conditions.
+pub async fn list_traces(&mut self, request: impl tonic::IntoRequest<super::ListTracesRequest>) -> std::result::Result<tonic::Response<super::ListTracesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.cloudtrace.v1.TraceService/ListTraces");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.cloudtrace.v1.TraceService", "ListTraces"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a single trace by its ID.
+pub async fn get_trace(&mut self, request: impl tonic::IntoRequest<super::GetTraceRequest>) -> std::result::Result<tonic::Response<super::Trace>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.cloudtrace.v1.TraceService/GetTrace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.cloudtrace.v1.TraceService", "GetTrace"));
+self.inner.unary(req, path, codec).await
+}
+/// Sends new traces to Stackdriver Trace or updates existing traces. If the ID
+/// of a trace that you send matches that of an existing trace, any fields
+/// in the existing trace and its spans are overwritten by the provided values,
+/// and any new fields provided are merged with the existing trace data. If the
+/// ID does not match, a new trace is created.
+pub async fn patch_traces(&mut self, request: impl tonic::IntoRequest<super::PatchTracesRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.cloudtrace.v1.TraceService/PatchTraces");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.cloudtrace.v1.TraceService", "PatchTraces"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

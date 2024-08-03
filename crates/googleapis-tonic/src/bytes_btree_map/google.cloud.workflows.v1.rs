@@ -2,482 +2,332 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Workflow {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(enumeration = "workflow::State", tag = "3")]
-    pub state: i32,
-    #[prost(string, tag = "4")]
-    pub revision_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub revision_create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(btree_map = "string, string", tag = "8")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "9")]
-    pub service_account: ::prost::alloc::string::String,
-    #[prost(string, tag = "11")]
-    pub crypto_key_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "12")]
-    pub state_error: ::core::option::Option<workflow::StateError>,
-    #[prost(enumeration = "workflow::CallLogLevel", tag = "13")]
-    pub call_log_level: i32,
-    #[prost(btree_map = "string, string", tag = "14")]
-    pub user_env_vars: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(oneof = "workflow::SourceCode", tags = "10")]
-    pub source_code: ::core::option::Option<workflow::SourceCode>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(enumeration = "workflow::State", tag = "3")]
+pub state: i32,
+#[prost(string, tag = "4")]
+pub revision_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub revision_create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(btree_map = "string, string", tag = "8")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "9")]
+pub service_account: ::prost::alloc::string::String,
+#[prost(string, tag = "11")]
+pub crypto_key_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "12")]
+pub state_error: ::core::option::Option<workflow::StateError>,
+#[prost(enumeration = "workflow::CallLogLevel", tag = "13")]
+pub call_log_level: i32,
+#[prost(btree_map = "string, string", tag = "14")]
+pub user_env_vars: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "workflow::SourceCode", tags = "10")]
+pub source_code: ::core::option::Option<workflow::SourceCode>,
 }
 /// Nested message and enum types in `Workflow`.
 pub mod workflow {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct StateError {
-        #[prost(string, tag = "1")]
-        pub details: ::prost::alloc::string::String,
-        #[prost(enumeration = "state_error::Type", tag = "2")]
-        pub r#type: i32,
-    }
-    /// Nested message and enum types in `StateError`.
-    pub mod state_error {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Type {
-            Unspecified = 0,
-            KmsError = 1,
-        }
-        impl Type {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Type::Unspecified => "TYPE_UNSPECIFIED",
-                    Type::KmsError => "KMS_ERROR",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "KMS_ERROR" => Some(Self::KmsError),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Unavailable = 2,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Unavailable => "UNAVAILABLE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "UNAVAILABLE" => Some(Self::Unavailable),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum CallLogLevel {
-        Unspecified = 0,
-        LogAllCalls = 1,
-        LogErrorsOnly = 2,
-        LogNone = 3,
-    }
-    impl CallLogLevel {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                CallLogLevel::Unspecified => "CALL_LOG_LEVEL_UNSPECIFIED",
-                CallLogLevel::LogAllCalls => "LOG_ALL_CALLS",
-                CallLogLevel::LogErrorsOnly => "LOG_ERRORS_ONLY",
-                CallLogLevel::LogNone => "LOG_NONE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CALL_LOG_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-                "LOG_ALL_CALLS" => Some(Self::LogAllCalls),
-                "LOG_ERRORS_ONLY" => Some(Self::LogErrorsOnly),
-                "LOG_NONE" => Some(Self::LogNone),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum SourceCode {
-        #[prost(string, tag = "10")]
-        SourceContents(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StateError {
+#[prost(string, tag = "1")]
+pub details: ::prost::alloc::string::String,
+#[prost(enumeration = "state_error::Type", tag = "2")]
+pub r#type: i32,
+}
+/// Nested message and enum types in `StateError`.
+pub mod state_error {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+KmsError = 1,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::KmsError => "KMS_ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"KMS_ERROR" => Some(Self::KmsError),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Unavailable = 2,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Unavailable => "UNAVAILABLE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"UNAVAILABLE" => Some(Self::Unavailable),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CallLogLevel {
+Unspecified = 0,
+LogAllCalls = 1,
+LogErrorsOnly = 2,
+LogNone = 3,
+}
+impl CallLogLevel {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CallLogLevel::Unspecified => "CALL_LOG_LEVEL_UNSPECIFIED",
+CallLogLevel::LogAllCalls => "LOG_ALL_CALLS",
+CallLogLevel::LogErrorsOnly => "LOG_ERRORS_ONLY",
+CallLogLevel::LogNone => "LOG_NONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CALL_LOG_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+"LOG_ALL_CALLS" => Some(Self::LogAllCalls),
+"LOG_ERRORS_ONLY" => Some(Self::LogErrorsOnly),
+"LOG_NONE" => Some(Self::LogNone),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum SourceCode {
+#[prost(string, tag = "10")]
+SourceContents(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkflowsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkflowsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub workflows: ::prost::alloc::vec::Vec<Workflow>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub workflows: ::prost::alloc::vec::Vec<Workflow>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkflowRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub revision_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub revision_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkflowRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub workflow: ::core::option::Option<Workflow>,
-    #[prost(string, tag = "3")]
-    pub workflow_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub workflow: ::core::option::Option<Workflow>,
+#[prost(string, tag = "3")]
+pub workflow_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteWorkflowRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateWorkflowRequest {
-    #[prost(message, optional, tag = "1")]
-    pub workflow: ::core::option::Option<Workflow>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub workflow: ::core::option::Option<Workflow>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub api_version: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod workflows_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Workflows is used to deploy and execute workflow programs.
-    /// Workflows makes sure the program executes reliably, despite hardware and
-    /// networking interruptions.
-    #[derive(Debug, Clone)]
-    pub struct WorkflowsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> WorkflowsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> WorkflowsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            WorkflowsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists workflows in a given project and location.
-        /// The default order is not specified.
-        pub async fn list_workflows(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListWorkflowsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListWorkflowsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.workflows.v1.Workflows/ListWorkflows",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.workflows.v1.Workflows",
-                        "ListWorkflows",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single workflow.
-        pub async fn get_workflow(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetWorkflowRequest>,
-        ) -> std::result::Result<tonic::Response<super::Workflow>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.workflows.v1.Workflows/GetWorkflow",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.workflows.v1.Workflows", "GetWorkflow"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new workflow. If a workflow with the specified name already
-        /// exists in the specified project and location, the long running operation
-        /// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
-        pub async fn create_workflow(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateWorkflowRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.workflows.v1.Workflows/CreateWorkflow",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.workflows.v1.Workflows",
-                        "CreateWorkflow",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a workflow with the specified name.
-        /// This method also cancels and deletes all running executions of the
-        /// workflow.
-        pub async fn delete_workflow(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteWorkflowRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.workflows.v1.Workflows/DeleteWorkflow",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.workflows.v1.Workflows",
-                        "DeleteWorkflow",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an existing workflow.
-        /// Running this method has no impact on already running executions of the
-        /// workflow. A new revision of the workflow might be created as a result of a
-        /// successful update operation. In that case, the new revision is used
-        /// in new workflow executions.
-        pub async fn update_workflow(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateWorkflowRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.workflows.v1.Workflows/UpdateWorkflow",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.workflows.v1.Workflows",
-                        "UpdateWorkflow",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Workflows is used to deploy and execute workflow programs.
+/// Workflows makes sure the program executes reliably, despite hardware and
+/// networking interruptions.
+#[derive(Debug, Clone)]
+pub struct WorkflowsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> WorkflowsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> WorkflowsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+WorkflowsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists workflows in a given project and location.
+/// The default order is not specified.
+pub async fn list_workflows(&mut self, request: impl tonic::IntoRequest<super::ListWorkflowsRequest>) -> std::result::Result<tonic::Response<super::ListWorkflowsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.workflows.v1.Workflows/ListWorkflows");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.workflows.v1.Workflows", "ListWorkflows"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single workflow.
+pub async fn get_workflow(&mut self, request: impl tonic::IntoRequest<super::GetWorkflowRequest>) -> std::result::Result<tonic::Response<super::Workflow>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.workflows.v1.Workflows/GetWorkflow");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.workflows.v1.Workflows", "GetWorkflow"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new workflow. If a workflow with the specified name already
+/// exists in the specified project and location, the long running operation
+/// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+pub async fn create_workflow(&mut self, request: impl tonic::IntoRequest<super::CreateWorkflowRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.workflows.v1.Workflows/CreateWorkflow");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.workflows.v1.Workflows", "CreateWorkflow"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a workflow with the specified name.
+/// This method also cancels and deletes all running executions of the
+/// workflow.
+pub async fn delete_workflow(&mut self, request: impl tonic::IntoRequest<super::DeleteWorkflowRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.workflows.v1.Workflows/DeleteWorkflow");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.workflows.v1.Workflows", "DeleteWorkflow"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an existing workflow.
+/// Running this method has no impact on already running executions of the
+/// workflow. A new revision of the workflow might be created as a result of a
+/// successful update operation. In that case, the new revision is used
+/// in new workflow executions.
+pub async fn update_workflow(&mut self, request: impl tonic::IntoRequest<super::UpdateWorkflowRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.workflows.v1.Workflows/UpdateWorkflow");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.workflows.v1.Workflows", "UpdateWorkflow"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

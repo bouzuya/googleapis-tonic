@@ -2,102 +2,82 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetadataExchangeRequest {
-    #[prost(string, tag = "1")]
-    pub user_agent: ::prost::alloc::string::String,
-    #[prost(enumeration = "metadata_exchange_request::AuthType", tag = "2")]
-    pub auth_type: i32,
-    #[prost(string, tag = "3")]
-    pub oauth2_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub user_agent: ::prost::alloc::string::String,
+#[prost(enumeration = "metadata_exchange_request::AuthType", tag = "2")]
+pub auth_type: i32,
+#[prost(string, tag = "3")]
+pub oauth2_token: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `MetadataExchangeRequest`.
 pub mod metadata_exchange_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AuthType {
-        Unspecified = 0,
-        DbNative = 1,
-        AutoIam = 2,
-    }
-    impl AuthType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AuthType::Unspecified => "AUTH_TYPE_UNSPECIFIED",
-                AuthType::DbNative => "DB_NATIVE",
-                AuthType::AutoIam => "AUTO_IAM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "AUTH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DB_NATIVE" => Some(Self::DbNative),
-                "AUTO_IAM" => Some(Self::AutoIam),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AuthType {
+Unspecified = 0,
+DbNative = 1,
+AutoIam = 2,
+}
+impl AuthType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AuthType::Unspecified => "AUTH_TYPE_UNSPECIFIED",
+AuthType::DbNative => "DB_NATIVE",
+AuthType::AutoIam => "AUTO_IAM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"AUTH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"DB_NATIVE" => Some(Self::DbNative),
+"AUTO_IAM" => Some(Self::AutoIam),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MetadataExchangeResponse {
-    #[prost(enumeration = "metadata_exchange_response::ResponseCode", tag = "1")]
-    pub response_code: i32,
-    #[prost(string, tag = "2")]
-    pub error: ::prost::alloc::string::String,
+#[prost(enumeration = "metadata_exchange_response::ResponseCode", tag = "1")]
+pub response_code: i32,
+#[prost(string, tag = "2")]
+pub error: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `MetadataExchangeResponse`.
 pub mod metadata_exchange_response {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ResponseCode {
-        Unspecified = 0,
-        Ok = 1,
-        Error = 2,
-    }
-    impl ResponseCode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ResponseCode::Unspecified => "RESPONSE_CODE_UNSPECIFIED",
-                ResponseCode::Ok => "OK",
-                ResponseCode::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RESPONSE_CODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "OK" => Some(Self::Ok),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ResponseCode {
+Unspecified = 0,
+Ok = 1,
+Error = 2,
+}
+impl ResponseCode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ResponseCode::Unspecified => "RESPONSE_CODE_UNSPECIFIED",
+ResponseCode::Ok => "OK",
+ResponseCode::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RESPONSE_CODE_UNSPECIFIED" => Some(Self::Unspecified),
+"OK" => Some(Self::Ok),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }

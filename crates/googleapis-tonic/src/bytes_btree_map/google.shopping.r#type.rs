@@ -2,257 +2,211 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Weight {
-    #[prost(int64, optional, tag = "1")]
-    pub amount_micros: ::core::option::Option<i64>,
-    #[prost(enumeration = "weight::WeightUnit", tag = "2")]
-    pub unit: i32,
+#[prost(int64, optional, tag = "1")]
+pub amount_micros: ::core::option::Option<i64>,
+#[prost(enumeration = "weight::WeightUnit", tag = "2")]
+pub unit: i32,
 }
 /// Nested message and enum types in `Weight`.
 pub mod weight {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum WeightUnit {
-        Unspecified = 0,
-        Pound = 1,
-        Kilogram = 2,
-    }
-    impl WeightUnit {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                WeightUnit::Unspecified => "WEIGHT_UNIT_UNSPECIFIED",
-                WeightUnit::Pound => "POUND",
-                WeightUnit::Kilogram => "KILOGRAM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "WEIGHT_UNIT_UNSPECIFIED" => Some(Self::Unspecified),
-                "POUND" => Some(Self::Pound),
-                "KILOGRAM" => Some(Self::Kilogram),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum WeightUnit {
+Unspecified = 0,
+Pound = 1,
+Kilogram = 2,
+}
+impl WeightUnit {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+WeightUnit::Unspecified => "WEIGHT_UNIT_UNSPECIFIED",
+WeightUnit::Pound => "POUND",
+WeightUnit::Kilogram => "KILOGRAM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"WEIGHT_UNIT_UNSPECIFIED" => Some(Self::Unspecified),
+"POUND" => Some(Self::Pound),
+"KILOGRAM" => Some(Self::Kilogram),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Price {
-    #[prost(int64, optional, tag = "1")]
-    pub amount_micros: ::core::option::Option<i64>,
-    #[prost(string, optional, tag = "2")]
-    pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "1")]
+pub amount_micros: ::core::option::Option<i64>,
+#[prost(string, optional, tag = "2")]
+pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomAttribute {
-    #[prost(string, optional, tag = "1")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "2")]
-    pub value: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "3")]
-    pub group_values: ::prost::alloc::vec::Vec<CustomAttribute>,
+#[prost(string, optional, tag = "1")]
+pub name: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "2")]
+pub value: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "3")]
+pub group_values: ::prost::alloc::vec::Vec<CustomAttribute>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Destination {}
 /// Nested message and enum types in `Destination`.
 pub mod destination {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DestinationEnum {
-        Unspecified = 0,
-        ShoppingAds = 1,
-        DisplayAds = 2,
-        LocalInventoryAds = 3,
-        FreeListings = 4,
-        FreeLocalListings = 5,
-        YoutubeShopping = 6,
-    }
-    impl DestinationEnum {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DestinationEnum::Unspecified => "DESTINATION_ENUM_UNSPECIFIED",
-                DestinationEnum::ShoppingAds => "SHOPPING_ADS",
-                DestinationEnum::DisplayAds => "DISPLAY_ADS",
-                DestinationEnum::LocalInventoryAds => "LOCAL_INVENTORY_ADS",
-                DestinationEnum::FreeListings => "FREE_LISTINGS",
-                DestinationEnum::FreeLocalListings => "FREE_LOCAL_LISTINGS",
-                DestinationEnum::YoutubeShopping => "YOUTUBE_SHOPPING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DESTINATION_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "SHOPPING_ADS" => Some(Self::ShoppingAds),
-                "DISPLAY_ADS" => Some(Self::DisplayAds),
-                "LOCAL_INVENTORY_ADS" => Some(Self::LocalInventoryAds),
-                "FREE_LISTINGS" => Some(Self::FreeListings),
-                "FREE_LOCAL_LISTINGS" => Some(Self::FreeLocalListings),
-                "YOUTUBE_SHOPPING" => Some(Self::YoutubeShopping),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DestinationEnum {
+Unspecified = 0,
+ShoppingAds = 1,
+DisplayAds = 2,
+LocalInventoryAds = 3,
+FreeListings = 4,
+FreeLocalListings = 5,
+YoutubeShopping = 6,
+}
+impl DestinationEnum {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DestinationEnum::Unspecified => "DESTINATION_ENUM_UNSPECIFIED",
+DestinationEnum::ShoppingAds => "SHOPPING_ADS",
+DestinationEnum::DisplayAds => "DISPLAY_ADS",
+DestinationEnum::LocalInventoryAds => "LOCAL_INVENTORY_ADS",
+DestinationEnum::FreeListings => "FREE_LISTINGS",
+DestinationEnum::FreeLocalListings => "FREE_LOCAL_LISTINGS",
+DestinationEnum::YoutubeShopping => "YOUTUBE_SHOPPING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DESTINATION_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
+"SHOPPING_ADS" => Some(Self::ShoppingAds),
+"DISPLAY_ADS" => Some(Self::DisplayAds),
+"LOCAL_INVENTORY_ADS" => Some(Self::LocalInventoryAds),
+"FREE_LISTINGS" => Some(Self::FreeListings),
+"FREE_LOCAL_LISTINGS" => Some(Self::FreeLocalListings),
+"YOUTUBE_SHOPPING" => Some(Self::YoutubeShopping),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ReportingContext {}
 /// Nested message and enum types in `ReportingContext`.
 pub mod reporting_context {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ReportingContextEnum {
-        Unspecified = 0,
-        ShoppingAds = 1,
-        DiscoveryAds = 2,
-        DemandGenAds = 13,
-        DemandGenAdsDiscoverSurface = 14,
-        VideoAds = 3,
-        DisplayAds = 4,
-        LocalInventoryAds = 5,
-        VehicleInventoryAds = 6,
-        FreeListings = 7,
-        FreeLocalListings = 8,
-        FreeLocalVehicleListings = 9,
-        YoutubeShopping = 10,
-        CloudRetail = 11,
-        LocalCloudRetail = 12,
-    }
-    impl ReportingContextEnum {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ReportingContextEnum::Unspecified => "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
-                ReportingContextEnum::ShoppingAds => "SHOPPING_ADS",
-                ReportingContextEnum::DiscoveryAds => "DISCOVERY_ADS",
-                ReportingContextEnum::DemandGenAds => "DEMAND_GEN_ADS",
-                ReportingContextEnum::DemandGenAdsDiscoverSurface => {
-                    "DEMAND_GEN_ADS_DISCOVER_SURFACE"
-                }
-                ReportingContextEnum::VideoAds => "VIDEO_ADS",
-                ReportingContextEnum::DisplayAds => "DISPLAY_ADS",
-                ReportingContextEnum::LocalInventoryAds => "LOCAL_INVENTORY_ADS",
-                ReportingContextEnum::VehicleInventoryAds => "VEHICLE_INVENTORY_ADS",
-                ReportingContextEnum::FreeListings => "FREE_LISTINGS",
-                ReportingContextEnum::FreeLocalListings => "FREE_LOCAL_LISTINGS",
-                ReportingContextEnum::FreeLocalVehicleListings => {
-                    "FREE_LOCAL_VEHICLE_LISTINGS"
-                }
-                ReportingContextEnum::YoutubeShopping => "YOUTUBE_SHOPPING",
-                ReportingContextEnum::CloudRetail => "CLOUD_RETAIL",
-                ReportingContextEnum::LocalCloudRetail => "LOCAL_CLOUD_RETAIL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REPORTING_CONTEXT_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "SHOPPING_ADS" => Some(Self::ShoppingAds),
-                "DISCOVERY_ADS" => Some(Self::DiscoveryAds),
-                "DEMAND_GEN_ADS" => Some(Self::DemandGenAds),
-                "DEMAND_GEN_ADS_DISCOVER_SURFACE" => {
-                    Some(Self::DemandGenAdsDiscoverSurface)
-                }
-                "VIDEO_ADS" => Some(Self::VideoAds),
-                "DISPLAY_ADS" => Some(Self::DisplayAds),
-                "LOCAL_INVENTORY_ADS" => Some(Self::LocalInventoryAds),
-                "VEHICLE_INVENTORY_ADS" => Some(Self::VehicleInventoryAds),
-                "FREE_LISTINGS" => Some(Self::FreeListings),
-                "FREE_LOCAL_LISTINGS" => Some(Self::FreeLocalListings),
-                "FREE_LOCAL_VEHICLE_LISTINGS" => Some(Self::FreeLocalVehicleListings),
-                "YOUTUBE_SHOPPING" => Some(Self::YoutubeShopping),
-                "CLOUD_RETAIL" => Some(Self::CloudRetail),
-                "LOCAL_CLOUD_RETAIL" => Some(Self::LocalCloudRetail),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ReportingContextEnum {
+Unspecified = 0,
+ShoppingAds = 1,
+DiscoveryAds = 2,
+DemandGenAds = 13,
+DemandGenAdsDiscoverSurface = 14,
+VideoAds = 3,
+DisplayAds = 4,
+LocalInventoryAds = 5,
+VehicleInventoryAds = 6,
+FreeListings = 7,
+FreeLocalListings = 8,
+FreeLocalVehicleListings = 9,
+YoutubeShopping = 10,
+CloudRetail = 11,
+LocalCloudRetail = 12,
+}
+impl ReportingContextEnum {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ReportingContextEnum::Unspecified => "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
+ReportingContextEnum::ShoppingAds => "SHOPPING_ADS",
+ReportingContextEnum::DiscoveryAds => "DISCOVERY_ADS",
+ReportingContextEnum::DemandGenAds => "DEMAND_GEN_ADS",
+ReportingContextEnum::DemandGenAdsDiscoverSurface => "DEMAND_GEN_ADS_DISCOVER_SURFACE",
+ReportingContextEnum::VideoAds => "VIDEO_ADS",
+ReportingContextEnum::DisplayAds => "DISPLAY_ADS",
+ReportingContextEnum::LocalInventoryAds => "LOCAL_INVENTORY_ADS",
+ReportingContextEnum::VehicleInventoryAds => "VEHICLE_INVENTORY_ADS",
+ReportingContextEnum::FreeListings => "FREE_LISTINGS",
+ReportingContextEnum::FreeLocalListings => "FREE_LOCAL_LISTINGS",
+ReportingContextEnum::FreeLocalVehicleListings => "FREE_LOCAL_VEHICLE_LISTINGS",
+ReportingContextEnum::YoutubeShopping => "YOUTUBE_SHOPPING",
+ReportingContextEnum::CloudRetail => "CLOUD_RETAIL",
+ReportingContextEnum::LocalCloudRetail => "LOCAL_CLOUD_RETAIL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REPORTING_CONTEXT_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
+"SHOPPING_ADS" => Some(Self::ShoppingAds),
+"DISCOVERY_ADS" => Some(Self::DiscoveryAds),
+"DEMAND_GEN_ADS" => Some(Self::DemandGenAds),
+"DEMAND_GEN_ADS_DISCOVER_SURFACE" => Some(Self::DemandGenAdsDiscoverSurface),
+"VIDEO_ADS" => Some(Self::VideoAds),
+"DISPLAY_ADS" => Some(Self::DisplayAds),
+"LOCAL_INVENTORY_ADS" => Some(Self::LocalInventoryAds),
+"VEHICLE_INVENTORY_ADS" => Some(Self::VehicleInventoryAds),
+"FREE_LISTINGS" => Some(Self::FreeListings),
+"FREE_LOCAL_LISTINGS" => Some(Self::FreeLocalListings),
+"FREE_LOCAL_VEHICLE_LISTINGS" => Some(Self::FreeLocalVehicleListings),
+"YOUTUBE_SHOPPING" => Some(Self::YoutubeShopping),
+"CLOUD_RETAIL" => Some(Self::CloudRetail),
+"LOCAL_CLOUD_RETAIL" => Some(Self::LocalCloudRetail),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Channel {}
 /// Nested message and enum types in `Channel`.
 pub mod channel {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ChannelEnum {
-        Unspecified = 0,
-        Online = 1,
-        Local = 2,
-    }
-    impl ChannelEnum {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ChannelEnum::Unspecified => "CHANNEL_ENUM_UNSPECIFIED",
-                ChannelEnum::Online => "ONLINE",
-                ChannelEnum::Local => "LOCAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CHANNEL_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "ONLINE" => Some(Self::Online),
-                "LOCAL" => Some(Self::Local),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ChannelEnum {
+Unspecified = 0,
+Online = 1,
+Local = 2,
+}
+impl ChannelEnum {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ChannelEnum::Unspecified => "CHANNEL_ENUM_UNSPECIFIED",
+ChannelEnum::Online => "ONLINE",
+ChannelEnum::Local => "LOCAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CHANNEL_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
+"ONLINE" => Some(Self::Online),
+"LOCAL" => Some(Self::Local),
+_ => None,
+}
+}
+}
 }

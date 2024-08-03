@@ -2,601 +2,429 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrimaryProductDataSource {
-    #[prost(enumeration = "primary_product_data_source::Channel", tag = "3")]
-    pub channel: i32,
-    #[prost(string, optional, tag = "4")]
-    pub feed_label: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "5")]
-    pub content_language: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "6")]
-    pub countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "primary_product_data_source::Channel", tag = "3")]
+pub channel: i32,
+#[prost(string, optional, tag = "4")]
+pub feed_label: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "5")]
+pub content_language: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "6")]
+pub countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `PrimaryProductDataSource`.
 pub mod primary_product_data_source {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Channel {
-        Unspecified = 0,
-        OnlineProducts = 1,
-        LocalProducts = 2,
-        Products = 3,
-    }
-    impl Channel {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Channel::Unspecified => "CHANNEL_UNSPECIFIED",
-                Channel::OnlineProducts => "ONLINE_PRODUCTS",
-                Channel::LocalProducts => "LOCAL_PRODUCTS",
-                Channel::Products => "PRODUCTS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CHANNEL_UNSPECIFIED" => Some(Self::Unspecified),
-                "ONLINE_PRODUCTS" => Some(Self::OnlineProducts),
-                "LOCAL_PRODUCTS" => Some(Self::LocalProducts),
-                "PRODUCTS" => Some(Self::Products),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Channel {
+Unspecified = 0,
+OnlineProducts = 1,
+LocalProducts = 2,
+Products = 3,
+}
+impl Channel {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Channel::Unspecified => "CHANNEL_UNSPECIFIED",
+Channel::OnlineProducts => "ONLINE_PRODUCTS",
+Channel::LocalProducts => "LOCAL_PRODUCTS",
+Channel::Products => "PRODUCTS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CHANNEL_UNSPECIFIED" => Some(Self::Unspecified),
+"ONLINE_PRODUCTS" => Some(Self::OnlineProducts),
+"LOCAL_PRODUCTS" => Some(Self::LocalProducts),
+"PRODUCTS" => Some(Self::Products),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SupplementalProductDataSource {
-    #[prost(string, optional, tag = "4")]
-    pub feed_label: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "5")]
-    pub content_language: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "4")]
+pub feed_label: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "5")]
+pub content_language: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocalInventoryDataSource {
-    #[prost(string, tag = "4")]
-    pub feed_label: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub content_language: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub feed_label: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub content_language: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegionalInventoryDataSource {
-    #[prost(string, tag = "4")]
-    pub feed_label: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub content_language: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub feed_label: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub content_language: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PromotionDataSource {
-    #[prost(string, tag = "1")]
-    pub target_country: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub content_language: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub target_country: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub content_language: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileInput {
-    #[prost(message, optional, tag = "1")]
-    pub fetch_settings: ::core::option::Option<file_input::FetchSettings>,
-    #[prost(string, tag = "2")]
-    pub file_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "file_input::FileInputType", tag = "3")]
-    pub file_input_type: i32,
+#[prost(message, optional, tag = "1")]
+pub fetch_settings: ::core::option::Option<file_input::FetchSettings>,
+#[prost(string, tag = "2")]
+pub file_name: ::prost::alloc::string::String,
+#[prost(enumeration = "file_input::FileInputType", tag = "3")]
+pub file_input_type: i32,
 }
 /// Nested message and enum types in `FileInput`.
 pub mod file_input {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FetchSettings {
-        #[prost(bool, tag = "1")]
-        pub enabled: bool,
-        #[prost(int32, tag = "2")]
-        pub day_of_month: i32,
-        #[prost(message, optional, tag = "3")]
-        pub time_of_day: ::core::option::Option<
-            super::super::super::super::super::r#type::TimeOfDay,
-        >,
-        #[prost(
-            enumeration = "super::super::super::super::super::r#type::DayOfWeek",
-            tag = "4"
-        )]
-        pub day_of_week: i32,
-        #[prost(string, tag = "5")]
-        pub time_zone: ::prost::alloc::string::String,
-        #[prost(enumeration = "fetch_settings::Frequency", tag = "6")]
-        pub frequency: i32,
-        #[prost(string, tag = "7")]
-        pub fetch_uri: ::prost::alloc::string::String,
-        #[prost(string, tag = "8")]
-        pub username: ::prost::alloc::string::String,
-        #[prost(string, tag = "9")]
-        pub password: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `FetchSettings`.
-    pub mod fetch_settings {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Frequency {
-            Unspecified = 0,
-            Daily = 1,
-            Weekly = 2,
-            Monthly = 3,
-        }
-        impl Frequency {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Frequency::Unspecified => "FREQUENCY_UNSPECIFIED",
-                    Frequency::Daily => "FREQUENCY_DAILY",
-                    Frequency::Weekly => "FREQUENCY_WEEKLY",
-                    Frequency::Monthly => "FREQUENCY_MONTHLY",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "FREQUENCY_UNSPECIFIED" => Some(Self::Unspecified),
-                    "FREQUENCY_DAILY" => Some(Self::Daily),
-                    "FREQUENCY_WEEKLY" => Some(Self::Weekly),
-                    "FREQUENCY_MONTHLY" => Some(Self::Monthly),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum FileInputType {
-        Unspecified = 0,
-        Upload = 1,
-        Fetch = 2,
-        GoogleSheets = 3,
-    }
-    impl FileInputType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                FileInputType::Unspecified => "FILE_INPUT_TYPE_UNSPECIFIED",
-                FileInputType::Upload => "UPLOAD",
-                FileInputType::Fetch => "FETCH",
-                FileInputType::GoogleSheets => "GOOGLE_SHEETS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "FILE_INPUT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "UPLOAD" => Some(Self::Upload),
-                "FETCH" => Some(Self::Fetch),
-                "GOOGLE_SHEETS" => Some(Self::GoogleSheets),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FetchSettings {
+#[prost(bool, tag = "1")]
+pub enabled: bool,
+#[prost(int32, tag = "2")]
+pub day_of_month: i32,
+#[prost(message, optional, tag = "3")]
+pub time_of_day: ::core::option::Option<super::super::super::super::super::r#type::TimeOfDay>,
+#[prost(enumeration = "super::super::super::super::super::r#type::DayOfWeek", tag = "4")]
+pub day_of_week: i32,
+#[prost(string, tag = "5")]
+pub time_zone: ::prost::alloc::string::String,
+#[prost(enumeration = "fetch_settings::Frequency", tag = "6")]
+pub frequency: i32,
+#[prost(string, tag = "7")]
+pub fetch_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub username: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub password: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `FetchSettings`.
+pub mod fetch_settings {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Frequency {
+Unspecified = 0,
+Daily = 1,
+Weekly = 2,
+Monthly = 3,
+}
+impl Frequency {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Frequency::Unspecified => "FREQUENCY_UNSPECIFIED",
+Frequency::Daily => "FREQUENCY_DAILY",
+Frequency::Weekly => "FREQUENCY_WEEKLY",
+Frequency::Monthly => "FREQUENCY_MONTHLY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FREQUENCY_UNSPECIFIED" => Some(Self::Unspecified),
+"FREQUENCY_DAILY" => Some(Self::Daily),
+"FREQUENCY_WEEKLY" => Some(Self::Weekly),
+"FREQUENCY_MONTHLY" => Some(Self::Monthly),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum FileInputType {
+Unspecified = 0,
+Upload = 1,
+Fetch = 2,
+GoogleSheets = 3,
+}
+impl FileInputType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+FileInputType::Unspecified => "FILE_INPUT_TYPE_UNSPECIFIED",
+FileInputType::Upload => "UPLOAD",
+FileInputType::Fetch => "FETCH",
+FileInputType::GoogleSheets => "GOOGLE_SHEETS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FILE_INPUT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"UPLOAD" => Some(Self::Upload),
+"FETCH" => Some(Self::Fetch),
+"GOOGLE_SHEETS" => Some(Self::GoogleSheets),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataSource {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub data_source_id: i64,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "data_source::Input", tag = "10")]
-    pub input: i32,
-    #[prost(message, optional, tag = "11")]
-    pub file_input: ::core::option::Option<FileInput>,
-    #[prost(oneof = "data_source::Type", tags = "4, 5, 6, 7, 8")]
-    pub r#type: ::core::option::Option<data_source::Type>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub data_source_id: i64,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(enumeration = "data_source::Input", tag = "10")]
+pub input: i32,
+#[prost(message, optional, tag = "11")]
+pub file_input: ::core::option::Option<FileInput>,
+#[prost(oneof = "data_source::Type", tags = "4, 5, 6, 7, 8")]
+pub r#type: ::core::option::Option<data_source::Type>,
 }
 /// Nested message and enum types in `DataSource`.
 pub mod data_source {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Input {
-        Unspecified = 0,
-        Api = 1,
-        File = 2,
-        Ui = 3,
-        Autofeed = 4,
-    }
-    impl Input {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Input::Unspecified => "INPUT_UNSPECIFIED",
-                Input::Api => "API",
-                Input::File => "FILE",
-                Input::Ui => "UI",
-                Input::Autofeed => "AUTOFEED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INPUT_UNSPECIFIED" => Some(Self::Unspecified),
-                "API" => Some(Self::Api),
-                "FILE" => Some(Self::File),
-                "UI" => Some(Self::Ui),
-                "AUTOFEED" => Some(Self::Autofeed),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Type {
-        #[prost(message, tag = "4")]
-        PrimaryProductDataSource(super::PrimaryProductDataSource),
-        #[prost(message, tag = "5")]
-        SupplementalProductDataSource(super::SupplementalProductDataSource),
-        #[prost(message, tag = "6")]
-        LocalInventoryDataSource(super::LocalInventoryDataSource),
-        #[prost(message, tag = "7")]
-        RegionalInventoryDataSource(super::RegionalInventoryDataSource),
-        #[prost(message, tag = "8")]
-        PromotionDataSource(super::PromotionDataSource),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Input {
+Unspecified = 0,
+Api = 1,
+File = 2,
+Ui = 3,
+Autofeed = 4,
+}
+impl Input {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Input::Unspecified => "INPUT_UNSPECIFIED",
+Input::Api => "API",
+Input::File => "FILE",
+Input::Ui => "UI",
+Input::Autofeed => "AUTOFEED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INPUT_UNSPECIFIED" => Some(Self::Unspecified),
+"API" => Some(Self::Api),
+"FILE" => Some(Self::File),
+"UI" => Some(Self::Ui),
+"AUTOFEED" => Some(Self::Autofeed),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "4")]
+PrimaryProductDataSource(super::PrimaryProductDataSource),
+#[prost(message, tag = "5")]
+SupplementalProductDataSource(super::SupplementalProductDataSource),
+#[prost(message, tag = "6")]
+LocalInventoryDataSource(super::LocalInventoryDataSource),
+#[prost(message, tag = "7")]
+RegionalInventoryDataSource(super::RegionalInventoryDataSource),
+#[prost(message, tag = "8")]
+PromotionDataSource(super::PromotionDataSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDataSourceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDataSourcesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDataSourcesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub data_sources: ::prost::alloc::vec::Vec<DataSource>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub data_sources: ::prost::alloc::vec::Vec<DataSource>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDataSourceRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub data_source: ::core::option::Option<DataSource>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub data_source: ::core::option::Option<DataSource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDataSourceRequest {
-    #[prost(message, optional, tag = "1")]
-    pub data_source: ::core::option::Option<DataSource>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub data_source: ::core::option::Option<DataSource>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchDataSourceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDataSourceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod data_sources_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service to manage primary, supplemental, inventory and other data sources.
-    /// See more in the [Merchant
-    /// Center](https://support.google.com/merchants/answer/7439058) help article.
-    #[derive(Debug, Clone)]
-    pub struct DataSourcesServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> DataSourcesServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> DataSourcesServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            DataSourcesServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Retrieves the data source configuration for the given account.
-        pub async fn get_data_source(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDataSourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.datasources.v1beta.DataSourcesService/GetDataSource",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                        "GetDataSource",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the configurations for data sources for the given account.
-        pub async fn list_data_sources(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDataSourcesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDataSourcesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.datasources.v1beta.DataSourcesService/ListDataSources",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                        "ListDataSources",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates the new data source configuration for the given account.
-        pub async fn create_data_source(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateDataSourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.datasources.v1beta.DataSourcesService/CreateDataSource",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                        "CreateDataSource",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the existing data source configuration. The fields that are
-        /// set in the update mask but not provided in the resource will be deleted.
-        pub async fn update_data_source(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateDataSourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.datasources.v1beta.DataSourcesService/UpdateDataSource",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                        "UpdateDataSource",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a data source from your Merchant Center account.
-        pub async fn delete_data_source(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteDataSourceRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.datasources.v1beta.DataSourcesService/DeleteDataSource",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                        "DeleteDataSource",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Performs the data fetch immediately (even outside fetch schedule) on a
-        /// data source from your Merchant Center Account. If you need to call
-        /// this method more than once per day, you should use the Products service to
-        /// update your product data instead.
-        /// This method only works on data sources with a file input set.
-        pub async fn fetch_data_source(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchDataSourceRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.datasources.v1beta.DataSourcesService/FetchDataSource",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.datasources.v1beta.DataSourcesService",
-                        "FetchDataSource",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service to manage primary, supplemental, inventory and other data sources.
+/// See more in the [Merchant
+/// Center](https://support.google.com/merchants/answer/7439058) help article.
+#[derive(Debug, Clone)]
+pub struct DataSourcesServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> DataSourcesServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> DataSourcesServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+DataSourcesServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Retrieves the data source configuration for the given account.
+pub async fn get_data_source(&mut self, request: impl tonic::IntoRequest<super::GetDataSourceRequest>) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.datasources.v1beta.DataSourcesService/GetDataSource");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.datasources.v1beta.DataSourcesService", "GetDataSource"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the configurations for data sources for the given account.
+pub async fn list_data_sources(&mut self, request: impl tonic::IntoRequest<super::ListDataSourcesRequest>) -> std::result::Result<tonic::Response<super::ListDataSourcesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.datasources.v1beta.DataSourcesService/ListDataSources");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.datasources.v1beta.DataSourcesService", "ListDataSources"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates the new data source configuration for the given account.
+pub async fn create_data_source(&mut self, request: impl tonic::IntoRequest<super::CreateDataSourceRequest>) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.datasources.v1beta.DataSourcesService/CreateDataSource");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.datasources.v1beta.DataSourcesService", "CreateDataSource"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the existing data source configuration. The fields that are
+/// set in the update mask but not provided in the resource will be deleted.
+pub async fn update_data_source(&mut self, request: impl tonic::IntoRequest<super::UpdateDataSourceRequest>) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.datasources.v1beta.DataSourcesService/UpdateDataSource");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.datasources.v1beta.DataSourcesService", "UpdateDataSource"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a data source from your Merchant Center account.
+pub async fn delete_data_source(&mut self, request: impl tonic::IntoRequest<super::DeleteDataSourceRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.datasources.v1beta.DataSourcesService/DeleteDataSource");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.datasources.v1beta.DataSourcesService", "DeleteDataSource"));
+self.inner.unary(req, path, codec).await
+}
+/// Performs the data fetch immediately (even outside fetch schedule) on a
+/// data source from your Merchant Center Account. If you need to call
+/// this method more than once per day, you should use the Products service to
+/// update your product data instead.
+/// This method only works on data sources with a file input set.
+pub async fn fetch_data_source(&mut self, request: impl tonic::IntoRequest<super::FetchDataSourceRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.datasources.v1beta.DataSourcesService/FetchDataSource");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.datasources.v1beta.DataSourcesService", "FetchDataSource"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

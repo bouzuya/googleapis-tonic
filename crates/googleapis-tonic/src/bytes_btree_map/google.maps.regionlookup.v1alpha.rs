@@ -2,382 +2,308 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegionIdentifier {
-    #[prost(enumeration = "region_identifier::PlaceType", tag = "6")]
-    pub place_type: i32,
-    #[prost(string, tag = "7")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub region_code: ::prost::alloc::string::String,
-    #[prost(oneof = "region_identifier::Location", tags = "4, 5")]
-    pub location: ::core::option::Option<region_identifier::Location>,
+#[prost(enumeration = "region_identifier::PlaceType", tag = "6")]
+pub place_type: i32,
+#[prost(string, tag = "7")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub region_code: ::prost::alloc::string::String,
+#[prost(oneof = "region_identifier::Location", tags = "4, 5")]
+pub location: ::core::option::Option<region_identifier::Location>,
 }
 /// Nested message and enum types in `RegionIdentifier`.
 pub mod region_identifier {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PlaceType {
-        Unspecified = 0,
-        PostalCode = 1,
-        AdministrativeAreaLevel1 = 2,
-        AdministrativeAreaLevel2 = 3,
-        Locality = 4,
-        Neighborhood = 5,
-        Country = 6,
-        Sublocality = 7,
-        AdministrativeAreaLevel3 = 8,
-        AdministrativeAreaLevel4 = 9,
-        SchoolDistrict = 10,
-    }
-    impl PlaceType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PlaceType::Unspecified => "PLACE_TYPE_UNSPECIFIED",
-                PlaceType::PostalCode => "POSTAL_CODE",
-                PlaceType::AdministrativeAreaLevel1 => "ADMINISTRATIVE_AREA_LEVEL_1",
-                PlaceType::AdministrativeAreaLevel2 => "ADMINISTRATIVE_AREA_LEVEL_2",
-                PlaceType::Locality => "LOCALITY",
-                PlaceType::Neighborhood => "NEIGHBORHOOD",
-                PlaceType::Country => "COUNTRY",
-                PlaceType::Sublocality => "SUBLOCALITY",
-                PlaceType::AdministrativeAreaLevel3 => "ADMINISTRATIVE_AREA_LEVEL_3",
-                PlaceType::AdministrativeAreaLevel4 => "ADMINISTRATIVE_AREA_LEVEL_4",
-                PlaceType::SchoolDistrict => "SCHOOL_DISTRICT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PLACE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "POSTAL_CODE" => Some(Self::PostalCode),
-                "ADMINISTRATIVE_AREA_LEVEL_1" => Some(Self::AdministrativeAreaLevel1),
-                "ADMINISTRATIVE_AREA_LEVEL_2" => Some(Self::AdministrativeAreaLevel2),
-                "LOCALITY" => Some(Self::Locality),
-                "NEIGHBORHOOD" => Some(Self::Neighborhood),
-                "COUNTRY" => Some(Self::Country),
-                "SUBLOCALITY" => Some(Self::Sublocality),
-                "ADMINISTRATIVE_AREA_LEVEL_3" => Some(Self::AdministrativeAreaLevel3),
-                "ADMINISTRATIVE_AREA_LEVEL_4" => Some(Self::AdministrativeAreaLevel4),
-                "SCHOOL_DISTRICT" => Some(Self::SchoolDistrict),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Location {
-        #[prost(string, tag = "4")]
-        Place(::prost::alloc::string::String),
-        #[prost(string, tag = "5")]
-        UnitCode(::prost::alloc::string::String),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PlaceType {
+Unspecified = 0,
+PostalCode = 1,
+AdministrativeAreaLevel1 = 2,
+AdministrativeAreaLevel2 = 3,
+Locality = 4,
+Neighborhood = 5,
+Country = 6,
+Sublocality = 7,
+AdministrativeAreaLevel3 = 8,
+AdministrativeAreaLevel4 = 9,
+SchoolDistrict = 10,
+}
+impl PlaceType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PlaceType::Unspecified => "PLACE_TYPE_UNSPECIFIED",
+PlaceType::PostalCode => "POSTAL_CODE",
+PlaceType::AdministrativeAreaLevel1 => "ADMINISTRATIVE_AREA_LEVEL_1",
+PlaceType::AdministrativeAreaLevel2 => "ADMINISTRATIVE_AREA_LEVEL_2",
+PlaceType::Locality => "LOCALITY",
+PlaceType::Neighborhood => "NEIGHBORHOOD",
+PlaceType::Country => "COUNTRY",
+PlaceType::Sublocality => "SUBLOCALITY",
+PlaceType::AdministrativeAreaLevel3 => "ADMINISTRATIVE_AREA_LEVEL_3",
+PlaceType::AdministrativeAreaLevel4 => "ADMINISTRATIVE_AREA_LEVEL_4",
+PlaceType::SchoolDistrict => "SCHOOL_DISTRICT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PLACE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"POSTAL_CODE" => Some(Self::PostalCode),
+"ADMINISTRATIVE_AREA_LEVEL_1" => Some(Self::AdministrativeAreaLevel1),
+"ADMINISTRATIVE_AREA_LEVEL_2" => Some(Self::AdministrativeAreaLevel2),
+"LOCALITY" => Some(Self::Locality),
+"NEIGHBORHOOD" => Some(Self::Neighborhood),
+"COUNTRY" => Some(Self::Country),
+"SUBLOCALITY" => Some(Self::Sublocality),
+"ADMINISTRATIVE_AREA_LEVEL_3" => Some(Self::AdministrativeAreaLevel3),
+"ADMINISTRATIVE_AREA_LEVEL_4" => Some(Self::AdministrativeAreaLevel4),
+"SCHOOL_DISTRICT" => Some(Self::SchoolDistrict),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Location {
+#[prost(string, tag = "4")]
+Place(::prost::alloc::string::String),
+#[prost(string, tag = "5")]
+UnitCode(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegionMatch {
-    #[prost(string, tag = "1")]
-    pub matched_place_id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub candidate_place_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "3")]
-    pub debug_info: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub matched_place_id: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub candidate_place_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub debug_info: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegionSearchValue {
-    #[prost(enumeration = "region_search_value::PlaceType", tag = "6")]
-    pub place_type: i32,
-    #[prost(string, tag = "7")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub region_code: ::prost::alloc::string::String,
-    #[prost(oneof = "region_search_value::Location", tags = "1, 2, 3")]
-    pub location: ::core::option::Option<region_search_value::Location>,
+#[prost(enumeration = "region_search_value::PlaceType", tag = "6")]
+pub place_type: i32,
+#[prost(string, tag = "7")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub region_code: ::prost::alloc::string::String,
+#[prost(oneof = "region_search_value::Location", tags = "1, 2, 3")]
+pub location: ::core::option::Option<region_search_value::Location>,
 }
 /// Nested message and enum types in `RegionSearchValue`.
 pub mod region_search_value {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PlaceType {
-        Unspecified = 0,
-        PostalCode = 1,
-        AdministrativeAreaLevel1 = 2,
-        AdministrativeAreaLevel2 = 3,
-        Locality = 4,
-        Neighborhood = 5,
-        Country = 6,
-        Sublocality = 7,
-        AdministrativeAreaLevel3 = 8,
-        AdministrativeAreaLevel4 = 9,
-        SchoolDistrict = 10,
-    }
-    impl PlaceType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PlaceType::Unspecified => "PLACE_TYPE_UNSPECIFIED",
-                PlaceType::PostalCode => "POSTAL_CODE",
-                PlaceType::AdministrativeAreaLevel1 => "ADMINISTRATIVE_AREA_LEVEL_1",
-                PlaceType::AdministrativeAreaLevel2 => "ADMINISTRATIVE_AREA_LEVEL_2",
-                PlaceType::Locality => "LOCALITY",
-                PlaceType::Neighborhood => "NEIGHBORHOOD",
-                PlaceType::Country => "COUNTRY",
-                PlaceType::Sublocality => "SUBLOCALITY",
-                PlaceType::AdministrativeAreaLevel3 => "ADMINISTRATIVE_AREA_LEVEL_3",
-                PlaceType::AdministrativeAreaLevel4 => "ADMINISTRATIVE_AREA_LEVEL_4",
-                PlaceType::SchoolDistrict => "SCHOOL_DISTRICT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PLACE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "POSTAL_CODE" => Some(Self::PostalCode),
-                "ADMINISTRATIVE_AREA_LEVEL_1" => Some(Self::AdministrativeAreaLevel1),
-                "ADMINISTRATIVE_AREA_LEVEL_2" => Some(Self::AdministrativeAreaLevel2),
-                "LOCALITY" => Some(Self::Locality),
-                "NEIGHBORHOOD" => Some(Self::Neighborhood),
-                "COUNTRY" => Some(Self::Country),
-                "SUBLOCALITY" => Some(Self::Sublocality),
-                "ADMINISTRATIVE_AREA_LEVEL_3" => Some(Self::AdministrativeAreaLevel3),
-                "ADMINISTRATIVE_AREA_LEVEL_4" => Some(Self::AdministrativeAreaLevel4),
-                "SCHOOL_DISTRICT" => Some(Self::SchoolDistrict),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Location {
-        #[prost(string, tag = "1")]
-        Address(::prost::alloc::string::String),
-        #[prost(message, tag = "2")]
-        Latlng(super::super::super::super::r#type::LatLng),
-        #[prost(string, tag = "3")]
-        PlaceId(::prost::alloc::string::String),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PlaceType {
+Unspecified = 0,
+PostalCode = 1,
+AdministrativeAreaLevel1 = 2,
+AdministrativeAreaLevel2 = 3,
+Locality = 4,
+Neighborhood = 5,
+Country = 6,
+Sublocality = 7,
+AdministrativeAreaLevel3 = 8,
+AdministrativeAreaLevel4 = 9,
+SchoolDistrict = 10,
+}
+impl PlaceType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PlaceType::Unspecified => "PLACE_TYPE_UNSPECIFIED",
+PlaceType::PostalCode => "POSTAL_CODE",
+PlaceType::AdministrativeAreaLevel1 => "ADMINISTRATIVE_AREA_LEVEL_1",
+PlaceType::AdministrativeAreaLevel2 => "ADMINISTRATIVE_AREA_LEVEL_2",
+PlaceType::Locality => "LOCALITY",
+PlaceType::Neighborhood => "NEIGHBORHOOD",
+PlaceType::Country => "COUNTRY",
+PlaceType::Sublocality => "SUBLOCALITY",
+PlaceType::AdministrativeAreaLevel3 => "ADMINISTRATIVE_AREA_LEVEL_3",
+PlaceType::AdministrativeAreaLevel4 => "ADMINISTRATIVE_AREA_LEVEL_4",
+PlaceType::SchoolDistrict => "SCHOOL_DISTRICT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PLACE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"POSTAL_CODE" => Some(Self::PostalCode),
+"ADMINISTRATIVE_AREA_LEVEL_1" => Some(Self::AdministrativeAreaLevel1),
+"ADMINISTRATIVE_AREA_LEVEL_2" => Some(Self::AdministrativeAreaLevel2),
+"LOCALITY" => Some(Self::Locality),
+"NEIGHBORHOOD" => Some(Self::Neighborhood),
+"COUNTRY" => Some(Self::Country),
+"SUBLOCALITY" => Some(Self::Sublocality),
+"ADMINISTRATIVE_AREA_LEVEL_3" => Some(Self::AdministrativeAreaLevel3),
+"ADMINISTRATIVE_AREA_LEVEL_4" => Some(Self::AdministrativeAreaLevel4),
+"SCHOOL_DISTRICT" => Some(Self::SchoolDistrict),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Location {
+#[prost(string, tag = "1")]
+Address(::prost::alloc::string::String),
+#[prost(message, tag = "2")]
+Latlng(super::super::super::super::r#type::LatLng),
+#[prost(string, tag = "3")]
+PlaceId(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupRegionRequest {
-    #[prost(message, repeated, tag = "1")]
-    pub identifiers: ::prost::alloc::vec::Vec<RegionIdentifier>,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub identifiers: ::prost::alloc::vec::Vec<RegionIdentifier>,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupRegionResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub matches: ::prost::alloc::vec::Vec<RegionMatch>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub matches: ::prost::alloc::vec::Vec<RegionMatch>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchRegionRequest {
-    #[prost(message, repeated, tag = "1")]
-    pub search_values: ::prost::alloc::vec::Vec<RegionSearchValue>,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub search_values: ::prost::alloc::vec::Vec<RegionSearchValue>,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchRegionResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub matches: ::prost::alloc::vec::Vec<RegionMatch>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub matches: ::prost::alloc::vec::Vec<RegionMatch>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod region_lookup_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service definition for the Region Lookup API.
-    #[derive(Debug, Clone)]
-    pub struct RegionLookupClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> RegionLookupClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> RegionLookupClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            RegionLookupClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lookup region RPC.
-        ///
-        /// Looks up a set of region Place IDs of types related to geographic
-        /// boundaries.
-        ///
-        /// The API looks up a region Place ID using the `RegionIdentifier` proto. See
-        /// `RegionIdentifier` for more details and examples.
-        ///
-        /// The following region place types are supported for look up: postal_code,
-        /// administrative_area_level_1, administrative_area_level_2, locality,
-        /// neighborhood, and country.
-        pub async fn lookup_region(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LookupRegionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::LookupRegionResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.regionlookup.v1alpha.RegionLookup/LookupRegion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.maps.regionlookup.v1alpha.RegionLookup",
-                        "LookupRegion",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Search region RPC.
-        ///
-        /// Searches for a set of region Place IDs of types related to geographic
-        /// boundaries.
-        ///
-        /// Similar to `LookupRegion` RPC but instead of looking up Place IDs for the
-        /// given `RegionIdentifier`, the API searches for Region Place IDs by
-        /// considering all regions that are contained within a specified location. The
-        /// `RegionSearchValue` is used to specify the search values. See
-        /// `RegionSearchValue` for more details and examples.
-        ///
-        /// The following region place types are supported for searching: postal_code,
-        /// administrative_area_level_1, administrative_area_level_2, locality,
-        /// neighborhood, and country.
-        pub async fn search_region(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchRegionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchRegionResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.regionlookup.v1alpha.RegionLookup/SearchRegion",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.maps.regionlookup.v1alpha.RegionLookup",
-                        "SearchRegion",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service definition for the Region Lookup API.
+#[derive(Debug, Clone)]
+pub struct RegionLookupClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> RegionLookupClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> RegionLookupClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+RegionLookupClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lookup region RPC.
+///
+/// Looks up a set of region Place IDs of types related to geographic
+/// boundaries.
+///
+/// The API looks up a region Place ID using the `RegionIdentifier` proto. See
+/// `RegionIdentifier` for more details and examples.
+///
+/// The following region place types are supported for look up: postal_code,
+/// administrative_area_level_1, administrative_area_level_2, locality,
+/// neighborhood, and country.
+pub async fn lookup_region(&mut self, request: impl tonic::IntoRequest<super::LookupRegionRequest>) -> std::result::Result<tonic::Response<super::LookupRegionResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.regionlookup.v1alpha.RegionLookup/LookupRegion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.regionlookup.v1alpha.RegionLookup", "LookupRegion"));
+self.inner.unary(req, path, codec).await
+}
+/// Search region RPC.
+///
+/// Searches for a set of region Place IDs of types related to geographic
+/// boundaries.
+///
+/// Similar to `LookupRegion` RPC but instead of looking up Place IDs for the
+/// given `RegionIdentifier`, the API searches for Region Place IDs by
+/// considering all regions that are contained within a specified location. The
+/// `RegionSearchValue` is used to specify the search values. See
+/// `RegionSearchValue` for more details and examples.
+///
+/// The following region place types are supported for searching: postal_code,
+/// administrative_area_level_1, administrative_area_level_2, locality,
+/// neighborhood, and country.
+pub async fn search_region(&mut self, request: impl tonic::IntoRequest<super::SearchRegionRequest>) -> std::result::Result<tonic::Response<super::SearchRegionResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.regionlookup.v1alpha.RegionLookup/SearchRegion");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.regionlookup.v1alpha.RegionLookup", "SearchRegion"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

@@ -2,1293 +2,910 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PolicyRule {
-    #[prost(message, optional, tag = "5")]
-    pub condition: ::core::option::Option<super::super::super::r#type::Expr>,
-    #[prost(oneof = "policy_rule::Kind", tags = "1, 2, 3, 4")]
-    pub kind: ::core::option::Option<policy_rule::Kind>,
+#[prost(message, optional, tag = "5")]
+pub condition: ::core::option::Option<super::super::super::r#type::Expr>,
+#[prost(oneof = "policy_rule::Kind", tags = "1, 2, 3, 4")]
+pub kind: ::core::option::Option<policy_rule::Kind>,
 }
 /// Nested message and enum types in `PolicyRule`.
 pub mod policy_rule {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct StringValues {
-        #[prost(string, repeated, tag = "1")]
-        pub allowed_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "2")]
-        pub denied_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Kind {
-        #[prost(message, tag = "1")]
-        Values(StringValues),
-        #[prost(bool, tag = "2")]
-        AllowAll(bool),
-        #[prost(bool, tag = "3")]
-        DenyAll(bool),
-        #[prost(bool, tag = "4")]
-        Enforce(bool),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StringValues {
+#[prost(string, repeated, tag = "1")]
+pub allowed_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub denied_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Kind {
+#[prost(message, tag = "1")]
+Values(StringValues),
+#[prost(bool, tag = "2")]
+AllowAll(bool),
+#[prost(bool, tag = "3")]
+DenyAll(bool),
+#[prost(bool, tag = "4")]
+Enforce(bool),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomConstraint {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(enumeration = "custom_constraint::MethodType", repeated, tag = "3")]
-    pub method_types: ::prost::alloc::vec::Vec<i32>,
-    #[prost(string, tag = "4")]
-    pub condition: ::prost::alloc::string::String,
-    #[prost(enumeration = "custom_constraint::ActionType", tag = "5")]
-    pub action_type: i32,
-    #[prost(string, tag = "6")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "custom_constraint::MethodType", repeated, tag = "3")]
+pub method_types: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "4")]
+pub condition: ::prost::alloc::string::String,
+#[prost(enumeration = "custom_constraint::ActionType", tag = "5")]
+pub action_type: i32,
+#[prost(string, tag = "6")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `CustomConstraint`.
 pub mod custom_constraint {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MethodType {
-        Unspecified = 0,
-        Create = 1,
-        Update = 2,
-        Delete = 3,
-    }
-    impl MethodType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MethodType::Unspecified => "METHOD_TYPE_UNSPECIFIED",
-                MethodType::Create => "CREATE",
-                MethodType::Update => "UPDATE",
-                MethodType::Delete => "DELETE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "METHOD_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATE" => Some(Self::Create),
-                "UPDATE" => Some(Self::Update),
-                "DELETE" => Some(Self::Delete),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ActionType {
-        Unspecified = 0,
-        Allow = 1,
-        Deny = 2,
-    }
-    impl ActionType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
-                ActionType::Allow => "ALLOW",
-                ActionType::Deny => "DENY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ALLOW" => Some(Self::Allow),
-                "DENY" => Some(Self::Deny),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MethodType {
+Unspecified = 0,
+Create = 1,
+Update = 2,
+Delete = 3,
+}
+impl MethodType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MethodType::Unspecified => "METHOD_TYPE_UNSPECIFIED",
+MethodType::Create => "CREATE",
+MethodType::Update => "UPDATE",
+MethodType::Delete => "DELETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"METHOD_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATE" => Some(Self::Create),
+"UPDATE" => Some(Self::Update),
+"DELETE" => Some(Self::Delete),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ActionType {
+Unspecified = 0,
+Allow = 1,
+Deny = 2,
+}
+impl ActionType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
+ActionType::Allow => "ALLOW",
+ActionType::Deny => "DENY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"ALLOW" => Some(Self::Allow),
+"DENY" => Some(Self::Deny),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrgPolicyConstraint {
-    #[prost(string, tag = "1")]
-    pub canned_constraint_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub policy_rules: ::prost::alloc::vec::Vec<PolicyRule>,
+#[prost(string, tag = "1")]
+pub canned_constraint_id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub policy_rules: ::prost::alloc::vec::Vec<PolicyRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrgPolicyConstraintCustom {
-    #[prost(message, optional, tag = "1")]
-    pub custom_constraint: ::core::option::Option<CustomConstraint>,
-    #[prost(message, repeated, tag = "2")]
-    pub policy_rules: ::prost::alloc::vec::Vec<PolicyRule>,
+#[prost(message, optional, tag = "1")]
+pub custom_constraint: ::core::option::Option<CustomConstraint>,
+#[prost(message, repeated, tag = "2")]
+pub policy_rules: ::prost::alloc::vec::Vec<PolicyRule>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomConfig {
-    #[prost(message, optional, tag = "1")]
-    pub predicate: ::core::option::Option<super::super::super::r#type::Expr>,
-    #[prost(message, optional, tag = "2")]
-    pub custom_output: ::core::option::Option<custom_config::CustomOutputSpec>,
-    #[prost(message, optional, tag = "3")]
-    pub resource_selector: ::core::option::Option<custom_config::ResourceSelector>,
-    #[prost(enumeration = "custom_config::Severity", tag = "4")]
-    pub severity: i32,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub recommendation: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub predicate: ::core::option::Option<super::super::super::r#type::Expr>,
+#[prost(message, optional, tag = "2")]
+pub custom_output: ::core::option::Option<custom_config::CustomOutputSpec>,
+#[prost(message, optional, tag = "3")]
+pub resource_selector: ::core::option::Option<custom_config::ResourceSelector>,
+#[prost(enumeration = "custom_config::Severity", tag = "4")]
+pub severity: i32,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub recommendation: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `CustomConfig`.
 pub mod custom_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CustomOutputSpec {
-        #[prost(message, repeated, tag = "1")]
-        pub properties: ::prost::alloc::vec::Vec<custom_output_spec::Property>,
-    }
-    /// Nested message and enum types in `CustomOutputSpec`.
-    pub mod custom_output_spec {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Property {
-            #[prost(string, tag = "1")]
-            pub name: ::prost::alloc::string::String,
-            #[prost(message, optional, tag = "2")]
-            pub value_expression: ::core::option::Option<
-                super::super::super::super::super::r#type::Expr,
-            >,
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ResourceSelector {
-        #[prost(string, repeated, tag = "1")]
-        pub resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Severity {
-        Unspecified = 0,
-        Critical = 1,
-        High = 2,
-        Medium = 3,
-        Low = 4,
-    }
-    impl Severity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Critical => "CRITICAL",
-                Severity::High => "HIGH",
-                Severity::Medium => "MEDIUM",
-                Severity::Low => "LOW",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "CRITICAL" => Some(Self::Critical),
-                "HIGH" => Some(Self::High),
-                "MEDIUM" => Some(Self::Medium),
-                "LOW" => Some(Self::Low),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomOutputSpec {
+#[prost(message, repeated, tag = "1")]
+pub properties: ::prost::alloc::vec::Vec<custom_output_spec::Property>,
+}
+/// Nested message and enum types in `CustomOutputSpec`.
+pub mod custom_output_spec {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Property {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub value_expression: ::core::option::Option<super::super::super::super::super::r#type::Expr>,
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ResourceSelector {
+#[prost(string, repeated, tag = "1")]
+pub resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Severity {
+Unspecified = 0,
+Critical = 1,
+High = 2,
+Medium = 3,
+Low = 4,
+}
+impl Severity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+Severity::Critical => "CRITICAL",
+Severity::High => "HIGH",
+Severity::Medium => "MEDIUM",
+Severity::Low => "LOW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"CRITICAL" => Some(Self::Critical),
+"HIGH" => Some(Self::High),
+"MEDIUM" => Some(Self::Medium),
+"LOW" => Some(Self::Low),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecurityHealthAnalyticsModule {
-    #[prost(string, tag = "1")]
-    pub module_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "EnablementState", tag = "2")]
-    pub module_enablement_state: i32,
+#[prost(string, tag = "1")]
+pub module_name: ::prost::alloc::string::String,
+#[prost(enumeration = "EnablementState", tag = "2")]
+pub module_enablement_state: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecurityHealthAnalyticsCustomModule {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub config: ::core::option::Option<CustomConfig>,
-    #[prost(enumeration = "EnablementState", tag = "4")]
-    pub module_enablement_state: i32,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub config: ::core::option::Option<CustomConfig>,
+#[prost(enumeration = "EnablementState", tag = "4")]
+pub module_enablement_state: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum EnablementState {
-    Unspecified = 0,
-    Enabled = 1,
-    Disabled = 2,
+Unspecified = 0,
+Enabled = 1,
+Disabled = 2,
 }
 impl EnablementState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
-            EnablementState::Enabled => "ENABLED",
-            EnablementState::Disabled => "DISABLED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ENABLEMENT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "ENABLED" => Some(Self::Enabled),
-            "DISABLED" => Some(Self::Disabled),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EnablementState::Unspecified => "ENABLEMENT_STATE_UNSPECIFIED",
+EnablementState::Enabled => "ENABLED",
+EnablementState::Disabled => "DISABLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENABLEMENT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ENABLED" => Some(Self::Enabled),
+"DISABLED" => Some(Self::Disabled),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_message: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub requested_cancellation: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub error_message: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub requested_cancellation: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub error_message: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Posture {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "posture::State", tag = "2")]
-    pub state: i32,
-    #[prost(string, tag = "3")]
-    pub revision_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "6")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "7")]
-    pub policy_sets: ::prost::alloc::vec::Vec<PolicySet>,
-    #[prost(string, tag = "8")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "9")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(bool, tag = "10")]
-    pub reconciling: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "posture::State", tag = "2")]
+pub state: i32,
+#[prost(string, tag = "3")]
+pub revision_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "6")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "7")]
+pub policy_sets: ::prost::alloc::vec::Vec<PolicySet>,
+#[prost(string, tag = "8")]
+pub etag: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "9")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(bool, tag = "10")]
+pub reconciling: bool,
 }
 /// Nested message and enum types in `Posture`.
 pub mod posture {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Deprecated = 1,
-        Draft = 2,
-        Active = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Deprecated => "DEPRECATED",
-                State::Draft => "DRAFT",
-                State::Active => "ACTIVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DEPRECATED" => Some(Self::Deprecated),
-                "DRAFT" => Some(Self::Draft),
-                "ACTIVE" => Some(Self::Active),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Deprecated = 1,
+Draft = 2,
+Active = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Deprecated => "DEPRECATED",
+State::Draft => "DRAFT",
+State::Active => "ACTIVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"DEPRECATED" => Some(Self::Deprecated),
+"DRAFT" => Some(Self::Draft),
+"ACTIVE" => Some(Self::Active),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PolicySet {
-    #[prost(string, tag = "1")]
-    pub policy_set_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub policies: ::prost::alloc::vec::Vec<Policy>,
+#[prost(string, tag = "1")]
+pub policy_set_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub policies: ::prost::alloc::vec::Vec<Policy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Policy {
-    #[prost(string, tag = "1")]
-    pub policy_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub compliance_standards: ::prost::alloc::vec::Vec<policy::ComplianceStandard>,
-    #[prost(message, optional, tag = "3")]
-    pub constraint: ::core::option::Option<Constraint>,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub policy_id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub compliance_standards: ::prost::alloc::vec::Vec<policy::ComplianceStandard>,
+#[prost(message, optional, tag = "3")]
+pub constraint: ::core::option::Option<Constraint>,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Policy`.
 pub mod policy {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ComplianceStandard {
-        #[prost(string, tag = "1")]
-        pub standard: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub control: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ComplianceStandard {
+#[prost(string, tag = "1")]
+pub standard: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub control: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Constraint {
-    #[prost(oneof = "constraint::Implementation", tags = "3, 4, 5, 6")]
-    pub implementation: ::core::option::Option<constraint::Implementation>,
+#[prost(oneof = "constraint::Implementation", tags = "3, 4, 5, 6")]
+pub implementation: ::core::option::Option<constraint::Implementation>,
 }
 /// Nested message and enum types in `Constraint`.
 pub mod constraint {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Implementation {
-        #[prost(message, tag = "3")]
-        SecurityHealthAnalyticsModule(super::SecurityHealthAnalyticsModule),
-        #[prost(message, tag = "4")]
-        SecurityHealthAnalyticsCustomModule(super::SecurityHealthAnalyticsCustomModule),
-        #[prost(message, tag = "5")]
-        OrgPolicyConstraint(super::OrgPolicyConstraint),
-        #[prost(message, tag = "6")]
-        OrgPolicyConstraintCustom(super::OrgPolicyConstraintCustom),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Implementation {
+#[prost(message, tag = "3")]
+SecurityHealthAnalyticsModule(super::SecurityHealthAnalyticsModule),
+#[prost(message, tag = "4")]
+SecurityHealthAnalyticsCustomModule(super::SecurityHealthAnalyticsCustomModule),
+#[prost(message, tag = "5")]
+OrgPolicyConstraint(super::OrgPolicyConstraint),
+#[prost(message, tag = "6")]
+OrgPolicyConstraintCustom(super::OrgPolicyConstraintCustom),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPosturesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPosturesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub postures: ::prost::alloc::vec::Vec<Posture>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub postures: ::prost::alloc::vec::Vec<Posture>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPostureRevisionsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPostureRevisionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub revisions: ::prost::alloc::vec::Vec<Posture>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub revisions: ::prost::alloc::vec::Vec<Posture>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPostureRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub revision_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub revision_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePostureRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub posture_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub posture: ::core::option::Option<Posture>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub posture_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub posture: ::core::option::Option<Posture>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePostureRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub posture: ::core::option::Option<Posture>,
-    #[prost(string, tag = "3")]
-    pub revision_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub posture: ::core::option::Option<Posture>,
+#[prost(string, tag = "3")]
+pub revision_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePostureRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExtractPostureRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub posture_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub workload: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub posture_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub workload: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PostureDeployment {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub target_resource: ::prost::alloc::string::String,
-    #[prost(enumeration = "posture_deployment::State", tag = "2")]
-    pub state: i32,
-    #[prost(string, tag = "3")]
-    pub posture_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub posture_revision_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "7")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "9")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(bool, tag = "10")]
-    pub reconciling: bool,
-    #[prost(string, tag = "11")]
-    pub desired_posture_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub desired_posture_revision_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "14")]
-    pub failure_message: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub target_resource: ::prost::alloc::string::String,
+#[prost(enumeration = "posture_deployment::State", tag = "2")]
+pub state: i32,
+#[prost(string, tag = "3")]
+pub posture_id: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub posture_revision_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "7")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub etag: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "9")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(bool, tag = "10")]
+pub reconciling: bool,
+#[prost(string, tag = "11")]
+pub desired_posture_id: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub desired_posture_revision_id: ::prost::alloc::string::String,
+#[prost(string, tag = "14")]
+pub failure_message: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `PostureDeployment`.
 pub mod posture_deployment {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Deleting = 2,
-        Updating = 3,
-        Active = 4,
-        CreateFailed = 5,
-        UpdateFailed = 6,
-        DeleteFailed = 7,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-                State::Active => "ACTIVE",
-                State::CreateFailed => "CREATE_FAILED",
-                State::UpdateFailed => "UPDATE_FAILED",
-                State::DeleteFailed => "DELETE_FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                "ACTIVE" => Some(Self::Active),
-                "CREATE_FAILED" => Some(Self::CreateFailed),
-                "UPDATE_FAILED" => Some(Self::UpdateFailed),
-                "DELETE_FAILED" => Some(Self::DeleteFailed),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Deleting = 2,
+Updating = 3,
+Active = 4,
+CreateFailed = 5,
+UpdateFailed = 6,
+DeleteFailed = 7,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Deleting => "DELETING",
+State::Updating => "UPDATING",
+State::Active => "ACTIVE",
+State::CreateFailed => "CREATE_FAILED",
+State::UpdateFailed => "UPDATE_FAILED",
+State::DeleteFailed => "DELETE_FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+"ACTIVE" => Some(Self::Active),
+"CREATE_FAILED" => Some(Self::CreateFailed),
+"UPDATE_FAILED" => Some(Self::UpdateFailed),
+"DELETE_FAILED" => Some(Self::DeleteFailed),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPostureDeploymentsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPostureDeploymentsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub posture_deployments: ::prost::alloc::vec::Vec<PostureDeployment>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub posture_deployments: ::prost::alloc::vec::Vec<PostureDeployment>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPostureDeploymentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePostureDeploymentRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub posture_deployment_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub posture_deployment: ::core::option::Option<PostureDeployment>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub posture_deployment_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub posture_deployment: ::core::option::Option<PostureDeployment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePostureDeploymentRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub posture_deployment: ::core::option::Option<PostureDeployment>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub posture_deployment: ::core::option::Option<PostureDeployment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePostureDeploymentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PostureTemplate {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub revision_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(enumeration = "posture_template::State", tag = "4")]
-    pub state: i32,
-    #[prost(message, repeated, tag = "5")]
-    pub policy_sets: ::prost::alloc::vec::Vec<PolicySet>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub revision_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(enumeration = "posture_template::State", tag = "4")]
+pub state: i32,
+#[prost(message, repeated, tag = "5")]
+pub policy_sets: ::prost::alloc::vec::Vec<PolicySet>,
 }
 /// Nested message and enum types in `PostureTemplate`.
 pub mod posture_template {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Deprecated = 2,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Deprecated => "DEPRECATED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "DEPRECATED" => Some(Self::Deprecated),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Deprecated = 2,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Deprecated => "DEPRECATED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"DEPRECATED" => Some(Self::Deprecated),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPostureTemplatesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPostureTemplatesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub posture_templates: ::prost::alloc::vec::Vec<PostureTemplate>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub posture_templates: ::prost::alloc::vec::Vec<PostureTemplate>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPostureTemplateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub revision_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub revision_id: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod security_posture_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service describing handlers for resources.
-    #[derive(Debug, Clone)]
-    pub struct SecurityPostureClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> SecurityPostureClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> SecurityPostureClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            SecurityPostureClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// (-- This option restricts the visibility of the API to only projects that
-        /// will
-        /// (-- be labeled as `PREVIEW` or `GOOGLE_INTERNAL` by the service.
-        /// (-- option (google.api.api_visibility).restriction =
-        /// "PREVIEW,GOOGLE_INTERNAL"; Postures Lists Postures in a given organization
-        /// and location. In case a posture has multiple revisions, the latest revision
-        /// as per UpdateTime will be returned.
-        pub async fn list_postures(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPosturesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPosturesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/ListPostures",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "ListPostures",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists revisions of a Posture in a given organization and location.
-        pub async fn list_posture_revisions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPostureRevisionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPostureRevisionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/ListPostureRevisions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "ListPostureRevisions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a posture in a given organization and location.
-        /// User must provide revision_id to retrieve a specific revision of the
-        /// resource.
-        /// NOT_FOUND error is returned if the revision_id or the Posture name does not
-        /// exist. In case revision_id is not provided then the latest Posture revision
-        /// by UpdateTime is returned.
-        pub async fn get_posture(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPostureRequest>,
-        ) -> std::result::Result<tonic::Response<super::Posture>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/GetPosture",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "GetPosture",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Posture resource.
-        /// If a Posture with the specified name already exists in the specified
-        /// organization and location, the long running operation returns a
-        /// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
-        pub async fn create_posture(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePostureRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/CreatePosture",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "CreatePosture",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an existing Posture.
-        /// A new revision of the posture will be created if the revision to be
-        /// updated is currently deployed on a workload.
-        /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
-        /// Posture does not exist.
-        /// Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag
-        /// supplied in the request does not match the persisted etag of the Posture.
-        /// Updatable fields are state, description and policy_sets.
-        /// State update operation cannot be clubbed with update of description and
-        /// policy_sets.
-        /// An ACTIVE posture can be updated to both DRAFT or DEPRECATED states.
-        /// Postures in DRAFT or DEPRECATED states can only be updated to ACTIVE state.
-        pub async fn update_posture(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdatePostureRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/UpdatePosture",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "UpdatePosture",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes all the revisions of a resource.
-        /// A posture can only be deleted when none of the revisions are deployed to
-        /// any workload.
-        pub async fn delete_posture(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePostureRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/DeletePosture",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "DeletePosture",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Extracts existing policies on a workload as a posture.
-        /// If a Posture on the given workload already exists, the long running
-        /// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
-        pub async fn extract_posture(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ExtractPostureRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/ExtractPosture",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "ExtractPosture",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// PostureDeployments
-        /// Lists PostureDeployments in a given project and location.
-        pub async fn list_posture_deployments(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPostureDeploymentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPostureDeploymentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/ListPostureDeployments",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "ListPostureDeployments",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single PostureDeployment.
-        pub async fn get_posture_deployment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPostureDeploymentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::PostureDeployment>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/GetPostureDeployment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "GetPostureDeployment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new PostureDeployment in a given project and location.
-        pub async fn create_posture_deployment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePostureDeploymentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/CreatePostureDeployment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "CreatePostureDeployment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the parameters of a single PostureDeployment.
-        pub async fn update_posture_deployment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdatePostureDeploymentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/UpdatePostureDeployment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "UpdatePostureDeployment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single PostureDeployment.
-        pub async fn delete_posture_deployment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePostureDeploymentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/DeletePostureDeployment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "DeletePostureDeployment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// PostureTemplates
-        /// Lists all the PostureTemplates available to the user.
-        pub async fn list_posture_templates(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPostureTemplatesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPostureTemplatesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/ListPostureTemplates",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "ListPostureTemplates",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a PostureTemplate.
-        /// User must provide revision_id to retrieve a specific revision of the
-        /// resource.
-        /// NOT_FOUND error is returned if the revision_id or the PostureTemplate name
-        /// does not exist. In case revision_id is not provided then the
-        /// PostureTemplate with latest revision_id is returned.
-        pub async fn get_posture_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPostureTemplateRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::PostureTemplate>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.securityposture.v1.SecurityPosture/GetPostureTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.securityposture.v1.SecurityPosture",
-                        "GetPostureTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service describing handlers for resources.
+#[derive(Debug, Clone)]
+pub struct SecurityPostureClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> SecurityPostureClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> SecurityPostureClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+SecurityPostureClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// (-- This option restricts the visibility of the API to only projects that
+/// will
+/// (-- be labeled as `PREVIEW` or `GOOGLE_INTERNAL` by the service.
+/// (-- option (google.api.api_visibility).restriction =
+/// "PREVIEW,GOOGLE_INTERNAL"; Postures Lists Postures in a given organization
+/// and location. In case a posture has multiple revisions, the latest revision
+/// as per UpdateTime will be returned.
+pub async fn list_postures(&mut self, request: impl tonic::IntoRequest<super::ListPosturesRequest>) -> std::result::Result<tonic::Response<super::ListPosturesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/ListPostures");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "ListPostures"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists revisions of a Posture in a given organization and location.
+pub async fn list_posture_revisions(&mut self, request: impl tonic::IntoRequest<super::ListPostureRevisionsRequest>) -> std::result::Result<tonic::Response<super::ListPostureRevisionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/ListPostureRevisions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "ListPostureRevisions"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a posture in a given organization and location.
+/// User must provide revision_id to retrieve a specific revision of the
+/// resource.
+/// NOT_FOUND error is returned if the revision_id or the Posture name does not
+/// exist. In case revision_id is not provided then the latest Posture revision
+/// by UpdateTime is returned.
+pub async fn get_posture(&mut self, request: impl tonic::IntoRequest<super::GetPostureRequest>) -> std::result::Result<tonic::Response<super::Posture>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/GetPosture");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "GetPosture"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Posture resource.
+/// If a Posture with the specified name already exists in the specified
+/// organization and location, the long running operation returns a
+/// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+pub async fn create_posture(&mut self, request: impl tonic::IntoRequest<super::CreatePostureRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/CreatePosture");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "CreatePosture"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an existing Posture.
+/// A new revision of the posture will be created if the revision to be
+/// updated is currently deployed on a workload.
+/// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+/// Posture does not exist.
+/// Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag
+/// supplied in the request does not match the persisted etag of the Posture.
+/// Updatable fields are state, description and policy_sets.
+/// State update operation cannot be clubbed with update of description and
+/// policy_sets.
+/// An ACTIVE posture can be updated to both DRAFT or DEPRECATED states.
+/// Postures in DRAFT or DEPRECATED states can only be updated to ACTIVE state.
+pub async fn update_posture(&mut self, request: impl tonic::IntoRequest<super::UpdatePostureRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/UpdatePosture");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "UpdatePosture"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes all the revisions of a resource.
+/// A posture can only be deleted when none of the revisions are deployed to
+/// any workload.
+pub async fn delete_posture(&mut self, request: impl tonic::IntoRequest<super::DeletePostureRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/DeletePosture");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "DeletePosture"));
+self.inner.unary(req, path, codec).await
+}
+/// Extracts existing policies on a workload as a posture.
+/// If a Posture on the given workload already exists, the long running
+/// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+pub async fn extract_posture(&mut self, request: impl tonic::IntoRequest<super::ExtractPostureRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/ExtractPosture");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "ExtractPosture"));
+self.inner.unary(req, path, codec).await
+}
+/// PostureDeployments
+/// Lists PostureDeployments in a given project and location.
+pub async fn list_posture_deployments(&mut self, request: impl tonic::IntoRequest<super::ListPostureDeploymentsRequest>) -> std::result::Result<tonic::Response<super::ListPostureDeploymentsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/ListPostureDeployments");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "ListPostureDeployments"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single PostureDeployment.
+pub async fn get_posture_deployment(&mut self, request: impl tonic::IntoRequest<super::GetPostureDeploymentRequest>) -> std::result::Result<tonic::Response<super::PostureDeployment>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/GetPostureDeployment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "GetPostureDeployment"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new PostureDeployment in a given project and location.
+pub async fn create_posture_deployment(&mut self, request: impl tonic::IntoRequest<super::CreatePostureDeploymentRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/CreatePostureDeployment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "CreatePostureDeployment"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the parameters of a single PostureDeployment.
+pub async fn update_posture_deployment(&mut self, request: impl tonic::IntoRequest<super::UpdatePostureDeploymentRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/UpdatePostureDeployment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "UpdatePostureDeployment"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single PostureDeployment.
+pub async fn delete_posture_deployment(&mut self, request: impl tonic::IntoRequest<super::DeletePostureDeploymentRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/DeletePostureDeployment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "DeletePostureDeployment"));
+self.inner.unary(req, path, codec).await
+}
+/// PostureTemplates
+/// Lists all the PostureTemplates available to the user.
+pub async fn list_posture_templates(&mut self, request: impl tonic::IntoRequest<super::ListPostureTemplatesRequest>) -> std::result::Result<tonic::Response<super::ListPostureTemplatesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/ListPostureTemplates");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "ListPostureTemplates"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a PostureTemplate.
+/// User must provide revision_id to retrieve a specific revision of the
+/// resource.
+/// NOT_FOUND error is returned if the revision_id or the PostureTemplate name
+/// does not exist. In case revision_id is not provided then the
+/// PostureTemplate with latest revision_id is returned.
+pub async fn get_posture_template(&mut self, request: impl tonic::IntoRequest<super::GetPostureTemplateRequest>) -> std::result::Result<tonic::Response<super::PostureTemplate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.securityposture.v1.SecurityPosture/GetPostureTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.securityposture.v1.SecurityPosture", "GetPostureTemplate"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

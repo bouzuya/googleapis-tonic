@@ -2,432 +2,414 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Service {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub config: ::core::option::Option<ServiceConfig>,
-    #[prost(enumeration = "State", tag = "4")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub config: ::core::option::Option<ServiceConfig>,
+#[prost(enumeration = "State", tag = "4")]
+pub state: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceConfig {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub apis: ::prost::alloc::vec::Vec<::prost_types::Api>,
-    #[prost(message, optional, tag = "6")]
-    pub documentation: ::core::option::Option<super::super::Documentation>,
-    #[prost(message, optional, tag = "10")]
-    pub quota: ::core::option::Option<super::super::Quota>,
-    #[prost(message, optional, tag = "11")]
-    pub authentication: ::core::option::Option<super::super::Authentication>,
-    #[prost(message, optional, tag = "15")]
-    pub usage: ::core::option::Option<super::super::Usage>,
-    #[prost(message, repeated, tag = "18")]
-    pub endpoints: ::prost::alloc::vec::Vec<super::super::Endpoint>,
-    #[prost(message, repeated, tag = "25")]
-    pub monitored_resources: ::prost::alloc::vec::Vec<
-        super::super::MonitoredResourceDescriptor,
-    >,
-    #[prost(message, optional, tag = "28")]
-    pub monitoring: ::core::option::Option<super::super::Monitoring>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub title: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub apis: ::prost::alloc::vec::Vec<::prost_types::Api>,
+#[prost(message, optional, tag = "6")]
+pub documentation: ::core::option::Option<super::super::Documentation>,
+#[prost(message, optional, tag = "10")]
+pub quota: ::core::option::Option<super::super::Quota>,
+#[prost(message, optional, tag = "11")]
+pub authentication: ::core::option::Option<super::super::Authentication>,
+#[prost(message, optional, tag = "15")]
+pub usage: ::core::option::Option<super::super::Usage>,
+#[prost(message, repeated, tag = "18")]
+pub endpoints: ::prost::alloc::vec::Vec<super::super::Endpoint>,
+#[prost(message, repeated, tag = "25")]
+pub monitored_resources: ::prost::alloc::vec::Vec<super::super::MonitoredResourceDescriptor>,
+#[prost(message, optional, tag = "28")]
+pub monitoring: ::core::option::Option<super::super::Monitoring>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(string, repeated, tag = "2")]
-    pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConsumerQuotaMetric {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub metric: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub consumer_quota_limits: ::prost::alloc::vec::Vec<ConsumerQuotaLimit>,
-    #[prost(message, repeated, tag = "6")]
-    pub descendant_consumer_quota_limits: ::prost::alloc::vec::Vec<ConsumerQuotaLimit>,
-    #[prost(string, tag = "5")]
-    pub unit: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub metric: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub consumer_quota_limits: ::prost::alloc::vec::Vec<ConsumerQuotaLimit>,
+#[prost(message, repeated, tag = "6")]
+pub descendant_consumer_quota_limits: ::prost::alloc::vec::Vec<ConsumerQuotaLimit>,
+#[prost(string, tag = "5")]
+pub unit: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConsumerQuotaLimit {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub metric: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub unit: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub is_precise: bool,
-    #[prost(bool, tag = "7")]
-    pub allows_admin_overrides: bool,
-    #[prost(message, repeated, tag = "9")]
-    pub quota_buckets: ::prost::alloc::vec::Vec<QuotaBucket>,
-    #[prost(string, repeated, tag = "11")]
-    pub supported_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub metric: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub unit: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub is_precise: bool,
+#[prost(bool, tag = "7")]
+pub allows_admin_overrides: bool,
+#[prost(message, repeated, tag = "9")]
+pub quota_buckets: ::prost::alloc::vec::Vec<QuotaBucket>,
+#[prost(string, repeated, tag = "11")]
+pub supported_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuotaBucket {
-    #[prost(int64, tag = "1")]
-    pub effective_limit: i64,
-    #[prost(int64, tag = "2")]
-    pub default_limit: i64,
-    #[prost(message, optional, tag = "3")]
-    pub producer_override: ::core::option::Option<QuotaOverride>,
-    #[prost(message, optional, tag = "4")]
-    pub consumer_override: ::core::option::Option<QuotaOverride>,
-    #[prost(message, optional, tag = "5")]
-    pub admin_override: ::core::option::Option<QuotaOverride>,
-    #[prost(message, optional, tag = "7")]
-    pub producer_quota_policy: ::core::option::Option<ProducerQuotaPolicy>,
-    #[prost(map = "string, string", tag = "6")]
-    pub dimensions: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(int64, tag = "1")]
+pub effective_limit: i64,
+#[prost(int64, tag = "2")]
+pub default_limit: i64,
+#[prost(message, optional, tag = "3")]
+pub producer_override: ::core::option::Option<QuotaOverride>,
+#[prost(message, optional, tag = "4")]
+pub consumer_override: ::core::option::Option<QuotaOverride>,
+#[prost(message, optional, tag = "5")]
+pub admin_override: ::core::option::Option<QuotaOverride>,
+#[prost(message, optional, tag = "7")]
+pub producer_quota_policy: ::core::option::Option<ProducerQuotaPolicy>,
+#[prost(map = "string, string", tag = "6")]
+pub dimensions: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuotaOverride {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub override_value: i64,
-    #[prost(map = "string, string", tag = "3")]
-    pub dimensions: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "4")]
-    pub metric: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub unit: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub admin_override_ancestor: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub override_value: i64,
+#[prost(map = "string, string", tag = "3")]
+pub dimensions: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub metric: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub unit: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub admin_override_ancestor: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OverrideInlineSource {
-    #[prost(message, repeated, tag = "1")]
-    pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
+#[prost(message, repeated, tag = "1")]
+pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProducerQuotaPolicy {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub policy_value: i64,
-    #[prost(map = "string, string", tag = "3")]
-    pub dimensions: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "4")]
-    pub metric: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub unit: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub container: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub policy_value: i64,
+#[prost(map = "string, string", tag = "3")]
+pub dimensions: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub metric: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub unit: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub container: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdminQuotaPolicy {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub policy_value: i64,
-    #[prost(map = "string, string", tag = "3")]
-    pub dimensions: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "4")]
-    pub metric: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub unit: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub container: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub policy_value: i64,
+#[prost(map = "string, string", tag = "3")]
+pub dimensions: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub metric: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub unit: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub container: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceIdentity {
-    #[prost(string, tag = "1")]
-    pub email: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub unique_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub email: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub unique_id: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum State {
-    Unspecified = 0,
-    Disabled = 1,
-    Enabled = 2,
+Unspecified = 0,
+Disabled = 1,
+Enabled = 2,
 }
 impl State {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            State::Unspecified => "STATE_UNSPECIFIED",
-            State::Disabled => "DISABLED",
-            State::Enabled => "ENABLED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "DISABLED" => Some(Self::Disabled),
-            "ENABLED" => Some(Self::Enabled),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Disabled => "DISABLED",
+State::Enabled => "ENABLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"DISABLED" => Some(Self::Disabled),
+"ENABLED" => Some(Self::Enabled),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum QuotaView {
-    Unspecified = 0,
-    Basic = 1,
-    Full = 2,
+Unspecified = 0,
+Basic = 1,
+Full = 2,
 }
 impl QuotaView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            QuotaView::Unspecified => "QUOTA_VIEW_UNSPECIFIED",
-            QuotaView::Basic => "BASIC",
-            QuotaView::Full => "FULL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "QUOTA_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
-            "BASIC" => Some(Self::Basic),
-            "FULL" => Some(Self::Full),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+QuotaView::Unspecified => "QUOTA_VIEW_UNSPECIFIED",
+QuotaView::Basic => "BASIC",
+QuotaView::Full => "FULL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"QUOTA_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+"BASIC" => Some(Self::Basic),
+"FULL" => Some(Self::Full),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum QuotaSafetyCheck {
-    Unspecified = 0,
-    LimitDecreaseBelowUsage = 1,
-    LimitDecreasePercentageTooHigh = 2,
+Unspecified = 0,
+LimitDecreaseBelowUsage = 1,
+LimitDecreasePercentageTooHigh = 2,
 }
 impl QuotaSafetyCheck {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            QuotaSafetyCheck::Unspecified => "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-            QuotaSafetyCheck::LimitDecreaseBelowUsage => "LIMIT_DECREASE_BELOW_USAGE",
-            QuotaSafetyCheck::LimitDecreasePercentageTooHigh => {
-                "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "QUOTA_SAFETY_CHECK_UNSPECIFIED" => Some(Self::Unspecified),
-            "LIMIT_DECREASE_BELOW_USAGE" => Some(Self::LimitDecreaseBelowUsage),
-            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH" => {
-                Some(Self::LimitDecreasePercentageTooHigh)
-            }
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+QuotaSafetyCheck::Unspecified => "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+QuotaSafetyCheck::LimitDecreaseBelowUsage => "LIMIT_DECREASE_BELOW_USAGE",
+QuotaSafetyCheck::LimitDecreasePercentageTooHigh => "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"QUOTA_SAFETY_CHECK_UNSPECIFIED" => Some(Self::Unspecified),
+"LIMIT_DECREASE_BELOW_USAGE" => Some(Self::LimitDecreaseBelowUsage),
+"LIMIT_DECREASE_PERCENTAGE_TOO_HIGH" => Some(Self::LimitDecreasePercentageTooHigh),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnableServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisableServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub services: ::prost::alloc::vec::Vec<Service>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub services: ::prost::alloc::vec::Vec<Service>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchEnableServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub service_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub service_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConsumerQuotaMetricsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(enumeration = "QuotaView", tag = "4")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(enumeration = "QuotaView", tag = "4")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConsumerQuotaMetricsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub metrics: ::prost::alloc::vec::Vec<ConsumerQuotaMetric>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub metrics: ::prost::alloc::vec::Vec<ConsumerQuotaMetric>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetConsumerQuotaMetricRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "QuotaView", tag = "2")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "QuotaView", tag = "2")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetConsumerQuotaLimitRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "QuotaView", tag = "2")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "QuotaView", tag = "2")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateAdminOverrideRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub r#override: ::core::option::Option<QuotaOverride>,
-    #[prost(bool, tag = "3")]
-    pub force: bool,
-    #[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "4")]
-    pub force_only: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub r#override: ::core::option::Option<QuotaOverride>,
+#[prost(bool, tag = "3")]
+pub force: bool,
+#[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "4")]
+pub force_only: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAdminOverrideRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub r#override: ::core::option::Option<QuotaOverride>,
-    #[prost(bool, tag = "3")]
-    pub force: bool,
-    #[prost(message, optional, tag = "4")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "5")]
-    pub force_only: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub r#override: ::core::option::Option<QuotaOverride>,
+#[prost(bool, tag = "3")]
+pub force: bool,
+#[prost(message, optional, tag = "4")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "5")]
+pub force_only: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAdminOverrideRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
-    #[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "3")]
-    pub force_only: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
+#[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "3")]
+pub force_only: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAdminOverridesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAdminOverridesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateAdminOverridesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
+#[prost(message, repeated, tag = "1")]
+pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAdminOverridesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub force: bool,
-    #[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "4")]
-    pub force_only: ::prost::alloc::vec::Vec<i32>,
-    #[prost(oneof = "import_admin_overrides_request::Source", tags = "2")]
-    pub source: ::core::option::Option<import_admin_overrides_request::Source>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub force: bool,
+#[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "4")]
+pub force_only: ::prost::alloc::vec::Vec<i32>,
+#[prost(oneof = "import_admin_overrides_request::Source", tags = "2")]
+pub source: ::core::option::Option<import_admin_overrides_request::Source>,
 }
 /// Nested message and enum types in `ImportAdminOverridesRequest`.
 pub mod import_admin_overrides_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "2")]
-        InlineSource(super::OverrideInlineSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "2")]
+InlineSource(super::OverrideInlineSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAdminOverridesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
+#[prost(message, repeated, tag = "1")]
+pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -435,89 +417,89 @@ pub struct ImportAdminOverridesMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateConsumerOverrideRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub r#override: ::core::option::Option<QuotaOverride>,
-    #[prost(bool, tag = "3")]
-    pub force: bool,
-    #[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "4")]
-    pub force_only: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub r#override: ::core::option::Option<QuotaOverride>,
+#[prost(bool, tag = "3")]
+pub force: bool,
+#[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "4")]
+pub force_only: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateConsumerOverrideRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub r#override: ::core::option::Option<QuotaOverride>,
-    #[prost(bool, tag = "3")]
-    pub force: bool,
-    #[prost(message, optional, tag = "4")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "5")]
-    pub force_only: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub r#override: ::core::option::Option<QuotaOverride>,
+#[prost(bool, tag = "3")]
+pub force: bool,
+#[prost(message, optional, tag = "4")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "5")]
+pub force_only: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteConsumerOverrideRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
-    #[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "3")]
-    pub force_only: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
+#[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "3")]
+pub force_only: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConsumerOverridesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConsumerOverridesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateConsumerOverridesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
+#[prost(message, repeated, tag = "1")]
+pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportConsumerOverridesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub force: bool,
-    #[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "4")]
-    pub force_only: ::prost::alloc::vec::Vec<i32>,
-    #[prost(oneof = "import_consumer_overrides_request::Source", tags = "2")]
-    pub source: ::core::option::Option<import_consumer_overrides_request::Source>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub force: bool,
+#[prost(enumeration = "QuotaSafetyCheck", repeated, tag = "4")]
+pub force_only: ::prost::alloc::vec::Vec<i32>,
+#[prost(oneof = "import_consumer_overrides_request::Source", tags = "2")]
+pub source: ::core::option::Option<import_consumer_overrides_request::Source>,
 }
 /// Nested message and enum types in `ImportConsumerOverridesRequest`.
 pub mod import_consumer_overrides_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "2")]
-        InlineSource(super::OverrideInlineSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "2")]
+InlineSource(super::OverrideInlineSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportConsumerOverridesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
+#[prost(message, repeated, tag = "1")]
+pub overrides: ::prost::alloc::vec::Vec<QuotaOverride>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -525,8 +507,8 @@ pub struct ImportConsumerOverridesMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportAdminQuotaPoliciesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub policies: ::prost::alloc::vec::Vec<AdminQuotaPolicy>,
+#[prost(message, repeated, tag = "1")]
+pub policies: ::prost::alloc::vec::Vec<AdminQuotaPolicy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -543,756 +525,321 @@ pub struct DeleteAdminQuotaPolicyMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateServiceIdentityRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceIdentityResponse {
-    #[prost(message, optional, tag = "1")]
-    pub identity: ::core::option::Option<ServiceIdentity>,
-    #[prost(enumeration = "get_service_identity_response::IdentityState", tag = "2")]
-    pub state: i32,
+#[prost(message, optional, tag = "1")]
+pub identity: ::core::option::Option<ServiceIdentity>,
+#[prost(enumeration = "get_service_identity_response::IdentityState", tag = "2")]
+pub state: i32,
 }
 /// Nested message and enum types in `GetServiceIdentityResponse`.
 pub mod get_service_identity_response {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum IdentityState {
-        Unspecified = 0,
-        Active = 1,
-    }
-    impl IdentityState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                IdentityState::Unspecified => "IDENTITY_STATE_UNSPECIFIED",
-                IdentityState::Active => "ACTIVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "IDENTITY_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum IdentityState {
+Unspecified = 0,
+Active = 1,
+}
+impl IdentityState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+IdentityState::Unspecified => "IDENTITY_STATE_UNSPECIFIED",
+IdentityState::Active => "ACTIVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"IDENTITY_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GetServiceIdentityMetadata {}
 /// Generated client implementations.
 pub mod service_usage_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// [Service Usage API](https://cloud.google.com/service-usage/docs/overview)
-    #[derive(Debug, Clone)]
-    pub struct ServiceUsageClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ServiceUsageClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ServiceUsageClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ServiceUsageClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Enables a service so that it can be used with a project.
-        ///
-        /// Operation response type: `google.protobuf.Empty`
-        pub async fn enable_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EnableServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/EnableService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "EnableService",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Disables a service so that it can no longer be used with a project.
-        /// This prevents unintended usage that may cause unexpected billing
-        /// charges or security leaks.
-        ///
-        /// It is not valid to call the disable method on a service that is not
-        /// currently enabled. Callers will receive a `FAILED_PRECONDITION` status if
-        /// the target service is not currently enabled.
-        ///
-        /// Operation response type: `google.protobuf.Empty`
-        pub async fn disable_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DisableServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/DisableService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "DisableService",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the service configuration and enabled state for a given service.
-        pub async fn get_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetServiceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/GetService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "GetService",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all services available to the specified project, and the current
-        /// state of those services with respect to the project. The list includes
-        /// all public services, all services for which the calling user has the
-        /// `servicemanagement.services.bind` permission, and all services that have
-        /// already been enabled on the project. The list can be filtered to
-        /// only include services in a specific state, for example to only include
-        /// services enabled on the project.
-        pub async fn list_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListServicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/ListServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "ListServices",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enables multiple services on a project. The operation is atomic: if
-        /// enabling any service fails, then the entire batch fails, and no state
-        /// changes occur.
-        ///
-        /// Operation response type: `google.protobuf.Empty`
-        pub async fn batch_enable_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchEnableServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/BatchEnableServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "BatchEnableServices",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieves a summary of all quota information visible to the service
-        /// consumer, organized by service metric. Each metric includes information
-        /// about all of its defined limits. Each limit includes the limit
-        /// configuration (quota unit, preciseness, default value), the current
-        /// effective limit value, and all of the overrides applied to the limit.
-        pub async fn list_consumer_quota_metrics(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListConsumerQuotaMetricsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListConsumerQuotaMetricsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/ListConsumerQuotaMetrics",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "ListConsumerQuotaMetrics",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieves a summary of quota information for a specific quota metric
-        pub async fn get_consumer_quota_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetConsumerQuotaMetricRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ConsumerQuotaMetric>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/GetConsumerQuotaMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "GetConsumerQuotaMetric",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieves a summary of quota information for a specific quota limit.
-        pub async fn get_consumer_quota_limit(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetConsumerQuotaLimitRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ConsumerQuotaLimit>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/GetConsumerQuotaLimit",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "GetConsumerQuotaLimit",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates an admin override.
-        /// An admin override is applied by an administrator of a parent folder or
-        /// parent organization of the consumer receiving the override. An admin
-        /// override is intended to limit the amount of quota the consumer can use out
-        /// of the total quota pool allocated to all children of the folder or
-        /// organization.
-        pub async fn create_admin_override(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateAdminOverrideRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/CreateAdminOverride",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "CreateAdminOverride",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an admin override.
-        pub async fn update_admin_override(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateAdminOverrideRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/UpdateAdminOverride",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "UpdateAdminOverride",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes an admin override.
-        pub async fn delete_admin_override(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteAdminOverrideRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/DeleteAdminOverride",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "DeleteAdminOverride",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all admin overrides on this limit.
-        pub async fn list_admin_overrides(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListAdminOverridesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListAdminOverridesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/ListAdminOverrides",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "ListAdminOverrides",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates or updates multiple admin overrides atomically, all on the
-        /// same consumer, but on many different metrics or limits.
-        /// The name field in the quota override message should not be set.
-        pub async fn import_admin_overrides(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportAdminOverridesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/ImportAdminOverrides",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "ImportAdminOverrides",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a consumer override.
-        /// A consumer override is applied to the consumer on its own authority to
-        /// limit its own quota usage. Consumer overrides cannot be used to grant more
-        /// quota than would be allowed by admin overrides, producer overrides, or the
-        /// default limit of the service.
-        pub async fn create_consumer_override(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateConsumerOverrideRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/CreateConsumerOverride",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "CreateConsumerOverride",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a consumer override.
-        pub async fn update_consumer_override(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateConsumerOverrideRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/UpdateConsumerOverride",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "UpdateConsumerOverride",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a consumer override.
-        pub async fn delete_consumer_override(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteConsumerOverrideRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/DeleteConsumerOverride",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "DeleteConsumerOverride",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all consumer overrides on this limit.
-        pub async fn list_consumer_overrides(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListConsumerOverridesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListConsumerOverridesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/ListConsumerOverrides",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "ListConsumerOverrides",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates or updates multiple consumer overrides atomically, all on the
-        /// same consumer, but on many different metrics or limits.
-        /// The name field in the quota override message should not be set.
-        pub async fn import_consumer_overrides(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportConsumerOverridesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/ImportConsumerOverrides",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "ImportConsumerOverrides",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Generates service identity for service.
-        pub async fn generate_service_identity(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateServiceIdentityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1beta1.ServiceUsage/GenerateServiceIdentity",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1beta1.ServiceUsage",
-                        "GenerateServiceIdentity",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// [Service Usage API](https://cloud.google.com/service-usage/docs/overview)
+#[derive(Debug, Clone)]
+pub struct ServiceUsageClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ServiceUsageClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ServiceUsageClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ServiceUsageClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Enables a service so that it can be used with a project.
+///
+/// Operation response type: `google.protobuf.Empty`
+pub async fn enable_service(&mut self, request: impl tonic::IntoRequest<super::EnableServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/EnableService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "EnableService"));
+self.inner.unary(req, path, codec).await
+}
+/// Disables a service so that it can no longer be used with a project.
+/// This prevents unintended usage that may cause unexpected billing
+/// charges or security leaks.
+///
+/// It is not valid to call the disable method on a service that is not
+/// currently enabled. Callers will receive a `FAILED_PRECONDITION` status if
+/// the target service is not currently enabled.
+///
+/// Operation response type: `google.protobuf.Empty`
+pub async fn disable_service(&mut self, request: impl tonic::IntoRequest<super::DisableServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/DisableService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "DisableService"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the service configuration and enabled state for a given service.
+pub async fn get_service(&mut self, request: impl tonic::IntoRequest<super::GetServiceRequest>) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/GetService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "GetService"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all services available to the specified project, and the current
+/// state of those services with respect to the project. The list includes
+/// all public services, all services for which the calling user has the
+/// `servicemanagement.services.bind` permission, and all services that have
+/// already been enabled on the project. The list can be filtered to
+/// only include services in a specific state, for example to only include
+/// services enabled on the project.
+pub async fn list_services(&mut self, request: impl tonic::IntoRequest<super::ListServicesRequest>) -> std::result::Result<tonic::Response<super::ListServicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/ListServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "ListServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Enables multiple services on a project. The operation is atomic: if
+/// enabling any service fails, then the entire batch fails, and no state
+/// changes occur.
+///
+/// Operation response type: `google.protobuf.Empty`
+pub async fn batch_enable_services(&mut self, request: impl tonic::IntoRequest<super::BatchEnableServicesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/BatchEnableServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "BatchEnableServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Retrieves a summary of all quota information visible to the service
+/// consumer, organized by service metric. Each metric includes information
+/// about all of its defined limits. Each limit includes the limit
+/// configuration (quota unit, preciseness, default value), the current
+/// effective limit value, and all of the overrides applied to the limit.
+pub async fn list_consumer_quota_metrics(&mut self, request: impl tonic::IntoRequest<super::ListConsumerQuotaMetricsRequest>) -> std::result::Result<tonic::Response<super::ListConsumerQuotaMetricsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/ListConsumerQuotaMetrics");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "ListConsumerQuotaMetrics"));
+self.inner.unary(req, path, codec).await
+}
+/// Retrieves a summary of quota information for a specific quota metric
+pub async fn get_consumer_quota_metric(&mut self, request: impl tonic::IntoRequest<super::GetConsumerQuotaMetricRequest>) -> std::result::Result<tonic::Response<super::ConsumerQuotaMetric>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/GetConsumerQuotaMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "GetConsumerQuotaMetric"));
+self.inner.unary(req, path, codec).await
+}
+/// Retrieves a summary of quota information for a specific quota limit.
+pub async fn get_consumer_quota_limit(&mut self, request: impl tonic::IntoRequest<super::GetConsumerQuotaLimitRequest>) -> std::result::Result<tonic::Response<super::ConsumerQuotaLimit>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/GetConsumerQuotaLimit");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "GetConsumerQuotaLimit"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates an admin override.
+/// An admin override is applied by an administrator of a parent folder or
+/// parent organization of the consumer receiving the override. An admin
+/// override is intended to limit the amount of quota the consumer can use out
+/// of the total quota pool allocated to all children of the folder or
+/// organization.
+pub async fn create_admin_override(&mut self, request: impl tonic::IntoRequest<super::CreateAdminOverrideRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/CreateAdminOverride");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "CreateAdminOverride"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an admin override.
+pub async fn update_admin_override(&mut self, request: impl tonic::IntoRequest<super::UpdateAdminOverrideRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/UpdateAdminOverride");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "UpdateAdminOverride"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes an admin override.
+pub async fn delete_admin_override(&mut self, request: impl tonic::IntoRequest<super::DeleteAdminOverrideRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/DeleteAdminOverride");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "DeleteAdminOverride"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all admin overrides on this limit.
+pub async fn list_admin_overrides(&mut self, request: impl tonic::IntoRequest<super::ListAdminOverridesRequest>) -> std::result::Result<tonic::Response<super::ListAdminOverridesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/ListAdminOverrides");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "ListAdminOverrides"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates or updates multiple admin overrides atomically, all on the
+/// same consumer, but on many different metrics or limits.
+/// The name field in the quota override message should not be set.
+pub async fn import_admin_overrides(&mut self, request: impl tonic::IntoRequest<super::ImportAdminOverridesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/ImportAdminOverrides");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "ImportAdminOverrides"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a consumer override.
+/// A consumer override is applied to the consumer on its own authority to
+/// limit its own quota usage. Consumer overrides cannot be used to grant more
+/// quota than would be allowed by admin overrides, producer overrides, or the
+/// default limit of the service.
+pub async fn create_consumer_override(&mut self, request: impl tonic::IntoRequest<super::CreateConsumerOverrideRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/CreateConsumerOverride");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "CreateConsumerOverride"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a consumer override.
+pub async fn update_consumer_override(&mut self, request: impl tonic::IntoRequest<super::UpdateConsumerOverrideRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/UpdateConsumerOverride");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "UpdateConsumerOverride"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a consumer override.
+pub async fn delete_consumer_override(&mut self, request: impl tonic::IntoRequest<super::DeleteConsumerOverrideRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/DeleteConsumerOverride");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "DeleteConsumerOverride"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all consumer overrides on this limit.
+pub async fn list_consumer_overrides(&mut self, request: impl tonic::IntoRequest<super::ListConsumerOverridesRequest>) -> std::result::Result<tonic::Response<super::ListConsumerOverridesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/ListConsumerOverrides");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "ListConsumerOverrides"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates or updates multiple consumer overrides atomically, all on the
+/// same consumer, but on many different metrics or limits.
+/// The name field in the quota override message should not be set.
+pub async fn import_consumer_overrides(&mut self, request: impl tonic::IntoRequest<super::ImportConsumerOverridesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/ImportConsumerOverrides");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "ImportConsumerOverrides"));
+self.inner.unary(req, path, codec).await
+}
+/// Generates service identity for service.
+pub async fn generate_service_identity(&mut self, request: impl tonic::IntoRequest<super::GenerateServiceIdentityRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1beta1.ServiceUsage/GenerateServiceIdentity");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1beta1.ServiceUsage", "GenerateServiceIdentity"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

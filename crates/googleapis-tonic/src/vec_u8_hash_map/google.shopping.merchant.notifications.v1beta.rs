@@ -2,441 +2,300 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNotificationSubscriptionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateNotificationSubscriptionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub notification_subscription: ::core::option::Option<NotificationSubscription>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub notification_subscription: ::core::option::Option<NotificationSubscription>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateNotificationSubscriptionRequest {
-    #[prost(message, optional, tag = "1")]
-    pub notification_subscription: ::core::option::Option<NotificationSubscription>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub notification_subscription: ::core::option::Option<NotificationSubscription>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteNotificationSubscriptionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNotificationSubscriptionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNotificationSubscriptionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub notification_subscriptions: ::prost::alloc::vec::Vec<NotificationSubscription>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub notification_subscriptions: ::prost::alloc::vec::Vec<NotificationSubscription>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NotificationSubscription {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "notification_subscription::NotificationEventType", tag = "2")]
-    pub registered_event: i32,
-    #[prost(string, tag = "5")]
-    pub call_back_uri: ::prost::alloc::string::String,
-    #[prost(oneof = "notification_subscription::InterestedIn", tags = "3, 4")]
-    pub interested_in: ::core::option::Option<notification_subscription::InterestedIn>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "notification_subscription::NotificationEventType", tag = "2")]
+pub registered_event: i32,
+#[prost(string, tag = "5")]
+pub call_back_uri: ::prost::alloc::string::String,
+#[prost(oneof = "notification_subscription::InterestedIn", tags = "3, 4")]
+pub interested_in: ::core::option::Option<notification_subscription::InterestedIn>,
 }
 /// Nested message and enum types in `NotificationSubscription`.
 pub mod notification_subscription {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum NotificationEventType {
-        Unspecified = 0,
-        ProductStatusChange = 1,
-    }
-    impl NotificationEventType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                NotificationEventType::Unspecified => {
-                    "NOTIFICATION_EVENT_TYPE_UNSPECIFIED"
-                }
-                NotificationEventType::ProductStatusChange => "PRODUCT_STATUS_CHANGE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "NOTIFICATION_EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PRODUCT_STATUS_CHANGE" => Some(Self::ProductStatusChange),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum InterestedIn {
-        #[prost(bool, tag = "3")]
-        AllManagedAccounts(bool),
-        #[prost(string, tag = "4")]
-        TargetAccount(::prost::alloc::string::String),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum NotificationEventType {
+Unspecified = 0,
+ProductStatusChange = 1,
+}
+impl NotificationEventType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+NotificationEventType::Unspecified => "NOTIFICATION_EVENT_TYPE_UNSPECIFIED",
+NotificationEventType::ProductStatusChange => "PRODUCT_STATUS_CHANGE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"NOTIFICATION_EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"PRODUCT_STATUS_CHANGE" => Some(Self::ProductStatusChange),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum InterestedIn {
+#[prost(bool, tag = "3")]
+AllManagedAccounts(bool),
+#[prost(string, tag = "4")]
+TargetAccount(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductChange {
-    #[prost(string, optional, tag = "1")]
-    pub old_value: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "2")]
-    pub new_value: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "3")]
-    pub region_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(
-        enumeration = "super::super::super::r#type::reporting_context::ReportingContextEnum",
-        optional,
-        tag = "4"
-    )]
-    pub reporting_context: ::core::option::Option<i32>,
+#[prost(string, optional, tag = "1")]
+pub old_value: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "2")]
+pub new_value: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "3")]
+pub region_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(enumeration = "super::super::super::r#type::reporting_context::ReportingContextEnum", optional, tag = "4")]
+pub reporting_context: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductStatusChangeMessage {
-    #[prost(string, optional, tag = "1")]
-    pub account: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "2")]
-    pub managing_account: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(enumeration = "Resource", optional, tag = "3")]
-    pub resource_type: ::core::option::Option<i32>,
-    #[prost(enumeration = "Attribute", optional, tag = "4")]
-    pub attribute: ::core::option::Option<i32>,
-    #[prost(message, repeated, tag = "5")]
-    pub changes: ::prost::alloc::vec::Vec<ProductChange>,
-    #[prost(string, optional, tag = "6")]
-    pub resource_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "7")]
-    pub resource: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "1")]
+pub account: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "2")]
+pub managing_account: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(enumeration = "Resource", optional, tag = "3")]
+pub resource_type: ::core::option::Option<i32>,
+#[prost(enumeration = "Attribute", optional, tag = "4")]
+pub attribute: ::core::option::Option<i32>,
+#[prost(message, repeated, tag = "5")]
+pub changes: ::prost::alloc::vec::Vec<ProductChange>,
+#[prost(string, optional, tag = "6")]
+pub resource_id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "7")]
+pub resource: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Resource {
-    Unspecified = 0,
-    Product = 1,
+Unspecified = 0,
+Product = 1,
 }
 impl Resource {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Resource::Unspecified => "RESOURCE_UNSPECIFIED",
-            Resource::Product => "PRODUCT",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "RESOURCE_UNSPECIFIED" => Some(Self::Unspecified),
-            "PRODUCT" => Some(Self::Product),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Resource::Unspecified => "RESOURCE_UNSPECIFIED",
+Resource::Product => "PRODUCT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RESOURCE_UNSPECIFIED" => Some(Self::Unspecified),
+"PRODUCT" => Some(Self::Product),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Attribute {
-    Unspecified = 0,
-    Status = 1,
+Unspecified = 0,
+Status = 1,
 }
 impl Attribute {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Attribute::Unspecified => "ATTRIBUTE_UNSPECIFIED",
-            Attribute::Status => "STATUS",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ATTRIBUTE_UNSPECIFIED" => Some(Self::Unspecified),
-            "STATUS" => Some(Self::Status),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Attribute::Unspecified => "ATTRIBUTE_UNSPECIFIED",
+Attribute::Status => "STATUS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ATTRIBUTE_UNSPECIFIED" => Some(Self::Unspecified),
+"STATUS" => Some(Self::Status),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod notifications_api_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service to manage notification subscriptions for merchants
-    #[derive(Debug, Clone)]
-    pub struct NotificationsApiServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> NotificationsApiServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> NotificationsApiServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            NotificationsApiServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets notification subscriptions for an account.
-        pub async fn get_notification_subscription(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetNotificationSubscriptionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::NotificationSubscription>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/GetNotificationSubscription",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                        "GetNotificationSubscription",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a notification subscription for a merchant. We will allow the
-        /// following types of notification subscriptions to exist together (per
-        /// merchant as a subscriber per event type):
-        /// 1. Subscription for all managed accounts + subscription for self
-        /// 2. Multiple "partial" subscriptions for managed accounts + subscription
-        /// for self
-        ///
-        /// we will not allow (per merchant as a subscriber per event type):
-        /// 1. multiple self subscriptions.
-        /// 2. multiple "all managed accounts" subscriptions.
-        /// 3. all and partial subscriptions at the same time.
-        /// 4. multiple partial subscriptions for the same target account
-        pub async fn create_notification_subscription(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::CreateNotificationSubscriptionRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::NotificationSubscription>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/CreateNotificationSubscription",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                        "CreateNotificationSubscription",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an existing notification subscription for a merchant.
-        pub async fn update_notification_subscription(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::UpdateNotificationSubscriptionRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::NotificationSubscription>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/UpdateNotificationSubscription",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                        "UpdateNotificationSubscription",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a notification subscription for a merchant.
-        pub async fn delete_notification_subscription(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::DeleteNotificationSubscriptionRequest,
-            >,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/DeleteNotificationSubscription",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                        "DeleteNotificationSubscription",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets all the notification subscriptions for a merchant.
-        pub async fn list_notification_subscriptions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListNotificationSubscriptionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListNotificationSubscriptionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.notifications.v1beta.NotificationsApiService/ListNotificationSubscriptions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.notifications.v1beta.NotificationsApiService",
-                        "ListNotificationSubscriptions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service to manage notification subscriptions for merchants
+#[derive(Debug, Clone)]
+pub struct NotificationsApiServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> NotificationsApiServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> NotificationsApiServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+NotificationsApiServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets notification subscriptions for an account.
+pub async fn get_notification_subscription(&mut self, request: impl tonic::IntoRequest<super::GetNotificationSubscriptionRequest>) -> std::result::Result<tonic::Response<super::NotificationSubscription>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/GetNotificationSubscription");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.notifications.v1beta.NotificationsApiService", "GetNotificationSubscription"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a notification subscription for a merchant. We will allow the
+/// following types of notification subscriptions to exist together (per
+/// merchant as a subscriber per event type):
+/// 1. Subscription for all managed accounts + subscription for self
+/// 2. Multiple "partial" subscriptions for managed accounts + subscription
+/// for self
+///
+/// we will not allow (per merchant as a subscriber per event type):
+/// 1. multiple self subscriptions.
+/// 2. multiple "all managed accounts" subscriptions.
+/// 3. all and partial subscriptions at the same time.
+/// 4. multiple partial subscriptions for the same target account
+pub async fn create_notification_subscription(&mut self, request: impl tonic::IntoRequest<super::CreateNotificationSubscriptionRequest>) -> std::result::Result<tonic::Response<super::NotificationSubscription>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/CreateNotificationSubscription");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.notifications.v1beta.NotificationsApiService", "CreateNotificationSubscription"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an existing notification subscription for a merchant.
+pub async fn update_notification_subscription(&mut self, request: impl tonic::IntoRequest<super::UpdateNotificationSubscriptionRequest>) -> std::result::Result<tonic::Response<super::NotificationSubscription>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/UpdateNotificationSubscription");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.notifications.v1beta.NotificationsApiService", "UpdateNotificationSubscription"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a notification subscription for a merchant.
+pub async fn delete_notification_subscription(&mut self, request: impl tonic::IntoRequest<super::DeleteNotificationSubscriptionRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/DeleteNotificationSubscription");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.notifications.v1beta.NotificationsApiService", "DeleteNotificationSubscription"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets all the notification subscriptions for a merchant.
+pub async fn list_notification_subscriptions(&mut self, request: impl tonic::IntoRequest<super::ListNotificationSubscriptionsRequest>) -> std::result::Result<tonic::Response<super::ListNotificationSubscriptionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.notifications.v1beta.NotificationsApiService/ListNotificationSubscriptions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.notifications.v1beta.NotificationsApiService", "ListNotificationSubscriptions"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

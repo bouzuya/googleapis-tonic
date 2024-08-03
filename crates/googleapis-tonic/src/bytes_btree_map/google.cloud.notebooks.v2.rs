@@ -2,1218 +2,885 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NetworkInterface {
-    #[prost(string, tag = "1")]
-    pub network: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub subnet: ::prost::alloc::string::String,
-    #[prost(enumeration = "network_interface::NicType", tag = "3")]
-    pub nic_type: i32,
+#[prost(string, tag = "1")]
+pub network: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub subnet: ::prost::alloc::string::String,
+#[prost(enumeration = "network_interface::NicType", tag = "3")]
+pub nic_type: i32,
 }
 /// Nested message and enum types in `NetworkInterface`.
 pub mod network_interface {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum NicType {
-        Unspecified = 0,
-        VirtioNet = 1,
-        Gvnic = 2,
-    }
-    impl NicType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                NicType::Unspecified => "NIC_TYPE_UNSPECIFIED",
-                NicType::VirtioNet => "VIRTIO_NET",
-                NicType::Gvnic => "GVNIC",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "NIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "VIRTIO_NET" => Some(Self::VirtioNet),
-                "GVNIC" => Some(Self::Gvnic),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum NicType {
+Unspecified = 0,
+VirtioNet = 1,
+Gvnic = 2,
+}
+impl NicType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+NicType::Unspecified => "NIC_TYPE_UNSPECIFIED",
+NicType::VirtioNet => "VIRTIO_NET",
+NicType::Gvnic => "GVNIC",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"NIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"VIRTIO_NET" => Some(Self::VirtioNet),
+"GVNIC" => Some(Self::Gvnic),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VmImage {
-    #[prost(string, tag = "1")]
-    pub project: ::prost::alloc::string::String,
-    #[prost(oneof = "vm_image::Image", tags = "2, 3")]
-    pub image: ::core::option::Option<vm_image::Image>,
+#[prost(string, tag = "1")]
+pub project: ::prost::alloc::string::String,
+#[prost(oneof = "vm_image::Image", tags = "2, 3")]
+pub image: ::core::option::Option<vm_image::Image>,
 }
 /// Nested message and enum types in `VmImage`.
 pub mod vm_image {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Image {
-        #[prost(string, tag = "2")]
-        Name(::prost::alloc::string::String),
-        #[prost(string, tag = "3")]
-        Family(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Image {
+#[prost(string, tag = "2")]
+Name(::prost::alloc::string::String),
+#[prost(string, tag = "3")]
+Family(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContainerImage {
-    #[prost(string, tag = "1")]
-    pub repository: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub tag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub repository: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub tag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AcceleratorConfig {
-    #[prost(enumeration = "accelerator_config::AcceleratorType", tag = "1")]
-    pub r#type: i32,
-    #[prost(int64, tag = "2")]
-    pub core_count: i64,
+#[prost(enumeration = "accelerator_config::AcceleratorType", tag = "1")]
+pub r#type: i32,
+#[prost(int64, tag = "2")]
+pub core_count: i64,
 }
 /// Nested message and enum types in `AcceleratorConfig`.
 pub mod accelerator_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AcceleratorType {
-        Unspecified = 0,
-        NvidiaTeslaP100 = 2,
-        NvidiaTeslaV100 = 3,
-        NvidiaTeslaP4 = 4,
-        NvidiaTeslaT4 = 5,
-        NvidiaTeslaA100 = 11,
-        NvidiaA10080gb = 12,
-        NvidiaL4 = 13,
-        NvidiaTeslaT4Vws = 8,
-        NvidiaTeslaP100Vws = 9,
-        NvidiaTeslaP4Vws = 10,
-    }
-    impl AcceleratorType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AcceleratorType::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
-                AcceleratorType::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
-                AcceleratorType::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
-                AcceleratorType::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
-                AcceleratorType::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
-                AcceleratorType::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
-                AcceleratorType::NvidiaA10080gb => "NVIDIA_A100_80GB",
-                AcceleratorType::NvidiaL4 => "NVIDIA_L4",
-                AcceleratorType::NvidiaTeslaT4Vws => "NVIDIA_TESLA_T4_VWS",
-                AcceleratorType::NvidiaTeslaP100Vws => "NVIDIA_TESLA_P100_VWS",
-                AcceleratorType::NvidiaTeslaP4Vws => "NVIDIA_TESLA_P4_VWS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ACCELERATOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "NVIDIA_TESLA_P100" => Some(Self::NvidiaTeslaP100),
-                "NVIDIA_TESLA_V100" => Some(Self::NvidiaTeslaV100),
-                "NVIDIA_TESLA_P4" => Some(Self::NvidiaTeslaP4),
-                "NVIDIA_TESLA_T4" => Some(Self::NvidiaTeslaT4),
-                "NVIDIA_TESLA_A100" => Some(Self::NvidiaTeslaA100),
-                "NVIDIA_A100_80GB" => Some(Self::NvidiaA10080gb),
-                "NVIDIA_L4" => Some(Self::NvidiaL4),
-                "NVIDIA_TESLA_T4_VWS" => Some(Self::NvidiaTeslaT4Vws),
-                "NVIDIA_TESLA_P100_VWS" => Some(Self::NvidiaTeslaP100Vws),
-                "NVIDIA_TESLA_P4_VWS" => Some(Self::NvidiaTeslaP4Vws),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AcceleratorType {
+Unspecified = 0,
+NvidiaTeslaP100 = 2,
+NvidiaTeslaV100 = 3,
+NvidiaTeslaP4 = 4,
+NvidiaTeslaT4 = 5,
+NvidiaTeslaA100 = 11,
+NvidiaA10080gb = 12,
+NvidiaL4 = 13,
+NvidiaTeslaT4Vws = 8,
+NvidiaTeslaP100Vws = 9,
+NvidiaTeslaP4Vws = 10,
+}
+impl AcceleratorType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AcceleratorType::Unspecified => "ACCELERATOR_TYPE_UNSPECIFIED",
+AcceleratorType::NvidiaTeslaP100 => "NVIDIA_TESLA_P100",
+AcceleratorType::NvidiaTeslaV100 => "NVIDIA_TESLA_V100",
+AcceleratorType::NvidiaTeslaP4 => "NVIDIA_TESLA_P4",
+AcceleratorType::NvidiaTeslaT4 => "NVIDIA_TESLA_T4",
+AcceleratorType::NvidiaTeslaA100 => "NVIDIA_TESLA_A100",
+AcceleratorType::NvidiaA10080gb => "NVIDIA_A100_80GB",
+AcceleratorType::NvidiaL4 => "NVIDIA_L4",
+AcceleratorType::NvidiaTeslaT4Vws => "NVIDIA_TESLA_T4_VWS",
+AcceleratorType::NvidiaTeslaP100Vws => "NVIDIA_TESLA_P100_VWS",
+AcceleratorType::NvidiaTeslaP4Vws => "NVIDIA_TESLA_P4_VWS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACCELERATOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"NVIDIA_TESLA_P100" => Some(Self::NvidiaTeslaP100),
+"NVIDIA_TESLA_V100" => Some(Self::NvidiaTeslaV100),
+"NVIDIA_TESLA_P4" => Some(Self::NvidiaTeslaP4),
+"NVIDIA_TESLA_T4" => Some(Self::NvidiaTeslaT4),
+"NVIDIA_TESLA_A100" => Some(Self::NvidiaTeslaA100),
+"NVIDIA_A100_80GB" => Some(Self::NvidiaA10080gb),
+"NVIDIA_L4" => Some(Self::NvidiaL4),
+"NVIDIA_TESLA_T4_VWS" => Some(Self::NvidiaTeslaT4Vws),
+"NVIDIA_TESLA_P100_VWS" => Some(Self::NvidiaTeslaP100Vws),
+"NVIDIA_TESLA_P4_VWS" => Some(Self::NvidiaTeslaP4Vws),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ShieldedInstanceConfig {
-    #[prost(bool, tag = "1")]
-    pub enable_secure_boot: bool,
-    #[prost(bool, tag = "2")]
-    pub enable_vtpm: bool,
-    #[prost(bool, tag = "3")]
-    pub enable_integrity_monitoring: bool,
+#[prost(bool, tag = "1")]
+pub enable_secure_boot: bool,
+#[prost(bool, tag = "2")]
+pub enable_vtpm: bool,
+#[prost(bool, tag = "3")]
+pub enable_integrity_monitoring: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GpuDriverConfig {
-    #[prost(bool, tag = "1")]
-    pub enable_gpu_driver: bool,
-    #[prost(string, tag = "2")]
-    pub custom_gpu_driver_path: ::prost::alloc::string::String,
+#[prost(bool, tag = "1")]
+pub enable_gpu_driver: bool,
+#[prost(string, tag = "2")]
+pub custom_gpu_driver_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataDisk {
-    #[prost(int64, tag = "1")]
-    pub disk_size_gb: i64,
-    #[prost(enumeration = "DiskType", tag = "2")]
-    pub disk_type: i32,
-    #[prost(enumeration = "DiskEncryption", tag = "5")]
-    pub disk_encryption: i32,
-    #[prost(string, tag = "6")]
-    pub kms_key: ::prost::alloc::string::String,
+#[prost(int64, tag = "1")]
+pub disk_size_gb: i64,
+#[prost(enumeration = "DiskType", tag = "2")]
+pub disk_type: i32,
+#[prost(enumeration = "DiskEncryption", tag = "5")]
+pub disk_encryption: i32,
+#[prost(string, tag = "6")]
+pub kms_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BootDisk {
-    #[prost(int64, tag = "1")]
-    pub disk_size_gb: i64,
-    #[prost(enumeration = "DiskType", tag = "2")]
-    pub disk_type: i32,
-    #[prost(enumeration = "DiskEncryption", tag = "3")]
-    pub disk_encryption: i32,
-    #[prost(string, tag = "4")]
-    pub kms_key: ::prost::alloc::string::String,
+#[prost(int64, tag = "1")]
+pub disk_size_gb: i64,
+#[prost(enumeration = "DiskType", tag = "2")]
+pub disk_type: i32,
+#[prost(enumeration = "DiskEncryption", tag = "3")]
+pub disk_encryption: i32,
+#[prost(string, tag = "4")]
+pub kms_key: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceAccount {
-    #[prost(string, tag = "1")]
-    pub email: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub email: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GceSetup {
-    #[prost(string, tag = "1")]
-    pub machine_type: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub accelerator_configs: ::prost::alloc::vec::Vec<AcceleratorConfig>,
-    #[prost(message, repeated, tag = "3")]
-    pub service_accounts: ::prost::alloc::vec::Vec<ServiceAccount>,
-    #[prost(message, optional, tag = "6")]
-    pub boot_disk: ::core::option::Option<BootDisk>,
-    #[prost(message, repeated, tag = "7")]
-    pub data_disks: ::prost::alloc::vec::Vec<DataDisk>,
-    #[prost(message, optional, tag = "8")]
-    pub shielded_instance_config: ::core::option::Option<ShieldedInstanceConfig>,
-    #[prost(message, repeated, tag = "9")]
-    pub network_interfaces: ::prost::alloc::vec::Vec<NetworkInterface>,
-    #[prost(bool, tag = "10")]
-    pub disable_public_ip: bool,
-    #[prost(string, repeated, tag = "11")]
-    pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(btree_map = "string, string", tag = "12")]
-    pub metadata: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(bool, tag = "13")]
-    pub enable_ip_forwarding: bool,
-    #[prost(message, optional, tag = "14")]
-    pub gpu_driver_config: ::core::option::Option<GpuDriverConfig>,
-    #[prost(oneof = "gce_setup::Image", tags = "4, 5")]
-    pub image: ::core::option::Option<gce_setup::Image>,
+#[prost(string, tag = "1")]
+pub machine_type: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub accelerator_configs: ::prost::alloc::vec::Vec<AcceleratorConfig>,
+#[prost(message, repeated, tag = "3")]
+pub service_accounts: ::prost::alloc::vec::Vec<ServiceAccount>,
+#[prost(message, optional, tag = "6")]
+pub boot_disk: ::core::option::Option<BootDisk>,
+#[prost(message, repeated, tag = "7")]
+pub data_disks: ::prost::alloc::vec::Vec<DataDisk>,
+#[prost(message, optional, tag = "8")]
+pub shielded_instance_config: ::core::option::Option<ShieldedInstanceConfig>,
+#[prost(message, repeated, tag = "9")]
+pub network_interfaces: ::prost::alloc::vec::Vec<NetworkInterface>,
+#[prost(bool, tag = "10")]
+pub disable_public_ip: bool,
+#[prost(string, repeated, tag = "11")]
+pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "12")]
+pub metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(bool, tag = "13")]
+pub enable_ip_forwarding: bool,
+#[prost(message, optional, tag = "14")]
+pub gpu_driver_config: ::core::option::Option<GpuDriverConfig>,
+#[prost(oneof = "gce_setup::Image", tags = "4, 5")]
+pub image: ::core::option::Option<gce_setup::Image>,
 }
 /// Nested message and enum types in `GceSetup`.
 pub mod gce_setup {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Image {
-        #[prost(message, tag = "4")]
-        VmImage(super::VmImage),
-        #[prost(message, tag = "5")]
-        ContainerImage(super::ContainerImage),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Image {
+#[prost(message, tag = "4")]
+VmImage(super::VmImage),
+#[prost(message, tag = "5")]
+ContainerImage(super::ContainerImage),
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DiskEncryption {
-    Unspecified = 0,
-    Gmek = 1,
-    Cmek = 2,
+Unspecified = 0,
+Gmek = 1,
+Cmek = 2,
 }
 impl DiskEncryption {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            DiskEncryption::Unspecified => "DISK_ENCRYPTION_UNSPECIFIED",
-            DiskEncryption::Gmek => "GMEK",
-            DiskEncryption::Cmek => "CMEK",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "DISK_ENCRYPTION_UNSPECIFIED" => Some(Self::Unspecified),
-            "GMEK" => Some(Self::Gmek),
-            "CMEK" => Some(Self::Cmek),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DiskEncryption::Unspecified => "DISK_ENCRYPTION_UNSPECIFIED",
+DiskEncryption::Gmek => "GMEK",
+DiskEncryption::Cmek => "CMEK",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DISK_ENCRYPTION_UNSPECIFIED" => Some(Self::Unspecified),
+"GMEK" => Some(Self::Gmek),
+"CMEK" => Some(Self::Cmek),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DiskType {
-    Unspecified = 0,
-    PdStandard = 1,
-    PdSsd = 2,
-    PdBalanced = 3,
-    PdExtreme = 4,
+Unspecified = 0,
+PdStandard = 1,
+PdSsd = 2,
+PdBalanced = 3,
+PdExtreme = 4,
 }
 impl DiskType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            DiskType::Unspecified => "DISK_TYPE_UNSPECIFIED",
-            DiskType::PdStandard => "PD_STANDARD",
-            DiskType::PdSsd => "PD_SSD",
-            DiskType::PdBalanced => "PD_BALANCED",
-            DiskType::PdExtreme => "PD_EXTREME",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "DISK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "PD_STANDARD" => Some(Self::PdStandard),
-            "PD_SSD" => Some(Self::PdSsd),
-            "PD_BALANCED" => Some(Self::PdBalanced),
-            "PD_EXTREME" => Some(Self::PdExtreme),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DiskType::Unspecified => "DISK_TYPE_UNSPECIFIED",
+DiskType::PdStandard => "PD_STANDARD",
+DiskType::PdSsd => "PD_SSD",
+DiskType::PdBalanced => "PD_BALANCED",
+DiskType::PdExtreme => "PD_EXTREME",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DISK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"PD_STANDARD" => Some(Self::PdStandard),
+"PD_SSD" => Some(Self::PdSsd),
+"PD_BALANCED" => Some(Self::PdBalanced),
+"PD_EXTREME" => Some(Self::PdExtreme),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpgradeHistoryEntry {
-    #[prost(string, tag = "1")]
-    pub snapshot: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub vm_image: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub container_image: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub framework: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub version: ::prost::alloc::string::String,
-    #[prost(enumeration = "upgrade_history_entry::State", tag = "6")]
-    pub state: i32,
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "upgrade_history_entry::Action", tag = "8")]
-    pub action: i32,
-    #[prost(string, tag = "9")]
-    pub target_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub snapshot: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub vm_image: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub container_image: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub framework: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub version: ::prost::alloc::string::String,
+#[prost(enumeration = "upgrade_history_entry::State", tag = "6")]
+pub state: i32,
+#[prost(message, optional, tag = "7")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "upgrade_history_entry::Action", tag = "8")]
+pub action: i32,
+#[prost(string, tag = "9")]
+pub target_version: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `UpgradeHistoryEntry`.
 pub mod upgrade_history_entry {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Started = 1,
-        Succeeded = 2,
-        Failed = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STARTED" => Some(Self::Started),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "FAILED" => Some(Self::Failed),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Action {
-        Unspecified = 0,
-        Upgrade = 1,
-        Rollback = 2,
-    }
-    impl Action {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Action::Unspecified => "ACTION_UNSPECIFIED",
-                Action::Upgrade => "UPGRADE",
-                Action::Rollback => "ROLLBACK",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ACTION_UNSPECIFIED" => Some(Self::Unspecified),
-                "UPGRADE" => Some(Self::Upgrade),
-                "ROLLBACK" => Some(Self::Rollback),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Started = 1,
+Succeeded = 2,
+Failed = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Started => "STARTED",
+State::Succeeded => "SUCCEEDED",
+State::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"STARTED" => Some(Self::Started),
+"SUCCEEDED" => Some(Self::Succeeded),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Action {
+Unspecified = 0,
+Upgrade = 1,
+Rollback = 2,
+}
+impl Action {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Action::Unspecified => "ACTION_UNSPECIFIED",
+Action::Upgrade => "UPGRADE",
+Action::Rollback => "ROLLBACK",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"UPGRADE" => Some(Self::Upgrade),
+"ROLLBACK" => Some(Self::Rollback),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub proxy_uri: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "4")]
-    pub instance_owners: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "5")]
-    pub creator: ::prost::alloc::string::String,
-    #[prost(enumeration = "State", tag = "6")]
-    pub state: i32,
-    #[prost(message, repeated, tag = "7")]
-    pub upgrade_history: ::prost::alloc::vec::Vec<UpgradeHistoryEntry>,
-    #[prost(string, tag = "8")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(enumeration = "HealthState", tag = "9")]
-    pub health_state: i32,
-    #[prost(btree_map = "string, string", tag = "10")]
-    pub health_info: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "11")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "12")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(bool, tag = "13")]
-    pub disable_proxy_access: bool,
-    #[prost(btree_map = "string, string", tag = "14")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(oneof = "instance::Infrastructure", tags = "2")]
-    pub infrastructure: ::core::option::Option<instance::Infrastructure>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub proxy_uri: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "4")]
+pub instance_owners: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub creator: ::prost::alloc::string::String,
+#[prost(enumeration = "State", tag = "6")]
+pub state: i32,
+#[prost(message, repeated, tag = "7")]
+pub upgrade_history: ::prost::alloc::vec::Vec<UpgradeHistoryEntry>,
+#[prost(string, tag = "8")]
+pub id: ::prost::alloc::string::String,
+#[prost(enumeration = "HealthState", tag = "9")]
+pub health_state: i32,
+#[prost(btree_map = "string, string", tag = "10")]
+pub health_info: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "11")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "12")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(bool, tag = "13")]
+pub disable_proxy_access: bool,
+#[prost(btree_map = "string, string", tag = "14")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "instance::Infrastructure", tags = "2")]
+pub infrastructure: ::core::option::Option<instance::Infrastructure>,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Infrastructure {
-        #[prost(message, tag = "2")]
-        GceSetup(super::GceSetup),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Infrastructure {
+#[prost(message, tag = "2")]
+GceSetup(super::GceSetup),
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum State {
-    Unspecified = 0,
-    Starting = 1,
-    Provisioning = 2,
-    Active = 3,
-    Stopping = 4,
-    Stopped = 5,
-    Deleted = 6,
-    Upgrading = 7,
-    Initializing = 8,
-    Suspending = 9,
-    Suspended = 10,
+Unspecified = 0,
+Starting = 1,
+Provisioning = 2,
+Active = 3,
+Stopping = 4,
+Stopped = 5,
+Deleted = 6,
+Upgrading = 7,
+Initializing = 8,
+Suspending = 9,
+Suspended = 10,
 }
 impl State {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            State::Unspecified => "STATE_UNSPECIFIED",
-            State::Starting => "STARTING",
-            State::Provisioning => "PROVISIONING",
-            State::Active => "ACTIVE",
-            State::Stopping => "STOPPING",
-            State::Stopped => "STOPPED",
-            State::Deleted => "DELETED",
-            State::Upgrading => "UPGRADING",
-            State::Initializing => "INITIALIZING",
-            State::Suspending => "SUSPENDING",
-            State::Suspended => "SUSPENDED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "STARTING" => Some(Self::Starting),
-            "PROVISIONING" => Some(Self::Provisioning),
-            "ACTIVE" => Some(Self::Active),
-            "STOPPING" => Some(Self::Stopping),
-            "STOPPED" => Some(Self::Stopped),
-            "DELETED" => Some(Self::Deleted),
-            "UPGRADING" => Some(Self::Upgrading),
-            "INITIALIZING" => Some(Self::Initializing),
-            "SUSPENDING" => Some(Self::Suspending),
-            "SUSPENDED" => Some(Self::Suspended),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Starting => "STARTING",
+State::Provisioning => "PROVISIONING",
+State::Active => "ACTIVE",
+State::Stopping => "STOPPING",
+State::Stopped => "STOPPED",
+State::Deleted => "DELETED",
+State::Upgrading => "UPGRADING",
+State::Initializing => "INITIALIZING",
+State::Suspending => "SUSPENDING",
+State::Suspended => "SUSPENDED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"STARTING" => Some(Self::Starting),
+"PROVISIONING" => Some(Self::Provisioning),
+"ACTIVE" => Some(Self::Active),
+"STOPPING" => Some(Self::Stopping),
+"STOPPED" => Some(Self::Stopped),
+"DELETED" => Some(Self::Deleted),
+"UPGRADING" => Some(Self::Upgrading),
+"INITIALIZING" => Some(Self::Initializing),
+"SUSPENDING" => Some(Self::Suspending),
+"SUSPENDED" => Some(Self::Suspended),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum HealthState {
-    Unspecified = 0,
-    Healthy = 1,
-    Unhealthy = 2,
-    AgentNotInstalled = 3,
-    AgentNotRunning = 4,
+Unspecified = 0,
+Healthy = 1,
+Unhealthy = 2,
+AgentNotInstalled = 3,
+AgentNotRunning = 4,
 }
 impl HealthState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            HealthState::Unspecified => "HEALTH_STATE_UNSPECIFIED",
-            HealthState::Healthy => "HEALTHY",
-            HealthState::Unhealthy => "UNHEALTHY",
-            HealthState::AgentNotInstalled => "AGENT_NOT_INSTALLED",
-            HealthState::AgentNotRunning => "AGENT_NOT_RUNNING",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "HEALTH_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "HEALTHY" => Some(Self::Healthy),
-            "UNHEALTHY" => Some(Self::Unhealthy),
-            "AGENT_NOT_INSTALLED" => Some(Self::AgentNotInstalled),
-            "AGENT_NOT_RUNNING" => Some(Self::AgentNotRunning),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+HealthState::Unspecified => "HEALTH_STATE_UNSPECIFIED",
+HealthState::Healthy => "HEALTHY",
+HealthState::Unhealthy => "UNHEALTHY",
+HealthState::AgentNotInstalled => "AGENT_NOT_INSTALLED",
+HealthState::AgentNotRunning => "AGENT_NOT_RUNNING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"HEALTH_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"HEALTHY" => Some(Self::Healthy),
+"UNHEALTHY" => Some(Self::Unhealthy),
+"AGENT_NOT_INSTALLED" => Some(Self::AgentNotInstalled),
+"AGENT_NOT_RUNNING" => Some(Self::AgentNotRunning),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiagnosticConfig {
-    #[prost(string, tag = "1")]
-    pub gcs_bucket: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub relative_path: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub enable_repair_flag: bool,
-    #[prost(bool, tag = "4")]
-    pub enable_packet_capture_flag: bool,
-    #[prost(bool, tag = "5")]
-    pub enable_copy_home_files_flag: bool,
+#[prost(string, tag = "1")]
+pub gcs_bucket: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub relative_path: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub enable_repair_flag: bool,
+#[prost(bool, tag = "4")]
+pub enable_packet_capture_flag: bool,
+#[prost(bool, tag = "5")]
+pub enable_copy_home_files_flag: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Event {
-    #[prost(message, optional, tag = "1")]
-    pub report_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "event::EventType", tag = "2")]
-    pub r#type: i32,
-    #[prost(btree_map = "string, string", tag = "3")]
-    pub details: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(message, optional, tag = "1")]
+pub report_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "event::EventType", tag = "2")]
+pub r#type: i32,
+#[prost(btree_map = "string, string", tag = "3")]
+pub details: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum EventType {
-        Unspecified = 0,
-        Idle = 1,
-        Heartbeat = 2,
-        Health = 3,
-        Maintenance = 4,
-        MetadataChange = 5,
-    }
-    impl EventType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
-                EventType::Idle => "IDLE",
-                EventType::Heartbeat => "HEARTBEAT",
-                EventType::Health => "HEALTH",
-                EventType::Maintenance => "MAINTENANCE",
-                EventType::MetadataChange => "METADATA_CHANGE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "IDLE" => Some(Self::Idle),
-                "HEARTBEAT" => Some(Self::Heartbeat),
-                "HEALTH" => Some(Self::Health),
-                "MAINTENANCE" => Some(Self::Maintenance),
-                "METADATA_CHANGE" => Some(Self::MetadataChange),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EventType {
+Unspecified = 0,
+Idle = 1,
+Heartbeat = 2,
+Health = 3,
+Maintenance = 4,
+MetadataChange = 5,
+}
+impl EventType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EventType::Unspecified => "EVENT_TYPE_UNSPECIFIED",
+EventType::Idle => "IDLE",
+EventType::Heartbeat => "HEARTBEAT",
+EventType::Health => "HEALTH",
+EventType::Maintenance => "MAINTENANCE",
+EventType::MetadataChange => "METADATA_CHANGE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"IDLE" => Some(Self::Idle),
+"HEARTBEAT" => Some(Self::Heartbeat),
+"HEALTH" => Some(Self::Health),
+"MAINTENANCE" => Some(Self::Maintenance),
+"METADATA_CHANGE" => Some(Self::MetadataChange),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_message: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub requested_cancellation: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub endpoint: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub requested_cancellation: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub endpoint: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub instances: ::prost::alloc::vec::Vec<Instance>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub instances: ::prost::alloc::vec::Vec<Instance>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub instance_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub instance: ::core::option::Option<Instance>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub instance_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub instance: ::core::option::Option<Instance>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInstanceRequest {
-    #[prost(message, optional, tag = "1")]
-    pub instance: ::core::option::Option<Instance>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub instance: ::core::option::Option<Instance>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StopInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResetInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckInstanceUpgradabilityRequest {
-    #[prost(string, tag = "1")]
-    pub notebook_instance: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub notebook_instance: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckInstanceUpgradabilityResponse {
-    #[prost(bool, tag = "1")]
-    pub upgradeable: bool,
-    #[prost(string, tag = "2")]
-    pub upgrade_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub upgrade_info: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub upgrade_image: ::prost::alloc::string::String,
+#[prost(bool, tag = "1")]
+pub upgradeable: bool,
+#[prost(string, tag = "2")]
+pub upgrade_version: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub upgrade_info: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub upgrade_image: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpgradeInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RollbackInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub target_snapshot: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub revision_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub target_snapshot: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub revision_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiagnoseInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub diagnostic_config: ::core::option::Option<DiagnosticConfig>,
-    #[prost(int32, tag = "3")]
-    pub timeout_minutes: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub diagnostic_config: ::core::option::Option<DiagnosticConfig>,
+#[prost(int32, tag = "3")]
+pub timeout_minutes: i32,
 }
 /// Generated client implementations.
 pub mod notebook_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// API v2 service for Workbench Notebooks Instances.
-    #[derive(Debug, Clone)]
-    pub struct NotebookServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> NotebookServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> NotebookServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            NotebookServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists instances in a given project and location.
-        pub async fn list_instances(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListInstancesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListInstancesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/ListInstances",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "ListInstances",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single Instance.
-        pub async fn get_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetInstanceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/GetInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "GetInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Instance in a given project and location.
-        pub async fn create_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/CreateInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "CreateInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// UpdateInstance updates an Instance.
-        pub async fn update_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/UpdateInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "UpdateInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single Instance.
-        pub async fn delete_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/DeleteInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "DeleteInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Starts a notebook instance.
-        pub async fn start_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::StartInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/StartInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "StartInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Stops a notebook instance.
-        pub async fn stop_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::StopInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/StopInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "StopInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Resets a notebook instance.
-        pub async fn reset_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ResetInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/ResetInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "ResetInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Checks whether a notebook instance is upgradable.
-        pub async fn check_instance_upgradability(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CheckInstanceUpgradabilityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CheckInstanceUpgradabilityResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/CheckInstanceUpgradability",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "CheckInstanceUpgradability",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Upgrades a notebook instance to the latest version.
-        pub async fn upgrade_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpgradeInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/UpgradeInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "UpgradeInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Rollbacks a notebook instance to the previous version.
-        pub async fn rollback_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RollbackInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/RollbackInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "RollbackInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a Diagnostic File and runs Diagnostic Tool given an Instance.
-        pub async fn diagnose_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DiagnoseInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.notebooks.v2.NotebookService/DiagnoseInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.notebooks.v2.NotebookService",
-                        "DiagnoseInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// API v2 service for Workbench Notebooks Instances.
+#[derive(Debug, Clone)]
+pub struct NotebookServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> NotebookServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> NotebookServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+NotebookServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists instances in a given project and location.
+pub async fn list_instances(&mut self, request: impl tonic::IntoRequest<super::ListInstancesRequest>) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/ListInstances");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "ListInstances"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single Instance.
+pub async fn get_instance(&mut self, request: impl tonic::IntoRequest<super::GetInstanceRequest>) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/GetInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "GetInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Instance in a given project and location.
+pub async fn create_instance(&mut self, request: impl tonic::IntoRequest<super::CreateInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/CreateInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "CreateInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// UpdateInstance updates an Instance.
+pub async fn update_instance(&mut self, request: impl tonic::IntoRequest<super::UpdateInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/UpdateInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "UpdateInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single Instance.
+pub async fn delete_instance(&mut self, request: impl tonic::IntoRequest<super::DeleteInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/DeleteInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "DeleteInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Starts a notebook instance.
+pub async fn start_instance(&mut self, request: impl tonic::IntoRequest<super::StartInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/StartInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "StartInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Stops a notebook instance.
+pub async fn stop_instance(&mut self, request: impl tonic::IntoRequest<super::StopInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/StopInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "StopInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Resets a notebook instance.
+pub async fn reset_instance(&mut self, request: impl tonic::IntoRequest<super::ResetInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/ResetInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "ResetInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Checks whether a notebook instance is upgradable.
+pub async fn check_instance_upgradability(&mut self, request: impl tonic::IntoRequest<super::CheckInstanceUpgradabilityRequest>) -> std::result::Result<tonic::Response<super::CheckInstanceUpgradabilityResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/CheckInstanceUpgradability");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "CheckInstanceUpgradability"));
+self.inner.unary(req, path, codec).await
+}
+/// Upgrades a notebook instance to the latest version.
+pub async fn upgrade_instance(&mut self, request: impl tonic::IntoRequest<super::UpgradeInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/UpgradeInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "UpgradeInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Rollbacks a notebook instance to the previous version.
+pub async fn rollback_instance(&mut self, request: impl tonic::IntoRequest<super::RollbackInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/RollbackInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "RollbackInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a Diagnostic File and runs Diagnostic Tool given an Instance.
+pub async fn diagnose_instance(&mut self, request: impl tonic::IntoRequest<super::DiagnoseInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.notebooks.v2.NotebookService/DiagnoseInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.notebooks.v2.NotebookService", "DiagnoseInstance"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

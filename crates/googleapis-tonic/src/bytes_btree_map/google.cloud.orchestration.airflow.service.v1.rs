@@ -2,698 +2,614 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(enumeration = "operation_metadata::State", tag = "1")]
-    pub state: i32,
-    #[prost(enumeration = "operation_metadata::Type", tag = "2")]
-    pub operation_type: i32,
-    #[prost(string, tag = "3")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub resource_uuid: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "operation_metadata::State", tag = "1")]
+pub state: i32,
+#[prost(enumeration = "operation_metadata::Type", tag = "2")]
+pub operation_type: i32,
+#[prost(string, tag = "3")]
+pub resource: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub resource_uuid: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Pending = 1,
-        Running = 2,
-        Succeeded = 3,
-        Failed = 4,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Pending => "PENDING",
-                State::Running => "RUNNING",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PENDING" => Some(Self::Pending),
-                "RUNNING" => Some(Self::Running),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "FAILED" => Some(Self::Failed),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        Create = 1,
-        Delete = 2,
-        Update = 3,
-        Check = 4,
-        SaveSnapshot = 5,
-        LoadSnapshot = 6,
-        DatabaseFailover = 7,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Create => "CREATE",
-                Type::Delete => "DELETE",
-                Type::Update => "UPDATE",
-                Type::Check => "CHECK",
-                Type::SaveSnapshot => "SAVE_SNAPSHOT",
-                Type::LoadSnapshot => "LOAD_SNAPSHOT",
-                Type::DatabaseFailover => "DATABASE_FAILOVER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATE" => Some(Self::Create),
-                "DELETE" => Some(Self::Delete),
-                "UPDATE" => Some(Self::Update),
-                "CHECK" => Some(Self::Check),
-                "SAVE_SNAPSHOT" => Some(Self::SaveSnapshot),
-                "LOAD_SNAPSHOT" => Some(Self::LoadSnapshot),
-                "DATABASE_FAILOVER" => Some(Self::DatabaseFailover),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Pending = 1,
+Running = 2,
+Succeeded = 3,
+Failed = 4,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Pending => "PENDING",
+State::Running => "RUNNING",
+State::Succeeded => "SUCCEEDED",
+State::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"RUNNING" => Some(Self::Running),
+"SUCCEEDED" => Some(Self::Succeeded),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+Create = 1,
+Delete = 2,
+Update = 3,
+Check = 4,
+SaveSnapshot = 5,
+LoadSnapshot = 6,
+DatabaseFailover = 7,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::Create => "CREATE",
+Type::Delete => "DELETE",
+Type::Update => "UPDATE",
+Type::Check => "CHECK",
+Type::SaveSnapshot => "SAVE_SNAPSHOT",
+Type::LoadSnapshot => "LOAD_SNAPSHOT",
+Type::DatabaseFailover => "DATABASE_FAILOVER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATE" => Some(Self::Create),
+"DELETE" => Some(Self::Delete),
+"UPDATE" => Some(Self::Update),
+"CHECK" => Some(Self::Check),
+"SAVE_SNAPSHOT" => Some(Self::SaveSnapshot),
+"LOAD_SNAPSHOT" => Some(Self::LoadSnapshot),
+"DATABASE_FAILOVER" => Some(Self::DatabaseFailover),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListImageVersionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub include_past_releases: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub include_past_releases: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListImageVersionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub image_versions: ::prost::alloc::vec::Vec<ImageVersion>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub image_versions: ::prost::alloc::vec::Vec<ImageVersion>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageVersion {
-    #[prost(string, tag = "1")]
-    pub image_version_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub is_default: bool,
-    #[prost(string, repeated, tag = "3")]
-    pub supported_python_versions: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "4")]
-    pub release_date: ::core::option::Option<
-        super::super::super::super::super::r#type::Date,
-    >,
-    #[prost(bool, tag = "5")]
-    pub creation_disabled: bool,
-    #[prost(bool, tag = "6")]
-    pub upgrade_disabled: bool,
+#[prost(string, tag = "1")]
+pub image_version_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub is_default: bool,
+#[prost(string, repeated, tag = "3")]
+pub supported_python_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "4")]
+pub release_date: ::core::option::Option<super::super::super::super::super::r#type::Date>,
+#[prost(bool, tag = "5")]
+pub creation_disabled: bool,
+#[prost(bool, tag = "6")]
+pub upgrade_disabled: bool,
 }
 /// Generated client implementations.
 pub mod image_versions_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Readonly service to query available ImageVersions.
-    #[derive(Debug, Clone)]
-    pub struct ImageVersionsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ImageVersionsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ImageVersionsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ImageVersionsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// List ImageVersions for provided location.
-        pub async fn list_image_versions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListImageVersionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListImageVersionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.ImageVersions/ListImageVersions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.ImageVersions",
-                        "ListImageVersions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Readonly service to query available ImageVersions.
+#[derive(Debug, Clone)]
+pub struct ImageVersionsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ImageVersionsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ImageVersionsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ImageVersionsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// List ImageVersions for provided location.
+pub async fn list_image_versions(&mut self, request: impl tonic::IntoRequest<super::ListImageVersionsRequest>) -> std::result::Result<tonic::Response<super::ListImageVersionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.ImageVersions/ListImageVersions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.ImageVersions", "ListImageVersions"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateEnvironmentRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub environment: ::core::option::Option<Environment>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub environment: ::core::option::Option<Environment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEnvironmentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEnvironmentsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEnvironmentsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub environments: ::prost::alloc::vec::Vec<Environment>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub environments: ::prost::alloc::vec::Vec<Environment>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEnvironmentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateEnvironmentRequest {
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "1")]
-    pub environment: ::core::option::Option<Environment>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub environment: ::core::option::Option<Environment>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecuteAirflowCommandRequest {
-    #[prost(string, tag = "1")]
-    pub environment: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub command: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub subcommand: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "4")]
-    pub parameters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub environment: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub command: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub subcommand: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "4")]
+pub parameters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExecuteAirflowCommandResponse {
-    #[prost(string, tag = "1")]
-    pub execution_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub pod: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub pod_namespace: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub error: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub execution_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub pod: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub pod_namespace: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub error: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StopAirflowCommandRequest {
-    #[prost(string, tag = "1")]
-    pub environment: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub execution_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub pod: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub pod_namespace: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub environment: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub execution_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub pod: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub pod_namespace: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StopAirflowCommandResponse {
-    #[prost(bool, tag = "1")]
-    pub is_done: bool,
-    #[prost(string, repeated, tag = "2")]
-    pub output: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "1")]
+pub is_done: bool,
+#[prost(string, repeated, tag = "2")]
+pub output: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PollAirflowCommandRequest {
-    #[prost(string, tag = "1")]
-    pub environment: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub execution_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub pod: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub pod_namespace: ::prost::alloc::string::String,
-    #[prost(int32, tag = "5")]
-    pub next_line_number: i32,
+#[prost(string, tag = "1")]
+pub environment: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub execution_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub pod: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub pod_namespace: ::prost::alloc::string::String,
+#[prost(int32, tag = "5")]
+pub next_line_number: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PollAirflowCommandResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub output: ::prost::alloc::vec::Vec<poll_airflow_command_response::Line>,
-    #[prost(bool, tag = "2")]
-    pub output_end: bool,
-    #[prost(message, optional, tag = "3")]
-    pub exit_info: ::core::option::Option<poll_airflow_command_response::ExitInfo>,
+#[prost(message, repeated, tag = "1")]
+pub output: ::prost::alloc::vec::Vec<poll_airflow_command_response::Line>,
+#[prost(bool, tag = "2")]
+pub output_end: bool,
+#[prost(message, optional, tag = "3")]
+pub exit_info: ::core::option::Option<poll_airflow_command_response::ExitInfo>,
 }
 /// Nested message and enum types in `PollAirflowCommandResponse`.
 pub mod poll_airflow_command_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Line {
-        #[prost(int32, tag = "1")]
-        pub line_number: i32,
-        #[prost(string, tag = "2")]
-        pub content: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ExitInfo {
-        #[prost(int32, tag = "1")]
-        pub exit_code: i32,
-        #[prost(string, tag = "2")]
-        pub error: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Line {
+#[prost(int32, tag = "1")]
+pub line_number: i32,
+#[prost(string, tag = "2")]
+pub content: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExitInfo {
+#[prost(int32, tag = "1")]
+pub exit_code: i32,
+#[prost(string, tag = "2")]
+pub error: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateUserWorkloadsSecretRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub user_workloads_secret: ::core::option::Option<UserWorkloadsSecret>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub user_workloads_secret: ::core::option::Option<UserWorkloadsSecret>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetUserWorkloadsSecretRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListUserWorkloadsSecretsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateUserWorkloadsSecretRequest {
-    #[prost(message, optional, tag = "1")]
-    pub user_workloads_secret: ::core::option::Option<UserWorkloadsSecret>,
+#[prost(message, optional, tag = "1")]
+pub user_workloads_secret: ::core::option::Option<UserWorkloadsSecret>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteUserWorkloadsSecretRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateUserWorkloadsConfigMapRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub user_workloads_config_map: ::core::option::Option<UserWorkloadsConfigMap>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub user_workloads_config_map: ::core::option::Option<UserWorkloadsConfigMap>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetUserWorkloadsConfigMapRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListUserWorkloadsConfigMapsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateUserWorkloadsConfigMapRequest {
-    #[prost(message, optional, tag = "1")]
-    pub user_workloads_config_map: ::core::option::Option<UserWorkloadsConfigMap>,
+#[prost(message, optional, tag = "1")]
+pub user_workloads_config_map: ::core::option::Option<UserWorkloadsConfigMap>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteUserWorkloadsConfigMapRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserWorkloadsSecret {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub data: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub data: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListUserWorkloadsSecretsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub user_workloads_secrets: ::prost::alloc::vec::Vec<UserWorkloadsSecret>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub user_workloads_secrets: ::prost::alloc::vec::Vec<UserWorkloadsSecret>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserWorkloadsConfigMap {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub data: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub data: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListUserWorkloadsConfigMapsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub user_workloads_config_maps: ::prost::alloc::vec::Vec<UserWorkloadsConfigMap>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub user_workloads_config_maps: ::prost::alloc::vec::Vec<UserWorkloadsConfigMap>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkloadsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkloadsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub workloads: ::prost::alloc::vec::Vec<list_workloads_response::ComposerWorkload>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub workloads: ::prost::alloc::vec::Vec<list_workloads_response::ComposerWorkload>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ListWorkloadsResponse`.
 pub mod list_workloads_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ComposerWorkload {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(enumeration = "ComposerWorkloadType", tag = "2")]
-        pub r#type: i32,
-        #[prost(message, optional, tag = "3")]
-        pub status: ::core::option::Option<ComposerWorkloadStatus>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ComposerWorkloadStatus {
-        #[prost(enumeration = "ComposerWorkloadState", tag = "1")]
-        pub state: i32,
-        #[prost(string, tag = "2")]
-        pub status_message: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub detailed_status_message: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ComposerWorkloadType {
-        Unspecified = 0,
-        CeleryWorker = 1,
-        KubernetesWorker = 2,
-        KubernetesOperatorPod = 3,
-        Scheduler = 4,
-        DagProcessor = 5,
-        Triggerer = 6,
-        WebServer = 7,
-        Redis = 8,
-    }
-    impl ComposerWorkloadType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ComposerWorkloadType::Unspecified => "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED",
-                ComposerWorkloadType::CeleryWorker => "CELERY_WORKER",
-                ComposerWorkloadType::KubernetesWorker => "KUBERNETES_WORKER",
-                ComposerWorkloadType::KubernetesOperatorPod => "KUBERNETES_OPERATOR_POD",
-                ComposerWorkloadType::Scheduler => "SCHEDULER",
-                ComposerWorkloadType::DagProcessor => "DAG_PROCESSOR",
-                ComposerWorkloadType::Triggerer => "TRIGGERER",
-                ComposerWorkloadType::WebServer => "WEB_SERVER",
-                ComposerWorkloadType::Redis => "REDIS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CELERY_WORKER" => Some(Self::CeleryWorker),
-                "KUBERNETES_WORKER" => Some(Self::KubernetesWorker),
-                "KUBERNETES_OPERATOR_POD" => Some(Self::KubernetesOperatorPod),
-                "SCHEDULER" => Some(Self::Scheduler),
-                "DAG_PROCESSOR" => Some(Self::DagProcessor),
-                "TRIGGERER" => Some(Self::Triggerer),
-                "WEB_SERVER" => Some(Self::WebServer),
-                "REDIS" => Some(Self::Redis),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ComposerWorkloadState {
-        Unspecified = 0,
-        Pending = 1,
-        Ok = 2,
-        Warning = 3,
-        Error = 4,
-        Succeeded = 5,
-        Failed = 6,
-    }
-    impl ComposerWorkloadState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ComposerWorkloadState::Unspecified => {
-                    "COMPOSER_WORKLOAD_STATE_UNSPECIFIED"
-                }
-                ComposerWorkloadState::Pending => "PENDING",
-                ComposerWorkloadState::Ok => "OK",
-                ComposerWorkloadState::Warning => "WARNING",
-                ComposerWorkloadState::Error => "ERROR",
-                ComposerWorkloadState::Succeeded => "SUCCEEDED",
-                ComposerWorkloadState::Failed => "FAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "COMPOSER_WORKLOAD_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PENDING" => Some(Self::Pending),
-                "OK" => Some(Self::Ok),
-                "WARNING" => Some(Self::Warning),
-                "ERROR" => Some(Self::Error),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "FAILED" => Some(Self::Failed),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ComposerWorkload {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "ComposerWorkloadType", tag = "2")]
+pub r#type: i32,
+#[prost(message, optional, tag = "3")]
+pub status: ::core::option::Option<ComposerWorkloadStatus>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ComposerWorkloadStatus {
+#[prost(enumeration = "ComposerWorkloadState", tag = "1")]
+pub state: i32,
+#[prost(string, tag = "2")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub detailed_status_message: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ComposerWorkloadType {
+Unspecified = 0,
+CeleryWorker = 1,
+KubernetesWorker = 2,
+KubernetesOperatorPod = 3,
+Scheduler = 4,
+DagProcessor = 5,
+Triggerer = 6,
+WebServer = 7,
+Redis = 8,
+}
+impl ComposerWorkloadType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ComposerWorkloadType::Unspecified => "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED",
+ComposerWorkloadType::CeleryWorker => "CELERY_WORKER",
+ComposerWorkloadType::KubernetesWorker => "KUBERNETES_WORKER",
+ComposerWorkloadType::KubernetesOperatorPod => "KUBERNETES_OPERATOR_POD",
+ComposerWorkloadType::Scheduler => "SCHEDULER",
+ComposerWorkloadType::DagProcessor => "DAG_PROCESSOR",
+ComposerWorkloadType::Triggerer => "TRIGGERER",
+ComposerWorkloadType::WebServer => "WEB_SERVER",
+ComposerWorkloadType::Redis => "REDIS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"COMPOSER_WORKLOAD_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"CELERY_WORKER" => Some(Self::CeleryWorker),
+"KUBERNETES_WORKER" => Some(Self::KubernetesWorker),
+"KUBERNETES_OPERATOR_POD" => Some(Self::KubernetesOperatorPod),
+"SCHEDULER" => Some(Self::Scheduler),
+"DAG_PROCESSOR" => Some(Self::DagProcessor),
+"TRIGGERER" => Some(Self::Triggerer),
+"WEB_SERVER" => Some(Self::WebServer),
+"REDIS" => Some(Self::Redis),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ComposerWorkloadState {
+Unspecified = 0,
+Pending = 1,
+Ok = 2,
+Warning = 3,
+Error = 4,
+Succeeded = 5,
+Failed = 6,
+}
+impl ComposerWorkloadState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ComposerWorkloadState::Unspecified => "COMPOSER_WORKLOAD_STATE_UNSPECIFIED",
+ComposerWorkloadState::Pending => "PENDING",
+ComposerWorkloadState::Ok => "OK",
+ComposerWorkloadState::Warning => "WARNING",
+ComposerWorkloadState::Error => "ERROR",
+ComposerWorkloadState::Succeeded => "SUCCEEDED",
+ComposerWorkloadState::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"COMPOSER_WORKLOAD_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"OK" => Some(Self::Ok),
+"WARNING" => Some(Self::Warning),
+"ERROR" => Some(Self::Error),
+"SUCCEEDED" => Some(Self::Succeeded),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SaveSnapshotRequest {
-    #[prost(string, tag = "1")]
-    pub environment: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub snapshot_location: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub environment: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub snapshot_location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SaveSnapshotResponse {
-    #[prost(string, tag = "1")]
-    pub snapshot_path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub snapshot_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LoadSnapshotRequest {
-    #[prost(string, tag = "1")]
-    pub environment: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub snapshot_path: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub skip_pypi_packages_installation: bool,
-    #[prost(bool, tag = "4")]
-    pub skip_environment_variables_setting: bool,
-    #[prost(bool, tag = "5")]
-    pub skip_airflow_overrides_setting: bool,
-    #[prost(bool, tag = "6")]
-    pub skip_gcs_data_copying: bool,
+#[prost(string, tag = "1")]
+pub environment: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub snapshot_path: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub skip_pypi_packages_installation: bool,
+#[prost(bool, tag = "4")]
+pub skip_environment_variables_setting: bool,
+#[prost(bool, tag = "5")]
+pub skip_airflow_overrides_setting: bool,
+#[prost(bool, tag = "6")]
+pub skip_gcs_data_copying: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -701,8 +617,8 @@ pub struct LoadSnapshotResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseFailoverRequest {
-    #[prost(string, tag = "1")]
-    pub environment: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub environment: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -710,1565 +626,941 @@ pub struct DatabaseFailoverResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchDatabasePropertiesRequest {
-    #[prost(string, tag = "1")]
-    pub environment: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub environment: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchDatabasePropertiesResponse {
-    #[prost(string, tag = "1")]
-    pub primary_gce_zone: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub secondary_gce_zone: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub is_failover_replica_available: bool,
+#[prost(string, tag = "1")]
+pub primary_gce_zone: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub secondary_gce_zone: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub is_failover_replica_available: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StorageConfig {
-    #[prost(string, tag = "1")]
-    pub bucket: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub bucket: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnvironmentConfig {
-    #[prost(string, tag = "1")]
-    pub gke_cluster: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub dag_gcs_prefix: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub node_count: i32,
-    #[prost(message, optional, tag = "4")]
-    pub software_config: ::core::option::Option<SoftwareConfig>,
-    #[prost(message, optional, tag = "5")]
-    pub node_config: ::core::option::Option<NodeConfig>,
-    #[prost(message, optional, tag = "7")]
-    pub private_environment_config: ::core::option::Option<PrivateEnvironmentConfig>,
-    #[prost(message, optional, tag = "8")]
-    pub web_server_network_access_control: ::core::option::Option<
-        WebServerNetworkAccessControl,
-    >,
-    #[prost(message, optional, tag = "9")]
-    pub database_config: ::core::option::Option<DatabaseConfig>,
-    #[prost(message, optional, tag = "10")]
-    pub web_server_config: ::core::option::Option<WebServerConfig>,
-    #[prost(message, optional, tag = "11")]
-    pub encryption_config: ::core::option::Option<EncryptionConfig>,
-    #[prost(message, optional, tag = "12")]
-    pub maintenance_window: ::core::option::Option<MaintenanceWindow>,
-    #[prost(message, optional, tag = "15")]
-    pub workloads_config: ::core::option::Option<WorkloadsConfig>,
-    #[prost(enumeration = "environment_config::EnvironmentSize", tag = "16")]
-    pub environment_size: i32,
-    #[prost(string, tag = "6")]
-    pub airflow_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "20")]
-    pub airflow_byoid_uri: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "17")]
-    pub master_authorized_networks_config: ::core::option::Option<
-        MasterAuthorizedNetworksConfig,
-    >,
-    #[prost(message, optional, tag = "18")]
-    pub recovery_config: ::core::option::Option<RecoveryConfig>,
-    #[prost(enumeration = "environment_config::ResilienceMode", tag = "19")]
-    pub resilience_mode: i32,
-    #[prost(message, optional, tag = "21")]
-    pub data_retention_config: ::core::option::Option<DataRetentionConfig>,
+#[prost(string, tag = "1")]
+pub gke_cluster: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub dag_gcs_prefix: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub node_count: i32,
+#[prost(message, optional, tag = "4")]
+pub software_config: ::core::option::Option<SoftwareConfig>,
+#[prost(message, optional, tag = "5")]
+pub node_config: ::core::option::Option<NodeConfig>,
+#[prost(message, optional, tag = "7")]
+pub private_environment_config: ::core::option::Option<PrivateEnvironmentConfig>,
+#[prost(message, optional, tag = "8")]
+pub web_server_network_access_control: ::core::option::Option<WebServerNetworkAccessControl>,
+#[prost(message, optional, tag = "9")]
+pub database_config: ::core::option::Option<DatabaseConfig>,
+#[prost(message, optional, tag = "10")]
+pub web_server_config: ::core::option::Option<WebServerConfig>,
+#[prost(message, optional, tag = "11")]
+pub encryption_config: ::core::option::Option<EncryptionConfig>,
+#[prost(message, optional, tag = "12")]
+pub maintenance_window: ::core::option::Option<MaintenanceWindow>,
+#[prost(message, optional, tag = "15")]
+pub workloads_config: ::core::option::Option<WorkloadsConfig>,
+#[prost(enumeration = "environment_config::EnvironmentSize", tag = "16")]
+pub environment_size: i32,
+#[prost(string, tag = "6")]
+pub airflow_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "20")]
+pub airflow_byoid_uri: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "17")]
+pub master_authorized_networks_config: ::core::option::Option<MasterAuthorizedNetworksConfig>,
+#[prost(message, optional, tag = "18")]
+pub recovery_config: ::core::option::Option<RecoveryConfig>,
+#[prost(enumeration = "environment_config::ResilienceMode", tag = "19")]
+pub resilience_mode: i32,
+#[prost(message, optional, tag = "21")]
+pub data_retention_config: ::core::option::Option<DataRetentionConfig>,
 }
 /// Nested message and enum types in `EnvironmentConfig`.
 pub mod environment_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum EnvironmentSize {
-        Unspecified = 0,
-        Small = 1,
-        Medium = 2,
-        Large = 3,
-    }
-    impl EnvironmentSize {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                EnvironmentSize::Unspecified => "ENVIRONMENT_SIZE_UNSPECIFIED",
-                EnvironmentSize::Small => "ENVIRONMENT_SIZE_SMALL",
-                EnvironmentSize::Medium => "ENVIRONMENT_SIZE_MEDIUM",
-                EnvironmentSize::Large => "ENVIRONMENT_SIZE_LARGE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ENVIRONMENT_SIZE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ENVIRONMENT_SIZE_SMALL" => Some(Self::Small),
-                "ENVIRONMENT_SIZE_MEDIUM" => Some(Self::Medium),
-                "ENVIRONMENT_SIZE_LARGE" => Some(Self::Large),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ResilienceMode {
-        Unspecified = 0,
-        HighResilience = 1,
-    }
-    impl ResilienceMode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ResilienceMode::Unspecified => "RESILIENCE_MODE_UNSPECIFIED",
-                ResilienceMode::HighResilience => "HIGH_RESILIENCE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RESILIENCE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "HIGH_RESILIENCE" => Some(Self::HighResilience),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EnvironmentSize {
+Unspecified = 0,
+Small = 1,
+Medium = 2,
+Large = 3,
+}
+impl EnvironmentSize {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EnvironmentSize::Unspecified => "ENVIRONMENT_SIZE_UNSPECIFIED",
+EnvironmentSize::Small => "ENVIRONMENT_SIZE_SMALL",
+EnvironmentSize::Medium => "ENVIRONMENT_SIZE_MEDIUM",
+EnvironmentSize::Large => "ENVIRONMENT_SIZE_LARGE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENVIRONMENT_SIZE_UNSPECIFIED" => Some(Self::Unspecified),
+"ENVIRONMENT_SIZE_SMALL" => Some(Self::Small),
+"ENVIRONMENT_SIZE_MEDIUM" => Some(Self::Medium),
+"ENVIRONMENT_SIZE_LARGE" => Some(Self::Large),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ResilienceMode {
+Unspecified = 0,
+HighResilience = 1,
+}
+impl ResilienceMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ResilienceMode::Unspecified => "RESILIENCE_MODE_UNSPECIFIED",
+ResilienceMode::HighResilience => "HIGH_RESILIENCE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RESILIENCE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"HIGH_RESILIENCE" => Some(Self::HighResilience),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebServerNetworkAccessControl {
-    #[prost(message, repeated, tag = "1")]
-    pub allowed_ip_ranges: ::prost::alloc::vec::Vec<
-        web_server_network_access_control::AllowedIpRange,
-    >,
+#[prost(message, repeated, tag = "1")]
+pub allowed_ip_ranges: ::prost::alloc::vec::Vec<web_server_network_access_control::AllowedIpRange>,
 }
 /// Nested message and enum types in `WebServerNetworkAccessControl`.
 pub mod web_server_network_access_control {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AllowedIpRange {
-        #[prost(string, tag = "1")]
-        pub value: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub description: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AllowedIpRange {
+#[prost(string, tag = "1")]
+pub value: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DatabaseConfig {
-    #[prost(string, tag = "1")]
-    pub machine_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub zone: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub machine_type: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub zone: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WebServerConfig {
-    #[prost(string, tag = "1")]
-    pub machine_type: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub machine_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptionConfig {
-    #[prost(string, tag = "1")]
-    pub kms_key_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub kms_key_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MaintenanceWindow {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub recurrence: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub recurrence: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SoftwareConfig {
-    #[prost(string, tag = "1")]
-    pub image_version: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub airflow_config_overrides: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "3")]
-    pub pypi_packages: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(btree_map = "string, string", tag = "4")]
-    pub env_variables: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "6")]
-    pub python_version: ::prost::alloc::string::String,
-    #[prost(int32, tag = "7")]
-    pub scheduler_count: i32,
-    #[prost(message, optional, tag = "8")]
-    pub cloud_data_lineage_integration: ::core::option::Option<
-        CloudDataLineageIntegration,
-    >,
-    #[prost(enumeration = "software_config::WebServerPluginsMode", tag = "10")]
-    pub web_server_plugins_mode: i32,
+#[prost(string, tag = "1")]
+pub image_version: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub airflow_config_overrides: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "3")]
+pub pypi_packages: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(btree_map = "string, string", tag = "4")]
+pub env_variables: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "6")]
+pub python_version: ::prost::alloc::string::String,
+#[prost(int32, tag = "7")]
+pub scheduler_count: i32,
+#[prost(message, optional, tag = "8")]
+pub cloud_data_lineage_integration: ::core::option::Option<CloudDataLineageIntegration>,
+#[prost(enumeration = "software_config::WebServerPluginsMode", tag = "10")]
+pub web_server_plugins_mode: i32,
 }
 /// Nested message and enum types in `SoftwareConfig`.
 pub mod software_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum WebServerPluginsMode {
-        Unspecified = 0,
-        PluginsDisabled = 1,
-        PluginsEnabled = 2,
-    }
-    impl WebServerPluginsMode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                WebServerPluginsMode::Unspecified => {
-                    "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED"
-                }
-                WebServerPluginsMode::PluginsDisabled => "PLUGINS_DISABLED",
-                WebServerPluginsMode::PluginsEnabled => "PLUGINS_ENABLED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PLUGINS_DISABLED" => Some(Self::PluginsDisabled),
-                "PLUGINS_ENABLED" => Some(Self::PluginsEnabled),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum WebServerPluginsMode {
+Unspecified = 0,
+PluginsDisabled = 1,
+PluginsEnabled = 2,
+}
+impl WebServerPluginsMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+WebServerPluginsMode::Unspecified => "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED",
+WebServerPluginsMode::PluginsDisabled => "PLUGINS_DISABLED",
+WebServerPluginsMode::PluginsEnabled => "PLUGINS_ENABLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"WEB_SERVER_PLUGINS_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"PLUGINS_DISABLED" => Some(Self::PluginsDisabled),
+"PLUGINS_ENABLED" => Some(Self::PluginsEnabled),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IpAllocationPolicy {
-    #[prost(bool, tag = "1")]
-    pub use_ip_aliases: bool,
-    #[prost(oneof = "ip_allocation_policy::ClusterIpAllocation", tags = "2, 4")]
-    pub cluster_ip_allocation: ::core::option::Option<
-        ip_allocation_policy::ClusterIpAllocation,
-    >,
-    #[prost(oneof = "ip_allocation_policy::ServicesIpAllocation", tags = "3, 5")]
-    pub services_ip_allocation: ::core::option::Option<
-        ip_allocation_policy::ServicesIpAllocation,
-    >,
+#[prost(bool, tag = "1")]
+pub use_ip_aliases: bool,
+#[prost(oneof = "ip_allocation_policy::ClusterIpAllocation", tags = "2, 4")]
+pub cluster_ip_allocation: ::core::option::Option<ip_allocation_policy::ClusterIpAllocation>,
+#[prost(oneof = "ip_allocation_policy::ServicesIpAllocation", tags = "3, 5")]
+pub services_ip_allocation: ::core::option::Option<ip_allocation_policy::ServicesIpAllocation>,
 }
 /// Nested message and enum types in `IPAllocationPolicy`.
 pub mod ip_allocation_policy {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum ClusterIpAllocation {
-        #[prost(string, tag = "2")]
-        ClusterSecondaryRangeName(::prost::alloc::string::String),
-        #[prost(string, tag = "4")]
-        ClusterIpv4CidrBlock(::prost::alloc::string::String),
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum ServicesIpAllocation {
-        #[prost(string, tag = "3")]
-        ServicesSecondaryRangeName(::prost::alloc::string::String),
-        #[prost(string, tag = "5")]
-        ServicesIpv4CidrBlock(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum ClusterIpAllocation {
+#[prost(string, tag = "2")]
+ClusterSecondaryRangeName(::prost::alloc::string::String),
+#[prost(string, tag = "4")]
+ClusterIpv4CidrBlock(::prost::alloc::string::String),
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum ServicesIpAllocation {
+#[prost(string, tag = "3")]
+ServicesSecondaryRangeName(::prost::alloc::string::String),
+#[prost(string, tag = "5")]
+ServicesIpv4CidrBlock(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeConfig {
-    #[prost(string, tag = "1")]
-    pub location: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub machine_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub network: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub subnetwork: ::prost::alloc::string::String,
-    #[prost(int32, tag = "5")]
-    pub disk_size_gb: i32,
-    #[prost(string, repeated, tag = "6")]
-    pub oauth_scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "7")]
-    pub service_account: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "8")]
-    pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub ip_allocation_policy: ::core::option::Option<IpAllocationPolicy>,
-    #[prost(bool, tag = "11")]
-    pub enable_ip_masq_agent: bool,
-    #[prost(string, tag = "12")]
-    pub composer_network_attachment: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub composer_internal_ipv4_cidr_block: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub location: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub machine_type: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub network: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub subnetwork: ::prost::alloc::string::String,
+#[prost(int32, tag = "5")]
+pub disk_size_gb: i32,
+#[prost(string, repeated, tag = "6")]
+pub oauth_scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "7")]
+pub service_account: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "8")]
+pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "9")]
+pub ip_allocation_policy: ::core::option::Option<IpAllocationPolicy>,
+#[prost(bool, tag = "11")]
+pub enable_ip_masq_agent: bool,
+#[prost(string, tag = "12")]
+pub composer_network_attachment: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub composer_internal_ipv4_cidr_block: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrivateClusterConfig {
-    #[prost(bool, tag = "1")]
-    pub enable_private_endpoint: bool,
-    #[prost(string, tag = "2")]
-    pub master_ipv4_cidr_block: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub master_ipv4_reserved_range: ::prost::alloc::string::String,
+#[prost(bool, tag = "1")]
+pub enable_private_endpoint: bool,
+#[prost(string, tag = "2")]
+pub master_ipv4_cidr_block: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub master_ipv4_reserved_range: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NetworkingConfig {
-    #[prost(enumeration = "networking_config::ConnectionType", tag = "1")]
-    pub connection_type: i32,
+#[prost(enumeration = "networking_config::ConnectionType", tag = "1")]
+pub connection_type: i32,
 }
 /// Nested message and enum types in `NetworkingConfig`.
 pub mod networking_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ConnectionType {
-        Unspecified = 0,
-        VpcPeering = 1,
-        PrivateServiceConnect = 2,
-    }
-    impl ConnectionType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ConnectionType::Unspecified => "CONNECTION_TYPE_UNSPECIFIED",
-                ConnectionType::VpcPeering => "VPC_PEERING",
-                ConnectionType::PrivateServiceConnect => "PRIVATE_SERVICE_CONNECT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONNECTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "VPC_PEERING" => Some(Self::VpcPeering),
-                "PRIVATE_SERVICE_CONNECT" => Some(Self::PrivateServiceConnect),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ConnectionType {
+Unspecified = 0,
+VpcPeering = 1,
+PrivateServiceConnect = 2,
+}
+impl ConnectionType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ConnectionType::Unspecified => "CONNECTION_TYPE_UNSPECIFIED",
+ConnectionType::VpcPeering => "VPC_PEERING",
+ConnectionType::PrivateServiceConnect => "PRIVATE_SERVICE_CONNECT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONNECTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"VPC_PEERING" => Some(Self::VpcPeering),
+"PRIVATE_SERVICE_CONNECT" => Some(Self::PrivateServiceConnect),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PrivateEnvironmentConfig {
-    #[prost(bool, tag = "1")]
-    pub enable_private_environment: bool,
-    #[prost(bool, tag = "11")]
-    pub enable_private_builds_only: bool,
-    #[prost(message, optional, tag = "2")]
-    pub private_cluster_config: ::core::option::Option<PrivateClusterConfig>,
-    #[prost(string, tag = "3")]
-    pub web_server_ipv4_cidr_block: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub cloud_sql_ipv4_cidr_block: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub web_server_ipv4_reserved_range: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub cloud_composer_network_ipv4_cidr_block: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub cloud_composer_network_ipv4_reserved_range: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub enable_privately_used_public_ips: bool,
-    #[prost(string, tag = "9")]
-    pub cloud_composer_connection_subnetwork: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub networking_config: ::core::option::Option<NetworkingConfig>,
+#[prost(bool, tag = "1")]
+pub enable_private_environment: bool,
+#[prost(bool, tag = "11")]
+pub enable_private_builds_only: bool,
+#[prost(message, optional, tag = "2")]
+pub private_cluster_config: ::core::option::Option<PrivateClusterConfig>,
+#[prost(string, tag = "3")]
+pub web_server_ipv4_cidr_block: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub cloud_sql_ipv4_cidr_block: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub web_server_ipv4_reserved_range: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub cloud_composer_network_ipv4_cidr_block: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub cloud_composer_network_ipv4_reserved_range: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub enable_privately_used_public_ips: bool,
+#[prost(string, tag = "9")]
+pub cloud_composer_connection_subnetwork: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub networking_config: ::core::option::Option<NetworkingConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct WorkloadsConfig {
-    #[prost(message, optional, tag = "1")]
-    pub scheduler: ::core::option::Option<workloads_config::SchedulerResource>,
-    #[prost(message, optional, tag = "2")]
-    pub web_server: ::core::option::Option<workloads_config::WebServerResource>,
-    #[prost(message, optional, tag = "3")]
-    pub worker: ::core::option::Option<workloads_config::WorkerResource>,
-    #[prost(message, optional, tag = "4")]
-    pub triggerer: ::core::option::Option<workloads_config::TriggererResource>,
-    #[prost(message, optional, tag = "5")]
-    pub dag_processor: ::core::option::Option<workloads_config::DagProcessorResource>,
+#[prost(message, optional, tag = "1")]
+pub scheduler: ::core::option::Option<workloads_config::SchedulerResource>,
+#[prost(message, optional, tag = "2")]
+pub web_server: ::core::option::Option<workloads_config::WebServerResource>,
+#[prost(message, optional, tag = "3")]
+pub worker: ::core::option::Option<workloads_config::WorkerResource>,
+#[prost(message, optional, tag = "4")]
+pub triggerer: ::core::option::Option<workloads_config::TriggererResource>,
+#[prost(message, optional, tag = "5")]
+pub dag_processor: ::core::option::Option<workloads_config::DagProcessorResource>,
 }
 /// Nested message and enum types in `WorkloadsConfig`.
 pub mod workloads_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SchedulerResource {
-        #[prost(float, tag = "1")]
-        pub cpu: f32,
-        #[prost(float, tag = "2")]
-        pub memory_gb: f32,
-        #[prost(float, tag = "3")]
-        pub storage_gb: f32,
-        #[prost(int32, tag = "4")]
-        pub count: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct WebServerResource {
-        #[prost(float, tag = "1")]
-        pub cpu: f32,
-        #[prost(float, tag = "2")]
-        pub memory_gb: f32,
-        #[prost(float, tag = "3")]
-        pub storage_gb: f32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct WorkerResource {
-        #[prost(float, tag = "1")]
-        pub cpu: f32,
-        #[prost(float, tag = "2")]
-        pub memory_gb: f32,
-        #[prost(float, tag = "3")]
-        pub storage_gb: f32,
-        #[prost(int32, tag = "4")]
-        pub min_count: i32,
-        #[prost(int32, tag = "5")]
-        pub max_count: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct TriggererResource {
-        #[prost(int32, tag = "1")]
-        pub count: i32,
-        #[prost(float, tag = "2")]
-        pub cpu: f32,
-        #[prost(float, tag = "3")]
-        pub memory_gb: f32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct DagProcessorResource {
-        #[prost(float, tag = "1")]
-        pub cpu: f32,
-        #[prost(float, tag = "2")]
-        pub memory_gb: f32,
-        #[prost(float, tag = "3")]
-        pub storage_gb: f32,
-        #[prost(int32, tag = "4")]
-        pub count: i32,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SchedulerResource {
+#[prost(float, tag = "1")]
+pub cpu: f32,
+#[prost(float, tag = "2")]
+pub memory_gb: f32,
+#[prost(float, tag = "3")]
+pub storage_gb: f32,
+#[prost(int32, tag = "4")]
+pub count: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct WebServerResource {
+#[prost(float, tag = "1")]
+pub cpu: f32,
+#[prost(float, tag = "2")]
+pub memory_gb: f32,
+#[prost(float, tag = "3")]
+pub storage_gb: f32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct WorkerResource {
+#[prost(float, tag = "1")]
+pub cpu: f32,
+#[prost(float, tag = "2")]
+pub memory_gb: f32,
+#[prost(float, tag = "3")]
+pub storage_gb: f32,
+#[prost(int32, tag = "4")]
+pub min_count: i32,
+#[prost(int32, tag = "5")]
+pub max_count: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TriggererResource {
+#[prost(int32, tag = "1")]
+pub count: i32,
+#[prost(float, tag = "2")]
+pub cpu: f32,
+#[prost(float, tag = "3")]
+pub memory_gb: f32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DagProcessorResource {
+#[prost(float, tag = "1")]
+pub cpu: f32,
+#[prost(float, tag = "2")]
+pub memory_gb: f32,
+#[prost(float, tag = "3")]
+pub storage_gb: f32,
+#[prost(int32, tag = "4")]
+pub count: i32,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecoveryConfig {
-    #[prost(message, optional, tag = "1")]
-    pub scheduled_snapshots_config: ::core::option::Option<ScheduledSnapshotsConfig>,
+#[prost(message, optional, tag = "1")]
+pub scheduled_snapshots_config: ::core::option::Option<ScheduledSnapshotsConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScheduledSnapshotsConfig {
-    #[prost(bool, tag = "1")]
-    pub enabled: bool,
-    #[prost(string, tag = "6")]
-    pub snapshot_location: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub snapshot_creation_schedule: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub time_zone: ::prost::alloc::string::String,
+#[prost(bool, tag = "1")]
+pub enabled: bool,
+#[prost(string, tag = "6")]
+pub snapshot_location: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub snapshot_creation_schedule: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub time_zone: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MasterAuthorizedNetworksConfig {
-    #[prost(bool, tag = "1")]
-    pub enabled: bool,
-    #[prost(message, repeated, tag = "2")]
-    pub cidr_blocks: ::prost::alloc::vec::Vec<
-        master_authorized_networks_config::CidrBlock,
-    >,
+#[prost(bool, tag = "1")]
+pub enabled: bool,
+#[prost(message, repeated, tag = "2")]
+pub cidr_blocks: ::prost::alloc::vec::Vec<master_authorized_networks_config::CidrBlock>,
 }
 /// Nested message and enum types in `MasterAuthorizedNetworksConfig`.
 pub mod master_authorized_networks_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CidrBlock {
-        #[prost(string, tag = "1")]
-        pub display_name: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub cidr_block: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CidrBlock {
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub cidr_block: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CloudDataLineageIntegration {
-    #[prost(bool, tag = "1")]
-    pub enabled: bool,
+#[prost(bool, tag = "1")]
+pub enabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Environment {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub config: ::core::option::Option<EnvironmentConfig>,
-    #[prost(string, tag = "3")]
-    pub uuid: ::prost::alloc::string::String,
-    #[prost(enumeration = "environment::State", tag = "4")]
-    pub state: i32,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(btree_map = "string, string", tag = "7")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(bool, tag = "8")]
-    pub satisfies_pzs: bool,
-    #[prost(message, optional, tag = "9")]
-    pub storage_config: ::core::option::Option<StorageConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub config: ::core::option::Option<EnvironmentConfig>,
+#[prost(string, tag = "3")]
+pub uuid: ::prost::alloc::string::String,
+#[prost(enumeration = "environment::State", tag = "4")]
+pub state: i32,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(btree_map = "string, string", tag = "7")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(bool, tag = "8")]
+pub satisfies_pzs: bool,
+#[prost(message, optional, tag = "9")]
+pub storage_config: ::core::option::Option<StorageConfig>,
 }
 /// Nested message and enum types in `Environment`.
 pub mod environment {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Running = 2,
-        Updating = 3,
-        Deleting = 4,
-        Error = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Running => "RUNNING",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "RUNNING" => Some(Self::Running),
-                "UPDATING" => Some(Self::Updating),
-                "DELETING" => Some(Self::Deleting),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Running = 2,
+Updating = 3,
+Deleting = 4,
+Error = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Running => "RUNNING",
+State::Updating => "UPDATING",
+State::Deleting => "DELETING",
+State::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"RUNNING" => Some(Self::Running),
+"UPDATING" => Some(Self::Updating),
+"DELETING" => Some(Self::Deleting),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckUpgradeResponse {
-    #[prost(string, tag = "1")]
-    pub build_log_uri: ::prost::alloc::string::String,
-    #[prost(enumeration = "check_upgrade_response::ConflictResult", tag = "4")]
-    pub contains_pypi_modules_conflict: i32,
-    #[prost(string, tag = "3")]
-    pub pypi_conflict_build_log_extract: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub image_version: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "6")]
-    pub pypi_dependencies: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub build_log_uri: ::prost::alloc::string::String,
+#[prost(enumeration = "check_upgrade_response::ConflictResult", tag = "4")]
+pub contains_pypi_modules_conflict: i32,
+#[prost(string, tag = "3")]
+pub pypi_conflict_build_log_extract: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub image_version: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "6")]
+pub pypi_dependencies: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `CheckUpgradeResponse`.
 pub mod check_upgrade_response {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ConflictResult {
-        Unspecified = 0,
-        Conflict = 1,
-        NoConflict = 2,
-    }
-    impl ConflictResult {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ConflictResult::Unspecified => "CONFLICT_RESULT_UNSPECIFIED",
-                ConflictResult::Conflict => "CONFLICT",
-                ConflictResult::NoConflict => "NO_CONFLICT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONFLICT_RESULT_UNSPECIFIED" => Some(Self::Unspecified),
-                "CONFLICT" => Some(Self::Conflict),
-                "NO_CONFLICT" => Some(Self::NoConflict),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ConflictResult {
+Unspecified = 0,
+Conflict = 1,
+NoConflict = 2,
+}
+impl ConflictResult {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ConflictResult::Unspecified => "CONFLICT_RESULT_UNSPECIFIED",
+ConflictResult::Conflict => "CONFLICT",
+ConflictResult::NoConflict => "NO_CONFLICT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONFLICT_RESULT_UNSPECIFIED" => Some(Self::Unspecified),
+"CONFLICT" => Some(Self::Conflict),
+"NO_CONFLICT" => Some(Self::NoConflict),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DataRetentionConfig {
-    #[prost(message, optional, tag = "2")]
-    pub task_logs_retention_config: ::core::option::Option<TaskLogsRetentionConfig>,
+#[prost(message, optional, tag = "2")]
+pub task_logs_retention_config: ::core::option::Option<TaskLogsRetentionConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TaskLogsRetentionConfig {
-    #[prost(enumeration = "task_logs_retention_config::TaskLogsStorageMode", tag = "2")]
-    pub storage_mode: i32,
+#[prost(enumeration = "task_logs_retention_config::TaskLogsStorageMode", tag = "2")]
+pub storage_mode: i32,
 }
 /// Nested message and enum types in `TaskLogsRetentionConfig`.
 pub mod task_logs_retention_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum TaskLogsStorageMode {
-        Unspecified = 0,
-        CloudLoggingAndCloudStorage = 1,
-        CloudLoggingOnly = 2,
-    }
-    impl TaskLogsStorageMode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                TaskLogsStorageMode::Unspecified => "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
-                TaskLogsStorageMode::CloudLoggingAndCloudStorage => {
-                    "CLOUD_LOGGING_AND_CLOUD_STORAGE"
-                }
-                TaskLogsStorageMode::CloudLoggingOnly => "CLOUD_LOGGING_ONLY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TASK_LOGS_STORAGE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CLOUD_LOGGING_AND_CLOUD_STORAGE" => {
-                    Some(Self::CloudLoggingAndCloudStorage)
-                }
-                "CLOUD_LOGGING_ONLY" => Some(Self::CloudLoggingOnly),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum TaskLogsStorageMode {
+Unspecified = 0,
+CloudLoggingAndCloudStorage = 1,
+CloudLoggingOnly = 2,
+}
+impl TaskLogsStorageMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TaskLogsStorageMode::Unspecified => "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
+TaskLogsStorageMode::CloudLoggingAndCloudStorage => "CLOUD_LOGGING_AND_CLOUD_STORAGE",
+TaskLogsStorageMode::CloudLoggingOnly => "CLOUD_LOGGING_ONLY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TASK_LOGS_STORAGE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"CLOUD_LOGGING_AND_CLOUD_STORAGE" => Some(Self::CloudLoggingAndCloudStorage),
+"CLOUD_LOGGING_ONLY" => Some(Self::CloudLoggingOnly),
+_ => None,
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod environments_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Managed Apache Airflow Environments.
-    #[derive(Debug, Clone)]
-    pub struct EnvironmentsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> EnvironmentsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> EnvironmentsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            EnvironmentsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Create a new environment.
-        pub async fn create_environment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateEnvironmentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::super::super::longrunning::Operation,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/CreateEnvironment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "CreateEnvironment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get an existing environment.
-        pub async fn get_environment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetEnvironmentRequest>,
-        ) -> std::result::Result<tonic::Response<super::Environment>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/GetEnvironment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "GetEnvironment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// List environments.
-        pub async fn list_environments(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListEnvironmentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListEnvironmentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/ListEnvironments",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "ListEnvironments",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update an environment.
-        pub async fn update_environment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateEnvironmentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::super::super::longrunning::Operation,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/UpdateEnvironment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "UpdateEnvironment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Delete an environment.
-        pub async fn delete_environment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteEnvironmentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::super::super::longrunning::Operation,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/DeleteEnvironment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "DeleteEnvironment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Executes Airflow CLI command.
-        pub async fn execute_airflow_command(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ExecuteAirflowCommandRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ExecuteAirflowCommandResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/ExecuteAirflowCommand",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "ExecuteAirflowCommand",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Stops Airflow CLI command execution.
-        pub async fn stop_airflow_command(
-            &mut self,
-            request: impl tonic::IntoRequest<super::StopAirflowCommandRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::StopAirflowCommandResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/StopAirflowCommand",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "StopAirflowCommand",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Polls Airflow CLI command execution and fetches logs.
-        pub async fn poll_airflow_command(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PollAirflowCommandRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::PollAirflowCommandResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/PollAirflowCommand",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "PollAirflowCommand",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists workloads in a Cloud Composer environment. Workload is a unit that
-        /// runs a single Composer component.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn list_workloads(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListWorkloadsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListWorkloadsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/ListWorkloads",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "ListWorkloads",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a user workloads Secret.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn create_user_workloads_secret(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateUserWorkloadsSecretRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UserWorkloadsSecret>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/CreateUserWorkloadsSecret",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "CreateUserWorkloadsSecret",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets an existing user workloads Secret.
-        /// Values of the "data" field in the response are cleared.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn get_user_workloads_secret(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetUserWorkloadsSecretRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UserWorkloadsSecret>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/GetUserWorkloadsSecret",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "GetUserWorkloadsSecret",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists user workloads Secrets.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn list_user_workloads_secrets(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListUserWorkloadsSecretsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListUserWorkloadsSecretsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/ListUserWorkloadsSecrets",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "ListUserWorkloadsSecrets",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a user workloads Secret.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn update_user_workloads_secret(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateUserWorkloadsSecretRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UserWorkloadsSecret>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/UpdateUserWorkloadsSecret",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "UpdateUserWorkloadsSecret",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a user workloads Secret.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn delete_user_workloads_secret(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteUserWorkloadsSecretRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/DeleteUserWorkloadsSecret",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "DeleteUserWorkloadsSecret",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a user workloads ConfigMap.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn create_user_workloads_config_map(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateUserWorkloadsConfigMapRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UserWorkloadsConfigMap>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/CreateUserWorkloadsConfigMap",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "CreateUserWorkloadsConfigMap",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets an existing user workloads ConfigMap.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn get_user_workloads_config_map(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetUserWorkloadsConfigMapRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UserWorkloadsConfigMap>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/GetUserWorkloadsConfigMap",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "GetUserWorkloadsConfigMap",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists user workloads ConfigMaps.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn list_user_workloads_config_maps(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListUserWorkloadsConfigMapsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListUserWorkloadsConfigMapsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/ListUserWorkloadsConfigMaps",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "ListUserWorkloadsConfigMaps",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a user workloads ConfigMap.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn update_user_workloads_config_map(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateUserWorkloadsConfigMapRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UserWorkloadsConfigMap>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/UpdateUserWorkloadsConfigMap",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "UpdateUserWorkloadsConfigMap",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a user workloads ConfigMap.
-        ///
-        /// This method is supported for Cloud Composer environments in versions
-        /// composer-3.*.*-airflow-*.*.* and newer.
-        pub async fn delete_user_workloads_config_map(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteUserWorkloadsConfigMapRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/DeleteUserWorkloadsConfigMap",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "DeleteUserWorkloadsConfigMap",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a snapshots of a Cloud Composer environment.
-        ///
-        /// As a result of this operation, snapshot of environment's state is stored
-        /// in a location specified in the SaveSnapshotRequest.
-        pub async fn save_snapshot(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SaveSnapshotRequest>,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::super::super::longrunning::Operation,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/SaveSnapshot",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "SaveSnapshot",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Loads a snapshot of a Cloud Composer environment.
-        ///
-        /// As a result of this operation, a snapshot of environment's specified in
-        /// LoadSnapshotRequest is loaded into the environment.
-        pub async fn load_snapshot(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LoadSnapshotRequest>,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::super::super::longrunning::Operation,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/LoadSnapshot",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "LoadSnapshot",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Triggers database failover (only for highly resilient environments).
-        pub async fn database_failover(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DatabaseFailoverRequest>,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::super::super::longrunning::Operation,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/DatabaseFailover",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "DatabaseFailover",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetches database properties.
-        pub async fn fetch_database_properties(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchDatabasePropertiesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FetchDatabasePropertiesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.orchestration.airflow.service.v1.Environments/FetchDatabaseProperties",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.orchestration.airflow.service.v1.Environments",
-                        "FetchDatabaseProperties",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Managed Apache Airflow Environments.
+#[derive(Debug, Clone)]
+pub struct EnvironmentsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> EnvironmentsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> EnvironmentsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+EnvironmentsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Create a new environment.
+pub async fn create_environment(&mut self, request: impl tonic::IntoRequest<super::CreateEnvironmentRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/CreateEnvironment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "CreateEnvironment"));
+self.inner.unary(req, path, codec).await
+}
+/// Get an existing environment.
+pub async fn get_environment(&mut self, request: impl tonic::IntoRequest<super::GetEnvironmentRequest>) -> std::result::Result<tonic::Response<super::Environment>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/GetEnvironment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "GetEnvironment"));
+self.inner.unary(req, path, codec).await
+}
+/// List environments.
+pub async fn list_environments(&mut self, request: impl tonic::IntoRequest<super::ListEnvironmentsRequest>) -> std::result::Result<tonic::Response<super::ListEnvironmentsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/ListEnvironments");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "ListEnvironments"));
+self.inner.unary(req, path, codec).await
+}
+/// Update an environment.
+pub async fn update_environment(&mut self, request: impl tonic::IntoRequest<super::UpdateEnvironmentRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/UpdateEnvironment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "UpdateEnvironment"));
+self.inner.unary(req, path, codec).await
+}
+/// Delete an environment.
+pub async fn delete_environment(&mut self, request: impl tonic::IntoRequest<super::DeleteEnvironmentRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/DeleteEnvironment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "DeleteEnvironment"));
+self.inner.unary(req, path, codec).await
+}
+/// Executes Airflow CLI command.
+pub async fn execute_airflow_command(&mut self, request: impl tonic::IntoRequest<super::ExecuteAirflowCommandRequest>) -> std::result::Result<tonic::Response<super::ExecuteAirflowCommandResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/ExecuteAirflowCommand");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "ExecuteAirflowCommand"));
+self.inner.unary(req, path, codec).await
+}
+/// Stops Airflow CLI command execution.
+pub async fn stop_airflow_command(&mut self, request: impl tonic::IntoRequest<super::StopAirflowCommandRequest>) -> std::result::Result<tonic::Response<super::StopAirflowCommandResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/StopAirflowCommand");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "StopAirflowCommand"));
+self.inner.unary(req, path, codec).await
+}
+/// Polls Airflow CLI command execution and fetches logs.
+pub async fn poll_airflow_command(&mut self, request: impl tonic::IntoRequest<super::PollAirflowCommandRequest>) -> std::result::Result<tonic::Response<super::PollAirflowCommandResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/PollAirflowCommand");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "PollAirflowCommand"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists workloads in a Cloud Composer environment. Workload is a unit that
+/// runs a single Composer component.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn list_workloads(&mut self, request: impl tonic::IntoRequest<super::ListWorkloadsRequest>) -> std::result::Result<tonic::Response<super::ListWorkloadsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/ListWorkloads");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "ListWorkloads"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a user workloads Secret.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn create_user_workloads_secret(&mut self, request: impl tonic::IntoRequest<super::CreateUserWorkloadsSecretRequest>) -> std::result::Result<tonic::Response<super::UserWorkloadsSecret>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/CreateUserWorkloadsSecret");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "CreateUserWorkloadsSecret"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets an existing user workloads Secret.
+/// Values of the "data" field in the response are cleared.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn get_user_workloads_secret(&mut self, request: impl tonic::IntoRequest<super::GetUserWorkloadsSecretRequest>) -> std::result::Result<tonic::Response<super::UserWorkloadsSecret>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/GetUserWorkloadsSecret");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "GetUserWorkloadsSecret"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists user workloads Secrets.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn list_user_workloads_secrets(&mut self, request: impl tonic::IntoRequest<super::ListUserWorkloadsSecretsRequest>) -> std::result::Result<tonic::Response<super::ListUserWorkloadsSecretsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/ListUserWorkloadsSecrets");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "ListUserWorkloadsSecrets"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a user workloads Secret.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn update_user_workloads_secret(&mut self, request: impl tonic::IntoRequest<super::UpdateUserWorkloadsSecretRequest>) -> std::result::Result<tonic::Response<super::UserWorkloadsSecret>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/UpdateUserWorkloadsSecret");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "UpdateUserWorkloadsSecret"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a user workloads Secret.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn delete_user_workloads_secret(&mut self, request: impl tonic::IntoRequest<super::DeleteUserWorkloadsSecretRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/DeleteUserWorkloadsSecret");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "DeleteUserWorkloadsSecret"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a user workloads ConfigMap.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn create_user_workloads_config_map(&mut self, request: impl tonic::IntoRequest<super::CreateUserWorkloadsConfigMapRequest>) -> std::result::Result<tonic::Response<super::UserWorkloadsConfigMap>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/CreateUserWorkloadsConfigMap");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "CreateUserWorkloadsConfigMap"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets an existing user workloads ConfigMap.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn get_user_workloads_config_map(&mut self, request: impl tonic::IntoRequest<super::GetUserWorkloadsConfigMapRequest>) -> std::result::Result<tonic::Response<super::UserWorkloadsConfigMap>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/GetUserWorkloadsConfigMap");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "GetUserWorkloadsConfigMap"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists user workloads ConfigMaps.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn list_user_workloads_config_maps(&mut self, request: impl tonic::IntoRequest<super::ListUserWorkloadsConfigMapsRequest>) -> std::result::Result<tonic::Response<super::ListUserWorkloadsConfigMapsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/ListUserWorkloadsConfigMaps");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "ListUserWorkloadsConfigMaps"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a user workloads ConfigMap.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn update_user_workloads_config_map(&mut self, request: impl tonic::IntoRequest<super::UpdateUserWorkloadsConfigMapRequest>) -> std::result::Result<tonic::Response<super::UserWorkloadsConfigMap>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/UpdateUserWorkloadsConfigMap");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "UpdateUserWorkloadsConfigMap"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a user workloads ConfigMap.
+///
+/// This method is supported for Cloud Composer environments in versions
+/// composer-3.*.*-airflow-*.*.* and newer.
+pub async fn delete_user_workloads_config_map(&mut self, request: impl tonic::IntoRequest<super::DeleteUserWorkloadsConfigMapRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/DeleteUserWorkloadsConfigMap");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "DeleteUserWorkloadsConfigMap"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a snapshots of a Cloud Composer environment.
+///
+/// As a result of this operation, snapshot of environment's state is stored
+/// in a location specified in the SaveSnapshotRequest.
+pub async fn save_snapshot(&mut self, request: impl tonic::IntoRequest<super::SaveSnapshotRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/SaveSnapshot");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "SaveSnapshot"));
+self.inner.unary(req, path, codec).await
+}
+/// Loads a snapshot of a Cloud Composer environment.
+///
+/// As a result of this operation, a snapshot of environment's specified in
+/// LoadSnapshotRequest is loaded into the environment.
+pub async fn load_snapshot(&mut self, request: impl tonic::IntoRequest<super::LoadSnapshotRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/LoadSnapshot");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "LoadSnapshot"));
+self.inner.unary(req, path, codec).await
+}
+/// Triggers database failover (only for highly resilient environments).
+pub async fn database_failover(&mut self, request: impl tonic::IntoRequest<super::DatabaseFailoverRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/DatabaseFailover");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "DatabaseFailover"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetches database properties.
+pub async fn fetch_database_properties(&mut self, request: impl tonic::IntoRequest<super::FetchDatabasePropertiesRequest>) -> std::result::Result<tonic::Response<super::FetchDatabasePropertiesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.orchestration.airflow.service.v1.Environments/FetchDatabaseProperties");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.orchestration.airflow.service.v1.Environments", "FetchDatabaseProperties"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

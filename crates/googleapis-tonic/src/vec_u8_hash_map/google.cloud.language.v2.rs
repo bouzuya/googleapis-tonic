@@ -2,661 +2,498 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Document {
-    #[prost(enumeration = "document::Type", tag = "1")]
-    pub r#type: i32,
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(oneof = "document::Source", tags = "2, 3")]
-    pub source: ::core::option::Option<document::Source>,
+#[prost(enumeration = "document::Type", tag = "1")]
+pub r#type: i32,
+#[prost(string, tag = "4")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(oneof = "document::Source", tags = "2, 3")]
+pub source: ::core::option::Option<document::Source>,
 }
 /// Nested message and enum types in `Document`.
 pub mod document {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        PlainText = 1,
-        Html = 2,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::PlainText => "PLAIN_TEXT",
-                Type::Html => "HTML",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PLAIN_TEXT" => Some(Self::PlainText),
-                "HTML" => Some(Self::Html),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(string, tag = "2")]
-        Content(::prost::alloc::string::String),
-        #[prost(string, tag = "3")]
-        GcsContentUri(::prost::alloc::string::String),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+PlainText = 1,
+Html = 2,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::PlainText => "PLAIN_TEXT",
+Type::Html => "HTML",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"PLAIN_TEXT" => Some(Self::PlainText),
+"HTML" => Some(Self::Html),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(string, tag = "2")]
+Content(::prost::alloc::string::String),
+#[prost(string, tag = "3")]
+GcsContentUri(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Sentence {
-    #[prost(message, optional, tag = "1")]
-    pub text: ::core::option::Option<TextSpan>,
-    #[prost(message, optional, tag = "2")]
-    pub sentiment: ::core::option::Option<Sentiment>,
+#[prost(message, optional, tag = "1")]
+pub text: ::core::option::Option<TextSpan>,
+#[prost(message, optional, tag = "2")]
+pub sentiment: ::core::option::Option<Sentiment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Entity {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "entity::Type", tag = "2")]
-    pub r#type: i32,
-    #[prost(map = "string, string", tag = "3")]
-    pub metadata: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, repeated, tag = "5")]
-    pub mentions: ::prost::alloc::vec::Vec<EntityMention>,
-    #[prost(message, optional, tag = "6")]
-    pub sentiment: ::core::option::Option<Sentiment>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "entity::Type", tag = "2")]
+pub r#type: i32,
+#[prost(map = "string, string", tag = "3")]
+pub metadata: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "5")]
+pub mentions: ::prost::alloc::vec::Vec<EntityMention>,
+#[prost(message, optional, tag = "6")]
+pub sentiment: ::core::option::Option<Sentiment>,
 }
 /// Nested message and enum types in `Entity`.
 pub mod entity {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unknown = 0,
-        Person = 1,
-        Location = 2,
-        Organization = 3,
-        Event = 4,
-        WorkOfArt = 5,
-        ConsumerGood = 6,
-        Other = 7,
-        PhoneNumber = 9,
-        Address = 10,
-        Date = 11,
-        Number = 12,
-        Price = 13,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unknown => "UNKNOWN",
-                Type::Person => "PERSON",
-                Type::Location => "LOCATION",
-                Type::Organization => "ORGANIZATION",
-                Type::Event => "EVENT",
-                Type::WorkOfArt => "WORK_OF_ART",
-                Type::ConsumerGood => "CONSUMER_GOOD",
-                Type::Other => "OTHER",
-                Type::PhoneNumber => "PHONE_NUMBER",
-                Type::Address => "ADDRESS",
-                Type::Date => "DATE",
-                Type::Number => "NUMBER",
-                Type::Price => "PRICE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNKNOWN" => Some(Self::Unknown),
-                "PERSON" => Some(Self::Person),
-                "LOCATION" => Some(Self::Location),
-                "ORGANIZATION" => Some(Self::Organization),
-                "EVENT" => Some(Self::Event),
-                "WORK_OF_ART" => Some(Self::WorkOfArt),
-                "CONSUMER_GOOD" => Some(Self::ConsumerGood),
-                "OTHER" => Some(Self::Other),
-                "PHONE_NUMBER" => Some(Self::PhoneNumber),
-                "ADDRESS" => Some(Self::Address),
-                "DATE" => Some(Self::Date),
-                "NUMBER" => Some(Self::Number),
-                "PRICE" => Some(Self::Price),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unknown = 0,
+Person = 1,
+Location = 2,
+Organization = 3,
+Event = 4,
+WorkOfArt = 5,
+ConsumerGood = 6,
+Other = 7,
+PhoneNumber = 9,
+Address = 10,
+Date = 11,
+Number = 12,
+Price = 13,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unknown => "UNKNOWN",
+Type::Person => "PERSON",
+Type::Location => "LOCATION",
+Type::Organization => "ORGANIZATION",
+Type::Event => "EVENT",
+Type::WorkOfArt => "WORK_OF_ART",
+Type::ConsumerGood => "CONSUMER_GOOD",
+Type::Other => "OTHER",
+Type::PhoneNumber => "PHONE_NUMBER",
+Type::Address => "ADDRESS",
+Type::Date => "DATE",
+Type::Number => "NUMBER",
+Type::Price => "PRICE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN" => Some(Self::Unknown),
+"PERSON" => Some(Self::Person),
+"LOCATION" => Some(Self::Location),
+"ORGANIZATION" => Some(Self::Organization),
+"EVENT" => Some(Self::Event),
+"WORK_OF_ART" => Some(Self::WorkOfArt),
+"CONSUMER_GOOD" => Some(Self::ConsumerGood),
+"OTHER" => Some(Self::Other),
+"PHONE_NUMBER" => Some(Self::PhoneNumber),
+"ADDRESS" => Some(Self::Address),
+"DATE" => Some(Self::Date),
+"NUMBER" => Some(Self::Number),
+"PRICE" => Some(Self::Price),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Sentiment {
-    #[prost(float, tag = "1")]
-    pub magnitude: f32,
-    #[prost(float, tag = "2")]
-    pub score: f32,
+#[prost(float, tag = "1")]
+pub magnitude: f32,
+#[prost(float, tag = "2")]
+pub score: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityMention {
-    #[prost(message, optional, tag = "1")]
-    pub text: ::core::option::Option<TextSpan>,
-    #[prost(enumeration = "entity_mention::Type", tag = "2")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "3")]
-    pub sentiment: ::core::option::Option<Sentiment>,
-    #[prost(float, tag = "4")]
-    pub probability: f32,
+#[prost(message, optional, tag = "1")]
+pub text: ::core::option::Option<TextSpan>,
+#[prost(enumeration = "entity_mention::Type", tag = "2")]
+pub r#type: i32,
+#[prost(message, optional, tag = "3")]
+pub sentiment: ::core::option::Option<Sentiment>,
+#[prost(float, tag = "4")]
+pub probability: f32,
 }
 /// Nested message and enum types in `EntityMention`.
 pub mod entity_mention {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unknown = 0,
-        Proper = 1,
-        Common = 2,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unknown => "TYPE_UNKNOWN",
-                Type::Proper => "PROPER",
-                Type::Common => "COMMON",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNKNOWN" => Some(Self::Unknown),
-                "PROPER" => Some(Self::Proper),
-                "COMMON" => Some(Self::Common),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unknown = 0,
+Proper = 1,
+Common = 2,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unknown => "TYPE_UNKNOWN",
+Type::Proper => "PROPER",
+Type::Common => "COMMON",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNKNOWN" => Some(Self::Unknown),
+"PROPER" => Some(Self::Proper),
+"COMMON" => Some(Self::Common),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextSpan {
-    #[prost(string, tag = "1")]
-    pub content: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub begin_offset: i32,
+#[prost(string, tag = "1")]
+pub content: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub begin_offset: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClassificationCategory {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(float, tag = "2")]
-    pub confidence: f32,
-    #[prost(float, tag = "3")]
-    pub severity: f32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(float, tag = "2")]
+pub confidence: f32,
+#[prost(float, tag = "3")]
+pub severity: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeSentimentRequest {
-    #[prost(message, optional, tag = "1")]
-    pub document: ::core::option::Option<Document>,
-    #[prost(enumeration = "EncodingType", tag = "2")]
-    pub encoding_type: i32,
+#[prost(message, optional, tag = "1")]
+pub document: ::core::option::Option<Document>,
+#[prost(enumeration = "EncodingType", tag = "2")]
+pub encoding_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeSentimentResponse {
-    #[prost(message, optional, tag = "1")]
-    pub document_sentiment: ::core::option::Option<Sentiment>,
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub sentences: ::prost::alloc::vec::Vec<Sentence>,
-    #[prost(bool, tag = "4")]
-    pub language_supported: bool,
+#[prost(message, optional, tag = "1")]
+pub document_sentiment: ::core::option::Option<Sentiment>,
+#[prost(string, tag = "2")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub sentences: ::prost::alloc::vec::Vec<Sentence>,
+#[prost(bool, tag = "4")]
+pub language_supported: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeEntitiesRequest {
-    #[prost(message, optional, tag = "1")]
-    pub document: ::core::option::Option<Document>,
-    #[prost(enumeration = "EncodingType", tag = "2")]
-    pub encoding_type: i32,
+#[prost(message, optional, tag = "1")]
+pub document: ::core::option::Option<Document>,
+#[prost(enumeration = "EncodingType", tag = "2")]
+pub encoding_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnalyzeEntitiesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub entities: ::prost::alloc::vec::Vec<Entity>,
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub language_supported: bool,
+#[prost(message, repeated, tag = "1")]
+pub entities: ::prost::alloc::vec::Vec<Entity>,
+#[prost(string, tag = "2")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub language_supported: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClassifyTextRequest {
-    #[prost(message, optional, tag = "1")]
-    pub document: ::core::option::Option<Document>,
+#[prost(message, optional, tag = "1")]
+pub document: ::core::option::Option<Document>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClassifyTextResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub language_supported: bool,
+#[prost(message, repeated, tag = "1")]
+pub categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
+#[prost(string, tag = "2")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub language_supported: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModerateTextRequest {
-    #[prost(message, optional, tag = "1")]
-    pub document: ::core::option::Option<Document>,
-    #[prost(enumeration = "moderate_text_request::ModelVersion", tag = "2")]
-    pub model_version: i32,
+#[prost(message, optional, tag = "1")]
+pub document: ::core::option::Option<Document>,
+#[prost(enumeration = "moderate_text_request::ModelVersion", tag = "2")]
+pub model_version: i32,
 }
 /// Nested message and enum types in `ModerateTextRequest`.
 pub mod moderate_text_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ModelVersion {
-        Unspecified = 0,
-        ModelVersion1 = 1,
-        ModelVersion2 = 2,
-    }
-    impl ModelVersion {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ModelVersion::Unspecified => "MODEL_VERSION_UNSPECIFIED",
-                ModelVersion::ModelVersion1 => "MODEL_VERSION_1",
-                ModelVersion::ModelVersion2 => "MODEL_VERSION_2",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MODEL_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
-                "MODEL_VERSION_1" => Some(Self::ModelVersion1),
-                "MODEL_VERSION_2" => Some(Self::ModelVersion2),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ModelVersion {
+Unspecified = 0,
+ModelVersion1 = 1,
+ModelVersion2 = 2,
+}
+impl ModelVersion {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ModelVersion::Unspecified => "MODEL_VERSION_UNSPECIFIED",
+ModelVersion::ModelVersion1 => "MODEL_VERSION_1",
+ModelVersion::ModelVersion2 => "MODEL_VERSION_2",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MODEL_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
+"MODEL_VERSION_1" => Some(Self::ModelVersion1),
+"MODEL_VERSION_2" => Some(Self::ModelVersion2),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModerateTextResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub moderation_categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub language_supported: bool,
+#[prost(message, repeated, tag = "1")]
+pub moderation_categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
+#[prost(string, tag = "2")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub language_supported: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateTextRequest {
-    #[prost(message, optional, tag = "1")]
-    pub document: ::core::option::Option<Document>,
-    #[prost(message, optional, tag = "2")]
-    pub features: ::core::option::Option<annotate_text_request::Features>,
-    #[prost(enumeration = "EncodingType", tag = "3")]
-    pub encoding_type: i32,
+#[prost(message, optional, tag = "1")]
+pub document: ::core::option::Option<Document>,
+#[prost(message, optional, tag = "2")]
+pub features: ::core::option::Option<annotate_text_request::Features>,
+#[prost(enumeration = "EncodingType", tag = "3")]
+pub encoding_type: i32,
 }
 /// Nested message and enum types in `AnnotateTextRequest`.
 pub mod annotate_text_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct Features {
-        #[prost(bool, tag = "1")]
-        pub extract_entities: bool,
-        #[prost(bool, tag = "2")]
-        pub extract_document_sentiment: bool,
-        #[prost(bool, tag = "4")]
-        pub classify_text: bool,
-        #[prost(bool, tag = "5")]
-        pub moderate_text: bool,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Features {
+#[prost(bool, tag = "1")]
+pub extract_entities: bool,
+#[prost(bool, tag = "2")]
+pub extract_document_sentiment: bool,
+#[prost(bool, tag = "4")]
+pub classify_text: bool,
+#[prost(bool, tag = "5")]
+pub moderate_text: bool,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateTextResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub sentences: ::prost::alloc::vec::Vec<Sentence>,
-    #[prost(message, repeated, tag = "2")]
-    pub entities: ::prost::alloc::vec::Vec<Entity>,
-    #[prost(message, optional, tag = "3")]
-    pub document_sentiment: ::core::option::Option<Sentiment>,
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "5")]
-    pub categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
-    #[prost(message, repeated, tag = "6")]
-    pub moderation_categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
-    #[prost(bool, tag = "7")]
-    pub language_supported: bool,
+#[prost(message, repeated, tag = "1")]
+pub sentences: ::prost::alloc::vec::Vec<Sentence>,
+#[prost(message, repeated, tag = "2")]
+pub entities: ::prost::alloc::vec::Vec<Entity>,
+#[prost(message, optional, tag = "3")]
+pub document_sentiment: ::core::option::Option<Sentiment>,
+#[prost(string, tag = "4")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "5")]
+pub categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
+#[prost(message, repeated, tag = "6")]
+pub moderation_categories: ::prost::alloc::vec::Vec<ClassificationCategory>,
+#[prost(bool, tag = "7")]
+pub language_supported: bool,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum EncodingType {
-    None = 0,
-    Utf8 = 1,
-    Utf16 = 2,
-    Utf32 = 3,
+None = 0,
+Utf8 = 1,
+Utf16 = 2,
+Utf32 = 3,
 }
 impl EncodingType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EncodingType::None => "NONE",
-            EncodingType::Utf8 => "UTF8",
-            EncodingType::Utf16 => "UTF16",
-            EncodingType::Utf32 => "UTF32",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "NONE" => Some(Self::None),
-            "UTF8" => Some(Self::Utf8),
-            "UTF16" => Some(Self::Utf16),
-            "UTF32" => Some(Self::Utf32),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EncodingType::None => "NONE",
+EncodingType::Utf8 => "UTF8",
+EncodingType::Utf16 => "UTF16",
+EncodingType::Utf32 => "UTF32",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"NONE" => Some(Self::None),
+"UTF8" => Some(Self::Utf8),
+"UTF16" => Some(Self::Utf16),
+"UTF32" => Some(Self::Utf32),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod language_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Provides text analysis operations such as sentiment analysis and entity
-    /// recognition.
-    #[derive(Debug, Clone)]
-    pub struct LanguageServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> LanguageServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> LanguageServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            LanguageServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Analyzes the sentiment of the provided text.
-        pub async fn analyze_sentiment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AnalyzeSentimentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AnalyzeSentimentResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.language.v2.LanguageService/AnalyzeSentiment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.language.v2.LanguageService",
-                        "AnalyzeSentiment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Finds named entities (currently proper names and common nouns) in the text
-        /// along with entity types, probability, mentions for each entity, and
-        /// other properties.
-        pub async fn analyze_entities(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AnalyzeEntitiesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AnalyzeEntitiesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.language.v2.LanguageService/AnalyzeEntities",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.language.v2.LanguageService",
-                        "AnalyzeEntities",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Classifies a document into categories.
-        pub async fn classify_text(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ClassifyTextRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ClassifyTextResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.language.v2.LanguageService/ClassifyText",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.language.v2.LanguageService",
-                        "ClassifyText",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Moderates a document for harmful and sensitive categories.
-        pub async fn moderate_text(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ModerateTextRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ModerateTextResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.language.v2.LanguageService/ModerateText",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.language.v2.LanguageService",
-                        "ModerateText",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// A convenience method that provides all features in one call.
-        pub async fn annotate_text(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AnnotateTextRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AnnotateTextResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.language.v2.LanguageService/AnnotateText",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.language.v2.LanguageService",
-                        "AnnotateText",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Provides text analysis operations such as sentiment analysis and entity
+/// recognition.
+#[derive(Debug, Clone)]
+pub struct LanguageServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> LanguageServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> LanguageServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+LanguageServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Analyzes the sentiment of the provided text.
+pub async fn analyze_sentiment(&mut self, request: impl tonic::IntoRequest<super::AnalyzeSentimentRequest>) -> std::result::Result<tonic::Response<super::AnalyzeSentimentResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.language.v2.LanguageService/AnalyzeSentiment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.language.v2.LanguageService", "AnalyzeSentiment"));
+self.inner.unary(req, path, codec).await
+}
+/// Finds named entities (currently proper names and common nouns) in the text
+/// along with entity types, probability, mentions for each entity, and
+/// other properties.
+pub async fn analyze_entities(&mut self, request: impl tonic::IntoRequest<super::AnalyzeEntitiesRequest>) -> std::result::Result<tonic::Response<super::AnalyzeEntitiesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.language.v2.LanguageService/AnalyzeEntities");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.language.v2.LanguageService", "AnalyzeEntities"));
+self.inner.unary(req, path, codec).await
+}
+/// Classifies a document into categories.
+pub async fn classify_text(&mut self, request: impl tonic::IntoRequest<super::ClassifyTextRequest>) -> std::result::Result<tonic::Response<super::ClassifyTextResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.language.v2.LanguageService/ClassifyText");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.language.v2.LanguageService", "ClassifyText"));
+self.inner.unary(req, path, codec).await
+}
+/// Moderates a document for harmful and sensitive categories.
+pub async fn moderate_text(&mut self, request: impl tonic::IntoRequest<super::ModerateTextRequest>) -> std::result::Result<tonic::Response<super::ModerateTextResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.language.v2.LanguageService/ModerateText");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.language.v2.LanguageService", "ModerateText"));
+self.inner.unary(req, path, codec).await
+}
+/// A convenience method that provides all features in one call.
+pub async fn annotate_text(&mut self, request: impl tonic::IntoRequest<super::AnnotateTextRequest>) -> std::result::Result<tonic::Response<super::AnnotateTextResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.language.v2.LanguageService/AnnotateText");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.language.v2.LanguageService", "AnnotateText"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

@@ -2,234 +2,178 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranslateSpeechConfig {
-    #[prost(string, tag = "1")]
-    pub audio_encoding: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub source_language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub target_language_code: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub sample_rate_hertz: i32,
-    #[prost(string, tag = "5")]
-    pub model: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub audio_encoding: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub source_language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub target_language_code: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub sample_rate_hertz: i32,
+#[prost(string, tag = "5")]
+pub model: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingTranslateSpeechConfig {
-    #[prost(message, optional, tag = "1")]
-    pub audio_config: ::core::option::Option<TranslateSpeechConfig>,
-    #[prost(bool, tag = "2")]
-    pub single_utterance: bool,
+#[prost(message, optional, tag = "1")]
+pub audio_config: ::core::option::Option<TranslateSpeechConfig>,
+#[prost(bool, tag = "2")]
+pub single_utterance: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingTranslateSpeechRequest {
-    #[prost(
-        oneof = "streaming_translate_speech_request::StreamingRequest",
-        tags = "1, 2"
-    )]
-    pub streaming_request: ::core::option::Option<
-        streaming_translate_speech_request::StreamingRequest,
-    >,
+#[prost(oneof = "streaming_translate_speech_request::StreamingRequest", tags = "1, 2")]
+pub streaming_request: ::core::option::Option<streaming_translate_speech_request::StreamingRequest>,
 }
 /// Nested message and enum types in `StreamingTranslateSpeechRequest`.
 pub mod streaming_translate_speech_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum StreamingRequest {
-        #[prost(message, tag = "1")]
-        StreamingConfig(super::StreamingTranslateSpeechConfig),
-        #[prost(bytes, tag = "2")]
-        AudioContent(::prost::bytes::Bytes),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum StreamingRequest {
+#[prost(message, tag = "1")]
+StreamingConfig(super::StreamingTranslateSpeechConfig),
+#[prost(bytes, tag = "2")]
+AudioContent(::prost::bytes::Bytes),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingTranslateSpeechResult {
-    #[prost(oneof = "streaming_translate_speech_result::Result", tags = "1")]
-    pub result: ::core::option::Option<streaming_translate_speech_result::Result>,
+#[prost(oneof = "streaming_translate_speech_result::Result", tags = "1")]
+pub result: ::core::option::Option<streaming_translate_speech_result::Result>,
 }
 /// Nested message and enum types in `StreamingTranslateSpeechResult`.
 pub mod streaming_translate_speech_result {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TextTranslationResult {
-        #[prost(string, tag = "1")]
-        pub translation: ::prost::alloc::string::String,
-        #[prost(bool, tag = "2")]
-        pub is_final: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Result {
-        #[prost(message, tag = "1")]
-        TextTranslationResult(TextTranslationResult),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TextTranslationResult {
+#[prost(string, tag = "1")]
+pub translation: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub is_final: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Result {
+#[prost(message, tag = "1")]
+TextTranslationResult(TextTranslationResult),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingTranslateSpeechResponse {
-    #[prost(message, optional, tag = "1")]
-    pub error: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "2")]
-    pub result: ::core::option::Option<StreamingTranslateSpeechResult>,
-    #[prost(
-        enumeration = "streaming_translate_speech_response::SpeechEventType",
-        tag = "3"
-    )]
-    pub speech_event_type: i32,
+#[prost(message, optional, tag = "1")]
+pub error: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "2")]
+pub result: ::core::option::Option<StreamingTranslateSpeechResult>,
+#[prost(enumeration = "streaming_translate_speech_response::SpeechEventType", tag = "3")]
+pub speech_event_type: i32,
 }
 /// Nested message and enum types in `StreamingTranslateSpeechResponse`.
 pub mod streaming_translate_speech_response {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SpeechEventType {
-        Unspecified = 0,
-        EndOfSingleUtterance = 1,
-    }
-    impl SpeechEventType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SpeechEventType::Unspecified => "SPEECH_EVENT_TYPE_UNSPECIFIED",
-                SpeechEventType::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SPEECH_EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "END_OF_SINGLE_UTTERANCE" => Some(Self::EndOfSingleUtterance),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SpeechEventType {
+Unspecified = 0,
+EndOfSingleUtterance = 1,
+}
+impl SpeechEventType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SpeechEventType::Unspecified => "SPEECH_EVENT_TYPE_UNSPECIFIED",
+SpeechEventType::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SPEECH_EVENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"END_OF_SINGLE_UTTERANCE" => Some(Self::EndOfSingleUtterance),
+_ => None,
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod speech_translation_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Provides translation from/to media types.
-    #[derive(Debug, Clone)]
-    pub struct SpeechTranslationServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> SpeechTranslationServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> SpeechTranslationServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            SpeechTranslationServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Performs bidirectional streaming speech translation: receive results while
-        /// sending audio. This method is only available via the gRPC API (not REST).
-        pub async fn streaming_translate_speech(
-            &mut self,
-            request: impl tonic::IntoStreamingRequest<
-                Message = super::StreamingTranslateSpeechRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<
-                tonic::codec::Streaming<super::StreamingTranslateSpeechResponse>,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.mediatranslation.v1beta1.SpeechTranslationService/StreamingTranslateSpeech",
-            );
-            let mut req = request.into_streaming_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.mediatranslation.v1beta1.SpeechTranslationService",
-                        "StreamingTranslateSpeech",
-                    ),
-                );
-            self.inner.streaming(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Provides translation from/to media types.
+#[derive(Debug, Clone)]
+pub struct SpeechTranslationServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> SpeechTranslationServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> SpeechTranslationServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+SpeechTranslationServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Performs bidirectional streaming speech translation: receive results while
+/// sending audio. This method is only available via the gRPC API (not REST).
+pub async fn streaming_translate_speech(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::StreamingTranslateSpeechRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::StreamingTranslateSpeechResponse>>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.mediatranslation.v1beta1.SpeechTranslationService/StreamingTranslateSpeech");
+let mut req = request.into_streaming_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.mediatranslation.v1beta1.SpeechTranslationService", "StreamingTranslateSpeech"));
+self.inner.streaming(req, path, codec).await
+}
+}
 }

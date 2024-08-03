@@ -2,1287 +2,898 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct EmailPreferences {
-    #[prost(bool, tag = "1")]
-    pub enable_failure_email: bool,
+#[prost(bool, tag = "1")]
+pub enable_failure_email: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ScheduleOptions {
-    #[prost(bool, tag = "3")]
-    pub disable_auto_scheduling: bool,
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(bool, tag = "3")]
+pub disable_auto_scheduling: bool,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserInfo {
-    #[prost(string, optional, tag = "1")]
-    pub email: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "1")]
+pub email: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferConfig {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub data_source_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "9")]
-    pub params: ::core::option::Option<::prost_types::Struct>,
-    #[prost(string, tag = "7")]
-    pub schedule: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "24")]
-    pub schedule_options: ::core::option::Option<ScheduleOptions>,
-    #[prost(int32, tag = "12")]
-    pub data_refresh_window_days: i32,
-    #[prost(bool, tag = "13")]
-    pub disabled: bool,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub next_run_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "TransferState", tag = "10")]
-    pub state: i32,
-    #[prost(int64, tag = "11")]
-    pub user_id: i64,
-    #[prost(string, tag = "14")]
-    pub dataset_region: ::prost::alloc::string::String,
-    #[prost(string, tag = "15")]
-    pub notification_pubsub_topic: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "18")]
-    pub email_preferences: ::core::option::Option<EmailPreferences>,
-    #[prost(message, optional, tag = "27")]
-    pub owner_info: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "28")]
-    pub encryption_configuration: ::core::option::Option<EncryptionConfiguration>,
-    #[prost(oneof = "transfer_config::Destination", tags = "2")]
-    pub destination: ::core::option::Option<transfer_config::Destination>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub data_source_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "9")]
+pub params: ::core::option::Option<::prost_types::Struct>,
+#[prost(string, tag = "7")]
+pub schedule: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "24")]
+pub schedule_options: ::core::option::Option<ScheduleOptions>,
+#[prost(int32, tag = "12")]
+pub data_refresh_window_days: i32,
+#[prost(bool, tag = "13")]
+pub disabled: bool,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub next_run_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "TransferState", tag = "10")]
+pub state: i32,
+#[prost(int64, tag = "11")]
+pub user_id: i64,
+#[prost(string, tag = "14")]
+pub dataset_region: ::prost::alloc::string::String,
+#[prost(string, tag = "15")]
+pub notification_pubsub_topic: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "18")]
+pub email_preferences: ::core::option::Option<EmailPreferences>,
+#[prost(message, optional, tag = "27")]
+pub owner_info: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "28")]
+pub encryption_configuration: ::core::option::Option<EncryptionConfiguration>,
+#[prost(oneof = "transfer_config::Destination", tags = "2")]
+pub destination: ::core::option::Option<transfer_config::Destination>,
 }
 /// Nested message and enum types in `TransferConfig`.
 pub mod transfer_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(string, tag = "2")]
-        DestinationDatasetId(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(string, tag = "2")]
+DestinationDatasetId(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncryptionConfiguration {
-    #[prost(message, optional, tag = "1")]
-    pub kms_key_name: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "1")]
+pub kms_key_name: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferRun {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "10")]
-    pub run_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "21")]
-    pub error_status: ::core::option::Option<super::super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "4")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub params: ::core::option::Option<::prost_types::Struct>,
-    #[prost(string, tag = "7")]
-    pub data_source_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "TransferState", tag = "8")]
-    pub state: i32,
-    #[prost(int64, tag = "11")]
-    pub user_id: i64,
-    #[prost(string, tag = "12")]
-    pub schedule: ::prost::alloc::string::String,
-    #[prost(string, tag = "23")]
-    pub notification_pubsub_topic: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "25")]
-    pub email_preferences: ::core::option::Option<EmailPreferences>,
-    #[prost(oneof = "transfer_run::Destination", tags = "2")]
-    pub destination: ::core::option::Option<transfer_run::Destination>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub run_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "21")]
+pub error_status: ::core::option::Option<super::super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "4")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub params: ::core::option::Option<::prost_types::Struct>,
+#[prost(string, tag = "7")]
+pub data_source_id: ::prost::alloc::string::String,
+#[prost(enumeration = "TransferState", tag = "8")]
+pub state: i32,
+#[prost(int64, tag = "11")]
+pub user_id: i64,
+#[prost(string, tag = "12")]
+pub schedule: ::prost::alloc::string::String,
+#[prost(string, tag = "23")]
+pub notification_pubsub_topic: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "25")]
+pub email_preferences: ::core::option::Option<EmailPreferences>,
+#[prost(oneof = "transfer_run::Destination", tags = "2")]
+pub destination: ::core::option::Option<transfer_run::Destination>,
 }
 /// Nested message and enum types in `TransferRun`.
 pub mod transfer_run {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(string, tag = "2")]
-        DestinationDatasetId(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(string, tag = "2")]
+DestinationDatasetId(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TransferMessage {
-    #[prost(message, optional, tag = "1")]
-    pub message_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "transfer_message::MessageSeverity", tag = "2")]
-    pub severity: i32,
-    #[prost(string, tag = "3")]
-    pub message_text: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub message_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "transfer_message::MessageSeverity", tag = "2")]
+pub severity: i32,
+#[prost(string, tag = "3")]
+pub message_text: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `TransferMessage`.
 pub mod transfer_message {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MessageSeverity {
-        Unspecified = 0,
-        Info = 1,
-        Warning = 2,
-        Error = 3,
-    }
-    impl MessageSeverity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MessageSeverity::Unspecified => "MESSAGE_SEVERITY_UNSPECIFIED",
-                MessageSeverity::Info => "INFO",
-                MessageSeverity::Warning => "WARNING",
-                MessageSeverity::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MESSAGE_SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "INFO" => Some(Self::Info),
-                "WARNING" => Some(Self::Warning),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MessageSeverity {
+Unspecified = 0,
+Info = 1,
+Warning = 2,
+Error = 3,
+}
+impl MessageSeverity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MessageSeverity::Unspecified => "MESSAGE_SEVERITY_UNSPECIFIED",
+MessageSeverity::Info => "INFO",
+MessageSeverity::Warning => "WARNING",
+MessageSeverity::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MESSAGE_SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"INFO" => Some(Self::Info),
+"WARNING" => Some(Self::Warning),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TransferType {
-    Unspecified = 0,
-    Batch = 1,
-    Streaming = 2,
+Unspecified = 0,
+Batch = 1,
+Streaming = 2,
 }
 impl TransferType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TransferType::Unspecified => "TRANSFER_TYPE_UNSPECIFIED",
-            TransferType::Batch => "BATCH",
-            TransferType::Streaming => "STREAMING",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TRANSFER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "BATCH" => Some(Self::Batch),
-            "STREAMING" => Some(Self::Streaming),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TransferType::Unspecified => "TRANSFER_TYPE_UNSPECIFIED",
+TransferType::Batch => "BATCH",
+TransferType::Streaming => "STREAMING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TRANSFER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"BATCH" => Some(Self::Batch),
+"STREAMING" => Some(Self::Streaming),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TransferState {
-    Unspecified = 0,
-    Pending = 2,
-    Running = 3,
-    Succeeded = 4,
-    Failed = 5,
-    Cancelled = 6,
+Unspecified = 0,
+Pending = 2,
+Running = 3,
+Succeeded = 4,
+Failed = 5,
+Cancelled = 6,
 }
 impl TransferState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TransferState::Unspecified => "TRANSFER_STATE_UNSPECIFIED",
-            TransferState::Pending => "PENDING",
-            TransferState::Running => "RUNNING",
-            TransferState::Succeeded => "SUCCEEDED",
-            TransferState::Failed => "FAILED",
-            TransferState::Cancelled => "CANCELLED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TRANSFER_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "PENDING" => Some(Self::Pending),
-            "RUNNING" => Some(Self::Running),
-            "SUCCEEDED" => Some(Self::Succeeded),
-            "FAILED" => Some(Self::Failed),
-            "CANCELLED" => Some(Self::Cancelled),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TransferState::Unspecified => "TRANSFER_STATE_UNSPECIFIED",
+TransferState::Pending => "PENDING",
+TransferState::Running => "RUNNING",
+TransferState::Succeeded => "SUCCEEDED",
+TransferState::Failed => "FAILED",
+TransferState::Cancelled => "CANCELLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TRANSFER_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"RUNNING" => Some(Self::Running),
+"SUCCEEDED" => Some(Self::Succeeded),
+"FAILED" => Some(Self::Failed),
+"CANCELLED" => Some(Self::Cancelled),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataSourceParameter {
-    #[prost(string, tag = "1")]
-    pub param_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(enumeration = "data_source_parameter::Type", tag = "4")]
-    pub r#type: i32,
-    #[prost(bool, tag = "5")]
-    pub required: bool,
-    #[prost(bool, tag = "6")]
-    pub repeated: bool,
-    #[prost(string, tag = "7")]
-    pub validation_regex: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "8")]
-    pub allowed_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub min_value: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "10")]
-    pub max_value: ::core::option::Option<f64>,
-    #[prost(message, repeated, tag = "11")]
-    pub fields: ::prost::alloc::vec::Vec<DataSourceParameter>,
-    #[prost(string, tag = "12")]
-    pub validation_description: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub validation_help_url: ::prost::alloc::string::String,
-    #[prost(bool, tag = "14")]
-    pub immutable: bool,
-    #[prost(bool, tag = "15")]
-    pub recurse: bool,
-    #[prost(bool, tag = "20")]
-    pub deprecated: bool,
+#[prost(string, tag = "1")]
+pub param_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(enumeration = "data_source_parameter::Type", tag = "4")]
+pub r#type: i32,
+#[prost(bool, tag = "5")]
+pub required: bool,
+#[prost(bool, tag = "6")]
+pub repeated: bool,
+#[prost(string, tag = "7")]
+pub validation_regex: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "8")]
+pub allowed_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "9")]
+pub min_value: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "10")]
+pub max_value: ::core::option::Option<f64>,
+#[prost(message, repeated, tag = "11")]
+pub fields: ::prost::alloc::vec::Vec<DataSourceParameter>,
+#[prost(string, tag = "12")]
+pub validation_description: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub validation_help_url: ::prost::alloc::string::String,
+#[prost(bool, tag = "14")]
+pub immutable: bool,
+#[prost(bool, tag = "15")]
+pub recurse: bool,
+#[prost(bool, tag = "20")]
+pub deprecated: bool,
 }
 /// Nested message and enum types in `DataSourceParameter`.
 pub mod data_source_parameter {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        String = 1,
-        Integer = 2,
-        Double = 3,
-        Boolean = 4,
-        Record = 5,
-        PlusPage = 6,
-        List = 7,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::String => "STRING",
-                Type::Integer => "INTEGER",
-                Type::Double => "DOUBLE",
-                Type::Boolean => "BOOLEAN",
-                Type::Record => "RECORD",
-                Type::PlusPage => "PLUS_PAGE",
-                Type::List => "LIST",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STRING" => Some(Self::String),
-                "INTEGER" => Some(Self::Integer),
-                "DOUBLE" => Some(Self::Double),
-                "BOOLEAN" => Some(Self::Boolean),
-                "RECORD" => Some(Self::Record),
-                "PLUS_PAGE" => Some(Self::PlusPage),
-                "LIST" => Some(Self::List),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+String = 1,
+Integer = 2,
+Double = 3,
+Boolean = 4,
+Record = 5,
+PlusPage = 6,
+List = 7,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::String => "STRING",
+Type::Integer => "INTEGER",
+Type::Double => "DOUBLE",
+Type::Boolean => "BOOLEAN",
+Type::Record => "RECORD",
+Type::PlusPage => "PLUS_PAGE",
+Type::List => "LIST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"STRING" => Some(Self::String),
+"INTEGER" => Some(Self::Integer),
+"DOUBLE" => Some(Self::Double),
+"BOOLEAN" => Some(Self::Boolean),
+"RECORD" => Some(Self::Record),
+"PLUS_PAGE" => Some(Self::PlusPage),
+"LIST" => Some(Self::List),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataSource {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub data_source_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub client_id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "6")]
-    pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[deprecated]
-    #[prost(enumeration = "TransferType", tag = "7")]
-    pub transfer_type: i32,
-    #[deprecated]
-    #[prost(bool, tag = "8")]
-    pub supports_multiple_transfers: bool,
-    #[prost(int32, tag = "9")]
-    pub update_deadline_seconds: i32,
-    #[prost(string, tag = "10")]
-    pub default_schedule: ::prost::alloc::string::String,
-    #[prost(bool, tag = "11")]
-    pub supports_custom_schedule: bool,
-    #[prost(message, repeated, tag = "12")]
-    pub parameters: ::prost::alloc::vec::Vec<DataSourceParameter>,
-    #[prost(string, tag = "13")]
-    pub help_url: ::prost::alloc::string::String,
-    #[prost(enumeration = "data_source::AuthorizationType", tag = "14")]
-    pub authorization_type: i32,
-    #[prost(enumeration = "data_source::DataRefreshType", tag = "15")]
-    pub data_refresh_type: i32,
-    #[prost(int32, tag = "16")]
-    pub default_data_refresh_window_days: i32,
-    #[prost(bool, tag = "17")]
-    pub manual_runs_disabled: bool,
-    #[prost(message, optional, tag = "18")]
-    pub minimum_schedule_interval: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub data_source_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub client_id: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "6")]
+pub scopes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[deprecated]
+#[prost(enumeration = "TransferType", tag = "7")]
+pub transfer_type: i32,
+#[deprecated]
+#[prost(bool, tag = "8")]
+pub supports_multiple_transfers: bool,
+#[prost(int32, tag = "9")]
+pub update_deadline_seconds: i32,
+#[prost(string, tag = "10")]
+pub default_schedule: ::prost::alloc::string::String,
+#[prost(bool, tag = "11")]
+pub supports_custom_schedule: bool,
+#[prost(message, repeated, tag = "12")]
+pub parameters: ::prost::alloc::vec::Vec<DataSourceParameter>,
+#[prost(string, tag = "13")]
+pub help_url: ::prost::alloc::string::String,
+#[prost(enumeration = "data_source::AuthorizationType", tag = "14")]
+pub authorization_type: i32,
+#[prost(enumeration = "data_source::DataRefreshType", tag = "15")]
+pub data_refresh_type: i32,
+#[prost(int32, tag = "16")]
+pub default_data_refresh_window_days: i32,
+#[prost(bool, tag = "17")]
+pub manual_runs_disabled: bool,
+#[prost(message, optional, tag = "18")]
+pub minimum_schedule_interval: ::core::option::Option<::prost_types::Duration>,
 }
 /// Nested message and enum types in `DataSource`.
 pub mod data_source {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AuthorizationType {
-        Unspecified = 0,
-        AuthorizationCode = 1,
-        GooglePlusAuthorizationCode = 2,
-        FirstPartyOauth = 3,
-    }
-    impl AuthorizationType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AuthorizationType::Unspecified => "AUTHORIZATION_TYPE_UNSPECIFIED",
-                AuthorizationType::AuthorizationCode => "AUTHORIZATION_CODE",
-                AuthorizationType::GooglePlusAuthorizationCode => {
-                    "GOOGLE_PLUS_AUTHORIZATION_CODE"
-                }
-                AuthorizationType::FirstPartyOauth => "FIRST_PARTY_OAUTH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "AUTHORIZATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "AUTHORIZATION_CODE" => Some(Self::AuthorizationCode),
-                "GOOGLE_PLUS_AUTHORIZATION_CODE" => {
-                    Some(Self::GooglePlusAuthorizationCode)
-                }
-                "FIRST_PARTY_OAUTH" => Some(Self::FirstPartyOauth),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DataRefreshType {
-        Unspecified = 0,
-        SlidingWindow = 1,
-        CustomSlidingWindow = 2,
-    }
-    impl DataRefreshType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DataRefreshType::Unspecified => "DATA_REFRESH_TYPE_UNSPECIFIED",
-                DataRefreshType::SlidingWindow => "SLIDING_WINDOW",
-                DataRefreshType::CustomSlidingWindow => "CUSTOM_SLIDING_WINDOW",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DATA_REFRESH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SLIDING_WINDOW" => Some(Self::SlidingWindow),
-                "CUSTOM_SLIDING_WINDOW" => Some(Self::CustomSlidingWindow),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AuthorizationType {
+Unspecified = 0,
+AuthorizationCode = 1,
+GooglePlusAuthorizationCode = 2,
+FirstPartyOauth = 3,
+}
+impl AuthorizationType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AuthorizationType::Unspecified => "AUTHORIZATION_TYPE_UNSPECIFIED",
+AuthorizationType::AuthorizationCode => "AUTHORIZATION_CODE",
+AuthorizationType::GooglePlusAuthorizationCode => "GOOGLE_PLUS_AUTHORIZATION_CODE",
+AuthorizationType::FirstPartyOauth => "FIRST_PARTY_OAUTH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"AUTHORIZATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"AUTHORIZATION_CODE" => Some(Self::AuthorizationCode),
+"GOOGLE_PLUS_AUTHORIZATION_CODE" => Some(Self::GooglePlusAuthorizationCode),
+"FIRST_PARTY_OAUTH" => Some(Self::FirstPartyOauth),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DataRefreshType {
+Unspecified = 0,
+SlidingWindow = 1,
+CustomSlidingWindow = 2,
+}
+impl DataRefreshType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DataRefreshType::Unspecified => "DATA_REFRESH_TYPE_UNSPECIFIED",
+DataRefreshType::SlidingWindow => "SLIDING_WINDOW",
+DataRefreshType::CustomSlidingWindow => "CUSTOM_SLIDING_WINDOW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DATA_REFRESH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SLIDING_WINDOW" => Some(Self::SlidingWindow),
+"CUSTOM_SLIDING_WINDOW" => Some(Self::CustomSlidingWindow),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDataSourceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDataSourcesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub page_size: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDataSourcesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub data_sources: ::prost::alloc::vec::Vec<DataSource>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub data_sources: ::prost::alloc::vec::Vec<DataSource>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTransferConfigRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub transfer_config: ::core::option::Option<TransferConfig>,
-    #[prost(string, tag = "3")]
-    pub authorization_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub version_info: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub service_account_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub transfer_config: ::core::option::Option<TransferConfig>,
+#[prost(string, tag = "3")]
+pub authorization_code: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub version_info: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub service_account_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTransferConfigRequest {
-    #[prost(message, optional, tag = "1")]
-    pub transfer_config: ::core::option::Option<TransferConfig>,
-    #[prost(string, tag = "3")]
-    pub authorization_code: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(string, tag = "5")]
-    pub version_info: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub service_account_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub transfer_config: ::core::option::Option<TransferConfig>,
+#[prost(string, tag = "3")]
+pub authorization_code: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "5")]
+pub version_info: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub service_account_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTransferConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTransferConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTransferRunRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTransferRunRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferConfigsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub data_source_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub page_size: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub data_source_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub page_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferConfigsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub transfer_configs: ::prost::alloc::vec::Vec<TransferConfig>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub transfer_configs: ::prost::alloc::vec::Vec<TransferConfig>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferRunsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(enumeration = "TransferState", repeated, tag = "2")]
-    pub states: ::prost::alloc::vec::Vec<i32>,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub page_size: i32,
-    #[prost(enumeration = "list_transfer_runs_request::RunAttempt", tag = "5")]
-    pub run_attempt: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(enumeration = "TransferState", repeated, tag = "2")]
+pub states: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub page_size: i32,
+#[prost(enumeration = "list_transfer_runs_request::RunAttempt", tag = "5")]
+pub run_attempt: i32,
 }
 /// Nested message and enum types in `ListTransferRunsRequest`.
 pub mod list_transfer_runs_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RunAttempt {
-        Unspecified = 0,
-        Latest = 1,
-    }
-    impl RunAttempt {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RunAttempt::Unspecified => "RUN_ATTEMPT_UNSPECIFIED",
-                RunAttempt::Latest => "LATEST",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RUN_ATTEMPT_UNSPECIFIED" => Some(Self::Unspecified),
-                "LATEST" => Some(Self::Latest),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RunAttempt {
+Unspecified = 0,
+Latest = 1,
+}
+impl RunAttempt {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RunAttempt::Unspecified => "RUN_ATTEMPT_UNSPECIFIED",
+RunAttempt::Latest => "LATEST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RUN_ATTEMPT_UNSPECIFIED" => Some(Self::Unspecified),
+"LATEST" => Some(Self::Latest),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferRunsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub transfer_runs: ::prost::alloc::vec::Vec<TransferRun>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub transfer_runs: ::prost::alloc::vec::Vec<TransferRun>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferLogsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "5")]
-    pub page_size: i32,
-    #[prost(enumeration = "transfer_message::MessageSeverity", repeated, tag = "6")]
-    pub message_types: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "5")]
+pub page_size: i32,
+#[prost(enumeration = "transfer_message::MessageSeverity", repeated, tag = "6")]
+pub message_types: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTransferLogsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub transfer_messages: ::prost::alloc::vec::Vec<TransferMessage>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub transfer_messages: ::prost::alloc::vec::Vec<TransferMessage>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckValidCredsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CheckValidCredsResponse {
-    #[prost(bool, tag = "1")]
-    pub has_valid_creds: bool,
+#[prost(bool, tag = "1")]
+pub has_valid_creds: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScheduleTransferRunsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ScheduleTransferRunsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub runs: ::prost::alloc::vec::Vec<TransferRun>,
+#[prost(message, repeated, tag = "1")]
+pub runs: ::prost::alloc::vec::Vec<TransferRun>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartManualTransferRunsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(oneof = "start_manual_transfer_runs_request::Time", tags = "3, 4")]
-    pub time: ::core::option::Option<start_manual_transfer_runs_request::Time>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(oneof = "start_manual_transfer_runs_request::Time", tags = "3, 4")]
+pub time: ::core::option::Option<start_manual_transfer_runs_request::Time>,
 }
 /// Nested message and enum types in `StartManualTransferRunsRequest`.
 pub mod start_manual_transfer_runs_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct TimeRange {
-        #[prost(message, optional, tag = "1")]
-        pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "2")]
-        pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Time {
-        #[prost(message, tag = "3")]
-        RequestedTimeRange(TimeRange),
-        #[prost(message, tag = "4")]
-        RequestedRunTime(::prost_types::Timestamp),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TimeRange {
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Time {
+#[prost(message, tag = "3")]
+RequestedTimeRange(TimeRange),
+#[prost(message, tag = "4")]
+RequestedRunTime(::prost_types::Timestamp),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StartManualTransferRunsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub runs: ::prost::alloc::vec::Vec<TransferRun>,
+#[prost(message, repeated, tag = "1")]
+pub runs: ::prost::alloc::vec::Vec<TransferRun>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnrollDataSourcesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub data_source_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub data_source_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UnenrollDataSourcesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub data_source_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub data_source_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Generated client implementations.
 pub mod data_transfer_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// This API allows users to manage their data transfers into BigQuery.
-    #[derive(Debug, Clone)]
-    pub struct DataTransferServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> DataTransferServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> DataTransferServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            DataTransferServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Retrieves a supported data source and returns its settings.
-        pub async fn get_data_source(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDataSourceRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetDataSource",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "GetDataSource",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists supported data sources and returns their settings.
-        pub async fn list_data_sources(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDataSourcesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDataSourcesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListDataSources",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "ListDataSources",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new data transfer configuration.
-        pub async fn create_transfer_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateTransferConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::TransferConfig>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/CreateTransferConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "CreateTransferConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a data transfer configuration.
-        /// All fields must be set, even if they are not updated.
-        pub async fn update_transfer_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateTransferConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::TransferConfig>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/UpdateTransferConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "UpdateTransferConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a data transfer configuration, including any associated transfer
-        /// runs and logs.
-        pub async fn delete_transfer_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteTransferConfigRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/DeleteTransferConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "DeleteTransferConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns information about a data transfer config.
-        pub async fn get_transfer_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTransferConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::TransferConfig>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetTransferConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "GetTransferConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns information about all transfer configs owned by a project in the
-        /// specified location.
-        pub async fn list_transfer_configs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTransferConfigsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTransferConfigsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferConfigs",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "ListTransferConfigs",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates transfer runs for a time range [start_time, end_time].
-        /// For each date - or whatever granularity the data source supports - in the
-        /// range, one transfer run is created.
-        /// Note that runs are created per UTC time in the time range.
-        /// DEPRECATED: use StartManualTransferRuns instead.
-        pub async fn schedule_transfer_runs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ScheduleTransferRunsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ScheduleTransferRunsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/ScheduleTransferRuns",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "ScheduleTransferRuns",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Start manual transfer runs to be executed now with schedule_time equal to
-        /// current time. The transfer runs can be created for a time range where the
-        /// run_time is between start_time (inclusive) and end_time (exclusive), or for
-        /// a specific run_time.
-        pub async fn start_manual_transfer_runs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::StartManualTransferRunsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::StartManualTransferRunsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/StartManualTransferRuns",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "StartManualTransferRuns",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns information about the particular transfer run.
-        pub async fn get_transfer_run(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTransferRunRequest>,
-        ) -> std::result::Result<tonic::Response<super::TransferRun>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetTransferRun",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "GetTransferRun",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the specified transfer run.
-        pub async fn delete_transfer_run(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteTransferRunRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/DeleteTransferRun",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "DeleteTransferRun",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns information about running and completed transfer runs.
-        pub async fn list_transfer_runs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTransferRunsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTransferRunsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferRuns",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "ListTransferRuns",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns log messages for the transfer run.
-        pub async fn list_transfer_logs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTransferLogsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTransferLogsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferLogs",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "ListTransferLogs",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns true if valid credentials exist for the given data source and
-        /// requesting user.
-        pub async fn check_valid_creds(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CheckValidCredsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CheckValidCredsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/CheckValidCreds",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "CheckValidCreds",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enroll data sources in a user project. This allows users to create transfer
-        /// configurations for these data sources. They will also appear in the
-        /// ListDataSources RPC and as such, will appear in the
-        /// [BigQuery UI](https://console.cloud.google.com/bigquery), and the documents
-        /// can be found in the public guide for
-        /// [BigQuery Web UI](https://cloud.google.com/bigquery/bigquery-web-ui) and
-        /// [Data Transfer
-        /// Service](https://cloud.google.com/bigquery/docs/working-with-transfers).
-        pub async fn enroll_data_sources(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EnrollDataSourcesRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/EnrollDataSources",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "EnrollDataSources",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Unenroll data sources in a user project. This allows users to remove
-        /// transfer configurations for these data sources. They will no longer appear
-        /// in the ListDataSources RPC and will also no longer appear in the [BigQuery
-        /// UI](https://console.cloud.google.com/bigquery). Data transfers
-        /// configurations of unenrolled data sources will not be scheduled.
-        pub async fn unenroll_data_sources(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UnenrollDataSourcesRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.datatransfer.v1.DataTransferService/UnenrollDataSources",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.datatransfer.v1.DataTransferService",
-                        "UnenrollDataSources",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// This API allows users to manage their data transfers into BigQuery.
+#[derive(Debug, Clone)]
+pub struct DataTransferServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> DataTransferServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> DataTransferServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+DataTransferServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Retrieves a supported data source and returns its settings.
+pub async fn get_data_source(&mut self, request: impl tonic::IntoRequest<super::GetDataSourceRequest>) -> std::result::Result<tonic::Response<super::DataSource>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetDataSource");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "GetDataSource"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists supported data sources and returns their settings.
+pub async fn list_data_sources(&mut self, request: impl tonic::IntoRequest<super::ListDataSourcesRequest>) -> std::result::Result<tonic::Response<super::ListDataSourcesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListDataSources");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "ListDataSources"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new data transfer configuration.
+pub async fn create_transfer_config(&mut self, request: impl tonic::IntoRequest<super::CreateTransferConfigRequest>) -> std::result::Result<tonic::Response<super::TransferConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/CreateTransferConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "CreateTransferConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a data transfer configuration.
+/// All fields must be set, even if they are not updated.
+pub async fn update_transfer_config(&mut self, request: impl tonic::IntoRequest<super::UpdateTransferConfigRequest>) -> std::result::Result<tonic::Response<super::TransferConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/UpdateTransferConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "UpdateTransferConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a data transfer configuration, including any associated transfer
+/// runs and logs.
+pub async fn delete_transfer_config(&mut self, request: impl tonic::IntoRequest<super::DeleteTransferConfigRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/DeleteTransferConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "DeleteTransferConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns information about a data transfer config.
+pub async fn get_transfer_config(&mut self, request: impl tonic::IntoRequest<super::GetTransferConfigRequest>) -> std::result::Result<tonic::Response<super::TransferConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetTransferConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "GetTransferConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns information about all transfer configs owned by a project in the
+/// specified location.
+pub async fn list_transfer_configs(&mut self, request: impl tonic::IntoRequest<super::ListTransferConfigsRequest>) -> std::result::Result<tonic::Response<super::ListTransferConfigsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferConfigs");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "ListTransferConfigs"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates transfer runs for a time range [start_time, end_time].
+/// For each date - or whatever granularity the data source supports - in the
+/// range, one transfer run is created.
+/// Note that runs are created per UTC time in the time range.
+/// DEPRECATED: use StartManualTransferRuns instead.
+pub async fn schedule_transfer_runs(&mut self, request: impl tonic::IntoRequest<super::ScheduleTransferRunsRequest>) -> std::result::Result<tonic::Response<super::ScheduleTransferRunsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/ScheduleTransferRuns");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "ScheduleTransferRuns"));
+self.inner.unary(req, path, codec).await
+}
+/// Start manual transfer runs to be executed now with schedule_time equal to
+/// current time. The transfer runs can be created for a time range where the
+/// run_time is between start_time (inclusive) and end_time (exclusive), or for
+/// a specific run_time.
+pub async fn start_manual_transfer_runs(&mut self, request: impl tonic::IntoRequest<super::StartManualTransferRunsRequest>) -> std::result::Result<tonic::Response<super::StartManualTransferRunsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/StartManualTransferRuns");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "StartManualTransferRuns"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns information about the particular transfer run.
+pub async fn get_transfer_run(&mut self, request: impl tonic::IntoRequest<super::GetTransferRunRequest>) -> std::result::Result<tonic::Response<super::TransferRun>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetTransferRun");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "GetTransferRun"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the specified transfer run.
+pub async fn delete_transfer_run(&mut self, request: impl tonic::IntoRequest<super::DeleteTransferRunRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/DeleteTransferRun");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "DeleteTransferRun"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns information about running and completed transfer runs.
+pub async fn list_transfer_runs(&mut self, request: impl tonic::IntoRequest<super::ListTransferRunsRequest>) -> std::result::Result<tonic::Response<super::ListTransferRunsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferRuns");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "ListTransferRuns"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns log messages for the transfer run.
+pub async fn list_transfer_logs(&mut self, request: impl tonic::IntoRequest<super::ListTransferLogsRequest>) -> std::result::Result<tonic::Response<super::ListTransferLogsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferLogs");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "ListTransferLogs"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns true if valid credentials exist for the given data source and
+/// requesting user.
+pub async fn check_valid_creds(&mut self, request: impl tonic::IntoRequest<super::CheckValidCredsRequest>) -> std::result::Result<tonic::Response<super::CheckValidCredsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/CheckValidCreds");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "CheckValidCreds"));
+self.inner.unary(req, path, codec).await
+}
+/// Enroll data sources in a user project. This allows users to create transfer
+/// configurations for these data sources. They will also appear in the
+/// ListDataSources RPC and as such, will appear in the
+/// [BigQuery UI](https://console.cloud.google.com/bigquery), and the documents
+/// can be found in the public guide for
+/// [BigQuery Web UI](https://cloud.google.com/bigquery/bigquery-web-ui) and
+/// [Data Transfer
+/// Service](https://cloud.google.com/bigquery/docs/working-with-transfers).
+pub async fn enroll_data_sources(&mut self, request: impl tonic::IntoRequest<super::EnrollDataSourcesRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/EnrollDataSources");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "EnrollDataSources"));
+self.inner.unary(req, path, codec).await
+}
+/// Unenroll data sources in a user project. This allows users to remove
+/// transfer configurations for these data sources. They will no longer appear
+/// in the ListDataSources RPC and will also no longer appear in the [BigQuery
+/// UI](https://console.cloud.google.com/bigquery). Data transfers
+/// configurations of unenrolled data sources will not be scheduled.
+pub async fn unenroll_data_sources(&mut self, request: impl tonic::IntoRequest<super::UnenrollDataSourcesRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.datatransfer.v1.DataTransferService/UnenrollDataSources");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.datatransfer.v1.DataTransferService", "UnenrollDataSources"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

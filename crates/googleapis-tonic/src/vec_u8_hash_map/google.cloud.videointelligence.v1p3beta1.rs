@@ -2,557 +2,542 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateVideoRequest {
-    #[prost(string, tag = "1")]
-    pub input_uri: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "6")]
-    pub input_content: ::prost::alloc::vec::Vec<u8>,
-    #[prost(enumeration = "Feature", repeated, packed = "false", tag = "2")]
-    pub features: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, optional, tag = "3")]
-    pub video_context: ::core::option::Option<VideoContext>,
-    #[prost(string, tag = "4")]
-    pub output_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub location_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub input_uri: ::prost::alloc::string::String,
+#[prost(bytes = "vec", tag = "6")]
+pub input_content: ::prost::alloc::vec::Vec<u8>,
+#[prost(enumeration = "Feature", repeated, packed = "false", tag = "2")]
+pub features: ::prost::alloc::vec::Vec<i32>,
+#[prost(message, optional, tag = "3")]
+pub video_context: ::core::option::Option<VideoContext>,
+#[prost(string, tag = "4")]
+pub output_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub location_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoContext {
-    #[prost(message, repeated, tag = "1")]
-    pub segments: ::prost::alloc::vec::Vec<VideoSegment>,
-    #[prost(message, optional, tag = "2")]
-    pub label_detection_config: ::core::option::Option<LabelDetectionConfig>,
-    #[prost(message, optional, tag = "3")]
-    pub shot_change_detection_config: ::core::option::Option<ShotChangeDetectionConfig>,
-    #[prost(message, optional, tag = "4")]
-    pub explicit_content_detection_config: ::core::option::Option<
-        ExplicitContentDetectionConfig,
-    >,
-    #[prost(message, optional, tag = "5")]
-    pub face_detection_config: ::core::option::Option<FaceDetectionConfig>,
-    #[prost(message, optional, tag = "6")]
-    pub speech_transcription_config: ::core::option::Option<SpeechTranscriptionConfig>,
-    #[prost(message, optional, tag = "8")]
-    pub text_detection_config: ::core::option::Option<TextDetectionConfig>,
-    #[prost(message, optional, tag = "11")]
-    pub person_detection_config: ::core::option::Option<PersonDetectionConfig>,
-    #[prost(message, optional, tag = "13")]
-    pub object_tracking_config: ::core::option::Option<ObjectTrackingConfig>,
+#[prost(message, repeated, tag = "1")]
+pub segments: ::prost::alloc::vec::Vec<VideoSegment>,
+#[prost(message, optional, tag = "2")]
+pub label_detection_config: ::core::option::Option<LabelDetectionConfig>,
+#[prost(message, optional, tag = "3")]
+pub shot_change_detection_config: ::core::option::Option<ShotChangeDetectionConfig>,
+#[prost(message, optional, tag = "4")]
+pub explicit_content_detection_config: ::core::option::Option<ExplicitContentDetectionConfig>,
+#[prost(message, optional, tag = "5")]
+pub face_detection_config: ::core::option::Option<FaceDetectionConfig>,
+#[prost(message, optional, tag = "6")]
+pub speech_transcription_config: ::core::option::Option<SpeechTranscriptionConfig>,
+#[prost(message, optional, tag = "8")]
+pub text_detection_config: ::core::option::Option<TextDetectionConfig>,
+#[prost(message, optional, tag = "11")]
+pub person_detection_config: ::core::option::Option<PersonDetectionConfig>,
+#[prost(message, optional, tag = "13")]
+pub object_tracking_config: ::core::option::Option<ObjectTrackingConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LabelDetectionConfig {
-    #[prost(enumeration = "LabelDetectionMode", tag = "1")]
-    pub label_detection_mode: i32,
-    #[prost(bool, tag = "2")]
-    pub stationary_camera: bool,
-    #[prost(string, tag = "3")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(float, tag = "4")]
-    pub frame_confidence_threshold: f32,
-    #[prost(float, tag = "5")]
-    pub video_confidence_threshold: f32,
+#[prost(enumeration = "LabelDetectionMode", tag = "1")]
+pub label_detection_mode: i32,
+#[prost(bool, tag = "2")]
+pub stationary_camera: bool,
+#[prost(string, tag = "3")]
+pub model: ::prost::alloc::string::String,
+#[prost(float, tag = "4")]
+pub frame_confidence_threshold: f32,
+#[prost(float, tag = "5")]
+pub video_confidence_threshold: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShotChangeDetectionConfig {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ObjectTrackingConfig {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExplicitContentDetectionConfig {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FaceDetectionConfig {
-    #[prost(string, tag = "1")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub include_bounding_boxes: bool,
-    #[prost(bool, tag = "5")]
-    pub include_attributes: bool,
+#[prost(string, tag = "1")]
+pub model: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub include_bounding_boxes: bool,
+#[prost(bool, tag = "5")]
+pub include_attributes: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PersonDetectionConfig {
-    #[prost(bool, tag = "1")]
-    pub include_bounding_boxes: bool,
-    #[prost(bool, tag = "2")]
-    pub include_pose_landmarks: bool,
-    #[prost(bool, tag = "3")]
-    pub include_attributes: bool,
+#[prost(bool, tag = "1")]
+pub include_bounding_boxes: bool,
+#[prost(bool, tag = "2")]
+pub include_pose_landmarks: bool,
+#[prost(bool, tag = "3")]
+pub include_attributes: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextDetectionConfig {
-    #[prost(string, repeated, tag = "1")]
-    pub language_hints: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "2")]
-    pub model: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "1")]
+pub language_hints: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub model: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct VideoSegment {
-    #[prost(message, optional, tag = "1")]
-    pub start_time_offset: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub start_time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub end_time_offset: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LabelSegment {
-    #[prost(message, optional, tag = "1")]
-    pub segment: ::core::option::Option<VideoSegment>,
-    #[prost(float, tag = "2")]
-    pub confidence: f32,
+#[prost(message, optional, tag = "1")]
+pub segment: ::core::option::Option<VideoSegment>,
+#[prost(float, tag = "2")]
+pub confidence: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LabelFrame {
-    #[prost(message, optional, tag = "1")]
-    pub time_offset: ::core::option::Option<::prost_types::Duration>,
-    #[prost(float, tag = "2")]
-    pub confidence: f32,
+#[prost(message, optional, tag = "1")]
+pub time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(float, tag = "2")]
+pub confidence: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Entity {
-    #[prost(string, tag = "1")]
-    pub entity_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub entity_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LabelAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub entity: ::core::option::Option<Entity>,
-    #[prost(message, repeated, tag = "2")]
-    pub category_entities: ::prost::alloc::vec::Vec<Entity>,
-    #[prost(message, repeated, tag = "3")]
-    pub segments: ::prost::alloc::vec::Vec<LabelSegment>,
-    #[prost(message, repeated, tag = "4")]
-    pub frames: ::prost::alloc::vec::Vec<LabelFrame>,
+#[prost(message, optional, tag = "1")]
+pub entity: ::core::option::Option<Entity>,
+#[prost(message, repeated, tag = "2")]
+pub category_entities: ::prost::alloc::vec::Vec<Entity>,
+#[prost(message, repeated, tag = "3")]
+pub segments: ::prost::alloc::vec::Vec<LabelSegment>,
+#[prost(message, repeated, tag = "4")]
+pub frames: ::prost::alloc::vec::Vec<LabelFrame>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ExplicitContentFrame {
-    #[prost(message, optional, tag = "1")]
-    pub time_offset: ::core::option::Option<::prost_types::Duration>,
-    #[prost(enumeration = "Likelihood", tag = "2")]
-    pub pornography_likelihood: i32,
+#[prost(message, optional, tag = "1")]
+pub time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(enumeration = "Likelihood", tag = "2")]
+pub pornography_likelihood: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExplicitContentAnnotation {
-    #[prost(message, repeated, tag = "1")]
-    pub frames: ::prost::alloc::vec::Vec<ExplicitContentFrame>,
+#[prost(message, repeated, tag = "1")]
+pub frames: ::prost::alloc::vec::Vec<ExplicitContentFrame>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NormalizedBoundingBox {
-    #[prost(float, tag = "1")]
-    pub left: f32,
-    #[prost(float, tag = "2")]
-    pub top: f32,
-    #[prost(float, tag = "3")]
-    pub right: f32,
-    #[prost(float, tag = "4")]
-    pub bottom: f32,
+#[prost(float, tag = "1")]
+pub left: f32,
+#[prost(float, tag = "2")]
+pub top: f32,
+#[prost(float, tag = "3")]
+pub right: f32,
+#[prost(float, tag = "4")]
+pub bottom: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TimestampedObject {
-    #[prost(message, optional, tag = "1")]
-    pub normalized_bounding_box: ::core::option::Option<NormalizedBoundingBox>,
-    #[prost(message, optional, tag = "2")]
-    pub time_offset: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, repeated, tag = "3")]
-    pub attributes: ::prost::alloc::vec::Vec<DetectedAttribute>,
-    #[prost(message, repeated, tag = "4")]
-    pub landmarks: ::prost::alloc::vec::Vec<DetectedLandmark>,
+#[prost(message, optional, tag = "1")]
+pub normalized_bounding_box: ::core::option::Option<NormalizedBoundingBox>,
+#[prost(message, optional, tag = "2")]
+pub time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, repeated, tag = "3")]
+pub attributes: ::prost::alloc::vec::Vec<DetectedAttribute>,
+#[prost(message, repeated, tag = "4")]
+pub landmarks: ::prost::alloc::vec::Vec<DetectedLandmark>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Track {
-    #[prost(message, optional, tag = "1")]
-    pub segment: ::core::option::Option<VideoSegment>,
-    #[prost(message, repeated, tag = "2")]
-    pub timestamped_objects: ::prost::alloc::vec::Vec<TimestampedObject>,
-    #[prost(message, repeated, tag = "3")]
-    pub attributes: ::prost::alloc::vec::Vec<DetectedAttribute>,
-    #[prost(float, tag = "4")]
-    pub confidence: f32,
+#[prost(message, optional, tag = "1")]
+pub segment: ::core::option::Option<VideoSegment>,
+#[prost(message, repeated, tag = "2")]
+pub timestamped_objects: ::prost::alloc::vec::Vec<TimestampedObject>,
+#[prost(message, repeated, tag = "3")]
+pub attributes: ::prost::alloc::vec::Vec<DetectedAttribute>,
+#[prost(float, tag = "4")]
+pub confidence: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DetectedAttribute {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(float, tag = "2")]
-    pub confidence: f32,
-    #[prost(string, tag = "3")]
-    pub value: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(float, tag = "2")]
+pub confidence: f32,
+#[prost(string, tag = "3")]
+pub value: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Celebrity {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CelebrityTrack {
-    #[prost(message, repeated, tag = "1")]
-    pub celebrities: ::prost::alloc::vec::Vec<celebrity_track::RecognizedCelebrity>,
-    #[prost(message, optional, tag = "3")]
-    pub face_track: ::core::option::Option<Track>,
+#[prost(message, repeated, tag = "1")]
+pub celebrities: ::prost::alloc::vec::Vec<celebrity_track::RecognizedCelebrity>,
+#[prost(message, optional, tag = "3")]
+pub face_track: ::core::option::Option<Track>,
 }
 /// Nested message and enum types in `CelebrityTrack`.
 pub mod celebrity_track {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RecognizedCelebrity {
-        #[prost(message, optional, tag = "1")]
-        pub celebrity: ::core::option::Option<super::Celebrity>,
-        #[prost(float, tag = "2")]
-        pub confidence: f32,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RecognizedCelebrity {
+#[prost(message, optional, tag = "1")]
+pub celebrity: ::core::option::Option<super::Celebrity>,
+#[prost(float, tag = "2")]
+pub confidence: f32,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CelebrityRecognitionAnnotation {
-    #[prost(message, repeated, tag = "1")]
-    pub celebrity_tracks: ::prost::alloc::vec::Vec<CelebrityTrack>,
+#[prost(message, repeated, tag = "1")]
+pub celebrity_tracks: ::prost::alloc::vec::Vec<CelebrityTrack>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DetectedLandmark {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub point: ::core::option::Option<NormalizedVertex>,
-    #[prost(float, tag = "3")]
-    pub confidence: f32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub point: ::core::option::Option<NormalizedVertex>,
+#[prost(float, tag = "3")]
+pub confidence: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FaceDetectionAnnotation {
-    #[prost(message, repeated, tag = "3")]
-    pub tracks: ::prost::alloc::vec::Vec<Track>,
-    #[prost(bytes = "vec", tag = "4")]
-    pub thumbnail: ::prost::alloc::vec::Vec<u8>,
+#[prost(message, repeated, tag = "3")]
+pub tracks: ::prost::alloc::vec::Vec<Track>,
+#[prost(bytes = "vec", tag = "4")]
+pub thumbnail: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PersonDetectionAnnotation {
-    #[prost(message, repeated, tag = "1")]
-    pub tracks: ::prost::alloc::vec::Vec<Track>,
+#[prost(message, repeated, tag = "1")]
+pub tracks: ::prost::alloc::vec::Vec<Track>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoAnnotationResults {
-    #[prost(string, tag = "1")]
-    pub input_uri: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub segment: ::core::option::Option<VideoSegment>,
-    #[prost(message, repeated, tag = "2")]
-    pub segment_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
-    #[prost(message, repeated, tag = "23")]
-    pub segment_presence_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
-    #[prost(message, repeated, tag = "3")]
-    pub shot_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
-    #[prost(message, repeated, tag = "24")]
-    pub shot_presence_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
-    #[prost(message, repeated, tag = "4")]
-    pub frame_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
-    #[prost(message, repeated, tag = "13")]
-    pub face_detection_annotations: ::prost::alloc::vec::Vec<FaceDetectionAnnotation>,
-    #[prost(message, repeated, tag = "6")]
-    pub shot_annotations: ::prost::alloc::vec::Vec<VideoSegment>,
-    #[prost(message, optional, tag = "7")]
-    pub explicit_annotation: ::core::option::Option<ExplicitContentAnnotation>,
-    #[prost(message, repeated, tag = "11")]
-    pub speech_transcriptions: ::prost::alloc::vec::Vec<SpeechTranscription>,
-    #[prost(message, repeated, tag = "12")]
-    pub text_annotations: ::prost::alloc::vec::Vec<TextAnnotation>,
-    #[prost(message, repeated, tag = "14")]
-    pub object_annotations: ::prost::alloc::vec::Vec<ObjectTrackingAnnotation>,
-    #[prost(message, repeated, tag = "19")]
-    pub logo_recognition_annotations: ::prost::alloc::vec::Vec<
-        LogoRecognitionAnnotation,
-    >,
-    #[prost(message, repeated, tag = "20")]
-    pub person_detection_annotations: ::prost::alloc::vec::Vec<
-        PersonDetectionAnnotation,
-    >,
-    #[prost(message, optional, tag = "21")]
-    pub celebrity_recognition_annotations: ::core::option::Option<
-        CelebrityRecognitionAnnotation,
-    >,
-    #[prost(message, optional, tag = "9")]
-    pub error: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(string, tag = "1")]
+pub input_uri: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub segment: ::core::option::Option<VideoSegment>,
+#[prost(message, repeated, tag = "2")]
+pub segment_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
+#[prost(message, repeated, tag = "23")]
+pub segment_presence_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
+#[prost(message, repeated, tag = "3")]
+pub shot_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
+#[prost(message, repeated, tag = "24")]
+pub shot_presence_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
+#[prost(message, repeated, tag = "4")]
+pub frame_label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
+#[prost(message, repeated, tag = "13")]
+pub face_detection_annotations: ::prost::alloc::vec::Vec<FaceDetectionAnnotation>,
+#[prost(message, repeated, tag = "6")]
+pub shot_annotations: ::prost::alloc::vec::Vec<VideoSegment>,
+#[prost(message, optional, tag = "7")]
+pub explicit_annotation: ::core::option::Option<ExplicitContentAnnotation>,
+#[prost(message, repeated, tag = "11")]
+pub speech_transcriptions: ::prost::alloc::vec::Vec<SpeechTranscription>,
+#[prost(message, repeated, tag = "12")]
+pub text_annotations: ::prost::alloc::vec::Vec<TextAnnotation>,
+#[prost(message, repeated, tag = "14")]
+pub object_annotations: ::prost::alloc::vec::Vec<ObjectTrackingAnnotation>,
+#[prost(message, repeated, tag = "19")]
+pub logo_recognition_annotations: ::prost::alloc::vec::Vec<LogoRecognitionAnnotation>,
+#[prost(message, repeated, tag = "20")]
+pub person_detection_annotations: ::prost::alloc::vec::Vec<PersonDetectionAnnotation>,
+#[prost(message, optional, tag = "21")]
+pub celebrity_recognition_annotations: ::core::option::Option<CelebrityRecognitionAnnotation>,
+#[prost(message, optional, tag = "9")]
+pub error: ::core::option::Option<super::super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateVideoResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub annotation_results: ::prost::alloc::vec::Vec<VideoAnnotationResults>,
+#[prost(message, repeated, tag = "1")]
+pub annotation_results: ::prost::alloc::vec::Vec<VideoAnnotationResults>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VideoAnnotationProgress {
-    #[prost(string, tag = "1")]
-    pub input_uri: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub progress_percent: i32,
-    #[prost(message, optional, tag = "3")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "Feature", tag = "5")]
-    pub feature: i32,
-    #[prost(message, optional, tag = "6")]
-    pub segment: ::core::option::Option<VideoSegment>,
+#[prost(string, tag = "1")]
+pub input_uri: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub progress_percent: i32,
+#[prost(message, optional, tag = "3")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "Feature", tag = "5")]
+pub feature: i32,
+#[prost(message, optional, tag = "6")]
+pub segment: ::core::option::Option<VideoSegment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotateVideoProgress {
-    #[prost(message, repeated, tag = "1")]
-    pub annotation_progress: ::prost::alloc::vec::Vec<VideoAnnotationProgress>,
+#[prost(message, repeated, tag = "1")]
+pub annotation_progress: ::prost::alloc::vec::Vec<VideoAnnotationProgress>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechTranscriptionConfig {
-    #[prost(string, tag = "1")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub max_alternatives: i32,
-    #[prost(bool, tag = "3")]
-    pub filter_profanity: bool,
-    #[prost(message, repeated, tag = "4")]
-    pub speech_contexts: ::prost::alloc::vec::Vec<SpeechContext>,
-    #[prost(bool, tag = "5")]
-    pub enable_automatic_punctuation: bool,
-    #[prost(int32, repeated, packed = "false", tag = "6")]
-    pub audio_tracks: ::prost::alloc::vec::Vec<i32>,
-    #[prost(bool, tag = "7")]
-    pub enable_speaker_diarization: bool,
-    #[prost(int32, tag = "8")]
-    pub diarization_speaker_count: i32,
-    #[prost(bool, tag = "9")]
-    pub enable_word_confidence: bool,
+#[prost(string, tag = "1")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub max_alternatives: i32,
+#[prost(bool, tag = "3")]
+pub filter_profanity: bool,
+#[prost(message, repeated, tag = "4")]
+pub speech_contexts: ::prost::alloc::vec::Vec<SpeechContext>,
+#[prost(bool, tag = "5")]
+pub enable_automatic_punctuation: bool,
+#[prost(int32, repeated, packed = "false", tag = "6")]
+pub audio_tracks: ::prost::alloc::vec::Vec<i32>,
+#[prost(bool, tag = "7")]
+pub enable_speaker_diarization: bool,
+#[prost(int32, tag = "8")]
+pub diarization_speaker_count: i32,
+#[prost(bool, tag = "9")]
+pub enable_word_confidence: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechContext {
-    #[prost(string, repeated, tag = "1")]
-    pub phrases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub phrases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechTranscription {
-    #[prost(message, repeated, tag = "1")]
-    pub alternatives: ::prost::alloc::vec::Vec<SpeechRecognitionAlternative>,
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub alternatives: ::prost::alloc::vec::Vec<SpeechRecognitionAlternative>,
+#[prost(string, tag = "2")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechRecognitionAlternative {
-    #[prost(string, tag = "1")]
-    pub transcript: ::prost::alloc::string::String,
-    #[prost(float, tag = "2")]
-    pub confidence: f32,
-    #[prost(message, repeated, tag = "3")]
-    pub words: ::prost::alloc::vec::Vec<WordInfo>,
+#[prost(string, tag = "1")]
+pub transcript: ::prost::alloc::string::String,
+#[prost(float, tag = "2")]
+pub confidence: f32,
+#[prost(message, repeated, tag = "3")]
+pub words: ::prost::alloc::vec::Vec<WordInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WordInfo {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag = "3")]
-    pub word: ::prost::alloc::string::String,
-    #[prost(float, tag = "4")]
-    pub confidence: f32,
-    #[prost(int32, tag = "5")]
-    pub speaker_tag: i32,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "3")]
+pub word: ::prost::alloc::string::String,
+#[prost(float, tag = "4")]
+pub confidence: f32,
+#[prost(int32, tag = "5")]
+pub speaker_tag: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NormalizedVertex {
-    #[prost(float, tag = "1")]
-    pub x: f32,
-    #[prost(float, tag = "2")]
-    pub y: f32,
+#[prost(float, tag = "1")]
+pub x: f32,
+#[prost(float, tag = "2")]
+pub y: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NormalizedBoundingPoly {
-    #[prost(message, repeated, tag = "1")]
-    pub vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
+#[prost(message, repeated, tag = "1")]
+pub vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextSegment {
-    #[prost(message, optional, tag = "1")]
-    pub segment: ::core::option::Option<VideoSegment>,
-    #[prost(float, tag = "2")]
-    pub confidence: f32,
-    #[prost(message, repeated, tag = "3")]
-    pub frames: ::prost::alloc::vec::Vec<TextFrame>,
+#[prost(message, optional, tag = "1")]
+pub segment: ::core::option::Option<VideoSegment>,
+#[prost(float, tag = "2")]
+pub confidence: f32,
+#[prost(message, repeated, tag = "3")]
+pub frames: ::prost::alloc::vec::Vec<TextFrame>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextFrame {
-    #[prost(message, optional, tag = "1")]
-    pub rotated_bounding_box: ::core::option::Option<NormalizedBoundingPoly>,
-    #[prost(message, optional, tag = "2")]
-    pub time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub rotated_bounding_box: ::core::option::Option<NormalizedBoundingPoly>,
+#[prost(message, optional, tag = "2")]
+pub time_offset: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextAnnotation {
-    #[prost(string, tag = "1")]
-    pub text: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub segments: ::prost::alloc::vec::Vec<TextSegment>,
+#[prost(string, tag = "1")]
+pub text: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub segments: ::prost::alloc::vec::Vec<TextSegment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ObjectTrackingFrame {
-    #[prost(message, optional, tag = "1")]
-    pub normalized_bounding_box: ::core::option::Option<NormalizedBoundingBox>,
-    #[prost(message, optional, tag = "2")]
-    pub time_offset: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub normalized_bounding_box: ::core::option::Option<NormalizedBoundingBox>,
+#[prost(message, optional, tag = "2")]
+pub time_offset: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ObjectTrackingAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub entity: ::core::option::Option<Entity>,
-    #[prost(float, tag = "4")]
-    pub confidence: f32,
-    #[prost(message, repeated, tag = "2")]
-    pub frames: ::prost::alloc::vec::Vec<ObjectTrackingFrame>,
-    #[prost(oneof = "object_tracking_annotation::TrackInfo", tags = "3, 5")]
-    pub track_info: ::core::option::Option<object_tracking_annotation::TrackInfo>,
+#[prost(message, optional, tag = "1")]
+pub entity: ::core::option::Option<Entity>,
+#[prost(float, tag = "4")]
+pub confidence: f32,
+#[prost(message, repeated, tag = "2")]
+pub frames: ::prost::alloc::vec::Vec<ObjectTrackingFrame>,
+#[prost(oneof = "object_tracking_annotation::TrackInfo", tags = "3, 5")]
+pub track_info: ::core::option::Option<object_tracking_annotation::TrackInfo>,
 }
 /// Nested message and enum types in `ObjectTrackingAnnotation`.
 pub mod object_tracking_annotation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum TrackInfo {
-        #[prost(message, tag = "3")]
-        Segment(super::VideoSegment),
-        #[prost(int64, tag = "5")]
-        TrackId(i64),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum TrackInfo {
+#[prost(message, tag = "3")]
+Segment(super::VideoSegment),
+#[prost(int64, tag = "5")]
+TrackId(i64),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LogoRecognitionAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub entity: ::core::option::Option<Entity>,
-    #[prost(message, repeated, tag = "2")]
-    pub tracks: ::prost::alloc::vec::Vec<Track>,
-    #[prost(message, repeated, tag = "3")]
-    pub segments: ::prost::alloc::vec::Vec<VideoSegment>,
+#[prost(message, optional, tag = "1")]
+pub entity: ::core::option::Option<Entity>,
+#[prost(message, repeated, tag = "2")]
+pub tracks: ::prost::alloc::vec::Vec<Track>,
+#[prost(message, repeated, tag = "3")]
+pub segments: ::prost::alloc::vec::Vec<VideoSegment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingAnnotateVideoRequest {
-    #[prost(oneof = "streaming_annotate_video_request::StreamingRequest", tags = "1, 2")]
-    pub streaming_request: ::core::option::Option<
-        streaming_annotate_video_request::StreamingRequest,
-    >,
+#[prost(oneof = "streaming_annotate_video_request::StreamingRequest", tags = "1, 2")]
+pub streaming_request: ::core::option::Option<streaming_annotate_video_request::StreamingRequest>,
 }
 /// Nested message and enum types in `StreamingAnnotateVideoRequest`.
 pub mod streaming_annotate_video_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum StreamingRequest {
-        #[prost(message, tag = "1")]
-        VideoConfig(super::StreamingVideoConfig),
-        #[prost(bytes, tag = "2")]
-        InputContent(::prost::alloc::vec::Vec<u8>),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum StreamingRequest {
+#[prost(message, tag = "1")]
+VideoConfig(super::StreamingVideoConfig),
+#[prost(bytes, tag = "2")]
+InputContent(::prost::alloc::vec::Vec<u8>),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingVideoConfig {
-    #[prost(enumeration = "StreamingFeature", tag = "1")]
-    pub feature: i32,
-    #[prost(message, optional, tag = "30")]
-    pub storage_config: ::core::option::Option<StreamingStorageConfig>,
-    #[prost(
-        oneof = "streaming_video_config::StreamingConfig",
-        tags = "2, 3, 4, 5, 23, 21, 22"
-    )]
-    pub streaming_config: ::core::option::Option<
-        streaming_video_config::StreamingConfig,
-    >,
+#[prost(enumeration = "StreamingFeature", tag = "1")]
+pub feature: i32,
+#[prost(message, optional, tag = "30")]
+pub storage_config: ::core::option::Option<StreamingStorageConfig>,
+#[prost(oneof = "streaming_video_config::StreamingConfig", tags = "2, 3, 4, 5, 23, 21, 22")]
+pub streaming_config: ::core::option::Option<streaming_video_config::StreamingConfig>,
 }
 /// Nested message and enum types in `StreamingVideoConfig`.
 pub mod streaming_video_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum StreamingConfig {
-        #[prost(message, tag = "2")]
-        ShotChangeDetectionConfig(super::StreamingShotChangeDetectionConfig),
-        #[prost(message, tag = "3")]
-        LabelDetectionConfig(super::StreamingLabelDetectionConfig),
-        #[prost(message, tag = "4")]
-        ExplicitContentDetectionConfig(super::StreamingExplicitContentDetectionConfig),
-        #[prost(message, tag = "5")]
-        ObjectTrackingConfig(super::StreamingObjectTrackingConfig),
-        #[prost(message, tag = "23")]
-        AutomlActionRecognitionConfig(super::StreamingAutomlActionRecognitionConfig),
-        #[prost(message, tag = "21")]
-        AutomlClassificationConfig(super::StreamingAutomlClassificationConfig),
-        #[prost(message, tag = "22")]
-        AutomlObjectTrackingConfig(super::StreamingAutomlObjectTrackingConfig),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum StreamingConfig {
+#[prost(message, tag = "2")]
+ShotChangeDetectionConfig(super::StreamingShotChangeDetectionConfig),
+#[prost(message, tag = "3")]
+LabelDetectionConfig(super::StreamingLabelDetectionConfig),
+#[prost(message, tag = "4")]
+ExplicitContentDetectionConfig(super::StreamingExplicitContentDetectionConfig),
+#[prost(message, tag = "5")]
+ObjectTrackingConfig(super::StreamingObjectTrackingConfig),
+#[prost(message, tag = "23")]
+AutomlActionRecognitionConfig(super::StreamingAutomlActionRecognitionConfig),
+#[prost(message, tag = "21")]
+AutomlClassificationConfig(super::StreamingAutomlClassificationConfig),
+#[prost(message, tag = "22")]
+AutomlObjectTrackingConfig(super::StreamingAutomlObjectTrackingConfig),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingAnnotateVideoResponse {
-    #[prost(message, optional, tag = "1")]
-    pub error: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "2")]
-    pub annotation_results: ::core::option::Option<StreamingVideoAnnotationResults>,
-    #[prost(string, tag = "3")]
-    pub annotation_results_uri: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub error: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "2")]
+pub annotation_results: ::core::option::Option<StreamingVideoAnnotationResults>,
+#[prost(string, tag = "3")]
+pub annotation_results_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingVideoAnnotationResults {
-    #[prost(message, repeated, tag = "1")]
-    pub shot_annotations: ::prost::alloc::vec::Vec<VideoSegment>,
-    #[prost(message, repeated, tag = "2")]
-    pub label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
-    #[prost(message, optional, tag = "3")]
-    pub explicit_annotation: ::core::option::Option<ExplicitContentAnnotation>,
-    #[prost(message, repeated, tag = "4")]
-    pub object_annotations: ::prost::alloc::vec::Vec<ObjectTrackingAnnotation>,
+#[prost(message, repeated, tag = "1")]
+pub shot_annotations: ::prost::alloc::vec::Vec<VideoSegment>,
+#[prost(message, repeated, tag = "2")]
+pub label_annotations: ::prost::alloc::vec::Vec<LabelAnnotation>,
+#[prost(message, optional, tag = "3")]
+pub explicit_annotation: ::core::option::Option<ExplicitContentAnnotation>,
+#[prost(message, repeated, tag = "4")]
+pub object_annotations: ::prost::alloc::vec::Vec<ObjectTrackingAnnotation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -560,8 +545,8 @@ pub struct StreamingShotChangeDetectionConfig {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StreamingLabelDetectionConfig {
-    #[prost(bool, tag = "1")]
-    pub stationary_camera: bool,
+#[prost(bool, tag = "1")]
+pub stationary_camera: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -572,440 +557,350 @@ pub struct StreamingObjectTrackingConfig {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingAutomlActionRecognitionConfig {
-    #[prost(string, tag = "1")]
-    pub model_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub model_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingAutomlClassificationConfig {
-    #[prost(string, tag = "1")]
-    pub model_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub model_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingAutomlObjectTrackingConfig {
-    #[prost(string, tag = "1")]
-    pub model_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub model_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingStorageConfig {
-    #[prost(bool, tag = "1")]
-    pub enable_storage_annotation_result: bool,
-    #[prost(string, tag = "3")]
-    pub annotation_result_storage_directory: ::prost::alloc::string::String,
+#[prost(bool, tag = "1")]
+pub enable_storage_annotation_result: bool,
+#[prost(string, tag = "3")]
+pub annotation_result_storage_directory: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LabelDetectionMode {
-    Unspecified = 0,
-    ShotMode = 1,
-    FrameMode = 2,
-    ShotAndFrameMode = 3,
+Unspecified = 0,
+ShotMode = 1,
+FrameMode = 2,
+ShotAndFrameMode = 3,
 }
 impl LabelDetectionMode {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            LabelDetectionMode::Unspecified => "LABEL_DETECTION_MODE_UNSPECIFIED",
-            LabelDetectionMode::ShotMode => "SHOT_MODE",
-            LabelDetectionMode::FrameMode => "FRAME_MODE",
-            LabelDetectionMode::ShotAndFrameMode => "SHOT_AND_FRAME_MODE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "LABEL_DETECTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-            "SHOT_MODE" => Some(Self::ShotMode),
-            "FRAME_MODE" => Some(Self::FrameMode),
-            "SHOT_AND_FRAME_MODE" => Some(Self::ShotAndFrameMode),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LabelDetectionMode::Unspecified => "LABEL_DETECTION_MODE_UNSPECIFIED",
+LabelDetectionMode::ShotMode => "SHOT_MODE",
+LabelDetectionMode::FrameMode => "FRAME_MODE",
+LabelDetectionMode::ShotAndFrameMode => "SHOT_AND_FRAME_MODE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LABEL_DETECTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"SHOT_MODE" => Some(Self::ShotMode),
+"FRAME_MODE" => Some(Self::FrameMode),
+"SHOT_AND_FRAME_MODE" => Some(Self::ShotAndFrameMode),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Likelihood {
-    Unspecified = 0,
-    VeryUnlikely = 1,
-    Unlikely = 2,
-    Possible = 3,
-    Likely = 4,
-    VeryLikely = 5,
+Unspecified = 0,
+VeryUnlikely = 1,
+Unlikely = 2,
+Possible = 3,
+Likely = 4,
+VeryLikely = 5,
 }
 impl Likelihood {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Likelihood::Unspecified => "LIKELIHOOD_UNSPECIFIED",
-            Likelihood::VeryUnlikely => "VERY_UNLIKELY",
-            Likelihood::Unlikely => "UNLIKELY",
-            Likelihood::Possible => "POSSIBLE",
-            Likelihood::Likely => "LIKELY",
-            Likelihood::VeryLikely => "VERY_LIKELY",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "LIKELIHOOD_UNSPECIFIED" => Some(Self::Unspecified),
-            "VERY_UNLIKELY" => Some(Self::VeryUnlikely),
-            "UNLIKELY" => Some(Self::Unlikely),
-            "POSSIBLE" => Some(Self::Possible),
-            "LIKELY" => Some(Self::Likely),
-            "VERY_LIKELY" => Some(Self::VeryLikely),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Likelihood::Unspecified => "LIKELIHOOD_UNSPECIFIED",
+Likelihood::VeryUnlikely => "VERY_UNLIKELY",
+Likelihood::Unlikely => "UNLIKELY",
+Likelihood::Possible => "POSSIBLE",
+Likelihood::Likely => "LIKELY",
+Likelihood::VeryLikely => "VERY_LIKELY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LIKELIHOOD_UNSPECIFIED" => Some(Self::Unspecified),
+"VERY_UNLIKELY" => Some(Self::VeryUnlikely),
+"UNLIKELY" => Some(Self::Unlikely),
+"POSSIBLE" => Some(Self::Possible),
+"LIKELY" => Some(Self::Likely),
+"VERY_LIKELY" => Some(Self::VeryLikely),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum StreamingFeature {
-    Unspecified = 0,
-    StreamingLabelDetection = 1,
-    StreamingShotChangeDetection = 2,
-    StreamingExplicitContentDetection = 3,
-    StreamingObjectTracking = 4,
-    StreamingAutomlActionRecognition = 23,
-    StreamingAutomlClassification = 21,
-    StreamingAutomlObjectTracking = 22,
+Unspecified = 0,
+StreamingLabelDetection = 1,
+StreamingShotChangeDetection = 2,
+StreamingExplicitContentDetection = 3,
+StreamingObjectTracking = 4,
+StreamingAutomlActionRecognition = 23,
+StreamingAutomlClassification = 21,
+StreamingAutomlObjectTracking = 22,
 }
 impl StreamingFeature {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            StreamingFeature::Unspecified => "STREAMING_FEATURE_UNSPECIFIED",
-            StreamingFeature::StreamingLabelDetection => "STREAMING_LABEL_DETECTION",
-            StreamingFeature::StreamingShotChangeDetection => {
-                "STREAMING_SHOT_CHANGE_DETECTION"
-            }
-            StreamingFeature::StreamingExplicitContentDetection => {
-                "STREAMING_EXPLICIT_CONTENT_DETECTION"
-            }
-            StreamingFeature::StreamingObjectTracking => "STREAMING_OBJECT_TRACKING",
-            StreamingFeature::StreamingAutomlActionRecognition => {
-                "STREAMING_AUTOML_ACTION_RECOGNITION"
-            }
-            StreamingFeature::StreamingAutomlClassification => {
-                "STREAMING_AUTOML_CLASSIFICATION"
-            }
-            StreamingFeature::StreamingAutomlObjectTracking => {
-                "STREAMING_AUTOML_OBJECT_TRACKING"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "STREAMING_FEATURE_UNSPECIFIED" => Some(Self::Unspecified),
-            "STREAMING_LABEL_DETECTION" => Some(Self::StreamingLabelDetection),
-            "STREAMING_SHOT_CHANGE_DETECTION" => Some(Self::StreamingShotChangeDetection),
-            "STREAMING_EXPLICIT_CONTENT_DETECTION" => {
-                Some(Self::StreamingExplicitContentDetection)
-            }
-            "STREAMING_OBJECT_TRACKING" => Some(Self::StreamingObjectTracking),
-            "STREAMING_AUTOML_ACTION_RECOGNITION" => {
-                Some(Self::StreamingAutomlActionRecognition)
-            }
-            "STREAMING_AUTOML_CLASSIFICATION" => {
-                Some(Self::StreamingAutomlClassification)
-            }
-            "STREAMING_AUTOML_OBJECT_TRACKING" => {
-                Some(Self::StreamingAutomlObjectTracking)
-            }
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+StreamingFeature::Unspecified => "STREAMING_FEATURE_UNSPECIFIED",
+StreamingFeature::StreamingLabelDetection => "STREAMING_LABEL_DETECTION",
+StreamingFeature::StreamingShotChangeDetection => "STREAMING_SHOT_CHANGE_DETECTION",
+StreamingFeature::StreamingExplicitContentDetection => "STREAMING_EXPLICIT_CONTENT_DETECTION",
+StreamingFeature::StreamingObjectTracking => "STREAMING_OBJECT_TRACKING",
+StreamingFeature::StreamingAutomlActionRecognition => "STREAMING_AUTOML_ACTION_RECOGNITION",
+StreamingFeature::StreamingAutomlClassification => "STREAMING_AUTOML_CLASSIFICATION",
+StreamingFeature::StreamingAutomlObjectTracking => "STREAMING_AUTOML_OBJECT_TRACKING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STREAMING_FEATURE_UNSPECIFIED" => Some(Self::Unspecified),
+"STREAMING_LABEL_DETECTION" => Some(Self::StreamingLabelDetection),
+"STREAMING_SHOT_CHANGE_DETECTION" => Some(Self::StreamingShotChangeDetection),
+"STREAMING_EXPLICIT_CONTENT_DETECTION" => Some(Self::StreamingExplicitContentDetection),
+"STREAMING_OBJECT_TRACKING" => Some(Self::StreamingObjectTracking),
+"STREAMING_AUTOML_ACTION_RECOGNITION" => Some(Self::StreamingAutomlActionRecognition),
+"STREAMING_AUTOML_CLASSIFICATION" => Some(Self::StreamingAutomlClassification),
+"STREAMING_AUTOML_OBJECT_TRACKING" => Some(Self::StreamingAutomlObjectTracking),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Feature {
-    Unspecified = 0,
-    LabelDetection = 1,
-    ShotChangeDetection = 2,
-    ExplicitContentDetection = 3,
-    FaceDetection = 4,
-    SpeechTranscription = 6,
-    TextDetection = 7,
-    ObjectTracking = 9,
-    LogoRecognition = 12,
-    CelebrityRecognition = 13,
-    PersonDetection = 14,
+Unspecified = 0,
+LabelDetection = 1,
+ShotChangeDetection = 2,
+ExplicitContentDetection = 3,
+FaceDetection = 4,
+SpeechTranscription = 6,
+TextDetection = 7,
+ObjectTracking = 9,
+LogoRecognition = 12,
+CelebrityRecognition = 13,
+PersonDetection = 14,
 }
 impl Feature {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Feature::Unspecified => "FEATURE_UNSPECIFIED",
-            Feature::LabelDetection => "LABEL_DETECTION",
-            Feature::ShotChangeDetection => "SHOT_CHANGE_DETECTION",
-            Feature::ExplicitContentDetection => "EXPLICIT_CONTENT_DETECTION",
-            Feature::FaceDetection => "FACE_DETECTION",
-            Feature::SpeechTranscription => "SPEECH_TRANSCRIPTION",
-            Feature::TextDetection => "TEXT_DETECTION",
-            Feature::ObjectTracking => "OBJECT_TRACKING",
-            Feature::LogoRecognition => "LOGO_RECOGNITION",
-            Feature::CelebrityRecognition => "CELEBRITY_RECOGNITION",
-            Feature::PersonDetection => "PERSON_DETECTION",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "FEATURE_UNSPECIFIED" => Some(Self::Unspecified),
-            "LABEL_DETECTION" => Some(Self::LabelDetection),
-            "SHOT_CHANGE_DETECTION" => Some(Self::ShotChangeDetection),
-            "EXPLICIT_CONTENT_DETECTION" => Some(Self::ExplicitContentDetection),
-            "FACE_DETECTION" => Some(Self::FaceDetection),
-            "SPEECH_TRANSCRIPTION" => Some(Self::SpeechTranscription),
-            "TEXT_DETECTION" => Some(Self::TextDetection),
-            "OBJECT_TRACKING" => Some(Self::ObjectTracking),
-            "LOGO_RECOGNITION" => Some(Self::LogoRecognition),
-            "CELEBRITY_RECOGNITION" => Some(Self::CelebrityRecognition),
-            "PERSON_DETECTION" => Some(Self::PersonDetection),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Feature::Unspecified => "FEATURE_UNSPECIFIED",
+Feature::LabelDetection => "LABEL_DETECTION",
+Feature::ShotChangeDetection => "SHOT_CHANGE_DETECTION",
+Feature::ExplicitContentDetection => "EXPLICIT_CONTENT_DETECTION",
+Feature::FaceDetection => "FACE_DETECTION",
+Feature::SpeechTranscription => "SPEECH_TRANSCRIPTION",
+Feature::TextDetection => "TEXT_DETECTION",
+Feature::ObjectTracking => "OBJECT_TRACKING",
+Feature::LogoRecognition => "LOGO_RECOGNITION",
+Feature::CelebrityRecognition => "CELEBRITY_RECOGNITION",
+Feature::PersonDetection => "PERSON_DETECTION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FEATURE_UNSPECIFIED" => Some(Self::Unspecified),
+"LABEL_DETECTION" => Some(Self::LabelDetection),
+"SHOT_CHANGE_DETECTION" => Some(Self::ShotChangeDetection),
+"EXPLICIT_CONTENT_DETECTION" => Some(Self::ExplicitContentDetection),
+"FACE_DETECTION" => Some(Self::FaceDetection),
+"SPEECH_TRANSCRIPTION" => Some(Self::SpeechTranscription),
+"TEXT_DETECTION" => Some(Self::TextDetection),
+"OBJECT_TRACKING" => Some(Self::ObjectTracking),
+"LOGO_RECOGNITION" => Some(Self::LogoRecognition),
+"CELEBRITY_RECOGNITION" => Some(Self::CelebrityRecognition),
+"PERSON_DETECTION" => Some(Self::PersonDetection),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod video_intelligence_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service that implements the Video Intelligence API.
-    #[derive(Debug, Clone)]
-    pub struct VideoIntelligenceServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> VideoIntelligenceServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> VideoIntelligenceServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            VideoIntelligenceServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Performs asynchronous video annotation. Progress and results can be
-        /// retrieved through the `google.longrunning.Operations` interface.
-        /// `Operation.metadata` contains `AnnotateVideoProgress` (progress).
-        /// `Operation.response` contains `AnnotateVideoResponse` (results).
-        pub async fn annotate_video(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AnnotateVideoRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.videointelligence.v1p3beta1.VideoIntelligenceService/AnnotateVideo",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.videointelligence.v1p3beta1.VideoIntelligenceService",
-                        "AnnotateVideo",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service that implements the Video Intelligence API.
+#[derive(Debug, Clone)]
+pub struct VideoIntelligenceServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> VideoIntelligenceServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> VideoIntelligenceServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+VideoIntelligenceServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Performs asynchronous video annotation. Progress and results can be
+/// retrieved through the `google.longrunning.Operations` interface.
+/// `Operation.metadata` contains `AnnotateVideoProgress` (progress).
+/// `Operation.response` contains `AnnotateVideoResponse` (results).
+pub async fn annotate_video(&mut self, request: impl tonic::IntoRequest<super::AnnotateVideoRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.videointelligence.v1p3beta1.VideoIntelligenceService/AnnotateVideo");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.videointelligence.v1p3beta1.VideoIntelligenceService", "AnnotateVideo"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod streaming_video_intelligence_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service that implements streaming Video Intelligence API.
-    #[derive(Debug, Clone)]
-    pub struct StreamingVideoIntelligenceServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> StreamingVideoIntelligenceServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> StreamingVideoIntelligenceServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            StreamingVideoIntelligenceServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Performs video annotation with bidirectional streaming: emitting results
-        /// while sending video/audio bytes.
-        /// This method is only available via the gRPC API (not REST).
-        pub async fn streaming_annotate_video(
-            &mut self,
-            request: impl tonic::IntoStreamingRequest<
-                Message = super::StreamingAnnotateVideoRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<
-                tonic::codec::Streaming<super::StreamingAnnotateVideoResponse>,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.videointelligence.v1p3beta1.StreamingVideoIntelligenceService/StreamingAnnotateVideo",
-            );
-            let mut req = request.into_streaming_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.videointelligence.v1p3beta1.StreamingVideoIntelligenceService",
-                        "StreamingAnnotateVideo",
-                    ),
-                );
-            self.inner.streaming(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service that implements streaming Video Intelligence API.
+#[derive(Debug, Clone)]
+pub struct StreamingVideoIntelligenceServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> StreamingVideoIntelligenceServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> StreamingVideoIntelligenceServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+StreamingVideoIntelligenceServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Performs video annotation with bidirectional streaming: emitting results
+/// while sending video/audio bytes.
+/// This method is only available via the gRPC API (not REST).
+pub async fn streaming_annotate_video(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::StreamingAnnotateVideoRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::StreamingAnnotateVideoResponse>>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.videointelligence.v1p3beta1.StreamingVideoIntelligenceService/StreamingAnnotateVideo");
+let mut req = request.into_streaming_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.videointelligence.v1p3beta1.StreamingVideoIntelligenceService", "StreamingAnnotateVideo"));
+self.inner.streaming(req, path, codec).await
+}
+}
 }

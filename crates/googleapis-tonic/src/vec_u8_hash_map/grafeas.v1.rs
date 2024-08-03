@@ -2,3201 +2,2692 @@
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Severity {
-    Unspecified = 0,
-    Minimal = 1,
-    Low = 2,
-    Medium = 3,
-    High = 4,
-    Critical = 5,
+Unspecified = 0,
+Minimal = 1,
+Low = 2,
+Medium = 3,
+High = 4,
+Critical = 5,
 }
 impl Severity {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-            Severity::Minimal => "MINIMAL",
-            Severity::Low => "LOW",
-            Severity::Medium => "MEDIUM",
-            Severity::High => "HIGH",
-            Severity::Critical => "CRITICAL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-            "MINIMAL" => Some(Self::Minimal),
-            "LOW" => Some(Self::Low),
-            "MEDIUM" => Some(Self::Medium),
-            "HIGH" => Some(Self::High),
-            "CRITICAL" => Some(Self::Critical),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+Severity::Minimal => "MINIMAL",
+Severity::Low => "LOW",
+Severity::Medium => "MEDIUM",
+Severity::High => "HIGH",
+Severity::Critical => "CRITICAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"MINIMAL" => Some(Self::Minimal),
+"LOW" => Some(Self::Low),
+"MEDIUM" => Some(Self::Medium),
+"HIGH" => Some(Self::High),
+"CRITICAL" => Some(Self::Critical),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelatedUrl {
-    #[prost(string, tag = "1")]
-    pub url: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub label: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub url: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub label: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Signature {
-    #[prost(bytes = "vec", tag = "1")]
-    pub signature: ::prost::alloc::vec::Vec<u8>,
-    #[prost(string, tag = "2")]
-    pub public_key_id: ::prost::alloc::string::String,
+#[prost(bytes = "vec", tag = "1")]
+pub signature: ::prost::alloc::vec::Vec<u8>,
+#[prost(string, tag = "2")]
+pub public_key_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Envelope {
-    #[prost(bytes = "vec", tag = "1")]
-    pub payload: ::prost::alloc::vec::Vec<u8>,
-    #[prost(string, tag = "2")]
-    pub payload_type: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub signatures: ::prost::alloc::vec::Vec<EnvelopeSignature>,
+#[prost(bytes = "vec", tag = "1")]
+pub payload: ::prost::alloc::vec::Vec<u8>,
+#[prost(string, tag = "2")]
+pub payload_type: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub signatures: ::prost::alloc::vec::Vec<EnvelopeSignature>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnvelopeSignature {
-    #[prost(bytes = "vec", tag = "1")]
-    pub sig: ::prost::alloc::vec::Vec<u8>,
-    #[prost(string, tag = "2")]
-    pub keyid: ::prost::alloc::string::String,
+#[prost(bytes = "vec", tag = "1")]
+pub sig: ::prost::alloc::vec::Vec<u8>,
+#[prost(string, tag = "2")]
+pub keyid: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileLocation {
-    #[prost(string, tag = "1")]
-    pub file_path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub file_path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct License {
-    #[prost(string, tag = "1")]
-    pub expression: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub comments: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub expression: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub comments: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Digest {
-    #[prost(string, tag = "1")]
-    pub algo: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "2")]
-    pub digest_bytes: ::prost::alloc::vec::Vec<u8>,
+#[prost(string, tag = "1")]
+pub algo: ::prost::alloc::string::String,
+#[prost(bytes = "vec", tag = "2")]
+pub digest_bytes: ::prost::alloc::vec::Vec<u8>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum NoteKind {
-    Unspecified = 0,
-    Vulnerability = 1,
-    Build = 2,
-    Image = 3,
-    Package = 4,
-    Deployment = 5,
-    Discovery = 6,
-    Attestation = 7,
-    Upgrade = 8,
-    Compliance = 9,
-    DsseAttestation = 10,
-    VulnerabilityAssessment = 11,
-    SbomReference = 12,
+Unspecified = 0,
+Vulnerability = 1,
+Build = 2,
+Image = 3,
+Package = 4,
+Deployment = 5,
+Discovery = 6,
+Attestation = 7,
+Upgrade = 8,
+Compliance = 9,
+DsseAttestation = 10,
+VulnerabilityAssessment = 11,
+SbomReference = 12,
 }
 impl NoteKind {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            NoteKind::Unspecified => "NOTE_KIND_UNSPECIFIED",
-            NoteKind::Vulnerability => "VULNERABILITY",
-            NoteKind::Build => "BUILD",
-            NoteKind::Image => "IMAGE",
-            NoteKind::Package => "PACKAGE",
-            NoteKind::Deployment => "DEPLOYMENT",
-            NoteKind::Discovery => "DISCOVERY",
-            NoteKind::Attestation => "ATTESTATION",
-            NoteKind::Upgrade => "UPGRADE",
-            NoteKind::Compliance => "COMPLIANCE",
-            NoteKind::DsseAttestation => "DSSE_ATTESTATION",
-            NoteKind::VulnerabilityAssessment => "VULNERABILITY_ASSESSMENT",
-            NoteKind::SbomReference => "SBOM_REFERENCE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "NOTE_KIND_UNSPECIFIED" => Some(Self::Unspecified),
-            "VULNERABILITY" => Some(Self::Vulnerability),
-            "BUILD" => Some(Self::Build),
-            "IMAGE" => Some(Self::Image),
-            "PACKAGE" => Some(Self::Package),
-            "DEPLOYMENT" => Some(Self::Deployment),
-            "DISCOVERY" => Some(Self::Discovery),
-            "ATTESTATION" => Some(Self::Attestation),
-            "UPGRADE" => Some(Self::Upgrade),
-            "COMPLIANCE" => Some(Self::Compliance),
-            "DSSE_ATTESTATION" => Some(Self::DsseAttestation),
-            "VULNERABILITY_ASSESSMENT" => Some(Self::VulnerabilityAssessment),
-            "SBOM_REFERENCE" => Some(Self::SbomReference),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+NoteKind::Unspecified => "NOTE_KIND_UNSPECIFIED",
+NoteKind::Vulnerability => "VULNERABILITY",
+NoteKind::Build => "BUILD",
+NoteKind::Image => "IMAGE",
+NoteKind::Package => "PACKAGE",
+NoteKind::Deployment => "DEPLOYMENT",
+NoteKind::Discovery => "DISCOVERY",
+NoteKind::Attestation => "ATTESTATION",
+NoteKind::Upgrade => "UPGRADE",
+NoteKind::Compliance => "COMPLIANCE",
+NoteKind::DsseAttestation => "DSSE_ATTESTATION",
+NoteKind::VulnerabilityAssessment => "VULNERABILITY_ASSESSMENT",
+NoteKind::SbomReference => "SBOM_REFERENCE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"NOTE_KIND_UNSPECIFIED" => Some(Self::Unspecified),
+"VULNERABILITY" => Some(Self::Vulnerability),
+"BUILD" => Some(Self::Build),
+"IMAGE" => Some(Self::Image),
+"PACKAGE" => Some(Self::Package),
+"DEPLOYMENT" => Some(Self::Deployment),
+"DISCOVERY" => Some(Self::Discovery),
+"ATTESTATION" => Some(Self::Attestation),
+"UPGRADE" => Some(Self::Upgrade),
+"COMPLIANCE" => Some(Self::Compliance),
+"DSSE_ATTESTATION" => Some(Self::DsseAttestation),
+"VULNERABILITY_ASSESSMENT" => Some(Self::VulnerabilityAssessment),
+"SBOM_REFERENCE" => Some(Self::SbomReference),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttestationNote {
-    #[prost(message, optional, tag = "1")]
-    pub hint: ::core::option::Option<attestation_note::Hint>,
+#[prost(message, optional, tag = "1")]
+pub hint: ::core::option::Option<attestation_note::Hint>,
 }
 /// Nested message and enum types in `AttestationNote`.
 pub mod attestation_note {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Hint {
-        #[prost(string, tag = "1")]
-        pub human_readable_name: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hint {
+#[prost(string, tag = "1")]
+pub human_readable_name: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Jwt {
-    #[prost(string, tag = "1")]
-    pub compact_jwt: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub compact_jwt: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttestationOccurrence {
-    #[prost(bytes = "vec", tag = "1")]
-    pub serialized_payload: ::prost::alloc::vec::Vec<u8>,
-    #[prost(message, repeated, tag = "2")]
-    pub signatures: ::prost::alloc::vec::Vec<Signature>,
-    #[prost(message, repeated, tag = "3")]
-    pub jwts: ::prost::alloc::vec::Vec<Jwt>,
+#[prost(bytes = "vec", tag = "1")]
+pub serialized_payload: ::prost::alloc::vec::Vec<u8>,
+#[prost(message, repeated, tag = "2")]
+pub signatures: ::prost::alloc::vec::Vec<Signature>,
+#[prost(message, repeated, tag = "3")]
+pub jwts: ::prost::alloc::vec::Vec<Jwt>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DiscoveryNote {
-    #[prost(enumeration = "NoteKind", tag = "1")]
-    pub analysis_kind: i32,
+#[prost(enumeration = "NoteKind", tag = "1")]
+pub analysis_kind: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveryOccurrence {
-    #[prost(enumeration = "discovery_occurrence::ContinuousAnalysis", tag = "1")]
-    pub continuous_analysis: i32,
-    #[prost(enumeration = "discovery_occurrence::AnalysisStatus", tag = "2")]
-    pub analysis_status: i32,
-    #[prost(message, optional, tag = "7")]
-    pub analysis_completed: ::core::option::Option<
-        discovery_occurrence::AnalysisCompleted,
-    >,
-    #[prost(message, repeated, tag = "8")]
-    pub analysis_error: ::prost::alloc::vec::Vec<super::super::google::rpc::Status>,
-    #[prost(message, optional, tag = "3")]
-    pub analysis_status_error: ::core::option::Option<super::super::google::rpc::Status>,
-    #[prost(string, tag = "4")]
-    pub cpe: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub last_scan_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub archive_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub sbom_status: ::core::option::Option<discovery_occurrence::SbomStatus>,
+#[prost(enumeration = "discovery_occurrence::ContinuousAnalysis", tag = "1")]
+pub continuous_analysis: i32,
+#[prost(enumeration = "discovery_occurrence::AnalysisStatus", tag = "2")]
+pub analysis_status: i32,
+#[prost(message, optional, tag = "7")]
+pub analysis_completed: ::core::option::Option<discovery_occurrence::AnalysisCompleted>,
+#[prost(message, repeated, tag = "8")]
+pub analysis_error: ::prost::alloc::vec::Vec<super::super::google::rpc::Status>,
+#[prost(message, optional, tag = "3")]
+pub analysis_status_error: ::core::option::Option<super::super::google::rpc::Status>,
+#[prost(string, tag = "4")]
+pub cpe: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub last_scan_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub archive_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub sbom_status: ::core::option::Option<discovery_occurrence::SbomStatus>,
 }
 /// Nested message and enum types in `DiscoveryOccurrence`.
 pub mod discovery_occurrence {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AnalysisCompleted {
-        #[prost(string, repeated, tag = "1")]
-        pub analysis_type: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SbomStatus {
-        #[prost(enumeration = "sbom_status::SbomState", tag = "1")]
-        pub sbom_state: i32,
-        #[prost(string, tag = "2")]
-        pub error: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `SBOMStatus`.
-    pub mod sbom_status {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum SbomState {
-            Unspecified = 0,
-            Pending = 1,
-            Complete = 2,
-        }
-        impl SbomState {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    SbomState::Unspecified => "SBOM_STATE_UNSPECIFIED",
-                    SbomState::Pending => "PENDING",
-                    SbomState::Complete => "COMPLETE",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "SBOM_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "PENDING" => Some(Self::Pending),
-                    "COMPLETE" => Some(Self::Complete),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ContinuousAnalysis {
-        Unspecified = 0,
-        Active = 1,
-        Inactive = 2,
-    }
-    impl ContinuousAnalysis {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ContinuousAnalysis::Unspecified => "CONTINUOUS_ANALYSIS_UNSPECIFIED",
-                ContinuousAnalysis::Active => "ACTIVE",
-                ContinuousAnalysis::Inactive => "INACTIVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONTINUOUS_ANALYSIS_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "INACTIVE" => Some(Self::Inactive),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AnalysisStatus {
-        Unspecified = 0,
-        Pending = 1,
-        Scanning = 2,
-        FinishedSuccess = 3,
-        FinishedFailed = 4,
-        FinishedUnsupported = 5,
-    }
-    impl AnalysisStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AnalysisStatus::Unspecified => "ANALYSIS_STATUS_UNSPECIFIED",
-                AnalysisStatus::Pending => "PENDING",
-                AnalysisStatus::Scanning => "SCANNING",
-                AnalysisStatus::FinishedSuccess => "FINISHED_SUCCESS",
-                AnalysisStatus::FinishedFailed => "FINISHED_FAILED",
-                AnalysisStatus::FinishedUnsupported => "FINISHED_UNSUPPORTED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ANALYSIS_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                "PENDING" => Some(Self::Pending),
-                "SCANNING" => Some(Self::Scanning),
-                "FINISHED_SUCCESS" => Some(Self::FinishedSuccess),
-                "FINISHED_FAILED" => Some(Self::FinishedFailed),
-                "FINISHED_UNSUPPORTED" => Some(Self::FinishedUnsupported),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AnalysisCompleted {
+#[prost(string, repeated, tag = "1")]
+pub analysis_type: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SbomStatus {
+#[prost(enumeration = "sbom_status::SbomState", tag = "1")]
+pub sbom_state: i32,
+#[prost(string, tag = "2")]
+pub error: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `SBOMStatus`.
+pub mod sbom_status {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SbomState {
+Unspecified = 0,
+Pending = 1,
+Complete = 2,
+}
+impl SbomState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SbomState::Unspecified => "SBOM_STATE_UNSPECIFIED",
+SbomState::Pending => "PENDING",
+SbomState::Complete => "COMPLETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SBOM_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"COMPLETE" => Some(Self::Complete),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ContinuousAnalysis {
+Unspecified = 0,
+Active = 1,
+Inactive = 2,
+}
+impl ContinuousAnalysis {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ContinuousAnalysis::Unspecified => "CONTINUOUS_ANALYSIS_UNSPECIFIED",
+ContinuousAnalysis::Active => "ACTIVE",
+ContinuousAnalysis::Inactive => "INACTIVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONTINUOUS_ANALYSIS_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"INACTIVE" => Some(Self::Inactive),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AnalysisStatus {
+Unspecified = 0,
+Pending = 1,
+Scanning = 2,
+FinishedSuccess = 3,
+FinishedFailed = 4,
+FinishedUnsupported = 5,
+}
+impl AnalysisStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AnalysisStatus::Unspecified => "ANALYSIS_STATUS_UNSPECIFIED",
+AnalysisStatus::Pending => "PENDING",
+AnalysisStatus::Scanning => "SCANNING",
+AnalysisStatus::FinishedSuccess => "FINISHED_SUCCESS",
+AnalysisStatus::FinishedFailed => "FINISHED_FAILED",
+AnalysisStatus::FinishedUnsupported => "FINISHED_UNSUPPORTED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ANALYSIS_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"SCANNING" => Some(Self::Scanning),
+"FINISHED_SUCCESS" => Some(Self::FinishedSuccess),
+"FINISHED_FAILED" => Some(Self::FinishedFailed),
+"FINISHED_UNSUPPORTED" => Some(Self::FinishedUnsupported),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Distribution {
-    #[prost(string, tag = "1")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    #[prost(enumeration = "Architecture", tag = "2")]
-    pub architecture: i32,
-    #[prost(message, optional, tag = "3")]
-    pub latest_version: ::core::option::Option<Version>,
-    #[prost(string, tag = "4")]
-    pub maintainer: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub url: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub cpe_uri: ::prost::alloc::string::String,
+#[prost(enumeration = "Architecture", tag = "2")]
+pub architecture: i32,
+#[prost(message, optional, tag = "3")]
+pub latest_version: ::core::option::Option<Version>,
+#[prost(string, tag = "4")]
+pub maintainer: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub url: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub description: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Location {
-    #[prost(string, tag = "1")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub version: ::core::option::Option<Version>,
-    #[prost(string, tag = "3")]
-    pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub cpe_uri: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub version: ::core::option::Option<Version>,
+#[prost(string, tag = "3")]
+pub path: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PackageNote {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "10")]
-    pub distribution: ::prost::alloc::vec::Vec<Distribution>,
-    #[prost(string, tag = "11")]
-    pub package_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    #[prost(enumeration = "Architecture", tag = "13")]
-    pub architecture: i32,
-    #[prost(message, optional, tag = "14")]
-    pub version: ::core::option::Option<Version>,
-    #[prost(string, tag = "15")]
-    pub maintainer: ::prost::alloc::string::String,
-    #[prost(string, tag = "16")]
-    pub url: ::prost::alloc::string::String,
-    #[prost(string, tag = "17")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "18")]
-    pub license: ::core::option::Option<License>,
-    #[prost(message, repeated, tag = "19")]
-    pub digest: ::prost::alloc::vec::Vec<Digest>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "10")]
+pub distribution: ::prost::alloc::vec::Vec<Distribution>,
+#[prost(string, tag = "11")]
+pub package_type: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub cpe_uri: ::prost::alloc::string::String,
+#[prost(enumeration = "Architecture", tag = "13")]
+pub architecture: i32,
+#[prost(message, optional, tag = "14")]
+pub version: ::core::option::Option<Version>,
+#[prost(string, tag = "15")]
+pub maintainer: ::prost::alloc::string::String,
+#[prost(string, tag = "16")]
+pub url: ::prost::alloc::string::String,
+#[prost(string, tag = "17")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "18")]
+pub license: ::core::option::Option<License>,
+#[prost(message, repeated, tag = "19")]
+pub digest: ::prost::alloc::vec::Vec<Digest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PackageOccurrence {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub location: ::prost::alloc::vec::Vec<Location>,
-    #[prost(string, tag = "3")]
-    pub package_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    #[prost(enumeration = "Architecture", tag = "5")]
-    pub architecture: i32,
-    #[prost(message, optional, tag = "6")]
-    pub license: ::core::option::Option<License>,
-    #[prost(message, optional, tag = "7")]
-    pub version: ::core::option::Option<Version>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub location: ::prost::alloc::vec::Vec<Location>,
+#[prost(string, tag = "3")]
+pub package_type: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub cpe_uri: ::prost::alloc::string::String,
+#[prost(enumeration = "Architecture", tag = "5")]
+pub architecture: i32,
+#[prost(message, optional, tag = "6")]
+pub license: ::core::option::Option<License>,
+#[prost(message, optional, tag = "7")]
+pub version: ::core::option::Option<Version>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Version {
-    #[prost(int32, tag = "1")]
-    pub epoch: i32,
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub revision: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub inclusive: bool,
-    #[prost(enumeration = "version::VersionKind", tag = "4")]
-    pub kind: i32,
-    #[prost(string, tag = "5")]
-    pub full_name: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub epoch: i32,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub revision: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub inclusive: bool,
+#[prost(enumeration = "version::VersionKind", tag = "4")]
+pub kind: i32,
+#[prost(string, tag = "5")]
+pub full_name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Version`.
 pub mod version {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VersionKind {
-        Unspecified = 0,
-        Normal = 1,
-        Minimum = 2,
-        Maximum = 3,
-    }
-    impl VersionKind {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VersionKind::Unspecified => "VERSION_KIND_UNSPECIFIED",
-                VersionKind::Normal => "NORMAL",
-                VersionKind::Minimum => "MINIMUM",
-                VersionKind::Maximum => "MAXIMUM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VERSION_KIND_UNSPECIFIED" => Some(Self::Unspecified),
-                "NORMAL" => Some(Self::Normal),
-                "MINIMUM" => Some(Self::Minimum),
-                "MAXIMUM" => Some(Self::Maximum),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum VersionKind {
+Unspecified = 0,
+Normal = 1,
+Minimum = 2,
+Maximum = 3,
+}
+impl VersionKind {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VersionKind::Unspecified => "VERSION_KIND_UNSPECIFIED",
+VersionKind::Normal => "NORMAL",
+VersionKind::Minimum => "MINIMUM",
+VersionKind::Maximum => "MAXIMUM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VERSION_KIND_UNSPECIFIED" => Some(Self::Unspecified),
+"NORMAL" => Some(Self::Normal),
+"MINIMUM" => Some(Self::Minimum),
+"MAXIMUM" => Some(Self::Maximum),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Architecture {
-    Unspecified = 0,
-    X86 = 1,
-    X64 = 2,
+Unspecified = 0,
+X86 = 1,
+X64 = 2,
 }
 impl Architecture {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Architecture::Unspecified => "ARCHITECTURE_UNSPECIFIED",
-            Architecture::X86 => "X86",
-            Architecture::X64 => "X64",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ARCHITECTURE_UNSPECIFIED" => Some(Self::Unspecified),
-            "X86" => Some(Self::X86),
-            "X64" => Some(Self::X64),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Architecture::Unspecified => "ARCHITECTURE_UNSPECIFIED",
+Architecture::X86 => "X86",
+Architecture::X64 => "X64",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ARCHITECTURE_UNSPECIFIED" => Some(Self::Unspecified),
+"X86" => Some(Self::X86),
+"X64" => Some(Self::X64),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpgradeNote {
-    #[prost(string, tag = "1")]
-    pub package: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub version: ::core::option::Option<Version>,
-    #[prost(message, repeated, tag = "3")]
-    pub distributions: ::prost::alloc::vec::Vec<UpgradeDistribution>,
-    #[prost(message, optional, tag = "4")]
-    pub windows_update: ::core::option::Option<WindowsUpdate>,
+#[prost(string, tag = "1")]
+pub package: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub version: ::core::option::Option<Version>,
+#[prost(message, repeated, tag = "3")]
+pub distributions: ::prost::alloc::vec::Vec<UpgradeDistribution>,
+#[prost(message, optional, tag = "4")]
+pub windows_update: ::core::option::Option<WindowsUpdate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpgradeDistribution {
-    #[prost(string, tag = "1")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub classification: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub severity: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "4")]
-    pub cve: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub cpe_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub classification: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub severity: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "4")]
+pub cve: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WindowsUpdate {
-    #[prost(message, optional, tag = "1")]
-    pub identity: ::core::option::Option<windows_update::Identity>,
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub categories: ::prost::alloc::vec::Vec<windows_update::Category>,
-    #[prost(string, repeated, tag = "5")]
-    pub kb_article_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "6")]
-    pub support_url: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub last_published_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "1")]
+pub identity: ::core::option::Option<windows_update::Identity>,
+#[prost(string, tag = "2")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub categories: ::prost::alloc::vec::Vec<windows_update::Category>,
+#[prost(string, repeated, tag = "5")]
+pub kb_article_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "6")]
+pub support_url: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub last_published_timestamp: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `WindowsUpdate`.
 pub mod windows_update {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Identity {
-        #[prost(string, tag = "1")]
-        pub update_id: ::prost::alloc::string::String,
-        #[prost(int32, tag = "2")]
-        pub revision: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Category {
-        #[prost(string, tag = "1")]
-        pub category_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub name: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Identity {
+#[prost(string, tag = "1")]
+pub update_id: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub revision: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Category {
+#[prost(string, tag = "1")]
+pub category_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpgradeOccurrence {
-    #[prost(string, tag = "1")]
-    pub package: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub parsed_version: ::core::option::Option<Version>,
-    #[prost(message, optional, tag = "4")]
-    pub distribution: ::core::option::Option<UpgradeDistribution>,
-    #[prost(message, optional, tag = "5")]
-    pub windows_update: ::core::option::Option<WindowsUpdate>,
+#[prost(string, tag = "1")]
+pub package: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub parsed_version: ::core::option::Option<Version>,
+#[prost(message, optional, tag = "4")]
+pub distribution: ::core::option::Option<UpgradeDistribution>,
+#[prost(message, optional, tag = "5")]
+pub windows_update: ::core::option::Option<WindowsUpdate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Recipe {
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub defined_in_material: i64,
-    #[prost(string, tag = "3")]
-    pub entry_point: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub arguments: ::prost::alloc::vec::Vec<::prost_types::Any>,
-    #[prost(message, repeated, tag = "5")]
-    pub environment: ::prost::alloc::vec::Vec<::prost_types::Any>,
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub defined_in_material: i64,
+#[prost(string, tag = "3")]
+pub entry_point: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub arguments: ::prost::alloc::vec::Vec<::prost_types::Any>,
+#[prost(message, repeated, tag = "5")]
+pub environment: ::prost::alloc::vec::Vec<::prost_types::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Completeness {
-    #[prost(bool, tag = "1")]
-    pub arguments: bool,
-    #[prost(bool, tag = "2")]
-    pub environment: bool,
-    #[prost(bool, tag = "3")]
-    pub materials: bool,
+#[prost(bool, tag = "1")]
+pub arguments: bool,
+#[prost(bool, tag = "2")]
+pub environment: bool,
+#[prost(bool, tag = "3")]
+pub materials: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Metadata {
-    #[prost(string, tag = "1")]
-    pub build_invocation_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub build_started_on: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub build_finished_on: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub completeness: ::core::option::Option<Completeness>,
-    #[prost(bool, tag = "5")]
-    pub reproducible: bool,
+#[prost(string, tag = "1")]
+pub build_invocation_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub build_started_on: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub build_finished_on: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub completeness: ::core::option::Option<Completeness>,
+#[prost(bool, tag = "5")]
+pub reproducible: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuilderConfig {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InTotoProvenance {
-    #[prost(message, optional, tag = "1")]
-    pub builder_config: ::core::option::Option<BuilderConfig>,
-    #[prost(message, optional, tag = "2")]
-    pub recipe: ::core::option::Option<Recipe>,
-    #[prost(message, optional, tag = "3")]
-    pub metadata: ::core::option::Option<Metadata>,
-    #[prost(string, repeated, tag = "4")]
-    pub materials: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "1")]
+pub builder_config: ::core::option::Option<BuilderConfig>,
+#[prost(message, optional, tag = "2")]
+pub recipe: ::core::option::Option<Recipe>,
+#[prost(message, optional, tag = "3")]
+pub metadata: ::core::option::Option<Metadata>,
+#[prost(string, repeated, tag = "4")]
+pub materials: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SlsaProvenance {
-    #[prost(message, optional, tag = "1")]
-    pub builder: ::core::option::Option<slsa_provenance::SlsaBuilder>,
-    #[prost(message, optional, tag = "2")]
-    pub recipe: ::core::option::Option<slsa_provenance::SlsaRecipe>,
-    #[prost(message, optional, tag = "3")]
-    pub metadata: ::core::option::Option<slsa_provenance::SlsaMetadata>,
-    #[prost(message, repeated, tag = "4")]
-    pub materials: ::prost::alloc::vec::Vec<slsa_provenance::Material>,
+#[prost(message, optional, tag = "1")]
+pub builder: ::core::option::Option<slsa_provenance::SlsaBuilder>,
+#[prost(message, optional, tag = "2")]
+pub recipe: ::core::option::Option<slsa_provenance::SlsaRecipe>,
+#[prost(message, optional, tag = "3")]
+pub metadata: ::core::option::Option<slsa_provenance::SlsaMetadata>,
+#[prost(message, repeated, tag = "4")]
+pub materials: ::prost::alloc::vec::Vec<slsa_provenance::Material>,
 }
 /// Nested message and enum types in `SlsaProvenance`.
 pub mod slsa_provenance {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaRecipe {
-        #[prost(string, tag = "1")]
-        pub r#type: ::prost::alloc::string::String,
-        #[prost(int64, tag = "2")]
-        pub defined_in_material: i64,
-        #[prost(string, tag = "3")]
-        pub entry_point: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "4")]
-        pub arguments: ::core::option::Option<::prost_types::Any>,
-        #[prost(message, optional, tag = "5")]
-        pub environment: ::core::option::Option<::prost_types::Any>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SlsaCompleteness {
-        #[prost(bool, tag = "1")]
-        pub arguments: bool,
-        #[prost(bool, tag = "2")]
-        pub environment: bool,
-        #[prost(bool, tag = "3")]
-        pub materials: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaMetadata {
-        #[prost(string, tag = "1")]
-        pub build_invocation_id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub build_started_on: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "3")]
-        pub build_finished_on: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "4")]
-        pub completeness: ::core::option::Option<SlsaCompleteness>,
-        #[prost(bool, tag = "5")]
-        pub reproducible: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaBuilder {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Material {
-        #[prost(string, tag = "1")]
-        pub uri: ::prost::alloc::string::String,
-        #[prost(map = "string, string", tag = "2")]
-        pub digest: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaRecipe {
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub defined_in_material: i64,
+#[prost(string, tag = "3")]
+pub entry_point: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub arguments: ::core::option::Option<::prost_types::Any>,
+#[prost(message, optional, tag = "5")]
+pub environment: ::core::option::Option<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SlsaCompleteness {
+#[prost(bool, tag = "1")]
+pub arguments: bool,
+#[prost(bool, tag = "2")]
+pub environment: bool,
+#[prost(bool, tag = "3")]
+pub materials: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaMetadata {
+#[prost(string, tag = "1")]
+pub build_invocation_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub build_started_on: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub build_finished_on: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub completeness: ::core::option::Option<SlsaCompleteness>,
+#[prost(bool, tag = "5")]
+pub reproducible: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaBuilder {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Material {
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "2")]
+pub digest: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SlsaProvenanceZeroTwo {
-    #[prost(message, optional, tag = "1")]
-    pub builder: ::core::option::Option<slsa_provenance_zero_two::SlsaBuilder>,
-    #[prost(string, tag = "2")]
-    pub build_type: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub invocation: ::core::option::Option<slsa_provenance_zero_two::SlsaInvocation>,
-    #[prost(message, optional, tag = "4")]
-    pub build_config: ::core::option::Option<::prost_types::Struct>,
-    #[prost(message, optional, tag = "5")]
-    pub metadata: ::core::option::Option<slsa_provenance_zero_two::SlsaMetadata>,
-    #[prost(message, repeated, tag = "6")]
-    pub materials: ::prost::alloc::vec::Vec<slsa_provenance_zero_two::SlsaMaterial>,
+#[prost(message, optional, tag = "1")]
+pub builder: ::core::option::Option<slsa_provenance_zero_two::SlsaBuilder>,
+#[prost(string, tag = "2")]
+pub build_type: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub invocation: ::core::option::Option<slsa_provenance_zero_two::SlsaInvocation>,
+#[prost(message, optional, tag = "4")]
+pub build_config: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "5")]
+pub metadata: ::core::option::Option<slsa_provenance_zero_two::SlsaMetadata>,
+#[prost(message, repeated, tag = "6")]
+pub materials: ::prost::alloc::vec::Vec<slsa_provenance_zero_two::SlsaMaterial>,
 }
 /// Nested message and enum types in `SlsaProvenanceZeroTwo`.
 pub mod slsa_provenance_zero_two {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaBuilder {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaMaterial {
-        #[prost(string, tag = "1")]
-        pub uri: ::prost::alloc::string::String,
-        #[prost(map = "string, string", tag = "2")]
-        pub digest: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaInvocation {
-        #[prost(message, optional, tag = "1")]
-        pub config_source: ::core::option::Option<SlsaConfigSource>,
-        #[prost(message, optional, tag = "2")]
-        pub parameters: ::core::option::Option<::prost_types::Struct>,
-        #[prost(message, optional, tag = "3")]
-        pub environment: ::core::option::Option<::prost_types::Struct>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaConfigSource {
-        #[prost(string, tag = "1")]
-        pub uri: ::prost::alloc::string::String,
-        #[prost(map = "string, string", tag = "2")]
-        pub digest: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, tag = "3")]
-        pub entry_point: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaMetadata {
-        #[prost(string, tag = "1")]
-        pub build_invocation_id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub build_started_on: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "3")]
-        pub build_finished_on: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "4")]
-        pub completeness: ::core::option::Option<SlsaCompleteness>,
-        #[prost(bool, tag = "5")]
-        pub reproducible: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SlsaCompleteness {
-        #[prost(bool, tag = "1")]
-        pub parameters: bool,
-        #[prost(bool, tag = "2")]
-        pub environment: bool,
-        #[prost(bool, tag = "3")]
-        pub materials: bool,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaBuilder {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaMaterial {
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "2")]
+pub digest: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaInvocation {
+#[prost(message, optional, tag = "1")]
+pub config_source: ::core::option::Option<SlsaConfigSource>,
+#[prost(message, optional, tag = "2")]
+pub parameters: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "3")]
+pub environment: ::core::option::Option<::prost_types::Struct>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaConfigSource {
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "2")]
+pub digest: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub entry_point: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaMetadata {
+#[prost(string, tag = "1")]
+pub build_invocation_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub build_started_on: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub build_finished_on: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub completeness: ::core::option::Option<SlsaCompleteness>,
+#[prost(bool, tag = "5")]
+pub reproducible: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SlsaCompleteness {
+#[prost(bool, tag = "1")]
+pub parameters: bool,
+#[prost(bool, tag = "2")]
+pub environment: bool,
+#[prost(bool, tag = "3")]
+pub materials: bool,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InTotoStatement {
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub subject: ::prost::alloc::vec::Vec<Subject>,
-    #[prost(string, tag = "3")]
-    pub predicate_type: ::prost::alloc::string::String,
-    #[prost(oneof = "in_toto_statement::Predicate", tags = "4, 5, 6")]
-    pub predicate: ::core::option::Option<in_toto_statement::Predicate>,
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub subject: ::prost::alloc::vec::Vec<Subject>,
+#[prost(string, tag = "3")]
+pub predicate_type: ::prost::alloc::string::String,
+#[prost(oneof = "in_toto_statement::Predicate", tags = "4, 5, 6")]
+pub predicate: ::core::option::Option<in_toto_statement::Predicate>,
 }
 /// Nested message and enum types in `InTotoStatement`.
 pub mod in_toto_statement {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Predicate {
-        #[prost(message, tag = "4")]
-        Provenance(super::InTotoProvenance),
-        #[prost(message, tag = "5")]
-        SlsaProvenance(super::SlsaProvenance),
-        #[prost(message, tag = "6")]
-        SlsaProvenanceZeroTwo(super::SlsaProvenanceZeroTwo),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Predicate {
+#[prost(message, tag = "4")]
+Provenance(super::InTotoProvenance),
+#[prost(message, tag = "5")]
+SlsaProvenance(super::SlsaProvenance),
+#[prost(message, tag = "6")]
+SlsaProvenanceZeroTwo(super::SlsaProvenanceZeroTwo),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Subject {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "2")]
-    pub digest: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "2")]
+pub digest: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InTotoSlsaProvenanceV1 {
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub subject: ::prost::alloc::vec::Vec<Subject>,
-    #[prost(string, tag = "3")]
-    pub predicate_type: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub predicate: ::core::option::Option<in_toto_slsa_provenance_v1::SlsaProvenanceV1>,
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub subject: ::prost::alloc::vec::Vec<Subject>,
+#[prost(string, tag = "3")]
+pub predicate_type: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub predicate: ::core::option::Option<in_toto_slsa_provenance_v1::SlsaProvenanceV1>,
 }
 /// Nested message and enum types in `InTotoSlsaProvenanceV1`.
 pub mod in_toto_slsa_provenance_v1 {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SlsaProvenanceV1 {
-        #[prost(message, optional, tag = "1")]
-        pub build_definition: ::core::option::Option<BuildDefinition>,
-        #[prost(message, optional, tag = "2")]
-        pub run_details: ::core::option::Option<RunDetails>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct BuildDefinition {
-        #[prost(string, tag = "1")]
-        pub build_type: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub external_parameters: ::core::option::Option<::prost_types::Struct>,
-        #[prost(message, optional, tag = "3")]
-        pub internal_parameters: ::core::option::Option<::prost_types::Struct>,
-        #[prost(message, repeated, tag = "4")]
-        pub resolved_dependencies: ::prost::alloc::vec::Vec<ResourceDescriptor>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ResourceDescriptor {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub uri: ::prost::alloc::string::String,
-        #[prost(map = "string, string", tag = "3")]
-        pub digest: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(bytes = "vec", tag = "4")]
-        pub content: ::prost::alloc::vec::Vec<u8>,
-        #[prost(string, tag = "5")]
-        pub download_location: ::prost::alloc::string::String,
-        #[prost(string, tag = "6")]
-        pub media_type: ::prost::alloc::string::String,
-        #[prost(map = "string, message", tag = "7")]
-        pub annotations: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost_types::Value,
-        >,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RunDetails {
-        #[prost(message, optional, tag = "1")]
-        pub builder: ::core::option::Option<ProvenanceBuilder>,
-        #[prost(message, optional, tag = "2")]
-        pub metadata: ::core::option::Option<BuildMetadata>,
-        #[prost(message, repeated, tag = "3")]
-        pub byproducts: ::prost::alloc::vec::Vec<ResourceDescriptor>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ProvenanceBuilder {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(map = "string, string", tag = "2")]
-        pub version: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(message, repeated, tag = "3")]
-        pub builder_dependencies: ::prost::alloc::vec::Vec<ResourceDescriptor>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct BuildMetadata {
-        #[prost(string, tag = "1")]
-        pub invocation_id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub started_on: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "3")]
-        pub finished_on: ::core::option::Option<::prost_types::Timestamp>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SlsaProvenanceV1 {
+#[prost(message, optional, tag = "1")]
+pub build_definition: ::core::option::Option<BuildDefinition>,
+#[prost(message, optional, tag = "2")]
+pub run_details: ::core::option::Option<RunDetails>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BuildDefinition {
+#[prost(string, tag = "1")]
+pub build_type: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub external_parameters: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "3")]
+pub internal_parameters: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, repeated, tag = "4")]
+pub resolved_dependencies: ::prost::alloc::vec::Vec<ResourceDescriptor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ResourceDescriptor {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub uri: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "3")]
+pub digest: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(bytes = "vec", tag = "4")]
+pub content: ::prost::alloc::vec::Vec<u8>,
+#[prost(string, tag = "5")]
+pub download_location: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub media_type: ::prost::alloc::string::String,
+#[prost(map = "string, message", tag = "7")]
+pub annotations: ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RunDetails {
+#[prost(message, optional, tag = "1")]
+pub builder: ::core::option::Option<ProvenanceBuilder>,
+#[prost(message, optional, tag = "2")]
+pub metadata: ::core::option::Option<BuildMetadata>,
+#[prost(message, repeated, tag = "3")]
+pub byproducts: ::prost::alloc::vec::Vec<ResourceDescriptor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ProvenanceBuilder {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "2")]
+pub version: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "3")]
+pub builder_dependencies: ::prost::alloc::vec::Vec<ResourceDescriptor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BuildMetadata {
+#[prost(string, tag = "1")]
+pub invocation_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub started_on: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub finished_on: ::core::option::Option<::prost_types::Timestamp>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DsseAttestationNote {
-    #[prost(message, optional, tag = "1")]
-    pub hint: ::core::option::Option<dsse_attestation_note::DsseHint>,
+#[prost(message, optional, tag = "1")]
+pub hint: ::core::option::Option<dsse_attestation_note::DsseHint>,
 }
 /// Nested message and enum types in `DSSEAttestationNote`.
 pub mod dsse_attestation_note {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DsseHint {
-        #[prost(string, tag = "1")]
-        pub human_readable_name: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DsseHint {
+#[prost(string, tag = "1")]
+pub human_readable_name: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DsseAttestationOccurrence {
-    #[prost(message, optional, tag = "1")]
-    pub envelope: ::core::option::Option<Envelope>,
-    #[prost(oneof = "dsse_attestation_occurrence::DecodedPayload", tags = "2")]
-    pub decoded_payload: ::core::option::Option<
-        dsse_attestation_occurrence::DecodedPayload,
-    >,
+#[prost(message, optional, tag = "1")]
+pub envelope: ::core::option::Option<Envelope>,
+#[prost(oneof = "dsse_attestation_occurrence::DecodedPayload", tags = "2")]
+pub decoded_payload: ::core::option::Option<dsse_attestation_occurrence::DecodedPayload>,
 }
 /// Nested message and enum types in `DSSEAttestationOccurrence`.
 pub mod dsse_attestation_occurrence {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum DecodedPayload {
-        #[prost(message, tag = "2")]
-        Statement(super::InTotoStatement),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum DecodedPayload {
+#[prost(message, tag = "2")]
+Statement(super::InTotoStatement),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComplianceNote {
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub version: ::prost::alloc::vec::Vec<ComplianceVersion>,
-    #[prost(string, tag = "4")]
-    pub rationale: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub remediation: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "7")]
-    pub scan_instructions: ::prost::alloc::vec::Vec<u8>,
-    #[prost(oneof = "compliance_note::ComplianceType", tags = "6")]
-    pub compliance_type: ::core::option::Option<compliance_note::ComplianceType>,
-    #[prost(oneof = "compliance_note::PotentialImpact", tags = "8")]
-    pub potential_impact: ::core::option::Option<compliance_note::PotentialImpact>,
+#[prost(string, tag = "1")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub version: ::prost::alloc::vec::Vec<ComplianceVersion>,
+#[prost(string, tag = "4")]
+pub rationale: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub remediation: ::prost::alloc::string::String,
+#[prost(bytes = "vec", tag = "7")]
+pub scan_instructions: ::prost::alloc::vec::Vec<u8>,
+#[prost(oneof = "compliance_note::ComplianceType", tags = "6")]
+pub compliance_type: ::core::option::Option<compliance_note::ComplianceType>,
+#[prost(oneof = "compliance_note::PotentialImpact", tags = "8")]
+pub potential_impact: ::core::option::Option<compliance_note::PotentialImpact>,
 }
 /// Nested message and enum types in `ComplianceNote`.
 pub mod compliance_note {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct CisBenchmark {
-        #[prost(int32, tag = "1")]
-        pub profile_level: i32,
-        #[prost(enumeration = "super::Severity", tag = "2")]
-        pub severity: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum ComplianceType {
-        #[prost(message, tag = "6")]
-        CisBenchmark(CisBenchmark),
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum PotentialImpact {
-        #[prost(string, tag = "8")]
-        Impact(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct CisBenchmark {
+#[prost(int32, tag = "1")]
+pub profile_level: i32,
+#[prost(enumeration = "super::Severity", tag = "2")]
+pub severity: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum ComplianceType {
+#[prost(message, tag = "6")]
+CisBenchmark(CisBenchmark),
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum PotentialImpact {
+#[prost(string, tag = "8")]
+Impact(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComplianceVersion {
-    #[prost(string, tag = "1")]
-    pub cpe_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub benchmark_document: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub cpe_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub benchmark_document: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComplianceOccurrence {
-    #[prost(message, repeated, tag = "2")]
-    pub non_compliant_files: ::prost::alloc::vec::Vec<NonCompliantFile>,
-    #[prost(string, tag = "3")]
-    pub non_compliance_reason: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub non_compliant_files: ::prost::alloc::vec::Vec<NonCompliantFile>,
+#[prost(string, tag = "3")]
+pub non_compliance_reason: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NonCompliantFile {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_command: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub reason: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_command: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub reason: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildProvenance {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub commands: ::prost::alloc::vec::Vec<Command>,
-    #[prost(message, repeated, tag = "4")]
-    pub built_artifacts: ::prost::alloc::vec::Vec<Artifact>,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "8")]
-    pub creator: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub logs_uri: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub source_provenance: ::core::option::Option<Source>,
-    #[prost(string, tag = "11")]
-    pub trigger_id: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "12")]
-    pub build_options: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "13")]
-    pub builder_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub commands: ::prost::alloc::vec::Vec<Command>,
+#[prost(message, repeated, tag = "4")]
+pub built_artifacts: ::prost::alloc::vec::Vec<Artifact>,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "8")]
+pub creator: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub logs_uri: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub source_provenance: ::core::option::Option<Source>,
+#[prost(string, tag = "11")]
+pub trigger_id: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "12")]
+pub build_options: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "13")]
+pub builder_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Source {
-    #[prost(string, tag = "1")]
-    pub artifact_storage_source_uri: ::prost::alloc::string::String,
-    #[prost(map = "string, message", tag = "2")]
-    pub file_hashes: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        FileHashes,
-    >,
-    #[prost(message, optional, tag = "3")]
-    pub context: ::core::option::Option<SourceContext>,
-    #[prost(message, repeated, tag = "4")]
-    pub additional_contexts: ::prost::alloc::vec::Vec<SourceContext>,
+#[prost(string, tag = "1")]
+pub artifact_storage_source_uri: ::prost::alloc::string::String,
+#[prost(map = "string, message", tag = "2")]
+pub file_hashes: ::std::collections::HashMap<::prost::alloc::string::String, FileHashes>,
+#[prost(message, optional, tag = "3")]
+pub context: ::core::option::Option<SourceContext>,
+#[prost(message, repeated, tag = "4")]
+pub additional_contexts: ::prost::alloc::vec::Vec<SourceContext>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileHashes {
-    #[prost(message, repeated, tag = "1")]
-    pub file_hash: ::prost::alloc::vec::Vec<Hash>,
+#[prost(message, repeated, tag = "1")]
+pub file_hash: ::prost::alloc::vec::Vec<Hash>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hash {
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(bytes = "vec", tag = "2")]
-    pub value: ::prost::alloc::vec::Vec<u8>,
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(bytes = "vec", tag = "2")]
+pub value: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Command {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub env: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "3")]
-    pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "4")]
-    pub dir: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "6")]
-    pub wait_for: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub env: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub args: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub dir: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "6")]
+pub wait_for: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Artifact {
-    #[prost(string, tag = "1")]
-    pub checksum: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub checksum: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourceContext {
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(oneof = "source_context::Context", tags = "1, 2, 3")]
-    pub context: ::core::option::Option<source_context::Context>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "source_context::Context", tags = "1, 2, 3")]
+pub context: ::core::option::Option<source_context::Context>,
 }
 /// Nested message and enum types in `SourceContext`.
 pub mod source_context {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Context {
-        #[prost(message, tag = "1")]
-        CloudRepo(super::CloudRepoSourceContext),
-        #[prost(message, tag = "2")]
-        Gerrit(super::GerritSourceContext),
-        #[prost(message, tag = "3")]
-        Git(super::GitSourceContext),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Context {
+#[prost(message, tag = "1")]
+CloudRepo(super::CloudRepoSourceContext),
+#[prost(message, tag = "2")]
+Gerrit(super::GerritSourceContext),
+#[prost(message, tag = "3")]
+Git(super::GitSourceContext),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AliasContext {
-    #[prost(enumeration = "alias_context::Kind", tag = "1")]
-    pub kind: i32,
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "alias_context::Kind", tag = "1")]
+pub kind: i32,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `AliasContext`.
 pub mod alias_context {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Kind {
-        Unspecified = 0,
-        Fixed = 1,
-        Movable = 2,
-        Other = 4,
-    }
-    impl Kind {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Kind::Unspecified => "KIND_UNSPECIFIED",
-                Kind::Fixed => "FIXED",
-                Kind::Movable => "MOVABLE",
-                Kind::Other => "OTHER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "KIND_UNSPECIFIED" => Some(Self::Unspecified),
-                "FIXED" => Some(Self::Fixed),
-                "MOVABLE" => Some(Self::Movable),
-                "OTHER" => Some(Self::Other),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Kind {
+Unspecified = 0,
+Fixed = 1,
+Movable = 2,
+Other = 4,
+}
+impl Kind {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Kind::Unspecified => "KIND_UNSPECIFIED",
+Kind::Fixed => "FIXED",
+Kind::Movable => "MOVABLE",
+Kind::Other => "OTHER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"KIND_UNSPECIFIED" => Some(Self::Unspecified),
+"FIXED" => Some(Self::Fixed),
+"MOVABLE" => Some(Self::Movable),
+"OTHER" => Some(Self::Other),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CloudRepoSourceContext {
-    #[prost(message, optional, tag = "1")]
-    pub repo_id: ::core::option::Option<RepoId>,
-    #[prost(oneof = "cloud_repo_source_context::Revision", tags = "2, 3")]
-    pub revision: ::core::option::Option<cloud_repo_source_context::Revision>,
+#[prost(message, optional, tag = "1")]
+pub repo_id: ::core::option::Option<RepoId>,
+#[prost(oneof = "cloud_repo_source_context::Revision", tags = "2, 3")]
+pub revision: ::core::option::Option<cloud_repo_source_context::Revision>,
 }
 /// Nested message and enum types in `CloudRepoSourceContext`.
 pub mod cloud_repo_source_context {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Revision {
-        #[prost(string, tag = "2")]
-        RevisionId(::prost::alloc::string::String),
-        #[prost(message, tag = "3")]
-        AliasContext(super::AliasContext),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Revision {
+#[prost(string, tag = "2")]
+RevisionId(::prost::alloc::string::String),
+#[prost(message, tag = "3")]
+AliasContext(super::AliasContext),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GerritSourceContext {
-    #[prost(string, tag = "1")]
-    pub host_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub gerrit_project: ::prost::alloc::string::String,
-    #[prost(oneof = "gerrit_source_context::Revision", tags = "3, 4")]
-    pub revision: ::core::option::Option<gerrit_source_context::Revision>,
+#[prost(string, tag = "1")]
+pub host_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub gerrit_project: ::prost::alloc::string::String,
+#[prost(oneof = "gerrit_source_context::Revision", tags = "3, 4")]
+pub revision: ::core::option::Option<gerrit_source_context::Revision>,
 }
 /// Nested message and enum types in `GerritSourceContext`.
 pub mod gerrit_source_context {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Revision {
-        #[prost(string, tag = "3")]
-        RevisionId(::prost::alloc::string::String),
-        #[prost(message, tag = "4")]
-        AliasContext(super::AliasContext),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Revision {
+#[prost(string, tag = "3")]
+RevisionId(::prost::alloc::string::String),
+#[prost(message, tag = "4")]
+AliasContext(super::AliasContext),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GitSourceContext {
-    #[prost(string, tag = "1")]
-    pub url: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub revision_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub url: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub revision_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RepoId {
-    #[prost(oneof = "repo_id::Id", tags = "1, 2")]
-    pub id: ::core::option::Option<repo_id::Id>,
+#[prost(oneof = "repo_id::Id", tags = "1, 2")]
+pub id: ::core::option::Option<repo_id::Id>,
 }
 /// Nested message and enum types in `RepoId`.
 pub mod repo_id {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Id {
-        #[prost(message, tag = "1")]
-        ProjectRepoId(super::ProjectRepoId),
-        #[prost(string, tag = "2")]
-        Uid(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Id {
+#[prost(message, tag = "1")]
+ProjectRepoId(super::ProjectRepoId),
+#[prost(string, tag = "2")]
+Uid(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProjectRepoId {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub repo_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub repo_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildNote {
-    #[prost(string, tag = "1")]
-    pub builder_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub builder_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuildOccurrence {
-    #[prost(message, optional, tag = "1")]
-    pub provenance: ::core::option::Option<BuildProvenance>,
-    #[prost(string, tag = "2")]
-    pub provenance_bytes: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub intoto_provenance: ::core::option::Option<InTotoProvenance>,
-    #[prost(message, optional, tag = "4")]
-    pub intoto_statement: ::core::option::Option<InTotoStatement>,
-    #[prost(message, optional, tag = "5")]
-    pub in_toto_slsa_provenance_v1: ::core::option::Option<InTotoSlsaProvenanceV1>,
+#[prost(message, optional, tag = "1")]
+pub provenance: ::core::option::Option<BuildProvenance>,
+#[prost(string, tag = "2")]
+pub provenance_bytes: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub intoto_provenance: ::core::option::Option<InTotoProvenance>,
+#[prost(message, optional, tag = "4")]
+pub intoto_statement: ::core::option::Option<InTotoStatement>,
+#[prost(message, optional, tag = "5")]
+pub in_toto_slsa_provenance_v1: ::core::option::Option<InTotoSlsaProvenanceV1>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SbomReferenceNote {
-    #[prost(string, tag = "1")]
-    pub format: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub format: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SbomReferenceOccurrence {
-    #[prost(message, optional, tag = "1")]
-    pub payload: ::core::option::Option<SbomReferenceIntotoPayload>,
-    #[prost(string, tag = "2")]
-    pub payload_type: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub signatures: ::prost::alloc::vec::Vec<EnvelopeSignature>,
+#[prost(message, optional, tag = "1")]
+pub payload: ::core::option::Option<SbomReferenceIntotoPayload>,
+#[prost(string, tag = "2")]
+pub payload_type: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub signatures: ::prost::alloc::vec::Vec<EnvelopeSignature>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SbomReferenceIntotoPayload {
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub predicate_type: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub subject: ::prost::alloc::vec::Vec<Subject>,
-    #[prost(message, optional, tag = "4")]
-    pub predicate: ::core::option::Option<SbomReferenceIntotoPredicate>,
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub predicate_type: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub subject: ::prost::alloc::vec::Vec<Subject>,
+#[prost(message, optional, tag = "4")]
+pub predicate: ::core::option::Option<SbomReferenceIntotoPredicate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SbomReferenceIntotoPredicate {
-    #[prost(string, tag = "1")]
-    pub referrer_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub location: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub mime_type: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "4")]
-    pub digest: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub referrer_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub location: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub mime_type: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "4")]
+pub digest: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeploymentNote {
-    #[prost(string, repeated, tag = "1")]
-    pub resource_uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub resource_uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeploymentOccurrence {
-    #[prost(string, tag = "1")]
-    pub user_email: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub deploy_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub undeploy_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "4")]
-    pub config: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub address: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "6")]
-    pub resource_uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(enumeration = "deployment_occurrence::Platform", tag = "7")]
-    pub platform: i32,
+#[prost(string, tag = "1")]
+pub user_email: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub deploy_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub undeploy_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "4")]
+pub config: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub address: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "6")]
+pub resource_uri: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "deployment_occurrence::Platform", tag = "7")]
+pub platform: i32,
 }
 /// Nested message and enum types in `DeploymentOccurrence`.
 pub mod deployment_occurrence {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Platform {
-        Unspecified = 0,
-        Gke = 1,
-        Flex = 2,
-        Custom = 3,
-    }
-    impl Platform {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Platform::Unspecified => "PLATFORM_UNSPECIFIED",
-                Platform::Gke => "GKE",
-                Platform::Flex => "FLEX",
-                Platform::Custom => "CUSTOM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PLATFORM_UNSPECIFIED" => Some(Self::Unspecified),
-                "GKE" => Some(Self::Gke),
-                "FLEX" => Some(Self::Flex),
-                "CUSTOM" => Some(Self::Custom),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Platform {
+Unspecified = 0,
+Gke = 1,
+Flex = 2,
+Custom = 3,
+}
+impl Platform {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Platform::Unspecified => "PLATFORM_UNSPECIFIED",
+Platform::Gke => "GKE",
+Platform::Flex => "FLEX",
+Platform::Custom => "CUSTOM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PLATFORM_UNSPECIFIED" => Some(Self::Unspecified),
+"GKE" => Some(Self::Gke),
+"FLEX" => Some(Self::Flex),
+"CUSTOM" => Some(Self::Custom),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Layer {
-    #[prost(string, tag = "1")]
-    pub directive: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub arguments: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub directive: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub arguments: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Fingerprint {
-    #[prost(string, tag = "1")]
-    pub v1_name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub v2_blob: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "3")]
-    pub v2_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub v1_name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub v2_blob: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub v2_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageNote {
-    #[prost(string, tag = "1")]
-    pub resource_url: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub fingerprint: ::core::option::Option<Fingerprint>,
+#[prost(string, tag = "1")]
+pub resource_url: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub fingerprint: ::core::option::Option<Fingerprint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageOccurrence {
-    #[prost(message, optional, tag = "1")]
-    pub fingerprint: ::core::option::Option<Fingerprint>,
-    #[prost(int32, tag = "2")]
-    pub distance: i32,
-    #[prost(message, repeated, tag = "3")]
-    pub layer_info: ::prost::alloc::vec::Vec<Layer>,
-    #[prost(string, tag = "4")]
-    pub base_resource_url: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub fingerprint: ::core::option::Option<Fingerprint>,
+#[prost(int32, tag = "2")]
+pub distance: i32,
+#[prost(message, repeated, tag = "3")]
+pub layer_info: ::prost::alloc::vec::Vec<Layer>,
+#[prost(string, tag = "4")]
+pub base_resource_url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VulnerabilityAssessmentNote {
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub short_description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub long_description: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub publisher: ::core::option::Option<vulnerability_assessment_note::Publisher>,
-    #[prost(message, optional, tag = "6")]
-    pub product: ::core::option::Option<vulnerability_assessment_note::Product>,
-    #[prost(message, optional, tag = "7")]
-    pub assessment: ::core::option::Option<vulnerability_assessment_note::Assessment>,
+#[prost(string, tag = "1")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub short_description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub long_description: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub publisher: ::core::option::Option<vulnerability_assessment_note::Publisher>,
+#[prost(message, optional, tag = "6")]
+pub product: ::core::option::Option<vulnerability_assessment_note::Product>,
+#[prost(message, optional, tag = "7")]
+pub assessment: ::core::option::Option<vulnerability_assessment_note::Assessment>,
 }
 /// Nested message and enum types in `VulnerabilityAssessmentNote`.
 pub mod vulnerability_assessment_note {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Publisher {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub issuing_authority: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub publisher_namespace: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Product {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(oneof = "product::Identifier", tags = "3")]
-        pub identifier: ::core::option::Option<product::Identifier>,
-    }
-    /// Nested message and enum types in `Product`.
-    pub mod product {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Identifier {
-            #[prost(string, tag = "3")]
-            GenericUri(::prost::alloc::string::String),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Assessment {
-        #[deprecated]
-        #[prost(string, tag = "1")]
-        pub cve: ::prost::alloc::string::String,
-        #[prost(string, tag = "9")]
-        pub vulnerability_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub short_description: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub long_description: ::prost::alloc::string::String,
-        #[prost(message, repeated, tag = "4")]
-        pub related_uris: ::prost::alloc::vec::Vec<super::RelatedUrl>,
-        #[prost(enumeration = "assessment::State", tag = "5")]
-        pub state: i32,
-        #[prost(string, repeated, tag = "6")]
-        pub impacts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(message, optional, tag = "7")]
-        pub justification: ::core::option::Option<assessment::Justification>,
-        #[prost(message, repeated, tag = "8")]
-        pub remediations: ::prost::alloc::vec::Vec<assessment::Remediation>,
-    }
-    /// Nested message and enum types in `Assessment`.
-    pub mod assessment {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Justification {
-            #[prost(enumeration = "justification::JustificationType", tag = "1")]
-            pub justification_type: i32,
-            #[prost(string, tag = "2")]
-            pub details: ::prost::alloc::string::String,
-        }
-        /// Nested message and enum types in `Justification`.
-        pub mod justification {
-            #[derive(
-                Clone,
-                Copy,
-                Debug,
-                PartialEq,
-                Eq,
-                Hash,
-                PartialOrd,
-                Ord,
-                ::prost::Enumeration
-            )]
-            #[repr(i32)]
-            pub enum JustificationType {
-                Unspecified = 0,
-                ComponentNotPresent = 1,
-                VulnerableCodeNotPresent = 2,
-                VulnerableCodeNotInExecutePath = 3,
-                VulnerableCodeCannotBeControlledByAdversary = 4,
-                InlineMitigationsAlreadyExist = 5,
-            }
-            impl JustificationType {
-                /// String value of the enum field names used in the ProtoBuf definition.
-                ///
-                /// The values are not transformed in any way and thus are considered stable
-                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-                pub fn as_str_name(&self) -> &'static str {
-                    match self {
-                        JustificationType::Unspecified => {
-                            "JUSTIFICATION_TYPE_UNSPECIFIED"
-                        }
-                        JustificationType::ComponentNotPresent => "COMPONENT_NOT_PRESENT",
-                        JustificationType::VulnerableCodeNotPresent => {
-                            "VULNERABLE_CODE_NOT_PRESENT"
-                        }
-                        JustificationType::VulnerableCodeNotInExecutePath => {
-                            "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH"
-                        }
-                        JustificationType::VulnerableCodeCannotBeControlledByAdversary => {
-                            "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY"
-                        }
-                        JustificationType::InlineMitigationsAlreadyExist => {
-                            "INLINE_MITIGATIONS_ALREADY_EXIST"
-                        }
-                    }
-                }
-                /// Creates an enum from field names used in the ProtoBuf definition.
-                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                    match value {
-                        "JUSTIFICATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                        "COMPONENT_NOT_PRESENT" => Some(Self::ComponentNotPresent),
-                        "VULNERABLE_CODE_NOT_PRESENT" => {
-                            Some(Self::VulnerableCodeNotPresent)
-                        }
-                        "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH" => {
-                            Some(Self::VulnerableCodeNotInExecutePath)
-                        }
-                        "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY" => {
-                            Some(Self::VulnerableCodeCannotBeControlledByAdversary)
-                        }
-                        "INLINE_MITIGATIONS_ALREADY_EXIST" => {
-                            Some(Self::InlineMitigationsAlreadyExist)
-                        }
-                        _ => None,
-                    }
-                }
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Remediation {
-            #[prost(enumeration = "remediation::RemediationType", tag = "1")]
-            pub remediation_type: i32,
-            #[prost(string, tag = "2")]
-            pub details: ::prost::alloc::string::String,
-            #[prost(message, optional, tag = "3")]
-            pub remediation_uri: ::core::option::Option<super::super::RelatedUrl>,
-        }
-        /// Nested message and enum types in `Remediation`.
-        pub mod remediation {
-            #[derive(
-                Clone,
-                Copy,
-                Debug,
-                PartialEq,
-                Eq,
-                Hash,
-                PartialOrd,
-                Ord,
-                ::prost::Enumeration
-            )]
-            #[repr(i32)]
-            pub enum RemediationType {
-                Unspecified = 0,
-                Mitigation = 1,
-                NoFixPlanned = 2,
-                NoneAvailable = 3,
-                VendorFix = 4,
-                Workaround = 5,
-            }
-            impl RemediationType {
-                /// String value of the enum field names used in the ProtoBuf definition.
-                ///
-                /// The values are not transformed in any way and thus are considered stable
-                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-                pub fn as_str_name(&self) -> &'static str {
-                    match self {
-                        RemediationType::Unspecified => "REMEDIATION_TYPE_UNSPECIFIED",
-                        RemediationType::Mitigation => "MITIGATION",
-                        RemediationType::NoFixPlanned => "NO_FIX_PLANNED",
-                        RemediationType::NoneAvailable => "NONE_AVAILABLE",
-                        RemediationType::VendorFix => "VENDOR_FIX",
-                        RemediationType::Workaround => "WORKAROUND",
-                    }
-                }
-                /// Creates an enum from field names used in the ProtoBuf definition.
-                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                    match value {
-                        "REMEDIATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                        "MITIGATION" => Some(Self::Mitigation),
-                        "NO_FIX_PLANNED" => Some(Self::NoFixPlanned),
-                        "NONE_AVAILABLE" => Some(Self::NoneAvailable),
-                        "VENDOR_FIX" => Some(Self::VendorFix),
-                        "WORKAROUND" => Some(Self::Workaround),
-                        _ => None,
-                    }
-                }
-            }
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum State {
-            Unspecified = 0,
-            Affected = 1,
-            NotAffected = 2,
-            Fixed = 3,
-            UnderInvestigation = 4,
-        }
-        impl State {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    State::Unspecified => "STATE_UNSPECIFIED",
-                    State::Affected => "AFFECTED",
-                    State::NotAffected => "NOT_AFFECTED",
-                    State::Fixed => "FIXED",
-                    State::UnderInvestigation => "UNDER_INVESTIGATION",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "AFFECTED" => Some(Self::Affected),
-                    "NOT_AFFECTED" => Some(Self::NotAffected),
-                    "FIXED" => Some(Self::Fixed),
-                    "UNDER_INVESTIGATION" => Some(Self::UnderInvestigation),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Publisher {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub issuing_authority: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub publisher_namespace: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Product {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(oneof = "product::Identifier", tags = "3")]
+pub identifier: ::core::option::Option<product::Identifier>,
+}
+/// Nested message and enum types in `Product`.
+pub mod product {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Identifier {
+#[prost(string, tag = "3")]
+GenericUri(::prost::alloc::string::String),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Assessment {
+#[deprecated]
+#[prost(string, tag = "1")]
+pub cve: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub vulnerability_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub short_description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub long_description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub related_uris: ::prost::alloc::vec::Vec<super::RelatedUrl>,
+#[prost(enumeration = "assessment::State", tag = "5")]
+pub state: i32,
+#[prost(string, repeated, tag = "6")]
+pub impacts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "7")]
+pub justification: ::core::option::Option<assessment::Justification>,
+#[prost(message, repeated, tag = "8")]
+pub remediations: ::prost::alloc::vec::Vec<assessment::Remediation>,
+}
+/// Nested message and enum types in `Assessment`.
+pub mod assessment {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Justification {
+#[prost(enumeration = "justification::JustificationType", tag = "1")]
+pub justification_type: i32,
+#[prost(string, tag = "2")]
+pub details: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `Justification`.
+pub mod justification {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum JustificationType {
+Unspecified = 0,
+ComponentNotPresent = 1,
+VulnerableCodeNotPresent = 2,
+VulnerableCodeNotInExecutePath = 3,
+VulnerableCodeCannotBeControlledByAdversary = 4,
+InlineMitigationsAlreadyExist = 5,
+}
+impl JustificationType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+JustificationType::Unspecified => "JUSTIFICATION_TYPE_UNSPECIFIED",
+JustificationType::ComponentNotPresent => "COMPONENT_NOT_PRESENT",
+JustificationType::VulnerableCodeNotPresent => "VULNERABLE_CODE_NOT_PRESENT",
+JustificationType::VulnerableCodeNotInExecutePath => "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+JustificationType::VulnerableCodeCannotBeControlledByAdversary => "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+JustificationType::InlineMitigationsAlreadyExist => "INLINE_MITIGATIONS_ALREADY_EXIST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"JUSTIFICATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"COMPONENT_NOT_PRESENT" => Some(Self::ComponentNotPresent),
+"VULNERABLE_CODE_NOT_PRESENT" => Some(Self::VulnerableCodeNotPresent),
+"VULNERABLE_CODE_NOT_IN_EXECUTE_PATH" => Some(Self::VulnerableCodeNotInExecutePath),
+"VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY" => Some(Self::VulnerableCodeCannotBeControlledByAdversary),
+"INLINE_MITIGATIONS_ALREADY_EXIST" => Some(Self::InlineMitigationsAlreadyExist),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Remediation {
+#[prost(enumeration = "remediation::RemediationType", tag = "1")]
+pub remediation_type: i32,
+#[prost(string, tag = "2")]
+pub details: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub remediation_uri: ::core::option::Option<super::super::RelatedUrl>,
+}
+/// Nested message and enum types in `Remediation`.
+pub mod remediation {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RemediationType {
+Unspecified = 0,
+Mitigation = 1,
+NoFixPlanned = 2,
+NoneAvailable = 3,
+VendorFix = 4,
+Workaround = 5,
+}
+impl RemediationType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RemediationType::Unspecified => "REMEDIATION_TYPE_UNSPECIFIED",
+RemediationType::Mitigation => "MITIGATION",
+RemediationType::NoFixPlanned => "NO_FIX_PLANNED",
+RemediationType::NoneAvailable => "NONE_AVAILABLE",
+RemediationType::VendorFix => "VENDOR_FIX",
+RemediationType::Workaround => "WORKAROUND",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REMEDIATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"MITIGATION" => Some(Self::Mitigation),
+"NO_FIX_PLANNED" => Some(Self::NoFixPlanned),
+"NONE_AVAILABLE" => Some(Self::NoneAvailable),
+"VENDOR_FIX" => Some(Self::VendorFix),
+"WORKAROUND" => Some(Self::Workaround),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Affected = 1,
+NotAffected = 2,
+Fixed = 3,
+UnderInvestigation = 4,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Affected => "AFFECTED",
+State::NotAffected => "NOT_AFFECTED",
+State::Fixed => "FIXED",
+State::UnderInvestigation => "UNDER_INVESTIGATION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"AFFECTED" => Some(Self::Affected),
+"NOT_AFFECTED" => Some(Self::NotAffected),
+"FIXED" => Some(Self::Fixed),
+"UNDER_INVESTIGATION" => Some(Self::UnderInvestigation),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CvsSv3 {
-    #[prost(float, tag = "1")]
-    pub base_score: f32,
-    #[prost(float, tag = "2")]
-    pub exploitability_score: f32,
-    #[prost(float, tag = "3")]
-    pub impact_score: f32,
-    #[prost(enumeration = "cvs_sv3::AttackVector", tag = "5")]
-    pub attack_vector: i32,
-    #[prost(enumeration = "cvs_sv3::AttackComplexity", tag = "6")]
-    pub attack_complexity: i32,
-    #[prost(enumeration = "cvs_sv3::PrivilegesRequired", tag = "7")]
-    pub privileges_required: i32,
-    #[prost(enumeration = "cvs_sv3::UserInteraction", tag = "8")]
-    pub user_interaction: i32,
-    #[prost(enumeration = "cvs_sv3::Scope", tag = "9")]
-    pub scope: i32,
-    #[prost(enumeration = "cvs_sv3::Impact", tag = "10")]
-    pub confidentiality_impact: i32,
-    #[prost(enumeration = "cvs_sv3::Impact", tag = "11")]
-    pub integrity_impact: i32,
-    #[prost(enumeration = "cvs_sv3::Impact", tag = "12")]
-    pub availability_impact: i32,
+#[prost(float, tag = "1")]
+pub base_score: f32,
+#[prost(float, tag = "2")]
+pub exploitability_score: f32,
+#[prost(float, tag = "3")]
+pub impact_score: f32,
+#[prost(enumeration = "cvs_sv3::AttackVector", tag = "5")]
+pub attack_vector: i32,
+#[prost(enumeration = "cvs_sv3::AttackComplexity", tag = "6")]
+pub attack_complexity: i32,
+#[prost(enumeration = "cvs_sv3::PrivilegesRequired", tag = "7")]
+pub privileges_required: i32,
+#[prost(enumeration = "cvs_sv3::UserInteraction", tag = "8")]
+pub user_interaction: i32,
+#[prost(enumeration = "cvs_sv3::Scope", tag = "9")]
+pub scope: i32,
+#[prost(enumeration = "cvs_sv3::Impact", tag = "10")]
+pub confidentiality_impact: i32,
+#[prost(enumeration = "cvs_sv3::Impact", tag = "11")]
+pub integrity_impact: i32,
+#[prost(enumeration = "cvs_sv3::Impact", tag = "12")]
+pub availability_impact: i32,
 }
 /// Nested message and enum types in `CVSSv3`.
 pub mod cvs_sv3 {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AttackVector {
-        Unspecified = 0,
-        Network = 1,
-        Adjacent = 2,
-        Local = 3,
-        Physical = 4,
-    }
-    impl AttackVector {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AttackVector::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
-                AttackVector::Network => "ATTACK_VECTOR_NETWORK",
-                AttackVector::Adjacent => "ATTACK_VECTOR_ADJACENT",
-                AttackVector::Local => "ATTACK_VECTOR_LOCAL",
-                AttackVector::Physical => "ATTACK_VECTOR_PHYSICAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ATTACK_VECTOR_UNSPECIFIED" => Some(Self::Unspecified),
-                "ATTACK_VECTOR_NETWORK" => Some(Self::Network),
-                "ATTACK_VECTOR_ADJACENT" => Some(Self::Adjacent),
-                "ATTACK_VECTOR_LOCAL" => Some(Self::Local),
-                "ATTACK_VECTOR_PHYSICAL" => Some(Self::Physical),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AttackComplexity {
-        Unspecified = 0,
-        Low = 1,
-        High = 2,
-    }
-    impl AttackComplexity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AttackComplexity::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
-                AttackComplexity::Low => "ATTACK_COMPLEXITY_LOW",
-                AttackComplexity::High => "ATTACK_COMPLEXITY_HIGH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ATTACK_COMPLEXITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "ATTACK_COMPLEXITY_LOW" => Some(Self::Low),
-                "ATTACK_COMPLEXITY_HIGH" => Some(Self::High),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PrivilegesRequired {
-        Unspecified = 0,
-        None = 1,
-        Low = 2,
-        High = 3,
-    }
-    impl PrivilegesRequired {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PrivilegesRequired::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
-                PrivilegesRequired::None => "PRIVILEGES_REQUIRED_NONE",
-                PrivilegesRequired::Low => "PRIVILEGES_REQUIRED_LOW",
-                PrivilegesRequired::High => "PRIVILEGES_REQUIRED_HIGH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PRIVILEGES_REQUIRED_UNSPECIFIED" => Some(Self::Unspecified),
-                "PRIVILEGES_REQUIRED_NONE" => Some(Self::None),
-                "PRIVILEGES_REQUIRED_LOW" => Some(Self::Low),
-                "PRIVILEGES_REQUIRED_HIGH" => Some(Self::High),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum UserInteraction {
-        Unspecified = 0,
-        None = 1,
-        Required = 2,
-    }
-    impl UserInteraction {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                UserInteraction::Unspecified => "USER_INTERACTION_UNSPECIFIED",
-                UserInteraction::None => "USER_INTERACTION_NONE",
-                UserInteraction::Required => "USER_INTERACTION_REQUIRED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "USER_INTERACTION_UNSPECIFIED" => Some(Self::Unspecified),
-                "USER_INTERACTION_NONE" => Some(Self::None),
-                "USER_INTERACTION_REQUIRED" => Some(Self::Required),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Scope {
-        Unspecified = 0,
-        Unchanged = 1,
-        Changed = 2,
-    }
-    impl Scope {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Scope::Unspecified => "SCOPE_UNSPECIFIED",
-                Scope::Unchanged => "SCOPE_UNCHANGED",
-                Scope::Changed => "SCOPE_CHANGED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SCOPE_UNCHANGED" => Some(Self::Unchanged),
-                "SCOPE_CHANGED" => Some(Self::Changed),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Impact {
-        Unspecified = 0,
-        High = 1,
-        Low = 2,
-        None = 3,
-    }
-    impl Impact {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Impact::Unspecified => "IMPACT_UNSPECIFIED",
-                Impact::High => "IMPACT_HIGH",
-                Impact::Low => "IMPACT_LOW",
-                Impact::None => "IMPACT_NONE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "IMPACT_UNSPECIFIED" => Some(Self::Unspecified),
-                "IMPACT_HIGH" => Some(Self::High),
-                "IMPACT_LOW" => Some(Self::Low),
-                "IMPACT_NONE" => Some(Self::None),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AttackVector {
+Unspecified = 0,
+Network = 1,
+Adjacent = 2,
+Local = 3,
+Physical = 4,
+}
+impl AttackVector {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AttackVector::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
+AttackVector::Network => "ATTACK_VECTOR_NETWORK",
+AttackVector::Adjacent => "ATTACK_VECTOR_ADJACENT",
+AttackVector::Local => "ATTACK_VECTOR_LOCAL",
+AttackVector::Physical => "ATTACK_VECTOR_PHYSICAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ATTACK_VECTOR_UNSPECIFIED" => Some(Self::Unspecified),
+"ATTACK_VECTOR_NETWORK" => Some(Self::Network),
+"ATTACK_VECTOR_ADJACENT" => Some(Self::Adjacent),
+"ATTACK_VECTOR_LOCAL" => Some(Self::Local),
+"ATTACK_VECTOR_PHYSICAL" => Some(Self::Physical),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AttackComplexity {
+Unspecified = 0,
+Low = 1,
+High = 2,
+}
+impl AttackComplexity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AttackComplexity::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
+AttackComplexity::Low => "ATTACK_COMPLEXITY_LOW",
+AttackComplexity::High => "ATTACK_COMPLEXITY_HIGH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ATTACK_COMPLEXITY_UNSPECIFIED" => Some(Self::Unspecified),
+"ATTACK_COMPLEXITY_LOW" => Some(Self::Low),
+"ATTACK_COMPLEXITY_HIGH" => Some(Self::High),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PrivilegesRequired {
+Unspecified = 0,
+None = 1,
+Low = 2,
+High = 3,
+}
+impl PrivilegesRequired {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PrivilegesRequired::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
+PrivilegesRequired::None => "PRIVILEGES_REQUIRED_NONE",
+PrivilegesRequired::Low => "PRIVILEGES_REQUIRED_LOW",
+PrivilegesRequired::High => "PRIVILEGES_REQUIRED_HIGH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PRIVILEGES_REQUIRED_UNSPECIFIED" => Some(Self::Unspecified),
+"PRIVILEGES_REQUIRED_NONE" => Some(Self::None),
+"PRIVILEGES_REQUIRED_LOW" => Some(Self::Low),
+"PRIVILEGES_REQUIRED_HIGH" => Some(Self::High),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum UserInteraction {
+Unspecified = 0,
+None = 1,
+Required = 2,
+}
+impl UserInteraction {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+UserInteraction::Unspecified => "USER_INTERACTION_UNSPECIFIED",
+UserInteraction::None => "USER_INTERACTION_NONE",
+UserInteraction::Required => "USER_INTERACTION_REQUIRED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"USER_INTERACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"USER_INTERACTION_NONE" => Some(Self::None),
+"USER_INTERACTION_REQUIRED" => Some(Self::Required),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Scope {
+Unspecified = 0,
+Unchanged = 1,
+Changed = 2,
+}
+impl Scope {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Scope::Unspecified => "SCOPE_UNSPECIFIED",
+Scope::Unchanged => "SCOPE_UNCHANGED",
+Scope::Changed => "SCOPE_CHANGED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SCOPE_UNCHANGED" => Some(Self::Unchanged),
+"SCOPE_CHANGED" => Some(Self::Changed),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Impact {
+Unspecified = 0,
+High = 1,
+Low = 2,
+None = 3,
+}
+impl Impact {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Impact::Unspecified => "IMPACT_UNSPECIFIED",
+Impact::High => "IMPACT_HIGH",
+Impact::Low => "IMPACT_LOW",
+Impact::None => "IMPACT_NONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"IMPACT_UNSPECIFIED" => Some(Self::Unspecified),
+"IMPACT_HIGH" => Some(Self::High),
+"IMPACT_LOW" => Some(Self::Low),
+"IMPACT_NONE" => Some(Self::None),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Cvss {
-    #[prost(float, tag = "1")]
-    pub base_score: f32,
-    #[prost(float, tag = "2")]
-    pub exploitability_score: f32,
-    #[prost(float, tag = "3")]
-    pub impact_score: f32,
-    #[prost(enumeration = "cvss::AttackVector", tag = "4")]
-    pub attack_vector: i32,
-    #[prost(enumeration = "cvss::AttackComplexity", tag = "5")]
-    pub attack_complexity: i32,
-    #[prost(enumeration = "cvss::Authentication", tag = "6")]
-    pub authentication: i32,
-    #[prost(enumeration = "cvss::PrivilegesRequired", tag = "7")]
-    pub privileges_required: i32,
-    #[prost(enumeration = "cvss::UserInteraction", tag = "8")]
-    pub user_interaction: i32,
-    #[prost(enumeration = "cvss::Scope", tag = "9")]
-    pub scope: i32,
-    #[prost(enumeration = "cvss::Impact", tag = "10")]
-    pub confidentiality_impact: i32,
-    #[prost(enumeration = "cvss::Impact", tag = "11")]
-    pub integrity_impact: i32,
-    #[prost(enumeration = "cvss::Impact", tag = "12")]
-    pub availability_impact: i32,
+#[prost(float, tag = "1")]
+pub base_score: f32,
+#[prost(float, tag = "2")]
+pub exploitability_score: f32,
+#[prost(float, tag = "3")]
+pub impact_score: f32,
+#[prost(enumeration = "cvss::AttackVector", tag = "4")]
+pub attack_vector: i32,
+#[prost(enumeration = "cvss::AttackComplexity", tag = "5")]
+pub attack_complexity: i32,
+#[prost(enumeration = "cvss::Authentication", tag = "6")]
+pub authentication: i32,
+#[prost(enumeration = "cvss::PrivilegesRequired", tag = "7")]
+pub privileges_required: i32,
+#[prost(enumeration = "cvss::UserInteraction", tag = "8")]
+pub user_interaction: i32,
+#[prost(enumeration = "cvss::Scope", tag = "9")]
+pub scope: i32,
+#[prost(enumeration = "cvss::Impact", tag = "10")]
+pub confidentiality_impact: i32,
+#[prost(enumeration = "cvss::Impact", tag = "11")]
+pub integrity_impact: i32,
+#[prost(enumeration = "cvss::Impact", tag = "12")]
+pub availability_impact: i32,
 }
 /// Nested message and enum types in `CVSS`.
 pub mod cvss {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AttackVector {
-        Unspecified = 0,
-        Network = 1,
-        Adjacent = 2,
-        Local = 3,
-        Physical = 4,
-    }
-    impl AttackVector {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AttackVector::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
-                AttackVector::Network => "ATTACK_VECTOR_NETWORK",
-                AttackVector::Adjacent => "ATTACK_VECTOR_ADJACENT",
-                AttackVector::Local => "ATTACK_VECTOR_LOCAL",
-                AttackVector::Physical => "ATTACK_VECTOR_PHYSICAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ATTACK_VECTOR_UNSPECIFIED" => Some(Self::Unspecified),
-                "ATTACK_VECTOR_NETWORK" => Some(Self::Network),
-                "ATTACK_VECTOR_ADJACENT" => Some(Self::Adjacent),
-                "ATTACK_VECTOR_LOCAL" => Some(Self::Local),
-                "ATTACK_VECTOR_PHYSICAL" => Some(Self::Physical),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AttackComplexity {
-        Unspecified = 0,
-        Low = 1,
-        High = 2,
-        Medium = 3,
-    }
-    impl AttackComplexity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AttackComplexity::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
-                AttackComplexity::Low => "ATTACK_COMPLEXITY_LOW",
-                AttackComplexity::High => "ATTACK_COMPLEXITY_HIGH",
-                AttackComplexity::Medium => "ATTACK_COMPLEXITY_MEDIUM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ATTACK_COMPLEXITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "ATTACK_COMPLEXITY_LOW" => Some(Self::Low),
-                "ATTACK_COMPLEXITY_HIGH" => Some(Self::High),
-                "ATTACK_COMPLEXITY_MEDIUM" => Some(Self::Medium),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Authentication {
-        Unspecified = 0,
-        Multiple = 1,
-        Single = 2,
-        None = 3,
-    }
-    impl Authentication {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Authentication::Unspecified => "AUTHENTICATION_UNSPECIFIED",
-                Authentication::Multiple => "AUTHENTICATION_MULTIPLE",
-                Authentication::Single => "AUTHENTICATION_SINGLE",
-                Authentication::None => "AUTHENTICATION_NONE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "AUTHENTICATION_UNSPECIFIED" => Some(Self::Unspecified),
-                "AUTHENTICATION_MULTIPLE" => Some(Self::Multiple),
-                "AUTHENTICATION_SINGLE" => Some(Self::Single),
-                "AUTHENTICATION_NONE" => Some(Self::None),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PrivilegesRequired {
-        Unspecified = 0,
-        None = 1,
-        Low = 2,
-        High = 3,
-    }
-    impl PrivilegesRequired {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PrivilegesRequired::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
-                PrivilegesRequired::None => "PRIVILEGES_REQUIRED_NONE",
-                PrivilegesRequired::Low => "PRIVILEGES_REQUIRED_LOW",
-                PrivilegesRequired::High => "PRIVILEGES_REQUIRED_HIGH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PRIVILEGES_REQUIRED_UNSPECIFIED" => Some(Self::Unspecified),
-                "PRIVILEGES_REQUIRED_NONE" => Some(Self::None),
-                "PRIVILEGES_REQUIRED_LOW" => Some(Self::Low),
-                "PRIVILEGES_REQUIRED_HIGH" => Some(Self::High),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum UserInteraction {
-        Unspecified = 0,
-        None = 1,
-        Required = 2,
-    }
-    impl UserInteraction {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                UserInteraction::Unspecified => "USER_INTERACTION_UNSPECIFIED",
-                UserInteraction::None => "USER_INTERACTION_NONE",
-                UserInteraction::Required => "USER_INTERACTION_REQUIRED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "USER_INTERACTION_UNSPECIFIED" => Some(Self::Unspecified),
-                "USER_INTERACTION_NONE" => Some(Self::None),
-                "USER_INTERACTION_REQUIRED" => Some(Self::Required),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Scope {
-        Unspecified = 0,
-        Unchanged = 1,
-        Changed = 2,
-    }
-    impl Scope {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Scope::Unspecified => "SCOPE_UNSPECIFIED",
-                Scope::Unchanged => "SCOPE_UNCHANGED",
-                Scope::Changed => "SCOPE_CHANGED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SCOPE_UNCHANGED" => Some(Self::Unchanged),
-                "SCOPE_CHANGED" => Some(Self::Changed),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Impact {
-        Unspecified = 0,
-        High = 1,
-        Low = 2,
-        None = 3,
-        Partial = 4,
-        Complete = 5,
-    }
-    impl Impact {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Impact::Unspecified => "IMPACT_UNSPECIFIED",
-                Impact::High => "IMPACT_HIGH",
-                Impact::Low => "IMPACT_LOW",
-                Impact::None => "IMPACT_NONE",
-                Impact::Partial => "IMPACT_PARTIAL",
-                Impact::Complete => "IMPACT_COMPLETE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "IMPACT_UNSPECIFIED" => Some(Self::Unspecified),
-                "IMPACT_HIGH" => Some(Self::High),
-                "IMPACT_LOW" => Some(Self::Low),
-                "IMPACT_NONE" => Some(Self::None),
-                "IMPACT_PARTIAL" => Some(Self::Partial),
-                "IMPACT_COMPLETE" => Some(Self::Complete),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AttackVector {
+Unspecified = 0,
+Network = 1,
+Adjacent = 2,
+Local = 3,
+Physical = 4,
+}
+impl AttackVector {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AttackVector::Unspecified => "ATTACK_VECTOR_UNSPECIFIED",
+AttackVector::Network => "ATTACK_VECTOR_NETWORK",
+AttackVector::Adjacent => "ATTACK_VECTOR_ADJACENT",
+AttackVector::Local => "ATTACK_VECTOR_LOCAL",
+AttackVector::Physical => "ATTACK_VECTOR_PHYSICAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ATTACK_VECTOR_UNSPECIFIED" => Some(Self::Unspecified),
+"ATTACK_VECTOR_NETWORK" => Some(Self::Network),
+"ATTACK_VECTOR_ADJACENT" => Some(Self::Adjacent),
+"ATTACK_VECTOR_LOCAL" => Some(Self::Local),
+"ATTACK_VECTOR_PHYSICAL" => Some(Self::Physical),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AttackComplexity {
+Unspecified = 0,
+Low = 1,
+High = 2,
+Medium = 3,
+}
+impl AttackComplexity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AttackComplexity::Unspecified => "ATTACK_COMPLEXITY_UNSPECIFIED",
+AttackComplexity::Low => "ATTACK_COMPLEXITY_LOW",
+AttackComplexity::High => "ATTACK_COMPLEXITY_HIGH",
+AttackComplexity::Medium => "ATTACK_COMPLEXITY_MEDIUM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ATTACK_COMPLEXITY_UNSPECIFIED" => Some(Self::Unspecified),
+"ATTACK_COMPLEXITY_LOW" => Some(Self::Low),
+"ATTACK_COMPLEXITY_HIGH" => Some(Self::High),
+"ATTACK_COMPLEXITY_MEDIUM" => Some(Self::Medium),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Authentication {
+Unspecified = 0,
+Multiple = 1,
+Single = 2,
+None = 3,
+}
+impl Authentication {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Authentication::Unspecified => "AUTHENTICATION_UNSPECIFIED",
+Authentication::Multiple => "AUTHENTICATION_MULTIPLE",
+Authentication::Single => "AUTHENTICATION_SINGLE",
+Authentication::None => "AUTHENTICATION_NONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"AUTHENTICATION_UNSPECIFIED" => Some(Self::Unspecified),
+"AUTHENTICATION_MULTIPLE" => Some(Self::Multiple),
+"AUTHENTICATION_SINGLE" => Some(Self::Single),
+"AUTHENTICATION_NONE" => Some(Self::None),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PrivilegesRequired {
+Unspecified = 0,
+None = 1,
+Low = 2,
+High = 3,
+}
+impl PrivilegesRequired {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PrivilegesRequired::Unspecified => "PRIVILEGES_REQUIRED_UNSPECIFIED",
+PrivilegesRequired::None => "PRIVILEGES_REQUIRED_NONE",
+PrivilegesRequired::Low => "PRIVILEGES_REQUIRED_LOW",
+PrivilegesRequired::High => "PRIVILEGES_REQUIRED_HIGH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PRIVILEGES_REQUIRED_UNSPECIFIED" => Some(Self::Unspecified),
+"PRIVILEGES_REQUIRED_NONE" => Some(Self::None),
+"PRIVILEGES_REQUIRED_LOW" => Some(Self::Low),
+"PRIVILEGES_REQUIRED_HIGH" => Some(Self::High),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum UserInteraction {
+Unspecified = 0,
+None = 1,
+Required = 2,
+}
+impl UserInteraction {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+UserInteraction::Unspecified => "USER_INTERACTION_UNSPECIFIED",
+UserInteraction::None => "USER_INTERACTION_NONE",
+UserInteraction::Required => "USER_INTERACTION_REQUIRED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"USER_INTERACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"USER_INTERACTION_NONE" => Some(Self::None),
+"USER_INTERACTION_REQUIRED" => Some(Self::Required),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Scope {
+Unspecified = 0,
+Unchanged = 1,
+Changed = 2,
+}
+impl Scope {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Scope::Unspecified => "SCOPE_UNSPECIFIED",
+Scope::Unchanged => "SCOPE_UNCHANGED",
+Scope::Changed => "SCOPE_CHANGED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SCOPE_UNCHANGED" => Some(Self::Unchanged),
+"SCOPE_CHANGED" => Some(Self::Changed),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Impact {
+Unspecified = 0,
+High = 1,
+Low = 2,
+None = 3,
+Partial = 4,
+Complete = 5,
+}
+impl Impact {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Impact::Unspecified => "IMPACT_UNSPECIFIED",
+Impact::High => "IMPACT_HIGH",
+Impact::Low => "IMPACT_LOW",
+Impact::None => "IMPACT_NONE",
+Impact::Partial => "IMPACT_PARTIAL",
+Impact::Complete => "IMPACT_COMPLETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"IMPACT_UNSPECIFIED" => Some(Self::Unspecified),
+"IMPACT_HIGH" => Some(Self::High),
+"IMPACT_LOW" => Some(Self::Low),
+"IMPACT_NONE" => Some(Self::None),
+"IMPACT_PARTIAL" => Some(Self::Partial),
+"IMPACT_COMPLETE" => Some(Self::Complete),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum CvssVersion {
-    Unspecified = 0,
-    CvssVersion2 = 1,
-    CvssVersion3 = 2,
+Unspecified = 0,
+CvssVersion2 = 1,
+CvssVersion3 = 2,
 }
 impl CvssVersion {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            CvssVersion::Unspecified => "CVSS_VERSION_UNSPECIFIED",
-            CvssVersion::CvssVersion2 => "CVSS_VERSION_2",
-            CvssVersion::CvssVersion3 => "CVSS_VERSION_3",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "CVSS_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
-            "CVSS_VERSION_2" => Some(Self::CvssVersion2),
-            "CVSS_VERSION_3" => Some(Self::CvssVersion3),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CvssVersion::Unspecified => "CVSS_VERSION_UNSPECIFIED",
+CvssVersion::CvssVersion2 => "CVSS_VERSION_2",
+CvssVersion::CvssVersion3 => "CVSS_VERSION_3",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CVSS_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
+"CVSS_VERSION_2" => Some(Self::CvssVersion2),
+"CVSS_VERSION_3" => Some(Self::CvssVersion3),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VulnerabilityNote {
-    #[prost(float, tag = "1")]
-    pub cvss_score: f32,
-    #[prost(enumeration = "Severity", tag = "2")]
-    pub severity: i32,
-    #[prost(message, repeated, tag = "3")]
-    pub details: ::prost::alloc::vec::Vec<vulnerability_note::Detail>,
-    #[prost(message, optional, tag = "4")]
-    pub cvss_v3: ::core::option::Option<CvsSv3>,
-    #[prost(message, repeated, tag = "5")]
-    pub windows_details: ::prost::alloc::vec::Vec<vulnerability_note::WindowsDetail>,
-    #[prost(message, optional, tag = "6")]
-    pub source_update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "CvssVersion", tag = "7")]
-    pub cvss_version: i32,
-    #[prost(message, optional, tag = "8")]
-    pub cvss_v2: ::core::option::Option<Cvss>,
+#[prost(float, tag = "1")]
+pub cvss_score: f32,
+#[prost(enumeration = "Severity", tag = "2")]
+pub severity: i32,
+#[prost(message, repeated, tag = "3")]
+pub details: ::prost::alloc::vec::Vec<vulnerability_note::Detail>,
+#[prost(message, optional, tag = "4")]
+pub cvss_v3: ::core::option::Option<CvsSv3>,
+#[prost(message, repeated, tag = "5")]
+pub windows_details: ::prost::alloc::vec::Vec<vulnerability_note::WindowsDetail>,
+#[prost(message, optional, tag = "6")]
+pub source_update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "CvssVersion", tag = "7")]
+pub cvss_version: i32,
+#[prost(message, optional, tag = "8")]
+pub cvss_v2: ::core::option::Option<Cvss>,
 }
 /// Nested message and enum types in `VulnerabilityNote`.
 pub mod vulnerability_note {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Detail {
-        #[prost(string, tag = "1")]
-        pub severity_name: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub description: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub package_type: ::prost::alloc::string::String,
-        #[prost(string, tag = "4")]
-        pub affected_cpe_uri: ::prost::alloc::string::String,
-        #[prost(string, tag = "5")]
-        pub affected_package: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "6")]
-        pub affected_version_start: ::core::option::Option<super::Version>,
-        #[prost(message, optional, tag = "7")]
-        pub affected_version_end: ::core::option::Option<super::Version>,
-        #[prost(string, tag = "8")]
-        pub fixed_cpe_uri: ::prost::alloc::string::String,
-        #[prost(string, tag = "9")]
-        pub fixed_package: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "10")]
-        pub fixed_version: ::core::option::Option<super::Version>,
-        #[prost(bool, tag = "11")]
-        pub is_obsolete: bool,
-        #[prost(message, optional, tag = "12")]
-        pub source_update_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(string, tag = "13")]
-        pub source: ::prost::alloc::string::String,
-        #[prost(string, tag = "14")]
-        pub vendor: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct WindowsDetail {
-        #[prost(string, tag = "1")]
-        pub cpe_uri: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub description: ::prost::alloc::string::String,
-        #[prost(message, repeated, tag = "4")]
-        pub fixing_kbs: ::prost::alloc::vec::Vec<windows_detail::KnowledgeBase>,
-    }
-    /// Nested message and enum types in `WindowsDetail`.
-    pub mod windows_detail {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct KnowledgeBase {
-            #[prost(string, tag = "1")]
-            pub name: ::prost::alloc::string::String,
-            #[prost(string, tag = "2")]
-            pub url: ::prost::alloc::string::String,
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Detail {
+#[prost(string, tag = "1")]
+pub severity_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub package_type: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub affected_cpe_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub affected_package: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "6")]
+pub affected_version_start: ::core::option::Option<super::Version>,
+#[prost(message, optional, tag = "7")]
+pub affected_version_end: ::core::option::Option<super::Version>,
+#[prost(string, tag = "8")]
+pub fixed_cpe_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub fixed_package: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub fixed_version: ::core::option::Option<super::Version>,
+#[prost(bool, tag = "11")]
+pub is_obsolete: bool,
+#[prost(message, optional, tag = "12")]
+pub source_update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "13")]
+pub source: ::prost::alloc::string::String,
+#[prost(string, tag = "14")]
+pub vendor: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WindowsDetail {
+#[prost(string, tag = "1")]
+pub cpe_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub fixing_kbs: ::prost::alloc::vec::Vec<windows_detail::KnowledgeBase>,
+}
+/// Nested message and enum types in `WindowsDetail`.
+pub mod windows_detail {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KnowledgeBase {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub url: ::prost::alloc::string::String,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VulnerabilityOccurrence {
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(enumeration = "Severity", tag = "2")]
-    pub severity: i32,
-    #[prost(float, tag = "3")]
-    pub cvss_score: f32,
-    #[prost(message, optional, tag = "10")]
-    pub cvssv3: ::core::option::Option<Cvss>,
-    #[prost(message, repeated, tag = "4")]
-    pub package_issue: ::prost::alloc::vec::Vec<vulnerability_occurrence::PackageIssue>,
-    #[prost(string, tag = "5")]
-    pub short_description: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub long_description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "7")]
-    pub related_urls: ::prost::alloc::vec::Vec<RelatedUrl>,
-    #[prost(enumeration = "Severity", tag = "8")]
-    pub effective_severity: i32,
-    #[prost(bool, tag = "9")]
-    pub fix_available: bool,
-    #[prost(enumeration = "CvssVersion", tag = "11")]
-    pub cvss_version: i32,
-    #[prost(message, optional, tag = "12")]
-    pub cvss_v2: ::core::option::Option<Cvss>,
-    #[prost(message, optional, tag = "13")]
-    pub vex_assessment: ::core::option::Option<vulnerability_occurrence::VexAssessment>,
-    #[prost(string, tag = "14")]
-    pub extra_details: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(enumeration = "Severity", tag = "2")]
+pub severity: i32,
+#[prost(float, tag = "3")]
+pub cvss_score: f32,
+#[prost(message, optional, tag = "10")]
+pub cvssv3: ::core::option::Option<Cvss>,
+#[prost(message, repeated, tag = "4")]
+pub package_issue: ::prost::alloc::vec::Vec<vulnerability_occurrence::PackageIssue>,
+#[prost(string, tag = "5")]
+pub short_description: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub long_description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "7")]
+pub related_urls: ::prost::alloc::vec::Vec<RelatedUrl>,
+#[prost(enumeration = "Severity", tag = "8")]
+pub effective_severity: i32,
+#[prost(bool, tag = "9")]
+pub fix_available: bool,
+#[prost(enumeration = "CvssVersion", tag = "11")]
+pub cvss_version: i32,
+#[prost(message, optional, tag = "12")]
+pub cvss_v2: ::core::option::Option<Cvss>,
+#[prost(message, optional, tag = "13")]
+pub vex_assessment: ::core::option::Option<vulnerability_occurrence::VexAssessment>,
+#[prost(string, tag = "14")]
+pub extra_details: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `VulnerabilityOccurrence`.
 pub mod vulnerability_occurrence {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct PackageIssue {
-        #[prost(string, tag = "1")]
-        pub affected_cpe_uri: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub affected_package: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "3")]
-        pub affected_version: ::core::option::Option<super::Version>,
-        #[prost(string, tag = "4")]
-        pub fixed_cpe_uri: ::prost::alloc::string::String,
-        #[prost(string, tag = "5")]
-        pub fixed_package: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "6")]
-        pub fixed_version: ::core::option::Option<super::Version>,
-        #[prost(bool, tag = "7")]
-        pub fix_available: bool,
-        #[prost(string, tag = "8")]
-        pub package_type: ::prost::alloc::string::String,
-        #[prost(enumeration = "super::Severity", tag = "9")]
-        pub effective_severity: i32,
-        #[prost(message, repeated, tag = "10")]
-        pub file_location: ::prost::alloc::vec::Vec<super::FileLocation>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct VexAssessment {
-        #[deprecated]
-        #[prost(string, tag = "1")]
-        pub cve: ::prost::alloc::string::String,
-        #[prost(string, tag = "8")]
-        pub vulnerability_id: ::prost::alloc::string::String,
-        #[prost(message, repeated, tag = "2")]
-        pub related_uris: ::prost::alloc::vec::Vec<super::RelatedUrl>,
-        #[prost(string, tag = "3")]
-        pub note_name: ::prost::alloc::string::String,
-        #[prost(
-            enumeration = "super::vulnerability_assessment_note::assessment::State",
-            tag = "4"
-        )]
-        pub state: i32,
-        #[prost(string, repeated, tag = "5")]
-        pub impacts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(message, repeated, tag = "6")]
-        pub remediations: ::prost::alloc::vec::Vec<
-            super::vulnerability_assessment_note::assessment::Remediation,
-        >,
-        #[prost(message, optional, tag = "7")]
-        pub justification: ::core::option::Option<
-            super::vulnerability_assessment_note::assessment::Justification,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PackageIssue {
+#[prost(string, tag = "1")]
+pub affected_cpe_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub affected_package: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub affected_version: ::core::option::Option<super::Version>,
+#[prost(string, tag = "4")]
+pub fixed_cpe_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub fixed_package: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "6")]
+pub fixed_version: ::core::option::Option<super::Version>,
+#[prost(bool, tag = "7")]
+pub fix_available: bool,
+#[prost(string, tag = "8")]
+pub package_type: ::prost::alloc::string::String,
+#[prost(enumeration = "super::Severity", tag = "9")]
+pub effective_severity: i32,
+#[prost(message, repeated, tag = "10")]
+pub file_location: ::prost::alloc::vec::Vec<super::FileLocation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VexAssessment {
+#[deprecated]
+#[prost(string, tag = "1")]
+pub cve: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub vulnerability_id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub related_uris: ::prost::alloc::vec::Vec<super::RelatedUrl>,
+#[prost(string, tag = "3")]
+pub note_name: ::prost::alloc::string::String,
+#[prost(enumeration = "super::vulnerability_assessment_note::assessment::State", tag = "4")]
+pub state: i32,
+#[prost(string, repeated, tag = "5")]
+pub impacts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "6")]
+pub remediations: ::prost::alloc::vec::Vec<super::vulnerability_assessment_note::assessment::Remediation>,
+#[prost(message, optional, tag = "7")]
+pub justification: ::core::option::Option<super::vulnerability_assessment_note::assessment::Justification>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Occurrence {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub resource_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub note_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "NoteKind", tag = "4")]
-    pub kind: i32,
-    #[prost(string, tag = "5")]
-    pub remediation: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "18")]
-    pub envelope: ::core::option::Option<Envelope>,
-    #[prost(
-        oneof = "occurrence::Details",
-        tags = "8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19"
-    )]
-    pub details: ::core::option::Option<occurrence::Details>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub resource_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub note_name: ::prost::alloc::string::String,
+#[prost(enumeration = "NoteKind", tag = "4")]
+pub kind: i32,
+#[prost(string, tag = "5")]
+pub remediation: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "18")]
+pub envelope: ::core::option::Option<Envelope>,
+#[prost(oneof = "occurrence::Details", tags = "8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19")]
+pub details: ::core::option::Option<occurrence::Details>,
 }
 /// Nested message and enum types in `Occurrence`.
 pub mod occurrence {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Details {
-        #[prost(message, tag = "8")]
-        Vulnerability(super::VulnerabilityOccurrence),
-        #[prost(message, tag = "9")]
-        Build(super::BuildOccurrence),
-        #[prost(message, tag = "10")]
-        Image(super::ImageOccurrence),
-        #[prost(message, tag = "11")]
-        Package(super::PackageOccurrence),
-        #[prost(message, tag = "12")]
-        Deployment(super::DeploymentOccurrence),
-        #[prost(message, tag = "13")]
-        Discovery(super::DiscoveryOccurrence),
-        #[prost(message, tag = "14")]
-        Attestation(super::AttestationOccurrence),
-        #[prost(message, tag = "15")]
-        Upgrade(super::UpgradeOccurrence),
-        #[prost(message, tag = "16")]
-        Compliance(super::ComplianceOccurrence),
-        #[prost(message, tag = "17")]
-        DsseAttestation(super::DsseAttestationOccurrence),
-        #[prost(message, tag = "19")]
-        SbomReference(super::SbomReferenceOccurrence),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Details {
+#[prost(message, tag = "8")]
+Vulnerability(super::VulnerabilityOccurrence),
+#[prost(message, tag = "9")]
+Build(super::BuildOccurrence),
+#[prost(message, tag = "10")]
+Image(super::ImageOccurrence),
+#[prost(message, tag = "11")]
+Package(super::PackageOccurrence),
+#[prost(message, tag = "12")]
+Deployment(super::DeploymentOccurrence),
+#[prost(message, tag = "13")]
+Discovery(super::DiscoveryOccurrence),
+#[prost(message, tag = "14")]
+Attestation(super::AttestationOccurrence),
+#[prost(message, tag = "15")]
+Upgrade(super::UpgradeOccurrence),
+#[prost(message, tag = "16")]
+Compliance(super::ComplianceOccurrence),
+#[prost(message, tag = "17")]
+DsseAttestation(super::DsseAttestationOccurrence),
+#[prost(message, tag = "19")]
+SbomReference(super::SbomReferenceOccurrence),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Note {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub short_description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub long_description: ::prost::alloc::string::String,
-    #[prost(enumeration = "NoteKind", tag = "4")]
-    pub kind: i32,
-    #[prost(message, repeated, tag = "5")]
-    pub related_url: ::prost::alloc::vec::Vec<RelatedUrl>,
-    #[prost(message, optional, tag = "6")]
-    pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, repeated, tag = "9")]
-    pub related_note_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(
-        oneof = "note::Type",
-        tags = "10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21"
-    )]
-    pub r#type: ::core::option::Option<note::Type>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub short_description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub long_description: ::prost::alloc::string::String,
+#[prost(enumeration = "NoteKind", tag = "4")]
+pub kind: i32,
+#[prost(message, repeated, tag = "5")]
+pub related_url: ::prost::alloc::vec::Vec<RelatedUrl>,
+#[prost(message, optional, tag = "6")]
+pub expiration_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, repeated, tag = "9")]
+pub related_note_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(oneof = "note::Type", tags = "10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21")]
+pub r#type: ::core::option::Option<note::Type>,
 }
 /// Nested message and enum types in `Note`.
 pub mod note {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Type {
-        #[prost(message, tag = "10")]
-        Vulnerability(super::VulnerabilityNote),
-        #[prost(message, tag = "11")]
-        Build(super::BuildNote),
-        #[prost(message, tag = "12")]
-        Image(super::ImageNote),
-        #[prost(message, tag = "13")]
-        Package(super::PackageNote),
-        #[prost(message, tag = "14")]
-        Deployment(super::DeploymentNote),
-        #[prost(message, tag = "15")]
-        Discovery(super::DiscoveryNote),
-        #[prost(message, tag = "16")]
-        Attestation(super::AttestationNote),
-        #[prost(message, tag = "17")]
-        Upgrade(super::UpgradeNote),
-        #[prost(message, tag = "18")]
-        Compliance(super::ComplianceNote),
-        #[prost(message, tag = "19")]
-        DsseAttestation(super::DsseAttestationNote),
-        #[prost(message, tag = "20")]
-        VulnerabilityAssessment(super::VulnerabilityAssessmentNote),
-        #[prost(message, tag = "21")]
-        SbomReference(super::SbomReferenceNote),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "10")]
+Vulnerability(super::VulnerabilityNote),
+#[prost(message, tag = "11")]
+Build(super::BuildNote),
+#[prost(message, tag = "12")]
+Image(super::ImageNote),
+#[prost(message, tag = "13")]
+Package(super::PackageNote),
+#[prost(message, tag = "14")]
+Deployment(super::DeploymentNote),
+#[prost(message, tag = "15")]
+Discovery(super::DiscoveryNote),
+#[prost(message, tag = "16")]
+Attestation(super::AttestationNote),
+#[prost(message, tag = "17")]
+Upgrade(super::UpgradeNote),
+#[prost(message, tag = "18")]
+Compliance(super::ComplianceNote),
+#[prost(message, tag = "19")]
+DsseAttestation(super::DsseAttestationNote),
+#[prost(message, tag = "20")]
+VulnerabilityAssessment(super::VulnerabilityAssessmentNote),
+#[prost(message, tag = "21")]
+SbomReference(super::SbomReferenceNote),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOccurrenceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOccurrencesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOccurrencesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteOccurrenceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateOccurrenceRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub occurrence: ::core::option::Option<Occurrence>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub occurrence: ::core::option::Option<Occurrence>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateOccurrenceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub occurrence: ::core::option::Option<Occurrence>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub occurrence: ::core::option::Option<Occurrence>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNoteRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOccurrenceNoteRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNotesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNotesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub notes: ::prost::alloc::vec::Vec<Note>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub notes: ::prost::alloc::vec::Vec<Note>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteNoteRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateNoteRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub note_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub note: ::core::option::Option<Note>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub note_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub note: ::core::option::Option<Note>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateNoteRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub note: ::core::option::Option<Note>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub note: ::core::option::Option<Note>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNoteOccurrencesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListNoteOccurrencesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateNotesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(map = "string, message", tag = "2")]
-    pub notes: ::std::collections::HashMap<::prost::alloc::string::String, Note>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(map = "string, message", tag = "2")]
+pub notes: ::std::collections::HashMap<::prost::alloc::string::String, Note>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateNotesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub notes: ::prost::alloc::vec::Vec<Note>,
+#[prost(message, repeated, tag = "1")]
+pub notes: ::prost::alloc::vec::Vec<Note>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateOccurrencesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateOccurrencesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
+#[prost(message, repeated, tag = "1")]
+pub occurrences: ::prost::alloc::vec::Vec<Occurrence>,
 }
 /// Generated client implementations.
 pub mod grafeas_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// [Grafeas](https://grafeas.io) API.
-    ///
-    /// Retrieves analysis results of Cloud components such as Docker container
-    /// images.
-    ///
-    /// Analysis results are stored as a series of occurrences. An `Occurrence`
-    /// contains information about a specific analysis instance on a resource. An
-    /// occurrence refers to a `Note`. A note contains details describing the
-    /// analysis and is generally stored in a separate project, called a `Provider`.
-    /// Multiple occurrences can refer to the same note.
-    ///
-    /// For example, an SSL vulnerability could affect multiple images. In this case,
-    /// there would be one note for the vulnerability and an occurrence for each
-    /// image with the vulnerability referring to that note.
-    #[derive(Debug, Clone)]
-    pub struct GrafeasClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> GrafeasClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> GrafeasClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            GrafeasClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets the specified occurrence.
-        pub async fn get_occurrence(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetOccurrenceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/GetOccurrence",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetOccurrence"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists occurrences for the specified project.
-        pub async fn list_occurrences(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListOccurrencesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListOccurrencesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/ListOccurrences",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListOccurrences"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the specified occurrence. For example, use this method to delete an
-        /// occurrence when the occurrence is no longer applicable for the given
-        /// resource.
-        pub async fn delete_occurrence(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteOccurrenceRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/DeleteOccurrence",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "DeleteOccurrence"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new occurrence.
-        pub async fn create_occurrence(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateOccurrenceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/CreateOccurrence",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "CreateOccurrence"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates new occurrences in batch.
-        pub async fn batch_create_occurrences(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchCreateOccurrencesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchCreateOccurrencesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/BatchCreateOccurrences",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "BatchCreateOccurrences"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the specified occurrence.
-        pub async fn update_occurrence(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateOccurrenceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/UpdateOccurrence",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "UpdateOccurrence"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the note attached to the specified occurrence. Consumer projects can
-        /// use this method to get a note that belongs to a provider project.
-        pub async fn get_occurrence_note(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetOccurrenceNoteRequest>,
-        ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/GetOccurrenceNote",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetOccurrenceNote"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the specified note.
-        pub async fn get_note(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetNoteRequest>,
-        ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/GetNote",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetNote"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists notes for the specified project.
-        pub async fn list_notes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListNotesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListNotesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/ListNotes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListNotes"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the specified note.
-        pub async fn delete_note(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteNoteRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/DeleteNote",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "DeleteNote"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new note.
-        pub async fn create_note(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateNoteRequest>,
-        ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/CreateNote",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "CreateNote"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates new notes in batch.
-        pub async fn batch_create_notes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchCreateNotesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchCreateNotesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/BatchCreateNotes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "BatchCreateNotes"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the specified note.
-        pub async fn update_note(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateNoteRequest>,
-        ) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/UpdateNote",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "UpdateNote"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists occurrences referencing the specified note. Provider projects can use
-        /// this method to get all occurrences across consumer projects referencing the
-        /// specified note.
-        pub async fn list_note_occurrences(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListNoteOccurrencesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListNoteOccurrencesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/grafeas.v1.Grafeas/ListNoteOccurrences",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListNoteOccurrences"));
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// [Grafeas](https://grafeas.io) API.
+///
+/// Retrieves analysis results of Cloud components such as Docker container
+/// images.
+///
+/// Analysis results are stored as a series of occurrences. An `Occurrence`
+/// contains information about a specific analysis instance on a resource. An
+/// occurrence refers to a `Note`. A note contains details describing the
+/// analysis and is generally stored in a separate project, called a `Provider`.
+/// Multiple occurrences can refer to the same note.
+///
+/// For example, an SSL vulnerability could affect multiple images. In this case,
+/// there would be one note for the vulnerability and an occurrence for each
+/// image with the vulnerability referring to that note.
+#[derive(Debug, Clone)]
+pub struct GrafeasClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> GrafeasClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> GrafeasClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+GrafeasClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets the specified occurrence.
+pub async fn get_occurrence(&mut self, request: impl tonic::IntoRequest<super::GetOccurrenceRequest>) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/GetOccurrence");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetOccurrence"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists occurrences for the specified project.
+pub async fn list_occurrences(&mut self, request: impl tonic::IntoRequest<super::ListOccurrencesRequest>) -> std::result::Result<tonic::Response<super::ListOccurrencesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/ListOccurrences");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListOccurrences"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the specified occurrence. For example, use this method to delete an
+/// occurrence when the occurrence is no longer applicable for the given
+/// resource.
+pub async fn delete_occurrence(&mut self, request: impl tonic::IntoRequest<super::DeleteOccurrenceRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/DeleteOccurrence");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "DeleteOccurrence"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new occurrence.
+pub async fn create_occurrence(&mut self, request: impl tonic::IntoRequest<super::CreateOccurrenceRequest>) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/CreateOccurrence");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "CreateOccurrence"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates new occurrences in batch.
+pub async fn batch_create_occurrences(&mut self, request: impl tonic::IntoRequest<super::BatchCreateOccurrencesRequest>) -> std::result::Result<tonic::Response<super::BatchCreateOccurrencesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/BatchCreateOccurrences");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "BatchCreateOccurrences"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the specified occurrence.
+pub async fn update_occurrence(&mut self, request: impl tonic::IntoRequest<super::UpdateOccurrenceRequest>) -> std::result::Result<tonic::Response<super::Occurrence>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/UpdateOccurrence");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "UpdateOccurrence"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the note attached to the specified occurrence. Consumer projects can
+/// use this method to get a note that belongs to a provider project.
+pub async fn get_occurrence_note(&mut self, request: impl tonic::IntoRequest<super::GetOccurrenceNoteRequest>) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/GetOccurrenceNote");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetOccurrenceNote"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the specified note.
+pub async fn get_note(&mut self, request: impl tonic::IntoRequest<super::GetNoteRequest>) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/GetNote");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "GetNote"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists notes for the specified project.
+pub async fn list_notes(&mut self, request: impl tonic::IntoRequest<super::ListNotesRequest>) -> std::result::Result<tonic::Response<super::ListNotesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/ListNotes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListNotes"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the specified note.
+pub async fn delete_note(&mut self, request: impl tonic::IntoRequest<super::DeleteNoteRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/DeleteNote");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "DeleteNote"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new note.
+pub async fn create_note(&mut self, request: impl tonic::IntoRequest<super::CreateNoteRequest>) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/CreateNote");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "CreateNote"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates new notes in batch.
+pub async fn batch_create_notes(&mut self, request: impl tonic::IntoRequest<super::BatchCreateNotesRequest>) -> std::result::Result<tonic::Response<super::BatchCreateNotesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/BatchCreateNotes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "BatchCreateNotes"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the specified note.
+pub async fn update_note(&mut self, request: impl tonic::IntoRequest<super::UpdateNoteRequest>) -> std::result::Result<tonic::Response<super::Note>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/UpdateNote");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "UpdateNote"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists occurrences referencing the specified note. Provider projects can use
+/// this method to get all occurrences across consumer projects referencing the
+/// specified note.
+pub async fn list_note_occurrences(&mut self, request: impl tonic::IntoRequest<super::ListNoteOccurrencesRequest>) -> std::result::Result<tonic::Response<super::ListNoteOccurrencesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/grafeas.v1.Grafeas/ListNoteOccurrences");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("grafeas.v1.Grafeas", "ListNoteOccurrences"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

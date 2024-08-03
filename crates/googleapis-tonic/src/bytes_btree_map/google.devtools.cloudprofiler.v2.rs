@@ -2,432 +2,327 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateProfileRequest {
-    #[prost(string, tag = "4")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "1")]
-    pub deployment: ::core::option::Option<Deployment>,
-    #[prost(enumeration = "ProfileType", repeated, tag = "2")]
-    pub profile_type: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "4")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub deployment: ::core::option::Option<Deployment>,
+#[prost(enumeration = "ProfileType", repeated, tag = "2")]
+pub profile_type: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateOfflineProfileRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub profile: ::core::option::Option<Profile>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub profile: ::core::option::Option<Profile>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateProfileRequest {
-    #[prost(message, optional, tag = "1")]
-    pub profile: ::core::option::Option<Profile>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub profile: ::core::option::Option<Profile>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Profile {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "ProfileType", tag = "2")]
-    pub profile_type: i32,
-    #[prost(message, optional, tag = "3")]
-    pub deployment: ::core::option::Option<Deployment>,
-    #[prost(message, optional, tag = "4")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(bytes = "bytes", tag = "5")]
-    pub profile_bytes: ::prost::bytes::Bytes,
-    #[prost(btree_map = "string, string", tag = "6")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "7")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "ProfileType", tag = "2")]
+pub profile_type: i32,
+#[prost(message, optional, tag = "3")]
+pub deployment: ::core::option::Option<Deployment>,
+#[prost(message, optional, tag = "4")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(bytes = "bytes", tag = "5")]
+pub profile_bytes: ::prost::bytes::Bytes,
+#[prost(btree_map = "string, string", tag = "6")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "7")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Deployment {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "3")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub target: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "3")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProfilesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListProfilesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub profiles: ::prost::alloc::vec::Vec<Profile>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub skipped_profiles: i32,
+#[prost(message, repeated, tag = "1")]
+pub profiles: ::prost::alloc::vec::Vec<Profile>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub skipped_profiles: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ProfileType {
-    Unspecified = 0,
-    Cpu = 1,
-    Wall = 2,
-    Heap = 3,
-    Threads = 4,
-    Contention = 5,
-    PeakHeap = 6,
-    HeapAlloc = 7,
+Unspecified = 0,
+Cpu = 1,
+Wall = 2,
+Heap = 3,
+Threads = 4,
+Contention = 5,
+PeakHeap = 6,
+HeapAlloc = 7,
 }
 impl ProfileType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ProfileType::Unspecified => "PROFILE_TYPE_UNSPECIFIED",
-            ProfileType::Cpu => "CPU",
-            ProfileType::Wall => "WALL",
-            ProfileType::Heap => "HEAP",
-            ProfileType::Threads => "THREADS",
-            ProfileType::Contention => "CONTENTION",
-            ProfileType::PeakHeap => "PEAK_HEAP",
-            ProfileType::HeapAlloc => "HEAP_ALLOC",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "PROFILE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "CPU" => Some(Self::Cpu),
-            "WALL" => Some(Self::Wall),
-            "HEAP" => Some(Self::Heap),
-            "THREADS" => Some(Self::Threads),
-            "CONTENTION" => Some(Self::Contention),
-            "PEAK_HEAP" => Some(Self::PeakHeap),
-            "HEAP_ALLOC" => Some(Self::HeapAlloc),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ProfileType::Unspecified => "PROFILE_TYPE_UNSPECIFIED",
+ProfileType::Cpu => "CPU",
+ProfileType::Wall => "WALL",
+ProfileType::Heap => "HEAP",
+ProfileType::Threads => "THREADS",
+ProfileType::Contention => "CONTENTION",
+ProfileType::PeakHeap => "PEAK_HEAP",
+ProfileType::HeapAlloc => "HEAP_ALLOC",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PROFILE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"CPU" => Some(Self::Cpu),
+"WALL" => Some(Self::Wall),
+"HEAP" => Some(Self::Heap),
+"THREADS" => Some(Self::Threads),
+"CONTENTION" => Some(Self::Contention),
+"PEAK_HEAP" => Some(Self::PeakHeap),
+"HEAP_ALLOC" => Some(Self::HeapAlloc),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod profiler_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manage the collection of continuous profiling data provided by profiling
-    /// agents running in the cloud or by an offline provider of profiling data.
-    ///
-    /// __The APIs listed in this service are intended for use within our profiler
-    /// agents only.__
-    #[derive(Debug, Clone)]
-    pub struct ProfilerServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ProfilerServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ProfilerServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ProfilerServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// CreateProfile creates a new profile resource in the online mode.
-        ///
-        /// _Direct use of this API is discouraged, please use a [supported
-        /// profiler
-        /// agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
-        /// instead for profile collection._
-        ///
-        /// The server ensures that the new profiles are created at a constant rate per
-        /// deployment, so the creation request may hang for some time until the next
-        /// profile session is available.
-        ///
-        /// The request may fail with ABORTED error if the creation is not available
-        /// within ~1m, the response will indicate the duration of the backoff the
-        /// client should take before attempting creating a profile again. The backoff
-        /// duration is returned in google.rpc.RetryInfo extension on the response
-        /// status. To a gRPC client, the extension will be return as a
-        /// binary-serialized proto in the trailing metadata item named
-        /// "google.rpc.retryinfo-bin".
-        ///
-        pub async fn create_profile(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateProfileRequest>,
-        ) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.cloudprofiler.v2.ProfilerService/CreateProfile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.cloudprofiler.v2.ProfilerService",
-                        "CreateProfile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// CreateOfflineProfile creates a new profile resource in the offline
-        /// mode. The client provides the profile to create along with the profile
-        /// bytes, the server records it.
-        ///
-        /// _Direct use of this API is discouraged, please use a [supported
-        /// profiler
-        /// agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
-        /// instead for profile collection._
-        pub async fn create_offline_profile(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateOfflineProfileRequest>,
-        ) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.cloudprofiler.v2.ProfilerService/CreateOfflineProfile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.cloudprofiler.v2.ProfilerService",
-                        "CreateOfflineProfile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// UpdateProfile updates the profile bytes and labels on the profile resource
-        /// created in the online mode. Updating the bytes for profiles created in the
-        /// offline mode is currently not supported: the profile content must be
-        /// provided at the time of the profile creation.
-        ///
-        /// _Direct use of this API is discouraged, please use a [supported
-        /// profiler
-        /// agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
-        /// instead for profile collection._
-        pub async fn update_profile(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateProfileRequest>,
-        ) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.cloudprofiler.v2.ProfilerService/UpdateProfile",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.cloudprofiler.v2.ProfilerService",
-                        "UpdateProfile",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manage the collection of continuous profiling data provided by profiling
+/// agents running in the cloud or by an offline provider of profiling data.
+///
+/// __The APIs listed in this service are intended for use within our profiler
+/// agents only.__
+#[derive(Debug, Clone)]
+pub struct ProfilerServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ProfilerServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ProfilerServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ProfilerServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// CreateProfile creates a new profile resource in the online mode.
+///
+/// _Direct use of this API is discouraged, please use a [supported
+/// profiler
+/// agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+/// instead for profile collection._
+///
+/// The server ensures that the new profiles are created at a constant rate per
+/// deployment, so the creation request may hang for some time until the next
+/// profile session is available.
+///
+/// The request may fail with ABORTED error if the creation is not available
+/// within ~1m, the response will indicate the duration of the backoff the
+/// client should take before attempting creating a profile again. The backoff
+/// duration is returned in google.rpc.RetryInfo extension on the response
+/// status. To a gRPC client, the extension will be return as a
+/// binary-serialized proto in the trailing metadata item named
+/// "google.rpc.retryinfo-bin".
+///
+pub async fn create_profile(&mut self, request: impl tonic::IntoRequest<super::CreateProfileRequest>) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.cloudprofiler.v2.ProfilerService/CreateProfile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.cloudprofiler.v2.ProfilerService", "CreateProfile"));
+self.inner.unary(req, path, codec).await
+}
+/// CreateOfflineProfile creates a new profile resource in the offline
+/// mode. The client provides the profile to create along with the profile
+/// bytes, the server records it.
+///
+/// _Direct use of this API is discouraged, please use a [supported
+/// profiler
+/// agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+/// instead for profile collection._
+pub async fn create_offline_profile(&mut self, request: impl tonic::IntoRequest<super::CreateOfflineProfileRequest>) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.cloudprofiler.v2.ProfilerService/CreateOfflineProfile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.cloudprofiler.v2.ProfilerService", "CreateOfflineProfile"));
+self.inner.unary(req, path, codec).await
+}
+/// UpdateProfile updates the profile bytes and labels on the profile resource
+/// created in the online mode. Updating the bytes for profiles created in the
+/// offline mode is currently not supported: the profile content must be
+/// provided at the time of the profile creation.
+///
+/// _Direct use of this API is discouraged, please use a [supported
+/// profiler
+/// agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+/// instead for profile collection._
+pub async fn update_profile(&mut self, request: impl tonic::IntoRequest<super::UpdateProfileRequest>) -> std::result::Result<tonic::Response<super::Profile>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.cloudprofiler.v2.ProfilerService/UpdateProfile");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.cloudprofiler.v2.ProfilerService", "UpdateProfile"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod export_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service allows existing Cloud Profiler customers to export their profile data
-    /// out of Google Cloud.
-    #[derive(Debug, Clone)]
-    pub struct ExportServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ExportServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ExportServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ExportServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists profiles which have been collected so far and for which the caller
-        /// has permission to view.
-        pub async fn list_profiles(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListProfilesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListProfilesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.cloudprofiler.v2.ExportService/ListProfiles",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.cloudprofiler.v2.ExportService",
-                        "ListProfiles",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service allows existing Cloud Profiler customers to export their profile data
+/// out of Google Cloud.
+#[derive(Debug, Clone)]
+pub struct ExportServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ExportServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ExportServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ExportServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists profiles which have been collected so far and for which the caller
+/// has permission to view.
+pub async fn list_profiles(&mut self, request: impl tonic::IntoRequest<super::ListProfilesRequest>) -> std::result::Result<tonic::Response<super::ListProfilesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.cloudprofiler.v2.ExportService/ListProfiles");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.cloudprofiler.v2.ExportService", "ListProfiles"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

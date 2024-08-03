@@ -2,1456 +2,1318 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FallbackInfo {
-    #[prost(enumeration = "FallbackRoutingMode", tag = "1")]
-    pub routing_mode: i32,
-    #[prost(enumeration = "FallbackReason", tag = "2")]
-    pub reason: i32,
+#[prost(enumeration = "FallbackRoutingMode", tag = "1")]
+pub routing_mode: i32,
+#[prost(enumeration = "FallbackReason", tag = "2")]
+pub reason: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum FallbackReason {
-    Unspecified = 0,
-    ServerError = 1,
-    LatencyExceeded = 2,
+Unspecified = 0,
+ServerError = 1,
+LatencyExceeded = 2,
 }
 impl FallbackReason {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            FallbackReason::Unspecified => "FALLBACK_REASON_UNSPECIFIED",
-            FallbackReason::ServerError => "SERVER_ERROR",
-            FallbackReason::LatencyExceeded => "LATENCY_EXCEEDED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "FALLBACK_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-            "SERVER_ERROR" => Some(Self::ServerError),
-            "LATENCY_EXCEEDED" => Some(Self::LatencyExceeded),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+FallbackReason::Unspecified => "FALLBACK_REASON_UNSPECIFIED",
+FallbackReason::ServerError => "SERVER_ERROR",
+FallbackReason::LatencyExceeded => "LATENCY_EXCEEDED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FALLBACK_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"SERVER_ERROR" => Some(Self::ServerError),
+"LATENCY_EXCEEDED" => Some(Self::LatencyExceeded),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum FallbackRoutingMode {
-    Unspecified = 0,
-    FallbackTrafficUnaware = 1,
-    FallbackTrafficAware = 2,
+Unspecified = 0,
+FallbackTrafficUnaware = 1,
+FallbackTrafficAware = 2,
 }
 impl FallbackRoutingMode {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            FallbackRoutingMode::Unspecified => "FALLBACK_ROUTING_MODE_UNSPECIFIED",
-            FallbackRoutingMode::FallbackTrafficUnaware => "FALLBACK_TRAFFIC_UNAWARE",
-            FallbackRoutingMode::FallbackTrafficAware => "FALLBACK_TRAFFIC_AWARE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "FALLBACK_ROUTING_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-            "FALLBACK_TRAFFIC_UNAWARE" => Some(Self::FallbackTrafficUnaware),
-            "FALLBACK_TRAFFIC_AWARE" => Some(Self::FallbackTrafficAware),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+FallbackRoutingMode::Unspecified => "FALLBACK_ROUTING_MODE_UNSPECIFIED",
+FallbackRoutingMode::FallbackTrafficUnaware => "FALLBACK_TRAFFIC_UNAWARE",
+FallbackRoutingMode::FallbackTrafficAware => "FALLBACK_TRAFFIC_AWARE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FALLBACK_ROUTING_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"FALLBACK_TRAFFIC_UNAWARE" => Some(Self::FallbackTrafficUnaware),
+"FALLBACK_TRAFFIC_AWARE" => Some(Self::FallbackTrafficAware),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Polyline {
-    #[prost(oneof = "polyline::PolylineType", tags = "1, 2")]
-    pub polyline_type: ::core::option::Option<polyline::PolylineType>,
+#[prost(oneof = "polyline::PolylineType", tags = "1, 2")]
+pub polyline_type: ::core::option::Option<polyline::PolylineType>,
 }
 /// Nested message and enum types in `Polyline`.
 pub mod polyline {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum PolylineType {
-        #[prost(string, tag = "1")]
-        EncodedPolyline(::prost::alloc::string::String),
-        #[prost(message, tag = "2")]
-        GeoJsonLinestring(::prost_types::Struct),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum PolylineType {
+#[prost(string, tag = "1")]
+EncodedPolyline(::prost::alloc::string::String),
+#[prost(message, tag = "2")]
+GeoJsonLinestring(::prost_types::Struct),
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PolylineQuality {
-    Unspecified = 0,
-    HighQuality = 1,
-    Overview = 2,
+Unspecified = 0,
+HighQuality = 1,
+Overview = 2,
 }
 impl PolylineQuality {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            PolylineQuality::Unspecified => "POLYLINE_QUALITY_UNSPECIFIED",
-            PolylineQuality::HighQuality => "HIGH_QUALITY",
-            PolylineQuality::Overview => "OVERVIEW",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "POLYLINE_QUALITY_UNSPECIFIED" => Some(Self::Unspecified),
-            "HIGH_QUALITY" => Some(Self::HighQuality),
-            "OVERVIEW" => Some(Self::Overview),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PolylineQuality::Unspecified => "POLYLINE_QUALITY_UNSPECIFIED",
+PolylineQuality::HighQuality => "HIGH_QUALITY",
+PolylineQuality::Overview => "OVERVIEW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"POLYLINE_QUALITY_UNSPECIFIED" => Some(Self::Unspecified),
+"HIGH_QUALITY" => Some(Self::HighQuality),
+"OVERVIEW" => Some(Self::Overview),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PolylineEncoding {
-    Unspecified = 0,
-    EncodedPolyline = 1,
-    GeoJsonLinestring = 2,
+Unspecified = 0,
+EncodedPolyline = 1,
+GeoJsonLinestring = 2,
 }
 impl PolylineEncoding {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            PolylineEncoding::Unspecified => "POLYLINE_ENCODING_UNSPECIFIED",
-            PolylineEncoding::EncodedPolyline => "ENCODED_POLYLINE",
-            PolylineEncoding::GeoJsonLinestring => "GEO_JSON_LINESTRING",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "POLYLINE_ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
-            "ENCODED_POLYLINE" => Some(Self::EncodedPolyline),
-            "GEO_JSON_LINESTRING" => Some(Self::GeoJsonLinestring),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PolylineEncoding::Unspecified => "POLYLINE_ENCODING_UNSPECIFIED",
+PolylineEncoding::EncodedPolyline => "ENCODED_POLYLINE",
+PolylineEncoding::GeoJsonLinestring => "GEO_JSON_LINESTRING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"POLYLINE_ENCODING_UNSPECIFIED" => Some(Self::Unspecified),
+"ENCODED_POLYLINE" => Some(Self::EncodedPolyline),
+"GEO_JSON_LINESTRING" => Some(Self::GeoJsonLinestring),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Waypoint {
-    #[prost(bool, tag = "3")]
-    pub via: bool,
-    #[prost(bool, tag = "4")]
-    pub vehicle_stopover: bool,
-    #[prost(bool, tag = "5")]
-    pub side_of_road: bool,
-    #[prost(oneof = "waypoint::LocationType", tags = "1, 2")]
-    pub location_type: ::core::option::Option<waypoint::LocationType>,
+#[prost(bool, tag = "3")]
+pub via: bool,
+#[prost(bool, tag = "4")]
+pub vehicle_stopover: bool,
+#[prost(bool, tag = "5")]
+pub side_of_road: bool,
+#[prost(oneof = "waypoint::LocationType", tags = "1, 2")]
+pub location_type: ::core::option::Option<waypoint::LocationType>,
 }
 /// Nested message and enum types in `Waypoint`.
 pub mod waypoint {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum LocationType {
-        #[prost(message, tag = "1")]
-        Location(super::Location),
-        #[prost(string, tag = "2")]
-        PlaceId(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum LocationType {
+#[prost(message, tag = "1")]
+Location(super::Location),
+#[prost(string, tag = "2")]
+PlaceId(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Location {
-    #[prost(message, optional, tag = "1")]
-    pub lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
-    #[prost(message, optional, tag = "2")]
-    pub heading: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "1")]
+pub lat_lng: ::core::option::Option<super::super::super::r#type::LatLng>,
+#[prost(message, optional, tag = "2")]
+pub heading: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Route {
-    #[prost(message, repeated, tag = "1")]
-    pub legs: ::prost::alloc::vec::Vec<RouteLeg>,
-    #[prost(int32, tag = "2")]
-    pub distance_meters: i32,
-    #[prost(message, optional, tag = "3")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "4")]
-    pub static_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "5")]
-    pub polyline: ::core::option::Option<Polyline>,
-    #[prost(string, tag = "6")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "7")]
-    pub warnings: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub viewport: ::core::option::Option<super::super::super::geo::r#type::Viewport>,
-    #[prost(message, optional, tag = "9")]
-    pub travel_advisory: ::core::option::Option<RouteTravelAdvisory>,
-    #[prost(int32, repeated, tag = "10")]
-    pub optimized_intermediate_waypoint_index: ::prost::alloc::vec::Vec<i32>,
+#[prost(message, repeated, tag = "1")]
+pub legs: ::prost::alloc::vec::Vec<RouteLeg>,
+#[prost(int32, tag = "2")]
+pub distance_meters: i32,
+#[prost(message, optional, tag = "3")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "4")]
+pub static_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "5")]
+pub polyline: ::core::option::Option<Polyline>,
+#[prost(string, tag = "6")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "7")]
+pub warnings: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "8")]
+pub viewport: ::core::option::Option<super::super::super::geo::r#type::Viewport>,
+#[prost(message, optional, tag = "9")]
+pub travel_advisory: ::core::option::Option<RouteTravelAdvisory>,
+#[prost(int32, repeated, tag = "10")]
+pub optimized_intermediate_waypoint_index: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteTravelAdvisory {
-    #[prost(message, optional, tag = "1")]
-    pub traffic_restriction: ::core::option::Option<TrafficRestriction>,
-    #[prost(message, optional, tag = "2")]
-    pub toll_info: ::core::option::Option<TollInfo>,
-    #[prost(message, repeated, tag = "3")]
-    pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
-    #[prost(message, optional, tag = "4")]
-    pub custom_layer_info: ::core::option::Option<CustomLayerInfo>,
+#[prost(message, optional, tag = "1")]
+pub traffic_restriction: ::core::option::Option<TrafficRestriction>,
+#[prost(message, optional, tag = "2")]
+pub toll_info: ::core::option::Option<TollInfo>,
+#[prost(message, repeated, tag = "3")]
+pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
+#[prost(message, optional, tag = "4")]
+pub custom_layer_info: ::core::option::Option<CustomLayerInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteLegTravelAdvisory {
-    #[prost(message, optional, tag = "1")]
-    pub toll_info: ::core::option::Option<TollInfo>,
-    #[prost(message, repeated, tag = "2")]
-    pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
-    #[prost(message, optional, tag = "3")]
-    pub custom_layer_info: ::core::option::Option<CustomLayerInfo>,
+#[prost(message, optional, tag = "1")]
+pub toll_info: ::core::option::Option<TollInfo>,
+#[prost(message, repeated, tag = "2")]
+pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
+#[prost(message, optional, tag = "3")]
+pub custom_layer_info: ::core::option::Option<CustomLayerInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteLegStepTravelAdvisory {
-    #[prost(message, repeated, tag = "1")]
-    pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
+#[prost(message, repeated, tag = "1")]
+pub speed_reading_intervals: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrafficRestriction {
-    #[prost(message, optional, tag = "1")]
-    pub license_plate_last_character_restriction: ::core::option::Option<
-        LicensePlateLastCharacterRestriction,
-    >,
+#[prost(message, optional, tag = "1")]
+pub license_plate_last_character_restriction: ::core::option::Option<LicensePlateLastCharacterRestriction>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LicensePlateLastCharacterRestriction {
-    #[prost(string, repeated, tag = "1")]
-    pub allowed_last_characters: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, repeated, tag = "1")]
+pub allowed_last_characters: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteLeg {
-    #[prost(int32, tag = "1")]
-    pub distance_meters: i32,
-    #[prost(message, optional, tag = "2")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "3")]
-    pub static_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "4")]
-    pub polyline: ::core::option::Option<Polyline>,
-    #[prost(message, optional, tag = "5")]
-    pub start_location: ::core::option::Option<Location>,
-    #[prost(message, optional, tag = "6")]
-    pub end_location: ::core::option::Option<Location>,
-    #[prost(message, repeated, tag = "7")]
-    pub steps: ::prost::alloc::vec::Vec<RouteLegStep>,
-    #[prost(message, optional, tag = "8")]
-    pub travel_advisory: ::core::option::Option<RouteLegTravelAdvisory>,
+#[prost(int32, tag = "1")]
+pub distance_meters: i32,
+#[prost(message, optional, tag = "2")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "3")]
+pub static_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "4")]
+pub polyline: ::core::option::Option<Polyline>,
+#[prost(message, optional, tag = "5")]
+pub start_location: ::core::option::Option<Location>,
+#[prost(message, optional, tag = "6")]
+pub end_location: ::core::option::Option<Location>,
+#[prost(message, repeated, tag = "7")]
+pub steps: ::prost::alloc::vec::Vec<RouteLegStep>,
+#[prost(message, optional, tag = "8")]
+pub travel_advisory: ::core::option::Option<RouteLegTravelAdvisory>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TollInfo {
-    #[prost(message, repeated, tag = "1")]
-    pub estimated_price: ::prost::alloc::vec::Vec<super::super::super::r#type::Money>,
+#[prost(message, repeated, tag = "1")]
+pub estimated_price: ::prost::alloc::vec::Vec<super::super::super::r#type::Money>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteLegStep {
-    #[prost(int32, tag = "1")]
-    pub distance_meters: i32,
-    #[prost(message, optional, tag = "2")]
-    pub static_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "3")]
-    pub polyline: ::core::option::Option<Polyline>,
-    #[prost(message, optional, tag = "4")]
-    pub start_location: ::core::option::Option<Location>,
-    #[prost(message, optional, tag = "5")]
-    pub end_location: ::core::option::Option<Location>,
-    #[prost(message, optional, tag = "6")]
-    pub navigation_instruction: ::core::option::Option<NavigationInstruction>,
-    #[prost(message, optional, tag = "7")]
-    pub travel_advisory: ::core::option::Option<RouteLegStepTravelAdvisory>,
+#[prost(int32, tag = "1")]
+pub distance_meters: i32,
+#[prost(message, optional, tag = "2")]
+pub static_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "3")]
+pub polyline: ::core::option::Option<Polyline>,
+#[prost(message, optional, tag = "4")]
+pub start_location: ::core::option::Option<Location>,
+#[prost(message, optional, tag = "5")]
+pub end_location: ::core::option::Option<Location>,
+#[prost(message, optional, tag = "6")]
+pub navigation_instruction: ::core::option::Option<NavigationInstruction>,
+#[prost(message, optional, tag = "7")]
+pub travel_advisory: ::core::option::Option<RouteLegStepTravelAdvisory>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NavigationInstruction {
-    #[prost(enumeration = "Maneuver", tag = "1")]
-    pub maneuver: i32,
-    #[prost(string, tag = "2")]
-    pub instructions: ::prost::alloc::string::String,
+#[prost(enumeration = "Maneuver", tag = "1")]
+pub maneuver: i32,
+#[prost(string, tag = "2")]
+pub instructions: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SpeedReadingInterval {
-    #[prost(int32, tag = "1")]
-    pub start_polyline_point_index: i32,
-    #[prost(int32, tag = "2")]
-    pub end_polyline_point_index: i32,
-    #[prost(enumeration = "speed_reading_interval::Speed", tag = "3")]
-    pub speed: i32,
+#[prost(int32, tag = "1")]
+pub start_polyline_point_index: i32,
+#[prost(int32, tag = "2")]
+pub end_polyline_point_index: i32,
+#[prost(enumeration = "speed_reading_interval::Speed", tag = "3")]
+pub speed: i32,
 }
 /// Nested message and enum types in `SpeedReadingInterval`.
 pub mod speed_reading_interval {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Speed {
-        Unspecified = 0,
-        Normal = 1,
-        Slow = 2,
-        TrafficJam = 3,
-    }
-    impl Speed {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Speed::Unspecified => "SPEED_UNSPECIFIED",
-                Speed::Normal => "NORMAL",
-                Speed::Slow => "SLOW",
-                Speed::TrafficJam => "TRAFFIC_JAM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SPEED_UNSPECIFIED" => Some(Self::Unspecified),
-                "NORMAL" => Some(Self::Normal),
-                "SLOW" => Some(Self::Slow),
-                "TRAFFIC_JAM" => Some(Self::TrafficJam),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Speed {
+Unspecified = 0,
+Normal = 1,
+Slow = 2,
+TrafficJam = 3,
+}
+impl Speed {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Speed::Unspecified => "SPEED_UNSPECIFIED",
+Speed::Normal => "NORMAL",
+Speed::Slow => "SLOW",
+Speed::TrafficJam => "TRAFFIC_JAM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SPEED_UNSPECIFIED" => Some(Self::Unspecified),
+"NORMAL" => Some(Self::Normal),
+"SLOW" => Some(Self::Slow),
+"TRAFFIC_JAM" => Some(Self::TrafficJam),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomLayerInfo {
-    #[prost(message, repeated, tag = "1")]
-    pub area_info: ::prost::alloc::vec::Vec<custom_layer_info::AreaInfo>,
+#[prost(message, repeated, tag = "1")]
+pub area_info: ::prost::alloc::vec::Vec<custom_layer_info::AreaInfo>,
 }
 /// Nested message and enum types in `CustomLayerInfo`.
 pub mod custom_layer_info {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AreaInfo {
-        #[prost(string, tag = "1")]
-        pub area_id: ::prost::alloc::string::String,
-        #[prost(float, tag = "2")]
-        pub distance_in_area_meters: f32,
-        #[prost(message, optional, tag = "3")]
-        pub duration_in_area: ::core::option::Option<::prost_types::Duration>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AreaInfo {
+#[prost(string, tag = "1")]
+pub area_id: ::prost::alloc::string::String,
+#[prost(float, tag = "2")]
+pub distance_in_area_meters: f32,
+#[prost(message, optional, tag = "3")]
+pub duration_in_area: ::core::option::Option<::prost_types::Duration>,
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Maneuver {
-    Unspecified = 0,
-    TurnSlightLeft = 1,
-    TurnSharpLeft = 2,
-    UturnLeft = 3,
-    TurnLeft = 4,
-    TurnSlightRight = 5,
-    TurnSharpRight = 6,
-    UturnRight = 7,
-    TurnRight = 8,
-    Straight = 9,
-    RampLeft = 10,
-    RampRight = 11,
-    Merge = 12,
-    ForkLeft = 13,
-    ForkRight = 14,
-    Ferry = 15,
-    FerryTrain = 16,
-    RoundaboutLeft = 17,
-    RoundaboutRight = 18,
+Unspecified = 0,
+TurnSlightLeft = 1,
+TurnSharpLeft = 2,
+UturnLeft = 3,
+TurnLeft = 4,
+TurnSlightRight = 5,
+TurnSharpRight = 6,
+UturnRight = 7,
+TurnRight = 8,
+Straight = 9,
+RampLeft = 10,
+RampRight = 11,
+Merge = 12,
+ForkLeft = 13,
+ForkRight = 14,
+Ferry = 15,
+FerryTrain = 16,
+RoundaboutLeft = 17,
+RoundaboutRight = 18,
 }
 impl Maneuver {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Maneuver::Unspecified => "MANEUVER_UNSPECIFIED",
-            Maneuver::TurnSlightLeft => "TURN_SLIGHT_LEFT",
-            Maneuver::TurnSharpLeft => "TURN_SHARP_LEFT",
-            Maneuver::UturnLeft => "UTURN_LEFT",
-            Maneuver::TurnLeft => "TURN_LEFT",
-            Maneuver::TurnSlightRight => "TURN_SLIGHT_RIGHT",
-            Maneuver::TurnSharpRight => "TURN_SHARP_RIGHT",
-            Maneuver::UturnRight => "UTURN_RIGHT",
-            Maneuver::TurnRight => "TURN_RIGHT",
-            Maneuver::Straight => "STRAIGHT",
-            Maneuver::RampLeft => "RAMP_LEFT",
-            Maneuver::RampRight => "RAMP_RIGHT",
-            Maneuver::Merge => "MERGE",
-            Maneuver::ForkLeft => "FORK_LEFT",
-            Maneuver::ForkRight => "FORK_RIGHT",
-            Maneuver::Ferry => "FERRY",
-            Maneuver::FerryTrain => "FERRY_TRAIN",
-            Maneuver::RoundaboutLeft => "ROUNDABOUT_LEFT",
-            Maneuver::RoundaboutRight => "ROUNDABOUT_RIGHT",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "MANEUVER_UNSPECIFIED" => Some(Self::Unspecified),
-            "TURN_SLIGHT_LEFT" => Some(Self::TurnSlightLeft),
-            "TURN_SHARP_LEFT" => Some(Self::TurnSharpLeft),
-            "UTURN_LEFT" => Some(Self::UturnLeft),
-            "TURN_LEFT" => Some(Self::TurnLeft),
-            "TURN_SLIGHT_RIGHT" => Some(Self::TurnSlightRight),
-            "TURN_SHARP_RIGHT" => Some(Self::TurnSharpRight),
-            "UTURN_RIGHT" => Some(Self::UturnRight),
-            "TURN_RIGHT" => Some(Self::TurnRight),
-            "STRAIGHT" => Some(Self::Straight),
-            "RAMP_LEFT" => Some(Self::RampLeft),
-            "RAMP_RIGHT" => Some(Self::RampRight),
-            "MERGE" => Some(Self::Merge),
-            "FORK_LEFT" => Some(Self::ForkLeft),
-            "FORK_RIGHT" => Some(Self::ForkRight),
-            "FERRY" => Some(Self::Ferry),
-            "FERRY_TRAIN" => Some(Self::FerryTrain),
-            "ROUNDABOUT_LEFT" => Some(Self::RoundaboutLeft),
-            "ROUNDABOUT_RIGHT" => Some(Self::RoundaboutRight),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Maneuver::Unspecified => "MANEUVER_UNSPECIFIED",
+Maneuver::TurnSlightLeft => "TURN_SLIGHT_LEFT",
+Maneuver::TurnSharpLeft => "TURN_SHARP_LEFT",
+Maneuver::UturnLeft => "UTURN_LEFT",
+Maneuver::TurnLeft => "TURN_LEFT",
+Maneuver::TurnSlightRight => "TURN_SLIGHT_RIGHT",
+Maneuver::TurnSharpRight => "TURN_SHARP_RIGHT",
+Maneuver::UturnRight => "UTURN_RIGHT",
+Maneuver::TurnRight => "TURN_RIGHT",
+Maneuver::Straight => "STRAIGHT",
+Maneuver::RampLeft => "RAMP_LEFT",
+Maneuver::RampRight => "RAMP_RIGHT",
+Maneuver::Merge => "MERGE",
+Maneuver::ForkLeft => "FORK_LEFT",
+Maneuver::ForkRight => "FORK_RIGHT",
+Maneuver::Ferry => "FERRY",
+Maneuver::FerryTrain => "FERRY_TRAIN",
+Maneuver::RoundaboutLeft => "ROUNDABOUT_LEFT",
+Maneuver::RoundaboutRight => "ROUNDABOUT_RIGHT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MANEUVER_UNSPECIFIED" => Some(Self::Unspecified),
+"TURN_SLIGHT_LEFT" => Some(Self::TurnSlightLeft),
+"TURN_SHARP_LEFT" => Some(Self::TurnSharpLeft),
+"UTURN_LEFT" => Some(Self::UturnLeft),
+"TURN_LEFT" => Some(Self::TurnLeft),
+"TURN_SLIGHT_RIGHT" => Some(Self::TurnSlightRight),
+"TURN_SHARP_RIGHT" => Some(Self::TurnSharpRight),
+"UTURN_RIGHT" => Some(Self::UturnRight),
+"TURN_RIGHT" => Some(Self::TurnRight),
+"STRAIGHT" => Some(Self::Straight),
+"RAMP_LEFT" => Some(Self::RampLeft),
+"RAMP_RIGHT" => Some(Self::RampRight),
+"MERGE" => Some(Self::Merge),
+"FORK_LEFT" => Some(Self::ForkLeft),
+"FORK_RIGHT" => Some(Self::ForkRight),
+"FERRY" => Some(Self::Ferry),
+"FERRY_TRAIN" => Some(Self::FerryTrain),
+"ROUNDABOUT_LEFT" => Some(Self::RoundaboutLeft),
+"ROUNDABOUT_RIGHT" => Some(Self::RoundaboutRight),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum VehicleEmissionType {
-    Unspecified = 0,
-    Gasoline = 1,
-    Electric = 2,
-    Hybrid = 3,
+Unspecified = 0,
+Gasoline = 1,
+Electric = 2,
+Hybrid = 3,
 }
 impl VehicleEmissionType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            VehicleEmissionType::Unspecified => "VEHICLE_EMISSION_TYPE_UNSPECIFIED",
-            VehicleEmissionType::Gasoline => "GASOLINE",
-            VehicleEmissionType::Electric => "ELECTRIC",
-            VehicleEmissionType::Hybrid => "HYBRID",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "VEHICLE_EMISSION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "GASOLINE" => Some(Self::Gasoline),
-            "ELECTRIC" => Some(Self::Electric),
-            "HYBRID" => Some(Self::Hybrid),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VehicleEmissionType::Unspecified => "VEHICLE_EMISSION_TYPE_UNSPECIFIED",
+VehicleEmissionType::Gasoline => "GASOLINE",
+VehicleEmissionType::Electric => "ELECTRIC",
+VehicleEmissionType::Hybrid => "HYBRID",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VEHICLE_EMISSION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"GASOLINE" => Some(Self::Gasoline),
+"ELECTRIC" => Some(Self::Electric),
+"HYBRID" => Some(Self::Hybrid),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TollPass {
-    Unspecified = 0,
-    AuEtollTag = 82,
-    AuEwayTag = 83,
-    AuLinkt = 2,
-    ArTelepase = 3,
-    BrAutoExpreso = 81,
-    BrConectcar = 7,
-    BrMoveMais = 8,
-    BrPassaRapido = 88,
-    BrSemParar = 9,
-    BrTaggy = 10,
-    BrVeloe = 11,
-    CaUsAkwasasneSeawayCorporateCard = 84,
-    CaUsAkwasasneSeawayTransitCard = 85,
-    CaUsBlueWaterEdgePass = 18,
-    CaUsConnexion = 19,
-    CaUsNexusCard = 20,
-    IdEToll = 16,
-    InFastag = 78,
-    InLocalHpPlateExempt = 79,
-    MxTagIave = 12,
-    MxTagTelevia = 13,
-    MxViapass = 14,
-    UsAlFreedomPass = 21,
-    UsAkAntonAndersonTunnelBookOf10Tickets = 22,
-    UsCaFastrak = 4,
-    UsCaFastrakCavSticker = 86,
-    UsCoExpresstoll = 23,
-    UsCoGoPass = 24,
-    UsDeEzpassde = 25,
-    UsFlBobSikesTollBridgePass = 65,
-    UsFlDunesCommunityDevelopmentDistrictExpresscard = 66,
-    UsFlEpass = 67,
-    UsFlGibaTollPass = 68,
-    UsFlLeeway = 69,
-    UsFlSunpass = 70,
-    UsFlSunpassPro = 71,
-    UsIlEzpassil = 73,
-    UsIlIpass = 72,
-    UsInEzpassin = 26,
-    UsKsBestpassHorizon = 27,
-    UsKsKtag = 28,
-    UsKsNationalpass = 29,
-    UsKsPrepassElitepass = 30,
-    UsKyRiverlink = 31,
-    UsLaGeauxpass = 32,
-    UsLaTollTag = 33,
-    UsMaEzpassma = 6,
-    UsMdEzpassmd = 34,
-    UsMeEzpassme = 35,
-    UsMiAmbassadorBridgePremierCommuterCard = 36,
-    UsMiGrosseIleTollBridgePassTag = 37,
-    UsMiIqProxCard = 38,
-    UsMiMackinacBridgeMacPass = 39,
-    UsMiNexpressToll = 40,
-    UsMnEzpassmn = 41,
-    UsNcEzpassnc = 42,
-    UsNcPeachPass = 87,
-    UsNcQuickPass = 43,
-    UsNhEzpassnh = 80,
-    UsNjDownbeachExpressPass = 75,
-    UsNjEzpassnj = 74,
-    UsNyExpresspass = 76,
-    UsNyEzpassny = 77,
-    UsOhEzpassoh = 44,
-    UsPaEzpasspa = 45,
-    UsRiEzpassri = 46,
-    UsScPalpass = 47,
-    UsTxBancpass = 48,
-    UsTxDelRioPass = 49,
-    UsTxEfastPass = 50,
-    UsTxEaglePassExpressCard = 51,
-    UsTxEptoll = 52,
-    UsTxEzCross = 53,
-    UsTxEztag = 54,
-    UsTxLaredoTradeTag = 55,
-    UsTxPluspass = 56,
-    UsTxTolltag = 57,
-    UsTxTxtag = 58,
-    UsTxXpressCard = 59,
-    UsUtAdamsAveParkwayExpresscard = 60,
-    UsVaEzpassva = 61,
-    UsWaBreezeby = 17,
-    UsWaGoodToGo = 1,
-    UsWvEzpasswv = 62,
-    UsWvMemorialBridgeTickets = 63,
-    UsWvNewellTollBridgeTicket = 64,
+Unspecified = 0,
+AuEtollTag = 82,
+AuEwayTag = 83,
+AuLinkt = 2,
+ArTelepase = 3,
+BrAutoExpreso = 81,
+BrConectcar = 7,
+BrMoveMais = 8,
+BrPassaRapido = 88,
+BrSemParar = 9,
+BrTaggy = 10,
+BrVeloe = 11,
+CaUsAkwasasneSeawayCorporateCard = 84,
+CaUsAkwasasneSeawayTransitCard = 85,
+CaUsBlueWaterEdgePass = 18,
+CaUsConnexion = 19,
+CaUsNexusCard = 20,
+IdEToll = 16,
+InFastag = 78,
+InLocalHpPlateExempt = 79,
+MxTagIave = 12,
+MxTagTelevia = 13,
+MxViapass = 14,
+UsAlFreedomPass = 21,
+UsAkAntonAndersonTunnelBookOf10Tickets = 22,
+UsCaFastrak = 4,
+UsCaFastrakCavSticker = 86,
+UsCoExpresstoll = 23,
+UsCoGoPass = 24,
+UsDeEzpassde = 25,
+UsFlBobSikesTollBridgePass = 65,
+UsFlDunesCommunityDevelopmentDistrictExpresscard = 66,
+UsFlEpass = 67,
+UsFlGibaTollPass = 68,
+UsFlLeeway = 69,
+UsFlSunpass = 70,
+UsFlSunpassPro = 71,
+UsIlEzpassil = 73,
+UsIlIpass = 72,
+UsInEzpassin = 26,
+UsKsBestpassHorizon = 27,
+UsKsKtag = 28,
+UsKsNationalpass = 29,
+UsKsPrepassElitepass = 30,
+UsKyRiverlink = 31,
+UsLaGeauxpass = 32,
+UsLaTollTag = 33,
+UsMaEzpassma = 6,
+UsMdEzpassmd = 34,
+UsMeEzpassme = 35,
+UsMiAmbassadorBridgePremierCommuterCard = 36,
+UsMiGrosseIleTollBridgePassTag = 37,
+UsMiIqProxCard = 38,
+UsMiMackinacBridgeMacPass = 39,
+UsMiNexpressToll = 40,
+UsMnEzpassmn = 41,
+UsNcEzpassnc = 42,
+UsNcPeachPass = 87,
+UsNcQuickPass = 43,
+UsNhEzpassnh = 80,
+UsNjDownbeachExpressPass = 75,
+UsNjEzpassnj = 74,
+UsNyExpresspass = 76,
+UsNyEzpassny = 77,
+UsOhEzpassoh = 44,
+UsPaEzpasspa = 45,
+UsRiEzpassri = 46,
+UsScPalpass = 47,
+UsTxBancpass = 48,
+UsTxDelRioPass = 49,
+UsTxEfastPass = 50,
+UsTxEaglePassExpressCard = 51,
+UsTxEptoll = 52,
+UsTxEzCross = 53,
+UsTxEztag = 54,
+UsTxLaredoTradeTag = 55,
+UsTxPluspass = 56,
+UsTxTolltag = 57,
+UsTxTxtag = 58,
+UsTxXpressCard = 59,
+UsUtAdamsAveParkwayExpresscard = 60,
+UsVaEzpassva = 61,
+UsWaBreezeby = 17,
+UsWaGoodToGo = 1,
+UsWvEzpasswv = 62,
+UsWvMemorialBridgeTickets = 63,
+UsWvNewellTollBridgeTicket = 64,
 }
 impl TollPass {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TollPass::Unspecified => "TOLL_PASS_UNSPECIFIED",
-            TollPass::AuEtollTag => "AU_ETOLL_TAG",
-            TollPass::AuEwayTag => "AU_EWAY_TAG",
-            TollPass::AuLinkt => "AU_LINKT",
-            TollPass::ArTelepase => "AR_TELEPASE",
-            TollPass::BrAutoExpreso => "BR_AUTO_EXPRESO",
-            TollPass::BrConectcar => "BR_CONECTCAR",
-            TollPass::BrMoveMais => "BR_MOVE_MAIS",
-            TollPass::BrPassaRapido => "BR_PASSA_RAPIDO",
-            TollPass::BrSemParar => "BR_SEM_PARAR",
-            TollPass::BrTaggy => "BR_TAGGY",
-            TollPass::BrVeloe => "BR_VELOE",
-            TollPass::CaUsAkwasasneSeawayCorporateCard => {
-                "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD"
-            }
-            TollPass::CaUsAkwasasneSeawayTransitCard => {
-                "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD"
-            }
-            TollPass::CaUsBlueWaterEdgePass => "CA_US_BLUE_WATER_EDGE_PASS",
-            TollPass::CaUsConnexion => "CA_US_CONNEXION",
-            TollPass::CaUsNexusCard => "CA_US_NEXUS_CARD",
-            TollPass::IdEToll => "ID_E_TOLL",
-            TollPass::InFastag => "IN_FASTAG",
-            TollPass::InLocalHpPlateExempt => "IN_LOCAL_HP_PLATE_EXEMPT",
-            TollPass::MxTagIave => "MX_TAG_IAVE",
-            TollPass::MxTagTelevia => "MX_TAG_TELEVIA",
-            TollPass::MxViapass => "MX_VIAPASS",
-            TollPass::UsAlFreedomPass => "US_AL_FREEDOM_PASS",
-            TollPass::UsAkAntonAndersonTunnelBookOf10Tickets => {
-                "US_AK_ANTON_ANDERSON_TUNNEL_BOOK_OF_10_TICKETS"
-            }
-            TollPass::UsCaFastrak => "US_CA_FASTRAK",
-            TollPass::UsCaFastrakCavSticker => "US_CA_FASTRAK_CAV_STICKER",
-            TollPass::UsCoExpresstoll => "US_CO_EXPRESSTOLL",
-            TollPass::UsCoGoPass => "US_CO_GO_PASS",
-            TollPass::UsDeEzpassde => "US_DE_EZPASSDE",
-            TollPass::UsFlBobSikesTollBridgePass => "US_FL_BOB_SIKES_TOLL_BRIDGE_PASS",
-            TollPass::UsFlDunesCommunityDevelopmentDistrictExpresscard => {
-                "US_FL_DUNES_COMMUNITY_DEVELOPMENT_DISTRICT_EXPRESSCARD"
-            }
-            TollPass::UsFlEpass => "US_FL_EPASS",
-            TollPass::UsFlGibaTollPass => "US_FL_GIBA_TOLL_PASS",
-            TollPass::UsFlLeeway => "US_FL_LEEWAY",
-            TollPass::UsFlSunpass => "US_FL_SUNPASS",
-            TollPass::UsFlSunpassPro => "US_FL_SUNPASS_PRO",
-            TollPass::UsIlEzpassil => "US_IL_EZPASSIL",
-            TollPass::UsIlIpass => "US_IL_IPASS",
-            TollPass::UsInEzpassin => "US_IN_EZPASSIN",
-            TollPass::UsKsBestpassHorizon => "US_KS_BESTPASS_HORIZON",
-            TollPass::UsKsKtag => "US_KS_KTAG",
-            TollPass::UsKsNationalpass => "US_KS_NATIONALPASS",
-            TollPass::UsKsPrepassElitepass => "US_KS_PREPASS_ELITEPASS",
-            TollPass::UsKyRiverlink => "US_KY_RIVERLINK",
-            TollPass::UsLaGeauxpass => "US_LA_GEAUXPASS",
-            TollPass::UsLaTollTag => "US_LA_TOLL_TAG",
-            TollPass::UsMaEzpassma => "US_MA_EZPASSMA",
-            TollPass::UsMdEzpassmd => "US_MD_EZPASSMD",
-            TollPass::UsMeEzpassme => "US_ME_EZPASSME",
-            TollPass::UsMiAmbassadorBridgePremierCommuterCard => {
-                "US_MI_AMBASSADOR_BRIDGE_PREMIER_COMMUTER_CARD"
-            }
-            TollPass::UsMiGrosseIleTollBridgePassTag => {
-                "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG"
-            }
-            TollPass::UsMiIqProxCard => "US_MI_IQ_PROX_CARD",
-            TollPass::UsMiMackinacBridgeMacPass => "US_MI_MACKINAC_BRIDGE_MAC_PASS",
-            TollPass::UsMiNexpressToll => "US_MI_NEXPRESS_TOLL",
-            TollPass::UsMnEzpassmn => "US_MN_EZPASSMN",
-            TollPass::UsNcEzpassnc => "US_NC_EZPASSNC",
-            TollPass::UsNcPeachPass => "US_NC_PEACH_PASS",
-            TollPass::UsNcQuickPass => "US_NC_QUICK_PASS",
-            TollPass::UsNhEzpassnh => "US_NH_EZPASSNH",
-            TollPass::UsNjDownbeachExpressPass => "US_NJ_DOWNBEACH_EXPRESS_PASS",
-            TollPass::UsNjEzpassnj => "US_NJ_EZPASSNJ",
-            TollPass::UsNyExpresspass => "US_NY_EXPRESSPASS",
-            TollPass::UsNyEzpassny => "US_NY_EZPASSNY",
-            TollPass::UsOhEzpassoh => "US_OH_EZPASSOH",
-            TollPass::UsPaEzpasspa => "US_PA_EZPASSPA",
-            TollPass::UsRiEzpassri => "US_RI_EZPASSRI",
-            TollPass::UsScPalpass => "US_SC_PALPASS",
-            TollPass::UsTxBancpass => "US_TX_BANCPASS",
-            TollPass::UsTxDelRioPass => "US_TX_DEL_RIO_PASS",
-            TollPass::UsTxEfastPass => "US_TX_EFAST_PASS",
-            TollPass::UsTxEaglePassExpressCard => "US_TX_EAGLE_PASS_EXPRESS_CARD",
-            TollPass::UsTxEptoll => "US_TX_EPTOLL",
-            TollPass::UsTxEzCross => "US_TX_EZ_CROSS",
-            TollPass::UsTxEztag => "US_TX_EZTAG",
-            TollPass::UsTxLaredoTradeTag => "US_TX_LAREDO_TRADE_TAG",
-            TollPass::UsTxPluspass => "US_TX_PLUSPASS",
-            TollPass::UsTxTolltag => "US_TX_TOLLTAG",
-            TollPass::UsTxTxtag => "US_TX_TXTAG",
-            TollPass::UsTxXpressCard => "US_TX_XPRESS_CARD",
-            TollPass::UsUtAdamsAveParkwayExpresscard => {
-                "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD"
-            }
-            TollPass::UsVaEzpassva => "US_VA_EZPASSVA",
-            TollPass::UsWaBreezeby => "US_WA_BREEZEBY",
-            TollPass::UsWaGoodToGo => "US_WA_GOOD_TO_GO",
-            TollPass::UsWvEzpasswv => "US_WV_EZPASSWV",
-            TollPass::UsWvMemorialBridgeTickets => "US_WV_MEMORIAL_BRIDGE_TICKETS",
-            TollPass::UsWvNewellTollBridgeTicket => "US_WV_NEWELL_TOLL_BRIDGE_TICKET",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TOLL_PASS_UNSPECIFIED" => Some(Self::Unspecified),
-            "AU_ETOLL_TAG" => Some(Self::AuEtollTag),
-            "AU_EWAY_TAG" => Some(Self::AuEwayTag),
-            "AU_LINKT" => Some(Self::AuLinkt),
-            "AR_TELEPASE" => Some(Self::ArTelepase),
-            "BR_AUTO_EXPRESO" => Some(Self::BrAutoExpreso),
-            "BR_CONECTCAR" => Some(Self::BrConectcar),
-            "BR_MOVE_MAIS" => Some(Self::BrMoveMais),
-            "BR_PASSA_RAPIDO" => Some(Self::BrPassaRapido),
-            "BR_SEM_PARAR" => Some(Self::BrSemParar),
-            "BR_TAGGY" => Some(Self::BrTaggy),
-            "BR_VELOE" => Some(Self::BrVeloe),
-            "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD" => {
-                Some(Self::CaUsAkwasasneSeawayCorporateCard)
-            }
-            "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD" => {
-                Some(Self::CaUsAkwasasneSeawayTransitCard)
-            }
-            "CA_US_BLUE_WATER_EDGE_PASS" => Some(Self::CaUsBlueWaterEdgePass),
-            "CA_US_CONNEXION" => Some(Self::CaUsConnexion),
-            "CA_US_NEXUS_CARD" => Some(Self::CaUsNexusCard),
-            "ID_E_TOLL" => Some(Self::IdEToll),
-            "IN_FASTAG" => Some(Self::InFastag),
-            "IN_LOCAL_HP_PLATE_EXEMPT" => Some(Self::InLocalHpPlateExempt),
-            "MX_TAG_IAVE" => Some(Self::MxTagIave),
-            "MX_TAG_TELEVIA" => Some(Self::MxTagTelevia),
-            "MX_VIAPASS" => Some(Self::MxViapass),
-            "US_AL_FREEDOM_PASS" => Some(Self::UsAlFreedomPass),
-            "US_AK_ANTON_ANDERSON_TUNNEL_BOOK_OF_10_TICKETS" => {
-                Some(Self::UsAkAntonAndersonTunnelBookOf10Tickets)
-            }
-            "US_CA_FASTRAK" => Some(Self::UsCaFastrak),
-            "US_CA_FASTRAK_CAV_STICKER" => Some(Self::UsCaFastrakCavSticker),
-            "US_CO_EXPRESSTOLL" => Some(Self::UsCoExpresstoll),
-            "US_CO_GO_PASS" => Some(Self::UsCoGoPass),
-            "US_DE_EZPASSDE" => Some(Self::UsDeEzpassde),
-            "US_FL_BOB_SIKES_TOLL_BRIDGE_PASS" => Some(Self::UsFlBobSikesTollBridgePass),
-            "US_FL_DUNES_COMMUNITY_DEVELOPMENT_DISTRICT_EXPRESSCARD" => {
-                Some(Self::UsFlDunesCommunityDevelopmentDistrictExpresscard)
-            }
-            "US_FL_EPASS" => Some(Self::UsFlEpass),
-            "US_FL_GIBA_TOLL_PASS" => Some(Self::UsFlGibaTollPass),
-            "US_FL_LEEWAY" => Some(Self::UsFlLeeway),
-            "US_FL_SUNPASS" => Some(Self::UsFlSunpass),
-            "US_FL_SUNPASS_PRO" => Some(Self::UsFlSunpassPro),
-            "US_IL_EZPASSIL" => Some(Self::UsIlEzpassil),
-            "US_IL_IPASS" => Some(Self::UsIlIpass),
-            "US_IN_EZPASSIN" => Some(Self::UsInEzpassin),
-            "US_KS_BESTPASS_HORIZON" => Some(Self::UsKsBestpassHorizon),
-            "US_KS_KTAG" => Some(Self::UsKsKtag),
-            "US_KS_NATIONALPASS" => Some(Self::UsKsNationalpass),
-            "US_KS_PREPASS_ELITEPASS" => Some(Self::UsKsPrepassElitepass),
-            "US_KY_RIVERLINK" => Some(Self::UsKyRiverlink),
-            "US_LA_GEAUXPASS" => Some(Self::UsLaGeauxpass),
-            "US_LA_TOLL_TAG" => Some(Self::UsLaTollTag),
-            "US_MA_EZPASSMA" => Some(Self::UsMaEzpassma),
-            "US_MD_EZPASSMD" => Some(Self::UsMdEzpassmd),
-            "US_ME_EZPASSME" => Some(Self::UsMeEzpassme),
-            "US_MI_AMBASSADOR_BRIDGE_PREMIER_COMMUTER_CARD" => {
-                Some(Self::UsMiAmbassadorBridgePremierCommuterCard)
-            }
-            "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG" => {
-                Some(Self::UsMiGrosseIleTollBridgePassTag)
-            }
-            "US_MI_IQ_PROX_CARD" => Some(Self::UsMiIqProxCard),
-            "US_MI_MACKINAC_BRIDGE_MAC_PASS" => Some(Self::UsMiMackinacBridgeMacPass),
-            "US_MI_NEXPRESS_TOLL" => Some(Self::UsMiNexpressToll),
-            "US_MN_EZPASSMN" => Some(Self::UsMnEzpassmn),
-            "US_NC_EZPASSNC" => Some(Self::UsNcEzpassnc),
-            "US_NC_PEACH_PASS" => Some(Self::UsNcPeachPass),
-            "US_NC_QUICK_PASS" => Some(Self::UsNcQuickPass),
-            "US_NH_EZPASSNH" => Some(Self::UsNhEzpassnh),
-            "US_NJ_DOWNBEACH_EXPRESS_PASS" => Some(Self::UsNjDownbeachExpressPass),
-            "US_NJ_EZPASSNJ" => Some(Self::UsNjEzpassnj),
-            "US_NY_EXPRESSPASS" => Some(Self::UsNyExpresspass),
-            "US_NY_EZPASSNY" => Some(Self::UsNyEzpassny),
-            "US_OH_EZPASSOH" => Some(Self::UsOhEzpassoh),
-            "US_PA_EZPASSPA" => Some(Self::UsPaEzpasspa),
-            "US_RI_EZPASSRI" => Some(Self::UsRiEzpassri),
-            "US_SC_PALPASS" => Some(Self::UsScPalpass),
-            "US_TX_BANCPASS" => Some(Self::UsTxBancpass),
-            "US_TX_DEL_RIO_PASS" => Some(Self::UsTxDelRioPass),
-            "US_TX_EFAST_PASS" => Some(Self::UsTxEfastPass),
-            "US_TX_EAGLE_PASS_EXPRESS_CARD" => Some(Self::UsTxEaglePassExpressCard),
-            "US_TX_EPTOLL" => Some(Self::UsTxEptoll),
-            "US_TX_EZ_CROSS" => Some(Self::UsTxEzCross),
-            "US_TX_EZTAG" => Some(Self::UsTxEztag),
-            "US_TX_LAREDO_TRADE_TAG" => Some(Self::UsTxLaredoTradeTag),
-            "US_TX_PLUSPASS" => Some(Self::UsTxPluspass),
-            "US_TX_TOLLTAG" => Some(Self::UsTxTolltag),
-            "US_TX_TXTAG" => Some(Self::UsTxTxtag),
-            "US_TX_XPRESS_CARD" => Some(Self::UsTxXpressCard),
-            "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD" => {
-                Some(Self::UsUtAdamsAveParkwayExpresscard)
-            }
-            "US_VA_EZPASSVA" => Some(Self::UsVaEzpassva),
-            "US_WA_BREEZEBY" => Some(Self::UsWaBreezeby),
-            "US_WA_GOOD_TO_GO" => Some(Self::UsWaGoodToGo),
-            "US_WV_EZPASSWV" => Some(Self::UsWvEzpasswv),
-            "US_WV_MEMORIAL_BRIDGE_TICKETS" => Some(Self::UsWvMemorialBridgeTickets),
-            "US_WV_NEWELL_TOLL_BRIDGE_TICKET" => Some(Self::UsWvNewellTollBridgeTicket),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TollPass::Unspecified => "TOLL_PASS_UNSPECIFIED",
+TollPass::AuEtollTag => "AU_ETOLL_TAG",
+TollPass::AuEwayTag => "AU_EWAY_TAG",
+TollPass::AuLinkt => "AU_LINKT",
+TollPass::ArTelepase => "AR_TELEPASE",
+TollPass::BrAutoExpreso => "BR_AUTO_EXPRESO",
+TollPass::BrConectcar => "BR_CONECTCAR",
+TollPass::BrMoveMais => "BR_MOVE_MAIS",
+TollPass::BrPassaRapido => "BR_PASSA_RAPIDO",
+TollPass::BrSemParar => "BR_SEM_PARAR",
+TollPass::BrTaggy => "BR_TAGGY",
+TollPass::BrVeloe => "BR_VELOE",
+TollPass::CaUsAkwasasneSeawayCorporateCard => "CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD",
+TollPass::CaUsAkwasasneSeawayTransitCard => "CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD",
+TollPass::CaUsBlueWaterEdgePass => "CA_US_BLUE_WATER_EDGE_PASS",
+TollPass::CaUsConnexion => "CA_US_CONNEXION",
+TollPass::CaUsNexusCard => "CA_US_NEXUS_CARD",
+TollPass::IdEToll => "ID_E_TOLL",
+TollPass::InFastag => "IN_FASTAG",
+TollPass::InLocalHpPlateExempt => "IN_LOCAL_HP_PLATE_EXEMPT",
+TollPass::MxTagIave => "MX_TAG_IAVE",
+TollPass::MxTagTelevia => "MX_TAG_TELEVIA",
+TollPass::MxViapass => "MX_VIAPASS",
+TollPass::UsAlFreedomPass => "US_AL_FREEDOM_PASS",
+TollPass::UsAkAntonAndersonTunnelBookOf10Tickets => "US_AK_ANTON_ANDERSON_TUNNEL_BOOK_OF_10_TICKETS",
+TollPass::UsCaFastrak => "US_CA_FASTRAK",
+TollPass::UsCaFastrakCavSticker => "US_CA_FASTRAK_CAV_STICKER",
+TollPass::UsCoExpresstoll => "US_CO_EXPRESSTOLL",
+TollPass::UsCoGoPass => "US_CO_GO_PASS",
+TollPass::UsDeEzpassde => "US_DE_EZPASSDE",
+TollPass::UsFlBobSikesTollBridgePass => "US_FL_BOB_SIKES_TOLL_BRIDGE_PASS",
+TollPass::UsFlDunesCommunityDevelopmentDistrictExpresscard => "US_FL_DUNES_COMMUNITY_DEVELOPMENT_DISTRICT_EXPRESSCARD",
+TollPass::UsFlEpass => "US_FL_EPASS",
+TollPass::UsFlGibaTollPass => "US_FL_GIBA_TOLL_PASS",
+TollPass::UsFlLeeway => "US_FL_LEEWAY",
+TollPass::UsFlSunpass => "US_FL_SUNPASS",
+TollPass::UsFlSunpassPro => "US_FL_SUNPASS_PRO",
+TollPass::UsIlEzpassil => "US_IL_EZPASSIL",
+TollPass::UsIlIpass => "US_IL_IPASS",
+TollPass::UsInEzpassin => "US_IN_EZPASSIN",
+TollPass::UsKsBestpassHorizon => "US_KS_BESTPASS_HORIZON",
+TollPass::UsKsKtag => "US_KS_KTAG",
+TollPass::UsKsNationalpass => "US_KS_NATIONALPASS",
+TollPass::UsKsPrepassElitepass => "US_KS_PREPASS_ELITEPASS",
+TollPass::UsKyRiverlink => "US_KY_RIVERLINK",
+TollPass::UsLaGeauxpass => "US_LA_GEAUXPASS",
+TollPass::UsLaTollTag => "US_LA_TOLL_TAG",
+TollPass::UsMaEzpassma => "US_MA_EZPASSMA",
+TollPass::UsMdEzpassmd => "US_MD_EZPASSMD",
+TollPass::UsMeEzpassme => "US_ME_EZPASSME",
+TollPass::UsMiAmbassadorBridgePremierCommuterCard => "US_MI_AMBASSADOR_BRIDGE_PREMIER_COMMUTER_CARD",
+TollPass::UsMiGrosseIleTollBridgePassTag => "US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG",
+TollPass::UsMiIqProxCard => "US_MI_IQ_PROX_CARD",
+TollPass::UsMiMackinacBridgeMacPass => "US_MI_MACKINAC_BRIDGE_MAC_PASS",
+TollPass::UsMiNexpressToll => "US_MI_NEXPRESS_TOLL",
+TollPass::UsMnEzpassmn => "US_MN_EZPASSMN",
+TollPass::UsNcEzpassnc => "US_NC_EZPASSNC",
+TollPass::UsNcPeachPass => "US_NC_PEACH_PASS",
+TollPass::UsNcQuickPass => "US_NC_QUICK_PASS",
+TollPass::UsNhEzpassnh => "US_NH_EZPASSNH",
+TollPass::UsNjDownbeachExpressPass => "US_NJ_DOWNBEACH_EXPRESS_PASS",
+TollPass::UsNjEzpassnj => "US_NJ_EZPASSNJ",
+TollPass::UsNyExpresspass => "US_NY_EXPRESSPASS",
+TollPass::UsNyEzpassny => "US_NY_EZPASSNY",
+TollPass::UsOhEzpassoh => "US_OH_EZPASSOH",
+TollPass::UsPaEzpasspa => "US_PA_EZPASSPA",
+TollPass::UsRiEzpassri => "US_RI_EZPASSRI",
+TollPass::UsScPalpass => "US_SC_PALPASS",
+TollPass::UsTxBancpass => "US_TX_BANCPASS",
+TollPass::UsTxDelRioPass => "US_TX_DEL_RIO_PASS",
+TollPass::UsTxEfastPass => "US_TX_EFAST_PASS",
+TollPass::UsTxEaglePassExpressCard => "US_TX_EAGLE_PASS_EXPRESS_CARD",
+TollPass::UsTxEptoll => "US_TX_EPTOLL",
+TollPass::UsTxEzCross => "US_TX_EZ_CROSS",
+TollPass::UsTxEztag => "US_TX_EZTAG",
+TollPass::UsTxLaredoTradeTag => "US_TX_LAREDO_TRADE_TAG",
+TollPass::UsTxPluspass => "US_TX_PLUSPASS",
+TollPass::UsTxTolltag => "US_TX_TOLLTAG",
+TollPass::UsTxTxtag => "US_TX_TXTAG",
+TollPass::UsTxXpressCard => "US_TX_XPRESS_CARD",
+TollPass::UsUtAdamsAveParkwayExpresscard => "US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD",
+TollPass::UsVaEzpassva => "US_VA_EZPASSVA",
+TollPass::UsWaBreezeby => "US_WA_BREEZEBY",
+TollPass::UsWaGoodToGo => "US_WA_GOOD_TO_GO",
+TollPass::UsWvEzpasswv => "US_WV_EZPASSWV",
+TollPass::UsWvMemorialBridgeTickets => "US_WV_MEMORIAL_BRIDGE_TICKETS",
+TollPass::UsWvNewellTollBridgeTicket => "US_WV_NEWELL_TOLL_BRIDGE_TICKET",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TOLL_PASS_UNSPECIFIED" => Some(Self::Unspecified),
+"AU_ETOLL_TAG" => Some(Self::AuEtollTag),
+"AU_EWAY_TAG" => Some(Self::AuEwayTag),
+"AU_LINKT" => Some(Self::AuLinkt),
+"AR_TELEPASE" => Some(Self::ArTelepase),
+"BR_AUTO_EXPRESO" => Some(Self::BrAutoExpreso),
+"BR_CONECTCAR" => Some(Self::BrConectcar),
+"BR_MOVE_MAIS" => Some(Self::BrMoveMais),
+"BR_PASSA_RAPIDO" => Some(Self::BrPassaRapido),
+"BR_SEM_PARAR" => Some(Self::BrSemParar),
+"BR_TAGGY" => Some(Self::BrTaggy),
+"BR_VELOE" => Some(Self::BrVeloe),
+"CA_US_AKWASASNE_SEAWAY_CORPORATE_CARD" => Some(Self::CaUsAkwasasneSeawayCorporateCard),
+"CA_US_AKWASASNE_SEAWAY_TRANSIT_CARD" => Some(Self::CaUsAkwasasneSeawayTransitCard),
+"CA_US_BLUE_WATER_EDGE_PASS" => Some(Self::CaUsBlueWaterEdgePass),
+"CA_US_CONNEXION" => Some(Self::CaUsConnexion),
+"CA_US_NEXUS_CARD" => Some(Self::CaUsNexusCard),
+"ID_E_TOLL" => Some(Self::IdEToll),
+"IN_FASTAG" => Some(Self::InFastag),
+"IN_LOCAL_HP_PLATE_EXEMPT" => Some(Self::InLocalHpPlateExempt),
+"MX_TAG_IAVE" => Some(Self::MxTagIave),
+"MX_TAG_TELEVIA" => Some(Self::MxTagTelevia),
+"MX_VIAPASS" => Some(Self::MxViapass),
+"US_AL_FREEDOM_PASS" => Some(Self::UsAlFreedomPass),
+"US_AK_ANTON_ANDERSON_TUNNEL_BOOK_OF_10_TICKETS" => Some(Self::UsAkAntonAndersonTunnelBookOf10Tickets),
+"US_CA_FASTRAK" => Some(Self::UsCaFastrak),
+"US_CA_FASTRAK_CAV_STICKER" => Some(Self::UsCaFastrakCavSticker),
+"US_CO_EXPRESSTOLL" => Some(Self::UsCoExpresstoll),
+"US_CO_GO_PASS" => Some(Self::UsCoGoPass),
+"US_DE_EZPASSDE" => Some(Self::UsDeEzpassde),
+"US_FL_BOB_SIKES_TOLL_BRIDGE_PASS" => Some(Self::UsFlBobSikesTollBridgePass),
+"US_FL_DUNES_COMMUNITY_DEVELOPMENT_DISTRICT_EXPRESSCARD" => Some(Self::UsFlDunesCommunityDevelopmentDistrictExpresscard),
+"US_FL_EPASS" => Some(Self::UsFlEpass),
+"US_FL_GIBA_TOLL_PASS" => Some(Self::UsFlGibaTollPass),
+"US_FL_LEEWAY" => Some(Self::UsFlLeeway),
+"US_FL_SUNPASS" => Some(Self::UsFlSunpass),
+"US_FL_SUNPASS_PRO" => Some(Self::UsFlSunpassPro),
+"US_IL_EZPASSIL" => Some(Self::UsIlEzpassil),
+"US_IL_IPASS" => Some(Self::UsIlIpass),
+"US_IN_EZPASSIN" => Some(Self::UsInEzpassin),
+"US_KS_BESTPASS_HORIZON" => Some(Self::UsKsBestpassHorizon),
+"US_KS_KTAG" => Some(Self::UsKsKtag),
+"US_KS_NATIONALPASS" => Some(Self::UsKsNationalpass),
+"US_KS_PREPASS_ELITEPASS" => Some(Self::UsKsPrepassElitepass),
+"US_KY_RIVERLINK" => Some(Self::UsKyRiverlink),
+"US_LA_GEAUXPASS" => Some(Self::UsLaGeauxpass),
+"US_LA_TOLL_TAG" => Some(Self::UsLaTollTag),
+"US_MA_EZPASSMA" => Some(Self::UsMaEzpassma),
+"US_MD_EZPASSMD" => Some(Self::UsMdEzpassmd),
+"US_ME_EZPASSME" => Some(Self::UsMeEzpassme),
+"US_MI_AMBASSADOR_BRIDGE_PREMIER_COMMUTER_CARD" => Some(Self::UsMiAmbassadorBridgePremierCommuterCard),
+"US_MI_GROSSE_ILE_TOLL_BRIDGE_PASS_TAG" => Some(Self::UsMiGrosseIleTollBridgePassTag),
+"US_MI_IQ_PROX_CARD" => Some(Self::UsMiIqProxCard),
+"US_MI_MACKINAC_BRIDGE_MAC_PASS" => Some(Self::UsMiMackinacBridgeMacPass),
+"US_MI_NEXPRESS_TOLL" => Some(Self::UsMiNexpressToll),
+"US_MN_EZPASSMN" => Some(Self::UsMnEzpassmn),
+"US_NC_EZPASSNC" => Some(Self::UsNcEzpassnc),
+"US_NC_PEACH_PASS" => Some(Self::UsNcPeachPass),
+"US_NC_QUICK_PASS" => Some(Self::UsNcQuickPass),
+"US_NH_EZPASSNH" => Some(Self::UsNhEzpassnh),
+"US_NJ_DOWNBEACH_EXPRESS_PASS" => Some(Self::UsNjDownbeachExpressPass),
+"US_NJ_EZPASSNJ" => Some(Self::UsNjEzpassnj),
+"US_NY_EXPRESSPASS" => Some(Self::UsNyExpresspass),
+"US_NY_EZPASSNY" => Some(Self::UsNyEzpassny),
+"US_OH_EZPASSOH" => Some(Self::UsOhEzpassoh),
+"US_PA_EZPASSPA" => Some(Self::UsPaEzpasspa),
+"US_RI_EZPASSRI" => Some(Self::UsRiEzpassri),
+"US_SC_PALPASS" => Some(Self::UsScPalpass),
+"US_TX_BANCPASS" => Some(Self::UsTxBancpass),
+"US_TX_DEL_RIO_PASS" => Some(Self::UsTxDelRioPass),
+"US_TX_EFAST_PASS" => Some(Self::UsTxEfastPass),
+"US_TX_EAGLE_PASS_EXPRESS_CARD" => Some(Self::UsTxEaglePassExpressCard),
+"US_TX_EPTOLL" => Some(Self::UsTxEptoll),
+"US_TX_EZ_CROSS" => Some(Self::UsTxEzCross),
+"US_TX_EZTAG" => Some(Self::UsTxEztag),
+"US_TX_LAREDO_TRADE_TAG" => Some(Self::UsTxLaredoTradeTag),
+"US_TX_PLUSPASS" => Some(Self::UsTxPluspass),
+"US_TX_TOLLTAG" => Some(Self::UsTxTolltag),
+"US_TX_TXTAG" => Some(Self::UsTxTxtag),
+"US_TX_XPRESS_CARD" => Some(Self::UsTxXpressCard),
+"US_UT_ADAMS_AVE_PARKWAY_EXPRESSCARD" => Some(Self::UsUtAdamsAveParkwayExpresscard),
+"US_VA_EZPASSVA" => Some(Self::UsVaEzpassva),
+"US_WA_BREEZEBY" => Some(Self::UsWaBreezeby),
+"US_WA_GOOD_TO_GO" => Some(Self::UsWaGoodToGo),
+"US_WV_EZPASSWV" => Some(Self::UsWvEzpasswv),
+"US_WV_MEMORIAL_BRIDGE_TICKETS" => Some(Self::UsWvMemorialBridgeTickets),
+"US_WV_NEWELL_TOLL_BRIDGE_TICKET" => Some(Self::UsWvNewellTollBridgeTicket),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComputeRoutesRequest {
-    #[prost(message, optional, tag = "1")]
-    pub origin: ::core::option::Option<Waypoint>,
-    #[prost(message, optional, tag = "2")]
-    pub destination: ::core::option::Option<Waypoint>,
-    #[prost(message, repeated, tag = "3")]
-    pub intermediates: ::prost::alloc::vec::Vec<Waypoint>,
-    #[prost(enumeration = "RouteTravelMode", tag = "4")]
-    pub travel_mode: i32,
-    #[prost(enumeration = "RoutingPreference", tag = "5")]
-    pub routing_preference: i32,
-    #[prost(enumeration = "PolylineQuality", tag = "6")]
-    pub polyline_quality: i32,
-    #[prost(enumeration = "PolylineEncoding", tag = "12")]
-    pub polyline_encoding: i32,
-    #[prost(message, optional, tag = "7")]
-    pub departure_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(bool, tag = "8")]
-    pub compute_alternative_routes: bool,
-    #[prost(message, optional, tag = "9")]
-    pub route_modifiers: ::core::option::Option<RouteModifiers>,
-    #[prost(string, tag = "10")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(enumeration = "Units", tag = "11")]
-    pub units: i32,
-    #[prost(bool, tag = "13")]
-    pub optimize_waypoint_order: bool,
+#[prost(message, optional, tag = "1")]
+pub origin: ::core::option::Option<Waypoint>,
+#[prost(message, optional, tag = "2")]
+pub destination: ::core::option::Option<Waypoint>,
+#[prost(message, repeated, tag = "3")]
+pub intermediates: ::prost::alloc::vec::Vec<Waypoint>,
+#[prost(enumeration = "RouteTravelMode", tag = "4")]
+pub travel_mode: i32,
+#[prost(enumeration = "RoutingPreference", tag = "5")]
+pub routing_preference: i32,
+#[prost(enumeration = "PolylineQuality", tag = "6")]
+pub polyline_quality: i32,
+#[prost(enumeration = "PolylineEncoding", tag = "12")]
+pub polyline_encoding: i32,
+#[prost(message, optional, tag = "7")]
+pub departure_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(bool, tag = "8")]
+pub compute_alternative_routes: bool,
+#[prost(message, optional, tag = "9")]
+pub route_modifiers: ::core::option::Option<RouteModifiers>,
+#[prost(string, tag = "10")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(enumeration = "Units", tag = "11")]
+pub units: i32,
+#[prost(bool, tag = "13")]
+pub optimize_waypoint_order: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteModifiers {
-    #[prost(bool, tag = "1")]
-    pub avoid_tolls: bool,
-    #[prost(bool, tag = "2")]
-    pub avoid_highways: bool,
-    #[prost(bool, tag = "3")]
-    pub avoid_ferries: bool,
-    #[prost(bool, tag = "4")]
-    pub avoid_indoor: bool,
-    #[prost(message, optional, tag = "5")]
-    pub vehicle_info: ::core::option::Option<VehicleInfo>,
-    #[prost(enumeration = "TollPass", repeated, tag = "6")]
-    pub toll_passes: ::prost::alloc::vec::Vec<i32>,
+#[prost(bool, tag = "1")]
+pub avoid_tolls: bool,
+#[prost(bool, tag = "2")]
+pub avoid_highways: bool,
+#[prost(bool, tag = "3")]
+pub avoid_ferries: bool,
+#[prost(bool, tag = "4")]
+pub avoid_indoor: bool,
+#[prost(message, optional, tag = "5")]
+pub vehicle_info: ::core::option::Option<VehicleInfo>,
+#[prost(enumeration = "TollPass", repeated, tag = "6")]
+pub toll_passes: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VehicleInfo {
-    #[prost(string, tag = "1")]
-    pub license_plate_last_character: ::prost::alloc::string::String,
-    #[prost(enumeration = "VehicleEmissionType", tag = "2")]
-    pub emission_type: i32,
+#[prost(string, tag = "1")]
+pub license_plate_last_character: ::prost::alloc::string::String,
+#[prost(enumeration = "VehicleEmissionType", tag = "2")]
+pub emission_type: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RouteTravelMode {
-    TravelModeUnspecified = 0,
-    Drive = 1,
-    Bicycle = 2,
-    Walk = 3,
-    TwoWheeler = 4,
-    Taxi = 5,
+TravelModeUnspecified = 0,
+Drive = 1,
+Bicycle = 2,
+Walk = 3,
+TwoWheeler = 4,
+Taxi = 5,
 }
 impl RouteTravelMode {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            RouteTravelMode::TravelModeUnspecified => "TRAVEL_MODE_UNSPECIFIED",
-            RouteTravelMode::Drive => "DRIVE",
-            RouteTravelMode::Bicycle => "BICYCLE",
-            RouteTravelMode::Walk => "WALK",
-            RouteTravelMode::TwoWheeler => "TWO_WHEELER",
-            RouteTravelMode::Taxi => "TAXI",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TRAVEL_MODE_UNSPECIFIED" => Some(Self::TravelModeUnspecified),
-            "DRIVE" => Some(Self::Drive),
-            "BICYCLE" => Some(Self::Bicycle),
-            "WALK" => Some(Self::Walk),
-            "TWO_WHEELER" => Some(Self::TwoWheeler),
-            "TAXI" => Some(Self::Taxi),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RouteTravelMode::TravelModeUnspecified => "TRAVEL_MODE_UNSPECIFIED",
+RouteTravelMode::Drive => "DRIVE",
+RouteTravelMode::Bicycle => "BICYCLE",
+RouteTravelMode::Walk => "WALK",
+RouteTravelMode::TwoWheeler => "TWO_WHEELER",
+RouteTravelMode::Taxi => "TAXI",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TRAVEL_MODE_UNSPECIFIED" => Some(Self::TravelModeUnspecified),
+"DRIVE" => Some(Self::Drive),
+"BICYCLE" => Some(Self::Bicycle),
+"WALK" => Some(Self::Walk),
+"TWO_WHEELER" => Some(Self::TwoWheeler),
+"TAXI" => Some(Self::Taxi),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RoutingPreference {
-    Unspecified = 0,
-    TrafficUnaware = 1,
-    TrafficAware = 2,
-    TrafficAwareOptimal = 3,
+Unspecified = 0,
+TrafficUnaware = 1,
+TrafficAware = 2,
+TrafficAwareOptimal = 3,
 }
 impl RoutingPreference {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            RoutingPreference::Unspecified => "ROUTING_PREFERENCE_UNSPECIFIED",
-            RoutingPreference::TrafficUnaware => "TRAFFIC_UNAWARE",
-            RoutingPreference::TrafficAware => "TRAFFIC_AWARE",
-            RoutingPreference::TrafficAwareOptimal => "TRAFFIC_AWARE_OPTIMAL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ROUTING_PREFERENCE_UNSPECIFIED" => Some(Self::Unspecified),
-            "TRAFFIC_UNAWARE" => Some(Self::TrafficUnaware),
-            "TRAFFIC_AWARE" => Some(Self::TrafficAware),
-            "TRAFFIC_AWARE_OPTIMAL" => Some(Self::TrafficAwareOptimal),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RoutingPreference::Unspecified => "ROUTING_PREFERENCE_UNSPECIFIED",
+RoutingPreference::TrafficUnaware => "TRAFFIC_UNAWARE",
+RoutingPreference::TrafficAware => "TRAFFIC_AWARE",
+RoutingPreference::TrafficAwareOptimal => "TRAFFIC_AWARE_OPTIMAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ROUTING_PREFERENCE_UNSPECIFIED" => Some(Self::Unspecified),
+"TRAFFIC_UNAWARE" => Some(Self::TrafficUnaware),
+"TRAFFIC_AWARE" => Some(Self::TrafficAware),
+"TRAFFIC_AWARE_OPTIMAL" => Some(Self::TrafficAwareOptimal),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Units {
-    Unspecified = 0,
-    Metric = 1,
-    Imperial = 2,
+Unspecified = 0,
+Metric = 1,
+Imperial = 2,
 }
 impl Units {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Units::Unspecified => "UNITS_UNSPECIFIED",
-            Units::Metric => "METRIC",
-            Units::Imperial => "IMPERIAL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNITS_UNSPECIFIED" => Some(Self::Unspecified),
-            "METRIC" => Some(Self::Metric),
-            "IMPERIAL" => Some(Self::Imperial),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Units::Unspecified => "UNITS_UNSPECIFIED",
+Units::Metric => "METRIC",
+Units::Imperial => "IMPERIAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNITS_UNSPECIFIED" => Some(Self::Unspecified),
+"METRIC" => Some(Self::Metric),
+"IMPERIAL" => Some(Self::Imperial),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComputeCustomRoutesRequest {
-    #[prost(message, optional, tag = "1")]
-    pub origin: ::core::option::Option<Waypoint>,
-    #[prost(message, optional, tag = "2")]
-    pub destination: ::core::option::Option<Waypoint>,
-    #[prost(message, repeated, tag = "3")]
-    pub intermediates: ::prost::alloc::vec::Vec<Waypoint>,
-    #[prost(enumeration = "RouteTravelMode", tag = "4")]
-    pub travel_mode: i32,
-    #[prost(enumeration = "RoutingPreference", tag = "5")]
-    pub routing_preference: i32,
-    #[prost(enumeration = "PolylineQuality", tag = "6")]
-    pub polyline_quality: i32,
-    #[prost(enumeration = "PolylineEncoding", tag = "13")]
-    pub polyline_encoding: i32,
-    #[prost(message, optional, tag = "7")]
-    pub departure_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "11")]
-    pub route_modifiers: ::core::option::Option<RouteModifiers>,
-    #[prost(message, optional, tag = "12")]
-    pub route_objective: ::core::option::Option<RouteObjective>,
-    #[prost(string, tag = "9")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(enumeration = "Units", tag = "10")]
-    pub units: i32,
+#[prost(message, optional, tag = "1")]
+pub origin: ::core::option::Option<Waypoint>,
+#[prost(message, optional, tag = "2")]
+pub destination: ::core::option::Option<Waypoint>,
+#[prost(message, repeated, tag = "3")]
+pub intermediates: ::prost::alloc::vec::Vec<Waypoint>,
+#[prost(enumeration = "RouteTravelMode", tag = "4")]
+pub travel_mode: i32,
+#[prost(enumeration = "RoutingPreference", tag = "5")]
+pub routing_preference: i32,
+#[prost(enumeration = "PolylineQuality", tag = "6")]
+pub polyline_quality: i32,
+#[prost(enumeration = "PolylineEncoding", tag = "13")]
+pub polyline_encoding: i32,
+#[prost(message, optional, tag = "7")]
+pub departure_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "11")]
+pub route_modifiers: ::core::option::Option<RouteModifiers>,
+#[prost(message, optional, tag = "12")]
+pub route_objective: ::core::option::Option<RouteObjective>,
+#[prost(string, tag = "9")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(enumeration = "Units", tag = "10")]
+pub units: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteObjective {
-    #[prost(message, optional, tag = "2")]
-    pub custom_layer: ::core::option::Option<route_objective::CustomLayer>,
-    #[prost(oneof = "route_objective::Objective", tags = "1")]
-    pub objective: ::core::option::Option<route_objective::Objective>,
+#[prost(message, optional, tag = "2")]
+pub custom_layer: ::core::option::Option<route_objective::CustomLayer>,
+#[prost(oneof = "route_objective::Objective", tags = "1")]
+pub objective: ::core::option::Option<route_objective::Objective>,
 }
 /// Nested message and enum types in `RouteObjective`.
 pub mod route_objective {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct RateCard {
-        #[prost(message, optional, tag = "2")]
-        pub cost_per_minute: ::core::option::Option<rate_card::MonetaryCost>,
-        #[prost(message, optional, tag = "3")]
-        pub cost_per_km: ::core::option::Option<rate_card::MonetaryCost>,
-        #[prost(bool, tag = "4")]
-        pub include_tolls: bool,
-    }
-    /// Nested message and enum types in `RateCard`.
-    pub mod rate_card {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct MonetaryCost {
-            #[prost(double, tag = "1")]
-            pub value: f64,
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CustomLayer {
-        #[prost(message, optional, tag = "1")]
-        pub dataset_info: ::core::option::Option<custom_layer::DatasetInfo>,
-    }
-    /// Nested message and enum types in `CustomLayer`.
-    pub mod custom_layer {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct DatasetInfo {
-            #[prost(string, tag = "1")]
-            pub dataset_id: ::prost::alloc::string::String,
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Objective {
-        #[prost(message, tag = "1")]
-        RateCard(RateCard),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RateCard {
+#[prost(message, optional, tag = "2")]
+pub cost_per_minute: ::core::option::Option<rate_card::MonetaryCost>,
+#[prost(message, optional, tag = "3")]
+pub cost_per_km: ::core::option::Option<rate_card::MonetaryCost>,
+#[prost(bool, tag = "4")]
+pub include_tolls: bool,
+}
+/// Nested message and enum types in `RateCard`.
+pub mod rate_card {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct MonetaryCost {
+#[prost(double, tag = "1")]
+pub value: f64,
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomLayer {
+#[prost(message, optional, tag = "1")]
+pub dataset_info: ::core::option::Option<custom_layer::DatasetInfo>,
+}
+/// Nested message and enum types in `CustomLayer`.
+pub mod custom_layer {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DatasetInfo {
+#[prost(string, tag = "1")]
+pub dataset_id: ::prost::alloc::string::String,
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Objective {
+#[prost(message, tag = "1")]
+RateCard(RateCard),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomRoute {
-    #[prost(message, optional, tag = "11")]
-    pub route: ::core::option::Option<Route>,
-    #[prost(string, tag = "12")]
-    pub token: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "11")]
+pub route: ::core::option::Option<Route>,
+#[prost(string, tag = "12")]
+pub token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComputeCustomRoutesResponse {
-    #[prost(message, repeated, tag = "7")]
-    pub routes: ::prost::alloc::vec::Vec<CustomRoute>,
-    #[prost(message, optional, tag = "5")]
-    pub fastest_route: ::core::option::Option<CustomRoute>,
-    #[prost(message, optional, tag = "6")]
-    pub shortest_route: ::core::option::Option<CustomRoute>,
-    #[prost(message, optional, tag = "8")]
-    pub fallback_info: ::core::option::Option<
-        compute_custom_routes_response::FallbackInfo,
-    >,
+#[prost(message, repeated, tag = "7")]
+pub routes: ::prost::alloc::vec::Vec<CustomRoute>,
+#[prost(message, optional, tag = "5")]
+pub fastest_route: ::core::option::Option<CustomRoute>,
+#[prost(message, optional, tag = "6")]
+pub shortest_route: ::core::option::Option<CustomRoute>,
+#[prost(message, optional, tag = "8")]
+pub fallback_info: ::core::option::Option<compute_custom_routes_response::FallbackInfo>,
 }
 /// Nested message and enum types in `ComputeCustomRoutesResponse`.
 pub mod compute_custom_routes_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct FallbackInfo {
-        #[prost(enumeration = "super::FallbackRoutingMode", tag = "1")]
-        pub routing_mode: i32,
-        #[prost(enumeration = "super::FallbackReason", tag = "2")]
-        pub routing_mode_reason: i32,
-        #[prost(enumeration = "fallback_info::FallbackRouteObjective", tag = "3")]
-        pub route_objective: i32,
-    }
-    /// Nested message and enum types in `FallbackInfo`.
-    pub mod fallback_info {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum FallbackRouteObjective {
-            Unspecified = 0,
-            FallbackRatecardWithoutTollPriceData = 1,
-        }
-        impl FallbackRouteObjective {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    FallbackRouteObjective::Unspecified => {
-                        "FALLBACK_ROUTE_OBJECTIVE_UNSPECIFIED"
-                    }
-                    FallbackRouteObjective::FallbackRatecardWithoutTollPriceData => {
-                        "FALLBACK_RATECARD_WITHOUT_TOLL_PRICE_DATA"
-                    }
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "FALLBACK_ROUTE_OBJECTIVE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "FALLBACK_RATECARD_WITHOUT_TOLL_PRICE_DATA" => {
-                        Some(Self::FallbackRatecardWithoutTollPriceData)
-                    }
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct FallbackInfo {
+#[prost(enumeration = "super::FallbackRoutingMode", tag = "1")]
+pub routing_mode: i32,
+#[prost(enumeration = "super::FallbackReason", tag = "2")]
+pub routing_mode_reason: i32,
+#[prost(enumeration = "fallback_info::FallbackRouteObjective", tag = "3")]
+pub route_objective: i32,
+}
+/// Nested message and enum types in `FallbackInfo`.
+pub mod fallback_info {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum FallbackRouteObjective {
+Unspecified = 0,
+FallbackRatecardWithoutTollPriceData = 1,
+}
+impl FallbackRouteObjective {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+FallbackRouteObjective::Unspecified => "FALLBACK_ROUTE_OBJECTIVE_UNSPECIFIED",
+FallbackRouteObjective::FallbackRatecardWithoutTollPriceData => "FALLBACK_RATECARD_WITHOUT_TOLL_PRICE_DATA",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FALLBACK_ROUTE_OBJECTIVE_UNSPECIFIED" => Some(Self::Unspecified),
+"FALLBACK_RATECARD_WITHOUT_TOLL_PRICE_DATA" => Some(Self::FallbackRatecardWithoutTollPriceData),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComputeRouteMatrixRequest {
-    #[prost(message, repeated, tag = "1")]
-    pub origins: ::prost::alloc::vec::Vec<RouteMatrixOrigin>,
-    #[prost(message, repeated, tag = "2")]
-    pub destinations: ::prost::alloc::vec::Vec<RouteMatrixDestination>,
-    #[prost(enumeration = "RouteTravelMode", tag = "3")]
-    pub travel_mode: i32,
-    #[prost(enumeration = "RoutingPreference", tag = "4")]
-    pub routing_preference: i32,
-    #[prost(message, optional, tag = "5")]
-    pub departure_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, repeated, tag = "1")]
+pub origins: ::prost::alloc::vec::Vec<RouteMatrixOrigin>,
+#[prost(message, repeated, tag = "2")]
+pub destinations: ::prost::alloc::vec::Vec<RouteMatrixDestination>,
+#[prost(enumeration = "RouteTravelMode", tag = "3")]
+pub travel_mode: i32,
+#[prost(enumeration = "RoutingPreference", tag = "4")]
+pub routing_preference: i32,
+#[prost(message, optional, tag = "5")]
+pub departure_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteMatrixOrigin {
-    #[prost(message, optional, tag = "1")]
-    pub waypoint: ::core::option::Option<Waypoint>,
-    #[prost(message, optional, tag = "2")]
-    pub route_modifiers: ::core::option::Option<RouteModifiers>,
+#[prost(message, optional, tag = "1")]
+pub waypoint: ::core::option::Option<Waypoint>,
+#[prost(message, optional, tag = "2")]
+pub route_modifiers: ::core::option::Option<RouteModifiers>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteMatrixDestination {
-    #[prost(message, optional, tag = "1")]
-    pub waypoint: ::core::option::Option<Waypoint>,
+#[prost(message, optional, tag = "1")]
+pub waypoint: ::core::option::Option<Waypoint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComputeRoutesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub routes: ::prost::alloc::vec::Vec<Route>,
-    #[prost(message, optional, tag = "2")]
-    pub fallback_info: ::core::option::Option<FallbackInfo>,
+#[prost(message, repeated, tag = "1")]
+pub routes: ::prost::alloc::vec::Vec<Route>,
+#[prost(message, optional, tag = "2")]
+pub fallback_info: ::core::option::Option<FallbackInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteMatrixElement {
-    #[prost(int32, tag = "1")]
-    pub origin_index: i32,
-    #[prost(int32, tag = "2")]
-    pub destination_index: i32,
-    #[prost(message, optional, tag = "3")]
-    pub status: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(enumeration = "RouteMatrixElementCondition", tag = "9")]
-    pub condition: i32,
-    #[prost(int32, tag = "4")]
-    pub distance_meters: i32,
-    #[prost(message, optional, tag = "5")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "6")]
-    pub static_duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "7")]
-    pub travel_advisory: ::core::option::Option<RouteTravelAdvisory>,
-    #[prost(message, optional, tag = "8")]
-    pub fallback_info: ::core::option::Option<FallbackInfo>,
+#[prost(int32, tag = "1")]
+pub origin_index: i32,
+#[prost(int32, tag = "2")]
+pub destination_index: i32,
+#[prost(message, optional, tag = "3")]
+pub status: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(enumeration = "RouteMatrixElementCondition", tag = "9")]
+pub condition: i32,
+#[prost(int32, tag = "4")]
+pub distance_meters: i32,
+#[prost(message, optional, tag = "5")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "6")]
+pub static_duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "7")]
+pub travel_advisory: ::core::option::Option<RouteTravelAdvisory>,
+#[prost(message, optional, tag = "8")]
+pub fallback_info: ::core::option::Option<FallbackInfo>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RouteMatrixElementCondition {
-    Unspecified = 0,
-    RouteExists = 1,
-    RouteNotFound = 2,
+Unspecified = 0,
+RouteExists = 1,
+RouteNotFound = 2,
 }
 impl RouteMatrixElementCondition {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            RouteMatrixElementCondition::Unspecified => {
-                "ROUTE_MATRIX_ELEMENT_CONDITION_UNSPECIFIED"
-            }
-            RouteMatrixElementCondition::RouteExists => "ROUTE_EXISTS",
-            RouteMatrixElementCondition::RouteNotFound => "ROUTE_NOT_FOUND",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ROUTE_MATRIX_ELEMENT_CONDITION_UNSPECIFIED" => Some(Self::Unspecified),
-            "ROUTE_EXISTS" => Some(Self::RouteExists),
-            "ROUTE_NOT_FOUND" => Some(Self::RouteNotFound),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RouteMatrixElementCondition::Unspecified => "ROUTE_MATRIX_ELEMENT_CONDITION_UNSPECIFIED",
+RouteMatrixElementCondition::RouteExists => "ROUTE_EXISTS",
+RouteMatrixElementCondition::RouteNotFound => "ROUTE_NOT_FOUND",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ROUTE_MATRIX_ELEMENT_CONDITION_UNSPECIFIED" => Some(Self::Unspecified),
+"ROUTE_EXISTS" => Some(Self::RouteExists),
+"ROUTE_NOT_FOUND" => Some(Self::RouteNotFound),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod routes_preferred_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The Routes Preferred API.
-    #[derive(Debug, Clone)]
-    pub struct RoutesPreferredClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> RoutesPreferredClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> RoutesPreferredClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            RoutesPreferredClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Returns the primary route along with optional alternate routes, given a set
-        /// of terminal and intermediate waypoints.
-        ///
-        /// **NOTE:** This method requires that you specify a response field mask in
-        /// the input. You can provide the response field mask by using URL parameter
-        /// `$fields` or `fields`, or by using an HTTP/gRPC header `X-Goog-FieldMask`
-        /// (see the [available URL parameters and
-        /// headers](https://cloud.google.com/apis/docs/system-parameters). The value
-        /// is a comma separated list of field paths. See detailed documentation about
-        /// [how to construct the field
-        /// paths](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto).
-        ///
-        /// For example, in this method:
-        ///
-        /// * Field mask of all available fields (for manual inspection):
-        ///   `X-Goog-FieldMask: *`
-        /// * Field mask of Route-level duration, distance, and polyline (an example
-        /// production setup):
-        ///   `X-Goog-FieldMask:
-        ///   routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline`
-        ///
-        /// Google discourage the use of the wildcard (`*`) response field mask, or
-        /// specifying the field mask at the top level (`routes`), because:
-        ///
-        /// * Selecting only the fields that you need helps our server save computation
-        /// cycles, allowing us to return the result to you with a lower latency.
-        /// * Selecting only the fields that you need
-        /// in your production job ensures stable latency performance. We might add
-        /// more response fields in the future, and those new fields might require
-        /// extra computation time. If you select all fields, or if you select all
-        /// fields at the top level, then you might experience performance degradation
-        /// because any new field we add will be automatically included in the
-        /// response.
-        /// * Selecting only the fields that you need results in a smaller response
-        /// size, and thus higher network throughput.
-        pub async fn compute_routes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ComputeRoutesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ComputeRoutesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.routes.v1.RoutesPreferred/ComputeRoutes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.maps.routes.v1.RoutesPreferred",
-                        "ComputeRoutes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Takes in a list of origins and destinations and returns a stream containing
-        /// route information for each combination of origin and destination.
-        ///
-        /// **NOTE:** This method requires that you specify a response field mask in
-        /// the input. You can provide the response field mask by using the URL
-        /// parameter `$fields` or `fields`, or by using the HTTP/gRPC header
-        /// `X-Goog-FieldMask` (see the [available URL parameters and
-        /// headers](https://cloud.google.com/apis/docs/system-parameters). The value
-        /// is a comma separated list of field paths. See this detailed documentation
-        /// about [how to construct the field
-        /// paths](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto).
-        ///
-        /// For example, in this method:
-        ///
-        /// * Field mask of all available fields (for manual inspection):
-        ///   `X-Goog-FieldMask: *`
-        /// * Field mask of route durations, distances, element status, condition, and
-        ///   element indices (an example production setup):
-        ///   `X-Goog-FieldMask:
-        ///   originIndex,destinationIndex,status,condition,distanceMeters,duration`
-        ///
-        /// It is critical that you include `status` in your field mask as otherwise
-        /// all messages will appear to be OK. Google discourages the use of the
-        /// wildcard (`*`) response field mask, because:
-        ///
-        /// * Selecting only the fields that you need helps our server save computation
-        /// cycles, allowing us to return the result to you with a lower latency.
-        /// * Selecting only the fields that you need in your production job ensures
-        /// stable latency performance. We might add more response fields in the
-        /// future, and those new fields might require extra computation time. If you
-        /// select all fields, or if you select all fields at the top level, then you
-        /// might experience performance degradation because any new field we add will
-        /// be automatically included in the response.
-        /// * Selecting only the fields that you need results in a smaller response
-        /// size, and thus higher network throughput.
-        pub async fn compute_route_matrix(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ComputeRouteMatrixRequest>,
-        ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::RouteMatrixElement>>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.routes.v1.RoutesPreferred/ComputeRouteMatrix",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.maps.routes.v1.RoutesPreferred",
-                        "ComputeRouteMatrix",
-                    ),
-                );
-            self.inner.server_streaming(req, path, codec).await
-        }
-        /// Given a set of terminal and intermediate waypoints, and a route objective,
-        /// computes the best route for the route objective. Also returns fastest route
-        /// and shortest route as reference routes.
-        ///
-        /// **NOTE:** This method requires that you specify a response field mask in
-        /// the input. You can provide the response field mask by using the URL
-        /// parameter `$fields` or `fields`, or by using the HTTP/gRPC header
-        /// `X-Goog-FieldMask` (see the [available URL parameters and
-        /// headers](https://cloud.google.com/apis/docs/system-parameters). The value
-        /// is a comma separated list of field paths. See this detailed documentation
-        /// about [how to construct the field
-        /// paths](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto).
-        ///
-        /// For example, in this method:
-        ///
-        /// * Field mask of all available fields (for manual inspection):
-        ///   `X-Goog-FieldMask: *`
-        /// * Field mask of route distances, durations, token and toll info:
-        ///   `X-Goog-FieldMask:
-        ///   routes.route.distanceMeters,routes.route.duration,routes.token,routes.route.travelAdvisory.tollInfo`
-        ///
-        /// Google discourages the use of the wildcard (`*`) response field mask, or
-        /// specifying the field mask at the top level (`routes`), because:
-        ///
-        /// * Selecting only the fields that you need helps our server save computation
-        /// cycles, allowing us to return the result to you with a lower latency.
-        /// * Selecting only the fields that you need in your production job ensures
-        /// stable latency performance. We might add more response fields in the
-        /// future, and those new fields might require extra computation time. If you
-        /// select all fields, or if you select all fields at the top level, then you
-        /// might experience performance degradation because any new field we add will
-        /// be automatically included in the response.
-        /// * Selecting only the fields that you need results in a smaller response
-        /// size, and thus higher network throughput.
-        pub async fn compute_custom_routes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ComputeCustomRoutesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ComputeCustomRoutesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.routes.v1.RoutesPreferred/ComputeCustomRoutes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.maps.routes.v1.RoutesPreferred",
-                        "ComputeCustomRoutes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The Routes Preferred API.
+#[derive(Debug, Clone)]
+pub struct RoutesPreferredClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> RoutesPreferredClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> RoutesPreferredClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+RoutesPreferredClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Returns the primary route along with optional alternate routes, given a set
+/// of terminal and intermediate waypoints.
+///
+/// **NOTE:** This method requires that you specify a response field mask in
+/// the input. You can provide the response field mask by using URL parameter
+/// `$fields` or `fields`, or by using an HTTP/gRPC header `X-Goog-FieldMask`
+/// (see the [available URL parameters and
+/// headers](https://cloud.google.com/apis/docs/system-parameters). The value
+/// is a comma separated list of field paths. See detailed documentation about
+/// [how to construct the field
+/// paths](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto).
+///
+/// For example, in this method:
+///
+/// * Field mask of all available fields (for manual inspection):
+///   `X-Goog-FieldMask: *`
+/// * Field mask of Route-level duration, distance, and polyline (an example
+/// production setup):
+///   `X-Goog-FieldMask:
+///   routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline`
+///
+/// Google discourage the use of the wildcard (`*`) response field mask, or
+/// specifying the field mask at the top level (`routes`), because:
+///
+/// * Selecting only the fields that you need helps our server save computation
+/// cycles, allowing us to return the result to you with a lower latency.
+/// * Selecting only the fields that you need
+/// in your production job ensures stable latency performance. We might add
+/// more response fields in the future, and those new fields might require
+/// extra computation time. If you select all fields, or if you select all
+/// fields at the top level, then you might experience performance degradation
+/// because any new field we add will be automatically included in the
+/// response.
+/// * Selecting only the fields that you need results in a smaller response
+/// size, and thus higher network throughput.
+pub async fn compute_routes(&mut self, request: impl tonic::IntoRequest<super::ComputeRoutesRequest>) -> std::result::Result<tonic::Response<super::ComputeRoutesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.routes.v1.RoutesPreferred/ComputeRoutes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.routes.v1.RoutesPreferred", "ComputeRoutes"));
+self.inner.unary(req, path, codec).await
+}
+/// Takes in a list of origins and destinations and returns a stream containing
+/// route information for each combination of origin and destination.
+///
+/// **NOTE:** This method requires that you specify a response field mask in
+/// the input. You can provide the response field mask by using the URL
+/// parameter `$fields` or `fields`, or by using the HTTP/gRPC header
+/// `X-Goog-FieldMask` (see the [available URL parameters and
+/// headers](https://cloud.google.com/apis/docs/system-parameters). The value
+/// is a comma separated list of field paths. See this detailed documentation
+/// about [how to construct the field
+/// paths](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto).
+///
+/// For example, in this method:
+///
+/// * Field mask of all available fields (for manual inspection):
+///   `X-Goog-FieldMask: *`
+/// * Field mask of route durations, distances, element status, condition, and
+///   element indices (an example production setup):
+///   `X-Goog-FieldMask:
+///   originIndex,destinationIndex,status,condition,distanceMeters,duration`
+///
+/// It is critical that you include `status` in your field mask as otherwise
+/// all messages will appear to be OK. Google discourages the use of the
+/// wildcard (`*`) response field mask, because:
+///
+/// * Selecting only the fields that you need helps our server save computation
+/// cycles, allowing us to return the result to you with a lower latency.
+/// * Selecting only the fields that you need in your production job ensures
+/// stable latency performance. We might add more response fields in the
+/// future, and those new fields might require extra computation time. If you
+/// select all fields, or if you select all fields at the top level, then you
+/// might experience performance degradation because any new field we add will
+/// be automatically included in the response.
+/// * Selecting only the fields that you need results in a smaller response
+/// size, and thus higher network throughput.
+pub async fn compute_route_matrix(&mut self, request: impl tonic::IntoRequest<super::ComputeRouteMatrixRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::RouteMatrixElement>>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.routes.v1.RoutesPreferred/ComputeRouteMatrix");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.routes.v1.RoutesPreferred", "ComputeRouteMatrix"));
+self.inner.server_streaming(req, path, codec).await
+}
+/// Given a set of terminal and intermediate waypoints, and a route objective,
+/// computes the best route for the route objective. Also returns fastest route
+/// and shortest route as reference routes.
+///
+/// **NOTE:** This method requires that you specify a response field mask in
+/// the input. You can provide the response field mask by using the URL
+/// parameter `$fields` or `fields`, or by using the HTTP/gRPC header
+/// `X-Goog-FieldMask` (see the [available URL parameters and
+/// headers](https://cloud.google.com/apis/docs/system-parameters). The value
+/// is a comma separated list of field paths. See this detailed documentation
+/// about [how to construct the field
+/// paths](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/field_mask.proto).
+///
+/// For example, in this method:
+///
+/// * Field mask of all available fields (for manual inspection):
+///   `X-Goog-FieldMask: *`
+/// * Field mask of route distances, durations, token and toll info:
+///   `X-Goog-FieldMask:
+///   routes.route.distanceMeters,routes.route.duration,routes.token,routes.route.travelAdvisory.tollInfo`
+///
+/// Google discourages the use of the wildcard (`*`) response field mask, or
+/// specifying the field mask at the top level (`routes`), because:
+///
+/// * Selecting only the fields that you need helps our server save computation
+/// cycles, allowing us to return the result to you with a lower latency.
+/// * Selecting only the fields that you need in your production job ensures
+/// stable latency performance. We might add more response fields in the
+/// future, and those new fields might require extra computation time. If you
+/// select all fields, or if you select all fields at the top level, then you
+/// might experience performance degradation because any new field we add will
+/// be automatically included in the response.
+/// * Selecting only the fields that you need results in a smaller response
+/// size, and thus higher network throughput.
+pub async fn compute_custom_routes(&mut self, request: impl tonic::IntoRequest<super::ComputeCustomRoutesRequest>) -> std::result::Result<tonic::Response<super::ComputeCustomRoutesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.routes.v1.RoutesPreferred/ComputeCustomRoutes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.routes.v1.RoutesPreferred", "ComputeCustomRoutes"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

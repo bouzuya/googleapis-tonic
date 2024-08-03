@@ -2,8 +2,8 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IngestDetailsLog {
-    #[prost(string, tag = "1")]
-    pub ingestion_tracking_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub content: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub ingestion_tracking_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub content: ::prost::alloc::string::String,
 }

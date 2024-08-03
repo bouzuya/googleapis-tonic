@@ -2,1900 +2,1310 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_message: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub requested_cancellation: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub requested_cancellation: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hub {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub unique_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "State", tag = "9")]
-    pub state: i32,
-    #[prost(message, repeated, tag = "10")]
-    pub routing_vpcs: ::prost::alloc::vec::Vec<RoutingVpc>,
-    #[prost(string, repeated, tag = "11")]
-    pub route_tables: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "12")]
-    pub spoke_summary: ::core::option::Option<SpokeSummary>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub unique_id: ::prost::alloc::string::String,
+#[prost(enumeration = "State", tag = "9")]
+pub state: i32,
+#[prost(message, repeated, tag = "10")]
+pub routing_vpcs: ::prost::alloc::vec::Vec<RoutingVpc>,
+#[prost(string, repeated, tag = "11")]
+pub route_tables: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "12")]
+pub spoke_summary: ::core::option::Option<SpokeSummary>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RoutingVpc {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub required_for_new_site_to_site_data_transfer_spokes: bool,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub required_for_new_site_to_site_data_transfer_spokes: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Spoke {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub hub: ::prost::alloc::string::String,
-    #[prost(string, tag = "23")]
-    pub group: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "17")]
-    pub linked_vpn_tunnels: ::core::option::Option<LinkedVpnTunnels>,
-    #[prost(message, optional, tag = "18")]
-    pub linked_interconnect_attachments: ::core::option::Option<
-        LinkedInterconnectAttachments,
-    >,
-    #[prost(message, optional, tag = "19")]
-    pub linked_router_appliance_instances: ::core::option::Option<
-        LinkedRouterApplianceInstances,
-    >,
-    #[prost(message, optional, tag = "20")]
-    pub linked_vpc_network: ::core::option::Option<LinkedVpcNetwork>,
-    #[prost(string, tag = "11")]
-    pub unique_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "State", tag = "15")]
-    pub state: i32,
-    #[prost(message, repeated, tag = "21")]
-    pub reasons: ::prost::alloc::vec::Vec<spoke::StateReason>,
-    #[prost(enumeration = "SpokeType", tag = "22")]
-    pub spoke_type: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub hub: ::prost::alloc::string::String,
+#[prost(string, tag = "23")]
+pub group: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "17")]
+pub linked_vpn_tunnels: ::core::option::Option<LinkedVpnTunnels>,
+#[prost(message, optional, tag = "18")]
+pub linked_interconnect_attachments: ::core::option::Option<LinkedInterconnectAttachments>,
+#[prost(message, optional, tag = "19")]
+pub linked_router_appliance_instances: ::core::option::Option<LinkedRouterApplianceInstances>,
+#[prost(message, optional, tag = "20")]
+pub linked_vpc_network: ::core::option::Option<LinkedVpcNetwork>,
+#[prost(string, tag = "11")]
+pub unique_id: ::prost::alloc::string::String,
+#[prost(enumeration = "State", tag = "15")]
+pub state: i32,
+#[prost(message, repeated, tag = "21")]
+pub reasons: ::prost::alloc::vec::Vec<spoke::StateReason>,
+#[prost(enumeration = "SpokeType", tag = "22")]
+pub spoke_type: i32,
 }
 /// Nested message and enum types in `Spoke`.
 pub mod spoke {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct StateReason {
-        #[prost(enumeration = "state_reason::Code", tag = "1")]
-        pub code: i32,
-        #[prost(string, tag = "2")]
-        pub message: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub user_details: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `StateReason`.
-    pub mod state_reason {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Code {
-            Unspecified = 0,
-            PendingReview = 1,
-            Rejected = 2,
-            Paused = 3,
-            Failed = 4,
-        }
-        impl Code {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Code::Unspecified => "CODE_UNSPECIFIED",
-                    Code::PendingReview => "PENDING_REVIEW",
-                    Code::Rejected => "REJECTED",
-                    Code::Paused => "PAUSED",
-                    Code::Failed => "FAILED",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "CODE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "PENDING_REVIEW" => Some(Self::PendingReview),
-                    "REJECTED" => Some(Self::Rejected),
-                    "PAUSED" => Some(Self::Paused),
-                    "FAILED" => Some(Self::Failed),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StateReason {
+#[prost(enumeration = "state_reason::Code", tag = "1")]
+pub code: i32,
+#[prost(string, tag = "2")]
+pub message: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub user_details: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `StateReason`.
+pub mod state_reason {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Code {
+Unspecified = 0,
+PendingReview = 1,
+Rejected = 2,
+Paused = 3,
+Failed = 4,
+}
+impl Code {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Code::Unspecified => "CODE_UNSPECIFIED",
+Code::PendingReview => "PENDING_REVIEW",
+Code::Rejected => "REJECTED",
+Code::Paused => "PAUSED",
+Code::Failed => "FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CODE_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING_REVIEW" => Some(Self::PendingReview),
+"REJECTED" => Some(Self::Rejected),
+"PAUSED" => Some(Self::Paused),
+"FAILED" => Some(Self::Failed),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouteTable {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(enumeration = "State", tag = "7")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub uid: ::prost::alloc::string::String,
+#[prost(enumeration = "State", tag = "7")]
+pub state: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Route {
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "1")]
-    pub ip_cidr_range: ::prost::alloc::string::String,
-    #[prost(enumeration = "RouteType", tag = "10")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "2")]
-    pub next_hop_vpc_network: ::core::option::Option<NextHopVpcNetwork>,
-    #[prost(map = "string, string", tag = "6")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "7")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(enumeration = "State", tag = "9")]
-    pub state: i32,
-    #[prost(string, tag = "11")]
-    pub spoke: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub location: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub ip_cidr_range: ::prost::alloc::string::String,
+#[prost(enumeration = "RouteType", tag = "10")]
+pub r#type: i32,
+#[prost(message, optional, tag = "2")]
+pub next_hop_vpc_network: ::core::option::Option<NextHopVpcNetwork>,
+#[prost(map = "string, string", tag = "6")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "7")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub uid: ::prost::alloc::string::String,
+#[prost(enumeration = "State", tag = "9")]
+pub state: i32,
+#[prost(string, tag = "11")]
+pub spoke: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub location: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Group {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(enumeration = "State", tag = "7")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub uid: ::prost::alloc::string::String,
+#[prost(enumeration = "State", tag = "7")]
+pub state: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHubsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHubsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub hubs: ::prost::alloc::vec::Vec<Hub>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub hubs: ::prost::alloc::vec::Vec<Hub>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetHubRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateHubRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub hub_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub hub: ::core::option::Option<Hub>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub hub_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub hub: ::core::option::Option<Hub>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateHubRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub hub: ::core::option::Option<Hub>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub hub: ::core::option::Option<Hub>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteHubRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHubSpokesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub spoke_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub order_by: ::prost::alloc::string::String,
-    #[prost(enumeration = "list_hub_spokes_request::SpokeView", tag = "7")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub spoke_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub order_by: ::prost::alloc::string::String,
+#[prost(enumeration = "list_hub_spokes_request::SpokeView", tag = "7")]
+pub view: i32,
 }
 /// Nested message and enum types in `ListHubSpokesRequest`.
 pub mod list_hub_spokes_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SpokeView {
-        Unspecified = 0,
-        Basic = 1,
-        Detailed = 2,
-    }
-    impl SpokeView {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SpokeView::Unspecified => "SPOKE_VIEW_UNSPECIFIED",
-                SpokeView::Basic => "BASIC",
-                SpokeView::Detailed => "DETAILED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SPOKE_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
-                "BASIC" => Some(Self::Basic),
-                "DETAILED" => Some(Self::Detailed),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SpokeView {
+Unspecified = 0,
+Basic = 1,
+Detailed = 2,
+}
+impl SpokeView {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SpokeView::Unspecified => "SPOKE_VIEW_UNSPECIFIED",
+SpokeView::Basic => "BASIC",
+SpokeView::Detailed => "DETAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SPOKE_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+"BASIC" => Some(Self::Basic),
+"DETAILED" => Some(Self::Detailed),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListHubSpokesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub spokes: ::prost::alloc::vec::Vec<Spoke>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub spokes: ::prost::alloc::vec::Vec<Spoke>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSpokesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListSpokesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub spokes: ::prost::alloc::vec::Vec<Spoke>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub spokes: ::prost::alloc::vec::Vec<Spoke>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSpokeRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSpokeRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub spoke_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub spoke: ::core::option::Option<Spoke>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub spoke_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub spoke: ::core::option::Option<Spoke>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSpokeRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub spoke: ::core::option::Option<Spoke>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub spoke: ::core::option::Option<Spoke>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteSpokeRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AcceptHubSpokeRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub spoke_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub spoke_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AcceptHubSpokeResponse {
-    #[prost(message, optional, tag = "1")]
-    pub spoke: ::core::option::Option<Spoke>,
+#[prost(message, optional, tag = "1")]
+pub spoke: ::core::option::Option<Spoke>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RejectHubSpokeRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub spoke_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub details: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub spoke_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub details: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RejectHubSpokeResponse {
-    #[prost(message, optional, tag = "1")]
-    pub spoke: ::core::option::Option<Spoke>,
+#[prost(message, optional, tag = "1")]
+pub spoke: ::core::option::Option<Spoke>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRouteTableRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRouteRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRoutesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRoutesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub routes: ::prost::alloc::vec::Vec<Route>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub routes: ::prost::alloc::vec::Vec<Route>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRouteTablesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRouteTablesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub route_tables: ::prost::alloc::vec::Vec<RouteTable>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub route_tables: ::prost::alloc::vec::Vec<RouteTable>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGroupsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGroupsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub groups: ::prost::alloc::vec::Vec<Group>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub groups: ::prost::alloc::vec::Vec<Group>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LinkedVpnTunnels {
-    #[prost(string, repeated, tag = "1")]
-    pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(bool, tag = "2")]
-    pub site_to_site_data_transfer: bool,
-    #[prost(string, tag = "3")]
-    pub vpc_network: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "1")]
+pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "2")]
+pub site_to_site_data_transfer: bool,
+#[prost(string, tag = "3")]
+pub vpc_network: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LinkedInterconnectAttachments {
-    #[prost(string, repeated, tag = "1")]
-    pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(bool, tag = "2")]
-    pub site_to_site_data_transfer: bool,
-    #[prost(string, tag = "3")]
-    pub vpc_network: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "1")]
+pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "2")]
+pub site_to_site_data_transfer: bool,
+#[prost(string, tag = "3")]
+pub vpc_network: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LinkedRouterApplianceInstances {
-    #[prost(message, repeated, tag = "1")]
-    pub instances: ::prost::alloc::vec::Vec<RouterApplianceInstance>,
-    #[prost(bool, tag = "2")]
-    pub site_to_site_data_transfer: bool,
-    #[prost(string, tag = "3")]
-    pub vpc_network: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub instances: ::prost::alloc::vec::Vec<RouterApplianceInstance>,
+#[prost(bool, tag = "2")]
+pub site_to_site_data_transfer: bool,
+#[prost(string, tag = "3")]
+pub vpc_network: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LinkedVpcNetwork {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub exclude_export_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub exclude_export_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RouterApplianceInstance {
-    #[prost(string, tag = "1")]
-    pub virtual_machine: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub ip_address: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub virtual_machine: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub ip_address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
-    #[prost(enumeration = "LocationFeature", repeated, tag = "1")]
-    pub location_features: ::prost::alloc::vec::Vec<i32>,
+#[prost(enumeration = "LocationFeature", repeated, tag = "1")]
+pub location_features: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NextHopVpcNetwork {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpokeSummary {
-    #[prost(message, repeated, tag = "1")]
-    pub spoke_type_counts: ::prost::alloc::vec::Vec<spoke_summary::SpokeTypeCount>,
-    #[prost(message, repeated, tag = "2")]
-    pub spoke_state_counts: ::prost::alloc::vec::Vec<spoke_summary::SpokeStateCount>,
-    #[prost(message, repeated, tag = "3")]
-    pub spoke_state_reason_counts: ::prost::alloc::vec::Vec<
-        spoke_summary::SpokeStateReasonCount,
-    >,
+#[prost(message, repeated, tag = "1")]
+pub spoke_type_counts: ::prost::alloc::vec::Vec<spoke_summary::SpokeTypeCount>,
+#[prost(message, repeated, tag = "2")]
+pub spoke_state_counts: ::prost::alloc::vec::Vec<spoke_summary::SpokeStateCount>,
+#[prost(message, repeated, tag = "3")]
+pub spoke_state_reason_counts: ::prost::alloc::vec::Vec<spoke_summary::SpokeStateReasonCount>,
 }
 /// Nested message and enum types in `SpokeSummary`.
 pub mod spoke_summary {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SpokeTypeCount {
-        #[prost(enumeration = "super::SpokeType", tag = "1")]
-        pub spoke_type: i32,
-        #[prost(int64, tag = "2")]
-        pub count: i64,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SpokeStateCount {
-        #[prost(enumeration = "super::State", tag = "1")]
-        pub state: i32,
-        #[prost(int64, tag = "2")]
-        pub count: i64,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SpokeStateReasonCount {
-        #[prost(enumeration = "super::spoke::state_reason::Code", tag = "1")]
-        pub state_reason_code: i32,
-        #[prost(int64, tag = "2")]
-        pub count: i64,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SpokeTypeCount {
+#[prost(enumeration = "super::SpokeType", tag = "1")]
+pub spoke_type: i32,
+#[prost(int64, tag = "2")]
+pub count: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SpokeStateCount {
+#[prost(enumeration = "super::State", tag = "1")]
+pub state: i32,
+#[prost(int64, tag = "2")]
+pub count: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SpokeStateReasonCount {
+#[prost(enumeration = "super::spoke::state_reason::Code", tag = "1")]
+pub state_reason_code: i32,
+#[prost(int64, tag = "2")]
+pub count: i64,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGroupRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LocationFeature {
-    Unspecified = 0,
-    SiteToCloudSpokes = 1,
-    SiteToSiteSpokes = 2,
+Unspecified = 0,
+SiteToCloudSpokes = 1,
+SiteToSiteSpokes = 2,
 }
 impl LocationFeature {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            LocationFeature::Unspecified => "LOCATION_FEATURE_UNSPECIFIED",
-            LocationFeature::SiteToCloudSpokes => "SITE_TO_CLOUD_SPOKES",
-            LocationFeature::SiteToSiteSpokes => "SITE_TO_SITE_SPOKES",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "LOCATION_FEATURE_UNSPECIFIED" => Some(Self::Unspecified),
-            "SITE_TO_CLOUD_SPOKES" => Some(Self::SiteToCloudSpokes),
-            "SITE_TO_SITE_SPOKES" => Some(Self::SiteToSiteSpokes),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LocationFeature::Unspecified => "LOCATION_FEATURE_UNSPECIFIED",
+LocationFeature::SiteToCloudSpokes => "SITE_TO_CLOUD_SPOKES",
+LocationFeature::SiteToSiteSpokes => "SITE_TO_SITE_SPOKES",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LOCATION_FEATURE_UNSPECIFIED" => Some(Self::Unspecified),
+"SITE_TO_CLOUD_SPOKES" => Some(Self::SiteToCloudSpokes),
+"SITE_TO_SITE_SPOKES" => Some(Self::SiteToSiteSpokes),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RouteType {
-    Unspecified = 0,
-    VpcPrimarySubnet = 1,
-    VpcSecondarySubnet = 2,
+Unspecified = 0,
+VpcPrimarySubnet = 1,
+VpcSecondarySubnet = 2,
 }
 impl RouteType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            RouteType::Unspecified => "ROUTE_TYPE_UNSPECIFIED",
-            RouteType::VpcPrimarySubnet => "VPC_PRIMARY_SUBNET",
-            RouteType::VpcSecondarySubnet => "VPC_SECONDARY_SUBNET",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ROUTE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "VPC_PRIMARY_SUBNET" => Some(Self::VpcPrimarySubnet),
-            "VPC_SECONDARY_SUBNET" => Some(Self::VpcSecondarySubnet),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RouteType::Unspecified => "ROUTE_TYPE_UNSPECIFIED",
+RouteType::VpcPrimarySubnet => "VPC_PRIMARY_SUBNET",
+RouteType::VpcSecondarySubnet => "VPC_SECONDARY_SUBNET",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ROUTE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"VPC_PRIMARY_SUBNET" => Some(Self::VpcPrimarySubnet),
+"VPC_SECONDARY_SUBNET" => Some(Self::VpcSecondarySubnet),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum State {
-    Unspecified = 0,
-    Creating = 1,
-    Active = 2,
-    Deleting = 3,
-    Accepting = 8,
-    Rejecting = 9,
-    Updating = 6,
-    Inactive = 7,
-    Obsolete = 10,
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Deleting = 3,
+Accepting = 8,
+Rejecting = 9,
+Updating = 6,
+Inactive = 7,
+Obsolete = 10,
 }
 impl State {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            State::Unspecified => "STATE_UNSPECIFIED",
-            State::Creating => "CREATING",
-            State::Active => "ACTIVE",
-            State::Deleting => "DELETING",
-            State::Accepting => "ACCEPTING",
-            State::Rejecting => "REJECTING",
-            State::Updating => "UPDATING",
-            State::Inactive => "INACTIVE",
-            State::Obsolete => "OBSOLETE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "CREATING" => Some(Self::Creating),
-            "ACTIVE" => Some(Self::Active),
-            "DELETING" => Some(Self::Deleting),
-            "ACCEPTING" => Some(Self::Accepting),
-            "REJECTING" => Some(Self::Rejecting),
-            "UPDATING" => Some(Self::Updating),
-            "INACTIVE" => Some(Self::Inactive),
-            "OBSOLETE" => Some(Self::Obsolete),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Deleting => "DELETING",
+State::Accepting => "ACCEPTING",
+State::Rejecting => "REJECTING",
+State::Updating => "UPDATING",
+State::Inactive => "INACTIVE",
+State::Obsolete => "OBSOLETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"DELETING" => Some(Self::Deleting),
+"ACCEPTING" => Some(Self::Accepting),
+"REJECTING" => Some(Self::Rejecting),
+"UPDATING" => Some(Self::Updating),
+"INACTIVE" => Some(Self::Inactive),
+"OBSOLETE" => Some(Self::Obsolete),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SpokeType {
-    Unspecified = 0,
-    VpnTunnel = 1,
-    InterconnectAttachment = 2,
-    RouterAppliance = 3,
-    VpcNetwork = 4,
+Unspecified = 0,
+VpnTunnel = 1,
+InterconnectAttachment = 2,
+RouterAppliance = 3,
+VpcNetwork = 4,
 }
 impl SpokeType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            SpokeType::Unspecified => "SPOKE_TYPE_UNSPECIFIED",
-            SpokeType::VpnTunnel => "VPN_TUNNEL",
-            SpokeType::InterconnectAttachment => "INTERCONNECT_ATTACHMENT",
-            SpokeType::RouterAppliance => "ROUTER_APPLIANCE",
-            SpokeType::VpcNetwork => "VPC_NETWORK",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SPOKE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "VPN_TUNNEL" => Some(Self::VpnTunnel),
-            "INTERCONNECT_ATTACHMENT" => Some(Self::InterconnectAttachment),
-            "ROUTER_APPLIANCE" => Some(Self::RouterAppliance),
-            "VPC_NETWORK" => Some(Self::VpcNetwork),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SpokeType::Unspecified => "SPOKE_TYPE_UNSPECIFIED",
+SpokeType::VpnTunnel => "VPN_TUNNEL",
+SpokeType::InterconnectAttachment => "INTERCONNECT_ATTACHMENT",
+SpokeType::RouterAppliance => "ROUTER_APPLIANCE",
+SpokeType::VpcNetwork => "VPC_NETWORK",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SPOKE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"VPN_TUNNEL" => Some(Self::VpnTunnel),
+"INTERCONNECT_ATTACHMENT" => Some(Self::InterconnectAttachment),
+"ROUTER_APPLIANCE" => Some(Self::RouterAppliance),
+"VPC_NETWORK" => Some(Self::VpcNetwork),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod hub_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Network Connectivity Center is a hub-and-spoke abstraction for network
-    /// connectivity management in Google Cloud. It reduces operational complexity
-    /// through a simple, centralized connectivity management model.
-    #[derive(Debug, Clone)]
-    pub struct HubServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> HubServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> HubServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            HubServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists the Network Connectivity Center hubs associated with a given project.
-        pub async fn list_hubs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListHubsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListHubsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/ListHubs",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "ListHubs",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details about a Network Connectivity Center hub.
-        pub async fn get_hub(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetHubRequest>,
-        ) -> std::result::Result<tonic::Response<super::Hub>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/GetHub",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "GetHub",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Network Connectivity Center hub in the specified project.
-        pub async fn create_hub(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateHubRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/CreateHub",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "CreateHub",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the description and/or labels of a Network Connectivity Center
-        /// hub.
-        pub async fn update_hub(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateHubRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/UpdateHub",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "UpdateHub",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Network Connectivity Center hub.
-        pub async fn delete_hub(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteHubRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/DeleteHub",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "DeleteHub",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the Network Connectivity Center spokes associated with a
-        /// specified hub and location. The list includes both spokes that are attached
-        /// to the hub and spokes that have been proposed but not yet accepted.
-        pub async fn list_hub_spokes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListHubSpokesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListHubSpokesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/ListHubSpokes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "ListHubSpokes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the Network Connectivity Center spokes in a specified project and
-        /// location.
-        pub async fn list_spokes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListSpokesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListSpokesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/ListSpokes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "ListSpokes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details about a Network Connectivity Center spoke.
-        pub async fn get_spoke(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetSpokeRequest>,
-        ) -> std::result::Result<tonic::Response<super::Spoke>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/GetSpoke",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "GetSpoke",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a Network Connectivity Center spoke.
-        pub async fn create_spoke(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateSpokeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/CreateSpoke",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "CreateSpoke",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the parameters of a Network Connectivity Center spoke.
-        pub async fn update_spoke(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateSpokeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/UpdateSpoke",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "UpdateSpoke",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Rejects a Network Connectivity Center spoke from being attached to a hub.
-        /// If the spoke was previously in the `ACTIVE` state, it
-        /// transitions to the `INACTIVE` state and is no longer able to
-        /// connect to other spokes that are attached to the hub.
-        pub async fn reject_hub_spoke(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RejectHubSpokeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/RejectHubSpoke",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "RejectHubSpoke",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Accepts a proposal to attach a Network Connectivity Center spoke
-        /// to a hub.
-        pub async fn accept_hub_spoke(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AcceptHubSpokeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/AcceptHubSpoke",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "AcceptHubSpoke",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Network Connectivity Center spoke.
-        pub async fn delete_spoke(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteSpokeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/DeleteSpoke",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "DeleteSpoke",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details about a Network Connectivity Center route table.
-        pub async fn get_route_table(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRouteTableRequest>,
-        ) -> std::result::Result<tonic::Response<super::RouteTable>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/GetRouteTable",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "GetRouteTable",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details about the specified route.
-        pub async fn get_route(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRouteRequest>,
-        ) -> std::result::Result<tonic::Response<super::Route>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/GetRoute",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "GetRoute",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists routes in a given project.
-        pub async fn list_routes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRoutesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRoutesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/ListRoutes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "ListRoutes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists route tables in a given project.
-        pub async fn list_route_tables(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRouteTablesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRouteTablesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/ListRouteTables",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "ListRouteTables",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details about a Network Connectivity Center group.
-        pub async fn get_group(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetGroupRequest>,
-        ) -> std::result::Result<tonic::Response<super::Group>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/GetGroup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "GetGroup",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists groups in a given hub.
-        pub async fn list_groups(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListGroupsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListGroupsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.HubService/ListGroups",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.HubService",
-                        "ListGroups",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Network Connectivity Center is a hub-and-spoke abstraction for network
+/// connectivity management in Google Cloud. It reduces operational complexity
+/// through a simple, centralized connectivity management model.
+#[derive(Debug, Clone)]
+pub struct HubServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> HubServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> HubServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+HubServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists the Network Connectivity Center hubs associated with a given project.
+pub async fn list_hubs(&mut self, request: impl tonic::IntoRequest<super::ListHubsRequest>) -> std::result::Result<tonic::Response<super::ListHubsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/ListHubs");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "ListHubs"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details about a Network Connectivity Center hub.
+pub async fn get_hub(&mut self, request: impl tonic::IntoRequest<super::GetHubRequest>) -> std::result::Result<tonic::Response<super::Hub>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/GetHub");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "GetHub"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Network Connectivity Center hub in the specified project.
+pub async fn create_hub(&mut self, request: impl tonic::IntoRequest<super::CreateHubRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/CreateHub");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "CreateHub"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the description and/or labels of a Network Connectivity Center
+/// hub.
+pub async fn update_hub(&mut self, request: impl tonic::IntoRequest<super::UpdateHubRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/UpdateHub");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "UpdateHub"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Network Connectivity Center hub.
+pub async fn delete_hub(&mut self, request: impl tonic::IntoRequest<super::DeleteHubRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/DeleteHub");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "DeleteHub"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the Network Connectivity Center spokes associated with a
+/// specified hub and location. The list includes both spokes that are attached
+/// to the hub and spokes that have been proposed but not yet accepted.
+pub async fn list_hub_spokes(&mut self, request: impl tonic::IntoRequest<super::ListHubSpokesRequest>) -> std::result::Result<tonic::Response<super::ListHubSpokesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/ListHubSpokes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "ListHubSpokes"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the Network Connectivity Center spokes in a specified project and
+/// location.
+pub async fn list_spokes(&mut self, request: impl tonic::IntoRequest<super::ListSpokesRequest>) -> std::result::Result<tonic::Response<super::ListSpokesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/ListSpokes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "ListSpokes"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details about a Network Connectivity Center spoke.
+pub async fn get_spoke(&mut self, request: impl tonic::IntoRequest<super::GetSpokeRequest>) -> std::result::Result<tonic::Response<super::Spoke>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/GetSpoke");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "GetSpoke"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a Network Connectivity Center spoke.
+pub async fn create_spoke(&mut self, request: impl tonic::IntoRequest<super::CreateSpokeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/CreateSpoke");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "CreateSpoke"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the parameters of a Network Connectivity Center spoke.
+pub async fn update_spoke(&mut self, request: impl tonic::IntoRequest<super::UpdateSpokeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/UpdateSpoke");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "UpdateSpoke"));
+self.inner.unary(req, path, codec).await
+}
+/// Rejects a Network Connectivity Center spoke from being attached to a hub.
+/// If the spoke was previously in the `ACTIVE` state, it
+/// transitions to the `INACTIVE` state and is no longer able to
+/// connect to other spokes that are attached to the hub.
+pub async fn reject_hub_spoke(&mut self, request: impl tonic::IntoRequest<super::RejectHubSpokeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/RejectHubSpoke");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "RejectHubSpoke"));
+self.inner.unary(req, path, codec).await
+}
+/// Accepts a proposal to attach a Network Connectivity Center spoke
+/// to a hub.
+pub async fn accept_hub_spoke(&mut self, request: impl tonic::IntoRequest<super::AcceptHubSpokeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/AcceptHubSpoke");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "AcceptHubSpoke"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Network Connectivity Center spoke.
+pub async fn delete_spoke(&mut self, request: impl tonic::IntoRequest<super::DeleteSpokeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/DeleteSpoke");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "DeleteSpoke"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details about a Network Connectivity Center route table.
+pub async fn get_route_table(&mut self, request: impl tonic::IntoRequest<super::GetRouteTableRequest>) -> std::result::Result<tonic::Response<super::RouteTable>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/GetRouteTable");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "GetRouteTable"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details about the specified route.
+pub async fn get_route(&mut self, request: impl tonic::IntoRequest<super::GetRouteRequest>) -> std::result::Result<tonic::Response<super::Route>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/GetRoute");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "GetRoute"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists routes in a given project.
+pub async fn list_routes(&mut self, request: impl tonic::IntoRequest<super::ListRoutesRequest>) -> std::result::Result<tonic::Response<super::ListRoutesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/ListRoutes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "ListRoutes"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists route tables in a given project.
+pub async fn list_route_tables(&mut self, request: impl tonic::IntoRequest<super::ListRouteTablesRequest>) -> std::result::Result<tonic::Response<super::ListRouteTablesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/ListRouteTables");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "ListRouteTables"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details about a Network Connectivity Center group.
+pub async fn get_group(&mut self, request: impl tonic::IntoRequest<super::GetGroupRequest>) -> std::result::Result<tonic::Response<super::Group>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/GetGroup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "GetGroup"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists groups in a given hub.
+pub async fn list_groups(&mut self, request: impl tonic::IntoRequest<super::ListGroupsRequest>) -> std::result::Result<tonic::Response<super::ListGroupsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.HubService/ListGroups");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.HubService", "ListGroups"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PolicyBasedRoute {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub network: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub filter: ::core::option::Option<policy_based_route::Filter>,
-    #[prost(int32, tag = "11")]
-    pub priority: i32,
-    #[prost(message, repeated, tag = "14")]
-    pub warnings: ::prost::alloc::vec::Vec<policy_based_route::Warnings>,
-    #[prost(string, tag = "15")]
-    pub self_link: ::prost::alloc::string::String,
-    #[prost(string, tag = "16")]
-    pub kind: ::prost::alloc::string::String,
-    #[prost(oneof = "policy_based_route::Target", tags = "18, 9")]
-    pub target: ::core::option::Option<policy_based_route::Target>,
-    #[prost(oneof = "policy_based_route::NextHop", tags = "12, 21")]
-    pub next_hop: ::core::option::Option<policy_based_route::NextHop>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub network: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub filter: ::core::option::Option<policy_based_route::Filter>,
+#[prost(int32, tag = "11")]
+pub priority: i32,
+#[prost(message, repeated, tag = "14")]
+pub warnings: ::prost::alloc::vec::Vec<policy_based_route::Warnings>,
+#[prost(string, tag = "15")]
+pub self_link: ::prost::alloc::string::String,
+#[prost(string, tag = "16")]
+pub kind: ::prost::alloc::string::String,
+#[prost(oneof = "policy_based_route::Target", tags = "18, 9")]
+pub target: ::core::option::Option<policy_based_route::Target>,
+#[prost(oneof = "policy_based_route::NextHop", tags = "12, 21")]
+pub next_hop: ::core::option::Option<policy_based_route::NextHop>,
 }
 /// Nested message and enum types in `PolicyBasedRoute`.
 pub mod policy_based_route {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct VirtualMachine {
-        #[prost(string, repeated, tag = "1")]
-        pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct InterconnectAttachment {
-        #[prost(string, tag = "1")]
-        pub region: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Filter {
-        #[prost(string, tag = "1")]
-        pub ip_protocol: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub src_range: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub dest_range: ::prost::alloc::string::String,
-        #[prost(enumeration = "filter::ProtocolVersion", tag = "6")]
-        pub protocol_version: i32,
-    }
-    /// Nested message and enum types in `Filter`.
-    pub mod filter {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ProtocolVersion {
-            Unspecified = 0,
-            Ipv4 = 1,
-        }
-        impl ProtocolVersion {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    ProtocolVersion::Unspecified => "PROTOCOL_VERSION_UNSPECIFIED",
-                    ProtocolVersion::Ipv4 => "IPV4",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "PROTOCOL_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
-                    "IPV4" => Some(Self::Ipv4),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Warnings {
-        #[prost(enumeration = "warnings::Code", tag = "1")]
-        pub code: i32,
-        #[prost(map = "string, string", tag = "2")]
-        pub data: ::std::collections::HashMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, tag = "3")]
-        pub warning_message: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `Warnings`.
-    pub mod warnings {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Code {
-            WarningUnspecified = 0,
-            ResourceNotActive = 1,
-            ResourceBeingModified = 2,
-        }
-        impl Code {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Code::WarningUnspecified => "WARNING_UNSPECIFIED",
-                    Code::ResourceNotActive => "RESOURCE_NOT_ACTIVE",
-                    Code::ResourceBeingModified => "RESOURCE_BEING_MODIFIED",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "WARNING_UNSPECIFIED" => Some(Self::WarningUnspecified),
-                    "RESOURCE_NOT_ACTIVE" => Some(Self::ResourceNotActive),
-                    "RESOURCE_BEING_MODIFIED" => Some(Self::ResourceBeingModified),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum OtherRoutes {
-        Unspecified = 0,
-        DefaultRouting = 1,
-    }
-    impl OtherRoutes {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                OtherRoutes::Unspecified => "OTHER_ROUTES_UNSPECIFIED",
-                OtherRoutes::DefaultRouting => "DEFAULT_ROUTING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "OTHER_ROUTES_UNSPECIFIED" => Some(Self::Unspecified),
-                "DEFAULT_ROUTING" => Some(Self::DefaultRouting),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Target {
-        #[prost(message, tag = "18")]
-        VirtualMachine(VirtualMachine),
-        #[prost(message, tag = "9")]
-        InterconnectAttachment(InterconnectAttachment),
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum NextHop {
-        #[prost(string, tag = "12")]
-        NextHopIlbIp(::prost::alloc::string::String),
-        #[prost(enumeration = "OtherRoutes", tag = "21")]
-        NextHopOtherRoutes(i32),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VirtualMachine {
+#[prost(string, repeated, tag = "1")]
+pub tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InterconnectAttachment {
+#[prost(string, tag = "1")]
+pub region: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Filter {
+#[prost(string, tag = "1")]
+pub ip_protocol: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub src_range: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub dest_range: ::prost::alloc::string::String,
+#[prost(enumeration = "filter::ProtocolVersion", tag = "6")]
+pub protocol_version: i32,
+}
+/// Nested message and enum types in `Filter`.
+pub mod filter {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ProtocolVersion {
+Unspecified = 0,
+Ipv4 = 1,
+}
+impl ProtocolVersion {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ProtocolVersion::Unspecified => "PROTOCOL_VERSION_UNSPECIFIED",
+ProtocolVersion::Ipv4 => "IPV4",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PROTOCOL_VERSION_UNSPECIFIED" => Some(Self::Unspecified),
+"IPV4" => Some(Self::Ipv4),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Warnings {
+#[prost(enumeration = "warnings::Code", tag = "1")]
+pub code: i32,
+#[prost(map = "string, string", tag = "2")]
+pub data: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub warning_message: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `Warnings`.
+pub mod warnings {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Code {
+WarningUnspecified = 0,
+ResourceNotActive = 1,
+ResourceBeingModified = 2,
+}
+impl Code {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Code::WarningUnspecified => "WARNING_UNSPECIFIED",
+Code::ResourceNotActive => "RESOURCE_NOT_ACTIVE",
+Code::ResourceBeingModified => "RESOURCE_BEING_MODIFIED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"WARNING_UNSPECIFIED" => Some(Self::WarningUnspecified),
+"RESOURCE_NOT_ACTIVE" => Some(Self::ResourceNotActive),
+"RESOURCE_BEING_MODIFIED" => Some(Self::ResourceBeingModified),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OtherRoutes {
+Unspecified = 0,
+DefaultRouting = 1,
+}
+impl OtherRoutes {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OtherRoutes::Unspecified => "OTHER_ROUTES_UNSPECIFIED",
+OtherRoutes::DefaultRouting => "DEFAULT_ROUTING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"OTHER_ROUTES_UNSPECIFIED" => Some(Self::Unspecified),
+"DEFAULT_ROUTING" => Some(Self::DefaultRouting),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Target {
+#[prost(message, tag = "18")]
+VirtualMachine(VirtualMachine),
+#[prost(message, tag = "9")]
+InterconnectAttachment(InterconnectAttachment),
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum NextHop {
+#[prost(string, tag = "12")]
+NextHopIlbIp(::prost::alloc::string::String),
+#[prost(enumeration = "OtherRoutes", tag = "21")]
+NextHopOtherRoutes(i32),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPolicyBasedRoutesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPolicyBasedRoutesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub policy_based_routes: ::prost::alloc::vec::Vec<PolicyBasedRoute>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub policy_based_routes: ::prost::alloc::vec::Vec<PolicyBasedRoute>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPolicyBasedRouteRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePolicyBasedRouteRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub policy_based_route_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub policy_based_route: ::core::option::Option<PolicyBasedRoute>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub policy_based_route_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub policy_based_route: ::core::option::Option<PolicyBasedRoute>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePolicyBasedRouteRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod policy_based_routing_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Policy-Based Routing allows GCP customers to specify flexibile routing
-    /// policies for Layer 4 traffic traversing through the connected service.
-    #[derive(Debug, Clone)]
-    pub struct PolicyBasedRoutingServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> PolicyBasedRoutingServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> PolicyBasedRoutingServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            PolicyBasedRoutingServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists PolicyBasedRoutes in a given project and location.
-        pub async fn list_policy_based_routes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPolicyBasedRoutesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPolicyBasedRoutesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/ListPolicyBasedRoutes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.PolicyBasedRoutingService",
-                        "ListPolicyBasedRoutes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single PolicyBasedRoute.
-        pub async fn get_policy_based_route(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPolicyBasedRouteRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::PolicyBasedRoute>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/GetPolicyBasedRoute",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.PolicyBasedRoutingService",
-                        "GetPolicyBasedRoute",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new PolicyBasedRoute in a given project and location.
-        pub async fn create_policy_based_route(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePolicyBasedRouteRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/CreatePolicyBasedRoute",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.PolicyBasedRoutingService",
-                        "CreatePolicyBasedRoute",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single PolicyBasedRoute.
-        pub async fn delete_policy_based_route(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePolicyBasedRouteRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/DeletePolicyBasedRoute",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.networkconnectivity.v1.PolicyBasedRoutingService",
-                        "DeletePolicyBasedRoute",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Policy-Based Routing allows GCP customers to specify flexibile routing
+/// policies for Layer 4 traffic traversing through the connected service.
+#[derive(Debug, Clone)]
+pub struct PolicyBasedRoutingServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> PolicyBasedRoutingServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> PolicyBasedRoutingServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+PolicyBasedRoutingServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists PolicyBasedRoutes in a given project and location.
+pub async fn list_policy_based_routes(&mut self, request: impl tonic::IntoRequest<super::ListPolicyBasedRoutesRequest>) -> std::result::Result<tonic::Response<super::ListPolicyBasedRoutesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/ListPolicyBasedRoutes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.PolicyBasedRoutingService", "ListPolicyBasedRoutes"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single PolicyBasedRoute.
+pub async fn get_policy_based_route(&mut self, request: impl tonic::IntoRequest<super::GetPolicyBasedRouteRequest>) -> std::result::Result<tonic::Response<super::PolicyBasedRoute>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/GetPolicyBasedRoute");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.PolicyBasedRoutingService", "GetPolicyBasedRoute"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new PolicyBasedRoute in a given project and location.
+pub async fn create_policy_based_route(&mut self, request: impl tonic::IntoRequest<super::CreatePolicyBasedRouteRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/CreatePolicyBasedRoute");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.PolicyBasedRoutingService", "CreatePolicyBasedRoute"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single PolicyBasedRoute.
+pub async fn delete_policy_based_route(&mut self, request: impl tonic::IntoRequest<super::DeletePolicyBasedRouteRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/DeletePolicyBasedRoute");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.networkconnectivity.v1.PolicyBasedRoutingService", "DeletePolicyBasedRoute"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

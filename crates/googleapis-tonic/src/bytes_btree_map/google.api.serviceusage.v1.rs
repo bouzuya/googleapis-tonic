@@ -2,499 +2,344 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Service {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub config: ::core::option::Option<ServiceConfig>,
-    #[prost(enumeration = "State", tag = "4")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub config: ::core::option::Option<ServiceConfig>,
+#[prost(enumeration = "State", tag = "4")]
+pub state: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceConfig {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub apis: ::prost::alloc::vec::Vec<::prost_types::Api>,
-    #[prost(message, optional, tag = "6")]
-    pub documentation: ::core::option::Option<super::super::Documentation>,
-    #[prost(message, optional, tag = "10")]
-    pub quota: ::core::option::Option<super::super::Quota>,
-    #[prost(message, optional, tag = "11")]
-    pub authentication: ::core::option::Option<super::super::Authentication>,
-    #[prost(message, optional, tag = "15")]
-    pub usage: ::core::option::Option<super::super::Usage>,
-    #[prost(message, repeated, tag = "18")]
-    pub endpoints: ::prost::alloc::vec::Vec<super::super::Endpoint>,
-    #[prost(message, repeated, tag = "25")]
-    pub monitored_resources: ::prost::alloc::vec::Vec<
-        super::super::MonitoredResourceDescriptor,
-    >,
-    #[prost(message, optional, tag = "28")]
-    pub monitoring: ::core::option::Option<super::super::Monitoring>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub title: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub apis: ::prost::alloc::vec::Vec<::prost_types::Api>,
+#[prost(message, optional, tag = "6")]
+pub documentation: ::core::option::Option<super::super::Documentation>,
+#[prost(message, optional, tag = "10")]
+pub quota: ::core::option::Option<super::super::Quota>,
+#[prost(message, optional, tag = "11")]
+pub authentication: ::core::option::Option<super::super::Authentication>,
+#[prost(message, optional, tag = "15")]
+pub usage: ::core::option::Option<super::super::Usage>,
+#[prost(message, repeated, tag = "18")]
+pub endpoints: ::prost::alloc::vec::Vec<super::super::Endpoint>,
+#[prost(message, repeated, tag = "25")]
+pub monitored_resources: ::prost::alloc::vec::Vec<super::super::MonitoredResourceDescriptor>,
+#[prost(message, optional, tag = "28")]
+pub monitoring: ::core::option::Option<super::super::Monitoring>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(string, repeated, tag = "2")]
-    pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub resource_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum State {
-    Unspecified = 0,
-    Disabled = 1,
-    Enabled = 2,
+Unspecified = 0,
+Disabled = 1,
+Enabled = 2,
 }
 impl State {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            State::Unspecified => "STATE_UNSPECIFIED",
-            State::Disabled => "DISABLED",
-            State::Enabled => "ENABLED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "DISABLED" => Some(Self::Disabled),
-            "ENABLED" => Some(Self::Enabled),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Disabled => "DISABLED",
+State::Enabled => "ENABLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"DISABLED" => Some(Self::Disabled),
+"ENABLED" => Some(Self::Enabled),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnableServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnableServiceResponse {
-    #[prost(message, optional, tag = "1")]
-    pub service: ::core::option::Option<Service>,
+#[prost(message, optional, tag = "1")]
+pub service: ::core::option::Option<Service>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisableServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub disable_dependent_services: bool,
-    #[prost(enumeration = "disable_service_request::CheckIfServiceHasUsage", tag = "3")]
-    pub check_if_service_has_usage: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub disable_dependent_services: bool,
+#[prost(enumeration = "disable_service_request::CheckIfServiceHasUsage", tag = "3")]
+pub check_if_service_has_usage: i32,
 }
 /// Nested message and enum types in `DisableServiceRequest`.
 pub mod disable_service_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum CheckIfServiceHasUsage {
-        Unspecified = 0,
-        Skip = 1,
-        Check = 2,
-    }
-    impl CheckIfServiceHasUsage {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                CheckIfServiceHasUsage::Unspecified => {
-                    "CHECK_IF_SERVICE_HAS_USAGE_UNSPECIFIED"
-                }
-                CheckIfServiceHasUsage::Skip => "SKIP",
-                CheckIfServiceHasUsage::Check => "CHECK",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CHECK_IF_SERVICE_HAS_USAGE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SKIP" => Some(Self::Skip),
-                "CHECK" => Some(Self::Check),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CheckIfServiceHasUsage {
+Unspecified = 0,
+Skip = 1,
+Check = 2,
+}
+impl CheckIfServiceHasUsage {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CheckIfServiceHasUsage::Unspecified => "CHECK_IF_SERVICE_HAS_USAGE_UNSPECIFIED",
+CheckIfServiceHasUsage::Skip => "SKIP",
+CheckIfServiceHasUsage::Check => "CHECK",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CHECK_IF_SERVICE_HAS_USAGE_UNSPECIFIED" => Some(Self::Unspecified),
+"SKIP" => Some(Self::Skip),
+"CHECK" => Some(Self::Check),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisableServiceResponse {
-    #[prost(message, optional, tag = "1")]
-    pub service: ::core::option::Option<Service>,
+#[prost(message, optional, tag = "1")]
+pub service: ::core::option::Option<Service>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub services: ::prost::alloc::vec::Vec<Service>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub services: ::prost::alloc::vec::Vec<Service>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchEnableServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub service_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub service_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchEnableServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub services: ::prost::alloc::vec::Vec<Service>,
-    #[prost(message, repeated, tag = "2")]
-    pub failures: ::prost::alloc::vec::Vec<
-        batch_enable_services_response::EnableFailure,
-    >,
+#[prost(message, repeated, tag = "1")]
+pub services: ::prost::alloc::vec::Vec<Service>,
+#[prost(message, repeated, tag = "2")]
+pub failures: ::prost::alloc::vec::Vec<batch_enable_services_response::EnableFailure>,
 }
 /// Nested message and enum types in `BatchEnableServicesResponse`.
 pub mod batch_enable_services_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct EnableFailure {
-        #[prost(string, tag = "1")]
-        pub service_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub error_message: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnableFailure {
+#[prost(string, tag = "1")]
+pub service_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub error_message: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchGetServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchGetServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub services: ::prost::alloc::vec::Vec<Service>,
+#[prost(message, repeated, tag = "1")]
+pub services: ::prost::alloc::vec::Vec<Service>,
 }
 /// Generated client implementations.
 pub mod service_usage_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Enables services that service consumers want to use on Google Cloud Platform,
-    /// lists the available or enabled services, or disables services that service
-    /// consumers no longer use.
-    ///
-    /// See [Service Usage API](https://cloud.google.com/service-usage/docs/overview)
-    #[derive(Debug, Clone)]
-    pub struct ServiceUsageClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ServiceUsageClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ServiceUsageClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ServiceUsageClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Enable a service so that it can be used with a project.
-        pub async fn enable_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EnableServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1.ServiceUsage/EnableService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1.ServiceUsage",
-                        "EnableService",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Disable a service so that it can no longer be used with a project.
-        /// This prevents unintended usage that may cause unexpected billing
-        /// charges or security leaks.
-        ///
-        /// It is not valid to call the disable method on a service that is not
-        /// currently enabled. Callers will receive a `FAILED_PRECONDITION` status if
-        /// the target service is not currently enabled.
-        pub async fn disable_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DisableServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1.ServiceUsage/DisableService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1.ServiceUsage",
-                        "DisableService",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the service configuration and enabled state for a given service.
-        pub async fn get_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetServiceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1.ServiceUsage/GetService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1.ServiceUsage",
-                        "GetService",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// List all services available to the specified project, and the current
-        /// state of those services with respect to the project. The list includes
-        /// all public services, all services for which the calling user has the
-        /// `servicemanagement.services.bind` permission, and all services that have
-        /// already been enabled on the project. The list can be filtered to
-        /// only include services in a specific state, for example to only include
-        /// services enabled on the project.
-        ///
-        /// WARNING: If you need to query enabled services frequently or across
-        /// an organization, you should use
-        /// [Cloud Asset Inventory
-        /// API](https://cloud.google.com/asset-inventory/docs/apis), which provides
-        /// higher throughput and richer filtering capability.
-        pub async fn list_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListServicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1.ServiceUsage/ListServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1.ServiceUsage",
-                        "ListServices",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enable multiple services on a project. The operation is atomic: if enabling
-        /// any service fails, then the entire batch fails, and no state changes occur.
-        /// To enable a single service, use the `EnableService` method instead.
-        pub async fn batch_enable_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchEnableServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1.ServiceUsage/BatchEnableServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1.ServiceUsage",
-                        "BatchEnableServices",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the service configurations and enabled states for a given list of
-        /// services.
-        pub async fn batch_get_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchGetServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchGetServicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.serviceusage.v1.ServiceUsage/BatchGetServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.serviceusage.v1.ServiceUsage",
-                        "BatchGetServices",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Enables services that service consumers want to use on Google Cloud Platform,
+/// lists the available or enabled services, or disables services that service
+/// consumers no longer use.
+///
+/// See [Service Usage API](https://cloud.google.com/service-usage/docs/overview)
+#[derive(Debug, Clone)]
+pub struct ServiceUsageClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ServiceUsageClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ServiceUsageClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ServiceUsageClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Enable a service so that it can be used with a project.
+pub async fn enable_service(&mut self, request: impl tonic::IntoRequest<super::EnableServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1.ServiceUsage/EnableService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1.ServiceUsage", "EnableService"));
+self.inner.unary(req, path, codec).await
+}
+/// Disable a service so that it can no longer be used with a project.
+/// This prevents unintended usage that may cause unexpected billing
+/// charges or security leaks.
+///
+/// It is not valid to call the disable method on a service that is not
+/// currently enabled. Callers will receive a `FAILED_PRECONDITION` status if
+/// the target service is not currently enabled.
+pub async fn disable_service(&mut self, request: impl tonic::IntoRequest<super::DisableServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1.ServiceUsage/DisableService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1.ServiceUsage", "DisableService"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the service configuration and enabled state for a given service.
+pub async fn get_service(&mut self, request: impl tonic::IntoRequest<super::GetServiceRequest>) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1.ServiceUsage/GetService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1.ServiceUsage", "GetService"));
+self.inner.unary(req, path, codec).await
+}
+/// List all services available to the specified project, and the current
+/// state of those services with respect to the project. The list includes
+/// all public services, all services for which the calling user has the
+/// `servicemanagement.services.bind` permission, and all services that have
+/// already been enabled on the project. The list can be filtered to
+/// only include services in a specific state, for example to only include
+/// services enabled on the project.
+///
+/// WARNING: If you need to query enabled services frequently or across
+/// an organization, you should use
+/// [Cloud Asset Inventory
+/// API](https://cloud.google.com/asset-inventory/docs/apis), which provides
+/// higher throughput and richer filtering capability.
+pub async fn list_services(&mut self, request: impl tonic::IntoRequest<super::ListServicesRequest>) -> std::result::Result<tonic::Response<super::ListServicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1.ServiceUsage/ListServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1.ServiceUsage", "ListServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Enable multiple services on a project. The operation is atomic: if enabling
+/// any service fails, then the entire batch fails, and no state changes occur.
+/// To enable a single service, use the `EnableService` method instead.
+pub async fn batch_enable_services(&mut self, request: impl tonic::IntoRequest<super::BatchEnableServicesRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1.ServiceUsage/BatchEnableServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1.ServiceUsage", "BatchEnableServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the service configurations and enabled states for a given list of
+/// services.
+pub async fn batch_get_services(&mut self, request: impl tonic::IntoRequest<super::BatchGetServicesRequest>) -> std::result::Result<tonic::Response<super::BatchGetServicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.serviceusage.v1.ServiceUsage/BatchGetServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.serviceusage.v1.ServiceUsage", "BatchGetServices"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

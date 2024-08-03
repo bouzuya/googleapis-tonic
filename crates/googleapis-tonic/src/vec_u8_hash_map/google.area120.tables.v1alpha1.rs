@@ -2,670 +2,414 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTableRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTablesRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTablesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub tables: ::prost::alloc::vec::Vec<Table>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub tables: ::prost::alloc::vec::Vec<Table>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkspaceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkspacesRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkspacesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub workspaces: ::prost::alloc::vec::Vec<Workspace>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub workspaces: ::prost::alloc::vec::Vec<Workspace>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRowRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "View", tag = "2")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "View", tag = "2")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRowsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(enumeration = "View", tag = "4")]
-    pub view: i32,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(enumeration = "View", tag = "4")]
+pub view: i32,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRowsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub rows: ::prost::alloc::vec::Vec<Row>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub rows: ::prost::alloc::vec::Vec<Row>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateRowRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub row: ::core::option::Option<Row>,
-    #[prost(enumeration = "View", tag = "3")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub row: ::core::option::Option<Row>,
+#[prost(enumeration = "View", tag = "3")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateRowsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub requests: ::prost::alloc::vec::Vec<CreateRowRequest>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub requests: ::prost::alloc::vec::Vec<CreateRowRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCreateRowsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub rows: ::prost::alloc::vec::Vec<Row>,
+#[prost(message, repeated, tag = "1")]
+pub rows: ::prost::alloc::vec::Vec<Row>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRowRequest {
-    #[prost(message, optional, tag = "1")]
-    pub row: ::core::option::Option<Row>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(enumeration = "View", tag = "3")]
-    pub view: i32,
+#[prost(message, optional, tag = "1")]
+pub row: ::core::option::Option<Row>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(enumeration = "View", tag = "3")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdateRowsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub requests: ::prost::alloc::vec::Vec<UpdateRowRequest>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub requests: ::prost::alloc::vec::Vec<UpdateRowRequest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdateRowsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub rows: ::prost::alloc::vec::Vec<Row>,
+#[prost(message, repeated, tag = "1")]
+pub rows: ::prost::alloc::vec::Vec<Row>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRowRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeleteRowsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Table {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub columns: ::prost::alloc::vec::Vec<ColumnDescription>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub columns: ::prost::alloc::vec::Vec<ColumnDescription>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ColumnDescription {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub data_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub labels: ::prost::alloc::vec::Vec<LabeledItem>,
-    #[prost(message, optional, tag = "5")]
-    pub relationship_details: ::core::option::Option<RelationshipDetails>,
-    #[prost(message, optional, tag = "6")]
-    pub lookup_details: ::core::option::Option<LookupDetails>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub data_type: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub labels: ::prost::alloc::vec::Vec<LabeledItem>,
+#[prost(message, optional, tag = "5")]
+pub relationship_details: ::core::option::Option<RelationshipDetails>,
+#[prost(message, optional, tag = "6")]
+pub lookup_details: ::core::option::Option<LookupDetails>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LabeledItem {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RelationshipDetails {
-    #[prost(string, tag = "1")]
-    pub linked_table: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub linked_table: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupDetails {
-    #[prost(string, tag = "1")]
-    pub relationship_column: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub relationship_column_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub relationship_column: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub relationship_column_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Row {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(map = "string, message", tag = "2")]
-    pub values: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost_types::Value,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(map = "string, message", tag = "2")]
+pub values: ::std::collections::HashMap<::prost::alloc::string::String, ::prost_types::Value>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Workspace {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub tables: ::prost::alloc::vec::Vec<Table>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub tables: ::prost::alloc::vec::Vec<Table>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum View {
-    Unspecified = 0,
-    ColumnIdView = 1,
+Unspecified = 0,
+ColumnIdView = 1,
 }
 impl View {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            View::Unspecified => "VIEW_UNSPECIFIED",
-            View::ColumnIdView => "COLUMN_ID_VIEW",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "VIEW_UNSPECIFIED" => Some(Self::Unspecified),
-            "COLUMN_ID_VIEW" => Some(Self::ColumnIdView),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+View::Unspecified => "VIEW_UNSPECIFIED",
+View::ColumnIdView => "COLUMN_ID_VIEW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+"COLUMN_ID_VIEW" => Some(Self::ColumnIdView),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod tables_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The Tables Service provides an API for reading and updating tables.
-    /// It defines the following resource model:
-    ///
-    /// - The API has a collection of [Table][google.area120.tables.v1alpha1.Table]
-    ///   resources, named `tables/*`
-    ///
-    /// - Each Table has a collection of [Row][google.area120.tables.v1alpha1.Row]
-    ///   resources, named `tables/*/rows/*`
-    ///
-    /// - The API has a collection of
-    ///   [Workspace][google.area120.tables.v1alpha1.Workspace]
-    ///   resources, named `workspaces/*`.
-    #[derive(Debug, Clone)]
-    pub struct TablesServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> TablesServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> TablesServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            TablesServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets a table. Returns NOT_FOUND if the table does not exist.
-        pub async fn get_table(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTableRequest>,
-        ) -> std::result::Result<tonic::Response<super::Table>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/GetTable",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "GetTable",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists tables for the user.
-        pub async fn list_tables(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTablesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTablesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/ListTables",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "ListTables",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a workspace. Returns NOT_FOUND if the workspace does not exist.
-        pub async fn get_workspace(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetWorkspaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Workspace>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/GetWorkspace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "GetWorkspace",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists workspaces for the user.
-        pub async fn list_workspaces(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListWorkspacesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListWorkspacesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/ListWorkspaces",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "ListWorkspaces",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a row. Returns NOT_FOUND if the row does not exist in the table.
-        pub async fn get_row(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRowRequest>,
-        ) -> std::result::Result<tonic::Response<super::Row>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/GetRow",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "GetRow",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists rows in a table. Returns NOT_FOUND if the table does not exist.
-        pub async fn list_rows(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRowsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRowsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/ListRows",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "ListRows",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a row.
-        pub async fn create_row(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateRowRequest>,
-        ) -> std::result::Result<tonic::Response<super::Row>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/CreateRow",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "CreateRow",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates multiple rows.
-        pub async fn batch_create_rows(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchCreateRowsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchCreateRowsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/BatchCreateRows",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "BatchCreateRows",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a row.
-        pub async fn update_row(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateRowRequest>,
-        ) -> std::result::Result<tonic::Response<super::Row>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/UpdateRow",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "UpdateRow",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates multiple rows.
-        pub async fn batch_update_rows(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchUpdateRowsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchUpdateRowsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/BatchUpdateRows",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "BatchUpdateRows",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a row.
-        pub async fn delete_row(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteRowRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/DeleteRow",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "DeleteRow",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes multiple rows.
-        pub async fn batch_delete_rows(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchDeleteRowsRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.area120.tables.v1alpha1.TablesService/BatchDeleteRows",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.area120.tables.v1alpha1.TablesService",
-                        "BatchDeleteRows",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The Tables Service provides an API for reading and updating tables.
+/// It defines the following resource model:
+///
+/// - The API has a collection of [Table][google.area120.tables.v1alpha1.Table]
+///   resources, named `tables/*`
+///
+/// - Each Table has a collection of [Row][google.area120.tables.v1alpha1.Row]
+///   resources, named `tables/*/rows/*`
+///
+/// - The API has a collection of
+///   [Workspace][google.area120.tables.v1alpha1.Workspace]
+///   resources, named `workspaces/*`.
+#[derive(Debug, Clone)]
+pub struct TablesServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> TablesServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> TablesServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+TablesServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets a table. Returns NOT_FOUND if the table does not exist.
+pub async fn get_table(&mut self, request: impl tonic::IntoRequest<super::GetTableRequest>) -> std::result::Result<tonic::Response<super::Table>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/GetTable");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "GetTable"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists tables for the user.
+pub async fn list_tables(&mut self, request: impl tonic::IntoRequest<super::ListTablesRequest>) -> std::result::Result<tonic::Response<super::ListTablesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/ListTables");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "ListTables"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a workspace. Returns NOT_FOUND if the workspace does not exist.
+pub async fn get_workspace(&mut self, request: impl tonic::IntoRequest<super::GetWorkspaceRequest>) -> std::result::Result<tonic::Response<super::Workspace>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/GetWorkspace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "GetWorkspace"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists workspaces for the user.
+pub async fn list_workspaces(&mut self, request: impl tonic::IntoRequest<super::ListWorkspacesRequest>) -> std::result::Result<tonic::Response<super::ListWorkspacesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/ListWorkspaces");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "ListWorkspaces"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a row. Returns NOT_FOUND if the row does not exist in the table.
+pub async fn get_row(&mut self, request: impl tonic::IntoRequest<super::GetRowRequest>) -> std::result::Result<tonic::Response<super::Row>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/GetRow");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "GetRow"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists rows in a table. Returns NOT_FOUND if the table does not exist.
+pub async fn list_rows(&mut self, request: impl tonic::IntoRequest<super::ListRowsRequest>) -> std::result::Result<tonic::Response<super::ListRowsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/ListRows");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "ListRows"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a row.
+pub async fn create_row(&mut self, request: impl tonic::IntoRequest<super::CreateRowRequest>) -> std::result::Result<tonic::Response<super::Row>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/CreateRow");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "CreateRow"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates multiple rows.
+pub async fn batch_create_rows(&mut self, request: impl tonic::IntoRequest<super::BatchCreateRowsRequest>) -> std::result::Result<tonic::Response<super::BatchCreateRowsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/BatchCreateRows");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "BatchCreateRows"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a row.
+pub async fn update_row(&mut self, request: impl tonic::IntoRequest<super::UpdateRowRequest>) -> std::result::Result<tonic::Response<super::Row>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/UpdateRow");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "UpdateRow"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates multiple rows.
+pub async fn batch_update_rows(&mut self, request: impl tonic::IntoRequest<super::BatchUpdateRowsRequest>) -> std::result::Result<tonic::Response<super::BatchUpdateRowsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/BatchUpdateRows");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "BatchUpdateRows"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a row.
+pub async fn delete_row(&mut self, request: impl tonic::IntoRequest<super::DeleteRowRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/DeleteRow");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "DeleteRow"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes multiple rows.
+pub async fn batch_delete_rows(&mut self, request: impl tonic::IntoRequest<super::BatchDeleteRowsRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.area120.tables.v1alpha1.TablesService/BatchDeleteRows");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.area120.tables.v1alpha1.TablesService", "BatchDeleteRows"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

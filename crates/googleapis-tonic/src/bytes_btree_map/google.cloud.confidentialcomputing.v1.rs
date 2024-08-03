@@ -2,353 +2,295 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Challenge {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(bool, tag = "4")]
-    pub used: bool,
-    #[prost(string, tag = "6")]
-    pub tpm_nonce: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(bool, tag = "4")]
+pub used: bool,
+#[prost(string, tag = "6")]
+pub tpm_nonce: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateChallengeRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub challenge: ::core::option::Option<Challenge>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub challenge: ::core::option::Option<Challenge>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VerifyAttestationRequest {
-    #[prost(string, tag = "1")]
-    pub challenge: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub gcp_credentials: ::core::option::Option<GcpCredentials>,
-    #[prost(message, optional, tag = "3")]
-    pub tpm_attestation: ::core::option::Option<TpmAttestation>,
-    #[prost(message, optional, tag = "4")]
-    pub confidential_space_info: ::core::option::Option<ConfidentialSpaceInfo>,
-    #[prost(message, optional, tag = "5")]
-    pub token_options: ::core::option::Option<TokenOptions>,
-    #[prost(oneof = "verify_attestation_request::TeeAttestation", tags = "6, 7")]
-    pub tee_attestation: ::core::option::Option<
-        verify_attestation_request::TeeAttestation,
-    >,
+#[prost(string, tag = "1")]
+pub challenge: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub gcp_credentials: ::core::option::Option<GcpCredentials>,
+#[prost(message, optional, tag = "3")]
+pub tpm_attestation: ::core::option::Option<TpmAttestation>,
+#[prost(message, optional, tag = "4")]
+pub confidential_space_info: ::core::option::Option<ConfidentialSpaceInfo>,
+#[prost(message, optional, tag = "5")]
+pub token_options: ::core::option::Option<TokenOptions>,
+#[prost(oneof = "verify_attestation_request::TeeAttestation", tags = "6, 7")]
+pub tee_attestation: ::core::option::Option<verify_attestation_request::TeeAttestation>,
 }
 /// Nested message and enum types in `VerifyAttestationRequest`.
 pub mod verify_attestation_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum TeeAttestation {
-        #[prost(message, tag = "6")]
-        TdCcel(super::TdxCcelAttestation),
-        #[prost(message, tag = "7")]
-        SevSnpAttestation(super::SevSnpAttestation),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum TeeAttestation {
+#[prost(message, tag = "6")]
+TdCcel(super::TdxCcelAttestation),
+#[prost(message, tag = "7")]
+SevSnpAttestation(super::SevSnpAttestation),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TdxCcelAttestation {
-    #[prost(bytes = "bytes", tag = "1")]
-    pub ccel_acpi_table: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "2")]
-    pub ccel_data: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "3")]
-    pub canonical_event_log: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "4")]
-    pub td_quote: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "1")]
+pub ccel_acpi_table: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "2")]
+pub ccel_data: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "3")]
+pub canonical_event_log: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "4")]
+pub td_quote: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SevSnpAttestation {
-    #[prost(bytes = "bytes", tag = "1")]
-    pub report: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "2")]
-    pub aux_blob: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "1")]
+pub report: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "2")]
+pub aux_blob: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VerifyAttestationResponse {
-    #[prost(string, tag = "2")]
-    pub oidc_claims_token: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub partial_errors: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
+#[prost(string, tag = "2")]
+pub oidc_claims_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub partial_errors: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcpCredentials {
-    #[prost(string, repeated, tag = "2")]
-    pub service_account_id_tokens: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, repeated, tag = "2")]
+pub service_account_id_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TokenOptions {
-    #[prost(string, tag = "1")]
-    pub audience: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub nonce: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(enumeration = "TokenType", tag = "3")]
-    pub token_type: i32,
+#[prost(string, tag = "1")]
+pub audience: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub nonce: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "TokenType", tag = "3")]
+pub token_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TpmAttestation {
-    #[prost(message, repeated, tag = "1")]
-    pub quotes: ::prost::alloc::vec::Vec<tpm_attestation::Quote>,
-    #[prost(bytes = "bytes", tag = "2")]
-    pub tcg_event_log: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "3")]
-    pub canonical_event_log: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "4")]
-    pub ak_cert: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", repeated, tag = "5")]
-    pub cert_chain: ::prost::alloc::vec::Vec<::prost::bytes::Bytes>,
+#[prost(message, repeated, tag = "1")]
+pub quotes: ::prost::alloc::vec::Vec<tpm_attestation::Quote>,
+#[prost(bytes = "bytes", tag = "2")]
+pub tcg_event_log: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "3")]
+pub canonical_event_log: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "4")]
+pub ak_cert: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", repeated, tag = "5")]
+pub cert_chain: ::prost::alloc::vec::Vec<::prost::bytes::Bytes>,
 }
 /// Nested message and enum types in `TpmAttestation`.
 pub mod tpm_attestation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Quote {
-        #[prost(int32, tag = "1")]
-        pub hash_algo: i32,
-        #[prost(btree_map = "int32, bytes", tag = "2")]
-        pub pcr_values: ::prost::alloc::collections::BTreeMap<
-            i32,
-            ::prost::bytes::Bytes,
-        >,
-        #[prost(bytes = "bytes", tag = "3")]
-        pub raw_quote: ::prost::bytes::Bytes,
-        #[prost(bytes = "bytes", tag = "4")]
-        pub raw_signature: ::prost::bytes::Bytes,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Quote {
+#[prost(int32, tag = "1")]
+pub hash_algo: i32,
+#[prost(btree_map = "int32, bytes", tag = "2")]
+pub pcr_values: ::prost::alloc::collections::BTreeMap<i32, ::prost::bytes::Bytes>,
+#[prost(bytes = "bytes", tag = "3")]
+pub raw_quote: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "4")]
+pub raw_signature: ::prost::bytes::Bytes,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfidentialSpaceInfo {
-    #[prost(message, repeated, tag = "1")]
-    pub signed_entities: ::prost::alloc::vec::Vec<SignedEntity>,
+#[prost(message, repeated, tag = "1")]
+pub signed_entities: ::prost::alloc::vec::Vec<SignedEntity>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SignedEntity {
-    #[prost(message, repeated, tag = "1")]
-    pub container_image_signatures: ::prost::alloc::vec::Vec<ContainerImageSignature>,
+#[prost(message, repeated, tag = "1")]
+pub container_image_signatures: ::prost::alloc::vec::Vec<ContainerImageSignature>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContainerImageSignature {
-    #[prost(bytes = "bytes", tag = "1")]
-    pub payload: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "2")]
-    pub signature: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "3")]
-    pub public_key: ::prost::bytes::Bytes,
-    #[prost(enumeration = "SigningAlgorithm", tag = "4")]
-    pub sig_alg: i32,
+#[prost(bytes = "bytes", tag = "1")]
+pub payload: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "2")]
+pub signature: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "3")]
+pub public_key: ::prost::bytes::Bytes,
+#[prost(enumeration = "SigningAlgorithm", tag = "4")]
+pub sig_alg: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SigningAlgorithm {
-    Unspecified = 0,
-    RsassaPssSha256 = 1,
-    RsassaPkcs1v15Sha256 = 2,
-    EcdsaP256Sha256 = 3,
+Unspecified = 0,
+RsassaPssSha256 = 1,
+RsassaPkcs1v15Sha256 = 2,
+EcdsaP256Sha256 = 3,
 }
 impl SigningAlgorithm {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            SigningAlgorithm::Unspecified => "SIGNING_ALGORITHM_UNSPECIFIED",
-            SigningAlgorithm::RsassaPssSha256 => "RSASSA_PSS_SHA256",
-            SigningAlgorithm::RsassaPkcs1v15Sha256 => "RSASSA_PKCS1V15_SHA256",
-            SigningAlgorithm::EcdsaP256Sha256 => "ECDSA_P256_SHA256",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SIGNING_ALGORITHM_UNSPECIFIED" => Some(Self::Unspecified),
-            "RSASSA_PSS_SHA256" => Some(Self::RsassaPssSha256),
-            "RSASSA_PKCS1V15_SHA256" => Some(Self::RsassaPkcs1v15Sha256),
-            "ECDSA_P256_SHA256" => Some(Self::EcdsaP256Sha256),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SigningAlgorithm::Unspecified => "SIGNING_ALGORITHM_UNSPECIFIED",
+SigningAlgorithm::RsassaPssSha256 => "RSASSA_PSS_SHA256",
+SigningAlgorithm::RsassaPkcs1v15Sha256 => "RSASSA_PKCS1V15_SHA256",
+SigningAlgorithm::EcdsaP256Sha256 => "ECDSA_P256_SHA256",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SIGNING_ALGORITHM_UNSPECIFIED" => Some(Self::Unspecified),
+"RSASSA_PSS_SHA256" => Some(Self::RsassaPssSha256),
+"RSASSA_PKCS1V15_SHA256" => Some(Self::RsassaPkcs1v15Sha256),
+"ECDSA_P256_SHA256" => Some(Self::EcdsaP256Sha256),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TokenType {
-    Unspecified = 0,
-    Oidc = 1,
-    Pki = 2,
-    LimitedAws = 3,
+Unspecified = 0,
+Oidc = 1,
+Pki = 2,
+LimitedAws = 3,
 }
 impl TokenType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TokenType::Unspecified => "TOKEN_TYPE_UNSPECIFIED",
-            TokenType::Oidc => "TOKEN_TYPE_OIDC",
-            TokenType::Pki => "TOKEN_TYPE_PKI",
-            TokenType::LimitedAws => "TOKEN_TYPE_LIMITED_AWS",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TOKEN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "TOKEN_TYPE_OIDC" => Some(Self::Oidc),
-            "TOKEN_TYPE_PKI" => Some(Self::Pki),
-            "TOKEN_TYPE_LIMITED_AWS" => Some(Self::LimitedAws),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TokenType::Unspecified => "TOKEN_TYPE_UNSPECIFIED",
+TokenType::Oidc => "TOKEN_TYPE_OIDC",
+TokenType::Pki => "TOKEN_TYPE_PKI",
+TokenType::LimitedAws => "TOKEN_TYPE_LIMITED_AWS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TOKEN_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"TOKEN_TYPE_OIDC" => Some(Self::Oidc),
+"TOKEN_TYPE_PKI" => Some(Self::Pki),
+"TOKEN_TYPE_LIMITED_AWS" => Some(Self::LimitedAws),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod confidential_computing_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service describing handlers for resources
-    #[derive(Debug, Clone)]
-    pub struct ConfidentialComputingClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ConfidentialComputingClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ConfidentialComputingClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ConfidentialComputingClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a new Challenge in a given project and location.
-        pub async fn create_challenge(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateChallengeRequest>,
-        ) -> std::result::Result<tonic::Response<super::Challenge>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.confidentialcomputing.v1.ConfidentialComputing",
-                        "CreateChallenge",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Verifies the provided attestation info, returning a signed OIDC token.
-        pub async fn verify_attestation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::VerifyAttestationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::VerifyAttestationResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyAttestation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.confidentialcomputing.v1.ConfidentialComputing",
-                        "VerifyAttestation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service describing handlers for resources
+#[derive(Debug, Clone)]
+pub struct ConfidentialComputingClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ConfidentialComputingClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ConfidentialComputingClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ConfidentialComputingClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a new Challenge in a given project and location.
+pub async fn create_challenge(&mut self, request: impl tonic::IntoRequest<super::CreateChallengeRequest>) -> std::result::Result<tonic::Response<super::Challenge>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.confidentialcomputing.v1.ConfidentialComputing", "CreateChallenge"));
+self.inner.unary(req, path, codec).await
+}
+/// Verifies the provided attestation info, returning a signed OIDC token.
+pub async fn verify_attestation(&mut self, request: impl tonic::IntoRequest<super::VerifyAttestationRequest>) -> std::result::Result<tonic::Response<super::VerifyAttestationResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyAttestation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.confidentialcomputing.v1.ConfidentialComputing", "VerifyAttestation"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

@@ -2,248 +2,188 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StandardResourceMetadata {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub asset_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub project: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "10")]
-    pub additional_attributes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "11")]
-    pub location: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "12")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, repeated, tag = "13")]
-    pub network_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub asset_type: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub project: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "10")]
+pub additional_attributes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "11")]
+pub location: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "12")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "13")]
+pub network_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IamPolicySearchResult {
-    #[prost(string, tag = "1")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub project: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
-    #[prost(message, optional, tag = "5")]
-    pub explanation: ::core::option::Option<iam_policy_search_result::Explanation>,
+#[prost(string, tag = "1")]
+pub resource: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub project: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub policy: ::core::option::Option<super::super::super::iam::v1::Policy>,
+#[prost(message, optional, tag = "5")]
+pub explanation: ::core::option::Option<iam_policy_search_result::Explanation>,
 }
 /// Nested message and enum types in `IamPolicySearchResult`.
 pub mod iam_policy_search_result {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Explanation {
-        #[prost(btree_map = "string, message", tag = "1")]
-        pub matched_permissions: ::prost::alloc::collections::BTreeMap<
-            ::prost::alloc::string::String,
-            super::Permissions,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Explanation {
+#[prost(btree_map = "string, message", tag = "1")]
+pub matched_permissions: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, super::Permissions>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Permissions {
-    #[prost(string, repeated, tag = "1")]
-    pub permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAllResourcesRequest {
-    #[prost(string, tag = "1")]
-    pub scope: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub query: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub asset_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(int32, tag = "4")]
-    pub page_size: i32,
-    #[prost(string, tag = "5")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "10")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub scope: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub query: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub asset_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, tag = "4")]
+pub page_size: i32,
+#[prost(string, tag = "5")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "10")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAllResourcesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub results: ::prost::alloc::vec::Vec<StandardResourceMetadata>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub results: ::prost::alloc::vec::Vec<StandardResourceMetadata>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAllIamPoliciesRequest {
-    #[prost(string, tag = "1")]
-    pub scope: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub query: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub scope: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub query: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchAllIamPoliciesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub results: ::prost::alloc::vec::Vec<IamPolicySearchResult>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub results: ::prost::alloc::vec::Vec<IamPolicySearchResult>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod asset_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Asset service definition.
-    #[derive(Debug, Clone)]
-    pub struct AssetServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AssetServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AssetServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AssetServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Searches all the resources within a given accessible Resource Manager scope
-        /// (project/folder/organization). This RPC gives callers especially
-        /// administrators the ability to search all the resources within a scope, even
-        /// if they don't have `.get` permission of all the resources. Callers should
-        /// have `cloudasset.assets.searchAllResources` permission on the requested
-        /// scope, otherwise the request will be rejected.
-        pub async fn search_all_resources(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchAllResourcesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchAllResourcesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.asset.v1p1beta1.AssetService/SearchAllResources",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.asset.v1p1beta1.AssetService",
-                        "SearchAllResources",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Searches all the IAM policies within a given accessible Resource Manager
-        /// scope (project/folder/organization). This RPC gives callers especially
-        /// administrators the ability to search all the IAM policies within a scope,
-        /// even if they don't have `.getIamPolicy` permission of all the IAM policies.
-        /// Callers should have `cloudasset.assets.searchAllIamPolicies` permission on
-        /// the requested scope, otherwise the request will be rejected.
-        pub async fn search_all_iam_policies(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchAllIamPoliciesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchAllIamPoliciesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.asset.v1p1beta1.AssetService/SearchAllIamPolicies",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.asset.v1p1beta1.AssetService",
-                        "SearchAllIamPolicies",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Asset service definition.
+#[derive(Debug, Clone)]
+pub struct AssetServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AssetServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AssetServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AssetServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Searches all the resources within a given accessible Resource Manager scope
+/// (project/folder/organization). This RPC gives callers especially
+/// administrators the ability to search all the resources within a scope, even
+/// if they don't have `.get` permission of all the resources. Callers should
+/// have `cloudasset.assets.searchAllResources` permission on the requested
+/// scope, otherwise the request will be rejected.
+pub async fn search_all_resources(&mut self, request: impl tonic::IntoRequest<super::SearchAllResourcesRequest>) -> std::result::Result<tonic::Response<super::SearchAllResourcesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.asset.v1p1beta1.AssetService/SearchAllResources");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.asset.v1p1beta1.AssetService", "SearchAllResources"));
+self.inner.unary(req, path, codec).await
+}
+/// Searches all the IAM policies within a given accessible Resource Manager
+/// scope (project/folder/organization). This RPC gives callers especially
+/// administrators the ability to search all the IAM policies within a scope,
+/// even if they don't have `.getIamPolicy` permission of all the IAM policies.
+/// Callers should have `cloudasset.assets.searchAllIamPolicies` permission on
+/// the requested scope, otherwise the request will be rejected.
+pub async fn search_all_iam_policies(&mut self, request: impl tonic::IntoRequest<super::SearchAllIamPoliciesRequest>) -> std::result::Result<tonic::Response<super::SearchAllIamPoliciesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.asset.v1p1beta1.AssetService/SearchAllIamPolicies");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.asset.v1p1beta1.AssetService", "SearchAllIamPolicies"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

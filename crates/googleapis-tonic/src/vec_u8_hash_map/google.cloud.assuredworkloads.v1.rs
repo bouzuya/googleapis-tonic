@@ -2,497 +2,399 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkloadRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub workload: ::core::option::Option<Workload>,
-    #[prost(string, tag = "3")]
-    pub external_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub workload: ::core::option::Option<Workload>,
+#[prost(string, tag = "3")]
+pub external_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateWorkloadRequest {
-    #[prost(message, optional, tag = "1")]
-    pub workload: ::core::option::Option<Workload>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub workload: ::core::option::Option<Workload>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteWorkloadRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkloadRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkloadsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkloadsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub workloads: ::prost::alloc::vec::Vec<Workload>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub workloads: ::prost::alloc::vec::Vec<Workload>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Workload {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub resources: ::prost::alloc::vec::Vec<workload::ResourceInfo>,
-    #[prost(enumeration = "workload::ComplianceRegime", tag = "4")]
-    pub compliance_regime: i32,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "6")]
-    pub billing_account: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "10")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "13")]
-    pub provisioned_resources_parent: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(message, optional, tag = "14")]
-    pub kms_settings: ::core::option::Option<workload::KmsSettings>,
-    #[prost(message, repeated, tag = "15")]
-    pub resource_settings: ::prost::alloc::vec::Vec<workload::ResourceSettings>,
-    #[prost(enumeration = "workload::KajEnrollmentState", tag = "17")]
-    pub kaj_enrollment_state: i32,
-    #[prost(bool, tag = "18")]
-    pub enable_sovereign_controls: bool,
-    #[prost(message, optional, tag = "20")]
-    pub saa_enrollment_response: ::core::option::Option<workload::SaaEnrollmentResponse>,
-    #[prost(string, repeated, tag = "24")]
-    pub compliant_but_disallowed_services: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(enumeration = "workload::Partner", tag = "25")]
-    pub partner: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub resources: ::prost::alloc::vec::Vec<workload::ResourceInfo>,
+#[prost(enumeration = "workload::ComplianceRegime", tag = "4")]
+pub compliance_regime: i32,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "6")]
+pub billing_account: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub etag: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "10")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "13")]
+pub provisioned_resources_parent: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(message, optional, tag = "14")]
+pub kms_settings: ::core::option::Option<workload::KmsSettings>,
+#[prost(message, repeated, tag = "15")]
+pub resource_settings: ::prost::alloc::vec::Vec<workload::ResourceSettings>,
+#[prost(enumeration = "workload::KajEnrollmentState", tag = "17")]
+pub kaj_enrollment_state: i32,
+#[prost(bool, tag = "18")]
+pub enable_sovereign_controls: bool,
+#[prost(message, optional, tag = "20")]
+pub saa_enrollment_response: ::core::option::Option<workload::SaaEnrollmentResponse>,
+#[prost(string, repeated, tag = "24")]
+pub compliant_but_disallowed_services: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "workload::Partner", tag = "25")]
+pub partner: i32,
 }
 /// Nested message and enum types in `Workload`.
 pub mod workload {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ResourceInfo {
-        #[prost(int64, tag = "1")]
-        pub resource_id: i64,
-        #[prost(enumeration = "resource_info::ResourceType", tag = "2")]
-        pub resource_type: i32,
-    }
-    /// Nested message and enum types in `ResourceInfo`.
-    pub mod resource_info {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ResourceType {
-            Unspecified = 0,
-            ConsumerProject = 1,
-            ConsumerFolder = 4,
-            EncryptionKeysProject = 2,
-            Keyring = 3,
-        }
-        impl ResourceType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    ResourceType::Unspecified => "RESOURCE_TYPE_UNSPECIFIED",
-                    ResourceType::ConsumerProject => "CONSUMER_PROJECT",
-                    ResourceType::ConsumerFolder => "CONSUMER_FOLDER",
-                    ResourceType::EncryptionKeysProject => "ENCRYPTION_KEYS_PROJECT",
-                    ResourceType::Keyring => "KEYRING",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "CONSUMER_PROJECT" => Some(Self::ConsumerProject),
-                    "CONSUMER_FOLDER" => Some(Self::ConsumerFolder),
-                    "ENCRYPTION_KEYS_PROJECT" => Some(Self::EncryptionKeysProject),
-                    "KEYRING" => Some(Self::Keyring),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct KmsSettings {
-        #[prost(message, optional, tag = "1")]
-        pub next_rotation_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "2")]
-        pub rotation_period: ::core::option::Option<::prost_types::Duration>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ResourceSettings {
-        #[prost(string, tag = "1")]
-        pub resource_id: ::prost::alloc::string::String,
-        #[prost(enumeration = "resource_info::ResourceType", tag = "2")]
-        pub resource_type: i32,
-        #[prost(string, tag = "3")]
-        pub display_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SaaEnrollmentResponse {
-        #[prost(
-            enumeration = "saa_enrollment_response::SetupState",
-            optional,
-            tag = "1"
-        )]
-        pub setup_status: ::core::option::Option<i32>,
-        #[prost(
-            enumeration = "saa_enrollment_response::SetupError",
-            repeated,
-            tag = "2"
-        )]
-        pub setup_errors: ::prost::alloc::vec::Vec<i32>,
-    }
-    /// Nested message and enum types in `SaaEnrollmentResponse`.
-    pub mod saa_enrollment_response {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum SetupState {
-            Unspecified = 0,
-            StatusPending = 1,
-            StatusComplete = 2,
-        }
-        impl SetupState {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    SetupState::Unspecified => "SETUP_STATE_UNSPECIFIED",
-                    SetupState::StatusPending => "STATUS_PENDING",
-                    SetupState::StatusComplete => "STATUS_COMPLETE",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "SETUP_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "STATUS_PENDING" => Some(Self::StatusPending),
-                    "STATUS_COMPLETE" => Some(Self::StatusComplete),
-                    _ => None,
-                }
-            }
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum SetupError {
-            Unspecified = 0,
-            ErrorInvalidBaseSetup = 1,
-            ErrorMissingExternalSigningKey = 2,
-            ErrorNotAllServicesEnrolled = 3,
-            ErrorSetupCheckFailed = 4,
-        }
-        impl SetupError {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    SetupError::Unspecified => "SETUP_ERROR_UNSPECIFIED",
-                    SetupError::ErrorInvalidBaseSetup => "ERROR_INVALID_BASE_SETUP",
-                    SetupError::ErrorMissingExternalSigningKey => {
-                        "ERROR_MISSING_EXTERNAL_SIGNING_KEY"
-                    }
-                    SetupError::ErrorNotAllServicesEnrolled => {
-                        "ERROR_NOT_ALL_SERVICES_ENROLLED"
-                    }
-                    SetupError::ErrorSetupCheckFailed => "ERROR_SETUP_CHECK_FAILED",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "SETUP_ERROR_UNSPECIFIED" => Some(Self::Unspecified),
-                    "ERROR_INVALID_BASE_SETUP" => Some(Self::ErrorInvalidBaseSetup),
-                    "ERROR_MISSING_EXTERNAL_SIGNING_KEY" => {
-                        Some(Self::ErrorMissingExternalSigningKey)
-                    }
-                    "ERROR_NOT_ALL_SERVICES_ENROLLED" => {
-                        Some(Self::ErrorNotAllServicesEnrolled)
-                    }
-                    "ERROR_SETUP_CHECK_FAILED" => Some(Self::ErrorSetupCheckFailed),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ComplianceRegime {
-        Unspecified = 0,
-        Il4 = 1,
-        Cjis = 2,
-        FedrampHigh = 3,
-        FedrampModerate = 4,
-        UsRegionalAccess = 5,
-        Hipaa = 6,
-        Hitrust = 7,
-        EuRegionsAndSupport = 8,
-        CaRegionsAndSupport = 9,
-        Itar = 10,
-        AuRegionsAndUsSupport = 11,
-        AssuredWorkloadsForPartners = 12,
-    }
-    impl ComplianceRegime {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ComplianceRegime::Unspecified => "COMPLIANCE_REGIME_UNSPECIFIED",
-                ComplianceRegime::Il4 => "IL4",
-                ComplianceRegime::Cjis => "CJIS",
-                ComplianceRegime::FedrampHigh => "FEDRAMP_HIGH",
-                ComplianceRegime::FedrampModerate => "FEDRAMP_MODERATE",
-                ComplianceRegime::UsRegionalAccess => "US_REGIONAL_ACCESS",
-                ComplianceRegime::Hipaa => "HIPAA",
-                ComplianceRegime::Hitrust => "HITRUST",
-                ComplianceRegime::EuRegionsAndSupport => "EU_REGIONS_AND_SUPPORT",
-                ComplianceRegime::CaRegionsAndSupport => "CA_REGIONS_AND_SUPPORT",
-                ComplianceRegime::Itar => "ITAR",
-                ComplianceRegime::AuRegionsAndUsSupport => "AU_REGIONS_AND_US_SUPPORT",
-                ComplianceRegime::AssuredWorkloadsForPartners => {
-                    "ASSURED_WORKLOADS_FOR_PARTNERS"
-                }
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "COMPLIANCE_REGIME_UNSPECIFIED" => Some(Self::Unspecified),
-                "IL4" => Some(Self::Il4),
-                "CJIS" => Some(Self::Cjis),
-                "FEDRAMP_HIGH" => Some(Self::FedrampHigh),
-                "FEDRAMP_MODERATE" => Some(Self::FedrampModerate),
-                "US_REGIONAL_ACCESS" => Some(Self::UsRegionalAccess),
-                "HIPAA" => Some(Self::Hipaa),
-                "HITRUST" => Some(Self::Hitrust),
-                "EU_REGIONS_AND_SUPPORT" => Some(Self::EuRegionsAndSupport),
-                "CA_REGIONS_AND_SUPPORT" => Some(Self::CaRegionsAndSupport),
-                "ITAR" => Some(Self::Itar),
-                "AU_REGIONS_AND_US_SUPPORT" => Some(Self::AuRegionsAndUsSupport),
-                "ASSURED_WORKLOADS_FOR_PARTNERS" => {
-                    Some(Self::AssuredWorkloadsForPartners)
-                }
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum KajEnrollmentState {
-        Unspecified = 0,
-        Pending = 1,
-        Complete = 2,
-    }
-    impl KajEnrollmentState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                KajEnrollmentState::Unspecified => "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
-                KajEnrollmentState::Pending => "KAJ_ENROLLMENT_STATE_PENDING",
-                KajEnrollmentState::Complete => "KAJ_ENROLLMENT_STATE_COMPLETE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "KAJ_ENROLLMENT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "KAJ_ENROLLMENT_STATE_PENDING" => Some(Self::Pending),
-                "KAJ_ENROLLMENT_STATE_COMPLETE" => Some(Self::Complete),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Partner {
-        Unspecified = 0,
-        LocalControlsByS3ns = 1,
-    }
-    impl Partner {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Partner::Unspecified => "PARTNER_UNSPECIFIED",
-                Partner::LocalControlsByS3ns => "LOCAL_CONTROLS_BY_S3NS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PARTNER_UNSPECIFIED" => Some(Self::Unspecified),
-                "LOCAL_CONTROLS_BY_S3NS" => Some(Self::LocalControlsByS3ns),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ResourceInfo {
+#[prost(int64, tag = "1")]
+pub resource_id: i64,
+#[prost(enumeration = "resource_info::ResourceType", tag = "2")]
+pub resource_type: i32,
+}
+/// Nested message and enum types in `ResourceInfo`.
+pub mod resource_info {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ResourceType {
+Unspecified = 0,
+ConsumerProject = 1,
+ConsumerFolder = 4,
+EncryptionKeysProject = 2,
+Keyring = 3,
+}
+impl ResourceType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ResourceType::Unspecified => "RESOURCE_TYPE_UNSPECIFIED",
+ResourceType::ConsumerProject => "CONSUMER_PROJECT",
+ResourceType::ConsumerFolder => "CONSUMER_FOLDER",
+ResourceType::EncryptionKeysProject => "ENCRYPTION_KEYS_PROJECT",
+ResourceType::Keyring => "KEYRING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"CONSUMER_PROJECT" => Some(Self::ConsumerProject),
+"CONSUMER_FOLDER" => Some(Self::ConsumerFolder),
+"ENCRYPTION_KEYS_PROJECT" => Some(Self::EncryptionKeysProject),
+"KEYRING" => Some(Self::Keyring),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct KmsSettings {
+#[prost(message, optional, tag = "1")]
+pub next_rotation_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub rotation_period: ::core::option::Option<::prost_types::Duration>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ResourceSettings {
+#[prost(string, tag = "1")]
+pub resource_id: ::prost::alloc::string::String,
+#[prost(enumeration = "resource_info::ResourceType", tag = "2")]
+pub resource_type: i32,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SaaEnrollmentResponse {
+#[prost(enumeration = "saa_enrollment_response::SetupState", optional, tag = "1")]
+pub setup_status: ::core::option::Option<i32>,
+#[prost(enumeration = "saa_enrollment_response::SetupError", repeated, tag = "2")]
+pub setup_errors: ::prost::alloc::vec::Vec<i32>,
+}
+/// Nested message and enum types in `SaaEnrollmentResponse`.
+pub mod saa_enrollment_response {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SetupState {
+Unspecified = 0,
+StatusPending = 1,
+StatusComplete = 2,
+}
+impl SetupState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SetupState::Unspecified => "SETUP_STATE_UNSPECIFIED",
+SetupState::StatusPending => "STATUS_PENDING",
+SetupState::StatusComplete => "STATUS_COMPLETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SETUP_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"STATUS_PENDING" => Some(Self::StatusPending),
+"STATUS_COMPLETE" => Some(Self::StatusComplete),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SetupError {
+Unspecified = 0,
+ErrorInvalidBaseSetup = 1,
+ErrorMissingExternalSigningKey = 2,
+ErrorNotAllServicesEnrolled = 3,
+ErrorSetupCheckFailed = 4,
+}
+impl SetupError {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SetupError::Unspecified => "SETUP_ERROR_UNSPECIFIED",
+SetupError::ErrorInvalidBaseSetup => "ERROR_INVALID_BASE_SETUP",
+SetupError::ErrorMissingExternalSigningKey => "ERROR_MISSING_EXTERNAL_SIGNING_KEY",
+SetupError::ErrorNotAllServicesEnrolled => "ERROR_NOT_ALL_SERVICES_ENROLLED",
+SetupError::ErrorSetupCheckFailed => "ERROR_SETUP_CHECK_FAILED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SETUP_ERROR_UNSPECIFIED" => Some(Self::Unspecified),
+"ERROR_INVALID_BASE_SETUP" => Some(Self::ErrorInvalidBaseSetup),
+"ERROR_MISSING_EXTERNAL_SIGNING_KEY" => Some(Self::ErrorMissingExternalSigningKey),
+"ERROR_NOT_ALL_SERVICES_ENROLLED" => Some(Self::ErrorNotAllServicesEnrolled),
+"ERROR_SETUP_CHECK_FAILED" => Some(Self::ErrorSetupCheckFailed),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ComplianceRegime {
+Unspecified = 0,
+Il4 = 1,
+Cjis = 2,
+FedrampHigh = 3,
+FedrampModerate = 4,
+UsRegionalAccess = 5,
+Hipaa = 6,
+Hitrust = 7,
+EuRegionsAndSupport = 8,
+CaRegionsAndSupport = 9,
+Itar = 10,
+AuRegionsAndUsSupport = 11,
+AssuredWorkloadsForPartners = 12,
+}
+impl ComplianceRegime {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ComplianceRegime::Unspecified => "COMPLIANCE_REGIME_UNSPECIFIED",
+ComplianceRegime::Il4 => "IL4",
+ComplianceRegime::Cjis => "CJIS",
+ComplianceRegime::FedrampHigh => "FEDRAMP_HIGH",
+ComplianceRegime::FedrampModerate => "FEDRAMP_MODERATE",
+ComplianceRegime::UsRegionalAccess => "US_REGIONAL_ACCESS",
+ComplianceRegime::Hipaa => "HIPAA",
+ComplianceRegime::Hitrust => "HITRUST",
+ComplianceRegime::EuRegionsAndSupport => "EU_REGIONS_AND_SUPPORT",
+ComplianceRegime::CaRegionsAndSupport => "CA_REGIONS_AND_SUPPORT",
+ComplianceRegime::Itar => "ITAR",
+ComplianceRegime::AuRegionsAndUsSupport => "AU_REGIONS_AND_US_SUPPORT",
+ComplianceRegime::AssuredWorkloadsForPartners => "ASSURED_WORKLOADS_FOR_PARTNERS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"COMPLIANCE_REGIME_UNSPECIFIED" => Some(Self::Unspecified),
+"IL4" => Some(Self::Il4),
+"CJIS" => Some(Self::Cjis),
+"FEDRAMP_HIGH" => Some(Self::FedrampHigh),
+"FEDRAMP_MODERATE" => Some(Self::FedrampModerate),
+"US_REGIONAL_ACCESS" => Some(Self::UsRegionalAccess),
+"HIPAA" => Some(Self::Hipaa),
+"HITRUST" => Some(Self::Hitrust),
+"EU_REGIONS_AND_SUPPORT" => Some(Self::EuRegionsAndSupport),
+"CA_REGIONS_AND_SUPPORT" => Some(Self::CaRegionsAndSupport),
+"ITAR" => Some(Self::Itar),
+"AU_REGIONS_AND_US_SUPPORT" => Some(Self::AuRegionsAndUsSupport),
+"ASSURED_WORKLOADS_FOR_PARTNERS" => Some(Self::AssuredWorkloadsForPartners),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum KajEnrollmentState {
+Unspecified = 0,
+Pending = 1,
+Complete = 2,
+}
+impl KajEnrollmentState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+KajEnrollmentState::Unspecified => "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+KajEnrollmentState::Pending => "KAJ_ENROLLMENT_STATE_PENDING",
+KajEnrollmentState::Complete => "KAJ_ENROLLMENT_STATE_COMPLETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"KAJ_ENROLLMENT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"KAJ_ENROLLMENT_STATE_PENDING" => Some(Self::Pending),
+"KAJ_ENROLLMENT_STATE_COMPLETE" => Some(Self::Complete),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Partner {
+Unspecified = 0,
+LocalControlsByS3ns = 1,
+}
+impl Partner {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Partner::Unspecified => "PARTNER_UNSPECIFIED",
+Partner::LocalControlsByS3ns => "LOCAL_CONTROLS_BY_S3NS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PARTNER_UNSPECIFIED" => Some(Self::Unspecified),
+"LOCAL_CONTROLS_BY_S3NS" => Some(Self::LocalControlsByS3ns),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkloadOperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(enumeration = "workload::ComplianceRegime", tag = "4")]
-    pub compliance_regime: i32,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub parent: ::prost::alloc::string::String,
+#[prost(enumeration = "workload::ComplianceRegime", tag = "4")]
+pub compliance_regime: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RestrictAllowedResourcesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "restrict_allowed_resources_request::RestrictionType",
-        tag = "2"
-    )]
-    pub restriction_type: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "restrict_allowed_resources_request::RestrictionType", tag = "2")]
+pub restriction_type: i32,
 }
 /// Nested message and enum types in `RestrictAllowedResourcesRequest`.
 pub mod restrict_allowed_resources_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RestrictionType {
-        Unspecified = 0,
-        AllowAllGcpResources = 1,
-        AllowCompliantResources = 2,
-    }
-    impl RestrictionType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RestrictionType::Unspecified => "RESTRICTION_TYPE_UNSPECIFIED",
-                RestrictionType::AllowAllGcpResources => "ALLOW_ALL_GCP_RESOURCES",
-                RestrictionType::AllowCompliantResources => "ALLOW_COMPLIANT_RESOURCES",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RESTRICTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ALLOW_ALL_GCP_RESOURCES" => Some(Self::AllowAllGcpResources),
-                "ALLOW_COMPLIANT_RESOURCES" => Some(Self::AllowCompliantResources),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RestrictionType {
+Unspecified = 0,
+AllowAllGcpResources = 1,
+AllowCompliantResources = 2,
+}
+impl RestrictionType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RestrictionType::Unspecified => "RESTRICTION_TYPE_UNSPECIFIED",
+RestrictionType::AllowAllGcpResources => "ALLOW_ALL_GCP_RESOURCES",
+RestrictionType::AllowCompliantResources => "ALLOW_COMPLIANT_RESOURCES",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RESTRICTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"ALLOW_ALL_GCP_RESOURCES" => Some(Self::AllowAllGcpResources),
+"ALLOW_COMPLIANT_RESOURCES" => Some(Self::AllowCompliantResources),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -500,13 +402,13 @@ pub struct RestrictAllowedResourcesResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AcknowledgeViolationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub comment: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(string, tag = "3")]
-    pub non_compliant_org_policy: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub comment: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(string, tag = "3")]
+pub non_compliant_org_policy: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -514,591 +416,347 @@ pub struct AcknowledgeViolationResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TimeWindow {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListViolationsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub interval: ::core::option::Option<TimeWindow>,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub interval: ::core::option::Option<TimeWindow>,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListViolationsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub violations: ::prost::alloc::vec::Vec<Violation>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub violations: ::prost::alloc::vec::Vec<Violation>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetViolationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Violation {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub begin_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub resolve_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "6")]
-    pub category: ::prost::alloc::string::String,
-    #[prost(enumeration = "violation::State", tag = "7")]
-    pub state: i32,
-    #[prost(string, tag = "8")]
-    pub org_policy_constraint: ::prost::alloc::string::String,
-    #[prost(string, tag = "11")]
-    pub audit_log_link: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub non_compliant_org_policy: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "13")]
-    pub remediation: ::core::option::Option<violation::Remediation>,
-    #[prost(bool, tag = "14")]
-    pub acknowledged: bool,
-    #[prost(message, optional, tag = "15")]
-    pub acknowledgement_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "16")]
-    pub exception_audit_log_link: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub begin_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub resolve_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "6")]
+pub category: ::prost::alloc::string::String,
+#[prost(enumeration = "violation::State", tag = "7")]
+pub state: i32,
+#[prost(string, tag = "8")]
+pub org_policy_constraint: ::prost::alloc::string::String,
+#[prost(string, tag = "11")]
+pub audit_log_link: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub non_compliant_org_policy: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "13")]
+pub remediation: ::core::option::Option<violation::Remediation>,
+#[prost(bool, tag = "14")]
+pub acknowledged: bool,
+#[prost(message, optional, tag = "15")]
+pub acknowledgement_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "16")]
+pub exception_audit_log_link: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Violation`.
 pub mod violation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Remediation {
-        #[prost(message, optional, tag = "1")]
-        pub instructions: ::core::option::Option<remediation::Instructions>,
-        #[prost(string, repeated, tag = "2")]
-        pub compliant_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(enumeration = "remediation::RemediationType", tag = "3")]
-        pub remediation_type: i32,
-    }
-    /// Nested message and enum types in `Remediation`.
-    pub mod remediation {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Instructions {
-            #[prost(message, optional, tag = "1")]
-            pub gcloud_instructions: ::core::option::Option<instructions::Gcloud>,
-            #[prost(message, optional, tag = "2")]
-            pub console_instructions: ::core::option::Option<instructions::Console>,
-        }
-        /// Nested message and enum types in `Instructions`.
-        pub mod instructions {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct Gcloud {
-                #[prost(string, repeated, tag = "1")]
-                pub gcloud_commands: ::prost::alloc::vec::Vec<
-                    ::prost::alloc::string::String,
-                >,
-                #[prost(string, repeated, tag = "2")]
-                pub steps: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-                #[prost(string, repeated, tag = "3")]
-                pub additional_links: ::prost::alloc::vec::Vec<
-                    ::prost::alloc::string::String,
-                >,
-            }
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct Console {
-                #[prost(string, repeated, tag = "1")]
-                pub console_uris: ::prost::alloc::vec::Vec<
-                    ::prost::alloc::string::String,
-                >,
-                #[prost(string, repeated, tag = "2")]
-                pub steps: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-                #[prost(string, repeated, tag = "3")]
-                pub additional_links: ::prost::alloc::vec::Vec<
-                    ::prost::alloc::string::String,
-                >,
-            }
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum RemediationType {
-            Unspecified = 0,
-            RemediationBooleanOrgPolicyViolation = 1,
-            RemediationListAllowedValuesOrgPolicyViolation = 2,
-            RemediationListDeniedValuesOrgPolicyViolation = 3,
-            RemediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation = 4,
-        }
-        impl RemediationType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    RemediationType::Unspecified => "REMEDIATION_TYPE_UNSPECIFIED",
-                    RemediationType::RemediationBooleanOrgPolicyViolation => {
-                        "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION"
-                    }
-                    RemediationType::RemediationListAllowedValuesOrgPolicyViolation => {
-                        "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION"
-                    }
-                    RemediationType::RemediationListDeniedValuesOrgPolicyViolation => {
-                        "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION"
-                    }
-                    RemediationType::RemediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation => {
-                        "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION"
-                    }
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REMEDIATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION" => {
-                        Some(Self::RemediationBooleanOrgPolicyViolation)
-                    }
-                    "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION" => {
-                        Some(Self::RemediationListAllowedValuesOrgPolicyViolation)
-                    }
-                    "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION" => {
-                        Some(Self::RemediationListDeniedValuesOrgPolicyViolation)
-                    }
-                    "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION" => {
-                        Some(
-                            Self::RemediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation,
-                        )
-                    }
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Resolved = 2,
-        Unresolved = 3,
-        Exception = 4,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Resolved => "RESOLVED",
-                State::Unresolved => "UNRESOLVED",
-                State::Exception => "EXCEPTION",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "RESOLVED" => Some(Self::Resolved),
-                "UNRESOLVED" => Some(Self::Unresolved),
-                "EXCEPTION" => Some(Self::Exception),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Remediation {
+#[prost(message, optional, tag = "1")]
+pub instructions: ::core::option::Option<remediation::Instructions>,
+#[prost(string, repeated, tag = "2")]
+pub compliant_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "remediation::RemediationType", tag = "3")]
+pub remediation_type: i32,
+}
+/// Nested message and enum types in `Remediation`.
+pub mod remediation {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Instructions {
+#[prost(message, optional, tag = "1")]
+pub gcloud_instructions: ::core::option::Option<instructions::Gcloud>,
+#[prost(message, optional, tag = "2")]
+pub console_instructions: ::core::option::Option<instructions::Console>,
+}
+/// Nested message and enum types in `Instructions`.
+pub mod instructions {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Gcloud {
+#[prost(string, repeated, tag = "1")]
+pub gcloud_commands: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub steps: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub additional_links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Console {
+#[prost(string, repeated, tag = "1")]
+pub console_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub steps: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub additional_links: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RemediationType {
+Unspecified = 0,
+RemediationBooleanOrgPolicyViolation = 1,
+RemediationListAllowedValuesOrgPolicyViolation = 2,
+RemediationListDeniedValuesOrgPolicyViolation = 3,
+RemediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation = 4,
+}
+impl RemediationType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RemediationType::Unspecified => "REMEDIATION_TYPE_UNSPECIFIED",
+RemediationType::RemediationBooleanOrgPolicyViolation => "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION",
+RemediationType::RemediationListAllowedValuesOrgPolicyViolation => "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
+RemediationType::RemediationListDeniedValuesOrgPolicyViolation => "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
+RemediationType::RemediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation => "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REMEDIATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION" => Some(Self::RemediationBooleanOrgPolicyViolation),
+"REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION" => Some(Self::RemediationListAllowedValuesOrgPolicyViolation),
+"REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION" => Some(Self::RemediationListDeniedValuesOrgPolicyViolation),
+"REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION" => Some(Self::RemediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Resolved = 2,
+Unresolved = 3,
+Exception = 4,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Resolved => "RESOLVED",
+State::Unresolved => "UNRESOLVED",
+State::Exception => "EXCEPTION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"RESOLVED" => Some(Self::Resolved),
+"UNRESOLVED" => Some(Self::Unresolved),
+"EXCEPTION" => Some(Self::Exception),
+_ => None,
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod assured_workloads_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service to manage AssuredWorkloads.
-    #[derive(Debug, Clone)]
-    pub struct AssuredWorkloadsServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AssuredWorkloadsServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AssuredWorkloadsServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AssuredWorkloadsServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates Assured Workload.
-        pub async fn create_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateWorkloadRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/CreateWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "CreateWorkload",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an existing workload.
-        /// Currently allows updating of workload display_name and labels.
-        /// For force updates don't set etag field in the Workload.
-        /// Only one update operation per workload can be in progress.
-        pub async fn update_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateWorkloadRequest>,
-        ) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/UpdateWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "UpdateWorkload",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Restrict the list of resources allowed in the Workload environment.
-        /// The current list of allowed products can be found at
-        /// https://cloud.google.com/assured-workloads/docs/supported-products
-        /// In addition to assuredworkloads.workload.update permission, the user should
-        /// also have orgpolicy.policy.set permission on the folder resource
-        /// to use this functionality.
-        pub async fn restrict_allowed_resources(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RestrictAllowedResourcesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::RestrictAllowedResourcesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/RestrictAllowedResources",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "RestrictAllowedResources",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes the workload. Make sure that workload's direct children are already
-        /// in a deleted state, otherwise the request will fail with a
-        /// FAILED_PRECONDITION error.
-        pub async fn delete_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteWorkloadRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/DeleteWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "DeleteWorkload",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets Assured Workload associated with a CRM Node
-        pub async fn get_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetWorkloadRequest>,
-        ) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/GetWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "GetWorkload",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Assured Workloads under a CRM Node.
-        pub async fn list_workloads(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListWorkloadsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListWorkloadsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/ListWorkloads",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "ListWorkloads",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the Violations in the AssuredWorkload Environment.
-        /// Callers may also choose to read across multiple Workloads as per
-        /// [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash
-        /// character) as a wildcard character instead of workload-id in the parent.
-        /// Format `organizations/{org_id}/locations/{location}/workloads/-`
-        pub async fn list_violations(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListViolationsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListViolationsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/ListViolations",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "ListViolations",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieves Assured Workload Violation based on ID.
-        pub async fn get_violation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetViolationRequest>,
-        ) -> std::result::Result<tonic::Response<super::Violation>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/GetViolation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "GetViolation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Acknowledges an existing violation. By acknowledging a violation, users
-        /// acknowledge the existence of a compliance violation in their workload and
-        /// decide to ignore it due to a valid business justification. Acknowledgement
-        /// is a permanent operation and it cannot be reverted.
-        pub async fn acknowledge_violation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AcknowledgeViolationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AcknowledgeViolationResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/AcknowledgeViolation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.assuredworkloads.v1.AssuredWorkloadsService",
-                        "AcknowledgeViolation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service to manage AssuredWorkloads.
+#[derive(Debug, Clone)]
+pub struct AssuredWorkloadsServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AssuredWorkloadsServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AssuredWorkloadsServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AssuredWorkloadsServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates Assured Workload.
+pub async fn create_workload(&mut self, request: impl tonic::IntoRequest<super::CreateWorkloadRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/CreateWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "CreateWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an existing workload.
+/// Currently allows updating of workload display_name and labels.
+/// For force updates don't set etag field in the Workload.
+/// Only one update operation per workload can be in progress.
+pub async fn update_workload(&mut self, request: impl tonic::IntoRequest<super::UpdateWorkloadRequest>) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/UpdateWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "UpdateWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Restrict the list of resources allowed in the Workload environment.
+/// The current list of allowed products can be found at
+/// https://cloud.google.com/assured-workloads/docs/supported-products
+/// In addition to assuredworkloads.workload.update permission, the user should
+/// also have orgpolicy.policy.set permission on the folder resource
+/// to use this functionality.
+pub async fn restrict_allowed_resources(&mut self, request: impl tonic::IntoRequest<super::RestrictAllowedResourcesRequest>) -> std::result::Result<tonic::Response<super::RestrictAllowedResourcesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/RestrictAllowedResources");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "RestrictAllowedResources"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes the workload. Make sure that workload's direct children are already
+/// in a deleted state, otherwise the request will fail with a
+/// FAILED_PRECONDITION error.
+pub async fn delete_workload(&mut self, request: impl tonic::IntoRequest<super::DeleteWorkloadRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/DeleteWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "DeleteWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets Assured Workload associated with a CRM Node
+pub async fn get_workload(&mut self, request: impl tonic::IntoRequest<super::GetWorkloadRequest>) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/GetWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "GetWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Assured Workloads under a CRM Node.
+pub async fn list_workloads(&mut self, request: impl tonic::IntoRequest<super::ListWorkloadsRequest>) -> std::result::Result<tonic::Response<super::ListWorkloadsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/ListWorkloads");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "ListWorkloads"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the Violations in the AssuredWorkload Environment.
+/// Callers may also choose to read across multiple Workloads as per
+/// [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash
+/// character) as a wildcard character instead of workload-id in the parent.
+/// Format `organizations/{org_id}/locations/{location}/workloads/-`
+pub async fn list_violations(&mut self, request: impl tonic::IntoRequest<super::ListViolationsRequest>) -> std::result::Result<tonic::Response<super::ListViolationsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/ListViolations");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "ListViolations"));
+self.inner.unary(req, path, codec).await
+}
+/// Retrieves Assured Workload Violation based on ID.
+pub async fn get_violation(&mut self, request: impl tonic::IntoRequest<super::GetViolationRequest>) -> std::result::Result<tonic::Response<super::Violation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/GetViolation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "GetViolation"));
+self.inner.unary(req, path, codec).await
+}
+/// Acknowledges an existing violation. By acknowledging a violation, users
+/// acknowledge the existence of a compliance violation in their workload and
+/// decide to ignore it due to a valid business justification. Acknowledgement
+/// is a permanent operation and it cannot be reverted.
+pub async fn acknowledge_violation(&mut self, request: impl tonic::IntoRequest<super::AcknowledgeViolationRequest>) -> std::result::Result<tonic::Response<super::AcknowledgeViolationResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.assuredworkloads.v1.AssuredWorkloadsService/AcknowledgeViolation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.assuredworkloads.v1.AssuredWorkloadsService", "AcknowledgeViolation"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

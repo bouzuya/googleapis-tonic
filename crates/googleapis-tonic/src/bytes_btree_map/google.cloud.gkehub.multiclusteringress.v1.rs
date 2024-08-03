@@ -2,6 +2,6 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FeatureSpec {
-    #[prost(string, tag = "1")]
-    pub config_membership: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub config_membership: ::prost::alloc::string::String,
 }

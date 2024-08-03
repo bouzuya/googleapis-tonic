@@ -2,353 +2,255 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCryptoKeysRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCryptoKeysResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub crypto_keys: ::prost::alloc::vec::Vec<super::super::v1::CryptoKey>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub crypto_keys: ::prost::alloc::vec::Vec<super::super::v1::CryptoKey>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod key_dashboard_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Provides a cross-region view of all Cloud KMS keys in a given Cloud project.
-    #[derive(Debug, Clone)]
-    pub struct KeyDashboardServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> KeyDashboardServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> KeyDashboardServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            KeyDashboardServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Returns cryptographic keys managed by Cloud KMS in a given Cloud project.
-        /// Note that this data is sourced from snapshots, meaning it may not
-        /// completely reflect the actual state of key metadata at call time.
-        pub async fn list_crypto_keys(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCryptoKeysRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCryptoKeysResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.kms.inventory.v1.KeyDashboardService/ListCryptoKeys",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.kms.inventory.v1.KeyDashboardService",
-                        "ListCryptoKeys",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Provides a cross-region view of all Cloud KMS keys in a given Cloud project.
+#[derive(Debug, Clone)]
+pub struct KeyDashboardServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> KeyDashboardServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> KeyDashboardServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+KeyDashboardServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Returns cryptographic keys managed by Cloud KMS in a given Cloud project.
+/// Note that this data is sourced from snapshots, meaning it may not
+/// completely reflect the actual state of key metadata at call time.
+pub async fn list_crypto_keys(&mut self, request: impl tonic::IntoRequest<super::ListCryptoKeysRequest>) -> std::result::Result<tonic::Response<super::ListCryptoKeysResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.kms.inventory.v1.KeyDashboardService/ListCryptoKeys");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.kms.inventory.v1.KeyDashboardService", "ListCryptoKeys"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetProtectedResourcesSummaryRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProtectedResourcesSummary {
-    #[prost(string, tag = "5")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int64, tag = "1")]
-    pub resource_count: i64,
-    #[prost(int32, tag = "2")]
-    pub project_count: i32,
-    #[prost(btree_map = "string, int64", tag = "3")]
-    pub resource_types: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        i64,
-    >,
-    #[prost(btree_map = "string, int64", tag = "6")]
-    pub cloud_products: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        i64,
-    >,
-    #[prost(btree_map = "string, int64", tag = "4")]
-    pub locations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        i64,
-    >,
+#[prost(string, tag = "5")]
+pub name: ::prost::alloc::string::String,
+#[prost(int64, tag = "1")]
+pub resource_count: i64,
+#[prost(int32, tag = "2")]
+pub project_count: i32,
+#[prost(btree_map = "string, int64", tag = "3")]
+pub resource_types: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
+#[prost(btree_map = "string, int64", tag = "6")]
+pub cloud_products: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
+#[prost(btree_map = "string, int64", tag = "4")]
+pub locations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchProtectedResourcesRequest {
-    #[prost(string, tag = "2")]
-    pub scope: ::prost::alloc::string::String,
-    #[prost(string, tag = "1")]
-    pub crypto_key: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "5")]
-    pub resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub scope: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub crypto_key: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "5")]
+pub resource_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchProtectedResourcesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub protected_resources: ::prost::alloc::vec::Vec<ProtectedResource>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub protected_resources: ::prost::alloc::vec::Vec<ProtectedResource>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProtectedResource {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub project: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub cloud_product: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub resource_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub location: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "5")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "6")]
-    pub crypto_key_version: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "10")]
-    pub crypto_key_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub project: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub cloud_product: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub resource_type: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub location: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "5")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "6")]
+pub crypto_key_version: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "10")]
+pub crypto_key_versions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "7")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Generated client implementations.
 pub mod key_tracking_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Returns information about the resources in an org that are protected by a
-    /// given Cloud KMS key via CMEK.
-    #[derive(Debug, Clone)]
-    pub struct KeyTrackingServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> KeyTrackingServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> KeyTrackingServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            KeyTrackingServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Returns aggregate information about the resources protected by the given
-        /// Cloud KMS [CryptoKey][google.cloud.kms.v1.CryptoKey]. Only resources within
-        /// the same Cloud organization as the key will be returned. The project that
-        /// holds the key must be part of an organization in order for this call to
-        /// succeed.
-        pub async fn get_protected_resources_summary(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetProtectedResourcesSummaryRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ProtectedResourcesSummary>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.kms.inventory.v1.KeyTrackingService/GetProtectedResourcesSummary",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.kms.inventory.v1.KeyTrackingService",
-                        "GetProtectedResourcesSummary",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns metadata about the resources protected by the given Cloud KMS
-        /// [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud organization.
-        pub async fn search_protected_resources(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchProtectedResourcesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchProtectedResourcesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.kms.inventory.v1.KeyTrackingService/SearchProtectedResources",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.kms.inventory.v1.KeyTrackingService",
-                        "SearchProtectedResources",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Returns information about the resources in an org that are protected by a
+/// given Cloud KMS key via CMEK.
+#[derive(Debug, Clone)]
+pub struct KeyTrackingServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> KeyTrackingServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> KeyTrackingServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+KeyTrackingServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Returns aggregate information about the resources protected by the given
+/// Cloud KMS [CryptoKey][google.cloud.kms.v1.CryptoKey]. Only resources within
+/// the same Cloud organization as the key will be returned. The project that
+/// holds the key must be part of an organization in order for this call to
+/// succeed.
+pub async fn get_protected_resources_summary(&mut self, request: impl tonic::IntoRequest<super::GetProtectedResourcesSummaryRequest>) -> std::result::Result<tonic::Response<super::ProtectedResourcesSummary>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.kms.inventory.v1.KeyTrackingService/GetProtectedResourcesSummary");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.kms.inventory.v1.KeyTrackingService", "GetProtectedResourcesSummary"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns metadata about the resources protected by the given Cloud KMS
+/// [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud organization.
+pub async fn search_protected_resources(&mut self, request: impl tonic::IntoRequest<super::SearchProtectedResourcesRequest>) -> std::result::Result<tonic::Response<super::SearchProtectedResourcesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.kms.inventory.v1.KeyTrackingService/SearchProtectedResources");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.kms.inventory.v1.KeyTrackingService", "SearchProtectedResources"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

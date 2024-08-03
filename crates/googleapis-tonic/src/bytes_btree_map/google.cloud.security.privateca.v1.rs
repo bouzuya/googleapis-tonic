@@ -2,2475 +2,1686 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateAuthority {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "certificate_authority::Type", tag = "2")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "3")]
-    pub config: ::core::option::Option<CertificateConfig>,
-    #[prost(message, optional, tag = "4")]
-    pub lifetime: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "5")]
-    pub key_spec: ::core::option::Option<certificate_authority::KeyVersionSpec>,
-    #[prost(message, optional, tag = "6")]
-    pub subordinate_config: ::core::option::Option<SubordinateConfig>,
-    #[prost(enumeration = "ca_pool::Tier", tag = "7")]
-    pub tier: i32,
-    #[prost(enumeration = "certificate_authority::State", tag = "8")]
-    pub state: i32,
-    #[prost(string, repeated, tag = "9")]
-    pub pem_ca_certificates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "10")]
-    pub ca_certificate_descriptions: ::prost::alloc::vec::Vec<CertificateDescription>,
-    #[prost(string, tag = "11")]
-    pub gcs_bucket: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "12")]
-    pub access_urls: ::core::option::Option<certificate_authority::AccessUrls>,
-    #[prost(message, optional, tag = "13")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "14")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "15")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "16")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(btree_map = "string, string", tag = "17")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "certificate_authority::Type", tag = "2")]
+pub r#type: i32,
+#[prost(message, optional, tag = "3")]
+pub config: ::core::option::Option<CertificateConfig>,
+#[prost(message, optional, tag = "4")]
+pub lifetime: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "5")]
+pub key_spec: ::core::option::Option<certificate_authority::KeyVersionSpec>,
+#[prost(message, optional, tag = "6")]
+pub subordinate_config: ::core::option::Option<SubordinateConfig>,
+#[prost(enumeration = "ca_pool::Tier", tag = "7")]
+pub tier: i32,
+#[prost(enumeration = "certificate_authority::State", tag = "8")]
+pub state: i32,
+#[prost(string, repeated, tag = "9")]
+pub pem_ca_certificates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "10")]
+pub ca_certificate_descriptions: ::prost::alloc::vec::Vec<CertificateDescription>,
+#[prost(string, tag = "11")]
+pub gcs_bucket: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "12")]
+pub access_urls: ::core::option::Option<certificate_authority::AccessUrls>,
+#[prost(message, optional, tag = "13")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "14")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "15")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "16")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(btree_map = "string, string", tag = "17")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `CertificateAuthority`.
 pub mod certificate_authority {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AccessUrls {
-        #[prost(string, tag = "1")]
-        pub ca_certificate_access_url: ::prost::alloc::string::String,
-        #[prost(string, repeated, tag = "2")]
-        pub crl_access_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct KeyVersionSpec {
-        #[prost(oneof = "key_version_spec::KeyVersion", tags = "1, 2")]
-        pub key_version: ::core::option::Option<key_version_spec::KeyVersion>,
-    }
-    /// Nested message and enum types in `KeyVersionSpec`.
-    pub mod key_version_spec {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum KeyVersion {
-            #[prost(string, tag = "1")]
-            CloudKmsKeyVersion(::prost::alloc::string::String),
-            #[prost(enumeration = "super::SignHashAlgorithm", tag = "2")]
-            Algorithm(i32),
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        SelfSigned = 1,
-        Subordinate = 2,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::SelfSigned => "SELF_SIGNED",
-                Type::Subordinate => "SUBORDINATE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SELF_SIGNED" => Some(Self::SelfSigned),
-                "SUBORDINATE" => Some(Self::Subordinate),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Enabled = 1,
-        Disabled = 2,
-        Staged = 3,
-        AwaitingUserActivation = 4,
-        Deleted = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Enabled => "ENABLED",
-                State::Disabled => "DISABLED",
-                State::Staged => "STAGED",
-                State::AwaitingUserActivation => "AWAITING_USER_ACTIVATION",
-                State::Deleted => "DELETED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ENABLED" => Some(Self::Enabled),
-                "DISABLED" => Some(Self::Disabled),
-                "STAGED" => Some(Self::Staged),
-                "AWAITING_USER_ACTIVATION" => Some(Self::AwaitingUserActivation),
-                "DELETED" => Some(Self::Deleted),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SignHashAlgorithm {
-        Unspecified = 0,
-        RsaPss2048Sha256 = 1,
-        RsaPss3072Sha256 = 2,
-        RsaPss4096Sha256 = 3,
-        RsaPkcs12048Sha256 = 6,
-        RsaPkcs13072Sha256 = 7,
-        RsaPkcs14096Sha256 = 8,
-        EcP256Sha256 = 4,
-        EcP384Sha384 = 5,
-    }
-    impl SignHashAlgorithm {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SignHashAlgorithm::Unspecified => "SIGN_HASH_ALGORITHM_UNSPECIFIED",
-                SignHashAlgorithm::RsaPss2048Sha256 => "RSA_PSS_2048_SHA256",
-                SignHashAlgorithm::RsaPss3072Sha256 => "RSA_PSS_3072_SHA256",
-                SignHashAlgorithm::RsaPss4096Sha256 => "RSA_PSS_4096_SHA256",
-                SignHashAlgorithm::RsaPkcs12048Sha256 => "RSA_PKCS1_2048_SHA256",
-                SignHashAlgorithm::RsaPkcs13072Sha256 => "RSA_PKCS1_3072_SHA256",
-                SignHashAlgorithm::RsaPkcs14096Sha256 => "RSA_PKCS1_4096_SHA256",
-                SignHashAlgorithm::EcP256Sha256 => "EC_P256_SHA256",
-                SignHashAlgorithm::EcP384Sha384 => "EC_P384_SHA384",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SIGN_HASH_ALGORITHM_UNSPECIFIED" => Some(Self::Unspecified),
-                "RSA_PSS_2048_SHA256" => Some(Self::RsaPss2048Sha256),
-                "RSA_PSS_3072_SHA256" => Some(Self::RsaPss3072Sha256),
-                "RSA_PSS_4096_SHA256" => Some(Self::RsaPss4096Sha256),
-                "RSA_PKCS1_2048_SHA256" => Some(Self::RsaPkcs12048Sha256),
-                "RSA_PKCS1_3072_SHA256" => Some(Self::RsaPkcs13072Sha256),
-                "RSA_PKCS1_4096_SHA256" => Some(Self::RsaPkcs14096Sha256),
-                "EC_P256_SHA256" => Some(Self::EcP256Sha256),
-                "EC_P384_SHA384" => Some(Self::EcP384Sha384),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AccessUrls {
+#[prost(string, tag = "1")]
+pub ca_certificate_access_url: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub crl_access_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeyVersionSpec {
+#[prost(oneof = "key_version_spec::KeyVersion", tags = "1, 2")]
+pub key_version: ::core::option::Option<key_version_spec::KeyVersion>,
+}
+/// Nested message and enum types in `KeyVersionSpec`.
+pub mod key_version_spec {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum KeyVersion {
+#[prost(string, tag = "1")]
+CloudKmsKeyVersion(::prost::alloc::string::String),
+#[prost(enumeration = "super::SignHashAlgorithm", tag = "2")]
+Algorithm(i32),
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+SelfSigned = 1,
+Subordinate = 2,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::SelfSigned => "SELF_SIGNED",
+Type::Subordinate => "SUBORDINATE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SELF_SIGNED" => Some(Self::SelfSigned),
+"SUBORDINATE" => Some(Self::Subordinate),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Enabled = 1,
+Disabled = 2,
+Staged = 3,
+AwaitingUserActivation = 4,
+Deleted = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Enabled => "ENABLED",
+State::Disabled => "DISABLED",
+State::Staged => "STAGED",
+State::AwaitingUserActivation => "AWAITING_USER_ACTIVATION",
+State::Deleted => "DELETED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ENABLED" => Some(Self::Enabled),
+"DISABLED" => Some(Self::Disabled),
+"STAGED" => Some(Self::Staged),
+"AWAITING_USER_ACTIVATION" => Some(Self::AwaitingUserActivation),
+"DELETED" => Some(Self::Deleted),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SignHashAlgorithm {
+Unspecified = 0,
+RsaPss2048Sha256 = 1,
+RsaPss3072Sha256 = 2,
+RsaPss4096Sha256 = 3,
+RsaPkcs12048Sha256 = 6,
+RsaPkcs13072Sha256 = 7,
+RsaPkcs14096Sha256 = 8,
+EcP256Sha256 = 4,
+EcP384Sha384 = 5,
+}
+impl SignHashAlgorithm {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SignHashAlgorithm::Unspecified => "SIGN_HASH_ALGORITHM_UNSPECIFIED",
+SignHashAlgorithm::RsaPss2048Sha256 => "RSA_PSS_2048_SHA256",
+SignHashAlgorithm::RsaPss3072Sha256 => "RSA_PSS_3072_SHA256",
+SignHashAlgorithm::RsaPss4096Sha256 => "RSA_PSS_4096_SHA256",
+SignHashAlgorithm::RsaPkcs12048Sha256 => "RSA_PKCS1_2048_SHA256",
+SignHashAlgorithm::RsaPkcs13072Sha256 => "RSA_PKCS1_3072_SHA256",
+SignHashAlgorithm::RsaPkcs14096Sha256 => "RSA_PKCS1_4096_SHA256",
+SignHashAlgorithm::EcP256Sha256 => "EC_P256_SHA256",
+SignHashAlgorithm::EcP384Sha384 => "EC_P384_SHA384",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SIGN_HASH_ALGORITHM_UNSPECIFIED" => Some(Self::Unspecified),
+"RSA_PSS_2048_SHA256" => Some(Self::RsaPss2048Sha256),
+"RSA_PSS_3072_SHA256" => Some(Self::RsaPss3072Sha256),
+"RSA_PSS_4096_SHA256" => Some(Self::RsaPss4096Sha256),
+"RSA_PKCS1_2048_SHA256" => Some(Self::RsaPkcs12048Sha256),
+"RSA_PKCS1_3072_SHA256" => Some(Self::RsaPkcs13072Sha256),
+"RSA_PKCS1_4096_SHA256" => Some(Self::RsaPkcs14096Sha256),
+"EC_P256_SHA256" => Some(Self::EcP256Sha256),
+"EC_P384_SHA384" => Some(Self::EcP384Sha384),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CaPool {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "ca_pool::Tier", tag = "2")]
-    pub tier: i32,
-    #[prost(message, optional, tag = "3")]
-    pub issuance_policy: ::core::option::Option<ca_pool::IssuancePolicy>,
-    #[prost(message, optional, tag = "4")]
-    pub publishing_options: ::core::option::Option<ca_pool::PublishingOptions>,
-    #[prost(btree_map = "string, string", tag = "5")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "ca_pool::Tier", tag = "2")]
+pub tier: i32,
+#[prost(message, optional, tag = "3")]
+pub issuance_policy: ::core::option::Option<ca_pool::IssuancePolicy>,
+#[prost(message, optional, tag = "4")]
+pub publishing_options: ::core::option::Option<ca_pool::PublishingOptions>,
+#[prost(btree_map = "string, string", tag = "5")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `CaPool`.
 pub mod ca_pool {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct PublishingOptions {
-        #[prost(bool, tag = "1")]
-        pub publish_ca_cert: bool,
-        #[prost(bool, tag = "2")]
-        pub publish_crl: bool,
-        #[prost(enumeration = "publishing_options::EncodingFormat", tag = "3")]
-        pub encoding_format: i32,
-    }
-    /// Nested message and enum types in `PublishingOptions`.
-    pub mod publishing_options {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum EncodingFormat {
-            Unspecified = 0,
-            Pem = 1,
-            Der = 2,
-        }
-        impl EncodingFormat {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    EncodingFormat::Unspecified => "ENCODING_FORMAT_UNSPECIFIED",
-                    EncodingFormat::Pem => "PEM",
-                    EncodingFormat::Der => "DER",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "ENCODING_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-                    "PEM" => Some(Self::Pem),
-                    "DER" => Some(Self::Der),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct IssuancePolicy {
-        #[prost(message, repeated, tag = "1")]
-        pub allowed_key_types: ::prost::alloc::vec::Vec<issuance_policy::AllowedKeyType>,
-        #[prost(message, optional, tag = "2")]
-        pub maximum_lifetime: ::core::option::Option<::prost_types::Duration>,
-        #[prost(message, optional, tag = "3")]
-        pub allowed_issuance_modes: ::core::option::Option<
-            issuance_policy::IssuanceModes,
-        >,
-        #[prost(message, optional, tag = "4")]
-        pub baseline_values: ::core::option::Option<super::X509Parameters>,
-        #[prost(message, optional, tag = "5")]
-        pub identity_constraints: ::core::option::Option<
-            super::CertificateIdentityConstraints,
-        >,
-        #[prost(message, optional, tag = "6")]
-        pub passthrough_extensions: ::core::option::Option<
-            super::CertificateExtensionConstraints,
-        >,
-    }
-    /// Nested message and enum types in `IssuancePolicy`.
-    pub mod issuance_policy {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct AllowedKeyType {
-            #[prost(oneof = "allowed_key_type::KeyType", tags = "1, 2")]
-            pub key_type: ::core::option::Option<allowed_key_type::KeyType>,
-        }
-        /// Nested message and enum types in `AllowedKeyType`.
-        pub mod allowed_key_type {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-            pub struct RsaKeyType {
-                #[prost(int64, tag = "1")]
-                pub min_modulus_size: i64,
-                #[prost(int64, tag = "2")]
-                pub max_modulus_size: i64,
-            }
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-            pub struct EcKeyType {
-                #[prost(enumeration = "ec_key_type::EcSignatureAlgorithm", tag = "1")]
-                pub signature_algorithm: i32,
-            }
-            /// Nested message and enum types in `EcKeyType`.
-            pub mod ec_key_type {
-                #[derive(
-                    Clone,
-                    Copy,
-                    Debug,
-                    PartialEq,
-                    Eq,
-                    Hash,
-                    PartialOrd,
-                    Ord,
-                    ::prost::Enumeration
-                )]
-                #[repr(i32)]
-                pub enum EcSignatureAlgorithm {
-                    Unspecified = 0,
-                    EcdsaP256 = 1,
-                    EcdsaP384 = 2,
-                    Eddsa25519 = 3,
-                }
-                impl EcSignatureAlgorithm {
-                    /// String value of the enum field names used in the ProtoBuf definition.
-                    ///
-                    /// The values are not transformed in any way and thus are considered stable
-                    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-                    pub fn as_str_name(&self) -> &'static str {
-                        match self {
-                            EcSignatureAlgorithm::Unspecified => {
-                                "EC_SIGNATURE_ALGORITHM_UNSPECIFIED"
-                            }
-                            EcSignatureAlgorithm::EcdsaP256 => "ECDSA_P256",
-                            EcSignatureAlgorithm::EcdsaP384 => "ECDSA_P384",
-                            EcSignatureAlgorithm::Eddsa25519 => "EDDSA_25519",
-                        }
-                    }
-                    /// Creates an enum from field names used in the ProtoBuf definition.
-                    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                        match value {
-                            "EC_SIGNATURE_ALGORITHM_UNSPECIFIED" => {
-                                Some(Self::Unspecified)
-                            }
-                            "ECDSA_P256" => Some(Self::EcdsaP256),
-                            "ECDSA_P384" => Some(Self::EcdsaP384),
-                            "EDDSA_25519" => Some(Self::Eddsa25519),
-                            _ => None,
-                        }
-                    }
-                }
-            }
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-            pub enum KeyType {
-                #[prost(message, tag = "1")]
-                Rsa(RsaKeyType),
-                #[prost(message, tag = "2")]
-                EllipticCurve(EcKeyType),
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct IssuanceModes {
-            #[prost(bool, tag = "1")]
-            pub allow_csr_based_issuance: bool,
-            #[prost(bool, tag = "2")]
-            pub allow_config_based_issuance: bool,
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Tier {
-        Unspecified = 0,
-        Enterprise = 1,
-        Devops = 2,
-    }
-    impl Tier {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Tier::Unspecified => "TIER_UNSPECIFIED",
-                Tier::Enterprise => "ENTERPRISE",
-                Tier::Devops => "DEVOPS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TIER_UNSPECIFIED" => Some(Self::Unspecified),
-                "ENTERPRISE" => Some(Self::Enterprise),
-                "DEVOPS" => Some(Self::Devops),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct PublishingOptions {
+#[prost(bool, tag = "1")]
+pub publish_ca_cert: bool,
+#[prost(bool, tag = "2")]
+pub publish_crl: bool,
+#[prost(enumeration = "publishing_options::EncodingFormat", tag = "3")]
+pub encoding_format: i32,
+}
+/// Nested message and enum types in `PublishingOptions`.
+pub mod publishing_options {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EncodingFormat {
+Unspecified = 0,
+Pem = 1,
+Der = 2,
+}
+impl EncodingFormat {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EncodingFormat::Unspecified => "ENCODING_FORMAT_UNSPECIFIED",
+EncodingFormat::Pem => "PEM",
+EncodingFormat::Der => "DER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENCODING_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+"PEM" => Some(Self::Pem),
+"DER" => Some(Self::Der),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IssuancePolicy {
+#[prost(message, repeated, tag = "1")]
+pub allowed_key_types: ::prost::alloc::vec::Vec<issuance_policy::AllowedKeyType>,
+#[prost(message, optional, tag = "2")]
+pub maximum_lifetime: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "3")]
+pub allowed_issuance_modes: ::core::option::Option<issuance_policy::IssuanceModes>,
+#[prost(message, optional, tag = "4")]
+pub baseline_values: ::core::option::Option<super::X509Parameters>,
+#[prost(message, optional, tag = "5")]
+pub identity_constraints: ::core::option::Option<super::CertificateIdentityConstraints>,
+#[prost(message, optional, tag = "6")]
+pub passthrough_extensions: ::core::option::Option<super::CertificateExtensionConstraints>,
+}
+/// Nested message and enum types in `IssuancePolicy`.
+pub mod issuance_policy {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AllowedKeyType {
+#[prost(oneof = "allowed_key_type::KeyType", tags = "1, 2")]
+pub key_type: ::core::option::Option<allowed_key_type::KeyType>,
+}
+/// Nested message and enum types in `AllowedKeyType`.
+pub mod allowed_key_type {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RsaKeyType {
+#[prost(int64, tag = "1")]
+pub min_modulus_size: i64,
+#[prost(int64, tag = "2")]
+pub max_modulus_size: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct EcKeyType {
+#[prost(enumeration = "ec_key_type::EcSignatureAlgorithm", tag = "1")]
+pub signature_algorithm: i32,
+}
+/// Nested message and enum types in `EcKeyType`.
+pub mod ec_key_type {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EcSignatureAlgorithm {
+Unspecified = 0,
+EcdsaP256 = 1,
+EcdsaP384 = 2,
+Eddsa25519 = 3,
+}
+impl EcSignatureAlgorithm {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EcSignatureAlgorithm::Unspecified => "EC_SIGNATURE_ALGORITHM_UNSPECIFIED",
+EcSignatureAlgorithm::EcdsaP256 => "ECDSA_P256",
+EcSignatureAlgorithm::EcdsaP384 => "ECDSA_P384",
+EcSignatureAlgorithm::Eddsa25519 => "EDDSA_25519",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EC_SIGNATURE_ALGORITHM_UNSPECIFIED" => Some(Self::Unspecified),
+"ECDSA_P256" => Some(Self::EcdsaP256),
+"ECDSA_P384" => Some(Self::EcdsaP384),
+"EDDSA_25519" => Some(Self::Eddsa25519),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum KeyType {
+#[prost(message, tag = "1")]
+Rsa(RsaKeyType),
+#[prost(message, tag = "2")]
+EllipticCurve(EcKeyType),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct IssuanceModes {
+#[prost(bool, tag = "1")]
+pub allow_csr_based_issuance: bool,
+#[prost(bool, tag = "2")]
+pub allow_config_based_issuance: bool,
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Tier {
+Unspecified = 0,
+Enterprise = 1,
+Devops = 2,
+}
+impl Tier {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Tier::Unspecified => "TIER_UNSPECIFIED",
+Tier::Enterprise => "ENTERPRISE",
+Tier::Devops => "DEVOPS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TIER_UNSPECIFIED" => Some(Self::Unspecified),
+"ENTERPRISE" => Some(Self::Enterprise),
+"DEVOPS" => Some(Self::Devops),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateRevocationList {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub sequence_number: i64,
-    #[prost(message, repeated, tag = "3")]
-    pub revoked_certificates: ::prost::alloc::vec::Vec<
-        certificate_revocation_list::RevokedCertificate,
-    >,
-    #[prost(string, tag = "4")]
-    pub pem_crl: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub access_url: ::prost::alloc::string::String,
-    #[prost(enumeration = "certificate_revocation_list::State", tag = "6")]
-    pub state: i32,
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "9")]
-    pub revision_id: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "10")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub sequence_number: i64,
+#[prost(message, repeated, tag = "3")]
+pub revoked_certificates: ::prost::alloc::vec::Vec<certificate_revocation_list::RevokedCertificate>,
+#[prost(string, tag = "4")]
+pub pem_crl: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub access_url: ::prost::alloc::string::String,
+#[prost(enumeration = "certificate_revocation_list::State", tag = "6")]
+pub state: i32,
+#[prost(message, optional, tag = "7")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "9")]
+pub revision_id: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "10")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `CertificateRevocationList`.
 pub mod certificate_revocation_list {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RevokedCertificate {
-        #[prost(string, tag = "1")]
-        pub certificate: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub hex_serial_number: ::prost::alloc::string::String,
-        #[prost(enumeration = "super::RevocationReason", tag = "3")]
-        pub revocation_reason: i32,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Superseded = 2,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Superseded => "SUPERSEDED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "SUPERSEDED" => Some(Self::Superseded),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RevokedCertificate {
+#[prost(string, tag = "1")]
+pub certificate: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub hex_serial_number: ::prost::alloc::string::String,
+#[prost(enumeration = "super::RevocationReason", tag = "3")]
+pub revocation_reason: i32,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Superseded = 2,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Superseded => "SUPERSEDED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"SUPERSEDED" => Some(Self::Superseded),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Certificate {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub issuer_certificate_authority: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub lifetime: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag = "6")]
-    pub certificate_template: ::prost::alloc::string::String,
-    #[prost(enumeration = "SubjectRequestMode", tag = "7")]
-    pub subject_mode: i32,
-    #[prost(message, optional, tag = "8")]
-    pub revocation_details: ::core::option::Option<certificate::RevocationDetails>,
-    #[prost(string, tag = "9")]
-    pub pem_certificate: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub certificate_description: ::core::option::Option<CertificateDescription>,
-    #[prost(string, repeated, tag = "11")]
-    pub pem_certificate_chain: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "12")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "13")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(btree_map = "string, string", tag = "14")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(oneof = "certificate::CertificateConfig", tags = "2, 3")]
-    pub certificate_config: ::core::option::Option<certificate::CertificateConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub issuer_certificate_authority: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub lifetime: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "6")]
+pub certificate_template: ::prost::alloc::string::String,
+#[prost(enumeration = "SubjectRequestMode", tag = "7")]
+pub subject_mode: i32,
+#[prost(message, optional, tag = "8")]
+pub revocation_details: ::core::option::Option<certificate::RevocationDetails>,
+#[prost(string, tag = "9")]
+pub pem_certificate: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub certificate_description: ::core::option::Option<CertificateDescription>,
+#[prost(string, repeated, tag = "11")]
+pub pem_certificate_chain: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "12")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "13")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(btree_map = "string, string", tag = "14")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "certificate::CertificateConfig", tags = "2, 3")]
+pub certificate_config: ::core::option::Option<certificate::CertificateConfig>,
 }
 /// Nested message and enum types in `Certificate`.
 pub mod certificate {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct RevocationDetails {
-        #[prost(enumeration = "super::RevocationReason", tag = "1")]
-        pub revocation_state: i32,
-        #[prost(message, optional, tag = "2")]
-        pub revocation_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum CertificateConfig {
-        #[prost(string, tag = "2")]
-        PemCsr(::prost::alloc::string::String),
-        #[prost(message, tag = "3")]
-        Config(super::CertificateConfig),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RevocationDetails {
+#[prost(enumeration = "super::RevocationReason", tag = "1")]
+pub revocation_state: i32,
+#[prost(message, optional, tag = "2")]
+pub revocation_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum CertificateConfig {
+#[prost(string, tag = "2")]
+PemCsr(::prost::alloc::string::String),
+#[prost(message, tag = "3")]
+Config(super::CertificateConfig),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateTemplate {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "9")]
-    pub maximum_lifetime: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub predefined_values: ::core::option::Option<X509Parameters>,
-    #[prost(message, optional, tag = "3")]
-    pub identity_constraints: ::core::option::Option<CertificateIdentityConstraints>,
-    #[prost(message, optional, tag = "4")]
-    pub passthrough_extensions: ::core::option::Option<CertificateExtensionConstraints>,
-    #[prost(string, tag = "5")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(btree_map = "string, string", tag = "8")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "9")]
+pub maximum_lifetime: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub predefined_values: ::core::option::Option<X509Parameters>,
+#[prost(message, optional, tag = "3")]
+pub identity_constraints: ::core::option::Option<CertificateIdentityConstraints>,
+#[prost(message, optional, tag = "4")]
+pub passthrough_extensions: ::core::option::Option<CertificateExtensionConstraints>,
+#[prost(string, tag = "5")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(btree_map = "string, string", tag = "8")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct X509Parameters {
-    #[prost(message, optional, tag = "1")]
-    pub key_usage: ::core::option::Option<KeyUsage>,
-    #[prost(message, optional, tag = "2")]
-    pub ca_options: ::core::option::Option<x509_parameters::CaOptions>,
-    #[prost(message, repeated, tag = "3")]
-    pub policy_ids: ::prost::alloc::vec::Vec<ObjectId>,
-    #[prost(string, repeated, tag = "4")]
-    pub aia_ocsp_servers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "6")]
-    pub name_constraints: ::core::option::Option<x509_parameters::NameConstraints>,
-    #[prost(message, repeated, tag = "5")]
-    pub additional_extensions: ::prost::alloc::vec::Vec<X509Extension>,
+#[prost(message, optional, tag = "1")]
+pub key_usage: ::core::option::Option<KeyUsage>,
+#[prost(message, optional, tag = "2")]
+pub ca_options: ::core::option::Option<x509_parameters::CaOptions>,
+#[prost(message, repeated, tag = "3")]
+pub policy_ids: ::prost::alloc::vec::Vec<ObjectId>,
+#[prost(string, repeated, tag = "4")]
+pub aia_ocsp_servers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "6")]
+pub name_constraints: ::core::option::Option<x509_parameters::NameConstraints>,
+#[prost(message, repeated, tag = "5")]
+pub additional_extensions: ::prost::alloc::vec::Vec<X509Extension>,
 }
 /// Nested message and enum types in `X509Parameters`.
 pub mod x509_parameters {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct CaOptions {
-        #[prost(bool, optional, tag = "1")]
-        pub is_ca: ::core::option::Option<bool>,
-        #[prost(int32, optional, tag = "2")]
-        pub max_issuer_path_length: ::core::option::Option<i32>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct NameConstraints {
-        #[prost(bool, tag = "1")]
-        pub critical: bool,
-        #[prost(string, repeated, tag = "2")]
-        pub permitted_dns_names: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, repeated, tag = "3")]
-        pub excluded_dns_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "4")]
-        pub permitted_ip_ranges: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, repeated, tag = "5")]
-        pub excluded_ip_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "6")]
-        pub permitted_email_addresses: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, repeated, tag = "7")]
-        pub excluded_email_addresses: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, repeated, tag = "8")]
-        pub permitted_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "9")]
-        pub excluded_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct CaOptions {
+#[prost(bool, optional, tag = "1")]
+pub is_ca: ::core::option::Option<bool>,
+#[prost(int32, optional, tag = "2")]
+pub max_issuer_path_length: ::core::option::Option<i32>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NameConstraints {
+#[prost(bool, tag = "1")]
+pub critical: bool,
+#[prost(string, repeated, tag = "2")]
+pub permitted_dns_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub excluded_dns_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "4")]
+pub permitted_ip_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "5")]
+pub excluded_ip_ranges: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "6")]
+pub permitted_email_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "7")]
+pub excluded_email_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "8")]
+pub permitted_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "9")]
+pub excluded_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubordinateConfig {
-    #[prost(oneof = "subordinate_config::SubordinateConfig", tags = "1, 2")]
-    pub subordinate_config: ::core::option::Option<
-        subordinate_config::SubordinateConfig,
-    >,
+#[prost(oneof = "subordinate_config::SubordinateConfig", tags = "1, 2")]
+pub subordinate_config: ::core::option::Option<subordinate_config::SubordinateConfig>,
 }
 /// Nested message and enum types in `SubordinateConfig`.
 pub mod subordinate_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SubordinateConfigChain {
-        #[prost(string, repeated, tag = "1")]
-        pub pem_certificates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum SubordinateConfig {
-        #[prost(string, tag = "1")]
-        CertificateAuthority(::prost::alloc::string::String),
-        #[prost(message, tag = "2")]
-        PemIssuerChain(SubordinateConfigChain),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SubordinateConfigChain {
+#[prost(string, repeated, tag = "1")]
+pub pem_certificates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum SubordinateConfig {
+#[prost(string, tag = "1")]
+CertificateAuthority(::prost::alloc::string::String),
+#[prost(message, tag = "2")]
+PemIssuerChain(SubordinateConfigChain),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PublicKey {
-    #[prost(bytes = "bytes", tag = "1")]
-    pub key: ::prost::bytes::Bytes,
-    #[prost(enumeration = "public_key::KeyFormat", tag = "2")]
-    pub format: i32,
+#[prost(bytes = "bytes", tag = "1")]
+pub key: ::prost::bytes::Bytes,
+#[prost(enumeration = "public_key::KeyFormat", tag = "2")]
+pub format: i32,
 }
 /// Nested message and enum types in `PublicKey`.
 pub mod public_key {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum KeyFormat {
-        Unspecified = 0,
-        Pem = 1,
-    }
-    impl KeyFormat {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                KeyFormat::Unspecified => "KEY_FORMAT_UNSPECIFIED",
-                KeyFormat::Pem => "PEM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "KEY_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-                "PEM" => Some(Self::Pem),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum KeyFormat {
+Unspecified = 0,
+Pem = 1,
+}
+impl KeyFormat {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+KeyFormat::Unspecified => "KEY_FORMAT_UNSPECIFIED",
+KeyFormat::Pem => "PEM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"KEY_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+"PEM" => Some(Self::Pem),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateConfig {
-    #[prost(message, optional, tag = "1")]
-    pub subject_config: ::core::option::Option<certificate_config::SubjectConfig>,
-    #[prost(message, optional, tag = "2")]
-    pub x509_config: ::core::option::Option<X509Parameters>,
-    #[prost(message, optional, tag = "3")]
-    pub public_key: ::core::option::Option<PublicKey>,
-    #[prost(message, optional, tag = "4")]
-    pub subject_key_id: ::core::option::Option<certificate_config::KeyId>,
+#[prost(message, optional, tag = "1")]
+pub subject_config: ::core::option::Option<certificate_config::SubjectConfig>,
+#[prost(message, optional, tag = "2")]
+pub x509_config: ::core::option::Option<X509Parameters>,
+#[prost(message, optional, tag = "3")]
+pub public_key: ::core::option::Option<PublicKey>,
+#[prost(message, optional, tag = "4")]
+pub subject_key_id: ::core::option::Option<certificate_config::KeyId>,
 }
 /// Nested message and enum types in `CertificateConfig`.
 pub mod certificate_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SubjectConfig {
-        #[prost(message, optional, tag = "1")]
-        pub subject: ::core::option::Option<super::Subject>,
-        #[prost(message, optional, tag = "2")]
-        pub subject_alt_name: ::core::option::Option<super::SubjectAltNames>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct KeyId {
-        #[prost(string, tag = "1")]
-        pub key_id: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SubjectConfig {
+#[prost(message, optional, tag = "1")]
+pub subject: ::core::option::Option<super::Subject>,
+#[prost(message, optional, tag = "2")]
+pub subject_alt_name: ::core::option::Option<super::SubjectAltNames>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeyId {
+#[prost(string, tag = "1")]
+pub key_id: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateDescription {
-    #[prost(message, optional, tag = "1")]
-    pub subject_description: ::core::option::Option<
-        certificate_description::SubjectDescription,
-    >,
-    #[prost(message, optional, tag = "2")]
-    pub x509_description: ::core::option::Option<X509Parameters>,
-    #[prost(message, optional, tag = "3")]
-    pub public_key: ::core::option::Option<PublicKey>,
-    #[prost(message, optional, tag = "4")]
-    pub subject_key_id: ::core::option::Option<certificate_description::KeyId>,
-    #[prost(message, optional, tag = "5")]
-    pub authority_key_id: ::core::option::Option<certificate_description::KeyId>,
-    #[prost(string, repeated, tag = "6")]
-    pub crl_distribution_points: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, repeated, tag = "7")]
-    pub aia_issuing_certificate_urls: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "8")]
-    pub cert_fingerprint: ::core::option::Option<
-        certificate_description::CertificateFingerprint,
-    >,
+#[prost(message, optional, tag = "1")]
+pub subject_description: ::core::option::Option<certificate_description::SubjectDescription>,
+#[prost(message, optional, tag = "2")]
+pub x509_description: ::core::option::Option<X509Parameters>,
+#[prost(message, optional, tag = "3")]
+pub public_key: ::core::option::Option<PublicKey>,
+#[prost(message, optional, tag = "4")]
+pub subject_key_id: ::core::option::Option<certificate_description::KeyId>,
+#[prost(message, optional, tag = "5")]
+pub authority_key_id: ::core::option::Option<certificate_description::KeyId>,
+#[prost(string, repeated, tag = "6")]
+pub crl_distribution_points: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "7")]
+pub aia_issuing_certificate_urls: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "8")]
+pub cert_fingerprint: ::core::option::Option<certificate_description::CertificateFingerprint>,
 }
 /// Nested message and enum types in `CertificateDescription`.
 pub mod certificate_description {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SubjectDescription {
-        #[prost(message, optional, tag = "1")]
-        pub subject: ::core::option::Option<super::Subject>,
-        #[prost(message, optional, tag = "2")]
-        pub subject_alt_name: ::core::option::Option<super::SubjectAltNames>,
-        #[prost(string, tag = "3")]
-        pub hex_serial_number: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "4")]
-        pub lifetime: ::core::option::Option<::prost_types::Duration>,
-        #[prost(message, optional, tag = "5")]
-        pub not_before_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "6")]
-        pub not_after_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct KeyId {
-        #[prost(string, tag = "1")]
-        pub key_id: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CertificateFingerprint {
-        #[prost(string, tag = "1")]
-        pub sha256_hash: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SubjectDescription {
+#[prost(message, optional, tag = "1")]
+pub subject: ::core::option::Option<super::Subject>,
+#[prost(message, optional, tag = "2")]
+pub subject_alt_name: ::core::option::Option<super::SubjectAltNames>,
+#[prost(string, tag = "3")]
+pub hex_serial_number: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub lifetime: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "5")]
+pub not_before_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub not_after_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct KeyId {
+#[prost(string, tag = "1")]
+pub key_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CertificateFingerprint {
+#[prost(string, tag = "1")]
+pub sha256_hash: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ObjectId {
-    #[prost(int32, repeated, packed = "false", tag = "1")]
-    pub object_id_path: ::prost::alloc::vec::Vec<i32>,
+#[prost(int32, repeated, packed = "false", tag = "1")]
+pub object_id_path: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct X509Extension {
-    #[prost(message, optional, tag = "1")]
-    pub object_id: ::core::option::Option<ObjectId>,
-    #[prost(bool, tag = "2")]
-    pub critical: bool,
-    #[prost(bytes = "bytes", tag = "3")]
-    pub value: ::prost::bytes::Bytes,
+#[prost(message, optional, tag = "1")]
+pub object_id: ::core::option::Option<ObjectId>,
+#[prost(bool, tag = "2")]
+pub critical: bool,
+#[prost(bytes = "bytes", tag = "3")]
+pub value: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeyUsage {
-    #[prost(message, optional, tag = "1")]
-    pub base_key_usage: ::core::option::Option<key_usage::KeyUsageOptions>,
-    #[prost(message, optional, tag = "2")]
-    pub extended_key_usage: ::core::option::Option<key_usage::ExtendedKeyUsageOptions>,
-    #[prost(message, repeated, tag = "3")]
-    pub unknown_extended_key_usages: ::prost::alloc::vec::Vec<ObjectId>,
+#[prost(message, optional, tag = "1")]
+pub base_key_usage: ::core::option::Option<key_usage::KeyUsageOptions>,
+#[prost(message, optional, tag = "2")]
+pub extended_key_usage: ::core::option::Option<key_usage::ExtendedKeyUsageOptions>,
+#[prost(message, repeated, tag = "3")]
+pub unknown_extended_key_usages: ::prost::alloc::vec::Vec<ObjectId>,
 }
 /// Nested message and enum types in `KeyUsage`.
 pub mod key_usage {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct KeyUsageOptions {
-        #[prost(bool, tag = "1")]
-        pub digital_signature: bool,
-        #[prost(bool, tag = "2")]
-        pub content_commitment: bool,
-        #[prost(bool, tag = "3")]
-        pub key_encipherment: bool,
-        #[prost(bool, tag = "4")]
-        pub data_encipherment: bool,
-        #[prost(bool, tag = "5")]
-        pub key_agreement: bool,
-        #[prost(bool, tag = "6")]
-        pub cert_sign: bool,
-        #[prost(bool, tag = "7")]
-        pub crl_sign: bool,
-        #[prost(bool, tag = "8")]
-        pub encipher_only: bool,
-        #[prost(bool, tag = "9")]
-        pub decipher_only: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ExtendedKeyUsageOptions {
-        #[prost(bool, tag = "1")]
-        pub server_auth: bool,
-        #[prost(bool, tag = "2")]
-        pub client_auth: bool,
-        #[prost(bool, tag = "3")]
-        pub code_signing: bool,
-        #[prost(bool, tag = "4")]
-        pub email_protection: bool,
-        #[prost(bool, tag = "5")]
-        pub time_stamping: bool,
-        #[prost(bool, tag = "6")]
-        pub ocsp_signing: bool,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct KeyUsageOptions {
+#[prost(bool, tag = "1")]
+pub digital_signature: bool,
+#[prost(bool, tag = "2")]
+pub content_commitment: bool,
+#[prost(bool, tag = "3")]
+pub key_encipherment: bool,
+#[prost(bool, tag = "4")]
+pub data_encipherment: bool,
+#[prost(bool, tag = "5")]
+pub key_agreement: bool,
+#[prost(bool, tag = "6")]
+pub cert_sign: bool,
+#[prost(bool, tag = "7")]
+pub crl_sign: bool,
+#[prost(bool, tag = "8")]
+pub encipher_only: bool,
+#[prost(bool, tag = "9")]
+pub decipher_only: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ExtendedKeyUsageOptions {
+#[prost(bool, tag = "1")]
+pub server_auth: bool,
+#[prost(bool, tag = "2")]
+pub client_auth: bool,
+#[prost(bool, tag = "3")]
+pub code_signing: bool,
+#[prost(bool, tag = "4")]
+pub email_protection: bool,
+#[prost(bool, tag = "5")]
+pub time_stamping: bool,
+#[prost(bool, tag = "6")]
+pub ocsp_signing: bool,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Subject {
-    #[prost(string, tag = "1")]
-    pub common_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub country_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub organization: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub organizational_unit: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub locality: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub province: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub street_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub postal_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub common_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub country_code: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub organization: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub organizational_unit: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub locality: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub province: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub street_address: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub postal_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubjectAltNames {
-    #[prost(string, repeated, tag = "1")]
-    pub dns_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "2")]
-    pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "3")]
-    pub email_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "4")]
-    pub ip_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "5")]
-    pub custom_sans: ::prost::alloc::vec::Vec<X509Extension>,
+#[prost(string, repeated, tag = "1")]
+pub dns_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub email_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "4")]
+pub ip_addresses: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "5")]
+pub custom_sans: ::prost::alloc::vec::Vec<X509Extension>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateIdentityConstraints {
-    #[prost(message, optional, tag = "1")]
-    pub cel_expression: ::core::option::Option<super::super::super::super::r#type::Expr>,
-    #[prost(bool, optional, tag = "2")]
-    pub allow_subject_passthrough: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "3")]
-    pub allow_subject_alt_names_passthrough: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "1")]
+pub cel_expression: ::core::option::Option<super::super::super::super::r#type::Expr>,
+#[prost(bool, optional, tag = "2")]
+pub allow_subject_passthrough: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "3")]
+pub allow_subject_alt_names_passthrough: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertificateExtensionConstraints {
-    #[prost(
-        enumeration = "certificate_extension_constraints::KnownCertificateExtension",
-        repeated,
-        packed = "false",
-        tag = "1"
-    )]
-    pub known_extensions: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, repeated, tag = "2")]
-    pub additional_extensions: ::prost::alloc::vec::Vec<ObjectId>,
+#[prost(enumeration = "certificate_extension_constraints::KnownCertificateExtension", repeated, packed = "false", tag = "1")]
+pub known_extensions: ::prost::alloc::vec::Vec<i32>,
+#[prost(message, repeated, tag = "2")]
+pub additional_extensions: ::prost::alloc::vec::Vec<ObjectId>,
 }
 /// Nested message and enum types in `CertificateExtensionConstraints`.
 pub mod certificate_extension_constraints {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum KnownCertificateExtension {
-        Unspecified = 0,
-        BaseKeyUsage = 1,
-        ExtendedKeyUsage = 2,
-        CaOptions = 3,
-        PolicyIds = 4,
-        AiaOcspServers = 5,
-        NameConstraints = 6,
-    }
-    impl KnownCertificateExtension {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                KnownCertificateExtension::Unspecified => {
-                    "KNOWN_CERTIFICATE_EXTENSION_UNSPECIFIED"
-                }
-                KnownCertificateExtension::BaseKeyUsage => "BASE_KEY_USAGE",
-                KnownCertificateExtension::ExtendedKeyUsage => "EXTENDED_KEY_USAGE",
-                KnownCertificateExtension::CaOptions => "CA_OPTIONS",
-                KnownCertificateExtension::PolicyIds => "POLICY_IDS",
-                KnownCertificateExtension::AiaOcspServers => "AIA_OCSP_SERVERS",
-                KnownCertificateExtension::NameConstraints => "NAME_CONSTRAINTS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "KNOWN_CERTIFICATE_EXTENSION_UNSPECIFIED" => Some(Self::Unspecified),
-                "BASE_KEY_USAGE" => Some(Self::BaseKeyUsage),
-                "EXTENDED_KEY_USAGE" => Some(Self::ExtendedKeyUsage),
-                "CA_OPTIONS" => Some(Self::CaOptions),
-                "POLICY_IDS" => Some(Self::PolicyIds),
-                "AIA_OCSP_SERVERS" => Some(Self::AiaOcspServers),
-                "NAME_CONSTRAINTS" => Some(Self::NameConstraints),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum KnownCertificateExtension {
+Unspecified = 0,
+BaseKeyUsage = 1,
+ExtendedKeyUsage = 2,
+CaOptions = 3,
+PolicyIds = 4,
+AiaOcspServers = 5,
+NameConstraints = 6,
+}
+impl KnownCertificateExtension {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+KnownCertificateExtension::Unspecified => "KNOWN_CERTIFICATE_EXTENSION_UNSPECIFIED",
+KnownCertificateExtension::BaseKeyUsage => "BASE_KEY_USAGE",
+KnownCertificateExtension::ExtendedKeyUsage => "EXTENDED_KEY_USAGE",
+KnownCertificateExtension::CaOptions => "CA_OPTIONS",
+KnownCertificateExtension::PolicyIds => "POLICY_IDS",
+KnownCertificateExtension::AiaOcspServers => "AIA_OCSP_SERVERS",
+KnownCertificateExtension::NameConstraints => "NAME_CONSTRAINTS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"KNOWN_CERTIFICATE_EXTENSION_UNSPECIFIED" => Some(Self::Unspecified),
+"BASE_KEY_USAGE" => Some(Self::BaseKeyUsage),
+"EXTENDED_KEY_USAGE" => Some(Self::ExtendedKeyUsage),
+"CA_OPTIONS" => Some(Self::CaOptions),
+"POLICY_IDS" => Some(Self::PolicyIds),
+"AIA_OCSP_SERVERS" => Some(Self::AiaOcspServers),
+"NAME_CONSTRAINTS" => Some(Self::NameConstraints),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RevocationReason {
-    Unspecified = 0,
-    KeyCompromise = 1,
-    CertificateAuthorityCompromise = 2,
-    AffiliationChanged = 3,
-    Superseded = 4,
-    CessationOfOperation = 5,
-    CertificateHold = 6,
-    PrivilegeWithdrawn = 7,
-    AttributeAuthorityCompromise = 8,
+Unspecified = 0,
+KeyCompromise = 1,
+CertificateAuthorityCompromise = 2,
+AffiliationChanged = 3,
+Superseded = 4,
+CessationOfOperation = 5,
+CertificateHold = 6,
+PrivilegeWithdrawn = 7,
+AttributeAuthorityCompromise = 8,
 }
 impl RevocationReason {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            RevocationReason::Unspecified => "REVOCATION_REASON_UNSPECIFIED",
-            RevocationReason::KeyCompromise => "KEY_COMPROMISE",
-            RevocationReason::CertificateAuthorityCompromise => {
-                "CERTIFICATE_AUTHORITY_COMPROMISE"
-            }
-            RevocationReason::AffiliationChanged => "AFFILIATION_CHANGED",
-            RevocationReason::Superseded => "SUPERSEDED",
-            RevocationReason::CessationOfOperation => "CESSATION_OF_OPERATION",
-            RevocationReason::CertificateHold => "CERTIFICATE_HOLD",
-            RevocationReason::PrivilegeWithdrawn => "PRIVILEGE_WITHDRAWN",
-            RevocationReason::AttributeAuthorityCompromise => {
-                "ATTRIBUTE_AUTHORITY_COMPROMISE"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "REVOCATION_REASON_UNSPECIFIED" => Some(Self::Unspecified),
-            "KEY_COMPROMISE" => Some(Self::KeyCompromise),
-            "CERTIFICATE_AUTHORITY_COMPROMISE" => {
-                Some(Self::CertificateAuthorityCompromise)
-            }
-            "AFFILIATION_CHANGED" => Some(Self::AffiliationChanged),
-            "SUPERSEDED" => Some(Self::Superseded),
-            "CESSATION_OF_OPERATION" => Some(Self::CessationOfOperation),
-            "CERTIFICATE_HOLD" => Some(Self::CertificateHold),
-            "PRIVILEGE_WITHDRAWN" => Some(Self::PrivilegeWithdrawn),
-            "ATTRIBUTE_AUTHORITY_COMPROMISE" => Some(Self::AttributeAuthorityCompromise),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RevocationReason::Unspecified => "REVOCATION_REASON_UNSPECIFIED",
+RevocationReason::KeyCompromise => "KEY_COMPROMISE",
+RevocationReason::CertificateAuthorityCompromise => "CERTIFICATE_AUTHORITY_COMPROMISE",
+RevocationReason::AffiliationChanged => "AFFILIATION_CHANGED",
+RevocationReason::Superseded => "SUPERSEDED",
+RevocationReason::CessationOfOperation => "CESSATION_OF_OPERATION",
+RevocationReason::CertificateHold => "CERTIFICATE_HOLD",
+RevocationReason::PrivilegeWithdrawn => "PRIVILEGE_WITHDRAWN",
+RevocationReason::AttributeAuthorityCompromise => "ATTRIBUTE_AUTHORITY_COMPROMISE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REVOCATION_REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"KEY_COMPROMISE" => Some(Self::KeyCompromise),
+"CERTIFICATE_AUTHORITY_COMPROMISE" => Some(Self::CertificateAuthorityCompromise),
+"AFFILIATION_CHANGED" => Some(Self::AffiliationChanged),
+"SUPERSEDED" => Some(Self::Superseded),
+"CESSATION_OF_OPERATION" => Some(Self::CessationOfOperation),
+"CERTIFICATE_HOLD" => Some(Self::CertificateHold),
+"PRIVILEGE_WITHDRAWN" => Some(Self::PrivilegeWithdrawn),
+"ATTRIBUTE_AUTHORITY_COMPROMISE" => Some(Self::AttributeAuthorityCompromise),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SubjectRequestMode {
-    Unspecified = 0,
-    Default = 1,
-    ReflectedSpiffe = 2,
+Unspecified = 0,
+Default = 1,
+ReflectedSpiffe = 2,
 }
 impl SubjectRequestMode {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            SubjectRequestMode::Unspecified => "SUBJECT_REQUEST_MODE_UNSPECIFIED",
-            SubjectRequestMode::Default => "DEFAULT",
-            SubjectRequestMode::ReflectedSpiffe => "REFLECTED_SPIFFE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SUBJECT_REQUEST_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-            "DEFAULT" => Some(Self::Default),
-            "REFLECTED_SPIFFE" => Some(Self::ReflectedSpiffe),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SubjectRequestMode::Unspecified => "SUBJECT_REQUEST_MODE_UNSPECIFIED",
+SubjectRequestMode::Default => "DEFAULT",
+SubjectRequestMode::ReflectedSpiffe => "REFLECTED_SPIFFE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SUBJECT_REQUEST_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"DEFAULT" => Some(Self::Default),
+"REFLECTED_SPIFFE" => Some(Self::ReflectedSpiffe),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCertificateRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub certificate_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub certificate: ::core::option::Option<Certificate>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub validate_only: bool,
-    #[prost(string, tag = "6")]
-    pub issuing_certificate_authority_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub certificate_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub certificate: ::core::option::Option<Certificate>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub validate_only: bool,
+#[prost(string, tag = "6")]
+pub issuing_certificate_authority_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCertificateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificatesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificatesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub certificates: ::prost::alloc::vec::Vec<Certificate>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub certificates: ::prost::alloc::vec::Vec<Certificate>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RevokeCertificateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "RevocationReason", tag = "2")]
-    pub reason: i32,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "RevocationReason", tag = "2")]
+pub reason: i32,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCertificateRequest {
-    #[prost(message, optional, tag = "1")]
-    pub certificate: ::core::option::Option<Certificate>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub certificate: ::core::option::Option<Certificate>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActivateCertificateAuthorityRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub pem_ca_certificate: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub subordinate_config: ::core::option::Option<SubordinateConfig>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub pem_ca_certificate: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub subordinate_config: ::core::option::Option<SubordinateConfig>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCertificateAuthorityRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub certificate_authority_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub certificate_authority: ::core::option::Option<CertificateAuthority>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub certificate_authority_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub certificate_authority: ::core::option::Option<CertificateAuthority>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisableCertificateAuthorityRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub ignore_dependent_resources: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub ignore_dependent_resources: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnableCertificateAuthorityRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchCertificateAuthorityCsrRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchCertificateAuthorityCsrResponse {
-    #[prost(string, tag = "1")]
-    pub pem_csr: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub pem_csr: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCertificateAuthorityRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificateAuthoritiesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificateAuthoritiesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub certificate_authorities: ::prost::alloc::vec::Vec<CertificateAuthority>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub certificate_authorities: ::prost::alloc::vec::Vec<CertificateAuthority>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeleteCertificateAuthorityRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCertificateAuthorityRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub ignore_active_certificates: bool,
-    #[prost(bool, tag = "5")]
-    pub skip_grace_period: bool,
-    #[prost(bool, tag = "6")]
-    pub ignore_dependent_resources: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub ignore_active_certificates: bool,
+#[prost(bool, tag = "5")]
+pub skip_grace_period: bool,
+#[prost(bool, tag = "6")]
+pub ignore_dependent_resources: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCertificateAuthorityRequest {
-    #[prost(message, optional, tag = "1")]
-    pub certificate_authority: ::core::option::Option<CertificateAuthority>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub certificate_authority: ::core::option::Option<CertificateAuthority>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCaPoolRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub ca_pool_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub ca_pool: ::core::option::Option<CaPool>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub ca_pool_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub ca_pool: ::core::option::Option<CaPool>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCaPoolRequest {
-    #[prost(message, optional, tag = "1")]
-    pub ca_pool: ::core::option::Option<CaPool>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub ca_pool: ::core::option::Option<CaPool>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCaPoolRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub ignore_dependent_resources: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub ignore_dependent_resources: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchCaCertsRequest {
-    #[prost(string, tag = "1")]
-    pub ca_pool: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub ca_pool: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FetchCaCertsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub ca_certs: ::prost::alloc::vec::Vec<fetch_ca_certs_response::CertChain>,
+#[prost(message, repeated, tag = "1")]
+pub ca_certs: ::prost::alloc::vec::Vec<fetch_ca_certs_response::CertChain>,
 }
 /// Nested message and enum types in `FetchCaCertsResponse`.
 pub mod fetch_ca_certs_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CertChain {
-        #[prost(string, repeated, tag = "1")]
-        pub certificates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CertChain {
+#[prost(string, repeated, tag = "1")]
+pub certificates: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCaPoolRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCaPoolsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCaPoolsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub ca_pools: ::prost::alloc::vec::Vec<CaPool>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub ca_pools: ::prost::alloc::vec::Vec<CaPool>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCertificateRevocationListRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificateRevocationListsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificateRevocationListsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub certificate_revocation_lists: ::prost::alloc::vec::Vec<
-        CertificateRevocationList,
-    >,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub certificate_revocation_lists: ::prost::alloc::vec::Vec<CertificateRevocationList>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCertificateRevocationListRequest {
-    #[prost(message, optional, tag = "1")]
-    pub certificate_revocation_list: ::core::option::Option<CertificateRevocationList>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub certificate_revocation_list: ::core::option::Option<CertificateRevocationList>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCertificateTemplateRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub certificate_template_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub certificate_template: ::core::option::Option<CertificateTemplate>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub certificate_template_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub certificate_template: ::core::option::Option<CertificateTemplate>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCertificateTemplateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCertificateTemplateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificateTemplatesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCertificateTemplatesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub certificate_templates: ::prost::alloc::vec::Vec<CertificateTemplate>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub certificate_templates: ::prost::alloc::vec::Vec<CertificateTemplate>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCertificateTemplateRequest {
-    #[prost(message, optional, tag = "1")]
-    pub certificate_template: ::core::option::Option<CertificateTemplate>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub certificate_template: ::core::option::Option<CertificateTemplate>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_message: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub requested_cancellation: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub requested_cancellation: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod certificate_authority_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// [Certificate Authority
-    /// Service][google.cloud.security.privateca.v1.CertificateAuthorityService]
-    /// manages private certificate authorities and issued certificates.
-    #[derive(Debug, Clone)]
-    pub struct CertificateAuthorityServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> CertificateAuthorityServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> CertificateAuthorityServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            CertificateAuthorityServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Create a new [Certificate][google.cloud.security.privateca.v1.Certificate]
-        /// in a given Project, Location from a particular
-        /// [CaPool][google.cloud.security.privateca.v1.CaPool].
-        pub async fn create_certificate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCertificateRequest>,
-        ) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/CreateCertificate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "CreateCertificate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a [Certificate][google.cloud.security.privateca.v1.Certificate].
-        pub async fn get_certificate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCertificateRequest>,
-        ) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCertificate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "GetCertificate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
-        pub async fn list_certificates(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCertificatesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCertificatesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCertificates",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "ListCertificates",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Revoke a [Certificate][google.cloud.security.privateca.v1.Certificate].
-        pub async fn revoke_certificate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RevokeCertificateRequest>,
-        ) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/RevokeCertificate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "RevokeCertificate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update a [Certificate][google.cloud.security.privateca.v1.Certificate].
-        /// Currently, the only field you can update is the
-        /// [labels][google.cloud.security.privateca.v1.Certificate.labels] field.
-        pub async fn update_certificate(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCertificateRequest>,
-        ) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCertificate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "UpdateCertificate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Activate a
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-        /// that is in state
-        /// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
-        /// and is of type
-        /// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
-        /// After the parent Certificate Authority signs a certificate signing request
-        /// from
-        /// [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr],
-        /// this method can complete the activation process.
-        pub async fn activate_certificate_authority(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ActivateCertificateAuthorityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/ActivateCertificateAuthority",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "ActivateCertificateAuthority",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Create a new
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-        /// in a given Project and Location.
-        pub async fn create_certificate_authority(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCertificateAuthorityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/CreateCertificateAuthority",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "CreateCertificateAuthority",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Disable a
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
-        pub async fn disable_certificate_authority(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DisableCertificateAuthorityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/DisableCertificateAuthority",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "DisableCertificateAuthority",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enable a
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
-        pub async fn enable_certificate_authority(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EnableCertificateAuthorityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/EnableCertificateAuthority",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "EnableCertificateAuthority",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Fetch a certificate signing request (CSR) from a
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-        /// that is in state
-        /// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
-        /// and is of type
-        /// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
-        /// The CSR must then be signed by the desired parent Certificate Authority,
-        /// which could be another
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-        /// resource, or could be an on-prem certificate authority. See also
-        /// [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
-        pub async fn fetch_certificate_authority_csr(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchCertificateAuthorityCsrRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FetchCertificateAuthorityCsrResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/FetchCertificateAuthorityCsr",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "FetchCertificateAuthorityCsr",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
-        pub async fn get_certificate_authority(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCertificateAuthorityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CertificateAuthority>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCertificateAuthority",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "GetCertificateAuthority",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists
-        /// [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
-        pub async fn list_certificate_authorities(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCertificateAuthoritiesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCertificateAuthoritiesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCertificateAuthorities",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "ListCertificateAuthorities",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Undelete a
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-        /// that has been deleted.
-        pub async fn undelete_certificate_authority(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UndeleteCertificateAuthorityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/UndeleteCertificateAuthority",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "UndeleteCertificateAuthority",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Delete a
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
-        pub async fn delete_certificate_authority(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteCertificateAuthorityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/DeleteCertificateAuthority",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "DeleteCertificateAuthority",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update a
-        /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
-        pub async fn update_certificate_authority(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCertificateAuthorityRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCertificateAuthority",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "UpdateCertificateAuthority",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Create a [CaPool][google.cloud.security.privateca.v1.CaPool].
-        pub async fn create_ca_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCaPoolRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/CreateCaPool",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "CreateCaPool",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update a [CaPool][google.cloud.security.privateca.v1.CaPool].
-        pub async fn update_ca_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCaPoolRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCaPool",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "UpdateCaPool",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a [CaPool][google.cloud.security.privateca.v1.CaPool].
-        pub async fn get_ca_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCaPoolRequest>,
-        ) -> std::result::Result<tonic::Response<super::CaPool>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCaPool",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "GetCaPool",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists [CaPools][google.cloud.security.privateca.v1.CaPool].
-        pub async fn list_ca_pools(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCaPoolsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCaPoolsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCaPools",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "ListCaPools",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Delete a [CaPool][google.cloud.security.privateca.v1.CaPool].
-        pub async fn delete_ca_pool(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteCaPoolRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/DeleteCaPool",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "DeleteCaPool",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// FetchCaCerts returns the current trust anchor for the
-        /// [CaPool][google.cloud.security.privateca.v1.CaPool]. This will include CA
-        /// certificate chains for all certificate authorities in the ENABLED,
-        /// DISABLED, or STAGED states.
-        pub async fn fetch_ca_certs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FetchCaCertsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FetchCaCertsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/FetchCaCerts",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "FetchCaCerts",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a
-        /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
-        pub async fn get_certificate_revocation_list(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCertificateRevocationListRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CertificateRevocationList>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCertificateRevocationList",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "GetCertificateRevocationList",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists
-        /// [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
-        pub async fn list_certificate_revocation_lists(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::ListCertificateRevocationListsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCertificateRevocationListsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCertificateRevocationLists",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "ListCertificateRevocationLists",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update a
-        /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
-        pub async fn update_certificate_revocation_list(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::UpdateCertificateRevocationListRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCertificateRevocationList",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "UpdateCertificateRevocationList",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Create a new
-        /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
-        /// in a given Project and Location.
-        pub async fn create_certificate_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCertificateTemplateRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/CreateCertificateTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "CreateCertificateTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// DeleteCertificateTemplate deletes a
-        /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
-        pub async fn delete_certificate_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteCertificateTemplateRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/DeleteCertificateTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "DeleteCertificateTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a
-        /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
-        pub async fn get_certificate_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCertificateTemplateRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CertificateTemplate>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCertificateTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "GetCertificateTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists
-        /// [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
-        pub async fn list_certificate_templates(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCertificateTemplatesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCertificateTemplatesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCertificateTemplates",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "ListCertificateTemplates",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update a
-        /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
-        pub async fn update_certificate_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCertificateTemplateRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCertificateTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.security.privateca.v1.CertificateAuthorityService",
-                        "UpdateCertificateTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// [Certificate Authority
+/// Service][google.cloud.security.privateca.v1.CertificateAuthorityService]
+/// manages private certificate authorities and issued certificates.
+#[derive(Debug, Clone)]
+pub struct CertificateAuthorityServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> CertificateAuthorityServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> CertificateAuthorityServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+CertificateAuthorityServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Create a new [Certificate][google.cloud.security.privateca.v1.Certificate]
+/// in a given Project, Location from a particular
+/// [CaPool][google.cloud.security.privateca.v1.CaPool].
+pub async fn create_certificate(&mut self, request: impl tonic::IntoRequest<super::CreateCertificateRequest>) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/CreateCertificate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "CreateCertificate"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a [Certificate][google.cloud.security.privateca.v1.Certificate].
+pub async fn get_certificate(&mut self, request: impl tonic::IntoRequest<super::GetCertificateRequest>) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCertificate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "GetCertificate"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
+pub async fn list_certificates(&mut self, request: impl tonic::IntoRequest<super::ListCertificatesRequest>) -> std::result::Result<tonic::Response<super::ListCertificatesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCertificates");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "ListCertificates"));
+self.inner.unary(req, path, codec).await
+}
+/// Revoke a [Certificate][google.cloud.security.privateca.v1.Certificate].
+pub async fn revoke_certificate(&mut self, request: impl tonic::IntoRequest<super::RevokeCertificateRequest>) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/RevokeCertificate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "RevokeCertificate"));
+self.inner.unary(req, path, codec).await
+}
+/// Update a [Certificate][google.cloud.security.privateca.v1.Certificate].
+/// Currently, the only field you can update is the
+/// [labels][google.cloud.security.privateca.v1.Certificate.labels] field.
+pub async fn update_certificate(&mut self, request: impl tonic::IntoRequest<super::UpdateCertificateRequest>) -> std::result::Result<tonic::Response<super::Certificate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCertificate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "UpdateCertificate"));
+self.inner.unary(req, path, codec).await
+}
+/// Activate a
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+/// that is in state
+/// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
+/// and is of type
+/// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+/// After the parent Certificate Authority signs a certificate signing request
+/// from
+/// [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr],
+/// this method can complete the activation process.
+pub async fn activate_certificate_authority(&mut self, request: impl tonic::IntoRequest<super::ActivateCertificateAuthorityRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/ActivateCertificateAuthority");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "ActivateCertificateAuthority"));
+self.inner.unary(req, path, codec).await
+}
+/// Create a new
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+/// in a given Project and Location.
+pub async fn create_certificate_authority(&mut self, request: impl tonic::IntoRequest<super::CreateCertificateAuthorityRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/CreateCertificateAuthority");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "CreateCertificateAuthority"));
+self.inner.unary(req, path, codec).await
+}
+/// Disable a
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+pub async fn disable_certificate_authority(&mut self, request: impl tonic::IntoRequest<super::DisableCertificateAuthorityRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/DisableCertificateAuthority");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "DisableCertificateAuthority"));
+self.inner.unary(req, path, codec).await
+}
+/// Enable a
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+pub async fn enable_certificate_authority(&mut self, request: impl tonic::IntoRequest<super::EnableCertificateAuthorityRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/EnableCertificateAuthority");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "EnableCertificateAuthority"));
+self.inner.unary(req, path, codec).await
+}
+/// Fetch a certificate signing request (CSR) from a
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+/// that is in state
+/// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
+/// and is of type
+/// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+/// The CSR must then be signed by the desired parent Certificate Authority,
+/// which could be another
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+/// resource, or could be an on-prem certificate authority. See also
+/// [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
+pub async fn fetch_certificate_authority_csr(&mut self, request: impl tonic::IntoRequest<super::FetchCertificateAuthorityCsrRequest>) -> std::result::Result<tonic::Response<super::FetchCertificateAuthorityCsrResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/FetchCertificateAuthorityCsr");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "FetchCertificateAuthorityCsr"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+pub async fn get_certificate_authority(&mut self, request: impl tonic::IntoRequest<super::GetCertificateAuthorityRequest>) -> std::result::Result<tonic::Response<super::CertificateAuthority>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCertificateAuthority");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "GetCertificateAuthority"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists
+/// [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
+pub async fn list_certificate_authorities(&mut self, request: impl tonic::IntoRequest<super::ListCertificateAuthoritiesRequest>) -> std::result::Result<tonic::Response<super::ListCertificateAuthoritiesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCertificateAuthorities");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "ListCertificateAuthorities"));
+self.inner.unary(req, path, codec).await
+}
+/// Undelete a
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+/// that has been deleted.
+pub async fn undelete_certificate_authority(&mut self, request: impl tonic::IntoRequest<super::UndeleteCertificateAuthorityRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/UndeleteCertificateAuthority");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "UndeleteCertificateAuthority"));
+self.inner.unary(req, path, codec).await
+}
+/// Delete a
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+pub async fn delete_certificate_authority(&mut self, request: impl tonic::IntoRequest<super::DeleteCertificateAuthorityRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/DeleteCertificateAuthority");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "DeleteCertificateAuthority"));
+self.inner.unary(req, path, codec).await
+}
+/// Update a
+/// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+pub async fn update_certificate_authority(&mut self, request: impl tonic::IntoRequest<super::UpdateCertificateAuthorityRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCertificateAuthority");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "UpdateCertificateAuthority"));
+self.inner.unary(req, path, codec).await
+}
+/// Create a [CaPool][google.cloud.security.privateca.v1.CaPool].
+pub async fn create_ca_pool(&mut self, request: impl tonic::IntoRequest<super::CreateCaPoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/CreateCaPool");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "CreateCaPool"));
+self.inner.unary(req, path, codec).await
+}
+/// Update a [CaPool][google.cloud.security.privateca.v1.CaPool].
+pub async fn update_ca_pool(&mut self, request: impl tonic::IntoRequest<super::UpdateCaPoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCaPool");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "UpdateCaPool"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a [CaPool][google.cloud.security.privateca.v1.CaPool].
+pub async fn get_ca_pool(&mut self, request: impl tonic::IntoRequest<super::GetCaPoolRequest>) -> std::result::Result<tonic::Response<super::CaPool>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCaPool");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "GetCaPool"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists [CaPools][google.cloud.security.privateca.v1.CaPool].
+pub async fn list_ca_pools(&mut self, request: impl tonic::IntoRequest<super::ListCaPoolsRequest>) -> std::result::Result<tonic::Response<super::ListCaPoolsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCaPools");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "ListCaPools"));
+self.inner.unary(req, path, codec).await
+}
+/// Delete a [CaPool][google.cloud.security.privateca.v1.CaPool].
+pub async fn delete_ca_pool(&mut self, request: impl tonic::IntoRequest<super::DeleteCaPoolRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/DeleteCaPool");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "DeleteCaPool"));
+self.inner.unary(req, path, codec).await
+}
+/// FetchCaCerts returns the current trust anchor for the
+/// [CaPool][google.cloud.security.privateca.v1.CaPool]. This will include CA
+/// certificate chains for all certificate authorities in the ENABLED,
+/// DISABLED, or STAGED states.
+pub async fn fetch_ca_certs(&mut self, request: impl tonic::IntoRequest<super::FetchCaCertsRequest>) -> std::result::Result<tonic::Response<super::FetchCaCertsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/FetchCaCerts");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "FetchCaCerts"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a
+/// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+pub async fn get_certificate_revocation_list(&mut self, request: impl tonic::IntoRequest<super::GetCertificateRevocationListRequest>) -> std::result::Result<tonic::Response<super::CertificateRevocationList>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCertificateRevocationList");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "GetCertificateRevocationList"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists
+/// [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+pub async fn list_certificate_revocation_lists(&mut self, request: impl tonic::IntoRequest<super::ListCertificateRevocationListsRequest>) -> std::result::Result<tonic::Response<super::ListCertificateRevocationListsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCertificateRevocationLists");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "ListCertificateRevocationLists"));
+self.inner.unary(req, path, codec).await
+}
+/// Update a
+/// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+pub async fn update_certificate_revocation_list(&mut self, request: impl tonic::IntoRequest<super::UpdateCertificateRevocationListRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCertificateRevocationList");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "UpdateCertificateRevocationList"));
+self.inner.unary(req, path, codec).await
+}
+/// Create a new
+/// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+/// in a given Project and Location.
+pub async fn create_certificate_template(&mut self, request: impl tonic::IntoRequest<super::CreateCertificateTemplateRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/CreateCertificateTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "CreateCertificateTemplate"));
+self.inner.unary(req, path, codec).await
+}
+/// DeleteCertificateTemplate deletes a
+/// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+pub async fn delete_certificate_template(&mut self, request: impl tonic::IntoRequest<super::DeleteCertificateTemplateRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/DeleteCertificateTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "DeleteCertificateTemplate"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a
+/// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+pub async fn get_certificate_template(&mut self, request: impl tonic::IntoRequest<super::GetCertificateTemplateRequest>) -> std::result::Result<tonic::Response<super::CertificateTemplate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/GetCertificateTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "GetCertificateTemplate"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists
+/// [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
+pub async fn list_certificate_templates(&mut self, request: impl tonic::IntoRequest<super::ListCertificateTemplatesRequest>) -> std::result::Result<tonic::Response<super::ListCertificateTemplatesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/ListCertificateTemplates");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "ListCertificateTemplates"));
+self.inner.unary(req, path, codec).await
+}
+/// Update a
+/// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+pub async fn update_certificate_template(&mut self, request: impl tonic::IntoRequest<super::UpdateCertificateTemplateRequest>) -> std::result::Result<tonic::Response<super::super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.security.privateca.v1.CertificateAuthorityService/UpdateCertificateTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.security.privateca.v1.CertificateAuthorityService", "UpdateCertificateTemplate"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

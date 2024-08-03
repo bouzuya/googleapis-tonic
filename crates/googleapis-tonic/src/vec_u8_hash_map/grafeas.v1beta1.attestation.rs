@@ -2,142 +2,122 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PgpSignedAttestation {
-    #[prost(string, tag = "1")]
-    pub signature: ::prost::alloc::string::String,
-    #[prost(enumeration = "pgp_signed_attestation::ContentType", tag = "3")]
-    pub content_type: i32,
-    #[prost(oneof = "pgp_signed_attestation::KeyId", tags = "2")]
-    pub key_id: ::core::option::Option<pgp_signed_attestation::KeyId>,
+#[prost(string, tag = "1")]
+pub signature: ::prost::alloc::string::String,
+#[prost(enumeration = "pgp_signed_attestation::ContentType", tag = "3")]
+pub content_type: i32,
+#[prost(oneof = "pgp_signed_attestation::KeyId", tags = "2")]
+pub key_id: ::core::option::Option<pgp_signed_attestation::KeyId>,
 }
 /// Nested message and enum types in `PgpSignedAttestation`.
 pub mod pgp_signed_attestation {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ContentType {
-        Unspecified = 0,
-        SimpleSigningJson = 1,
-    }
-    impl ContentType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
-                ContentType::SimpleSigningJson => "SIMPLE_SIGNING_JSON",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONTENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SIMPLE_SIGNING_JSON" => Some(Self::SimpleSigningJson),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum KeyId {
-        #[prost(string, tag = "2")]
-        PgpKeyId(::prost::alloc::string::String),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ContentType {
+Unspecified = 0,
+SimpleSigningJson = 1,
+}
+impl ContentType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
+ContentType::SimpleSigningJson => "SIMPLE_SIGNING_JSON",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONTENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SIMPLE_SIGNING_JSON" => Some(Self::SimpleSigningJson),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum KeyId {
+#[prost(string, tag = "2")]
+PgpKeyId(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenericSignedAttestation {
-    #[prost(enumeration = "generic_signed_attestation::ContentType", tag = "1")]
-    pub content_type: i32,
-    #[prost(bytes = "vec", tag = "2")]
-    pub serialized_payload: ::prost::alloc::vec::Vec<u8>,
-    #[prost(message, repeated, tag = "3")]
-    pub signatures: ::prost::alloc::vec::Vec<super::Signature>,
+#[prost(enumeration = "generic_signed_attestation::ContentType", tag = "1")]
+pub content_type: i32,
+#[prost(bytes = "vec", tag = "2")]
+pub serialized_payload: ::prost::alloc::vec::Vec<u8>,
+#[prost(message, repeated, tag = "3")]
+pub signatures: ::prost::alloc::vec::Vec<super::Signature>,
 }
 /// Nested message and enum types in `GenericSignedAttestation`.
 pub mod generic_signed_attestation {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ContentType {
-        Unspecified = 0,
-        SimpleSigningJson = 1,
-    }
-    impl ContentType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
-                ContentType::SimpleSigningJson => "SIMPLE_SIGNING_JSON",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONTENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SIMPLE_SIGNING_JSON" => Some(Self::SimpleSigningJson),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ContentType {
+Unspecified = 0,
+SimpleSigningJson = 1,
+}
+impl ContentType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ContentType::Unspecified => "CONTENT_TYPE_UNSPECIFIED",
+ContentType::SimpleSigningJson => "SIMPLE_SIGNING_JSON",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONTENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SIMPLE_SIGNING_JSON" => Some(Self::SimpleSigningJson),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Authority {
-    #[prost(message, optional, tag = "1")]
-    pub hint: ::core::option::Option<authority::Hint>,
+#[prost(message, optional, tag = "1")]
+pub hint: ::core::option::Option<authority::Hint>,
 }
 /// Nested message and enum types in `Authority`.
 pub mod authority {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Hint {
-        #[prost(string, tag = "1")]
-        pub human_readable_name: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hint {
+#[prost(string, tag = "1")]
+pub human_readable_name: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Details {
-    #[prost(message, optional, tag = "1")]
-    pub attestation: ::core::option::Option<Attestation>,
+#[prost(message, optional, tag = "1")]
+pub attestation: ::core::option::Option<Attestation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Attestation {
-    #[prost(oneof = "attestation::Signature", tags = "1, 2")]
-    pub signature: ::core::option::Option<attestation::Signature>,
+#[prost(oneof = "attestation::Signature", tags = "1, 2")]
+pub signature: ::core::option::Option<attestation::Signature>,
 }
 /// Nested message and enum types in `Attestation`.
 pub mod attestation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Signature {
-        #[prost(message, tag = "1")]
-        PgpSignedAttestation(super::PgpSignedAttestation),
-        #[prost(message, tag = "2")]
-        GenericSignedAttestation(super::GenericSignedAttestation),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Signature {
+#[prost(message, tag = "1")]
+PgpSignedAttestation(super::PgpSignedAttestation),
+#[prost(message, tag = "2")]
+GenericSignedAttestation(super::GenericSignedAttestation),
+}
 }

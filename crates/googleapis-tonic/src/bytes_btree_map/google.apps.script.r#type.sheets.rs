@@ -2,14 +2,14 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SheetsAddOnManifest {
-    #[prost(message, optional, tag = "3")]
-    pub homepage_trigger: ::core::option::Option<super::HomepageExtensionPoint>,
-    #[prost(message, optional, tag = "5")]
-    pub on_file_scope_granted_trigger: ::core::option::Option<SheetsExtensionPoint>,
+#[prost(message, optional, tag = "3")]
+pub homepage_trigger: ::core::option::Option<super::HomepageExtensionPoint>,
+#[prost(message, optional, tag = "5")]
+pub on_file_scope_granted_trigger: ::core::option::Option<SheetsExtensionPoint>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SheetsExtensionPoint {
-    #[prost(string, tag = "1")]
-    pub run_function: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub run_function: ::prost::alloc::string::String,
 }

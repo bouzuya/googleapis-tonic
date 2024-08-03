@@ -2,1180 +2,790 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Space {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub meeting_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub meeting_code: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub config: ::core::option::Option<SpaceConfig>,
-    #[prost(message, optional, tag = "6")]
-    pub active_conference: ::core::option::Option<ActiveConference>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub meeting_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub meeting_code: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub config: ::core::option::Option<SpaceConfig>,
+#[prost(message, optional, tag = "6")]
+pub active_conference: ::core::option::Option<ActiveConference>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ActiveConference {
-    #[prost(string, tag = "1")]
-    pub conference_record: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub conference_record: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SpaceConfig {
-    #[prost(enumeration = "space_config::AccessType", tag = "1")]
-    pub access_type: i32,
-    #[prost(enumeration = "space_config::EntryPointAccess", tag = "2")]
-    pub entry_point_access: i32,
+#[prost(enumeration = "space_config::AccessType", tag = "1")]
+pub access_type: i32,
+#[prost(enumeration = "space_config::EntryPointAccess", tag = "2")]
+pub entry_point_access: i32,
 }
 /// Nested message and enum types in `SpaceConfig`.
 pub mod space_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AccessType {
-        Unspecified = 0,
-        Open = 1,
-        Trusted = 2,
-        Restricted = 3,
-    }
-    impl AccessType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AccessType::Unspecified => "ACCESS_TYPE_UNSPECIFIED",
-                AccessType::Open => "OPEN",
-                AccessType::Trusted => "TRUSTED",
-                AccessType::Restricted => "RESTRICTED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ACCESS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "OPEN" => Some(Self::Open),
-                "TRUSTED" => Some(Self::Trusted),
-                "RESTRICTED" => Some(Self::Restricted),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum EntryPointAccess {
-        Unspecified = 0,
-        All = 1,
-        CreatorAppOnly = 2,
-    }
-    impl EntryPointAccess {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                EntryPointAccess::Unspecified => "ENTRY_POINT_ACCESS_UNSPECIFIED",
-                EntryPointAccess::All => "ALL",
-                EntryPointAccess::CreatorAppOnly => "CREATOR_APP_ONLY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ENTRY_POINT_ACCESS_UNSPECIFIED" => Some(Self::Unspecified),
-                "ALL" => Some(Self::All),
-                "CREATOR_APP_ONLY" => Some(Self::CreatorAppOnly),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AccessType {
+Unspecified = 0,
+Open = 1,
+Trusted = 2,
+Restricted = 3,
+}
+impl AccessType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AccessType::Unspecified => "ACCESS_TYPE_UNSPECIFIED",
+AccessType::Open => "OPEN",
+AccessType::Trusted => "TRUSTED",
+AccessType::Restricted => "RESTRICTED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACCESS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"OPEN" => Some(Self::Open),
+"TRUSTED" => Some(Self::Trusted),
+"RESTRICTED" => Some(Self::Restricted),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EntryPointAccess {
+Unspecified = 0,
+All = 1,
+CreatorAppOnly = 2,
+}
+impl EntryPointAccess {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EntryPointAccess::Unspecified => "ENTRY_POINT_ACCESS_UNSPECIFIED",
+EntryPointAccess::All => "ALL",
+EntryPointAccess::CreatorAppOnly => "CREATOR_APP_ONLY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENTRY_POINT_ACCESS_UNSPECIFIED" => Some(Self::Unspecified),
+"ALL" => Some(Self::All),
+"CREATOR_APP_ONLY" => Some(Self::CreatorAppOnly),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConferenceRecord {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "5")]
-    pub space: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "5")]
+pub space: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Participant {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub earliest_start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub latest_end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(oneof = "participant::User", tags = "4, 5, 6")]
-    pub user: ::core::option::Option<participant::User>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub earliest_start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub latest_end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(oneof = "participant::User", tags = "4, 5, 6")]
+pub user: ::core::option::Option<participant::User>,
 }
 /// Nested message and enum types in `Participant`.
 pub mod participant {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum User {
-        #[prost(message, tag = "4")]
-        SignedinUser(super::SignedinUser),
-        #[prost(message, tag = "5")]
-        AnonymousUser(super::AnonymousUser),
-        #[prost(message, tag = "6")]
-        PhoneUser(super::PhoneUser),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum User {
+#[prost(message, tag = "4")]
+SignedinUser(super::SignedinUser),
+#[prost(message, tag = "5")]
+AnonymousUser(super::AnonymousUser),
+#[prost(message, tag = "6")]
+PhoneUser(super::PhoneUser),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParticipantSession {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SignedinUser {
-    #[prost(string, tag = "1")]
-    pub user: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub user: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnonymousUser {
-    #[prost(string, tag = "1")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PhoneUser {
-    #[prost(string, tag = "1")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Recording {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "recording::State", tag = "3")]
-    pub state: i32,
-    #[prost(message, optional, tag = "4")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(oneof = "recording::Destination", tags = "6")]
-    pub destination: ::core::option::Option<recording::Destination>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "recording::State", tag = "3")]
+pub state: i32,
+#[prost(message, optional, tag = "4")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(oneof = "recording::Destination", tags = "6")]
+pub destination: ::core::option::Option<recording::Destination>,
 }
 /// Nested message and enum types in `Recording`.
 pub mod recording {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Started = 1,
-        Ended = 2,
-        FileGenerated = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::Ended => "ENDED",
-                State::FileGenerated => "FILE_GENERATED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STARTED" => Some(Self::Started),
-                "ENDED" => Some(Self::Ended),
-                "FILE_GENERATED" => Some(Self::FileGenerated),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(message, tag = "6")]
-        DriveDestination(super::DriveDestination),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Started = 1,
+Ended = 2,
+FileGenerated = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Started => "STARTED",
+State::Ended => "ENDED",
+State::FileGenerated => "FILE_GENERATED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"STARTED" => Some(Self::Started),
+"ENDED" => Some(Self::Ended),
+"FILE_GENERATED" => Some(Self::FileGenerated),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(message, tag = "6")]
+DriveDestination(super::DriveDestination),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DriveDestination {
-    #[prost(string, tag = "1")]
-    pub file: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub export_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub file: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub export_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Transcript {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "transcript::State", tag = "3")]
-    pub state: i32,
-    #[prost(message, optional, tag = "4")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(oneof = "transcript::Destination", tags = "6")]
-    pub destination: ::core::option::Option<transcript::Destination>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "transcript::State", tag = "3")]
+pub state: i32,
+#[prost(message, optional, tag = "4")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(oneof = "transcript::Destination", tags = "6")]
+pub destination: ::core::option::Option<transcript::Destination>,
 }
 /// Nested message and enum types in `Transcript`.
 pub mod transcript {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Started = 1,
-        Ended = 2,
-        FileGenerated = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Started => "STARTED",
-                State::Ended => "ENDED",
-                State::FileGenerated => "FILE_GENERATED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STARTED" => Some(Self::Started),
-                "ENDED" => Some(Self::Ended),
-                "FILE_GENERATED" => Some(Self::FileGenerated),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(message, tag = "6")]
-        DocsDestination(super::DocsDestination),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Started = 1,
+Ended = 2,
+FileGenerated = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Started => "STARTED",
+State::Ended => "ENDED",
+State::FileGenerated => "FILE_GENERATED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"STARTED" => Some(Self::Started),
+"ENDED" => Some(Self::Ended),
+"FILE_GENERATED" => Some(Self::FileGenerated),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(message, tag = "6")]
+DocsDestination(super::DocsDestination),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DocsDestination {
-    #[prost(string, tag = "1")]
-    pub document: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub export_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub document: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub export_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranscriptEntry {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub participant: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub text: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub participant: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub text: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateSpaceRequest {
-    #[prost(message, optional, tag = "1")]
-    pub space: ::core::option::Option<Space>,
+#[prost(message, optional, tag = "1")]
+pub space: ::core::option::Option<Space>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetSpaceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateSpaceRequest {
-    #[prost(message, optional, tag = "1")]
-    pub space: ::core::option::Option<Space>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub space: ::core::option::Option<Space>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EndActiveConferenceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetConferenceRecordRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConferenceRecordsRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConferenceRecordsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub conference_records: ::prost::alloc::vec::Vec<ConferenceRecord>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub conference_records: ::prost::alloc::vec::Vec<ConferenceRecord>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetParticipantRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListParticipantsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListParticipantsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub participants: ::prost::alloc::vec::Vec<Participant>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub total_size: i32,
+#[prost(message, repeated, tag = "1")]
+pub participants: ::prost::alloc::vec::Vec<Participant>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub total_size: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetParticipantSessionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListParticipantSessionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListParticipantSessionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub participant_sessions: ::prost::alloc::vec::Vec<ParticipantSession>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub participant_sessions: ::prost::alloc::vec::Vec<ParticipantSession>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRecordingRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRecordingsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRecordingsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub recordings: ::prost::alloc::vec::Vec<Recording>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub recordings: ::prost::alloc::vec::Vec<Recording>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTranscriptRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTranscriptsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTranscriptsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub transcripts: ::prost::alloc::vec::Vec<Transcript>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub transcripts: ::prost::alloc::vec::Vec<Transcript>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTranscriptEntryRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTranscriptEntriesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTranscriptEntriesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub transcript_entries: ::prost::alloc::vec::Vec<TranscriptEntry>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub transcript_entries: ::prost::alloc::vec::Vec<TranscriptEntry>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod spaces_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// REST API for services dealing with spaces.
-    #[derive(Debug, Clone)]
-    pub struct SpacesServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> SpacesServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> SpacesServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            SpacesServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Creates a space.
-        pub async fn create_space(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateSpaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.SpacesService/CreateSpace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.SpacesService",
-                        "CreateSpace",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Gets a space by `space_id` or `meeting_code`.
-        pub async fn get_space(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetSpaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.SpacesService/GetSpace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.apps.meet.v2beta.SpacesService", "GetSpace"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Updates a space.
-        pub async fn update_space(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateSpaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.SpacesService/UpdateSpace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.SpacesService",
-                        "UpdateSpace",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Ends an active conference (if there is one).
-        pub async fn end_active_conference(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EndActiveConferenceRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.SpacesService/EndActiveConference",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.SpacesService",
-                        "EndActiveConference",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// REST API for services dealing with spaces.
+#[derive(Debug, Clone)]
+pub struct SpacesServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> SpacesServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> SpacesServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+SpacesServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Creates a space.
+pub async fn create_space(&mut self, request: impl tonic::IntoRequest<super::CreateSpaceRequest>) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.SpacesService/CreateSpace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.SpacesService", "CreateSpace"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Gets a space by `space_id` or `meeting_code`.
+pub async fn get_space(&mut self, request: impl tonic::IntoRequest<super::GetSpaceRequest>) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.SpacesService/GetSpace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.SpacesService", "GetSpace"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Updates a space.
+pub async fn update_space(&mut self, request: impl tonic::IntoRequest<super::UpdateSpaceRequest>) -> std::result::Result<tonic::Response<super::Space>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.SpacesService/UpdateSpace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.SpacesService", "UpdateSpace"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Ends an active conference (if there is one).
+pub async fn end_active_conference(&mut self, request: impl tonic::IntoRequest<super::EndActiveConferenceRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.SpacesService/EndActiveConference");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.SpacesService", "EndActiveConference"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod conference_records_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// REST API for services dealing with conference records.
-    #[derive(Debug, Clone)]
-    pub struct ConferenceRecordsServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ConferenceRecordsServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ConferenceRecordsServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ConferenceRecordsServiceClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Gets a conference record by conference ID.
-        pub async fn get_conference_record(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetConferenceRecordRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ConferenceRecord>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/GetConferenceRecord",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "GetConferenceRecord",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Lists the conference records by start time and in descending order.
-        pub async fn list_conference_records(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListConferenceRecordsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListConferenceRecordsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/ListConferenceRecords",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "ListConferenceRecords",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Gets a participant by participant ID.
-        pub async fn get_participant(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetParticipantRequest>,
-        ) -> std::result::Result<tonic::Response<super::Participant>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/GetParticipant",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "GetParticipant",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Lists the participants in a conference record, by default ordered by join
-        /// time and in descending order. This API supports `fields` as standard
-        /// parameters like every other API. However, when the `fields` request
-        /// parameter is omitted, this API defaults to `'participants/*,
-        /// next_page_token'`.
-        pub async fn list_participants(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListParticipantsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListParticipantsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/ListParticipants",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "ListParticipants",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Gets a participant session by participant session ID.
-        pub async fn get_participant_session(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetParticipantSessionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ParticipantSession>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/GetParticipantSession",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "GetParticipantSession",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Lists the participant sessions of a participant in a conference record, by
-        /// default ordered by join time and in descending order. This API supports
-        /// `fields` as standard parameters like every other API. However, when the
-        /// `fields` request parameter is omitted this API defaults to
-        /// `'participantsessions/*, next_page_token'`.
-        pub async fn list_participant_sessions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListParticipantSessionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListParticipantSessionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/ListParticipantSessions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "ListParticipantSessions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Gets a recording by recording ID.
-        pub async fn get_recording(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRecordingRequest>,
-        ) -> std::result::Result<tonic::Response<super::Recording>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/GetRecording",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "GetRecording",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Lists the recording resources from the conference record.
-        pub async fn list_recordings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRecordingsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRecordingsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/ListRecordings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "ListRecordings",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Gets a transcript by transcript ID.
-        pub async fn get_transcript(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTranscriptRequest>,
-        ) -> std::result::Result<tonic::Response<super::Transcript>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/GetTranscript",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "GetTranscript",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Lists the set of transcripts from the conference record.
-        pub async fn list_transcripts(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTranscriptsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTranscriptsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/ListTranscripts",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "ListTranscripts",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Gets a `TranscriptEntry` resource by entry ID.
-        ///
-        /// Note: The transcript entries returned by the Google Meet API might not
-        /// match the transcription found in the Google Docs transcript file. This can
-        /// occur when the Google Docs transcript file is modified after generation.
-        pub async fn get_transcript_entry(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTranscriptEntryRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::TranscriptEntry>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/GetTranscriptEntry",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "GetTranscriptEntry",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// [Developer Preview](https://developers.google.com/workspace/preview).
-        /// Lists the structured transcript entries per transcript. By default, ordered
-        /// by start time and in ascending order.
-        ///
-        /// Note: The transcript entries returned by the Google Meet API might not
-        /// match the transcription found in the Google Docs transcript file. This can
-        /// occur when the Google Docs transcript file is modified after generation.
-        pub async fn list_transcript_entries(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTranscriptEntriesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTranscriptEntriesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.meet.v2beta.ConferenceRecordsService/ListTranscriptEntries",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.meet.v2beta.ConferenceRecordsService",
-                        "ListTranscriptEntries",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// REST API for services dealing with conference records.
+#[derive(Debug, Clone)]
+pub struct ConferenceRecordsServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ConferenceRecordsServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ConferenceRecordsServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ConferenceRecordsServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Gets a conference record by conference ID.
+pub async fn get_conference_record(&mut self, request: impl tonic::IntoRequest<super::GetConferenceRecordRequest>) -> std::result::Result<tonic::Response<super::ConferenceRecord>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/GetConferenceRecord");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "GetConferenceRecord"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Lists the conference records by start time and in descending order.
+pub async fn list_conference_records(&mut self, request: impl tonic::IntoRequest<super::ListConferenceRecordsRequest>) -> std::result::Result<tonic::Response<super::ListConferenceRecordsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/ListConferenceRecords");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "ListConferenceRecords"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Gets a participant by participant ID.
+pub async fn get_participant(&mut self, request: impl tonic::IntoRequest<super::GetParticipantRequest>) -> std::result::Result<tonic::Response<super::Participant>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/GetParticipant");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "GetParticipant"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Lists the participants in a conference record, by default ordered by join
+/// time and in descending order. This API supports `fields` as standard
+/// parameters like every other API. However, when the `fields` request
+/// parameter is omitted, this API defaults to `'participants/*,
+/// next_page_token'`.
+pub async fn list_participants(&mut self, request: impl tonic::IntoRequest<super::ListParticipantsRequest>) -> std::result::Result<tonic::Response<super::ListParticipantsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/ListParticipants");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "ListParticipants"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Gets a participant session by participant session ID.
+pub async fn get_participant_session(&mut self, request: impl tonic::IntoRequest<super::GetParticipantSessionRequest>) -> std::result::Result<tonic::Response<super::ParticipantSession>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/GetParticipantSession");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "GetParticipantSession"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Lists the participant sessions of a participant in a conference record, by
+/// default ordered by join time and in descending order. This API supports
+/// `fields` as standard parameters like every other API. However, when the
+/// `fields` request parameter is omitted this API defaults to
+/// `'participantsessions/*, next_page_token'`.
+pub async fn list_participant_sessions(&mut self, request: impl tonic::IntoRequest<super::ListParticipantSessionsRequest>) -> std::result::Result<tonic::Response<super::ListParticipantSessionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/ListParticipantSessions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "ListParticipantSessions"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Gets a recording by recording ID.
+pub async fn get_recording(&mut self, request: impl tonic::IntoRequest<super::GetRecordingRequest>) -> std::result::Result<tonic::Response<super::Recording>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/GetRecording");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "GetRecording"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Lists the recording resources from the conference record.
+pub async fn list_recordings(&mut self, request: impl tonic::IntoRequest<super::ListRecordingsRequest>) -> std::result::Result<tonic::Response<super::ListRecordingsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/ListRecordings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "ListRecordings"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Gets a transcript by transcript ID.
+pub async fn get_transcript(&mut self, request: impl tonic::IntoRequest<super::GetTranscriptRequest>) -> std::result::Result<tonic::Response<super::Transcript>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/GetTranscript");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "GetTranscript"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Lists the set of transcripts from the conference record.
+pub async fn list_transcripts(&mut self, request: impl tonic::IntoRequest<super::ListTranscriptsRequest>) -> std::result::Result<tonic::Response<super::ListTranscriptsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/ListTranscripts");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "ListTranscripts"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Gets a `TranscriptEntry` resource by entry ID.
+///
+/// Note: The transcript entries returned by the Google Meet API might not
+/// match the transcription found in the Google Docs transcript file. This can
+/// occur when the Google Docs transcript file is modified after generation.
+pub async fn get_transcript_entry(&mut self, request: impl tonic::IntoRequest<super::GetTranscriptEntryRequest>) -> std::result::Result<tonic::Response<super::TranscriptEntry>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/GetTranscriptEntry");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "GetTranscriptEntry"));
+self.inner.unary(req, path, codec).await
+}
+/// [Developer Preview](https://developers.google.com/workspace/preview).
+/// Lists the structured transcript entries per transcript. By default, ordered
+/// by start time and in ascending order.
+///
+/// Note: The transcript entries returned by the Google Meet API might not
+/// match the transcription found in the Google Docs transcript file. This can
+/// occur when the Google Docs transcript file is modified after generation.
+pub async fn list_transcript_entries(&mut self, request: impl tonic::IntoRequest<super::ListTranscriptEntriesRequest>) -> std::result::Result<tonic::Response<super::ListTranscriptEntriesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.meet.v2beta.ConferenceRecordsService/ListTranscriptEntries");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.meet.v2beta.ConferenceRecordsService", "ListTranscriptEntries"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

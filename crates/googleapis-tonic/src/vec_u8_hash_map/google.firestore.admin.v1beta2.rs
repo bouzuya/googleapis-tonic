@@ -2,868 +2,617 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Index {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "index::QueryScope", tag = "2")]
-    pub query_scope: i32,
-    #[prost(message, repeated, tag = "3")]
-    pub fields: ::prost::alloc::vec::Vec<index::IndexField>,
-    #[prost(enumeration = "index::State", tag = "4")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "index::QueryScope", tag = "2")]
+pub query_scope: i32,
+#[prost(message, repeated, tag = "3")]
+pub fields: ::prost::alloc::vec::Vec<index::IndexField>,
+#[prost(enumeration = "index::State", tag = "4")]
+pub state: i32,
 }
 /// Nested message and enum types in `Index`.
 pub mod index {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct IndexField {
-        #[prost(string, tag = "1")]
-        pub field_path: ::prost::alloc::string::String,
-        #[prost(oneof = "index_field::ValueMode", tags = "2, 3")]
-        pub value_mode: ::core::option::Option<index_field::ValueMode>,
-    }
-    /// Nested message and enum types in `IndexField`.
-    pub mod index_field {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Order {
-            Unspecified = 0,
-            Ascending = 1,
-            Descending = 2,
-        }
-        impl Order {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Order::Unspecified => "ORDER_UNSPECIFIED",
-                    Order::Ascending => "ASCENDING",
-                    Order::Descending => "DESCENDING",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "ORDER_UNSPECIFIED" => Some(Self::Unspecified),
-                    "ASCENDING" => Some(Self::Ascending),
-                    "DESCENDING" => Some(Self::Descending),
-                    _ => None,
-                }
-            }
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ArrayConfig {
-            Unspecified = 0,
-            Contains = 1,
-        }
-        impl ArrayConfig {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    ArrayConfig::Unspecified => "ARRAY_CONFIG_UNSPECIFIED",
-                    ArrayConfig::Contains => "CONTAINS",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "ARRAY_CONFIG_UNSPECIFIED" => Some(Self::Unspecified),
-                    "CONTAINS" => Some(Self::Contains),
-                    _ => None,
-                }
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-        pub enum ValueMode {
-            #[prost(enumeration = "Order", tag = "2")]
-            Order(i32),
-            #[prost(enumeration = "ArrayConfig", tag = "3")]
-            ArrayConfig(i32),
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum QueryScope {
-        Unspecified = 0,
-        Collection = 1,
-        CollectionGroup = 2,
-    }
-    impl QueryScope {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                QueryScope::Unspecified => "QUERY_SCOPE_UNSPECIFIED",
-                QueryScope::Collection => "COLLECTION",
-                QueryScope::CollectionGroup => "COLLECTION_GROUP",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "QUERY_SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "COLLECTION" => Some(Self::Collection),
-                "COLLECTION_GROUP" => Some(Self::CollectionGroup),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Ready = 2,
-        NeedsRepair = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::NeedsRepair => "NEEDS_REPAIR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "READY" => Some(Self::Ready),
-                "NEEDS_REPAIR" => Some(Self::NeedsRepair),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IndexField {
+#[prost(string, tag = "1")]
+pub field_path: ::prost::alloc::string::String,
+#[prost(oneof = "index_field::ValueMode", tags = "2, 3")]
+pub value_mode: ::core::option::Option<index_field::ValueMode>,
+}
+/// Nested message and enum types in `IndexField`.
+pub mod index_field {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Order {
+Unspecified = 0,
+Ascending = 1,
+Descending = 2,
+}
+impl Order {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Order::Unspecified => "ORDER_UNSPECIFIED",
+Order::Ascending => "ASCENDING",
+Order::Descending => "DESCENDING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ORDER_UNSPECIFIED" => Some(Self::Unspecified),
+"ASCENDING" => Some(Self::Ascending),
+"DESCENDING" => Some(Self::Descending),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ArrayConfig {
+Unspecified = 0,
+Contains = 1,
+}
+impl ArrayConfig {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ArrayConfig::Unspecified => "ARRAY_CONFIG_UNSPECIFIED",
+ArrayConfig::Contains => "CONTAINS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ARRAY_CONFIG_UNSPECIFIED" => Some(Self::Unspecified),
+"CONTAINS" => Some(Self::Contains),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum ValueMode {
+#[prost(enumeration = "Order", tag = "2")]
+Order(i32),
+#[prost(enumeration = "ArrayConfig", tag = "3")]
+ArrayConfig(i32),
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum QueryScope {
+Unspecified = 0,
+Collection = 1,
+CollectionGroup = 2,
+}
+impl QueryScope {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+QueryScope::Unspecified => "QUERY_SCOPE_UNSPECIFIED",
+QueryScope::Collection => "COLLECTION",
+QueryScope::CollectionGroup => "COLLECTION_GROUP",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"QUERY_SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
+"COLLECTION" => Some(Self::Collection),
+"COLLECTION_GROUP" => Some(Self::CollectionGroup),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Ready = 2,
+NeedsRepair = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Ready => "READY",
+State::NeedsRepair => "NEEDS_REPAIR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"READY" => Some(Self::Ready),
+"NEEDS_REPAIR" => Some(Self::NeedsRepair),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Field {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub index_config: ::core::option::Option<field::IndexConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub index_config: ::core::option::Option<field::IndexConfig>,
 }
 /// Nested message and enum types in `Field`.
 pub mod field {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct IndexConfig {
-        #[prost(message, repeated, tag = "1")]
-        pub indexes: ::prost::alloc::vec::Vec<super::Index>,
-        #[prost(bool, tag = "2")]
-        pub uses_ancestor_config: bool,
-        #[prost(string, tag = "3")]
-        pub ancestor_field: ::prost::alloc::string::String,
-        #[prost(bool, tag = "4")]
-        pub reverting: bool,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IndexConfig {
+#[prost(message, repeated, tag = "1")]
+pub indexes: ::prost::alloc::vec::Vec<super::Index>,
+#[prost(bool, tag = "2")]
+pub uses_ancestor_config: bool,
+#[prost(string, tag = "3")]
+pub ancestor_field: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub reverting: bool,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateIndexRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub index: ::core::option::Option<Index>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub index: ::core::option::Option<Index>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListIndexesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub indexes: ::prost::alloc::vec::Vec<Index>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub indexes: ::prost::alloc::vec::Vec<Index>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetIndexRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteIndexRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateFieldRequest {
-    #[prost(message, optional, tag = "1")]
-    pub field: ::core::option::Option<Field>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub field: ::core::option::Option<Field>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFieldRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFieldsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFieldsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub fields: ::prost::alloc::vec::Vec<Field>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub fields: ::prost::alloc::vec::Vec<Field>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDocumentsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub collection_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "3")]
-    pub output_uri_prefix: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub collection_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub output_uri_prefix: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportDocumentsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub collection_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "3")]
-    pub input_uri_prefix: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub collection_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub input_uri_prefix: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod firestore_admin_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Operations are created by service `FirestoreAdmin`, but are accessed via
-    /// service `google.longrunning.Operations`.
-    #[derive(Debug, Clone)]
-    pub struct FirestoreAdminClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> FirestoreAdminClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> FirestoreAdminClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            FirestoreAdminClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a composite index. This returns a [google.longrunning.Operation][google.longrunning.Operation]
-        /// which may be used to track the status of the creation. The metadata for
-        /// the operation will be the type [IndexOperationMetadata][google.firestore.admin.v1beta2.IndexOperationMetadata].
-        pub async fn create_index(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateIndexRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/CreateIndex",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "CreateIndex",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists composite indexes.
-        pub async fn list_indexes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListIndexesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListIndexesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/ListIndexes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "ListIndexes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a composite index.
-        pub async fn get_index(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetIndexRequest>,
-        ) -> std::result::Result<tonic::Response<super::Index>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/GetIndex",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "GetIndex",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a composite index.
-        pub async fn delete_index(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteIndexRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/DeleteIndex",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "DeleteIndex",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the metadata and configuration for a Field.
-        pub async fn get_field(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetFieldRequest>,
-        ) -> std::result::Result<tonic::Response<super::Field>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/GetField",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "GetField",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a field configuration. Currently, field updates apply only to
-        /// single field index configuration. However, calls to
-        /// [FirestoreAdmin.UpdateField][google.firestore.admin.v1beta2.FirestoreAdmin.UpdateField] should provide a field mask to avoid
-        /// changing any configuration that the caller isn't aware of. The field mask
-        /// should be specified as: `{ paths: "index_config" }`.
-        ///
-        /// This call returns a [google.longrunning.Operation][google.longrunning.Operation] which may be used to
-        /// track the status of the field update. The metadata for
-        /// the operation will be the type [FieldOperationMetadata][google.firestore.admin.v1beta2.FieldOperationMetadata].
-        ///
-        /// To configure the default field settings for the database, use
-        /// the special `Field` with resource name:
-        /// `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`.
-        pub async fn update_field(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateFieldRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/UpdateField",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "UpdateField",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the field configuration and metadata for this database.
-        ///
-        /// Currently, [FirestoreAdmin.ListFields][google.firestore.admin.v1beta2.FirestoreAdmin.ListFields] only supports listing fields
-        /// that have been explicitly overridden. To issue this query, call
-        /// [FirestoreAdmin.ListFields][google.firestore.admin.v1beta2.FirestoreAdmin.ListFields] with the filter set to
-        /// `indexConfig.usesAncestorConfig:false`.
-        pub async fn list_fields(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListFieldsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListFieldsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/ListFields",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "ListFields",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Exports a copy of all or a subset of documents from Google Cloud Firestore
-        /// to another storage system, such as Google Cloud Storage. Recent updates to
-        /// documents may not be reflected in the export. The export occurs in the
-        /// background and its progress can be monitored and managed via the
-        /// Operation resource that is created. The output of an export may only be
-        /// used once the associated operation is done. If an export operation is
-        /// cancelled before completion it may leave partial data behind in Google
-        /// Cloud Storage.
-        pub async fn export_documents(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ExportDocumentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/ExportDocuments",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "ExportDocuments",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Imports documents into Google Cloud Firestore. Existing documents with the
-        /// same name are overwritten. The import occurs in the background and its
-        /// progress can be monitored and managed via the Operation resource that is
-        /// created. If an ImportDocuments operation is cancelled, it is possible
-        /// that a subset of the data has already been imported to Cloud Firestore.
-        pub async fn import_documents(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportDocumentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.firestore.admin.v1beta2.FirestoreAdmin/ImportDocuments",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.firestore.admin.v1beta2.FirestoreAdmin",
-                        "ImportDocuments",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Operations are created by service `FirestoreAdmin`, but are accessed via
+/// service `google.longrunning.Operations`.
+#[derive(Debug, Clone)]
+pub struct FirestoreAdminClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> FirestoreAdminClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> FirestoreAdminClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+FirestoreAdminClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a composite index. This returns a [google.longrunning.Operation][google.longrunning.Operation]
+/// which may be used to track the status of the creation. The metadata for
+/// the operation will be the type [IndexOperationMetadata][google.firestore.admin.v1beta2.IndexOperationMetadata].
+pub async fn create_index(&mut self, request: impl tonic::IntoRequest<super::CreateIndexRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/CreateIndex");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "CreateIndex"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists composite indexes.
+pub async fn list_indexes(&mut self, request: impl tonic::IntoRequest<super::ListIndexesRequest>) -> std::result::Result<tonic::Response<super::ListIndexesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/ListIndexes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "ListIndexes"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a composite index.
+pub async fn get_index(&mut self, request: impl tonic::IntoRequest<super::GetIndexRequest>) -> std::result::Result<tonic::Response<super::Index>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/GetIndex");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "GetIndex"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a composite index.
+pub async fn delete_index(&mut self, request: impl tonic::IntoRequest<super::DeleteIndexRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/DeleteIndex");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "DeleteIndex"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the metadata and configuration for a Field.
+pub async fn get_field(&mut self, request: impl tonic::IntoRequest<super::GetFieldRequest>) -> std::result::Result<tonic::Response<super::Field>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/GetField");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "GetField"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a field configuration. Currently, field updates apply only to
+/// single field index configuration. However, calls to
+/// [FirestoreAdmin.UpdateField][google.firestore.admin.v1beta2.FirestoreAdmin.UpdateField] should provide a field mask to avoid
+/// changing any configuration that the caller isn't aware of. The field mask
+/// should be specified as: `{ paths: "index_config" }`.
+///
+/// This call returns a [google.longrunning.Operation][google.longrunning.Operation] which may be used to
+/// track the status of the field update. The metadata for
+/// the operation will be the type [FieldOperationMetadata][google.firestore.admin.v1beta2.FieldOperationMetadata].
+///
+/// To configure the default field settings for the database, use
+/// the special `Field` with resource name:
+/// `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`.
+pub async fn update_field(&mut self, request: impl tonic::IntoRequest<super::UpdateFieldRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/UpdateField");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "UpdateField"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the field configuration and metadata for this database.
+///
+/// Currently, [FirestoreAdmin.ListFields][google.firestore.admin.v1beta2.FirestoreAdmin.ListFields] only supports listing fields
+/// that have been explicitly overridden. To issue this query, call
+/// [FirestoreAdmin.ListFields][google.firestore.admin.v1beta2.FirestoreAdmin.ListFields] with the filter set to
+/// `indexConfig.usesAncestorConfig:false`.
+pub async fn list_fields(&mut self, request: impl tonic::IntoRequest<super::ListFieldsRequest>) -> std::result::Result<tonic::Response<super::ListFieldsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/ListFields");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "ListFields"));
+self.inner.unary(req, path, codec).await
+}
+/// Exports a copy of all or a subset of documents from Google Cloud Firestore
+/// to another storage system, such as Google Cloud Storage. Recent updates to
+/// documents may not be reflected in the export. The export occurs in the
+/// background and its progress can be monitored and managed via the
+/// Operation resource that is created. The output of an export may only be
+/// used once the associated operation is done. If an export operation is
+/// cancelled before completion it may leave partial data behind in Google
+/// Cloud Storage.
+pub async fn export_documents(&mut self, request: impl tonic::IntoRequest<super::ExportDocumentsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/ExportDocuments");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "ExportDocuments"));
+self.inner.unary(req, path, codec).await
+}
+/// Imports documents into Google Cloud Firestore. Existing documents with the
+/// same name are overwritten. The import occurs in the background and its
+/// progress can be monitored and managed via the Operation resource that is
+/// created. If an ImportDocuments operation is cancelled, it is possible
+/// that a subset of the data has already been imported to Cloud Firestore.
+pub async fn import_documents(&mut self, request: impl tonic::IntoRequest<super::ImportDocumentsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.firestore.admin.v1beta2.FirestoreAdmin/ImportDocuments");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.firestore.admin.v1beta2.FirestoreAdmin", "ImportDocuments"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IndexOperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub index: ::prost::alloc::string::String,
-    #[prost(enumeration = "OperationState", tag = "4")]
-    pub state: i32,
-    #[prost(message, optional, tag = "5")]
-    pub progress_documents: ::core::option::Option<Progress>,
-    #[prost(message, optional, tag = "6")]
-    pub progress_bytes: ::core::option::Option<Progress>,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub index: ::prost::alloc::string::String,
+#[prost(enumeration = "OperationState", tag = "4")]
+pub state: i32,
+#[prost(message, optional, tag = "5")]
+pub progress_documents: ::core::option::Option<Progress>,
+#[prost(message, optional, tag = "6")]
+pub progress_bytes: ::core::option::Option<Progress>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldOperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub field: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub index_config_deltas: ::prost::alloc::vec::Vec<
-        field_operation_metadata::IndexConfigDelta,
-    >,
-    #[prost(enumeration = "OperationState", tag = "5")]
-    pub state: i32,
-    #[prost(message, optional, tag = "6")]
-    pub document_progress: ::core::option::Option<Progress>,
-    #[prost(message, optional, tag = "7")]
-    pub bytes_progress: ::core::option::Option<Progress>,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub field: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub index_config_deltas: ::prost::alloc::vec::Vec<field_operation_metadata::IndexConfigDelta>,
+#[prost(enumeration = "OperationState", tag = "5")]
+pub state: i32,
+#[prost(message, optional, tag = "6")]
+pub document_progress: ::core::option::Option<Progress>,
+#[prost(message, optional, tag = "7")]
+pub bytes_progress: ::core::option::Option<Progress>,
 }
 /// Nested message and enum types in `FieldOperationMetadata`.
 pub mod field_operation_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct IndexConfigDelta {
-        #[prost(enumeration = "index_config_delta::ChangeType", tag = "1")]
-        pub change_type: i32,
-        #[prost(message, optional, tag = "2")]
-        pub index: ::core::option::Option<super::Index>,
-    }
-    /// Nested message and enum types in `IndexConfigDelta`.
-    pub mod index_config_delta {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ChangeType {
-            Unspecified = 0,
-            Add = 1,
-            Remove = 2,
-        }
-        impl ChangeType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    ChangeType::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
-                    ChangeType::Add => "ADD",
-                    ChangeType::Remove => "REMOVE",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "CHANGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "ADD" => Some(Self::Add),
-                    "REMOVE" => Some(Self::Remove),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IndexConfigDelta {
+#[prost(enumeration = "index_config_delta::ChangeType", tag = "1")]
+pub change_type: i32,
+#[prost(message, optional, tag = "2")]
+pub index: ::core::option::Option<super::Index>,
+}
+/// Nested message and enum types in `IndexConfigDelta`.
+pub mod index_config_delta {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ChangeType {
+Unspecified = 0,
+Add = 1,
+Remove = 2,
+}
+impl ChangeType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ChangeType::Unspecified => "CHANGE_TYPE_UNSPECIFIED",
+ChangeType::Add => "ADD",
+ChangeType::Remove => "REMOVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CHANGE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"ADD" => Some(Self::Add),
+"REMOVE" => Some(Self::Remove),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDocumentsMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "OperationState", tag = "3")]
-    pub operation_state: i32,
-    #[prost(message, optional, tag = "4")]
-    pub progress_documents: ::core::option::Option<Progress>,
-    #[prost(message, optional, tag = "5")]
-    pub progress_bytes: ::core::option::Option<Progress>,
-    #[prost(string, repeated, tag = "6")]
-    pub collection_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "7")]
-    pub output_uri_prefix: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "OperationState", tag = "3")]
+pub operation_state: i32,
+#[prost(message, optional, tag = "4")]
+pub progress_documents: ::core::option::Option<Progress>,
+#[prost(message, optional, tag = "5")]
+pub progress_bytes: ::core::option::Option<Progress>,
+#[prost(string, repeated, tag = "6")]
+pub collection_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "7")]
+pub output_uri_prefix: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportDocumentsMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "OperationState", tag = "3")]
-    pub operation_state: i32,
-    #[prost(message, optional, tag = "4")]
-    pub progress_documents: ::core::option::Option<Progress>,
-    #[prost(message, optional, tag = "5")]
-    pub progress_bytes: ::core::option::Option<Progress>,
-    #[prost(string, repeated, tag = "6")]
-    pub collection_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "7")]
-    pub input_uri_prefix: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "OperationState", tag = "3")]
+pub operation_state: i32,
+#[prost(message, optional, tag = "4")]
+pub progress_documents: ::core::option::Option<Progress>,
+#[prost(message, optional, tag = "5")]
+pub progress_bytes: ::core::option::Option<Progress>,
+#[prost(string, repeated, tag = "6")]
+pub collection_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "7")]
+pub input_uri_prefix: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDocumentsResponse {
-    #[prost(string, tag = "1")]
-    pub output_uri_prefix: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub output_uri_prefix: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Progress {
-    #[prost(int64, tag = "1")]
-    pub estimated_work: i64,
-    #[prost(int64, tag = "2")]
-    pub completed_work: i64,
+#[prost(int64, tag = "1")]
+pub estimated_work: i64,
+#[prost(int64, tag = "2")]
+pub completed_work: i64,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum OperationState {
-    Unspecified = 0,
-    Initializing = 1,
-    Processing = 2,
-    Cancelling = 3,
-    Finalizing = 4,
-    Successful = 5,
-    Failed = 6,
-    Cancelled = 7,
+Unspecified = 0,
+Initializing = 1,
+Processing = 2,
+Cancelling = 3,
+Finalizing = 4,
+Successful = 5,
+Failed = 6,
+Cancelled = 7,
 }
 impl OperationState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            OperationState::Unspecified => "OPERATION_STATE_UNSPECIFIED",
-            OperationState::Initializing => "INITIALIZING",
-            OperationState::Processing => "PROCESSING",
-            OperationState::Cancelling => "CANCELLING",
-            OperationState::Finalizing => "FINALIZING",
-            OperationState::Successful => "SUCCESSFUL",
-            OperationState::Failed => "FAILED",
-            OperationState::Cancelled => "CANCELLED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "OPERATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "INITIALIZING" => Some(Self::Initializing),
-            "PROCESSING" => Some(Self::Processing),
-            "CANCELLING" => Some(Self::Cancelling),
-            "FINALIZING" => Some(Self::Finalizing),
-            "SUCCESSFUL" => Some(Self::Successful),
-            "FAILED" => Some(Self::Failed),
-            "CANCELLED" => Some(Self::Cancelled),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OperationState::Unspecified => "OPERATION_STATE_UNSPECIFIED",
+OperationState::Initializing => "INITIALIZING",
+OperationState::Processing => "PROCESSING",
+OperationState::Cancelling => "CANCELLING",
+OperationState::Finalizing => "FINALIZING",
+OperationState::Successful => "SUCCESSFUL",
+OperationState::Failed => "FAILED",
+OperationState::Cancelled => "CANCELLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"OPERATION_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"INITIALIZING" => Some(Self::Initializing),
+"PROCESSING" => Some(Self::Processing),
+"CANCELLING" => Some(Self::Cancelling),
+"FINALIZING" => Some(Self::Finalizing),
+"SUCCESSFUL" => Some(Self::Successful),
+"FAILED" => Some(Self::Failed),
+"CANCELLED" => Some(Self::Cancelled),
+_ => None,
+}
+}
 }

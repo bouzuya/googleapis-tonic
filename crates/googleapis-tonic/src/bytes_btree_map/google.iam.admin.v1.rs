@@ -2,1895 +2,1283 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditData {
-    #[prost(message, optional, tag = "1")]
-    pub permission_delta: ::core::option::Option<audit_data::PermissionDelta>,
+#[prost(message, optional, tag = "1")]
+pub permission_delta: ::core::option::Option<audit_data::PermissionDelta>,
 }
 /// Nested message and enum types in `AuditData`.
 pub mod audit_data {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct PermissionDelta {
-        #[prost(string, repeated, tag = "1")]
-        pub added_permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "2")]
-        pub removed_permissions: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PermissionDelta {
+#[prost(string, repeated, tag = "1")]
+pub added_permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub removed_permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceAccount {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub unique_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub email: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub display_name: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(bytes = "bytes", tag = "7")]
-    pub etag: ::prost::bytes::Bytes,
-    #[prost(string, tag = "8")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub oauth2_client_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "11")]
-    pub disabled: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub unique_id: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub email: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub display_name: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(bytes = "bytes", tag = "7")]
+pub etag: ::prost::bytes::Bytes,
+#[prost(string, tag = "8")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub oauth2_client_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "11")]
+pub disabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServiceAccountRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub account_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub service_account: ::core::option::Option<ServiceAccount>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub account_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub service_account: ::core::option::Option<ServiceAccount>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServiceAccountsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServiceAccountsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub accounts: ::prost::alloc::vec::Vec<ServiceAccount>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub accounts: ::prost::alloc::vec::Vec<ServiceAccount>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceAccountRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteServiceAccountRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PatchServiceAccountRequest {
-    #[prost(message, optional, tag = "1")]
-    pub service_account: ::core::option::Option<ServiceAccount>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub service_account: ::core::option::Option<ServiceAccount>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeleteServiceAccountRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeleteServiceAccountResponse {
-    #[prost(message, optional, tag = "1")]
-    pub restored_account: ::core::option::Option<ServiceAccount>,
+#[prost(message, optional, tag = "1")]
+pub restored_account: ::core::option::Option<ServiceAccount>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnableServiceAccountRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisableServiceAccountRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServiceAccountKeysRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "list_service_account_keys_request::KeyType",
-        repeated,
-        tag = "2"
-    )]
-    pub key_types: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "list_service_account_keys_request::KeyType", repeated, tag = "2")]
+pub key_types: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `ListServiceAccountKeysRequest`.
 pub mod list_service_account_keys_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum KeyType {
-        Unspecified = 0,
-        UserManaged = 1,
-        SystemManaged = 2,
-    }
-    impl KeyType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                KeyType::Unspecified => "KEY_TYPE_UNSPECIFIED",
-                KeyType::UserManaged => "USER_MANAGED",
-                KeyType::SystemManaged => "SYSTEM_MANAGED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "KEY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "USER_MANAGED" => Some(Self::UserManaged),
-                "SYSTEM_MANAGED" => Some(Self::SystemManaged),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum KeyType {
+Unspecified = 0,
+UserManaged = 1,
+SystemManaged = 2,
+}
+impl KeyType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+KeyType::Unspecified => "KEY_TYPE_UNSPECIFIED",
+KeyType::UserManaged => "USER_MANAGED",
+KeyType::SystemManaged => "SYSTEM_MANAGED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"KEY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"USER_MANAGED" => Some(Self::UserManaged),
+"SYSTEM_MANAGED" => Some(Self::SystemManaged),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServiceAccountKeysResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub keys: ::prost::alloc::vec::Vec<ServiceAccountKey>,
+#[prost(message, repeated, tag = "1")]
+pub keys: ::prost::alloc::vec::Vec<ServiceAccountKey>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceAccountKeyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "ServiceAccountPublicKeyType", tag = "2")]
-    pub public_key_type: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "ServiceAccountPublicKeyType", tag = "2")]
+pub public_key_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceAccountKey {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "ServiceAccountPrivateKeyType", tag = "2")]
-    pub private_key_type: i32,
-    #[prost(enumeration = "ServiceAccountKeyAlgorithm", tag = "8")]
-    pub key_algorithm: i32,
-    #[prost(bytes = "bytes", tag = "3")]
-    pub private_key_data: ::prost::bytes::Bytes,
-    #[prost(bytes = "bytes", tag = "7")]
-    pub public_key_data: ::prost::bytes::Bytes,
-    #[prost(message, optional, tag = "4")]
-    pub valid_after_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub valid_before_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "ServiceAccountKeyOrigin", tag = "9")]
-    pub key_origin: i32,
-    #[prost(enumeration = "list_service_account_keys_request::KeyType", tag = "10")]
-    pub key_type: i32,
-    #[prost(bool, tag = "11")]
-    pub disabled: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "ServiceAccountPrivateKeyType", tag = "2")]
+pub private_key_type: i32,
+#[prost(enumeration = "ServiceAccountKeyAlgorithm", tag = "8")]
+pub key_algorithm: i32,
+#[prost(bytes = "bytes", tag = "3")]
+pub private_key_data: ::prost::bytes::Bytes,
+#[prost(bytes = "bytes", tag = "7")]
+pub public_key_data: ::prost::bytes::Bytes,
+#[prost(message, optional, tag = "4")]
+pub valid_after_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub valid_before_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "ServiceAccountKeyOrigin", tag = "9")]
+pub key_origin: i32,
+#[prost(enumeration = "list_service_account_keys_request::KeyType", tag = "10")]
+pub key_type: i32,
+#[prost(bool, tag = "11")]
+pub disabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServiceAccountKeyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "ServiceAccountPrivateKeyType", tag = "2")]
-    pub private_key_type: i32,
-    #[prost(enumeration = "ServiceAccountKeyAlgorithm", tag = "3")]
-    pub key_algorithm: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "ServiceAccountPrivateKeyType", tag = "2")]
+pub private_key_type: i32,
+#[prost(enumeration = "ServiceAccountKeyAlgorithm", tag = "3")]
+pub key_algorithm: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UploadServiceAccountKeyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bytes = "bytes", tag = "2")]
-    pub public_key_data: ::prost::bytes::Bytes,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bytes = "bytes", tag = "2")]
+pub public_key_data: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteServiceAccountKeyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisableServiceAccountKeyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnableServiceAccountKeyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SignBlobRequest {
-    #[deprecated]
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(bytes = "bytes", tag = "2")]
-    pub bytes_to_sign: ::prost::bytes::Bytes,
+#[deprecated]
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(bytes = "bytes", tag = "2")]
+pub bytes_to_sign: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SignBlobResponse {
-    #[deprecated]
-    #[prost(string, tag = "1")]
-    pub key_id: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(bytes = "bytes", tag = "2")]
-    pub signature: ::prost::bytes::Bytes,
+#[deprecated]
+#[prost(string, tag = "1")]
+pub key_id: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(bytes = "bytes", tag = "2")]
+pub signature: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SignJwtRequest {
-    #[deprecated]
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(string, tag = "2")]
-    pub payload: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(string, tag = "2")]
+pub payload: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SignJwtResponse {
-    #[deprecated]
-    #[prost(string, tag = "1")]
-    pub key_id: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(string, tag = "2")]
-    pub signed_jwt: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(string, tag = "1")]
+pub key_id: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(string, tag = "2")]
+pub signed_jwt: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Role {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "7")]
-    pub included_permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(enumeration = "role::RoleLaunchStage", tag = "8")]
-    pub stage: i32,
-    #[prost(bytes = "bytes", tag = "9")]
-    pub etag: ::prost::bytes::Bytes,
-    #[prost(bool, tag = "11")]
-    pub deleted: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "7")]
+pub included_permissions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "role::RoleLaunchStage", tag = "8")]
+pub stage: i32,
+#[prost(bytes = "bytes", tag = "9")]
+pub etag: ::prost::bytes::Bytes,
+#[prost(bool, tag = "11")]
+pub deleted: bool,
 }
 /// Nested message and enum types in `Role`.
 pub mod role {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RoleLaunchStage {
-        Alpha = 0,
-        Beta = 1,
-        Ga = 2,
-        Deprecated = 4,
-        Disabled = 5,
-        Eap = 6,
-    }
-    impl RoleLaunchStage {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RoleLaunchStage::Alpha => "ALPHA",
-                RoleLaunchStage::Beta => "BETA",
-                RoleLaunchStage::Ga => "GA",
-                RoleLaunchStage::Deprecated => "DEPRECATED",
-                RoleLaunchStage::Disabled => "DISABLED",
-                RoleLaunchStage::Eap => "EAP",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ALPHA" => Some(Self::Alpha),
-                "BETA" => Some(Self::Beta),
-                "GA" => Some(Self::Ga),
-                "DEPRECATED" => Some(Self::Deprecated),
-                "DISABLED" => Some(Self::Disabled),
-                "EAP" => Some(Self::Eap),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RoleLaunchStage {
+Alpha = 0,
+Beta = 1,
+Ga = 2,
+Deprecated = 4,
+Disabled = 5,
+Eap = 6,
+}
+impl RoleLaunchStage {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RoleLaunchStage::Alpha => "ALPHA",
+RoleLaunchStage::Beta => "BETA",
+RoleLaunchStage::Ga => "GA",
+RoleLaunchStage::Deprecated => "DEPRECATED",
+RoleLaunchStage::Disabled => "DISABLED",
+RoleLaunchStage::Eap => "EAP",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ALPHA" => Some(Self::Alpha),
+"BETA" => Some(Self::Beta),
+"GA" => Some(Self::Ga),
+"DEPRECATED" => Some(Self::Deprecated),
+"DISABLED" => Some(Self::Disabled),
+"EAP" => Some(Self::Eap),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryGrantableRolesRequest {
-    #[prost(string, tag = "1")]
-    pub full_resource_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "RoleView", tag = "2")]
-    pub view: i32,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub full_resource_name: ::prost::alloc::string::String,
+#[prost(enumeration = "RoleView", tag = "2")]
+pub view: i32,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryGrantableRolesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub roles: ::prost::alloc::vec::Vec<Role>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub roles: ::prost::alloc::vec::Vec<Role>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRolesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(enumeration = "RoleView", tag = "4")]
-    pub view: i32,
-    #[prost(bool, tag = "6")]
-    pub show_deleted: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(enumeration = "RoleView", tag = "4")]
+pub view: i32,
+#[prost(bool, tag = "6")]
+pub show_deleted: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRolesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub roles: ::prost::alloc::vec::Vec<Role>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub roles: ::prost::alloc::vec::Vec<Role>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRoleRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateRoleRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub role_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub role: ::core::option::Option<Role>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub role_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub role: ::core::option::Option<Role>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRoleRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub role: ::core::option::Option<Role>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub role: ::core::option::Option<Role>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteRoleRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bytes = "bytes", tag = "2")]
-    pub etag: ::prost::bytes::Bytes,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bytes = "bytes", tag = "2")]
+pub etag: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeleteRoleRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bytes = "bytes", tag = "2")]
-    pub etag: ::prost::bytes::Bytes,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bytes = "bytes", tag = "2")]
+pub etag: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Permission {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(bool, tag = "4")]
-    pub only_in_predefined_roles: bool,
-    #[prost(enumeration = "permission::PermissionLaunchStage", tag = "5")]
-    pub stage: i32,
-    #[prost(enumeration = "permission::CustomRolesSupportLevel", tag = "6")]
-    pub custom_roles_support_level: i32,
-    #[prost(bool, tag = "7")]
-    pub api_disabled: bool,
-    #[prost(string, tag = "8")]
-    pub primary_permission: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(bool, tag = "4")]
+pub only_in_predefined_roles: bool,
+#[prost(enumeration = "permission::PermissionLaunchStage", tag = "5")]
+pub stage: i32,
+#[prost(enumeration = "permission::CustomRolesSupportLevel", tag = "6")]
+pub custom_roles_support_level: i32,
+#[prost(bool, tag = "7")]
+pub api_disabled: bool,
+#[prost(string, tag = "8")]
+pub primary_permission: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Permission`.
 pub mod permission {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PermissionLaunchStage {
-        Alpha = 0,
-        Beta = 1,
-        Ga = 2,
-        Deprecated = 3,
-    }
-    impl PermissionLaunchStage {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PermissionLaunchStage::Alpha => "ALPHA",
-                PermissionLaunchStage::Beta => "BETA",
-                PermissionLaunchStage::Ga => "GA",
-                PermissionLaunchStage::Deprecated => "DEPRECATED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ALPHA" => Some(Self::Alpha),
-                "BETA" => Some(Self::Beta),
-                "GA" => Some(Self::Ga),
-                "DEPRECATED" => Some(Self::Deprecated),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum CustomRolesSupportLevel {
-        Supported = 0,
-        Testing = 1,
-        NotSupported = 2,
-    }
-    impl CustomRolesSupportLevel {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                CustomRolesSupportLevel::Supported => "SUPPORTED",
-                CustomRolesSupportLevel::Testing => "TESTING",
-                CustomRolesSupportLevel::NotSupported => "NOT_SUPPORTED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SUPPORTED" => Some(Self::Supported),
-                "TESTING" => Some(Self::Testing),
-                "NOT_SUPPORTED" => Some(Self::NotSupported),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PermissionLaunchStage {
+Alpha = 0,
+Beta = 1,
+Ga = 2,
+Deprecated = 3,
+}
+impl PermissionLaunchStage {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PermissionLaunchStage::Alpha => "ALPHA",
+PermissionLaunchStage::Beta => "BETA",
+PermissionLaunchStage::Ga => "GA",
+PermissionLaunchStage::Deprecated => "DEPRECATED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ALPHA" => Some(Self::Alpha),
+"BETA" => Some(Self::Beta),
+"GA" => Some(Self::Ga),
+"DEPRECATED" => Some(Self::Deprecated),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CustomRolesSupportLevel {
+Supported = 0,
+Testing = 1,
+NotSupported = 2,
+}
+impl CustomRolesSupportLevel {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CustomRolesSupportLevel::Supported => "SUPPORTED",
+CustomRolesSupportLevel::Testing => "TESTING",
+CustomRolesSupportLevel::NotSupported => "NOT_SUPPORTED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SUPPORTED" => Some(Self::Supported),
+"TESTING" => Some(Self::Testing),
+"NOT_SUPPORTED" => Some(Self::NotSupported),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTestablePermissionsRequest {
-    #[prost(string, tag = "1")]
-    pub full_resource_name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub full_resource_name: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTestablePermissionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub permissions: ::prost::alloc::vec::Vec<Permission>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub permissions: ::prost::alloc::vec::Vec<Permission>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAuditableServicesRequest {
-    #[prost(string, tag = "1")]
-    pub full_resource_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub full_resource_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAuditableServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub services: ::prost::alloc::vec::Vec<
-        query_auditable_services_response::AuditableService,
-    >,
+#[prost(message, repeated, tag = "1")]
+pub services: ::prost::alloc::vec::Vec<query_auditable_services_response::AuditableService>,
 }
 /// Nested message and enum types in `QueryAuditableServicesResponse`.
 pub mod query_auditable_services_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AuditableService {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AuditableService {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LintPolicyRequest {
-    #[prost(string, tag = "1")]
-    pub full_resource_name: ::prost::alloc::string::String,
-    #[prost(oneof = "lint_policy_request::LintObject", tags = "5")]
-    pub lint_object: ::core::option::Option<lint_policy_request::LintObject>,
+#[prost(string, tag = "1")]
+pub full_resource_name: ::prost::alloc::string::String,
+#[prost(oneof = "lint_policy_request::LintObject", tags = "5")]
+pub lint_object: ::core::option::Option<lint_policy_request::LintObject>,
 }
 /// Nested message and enum types in `LintPolicyRequest`.
 pub mod lint_policy_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum LintObject {
-        #[prost(message, tag = "5")]
-        Condition(super::super::super::super::r#type::Expr),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum LintObject {
+#[prost(message, tag = "5")]
+Condition(super::super::super::super::r#type::Expr),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LintResult {
-    #[prost(enumeration = "lint_result::Level", tag = "1")]
-    pub level: i32,
-    #[prost(string, tag = "2")]
-    pub validation_unit_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "lint_result::Severity", tag = "3")]
-    pub severity: i32,
-    #[prost(string, tag = "5")]
-    pub field_name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "6")]
-    pub location_offset: i32,
-    #[prost(string, tag = "7")]
-    pub debug_message: ::prost::alloc::string::String,
+#[prost(enumeration = "lint_result::Level", tag = "1")]
+pub level: i32,
+#[prost(string, tag = "2")]
+pub validation_unit_name: ::prost::alloc::string::String,
+#[prost(enumeration = "lint_result::Severity", tag = "3")]
+pub severity: i32,
+#[prost(string, tag = "5")]
+pub field_name: ::prost::alloc::string::String,
+#[prost(int32, tag = "6")]
+pub location_offset: i32,
+#[prost(string, tag = "7")]
+pub debug_message: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `LintResult`.
 pub mod lint_result {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Level {
-        Unspecified = 0,
-        Condition = 3,
-    }
-    impl Level {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Level::Unspecified => "LEVEL_UNSPECIFIED",
-                Level::Condition => "CONDITION",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-                "CONDITION" => Some(Self::Condition),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Severity {
-        Unspecified = 0,
-        Error = 1,
-        Warning = 2,
-        Notice = 3,
-        Info = 4,
-        Deprecated = 5,
-    }
-    impl Severity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Error => "ERROR",
-                Severity::Warning => "WARNING",
-                Severity::Notice => "NOTICE",
-                Severity::Info => "INFO",
-                Severity::Deprecated => "DEPRECATED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "ERROR" => Some(Self::Error),
-                "WARNING" => Some(Self::Warning),
-                "NOTICE" => Some(Self::Notice),
-                "INFO" => Some(Self::Info),
-                "DEPRECATED" => Some(Self::Deprecated),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Level {
+Unspecified = 0,
+Condition = 3,
+}
+impl Level {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Level::Unspecified => "LEVEL_UNSPECIFIED",
+Level::Condition => "CONDITION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+"CONDITION" => Some(Self::Condition),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Severity {
+Unspecified = 0,
+Error = 1,
+Warning = 2,
+Notice = 3,
+Info = 4,
+Deprecated = 5,
+}
+impl Severity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+Severity::Error => "ERROR",
+Severity::Warning => "WARNING",
+Severity::Notice => "NOTICE",
+Severity::Info => "INFO",
+Severity::Deprecated => "DEPRECATED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"ERROR" => Some(Self::Error),
+"WARNING" => Some(Self::Warning),
+"NOTICE" => Some(Self::Notice),
+"INFO" => Some(Self::Info),
+"DEPRECATED" => Some(Self::Deprecated),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LintPolicyResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub lint_results: ::prost::alloc::vec::Vec<LintResult>,
+#[prost(message, repeated, tag = "1")]
+pub lint_results: ::prost::alloc::vec::Vec<LintResult>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ServiceAccountKeyAlgorithm {
-    KeyAlgUnspecified = 0,
-    KeyAlgRsa1024 = 1,
-    KeyAlgRsa2048 = 2,
+KeyAlgUnspecified = 0,
+KeyAlgRsa1024 = 1,
+KeyAlgRsa2048 = 2,
 }
 impl ServiceAccountKeyAlgorithm {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ServiceAccountKeyAlgorithm::KeyAlgUnspecified => "KEY_ALG_UNSPECIFIED",
-            ServiceAccountKeyAlgorithm::KeyAlgRsa1024 => "KEY_ALG_RSA_1024",
-            ServiceAccountKeyAlgorithm::KeyAlgRsa2048 => "KEY_ALG_RSA_2048",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "KEY_ALG_UNSPECIFIED" => Some(Self::KeyAlgUnspecified),
-            "KEY_ALG_RSA_1024" => Some(Self::KeyAlgRsa1024),
-            "KEY_ALG_RSA_2048" => Some(Self::KeyAlgRsa2048),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ServiceAccountKeyAlgorithm::KeyAlgUnspecified => "KEY_ALG_UNSPECIFIED",
+ServiceAccountKeyAlgorithm::KeyAlgRsa1024 => "KEY_ALG_RSA_1024",
+ServiceAccountKeyAlgorithm::KeyAlgRsa2048 => "KEY_ALG_RSA_2048",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"KEY_ALG_UNSPECIFIED" => Some(Self::KeyAlgUnspecified),
+"KEY_ALG_RSA_1024" => Some(Self::KeyAlgRsa1024),
+"KEY_ALG_RSA_2048" => Some(Self::KeyAlgRsa2048),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ServiceAccountPrivateKeyType {
-    TypeUnspecified = 0,
-    TypePkcs12File = 1,
-    TypeGoogleCredentialsFile = 2,
+TypeUnspecified = 0,
+TypePkcs12File = 1,
+TypeGoogleCredentialsFile = 2,
 }
 impl ServiceAccountPrivateKeyType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ServiceAccountPrivateKeyType::TypeUnspecified => "TYPE_UNSPECIFIED",
-            ServiceAccountPrivateKeyType::TypePkcs12File => "TYPE_PKCS12_FILE",
-            ServiceAccountPrivateKeyType::TypeGoogleCredentialsFile => {
-                "TYPE_GOOGLE_CREDENTIALS_FILE"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TYPE_UNSPECIFIED" => Some(Self::TypeUnspecified),
-            "TYPE_PKCS12_FILE" => Some(Self::TypePkcs12File),
-            "TYPE_GOOGLE_CREDENTIALS_FILE" => Some(Self::TypeGoogleCredentialsFile),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ServiceAccountPrivateKeyType::TypeUnspecified => "TYPE_UNSPECIFIED",
+ServiceAccountPrivateKeyType::TypePkcs12File => "TYPE_PKCS12_FILE",
+ServiceAccountPrivateKeyType::TypeGoogleCredentialsFile => "TYPE_GOOGLE_CREDENTIALS_FILE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::TypeUnspecified),
+"TYPE_PKCS12_FILE" => Some(Self::TypePkcs12File),
+"TYPE_GOOGLE_CREDENTIALS_FILE" => Some(Self::TypeGoogleCredentialsFile),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ServiceAccountPublicKeyType {
-    TypeNone = 0,
-    TypeX509PemFile = 1,
-    TypeRawPublicKey = 2,
+TypeNone = 0,
+TypeX509PemFile = 1,
+TypeRawPublicKey = 2,
 }
 impl ServiceAccountPublicKeyType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ServiceAccountPublicKeyType::TypeNone => "TYPE_NONE",
-            ServiceAccountPublicKeyType::TypeX509PemFile => "TYPE_X509_PEM_FILE",
-            ServiceAccountPublicKeyType::TypeRawPublicKey => "TYPE_RAW_PUBLIC_KEY",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TYPE_NONE" => Some(Self::TypeNone),
-            "TYPE_X509_PEM_FILE" => Some(Self::TypeX509PemFile),
-            "TYPE_RAW_PUBLIC_KEY" => Some(Self::TypeRawPublicKey),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ServiceAccountPublicKeyType::TypeNone => "TYPE_NONE",
+ServiceAccountPublicKeyType::TypeX509PemFile => "TYPE_X509_PEM_FILE",
+ServiceAccountPublicKeyType::TypeRawPublicKey => "TYPE_RAW_PUBLIC_KEY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_NONE" => Some(Self::TypeNone),
+"TYPE_X509_PEM_FILE" => Some(Self::TypeX509PemFile),
+"TYPE_RAW_PUBLIC_KEY" => Some(Self::TypeRawPublicKey),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ServiceAccountKeyOrigin {
-    OriginUnspecified = 0,
-    UserProvided = 1,
-    GoogleProvided = 2,
+OriginUnspecified = 0,
+UserProvided = 1,
+GoogleProvided = 2,
 }
 impl ServiceAccountKeyOrigin {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ServiceAccountKeyOrigin::OriginUnspecified => "ORIGIN_UNSPECIFIED",
-            ServiceAccountKeyOrigin::UserProvided => "USER_PROVIDED",
-            ServiceAccountKeyOrigin::GoogleProvided => "GOOGLE_PROVIDED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ORIGIN_UNSPECIFIED" => Some(Self::OriginUnspecified),
-            "USER_PROVIDED" => Some(Self::UserProvided),
-            "GOOGLE_PROVIDED" => Some(Self::GoogleProvided),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ServiceAccountKeyOrigin::OriginUnspecified => "ORIGIN_UNSPECIFIED",
+ServiceAccountKeyOrigin::UserProvided => "USER_PROVIDED",
+ServiceAccountKeyOrigin::GoogleProvided => "GOOGLE_PROVIDED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ORIGIN_UNSPECIFIED" => Some(Self::OriginUnspecified),
+"USER_PROVIDED" => Some(Self::UserProvided),
+"GOOGLE_PROVIDED" => Some(Self::GoogleProvided),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum RoleView {
-    Basic = 0,
-    Full = 1,
+Basic = 0,
+Full = 1,
 }
 impl RoleView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            RoleView::Basic => "BASIC",
-            RoleView::Full => "FULL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "BASIC" => Some(Self::Basic),
-            "FULL" => Some(Self::Full),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RoleView::Basic => "BASIC",
+RoleView::Full => "FULL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BASIC" => Some(Self::Basic),
+"FULL" => Some(Self::Full),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod iam_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Creates and manages Identity and Access Management (IAM) resources.
-    ///
-    /// You can use this service to work with all of the following resources:
-    ///
-    /// * **Service accounts**, which identify an application or a virtual machine
-    ///   (VM) instance rather than a person
-    /// * **Service account keys**, which service accounts use to authenticate with
-    ///   Google APIs
-    /// * **IAM policies for service accounts**, which specify the roles that a
-    ///   principal has for the service account
-    /// * **IAM custom roles**, which help you limit the number of permissions that
-    ///   you grant to principals
-    ///
-    /// In addition, you can use this service to complete the following tasks, among
-    /// others:
-    ///
-    /// * Test whether a service account can use specific permissions
-    /// * Check which roles you can grant for a specific resource
-    /// * Lint, or validate, condition expressions in an IAM policy
-    ///
-    /// When you read data from the IAM API, each read is eventually consistent. In
-    /// other words, if you write data with the IAM API, then immediately read that
-    /// data, the read operation might return an older version of the data. To deal
-    /// with this behavior, your application can retry the request with truncated
-    /// exponential backoff.
-    ///
-    /// In contrast, writing data to the IAM API is sequentially consistent. In other
-    /// words, write operations are always processed in the order in which they were
-    /// received.
-    #[derive(Debug, Clone)]
-    pub struct IamClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> IamClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> IamClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            IamClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists every [ServiceAccount][google.iam.admin.v1.ServiceAccount] that belongs to a specific project.
-        pub async fn list_service_accounts(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListServiceAccountsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListServiceAccountsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/ListServiceAccounts",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "ListServiceAccounts"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        pub async fn get_service_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetServiceAccountRequest>,
-        ) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/GetServiceAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetServiceAccount"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        pub async fn create_service_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateServiceAccountRequest>,
-        ) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/CreateServiceAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "CreateServiceAccount"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// **Note:** We are in the process of deprecating this method. Use
-        /// [PatchServiceAccount][google.iam.admin.v1.IAM.PatchServiceAccount] instead.
-        ///
-        /// Updates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        ///
-        /// You can update only the `display_name` field.
-        pub async fn update_service_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ServiceAccount>,
-        ) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/UpdateServiceAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "UpdateServiceAccount"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Patches a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        pub async fn patch_service_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PatchServiceAccountRequest>,
-        ) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/PatchServiceAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "PatchServiceAccount"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        ///
-        /// **Warning:** After you delete a service account, you might not be able to
-        /// undelete it. If you know that you need to re-enable the service account in
-        /// the future, use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] instead.
-        ///
-        /// If you delete a service account, IAM permanently removes the service
-        /// account 30 days later. Google Cloud cannot recover the service account
-        /// after it is permanently removed, even if you file a support request.
-        ///
-        /// To help avoid unplanned outages, we recommend that you disable the service
-        /// account before you delete it. Use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] to disable the
-        /// service account, then wait at least 24 hours and watch for unintended
-        /// consequences. If there are no unintended consequences, you can delete the
-        /// service account.
-        pub async fn delete_service_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteServiceAccountRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/DeleteServiceAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "DeleteServiceAccount"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Restores a deleted [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        ///
-        /// **Important:** It is not always possible to restore a deleted service
-        /// account. Use this method only as a last resort.
-        ///
-        /// After you delete a service account, IAM permanently removes the service
-        /// account 30 days later. There is no way to restore a deleted service account
-        /// that has been permanently removed.
-        pub async fn undelete_service_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UndeleteServiceAccountRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UndeleteServiceAccountResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/UndeleteServiceAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "UndeleteServiceAccount"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] that was disabled by
-        /// [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount].
-        ///
-        /// If the service account is already enabled, then this method has no effect.
-        ///
-        /// If the service account was disabled by other means—for example, if Google
-        /// disabled the service account because it was compromised—you cannot use this
-        /// method to enable the service account.
-        pub async fn enable_service_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EnableServiceAccountRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/EnableServiceAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "EnableServiceAccount"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Disables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] immediately.
-        ///
-        /// If an application uses the service account to authenticate, that
-        /// application can no longer call Google APIs or access Google Cloud
-        /// resources. Existing access tokens for the service account are rejected, and
-        /// requests for new access tokens will fail.
-        ///
-        /// To re-enable the service account, use [EnableServiceAccount][google.iam.admin.v1.IAM.EnableServiceAccount]. After you
-        /// re-enable the service account, its existing access tokens will be accepted,
-        /// and you can request new access tokens.
-        ///
-        /// To help avoid unplanned outages, we recommend that you disable the service
-        /// account before you delete it. Use this method to disable the service
-        /// account, then wait at least 24 hours and watch for unintended consequences.
-        /// If there are no unintended consequences, you can delete the service account
-        /// with [DeleteServiceAccount][google.iam.admin.v1.IAM.DeleteServiceAccount].
-        pub async fn disable_service_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DisableServiceAccountRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/DisableServiceAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "DisableServiceAccount"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists every [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey] for a service account.
-        pub async fn list_service_account_keys(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListServiceAccountKeysRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListServiceAccountKeysResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/ListServiceAccountKeys",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "ListServiceAccountKeys"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
-        pub async fn get_service_account_key(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetServiceAccountKeyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ServiceAccountKey>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/GetServiceAccountKey",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "GetServiceAccountKey"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
-        pub async fn create_service_account_key(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateServiceAccountKeyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ServiceAccountKey>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/CreateServiceAccountKey",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "CreateServiceAccountKey"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Uploads the public key portion of a key pair that you manage, and
-        /// associates the public key with a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        ///
-        /// After you upload the public key, you can use the private key from the key
-        /// pair as a service account key.
-        pub async fn upload_service_account_key(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UploadServiceAccountKeyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ServiceAccountKey>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/UploadServiceAccountKey",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "UploadServiceAccountKey"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. Deleting a service account key does not
-        /// revoke short-lived credentials that have been issued based on the service
-        /// account key.
-        pub async fn delete_service_account_key(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteServiceAccountKeyRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/DeleteServiceAccountKey",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "DeleteServiceAccountKey"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Disable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. A disabled service account key can be
-        /// re-enabled with [EnableServiceAccountKey][google.iam.admin.v1.IAM.EnableServiceAccountKey].
-        pub async fn disable_service_account_key(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DisableServiceAccountKeyRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/DisableServiceAccountKey",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.iam.admin.v1.IAM",
-                        "DisableServiceAccountKey",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
-        pub async fn enable_service_account_key(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EnableServiceAccountKeyRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/EnableServiceAccountKey",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "EnableServiceAccountKey"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// **Note:** This method is deprecated. Use the
-        /// [`signBlob`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signBlob)
-        /// method in the IAM Service Account Credentials API instead. If you currently
-        /// use this method, see the [migration
-        /// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
-        /// instructions.
-        ///
-        /// Signs a blob using the system-managed private key for a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        pub async fn sign_blob(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SignBlobRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SignBlobResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/SignBlob",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "SignBlob"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// **Note:** This method is deprecated. Use the
-        /// [`signJwt`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signJwt)
-        /// method in the IAM Service Account Credentials API instead. If you currently
-        /// use this method, see the [migration
-        /// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
-        /// instructions.
-        ///
-        /// Signs a JSON Web Token (JWT) using the system-managed private key for a
-        /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        pub async fn sign_jwt(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SignJwtRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SignJwtResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/SignJwt",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "SignJwt"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount]. This IAM
-        /// policy specifies which principals have access to the service account.
-        ///
-        /// This method does not tell you whether the service account has been granted
-        /// any roles on other resources. To check whether a service account has role
-        /// grants on a resource, use the `getIamPolicy` method for that resource. For
-        /// example, to view the role grants for a project, call the Resource Manager
-        /// API's
-        /// [`projects.getIamPolicy`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/getIamPolicy)
-        /// method.
-        pub async fn get_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::v1::GetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/GetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetIamPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Sets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        ///
-        /// Use this method to grant or revoke access to the service account. For
-        /// example, you could grant a principal the ability to impersonate the service
-        /// account.
-        ///
-        /// This method does not enable the service account to access other resources.
-        /// To grant roles to a service account on a resource, follow these steps:
-        ///
-        /// 1. Call the resource's `getIamPolicy` method to get its current IAM policy.
-        /// 2. Edit the policy so that it binds the service account to an IAM role for
-        /// the resource.
-        /// 3. Call the resource's `setIamPolicy` method to update its IAM policy.
-        ///
-        /// For detailed instructions, see
-        /// [Manage access to project, folders, and
-        /// organizations](https://cloud.google.com/iam/help/service-accounts/granting-access-to-service-accounts)
-        /// or [Manage access to other
-        /// resources](https://cloud.google.com/iam/help/access/manage-other-resources).
-        pub async fn set_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::v1::SetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/SetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "SetIamPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Tests whether the caller has the specified permissions on a
-        /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
-        pub async fn test_iam_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::v1::TestIamPermissionsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::v1::TestIamPermissionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/TestIamPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "TestIamPermissions"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists roles that can be granted on a Google Cloud resource. A role is
-        /// grantable if the IAM policy for the resource can contain bindings to the
-        /// role.
-        pub async fn query_grantable_roles(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryGrantableRolesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryGrantableRolesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/QueryGrantableRoles",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "QueryGrantableRoles"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists every predefined [Role][google.iam.admin.v1.Role] that IAM supports, or every custom role
-        /// that is defined for an organization or project.
-        pub async fn list_roles(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRolesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRolesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/ListRoles",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "ListRoles"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the definition of a [Role][google.iam.admin.v1.Role].
-        pub async fn get_role(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRoleRequest>,
-        ) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/GetRole",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetRole"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new custom [Role][google.iam.admin.v1.Role].
-        pub async fn create_role(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateRoleRequest>,
-        ) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/CreateRole",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "CreateRole"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the definition of a custom [Role][google.iam.admin.v1.Role].
-        pub async fn update_role(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateRoleRequest>,
-        ) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/UpdateRole",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UpdateRole"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a custom [Role][google.iam.admin.v1.Role].
-        ///
-        /// When you delete a custom role, the following changes occur immediately:
-        ///
-        /// * You cannot bind a principal to the custom role in an IAM
-        /// [Policy][google.iam.v1.Policy].
-        /// * Existing bindings to the custom role are not changed, but they have no
-        /// effect.
-        /// * By default, the response from [ListRoles][google.iam.admin.v1.IAM.ListRoles] does not include the custom
-        /// role.
-        ///
-        /// You have 7 days to undelete the custom role. After 7 days, the following
-        /// changes occur:
-        ///
-        /// * The custom role is permanently deleted and cannot be recovered.
-        /// * If an IAM policy contains a binding to the custom role, the binding is
-        /// permanently removed.
-        pub async fn delete_role(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteRoleRequest>,
-        ) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/DeleteRole",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "DeleteRole"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Undeletes a custom [Role][google.iam.admin.v1.Role].
-        pub async fn undelete_role(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UndeleteRoleRequest>,
-        ) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/UndeleteRole",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UndeleteRole"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists every permission that you can test on a resource. A permission is
-        /// testable if you can check whether a principal has that permission on the
-        /// resource.
-        pub async fn query_testable_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryTestablePermissionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryTestablePermissionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/QueryTestablePermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.iam.admin.v1.IAM",
-                        "QueryTestablePermissions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a list of services that allow you to opt into audit logs that are
-        /// not generated by default.
-        ///
-        /// To learn more about audit logs, see the [Logging
-        /// documentation](https://cloud.google.com/logging/docs/audit).
-        pub async fn query_auditable_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryAuditableServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryAuditableServicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/QueryAuditableServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.iam.admin.v1.IAM", "QueryAuditableServices"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lints, or validates, an IAM policy. Currently checks the
-        /// [google.iam.v1.Binding.condition][google.iam.v1.Binding.condition] field, which contains a condition
-        /// expression for a role binding.
-        ///
-        /// Successful calls to this method always return an HTTP `200 OK` status code,
-        /// even if the linter detects an issue in the IAM policy.
-        pub async fn lint_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LintPolicyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::LintPolicyResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.iam.admin.v1.IAM/LintPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.iam.admin.v1.IAM", "LintPolicy"));
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Creates and manages Identity and Access Management (IAM) resources.
+///
+/// You can use this service to work with all of the following resources:
+///
+/// * **Service accounts**, which identify an application or a virtual machine
+///   (VM) instance rather than a person
+/// * **Service account keys**, which service accounts use to authenticate with
+///   Google APIs
+/// * **IAM policies for service accounts**, which specify the roles that a
+///   principal has for the service account
+/// * **IAM custom roles**, which help you limit the number of permissions that
+///   you grant to principals
+///
+/// In addition, you can use this service to complete the following tasks, among
+/// others:
+///
+/// * Test whether a service account can use specific permissions
+/// * Check which roles you can grant for a specific resource
+/// * Lint, or validate, condition expressions in an IAM policy
+///
+/// When you read data from the IAM API, each read is eventually consistent. In
+/// other words, if you write data with the IAM API, then immediately read that
+/// data, the read operation might return an older version of the data. To deal
+/// with this behavior, your application can retry the request with truncated
+/// exponential backoff.
+///
+/// In contrast, writing data to the IAM API is sequentially consistent. In other
+/// words, write operations are always processed in the order in which they were
+/// received.
+#[derive(Debug, Clone)]
+pub struct IamClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> IamClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> IamClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+IamClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists every [ServiceAccount][google.iam.admin.v1.ServiceAccount] that belongs to a specific project.
+pub async fn list_service_accounts(&mut self, request: impl tonic::IntoRequest<super::ListServiceAccountsRequest>) -> std::result::Result<tonic::Response<super::ListServiceAccountsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/ListServiceAccounts");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "ListServiceAccounts"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+pub async fn get_service_account(&mut self, request: impl tonic::IntoRequest<super::GetServiceAccountRequest>) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/GetServiceAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetServiceAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+pub async fn create_service_account(&mut self, request: impl tonic::IntoRequest<super::CreateServiceAccountRequest>) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/CreateServiceAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "CreateServiceAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// **Note:** We are in the process of deprecating this method. Use
+/// [PatchServiceAccount][google.iam.admin.v1.IAM.PatchServiceAccount] instead.
+///
+/// Updates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+///
+/// You can update only the `display_name` field.
+pub async fn update_service_account(&mut self, request: impl tonic::IntoRequest<super::ServiceAccount>) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/UpdateServiceAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UpdateServiceAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Patches a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+pub async fn patch_service_account(&mut self, request: impl tonic::IntoRequest<super::PatchServiceAccountRequest>) -> std::result::Result<tonic::Response<super::ServiceAccount>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/PatchServiceAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "PatchServiceAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+///
+/// **Warning:** After you delete a service account, you might not be able to
+/// undelete it. If you know that you need to re-enable the service account in
+/// the future, use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] instead.
+///
+/// If you delete a service account, IAM permanently removes the service
+/// account 30 days later. Google Cloud cannot recover the service account
+/// after it is permanently removed, even if you file a support request.
+///
+/// To help avoid unplanned outages, we recommend that you disable the service
+/// account before you delete it. Use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] to disable the
+/// service account, then wait at least 24 hours and watch for unintended
+/// consequences. If there are no unintended consequences, you can delete the
+/// service account.
+pub async fn delete_service_account(&mut self, request: impl tonic::IntoRequest<super::DeleteServiceAccountRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/DeleteServiceAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "DeleteServiceAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Restores a deleted [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+///
+/// **Important:** It is not always possible to restore a deleted service
+/// account. Use this method only as a last resort.
+///
+/// After you delete a service account, IAM permanently removes the service
+/// account 30 days later. There is no way to restore a deleted service account
+/// that has been permanently removed.
+pub async fn undelete_service_account(&mut self, request: impl tonic::IntoRequest<super::UndeleteServiceAccountRequest>) -> std::result::Result<tonic::Response<super::UndeleteServiceAccountResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/UndeleteServiceAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UndeleteServiceAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Enables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] that was disabled by
+/// [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount].
+///
+/// If the service account is already enabled, then this method has no effect.
+///
+/// If the service account was disabled by other means—for example, if Google
+/// disabled the service account because it was compromised—you cannot use this
+/// method to enable the service account.
+pub async fn enable_service_account(&mut self, request: impl tonic::IntoRequest<super::EnableServiceAccountRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/EnableServiceAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "EnableServiceAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Disables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] immediately.
+///
+/// If an application uses the service account to authenticate, that
+/// application can no longer call Google APIs or access Google Cloud
+/// resources. Existing access tokens for the service account are rejected, and
+/// requests for new access tokens will fail.
+///
+/// To re-enable the service account, use [EnableServiceAccount][google.iam.admin.v1.IAM.EnableServiceAccount]. After you
+/// re-enable the service account, its existing access tokens will be accepted,
+/// and you can request new access tokens.
+///
+/// To help avoid unplanned outages, we recommend that you disable the service
+/// account before you delete it. Use this method to disable the service
+/// account, then wait at least 24 hours and watch for unintended consequences.
+/// If there are no unintended consequences, you can delete the service account
+/// with [DeleteServiceAccount][google.iam.admin.v1.IAM.DeleteServiceAccount].
+pub async fn disable_service_account(&mut self, request: impl tonic::IntoRequest<super::DisableServiceAccountRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/DisableServiceAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "DisableServiceAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists every [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey] for a service account.
+pub async fn list_service_account_keys(&mut self, request: impl tonic::IntoRequest<super::ListServiceAccountKeysRequest>) -> std::result::Result<tonic::Response<super::ListServiceAccountKeysResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/ListServiceAccountKeys");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "ListServiceAccountKeys"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+pub async fn get_service_account_key(&mut self, request: impl tonic::IntoRequest<super::GetServiceAccountKeyRequest>) -> std::result::Result<tonic::Response<super::ServiceAccountKey>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/GetServiceAccountKey");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetServiceAccountKey"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+pub async fn create_service_account_key(&mut self, request: impl tonic::IntoRequest<super::CreateServiceAccountKeyRequest>) -> std::result::Result<tonic::Response<super::ServiceAccountKey>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/CreateServiceAccountKey");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "CreateServiceAccountKey"));
+self.inner.unary(req, path, codec).await
+}
+/// Uploads the public key portion of a key pair that you manage, and
+/// associates the public key with a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+///
+/// After you upload the public key, you can use the private key from the key
+/// pair as a service account key.
+pub async fn upload_service_account_key(&mut self, request: impl tonic::IntoRequest<super::UploadServiceAccountKeyRequest>) -> std::result::Result<tonic::Response<super::ServiceAccountKey>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/UploadServiceAccountKey");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UploadServiceAccountKey"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. Deleting a service account key does not
+/// revoke short-lived credentials that have been issued based on the service
+/// account key.
+pub async fn delete_service_account_key(&mut self, request: impl tonic::IntoRequest<super::DeleteServiceAccountKeyRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/DeleteServiceAccountKey");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "DeleteServiceAccountKey"));
+self.inner.unary(req, path, codec).await
+}
+/// Disable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. A disabled service account key can be
+/// re-enabled with [EnableServiceAccountKey][google.iam.admin.v1.IAM.EnableServiceAccountKey].
+pub async fn disable_service_account_key(&mut self, request: impl tonic::IntoRequest<super::DisableServiceAccountKeyRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/DisableServiceAccountKey");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "DisableServiceAccountKey"));
+self.inner.unary(req, path, codec).await
+}
+/// Enable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+pub async fn enable_service_account_key(&mut self, request: impl tonic::IntoRequest<super::EnableServiceAccountKeyRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/EnableServiceAccountKey");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "EnableServiceAccountKey"));
+self.inner.unary(req, path, codec).await
+}
+/// **Note:** This method is deprecated. Use the
+/// [`signBlob`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signBlob)
+/// method in the IAM Service Account Credentials API instead. If you currently
+/// use this method, see the [migration
+/// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
+/// instructions.
+///
+/// Signs a blob using the system-managed private key for a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+pub async fn sign_blob(&mut self, request: impl tonic::IntoRequest<super::SignBlobRequest>) -> std::result::Result<tonic::Response<super::SignBlobResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/SignBlob");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "SignBlob"));
+self.inner.unary(req, path, codec).await
+}
+/// **Note:** This method is deprecated. Use the
+/// [`signJwt`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signJwt)
+/// method in the IAM Service Account Credentials API instead. If you currently
+/// use this method, see the [migration
+/// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
+/// instructions.
+///
+/// Signs a JSON Web Token (JWT) using the system-managed private key for a
+/// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+pub async fn sign_jwt(&mut self, request: impl tonic::IntoRequest<super::SignJwtRequest>) -> std::result::Result<tonic::Response<super::SignJwtResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/SignJwt");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "SignJwt"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount]. This IAM
+/// policy specifies which principals have access to the service account.
+///
+/// This method does not tell you whether the service account has been granted
+/// any roles on other resources. To check whether a service account has role
+/// grants on a resource, use the `getIamPolicy` method for that resource. For
+/// example, to view the role grants for a project, call the Resource Manager
+/// API's
+/// [`projects.getIamPolicy`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/getIamPolicy)
+/// method.
+pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::v1::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/GetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Sets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+///
+/// Use this method to grant or revoke access to the service account. For
+/// example, you could grant a principal the ability to impersonate the service
+/// account.
+///
+/// This method does not enable the service account to access other resources.
+/// To grant roles to a service account on a resource, follow these steps:
+///
+/// 1. Call the resource's `getIamPolicy` method to get its current IAM policy.
+/// 2. Edit the policy so that it binds the service account to an IAM role for
+/// the resource.
+/// 3. Call the resource's `setIamPolicy` method to update its IAM policy.
+///
+/// For detailed instructions, see
+/// [Manage access to project, folders, and
+/// organizations](https://cloud.google.com/iam/help/service-accounts/granting-access-to-service-accounts)
+/// or [Manage access to other
+/// resources](https://cloud.google.com/iam/help/access/manage-other-resources).
+pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::v1::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/SetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "SetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Tests whether the caller has the specified permissions on a
+/// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::super::super::v1::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::super::super::v1::TestIamPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/TestIamPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "TestIamPermissions"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists roles that can be granted on a Google Cloud resource. A role is
+/// grantable if the IAM policy for the resource can contain bindings to the
+/// role.
+pub async fn query_grantable_roles(&mut self, request: impl tonic::IntoRequest<super::QueryGrantableRolesRequest>) -> std::result::Result<tonic::Response<super::QueryGrantableRolesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/QueryGrantableRoles");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "QueryGrantableRoles"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists every predefined [Role][google.iam.admin.v1.Role] that IAM supports, or every custom role
+/// that is defined for an organization or project.
+pub async fn list_roles(&mut self, request: impl tonic::IntoRequest<super::ListRolesRequest>) -> std::result::Result<tonic::Response<super::ListRolesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/ListRoles");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "ListRoles"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the definition of a [Role][google.iam.admin.v1.Role].
+pub async fn get_role(&mut self, request: impl tonic::IntoRequest<super::GetRoleRequest>) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/GetRole");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "GetRole"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new custom [Role][google.iam.admin.v1.Role].
+pub async fn create_role(&mut self, request: impl tonic::IntoRequest<super::CreateRoleRequest>) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/CreateRole");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "CreateRole"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the definition of a custom [Role][google.iam.admin.v1.Role].
+pub async fn update_role(&mut self, request: impl tonic::IntoRequest<super::UpdateRoleRequest>) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/UpdateRole");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UpdateRole"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a custom [Role][google.iam.admin.v1.Role].
+///
+/// When you delete a custom role, the following changes occur immediately:
+///
+/// * You cannot bind a principal to the custom role in an IAM
+/// [Policy][google.iam.v1.Policy].
+/// * Existing bindings to the custom role are not changed, but they have no
+/// effect.
+/// * By default, the response from [ListRoles][google.iam.admin.v1.IAM.ListRoles] does not include the custom
+/// role.
+///
+/// You have 7 days to undelete the custom role. After 7 days, the following
+/// changes occur:
+///
+/// * The custom role is permanently deleted and cannot be recovered.
+/// * If an IAM policy contains a binding to the custom role, the binding is
+/// permanently removed.
+pub async fn delete_role(&mut self, request: impl tonic::IntoRequest<super::DeleteRoleRequest>) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/DeleteRole");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "DeleteRole"));
+self.inner.unary(req, path, codec).await
+}
+/// Undeletes a custom [Role][google.iam.admin.v1.Role].
+pub async fn undelete_role(&mut self, request: impl tonic::IntoRequest<super::UndeleteRoleRequest>) -> std::result::Result<tonic::Response<super::Role>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/UndeleteRole");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "UndeleteRole"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists every permission that you can test on a resource. A permission is
+/// testable if you can check whether a principal has that permission on the
+/// resource.
+pub async fn query_testable_permissions(&mut self, request: impl tonic::IntoRequest<super::QueryTestablePermissionsRequest>) -> std::result::Result<tonic::Response<super::QueryTestablePermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/QueryTestablePermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "QueryTestablePermissions"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a list of services that allow you to opt into audit logs that are
+/// not generated by default.
+///
+/// To learn more about audit logs, see the [Logging
+/// documentation](https://cloud.google.com/logging/docs/audit).
+pub async fn query_auditable_services(&mut self, request: impl tonic::IntoRequest<super::QueryAuditableServicesRequest>) -> std::result::Result<tonic::Response<super::QueryAuditableServicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/QueryAuditableServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "QueryAuditableServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Lints, or validates, an IAM policy. Currently checks the
+/// [google.iam.v1.Binding.condition][google.iam.v1.Binding.condition] field, which contains a condition
+/// expression for a role binding.
+///
+/// Successful calls to this method always return an HTTP `200 OK` status code,
+/// even if the linter detects an issue in the IAM policy.
+pub async fn lint_policy(&mut self, request: impl tonic::IntoRequest<super::LintPolicyRequest>) -> std::result::Result<tonic::Response<super::LintPolicyResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.iam.admin.v1.IAM/LintPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.iam.admin.v1.IAM", "LintPolicy"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

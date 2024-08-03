@@ -2,980 +2,724 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Feature {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(message, optional, tag = "3")]
-    pub resource_state: ::core::option::Option<FeatureResourceState>,
-    #[prost(message, optional, tag = "4")]
-    pub spec: ::core::option::Option<CommonFeatureSpec>,
-    #[prost(btree_map = "string, message", tag = "5")]
-    pub membership_specs: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        MembershipFeatureSpec,
-    >,
-    #[prost(message, optional, tag = "6")]
-    pub state: ::core::option::Option<CommonFeatureState>,
-    #[prost(btree_map = "string, message", tag = "7")]
-    pub membership_states: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        MembershipFeatureState,
-    >,
-    #[prost(message, optional, tag = "8")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "10")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "3")]
+pub resource_state: ::core::option::Option<FeatureResourceState>,
+#[prost(message, optional, tag = "4")]
+pub spec: ::core::option::Option<CommonFeatureSpec>,
+#[prost(btree_map = "string, message", tag = "5")]
+pub membership_specs: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, MembershipFeatureSpec>,
+#[prost(message, optional, tag = "6")]
+pub state: ::core::option::Option<CommonFeatureState>,
+#[prost(btree_map = "string, message", tag = "7")]
+pub membership_states: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, MembershipFeatureState>,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FeatureResourceState {
-    #[prost(enumeration = "feature_resource_state::State", tag = "1")]
-    pub state: i32,
+#[prost(enumeration = "feature_resource_state::State", tag = "1")]
+pub state: i32,
 }
 /// Nested message and enum types in `FeatureResourceState`.
 pub mod feature_resource_state {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Enabling = 1,
-        Active = 2,
-        Disabling = 3,
-        Updating = 4,
-        ServiceUpdating = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Enabling => "ENABLING",
-                State::Active => "ACTIVE",
-                State::Disabling => "DISABLING",
-                State::Updating => "UPDATING",
-                State::ServiceUpdating => "SERVICE_UPDATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ENABLING" => Some(Self::Enabling),
-                "ACTIVE" => Some(Self::Active),
-                "DISABLING" => Some(Self::Disabling),
-                "UPDATING" => Some(Self::Updating),
-                "SERVICE_UPDATING" => Some(Self::ServiceUpdating),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Enabling = 1,
+Active = 2,
+Disabling = 3,
+Updating = 4,
+ServiceUpdating = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Enabling => "ENABLING",
+State::Active => "ACTIVE",
+State::Disabling => "DISABLING",
+State::Updating => "UPDATING",
+State::ServiceUpdating => "SERVICE_UPDATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ENABLING" => Some(Self::Enabling),
+"ACTIVE" => Some(Self::Active),
+"DISABLING" => Some(Self::Disabling),
+"UPDATING" => Some(Self::Updating),
+"SERVICE_UPDATING" => Some(Self::ServiceUpdating),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FeatureState {
-    #[prost(enumeration = "feature_state::Code", tag = "1")]
-    pub code: i32,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "feature_state::Code", tag = "1")]
+pub code: i32,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `FeatureState`.
 pub mod feature_state {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Code {
-        Unspecified = 0,
-        Ok = 1,
-        Warning = 2,
-        Error = 3,
-    }
-    impl Code {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Code::Unspecified => "CODE_UNSPECIFIED",
-                Code::Ok => "OK",
-                Code::Warning => "WARNING",
-                Code::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "OK" => Some(Self::Ok),
-                "WARNING" => Some(Self::Warning),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Code {
+Unspecified = 0,
+Ok = 1,
+Warning = 2,
+Error = 3,
+}
+impl Code {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Code::Unspecified => "CODE_UNSPECIFIED",
+Code::Ok => "OK",
+Code::Warning => "WARNING",
+Code::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CODE_UNSPECIFIED" => Some(Self::Unspecified),
+"OK" => Some(Self::Ok),
+"WARNING" => Some(Self::Warning),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommonFeatureSpec {
-    #[prost(oneof = "common_feature_spec::FeatureSpec", tags = "102")]
-    pub feature_spec: ::core::option::Option<common_feature_spec::FeatureSpec>,
+#[prost(oneof = "common_feature_spec::FeatureSpec", tags = "102")]
+pub feature_spec: ::core::option::Option<common_feature_spec::FeatureSpec>,
 }
 /// Nested message and enum types in `CommonFeatureSpec`.
 pub mod common_feature_spec {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum FeatureSpec {
-        #[prost(message, tag = "102")]
-        Multiclusteringress(super::super::multiclusteringress::v1::FeatureSpec),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum FeatureSpec {
+#[prost(message, tag = "102")]
+Multiclusteringress(super::super::multiclusteringress::v1::FeatureSpec),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommonFeatureState {
-    #[prost(message, optional, tag = "1")]
-    pub state: ::core::option::Option<FeatureState>,
+#[prost(message, optional, tag = "1")]
+pub state: ::core::option::Option<FeatureState>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MembershipFeatureSpec {
-    #[prost(oneof = "membership_feature_spec::FeatureSpec", tags = "106")]
-    pub feature_spec: ::core::option::Option<membership_feature_spec::FeatureSpec>,
+#[prost(oneof = "membership_feature_spec::FeatureSpec", tags = "106")]
+pub feature_spec: ::core::option::Option<membership_feature_spec::FeatureSpec>,
 }
 /// Nested message and enum types in `MembershipFeatureSpec`.
 pub mod membership_feature_spec {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum FeatureSpec {
-        #[prost(message, tag = "106")]
-        Configmanagement(super::super::configmanagement::v1::MembershipSpec),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum FeatureSpec {
+#[prost(message, tag = "106")]
+Configmanagement(super::super::configmanagement::v1::MembershipSpec),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MembershipFeatureState {
-    #[prost(message, optional, tag = "1")]
-    pub state: ::core::option::Option<FeatureState>,
-    #[prost(oneof = "membership_feature_state::FeatureState", tags = "106")]
-    pub feature_state: ::core::option::Option<membership_feature_state::FeatureState>,
+#[prost(message, optional, tag = "1")]
+pub state: ::core::option::Option<FeatureState>,
+#[prost(oneof = "membership_feature_state::FeatureState", tags = "106")]
+pub feature_state: ::core::option::Option<membership_feature_state::FeatureState>,
 }
 /// Nested message and enum types in `MembershipFeatureState`.
 pub mod membership_feature_state {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum FeatureState {
-        #[prost(message, tag = "106")]
-        Configmanagement(super::super::configmanagement::v1::MembershipState),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum FeatureState {
+#[prost(message, tag = "106")]
+Configmanagement(super::super::configmanagement::v1::MembershipState),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Membership {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub labels: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub state: ::core::option::Option<MembershipState>,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "9")]
-    pub external_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub last_connection_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "11")]
-    pub unique_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "12")]
-    pub authority: ::core::option::Option<Authority>,
-    #[prost(message, optional, tag = "14")]
-    pub monitoring_config: ::core::option::Option<MonitoringConfig>,
-    #[prost(oneof = "membership::Type", tags = "4")]
-    pub r#type: ::core::option::Option<membership::Type>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub state: ::core::option::Option<MembershipState>,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "9")]
+pub external_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub last_connection_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "11")]
+pub unique_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "12")]
+pub authority: ::core::option::Option<Authority>,
+#[prost(message, optional, tag = "14")]
+pub monitoring_config: ::core::option::Option<MonitoringConfig>,
+#[prost(oneof = "membership::Type", tags = "4")]
+pub r#type: ::core::option::Option<membership::Type>,
 }
 /// Nested message and enum types in `Membership`.
 pub mod membership {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Type {
-        #[prost(message, tag = "4")]
-        Endpoint(super::MembershipEndpoint),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "4")]
+Endpoint(super::MembershipEndpoint),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MembershipEndpoint {
-    #[prost(message, optional, tag = "1")]
-    pub gke_cluster: ::core::option::Option<GkeCluster>,
-    #[prost(message, optional, tag = "2")]
-    pub kubernetes_metadata: ::core::option::Option<KubernetesMetadata>,
-    #[prost(message, optional, tag = "3")]
-    pub kubernetes_resource: ::core::option::Option<KubernetesResource>,
-    #[prost(bool, tag = "8")]
-    pub google_managed: bool,
+#[prost(message, optional, tag = "1")]
+pub gke_cluster: ::core::option::Option<GkeCluster>,
+#[prost(message, optional, tag = "2")]
+pub kubernetes_metadata: ::core::option::Option<KubernetesMetadata>,
+#[prost(message, optional, tag = "3")]
+pub kubernetes_resource: ::core::option::Option<KubernetesResource>,
+#[prost(bool, tag = "8")]
+pub google_managed: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KubernetesResource {
-    #[prost(string, tag = "1")]
-    pub membership_cr_manifest: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub membership_resources: ::prost::alloc::vec::Vec<ResourceManifest>,
-    #[prost(message, repeated, tag = "3")]
-    pub connect_resources: ::prost::alloc::vec::Vec<ResourceManifest>,
-    #[prost(message, optional, tag = "4")]
-    pub resource_options: ::core::option::Option<ResourceOptions>,
+#[prost(string, tag = "1")]
+pub membership_cr_manifest: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub membership_resources: ::prost::alloc::vec::Vec<ResourceManifest>,
+#[prost(message, repeated, tag = "3")]
+pub connect_resources: ::prost::alloc::vec::Vec<ResourceManifest>,
+#[prost(message, optional, tag = "4")]
+pub resource_options: ::core::option::Option<ResourceOptions>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceOptions {
-    #[prost(string, tag = "1")]
-    pub connect_version: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub v1beta1_crd: bool,
-    #[prost(string, tag = "3")]
-    pub k8s_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub connect_version: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub v1beta1_crd: bool,
+#[prost(string, tag = "3")]
+pub k8s_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ResourceManifest {
-    #[prost(string, tag = "1")]
-    pub manifest: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub cluster_scoped: bool,
+#[prost(string, tag = "1")]
+pub manifest: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub cluster_scoped: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GkeCluster {
-    #[prost(string, tag = "1")]
-    pub resource_link: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub cluster_missing: bool,
+#[prost(string, tag = "1")]
+pub resource_link: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub cluster_missing: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KubernetesMetadata {
-    #[prost(string, tag = "1")]
-    pub kubernetes_api_server_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub node_provider_id: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub node_count: i32,
-    #[prost(int32, tag = "4")]
-    pub vcpu_count: i32,
-    #[prost(int32, tag = "5")]
-    pub memory_mb: i32,
-    #[prost(message, optional, tag = "100")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub kubernetes_api_server_version: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub node_provider_id: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub node_count: i32,
+#[prost(int32, tag = "4")]
+pub vcpu_count: i32,
+#[prost(int32, tag = "5")]
+pub memory_mb: i32,
+#[prost(message, optional, tag = "100")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MonitoringConfig {
-    #[prost(string, tag = "1")]
-    pub project_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub location: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub cluster: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub kubernetes_metrics_prefix: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub cluster_hash: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub project_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub location: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub cluster: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub kubernetes_metrics_prefix: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub cluster_hash: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MembershipState {
-    #[prost(enumeration = "membership_state::Code", tag = "1")]
-    pub code: i32,
+#[prost(enumeration = "membership_state::Code", tag = "1")]
+pub code: i32,
 }
 /// Nested message and enum types in `MembershipState`.
 pub mod membership_state {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Code {
-        Unspecified = 0,
-        Creating = 1,
-        Ready = 2,
-        Deleting = 3,
-        Updating = 4,
-        ServiceUpdating = 5,
-    }
-    impl Code {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Code::Unspecified => "CODE_UNSPECIFIED",
-                Code::Creating => "CREATING",
-                Code::Ready => "READY",
-                Code::Deleting => "DELETING",
-                Code::Updating => "UPDATING",
-                Code::ServiceUpdating => "SERVICE_UPDATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "READY" => Some(Self::Ready),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                "SERVICE_UPDATING" => Some(Self::ServiceUpdating),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Code {
+Unspecified = 0,
+Creating = 1,
+Ready = 2,
+Deleting = 3,
+Updating = 4,
+ServiceUpdating = 5,
+}
+impl Code {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Code::Unspecified => "CODE_UNSPECIFIED",
+Code::Creating => "CREATING",
+Code::Ready => "READY",
+Code::Deleting => "DELETING",
+Code::Updating => "UPDATING",
+Code::ServiceUpdating => "SERVICE_UPDATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CODE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"READY" => Some(Self::Ready),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+"SERVICE_UPDATING" => Some(Self::ServiceUpdating),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Authority {
-    #[prost(string, tag = "1")]
-    pub issuer: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub workload_identity_pool: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub identity_provider: ::prost::alloc::string::String,
-    #[prost(bytes = "bytes", tag = "4")]
-    pub oidc_jwks: ::prost::bytes::Bytes,
+#[prost(string, tag = "1")]
+pub issuer: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub workload_identity_pool: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub identity_provider: ::prost::alloc::string::String,
+#[prost(bytes = "bytes", tag = "4")]
+pub oidc_jwks: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMembershipsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMembershipsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub resources: ::prost::alloc::vec::Vec<Membership>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub resources: ::prost::alloc::vec::Vec<Membership>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMembershipRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateMembershipRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub membership_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub resource: ::core::option::Option<Membership>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub membership_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub resource: ::core::option::Option<Membership>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteMembershipRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateMembershipRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "3")]
-    pub resource: ::core::option::Option<Membership>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "3")]
+pub resource: ::core::option::Option<Membership>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateConnectManifestRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub namespace: ::prost::alloc::string::String,
-    #[prost(bytes = "bytes", tag = "3")]
-    pub proxy: ::prost::bytes::Bytes,
-    #[prost(string, tag = "4")]
-    pub version: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub is_upgrade: bool,
-    #[prost(string, tag = "6")]
-    pub registry: ::prost::alloc::string::String,
-    #[prost(bytes = "bytes", tag = "7")]
-    pub image_pull_secret_content: ::prost::bytes::Bytes,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub namespace: ::prost::alloc::string::String,
+#[prost(bytes = "bytes", tag = "3")]
+pub proxy: ::prost::bytes::Bytes,
+#[prost(string, tag = "4")]
+pub version: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub is_upgrade: bool,
+#[prost(string, tag = "6")]
+pub registry: ::prost::alloc::string::String,
+#[prost(bytes = "bytes", tag = "7")]
+pub image_pull_secret_content: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenerateConnectManifestResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub manifest: ::prost::alloc::vec::Vec<ConnectAgentResource>,
+#[prost(message, repeated, tag = "1")]
+pub manifest: ::prost::alloc::vec::Vec<ConnectAgentResource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConnectAgentResource {
-    #[prost(message, optional, tag = "1")]
-    pub r#type: ::core::option::Option<TypeMeta>,
-    #[prost(string, tag = "2")]
-    pub manifest: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub r#type: ::core::option::Option<TypeMeta>,
+#[prost(string, tag = "2")]
+pub manifest: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TypeMeta {
-    #[prost(string, tag = "1")]
-    pub kind: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub api_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub kind: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub api_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFeaturesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFeaturesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub resources: ::prost::alloc::vec::Vec<Feature>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub resources: ::prost::alloc::vec::Vec<Feature>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetFeatureRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateFeatureRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub feature_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub resource: ::core::option::Option<Feature>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub feature_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub resource: ::core::option::Option<Feature>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteFeatureRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateFeatureRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "3")]
-    pub resource: ::core::option::Option<Feature>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "3")]
+pub resource: ::core::option::Option<Feature>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_detail: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub cancel_requested: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_detail: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub cancel_requested: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod gke_hub_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The GKE Hub service handles the registration of many Kubernetes clusters to
-    /// Google Cloud, and the management of multi-cluster features over those
-    /// clusters.
-    ///
-    /// The GKE Hub service operates on the following resources:
-    ///
-    /// * [Membership][google.cloud.gkehub.v1.Membership]
-    /// * [Feature][google.cloud.gkehub.v1.Feature]
-    ///
-    /// GKE Hub is currently available in the global region and all regions in
-    /// https://cloud.google.com/compute/docs/regions-zones. Feature is only
-    /// available in global region while membership is global region and all the
-    /// regions.
-    ///
-    /// **Membership management may be non-trivial:** it is recommended to use one
-    /// of the Google-provided client libraries or tools where possible when working
-    /// with Membership resources.
-    #[derive(Debug, Clone)]
-    pub struct GkeHubClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> GkeHubClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> GkeHubClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            GkeHubClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists Memberships in a given project and location.
-        pub async fn list_memberships(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListMembershipsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListMembershipsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/ListMemberships",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "ListMemberships"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Features in a given project and location.
-        pub async fn list_features(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListFeaturesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListFeaturesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/ListFeatures",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "ListFeatures"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the details of a Membership.
-        pub async fn get_membership(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetMembershipRequest>,
-        ) -> std::result::Result<tonic::Response<super::Membership>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/GetMembership",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "GetMembership"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single Feature.
-        pub async fn get_feature(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetFeatureRequest>,
-        ) -> std::result::Result<tonic::Response<super::Feature>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/GetFeature",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "GetFeature"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Membership.
-        ///
-        /// **This is currently only supported for GKE clusters on Google Cloud**.
-        /// To register other clusters, follow the instructions at
-        /// https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
-        pub async fn create_membership(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateMembershipRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/CreateMembership",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "CreateMembership"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Adds a new Feature.
-        pub async fn create_feature(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateFeatureRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/CreateFeature",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "CreateFeature"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Removes a Membership.
-        ///
-        /// **This is currently only supported for GKE clusters on Google Cloud**.
-        /// To unregister other clusters, follow the instructions at
-        /// https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
-        pub async fn delete_membership(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteMembershipRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/DeleteMembership",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "DeleteMembership"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Removes a Feature.
-        pub async fn delete_feature(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteFeatureRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/DeleteFeature",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "DeleteFeature"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an existing Membership.
-        pub async fn update_membership(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateMembershipRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/UpdateMembership",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "UpdateMembership"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an existing Feature.
-        pub async fn update_feature(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateFeatureRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/UpdateFeature",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "UpdateFeature"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Generates the manifest for deployment of the GKE connect agent.
-        ///
-        /// **This method is used internally by Google-provided libraries.**
-        /// Most clients should not need to call this method directly.
-        pub async fn generate_connect_manifest(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GenerateConnectManifestRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GenerateConnectManifestResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.gkehub.v1.GkeHub/GenerateConnectManifest",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.gkehub.v1.GkeHub",
-                        "GenerateConnectManifest",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The GKE Hub service handles the registration of many Kubernetes clusters to
+/// Google Cloud, and the management of multi-cluster features over those
+/// clusters.
+///
+/// The GKE Hub service operates on the following resources:
+///
+/// * [Membership][google.cloud.gkehub.v1.Membership]
+/// * [Feature][google.cloud.gkehub.v1.Feature]
+///
+/// GKE Hub is currently available in the global region and all regions in
+/// https://cloud.google.com/compute/docs/regions-zones. Feature is only
+/// available in global region while membership is global region and all the
+/// regions.
+///
+/// **Membership management may be non-trivial:** it is recommended to use one
+/// of the Google-provided client libraries or tools where possible when working
+/// with Membership resources.
+#[derive(Debug, Clone)]
+pub struct GkeHubClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> GkeHubClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> GkeHubClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+GkeHubClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists Memberships in a given project and location.
+pub async fn list_memberships(&mut self, request: impl tonic::IntoRequest<super::ListMembershipsRequest>) -> std::result::Result<tonic::Response<super::ListMembershipsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/ListMemberships");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "ListMemberships"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Features in a given project and location.
+pub async fn list_features(&mut self, request: impl tonic::IntoRequest<super::ListFeaturesRequest>) -> std::result::Result<tonic::Response<super::ListFeaturesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/ListFeatures");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "ListFeatures"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the details of a Membership.
+pub async fn get_membership(&mut self, request: impl tonic::IntoRequest<super::GetMembershipRequest>) -> std::result::Result<tonic::Response<super::Membership>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/GetMembership");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "GetMembership"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single Feature.
+pub async fn get_feature(&mut self, request: impl tonic::IntoRequest<super::GetFeatureRequest>) -> std::result::Result<tonic::Response<super::Feature>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/GetFeature");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "GetFeature"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Membership.
+///
+/// **This is currently only supported for GKE clusters on Google Cloud**.
+/// To register other clusters, follow the instructions at
+/// https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
+pub async fn create_membership(&mut self, request: impl tonic::IntoRequest<super::CreateMembershipRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/CreateMembership");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "CreateMembership"));
+self.inner.unary(req, path, codec).await
+}
+/// Adds a new Feature.
+pub async fn create_feature(&mut self, request: impl tonic::IntoRequest<super::CreateFeatureRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/CreateFeature");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "CreateFeature"));
+self.inner.unary(req, path, codec).await
+}
+/// Removes a Membership.
+///
+/// **This is currently only supported for GKE clusters on Google Cloud**.
+/// To unregister other clusters, follow the instructions at
+/// https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
+pub async fn delete_membership(&mut self, request: impl tonic::IntoRequest<super::DeleteMembershipRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/DeleteMembership");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "DeleteMembership"));
+self.inner.unary(req, path, codec).await
+}
+/// Removes a Feature.
+pub async fn delete_feature(&mut self, request: impl tonic::IntoRequest<super::DeleteFeatureRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/DeleteFeature");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "DeleteFeature"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an existing Membership.
+pub async fn update_membership(&mut self, request: impl tonic::IntoRequest<super::UpdateMembershipRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/UpdateMembership");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "UpdateMembership"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an existing Feature.
+pub async fn update_feature(&mut self, request: impl tonic::IntoRequest<super::UpdateFeatureRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/UpdateFeature");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "UpdateFeature"));
+self.inner.unary(req, path, codec).await
+}
+/// Generates the manifest for deployment of the GKE connect agent.
+///
+/// **This method is used internally by Google-provided libraries.**
+/// Most clients should not need to call this method directly.
+pub async fn generate_connect_manifest(&mut self, request: impl tonic::IntoRequest<super::GenerateConnectManifestRequest>) -> std::result::Result<tonic::Response<super::GenerateConnectManifestResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.gkehub.v1.GkeHub/GenerateConnectManifest");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.gkehub.v1.GkeHub", "GenerateConnectManifest"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

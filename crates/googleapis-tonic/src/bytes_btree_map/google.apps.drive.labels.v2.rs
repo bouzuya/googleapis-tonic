@@ -2,2359 +2,1827 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Lifecycle {
-    #[prost(enumeration = "lifecycle::State", tag = "1")]
-    pub state: i32,
-    #[prost(bool, tag = "2")]
-    pub has_unpublished_changes: bool,
-    #[prost(message, optional, tag = "3")]
-    pub disabled_policy: ::core::option::Option<lifecycle::DisabledPolicy>,
+#[prost(enumeration = "lifecycle::State", tag = "1")]
+pub state: i32,
+#[prost(bool, tag = "2")]
+pub has_unpublished_changes: bool,
+#[prost(message, optional, tag = "3")]
+pub disabled_policy: ::core::option::Option<lifecycle::DisabledPolicy>,
 }
 /// Nested message and enum types in `Lifecycle`.
 pub mod lifecycle {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct DisabledPolicy {
-        #[prost(bool, tag = "1")]
-        pub hide_in_search: bool,
-        #[prost(bool, tag = "2")]
-        pub show_in_apply: bool,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        UnpublishedDraft = 1,
-        Published = 2,
-        Disabled = 3,
-        Deleted = 4,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::UnpublishedDraft => "UNPUBLISHED_DRAFT",
-                State::Published => "PUBLISHED",
-                State::Disabled => "DISABLED",
-                State::Deleted => "DELETED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "UNPUBLISHED_DRAFT" => Some(Self::UnpublishedDraft),
-                "PUBLISHED" => Some(Self::Published),
-                "DISABLED" => Some(Self::Disabled),
-                "DELETED" => Some(Self::Deleted),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DisabledPolicy {
+#[prost(bool, tag = "1")]
+pub hide_in_search: bool,
+#[prost(bool, tag = "2")]
+pub show_in_apply: bool,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+UnpublishedDraft = 1,
+Published = 2,
+Disabled = 3,
+Deleted = 4,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::UnpublishedDraft => "UNPUBLISHED_DRAFT",
+State::Published => "PUBLISHED",
+State::Disabled => "DISABLED",
+State::Deleted => "DELETED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"UNPUBLISHED_DRAFT" => Some(Self::UnpublishedDraft),
+"PUBLISHED" => Some(Self::Published),
+"DISABLED" => Some(Self::Disabled),
+"DELETED" => Some(Self::Deleted),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserInfo {
-    #[prost(string, tag = "1")]
-    pub person: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub person: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BadgeConfig {
-    #[prost(message, optional, tag = "1")]
-    pub color: ::core::option::Option<super::super::super::super::r#type::Color>,
-    #[prost(int64, tag = "2")]
-    pub priority_override: i64,
+#[prost(message, optional, tag = "1")]
+pub color: ::core::option::Option<super::super::super::super::r#type::Color>,
+#[prost(int64, tag = "2")]
+pub priority_override: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BadgeColors {
-    #[prost(message, optional, tag = "1")]
-    pub background_color: ::core::option::Option<
-        super::super::super::super::r#type::Color,
-    >,
-    #[prost(message, optional, tag = "2")]
-    pub foreground_color: ::core::option::Option<
-        super::super::super::super::r#type::Color,
-    >,
-    #[prost(message, optional, tag = "3")]
-    pub solo_color: ::core::option::Option<super::super::super::super::r#type::Color>,
+#[prost(message, optional, tag = "1")]
+pub background_color: ::core::option::Option<super::super::super::super::r#type::Color>,
+#[prost(message, optional, tag = "2")]
+pub foreground_color: ::core::option::Option<super::super::super::super::r#type::Color>,
+#[prost(message, optional, tag = "3")]
+pub solo_color: ::core::option::Option<super::super::super::super::r#type::Color>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LockStatus {
-    #[prost(bool, tag = "1")]
-    pub locked: bool,
+#[prost(bool, tag = "1")]
+pub locked: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LabelLock {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub field_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub choice_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub creator: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "6")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub capabilities: ::core::option::Option<label_lock::Capabilities>,
-    #[prost(enumeration = "label_lock::State", tag = "9")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub field_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub choice_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub creator: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "6")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub capabilities: ::core::option::Option<label_lock::Capabilities>,
+#[prost(enumeration = "label_lock::State", tag = "9")]
+pub state: i32,
 }
 /// Nested message and enum types in `LabelLock`.
 pub mod label_lock {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct Capabilities {
-        #[prost(bool, tag = "1")]
-        pub can_view_policy: bool,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Deleting = 2,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "DELETING" => Some(Self::Deleting),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Capabilities {
+#[prost(bool, tag = "1")]
+pub can_view_policy: bool,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Deleting = 2,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Deleting => "DELETING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"DELETING" => Some(Self::Deleting),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ExceptionDetail {
-    #[prost(enumeration = "ExceptionType", tag = "1")]
-    pub error_type: i32,
+#[prost(enumeration = "ExceptionType", tag = "1")]
+pub error_type: i32,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ExceptionType {
-    Unspecified = 0,
-    FieldRequired = 1,
-    MetamodelAlreadyExists = 2,
-    MetamodelNotFound = 3,
-    IllegalMetamodelStateTransition = 4,
-    InvalidMetamodelDeprecationPolicy = 5,
-    MetamodelDeletionDeniedUntil = 6,
-    InvalidField = 7,
-    MetamodelPreconditionFailed = 8,
-    DuplicateFieldKey = 9,
-    IllegalFieldRemoval = 10,
-    IllegalFieldOptionsForField = 11,
-    UnsupportedChangeToPublishedMetamodel = 12,
-    IllegalMetamodelStateTransitionInUpdate = 13,
-    PageTokenExpired = 14,
-    NotAuthorized = 15,
-    IllegalFieldStateTransition = 16,
-    IllegalChoiceSetOptionStateTransition = 17,
-    InvalidChoiceSetOptions = 18,
-    InvalidFieldKey = 19,
-    InvalidFieldPropertyRange = 20,
-    InvalidLocalizedString = 21,
-    IllegalChangeToPublishedField = 22,
-    InvalidFieldUpdateNotInclusive = 23,
-    InvalidChoiceSetState = 24,
-    InternalServerError = 500,
+Unspecified = 0,
+FieldRequired = 1,
+MetamodelAlreadyExists = 2,
+MetamodelNotFound = 3,
+IllegalMetamodelStateTransition = 4,
+InvalidMetamodelDeprecationPolicy = 5,
+MetamodelDeletionDeniedUntil = 6,
+InvalidField = 7,
+MetamodelPreconditionFailed = 8,
+DuplicateFieldKey = 9,
+IllegalFieldRemoval = 10,
+IllegalFieldOptionsForField = 11,
+UnsupportedChangeToPublishedMetamodel = 12,
+IllegalMetamodelStateTransitionInUpdate = 13,
+PageTokenExpired = 14,
+NotAuthorized = 15,
+IllegalFieldStateTransition = 16,
+IllegalChoiceSetOptionStateTransition = 17,
+InvalidChoiceSetOptions = 18,
+InvalidFieldKey = 19,
+InvalidFieldPropertyRange = 20,
+InvalidLocalizedString = 21,
+IllegalChangeToPublishedField = 22,
+InvalidFieldUpdateNotInclusive = 23,
+InvalidChoiceSetState = 24,
+InternalServerError = 500,
 }
 impl ExceptionType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ExceptionType::Unspecified => "EXCEPTION_TYPE_UNSPECIFIED",
-            ExceptionType::FieldRequired => "FIELD_REQUIRED",
-            ExceptionType::MetamodelAlreadyExists => "METAMODEL_ALREADY_EXISTS",
-            ExceptionType::MetamodelNotFound => "METAMODEL_NOT_FOUND",
-            ExceptionType::IllegalMetamodelStateTransition => {
-                "ILLEGAL_METAMODEL_STATE_TRANSITION"
-            }
-            ExceptionType::InvalidMetamodelDeprecationPolicy => {
-                "INVALID_METAMODEL_DEPRECATION_POLICY"
-            }
-            ExceptionType::MetamodelDeletionDeniedUntil => {
-                "METAMODEL_DELETION_DENIED_UNTIL"
-            }
-            ExceptionType::InvalidField => "INVALID_FIELD",
-            ExceptionType::MetamodelPreconditionFailed => "METAMODEL_PRECONDITION_FAILED",
-            ExceptionType::DuplicateFieldKey => "DUPLICATE_FIELD_KEY",
-            ExceptionType::IllegalFieldRemoval => "ILLEGAL_FIELD_REMOVAL",
-            ExceptionType::IllegalFieldOptionsForField => {
-                "ILLEGAL_FIELD_OPTIONS_FOR_FIELD"
-            }
-            ExceptionType::UnsupportedChangeToPublishedMetamodel => {
-                "UNSUPPORTED_CHANGE_TO_PUBLISHED_METAMODEL"
-            }
-            ExceptionType::IllegalMetamodelStateTransitionInUpdate => {
-                "ILLEGAL_METAMODEL_STATE_TRANSITION_IN_UPDATE"
-            }
-            ExceptionType::PageTokenExpired => "PAGE_TOKEN_EXPIRED",
-            ExceptionType::NotAuthorized => "NOT_AUTHORIZED",
-            ExceptionType::IllegalFieldStateTransition => {
-                "ILLEGAL_FIELD_STATE_TRANSITION"
-            }
-            ExceptionType::IllegalChoiceSetOptionStateTransition => {
-                "ILLEGAL_CHOICE_SET_OPTION_STATE_TRANSITION"
-            }
-            ExceptionType::InvalidChoiceSetOptions => "INVALID_CHOICE_SET_OPTIONS",
-            ExceptionType::InvalidFieldKey => "INVALID_FIELD_KEY",
-            ExceptionType::InvalidFieldPropertyRange => "INVALID_FIELD_PROPERTY_RANGE",
-            ExceptionType::InvalidLocalizedString => "INVALID_LOCALIZED_STRING",
-            ExceptionType::IllegalChangeToPublishedField => {
-                "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD"
-            }
-            ExceptionType::InvalidFieldUpdateNotInclusive => {
-                "INVALID_FIELD_UPDATE_NOT_INCLUSIVE"
-            }
-            ExceptionType::InvalidChoiceSetState => "INVALID_CHOICE_SET_STATE",
-            ExceptionType::InternalServerError => "INTERNAL_SERVER_ERROR",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "EXCEPTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "FIELD_REQUIRED" => Some(Self::FieldRequired),
-            "METAMODEL_ALREADY_EXISTS" => Some(Self::MetamodelAlreadyExists),
-            "METAMODEL_NOT_FOUND" => Some(Self::MetamodelNotFound),
-            "ILLEGAL_METAMODEL_STATE_TRANSITION" => {
-                Some(Self::IllegalMetamodelStateTransition)
-            }
-            "INVALID_METAMODEL_DEPRECATION_POLICY" => {
-                Some(Self::InvalidMetamodelDeprecationPolicy)
-            }
-            "METAMODEL_DELETION_DENIED_UNTIL" => Some(Self::MetamodelDeletionDeniedUntil),
-            "INVALID_FIELD" => Some(Self::InvalidField),
-            "METAMODEL_PRECONDITION_FAILED" => Some(Self::MetamodelPreconditionFailed),
-            "DUPLICATE_FIELD_KEY" => Some(Self::DuplicateFieldKey),
-            "ILLEGAL_FIELD_REMOVAL" => Some(Self::IllegalFieldRemoval),
-            "ILLEGAL_FIELD_OPTIONS_FOR_FIELD" => Some(Self::IllegalFieldOptionsForField),
-            "UNSUPPORTED_CHANGE_TO_PUBLISHED_METAMODEL" => {
-                Some(Self::UnsupportedChangeToPublishedMetamodel)
-            }
-            "ILLEGAL_METAMODEL_STATE_TRANSITION_IN_UPDATE" => {
-                Some(Self::IllegalMetamodelStateTransitionInUpdate)
-            }
-            "PAGE_TOKEN_EXPIRED" => Some(Self::PageTokenExpired),
-            "NOT_AUTHORIZED" => Some(Self::NotAuthorized),
-            "ILLEGAL_FIELD_STATE_TRANSITION" => Some(Self::IllegalFieldStateTransition),
-            "ILLEGAL_CHOICE_SET_OPTION_STATE_TRANSITION" => {
-                Some(Self::IllegalChoiceSetOptionStateTransition)
-            }
-            "INVALID_CHOICE_SET_OPTIONS" => Some(Self::InvalidChoiceSetOptions),
-            "INVALID_FIELD_KEY" => Some(Self::InvalidFieldKey),
-            "INVALID_FIELD_PROPERTY_RANGE" => Some(Self::InvalidFieldPropertyRange),
-            "INVALID_LOCALIZED_STRING" => Some(Self::InvalidLocalizedString),
-            "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD" => {
-                Some(Self::IllegalChangeToPublishedField)
-            }
-            "INVALID_FIELD_UPDATE_NOT_INCLUSIVE" => {
-                Some(Self::InvalidFieldUpdateNotInclusive)
-            }
-            "INVALID_CHOICE_SET_STATE" => Some(Self::InvalidChoiceSetState),
-            "INTERNAL_SERVER_ERROR" => Some(Self::InternalServerError),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ExceptionType::Unspecified => "EXCEPTION_TYPE_UNSPECIFIED",
+ExceptionType::FieldRequired => "FIELD_REQUIRED",
+ExceptionType::MetamodelAlreadyExists => "METAMODEL_ALREADY_EXISTS",
+ExceptionType::MetamodelNotFound => "METAMODEL_NOT_FOUND",
+ExceptionType::IllegalMetamodelStateTransition => "ILLEGAL_METAMODEL_STATE_TRANSITION",
+ExceptionType::InvalidMetamodelDeprecationPolicy => "INVALID_METAMODEL_DEPRECATION_POLICY",
+ExceptionType::MetamodelDeletionDeniedUntil => "METAMODEL_DELETION_DENIED_UNTIL",
+ExceptionType::InvalidField => "INVALID_FIELD",
+ExceptionType::MetamodelPreconditionFailed => "METAMODEL_PRECONDITION_FAILED",
+ExceptionType::DuplicateFieldKey => "DUPLICATE_FIELD_KEY",
+ExceptionType::IllegalFieldRemoval => "ILLEGAL_FIELD_REMOVAL",
+ExceptionType::IllegalFieldOptionsForField => "ILLEGAL_FIELD_OPTIONS_FOR_FIELD",
+ExceptionType::UnsupportedChangeToPublishedMetamodel => "UNSUPPORTED_CHANGE_TO_PUBLISHED_METAMODEL",
+ExceptionType::IllegalMetamodelStateTransitionInUpdate => "ILLEGAL_METAMODEL_STATE_TRANSITION_IN_UPDATE",
+ExceptionType::PageTokenExpired => "PAGE_TOKEN_EXPIRED",
+ExceptionType::NotAuthorized => "NOT_AUTHORIZED",
+ExceptionType::IllegalFieldStateTransition => "ILLEGAL_FIELD_STATE_TRANSITION",
+ExceptionType::IllegalChoiceSetOptionStateTransition => "ILLEGAL_CHOICE_SET_OPTION_STATE_TRANSITION",
+ExceptionType::InvalidChoiceSetOptions => "INVALID_CHOICE_SET_OPTIONS",
+ExceptionType::InvalidFieldKey => "INVALID_FIELD_KEY",
+ExceptionType::InvalidFieldPropertyRange => "INVALID_FIELD_PROPERTY_RANGE",
+ExceptionType::InvalidLocalizedString => "INVALID_LOCALIZED_STRING",
+ExceptionType::IllegalChangeToPublishedField => "ILLEGAL_CHANGE_TO_PUBLISHED_FIELD",
+ExceptionType::InvalidFieldUpdateNotInclusive => "INVALID_FIELD_UPDATE_NOT_INCLUSIVE",
+ExceptionType::InvalidChoiceSetState => "INVALID_CHOICE_SET_STATE",
+ExceptionType::InternalServerError => "INTERNAL_SERVER_ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EXCEPTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"FIELD_REQUIRED" => Some(Self::FieldRequired),
+"METAMODEL_ALREADY_EXISTS" => Some(Self::MetamodelAlreadyExists),
+"METAMODEL_NOT_FOUND" => Some(Self::MetamodelNotFound),
+"ILLEGAL_METAMODEL_STATE_TRANSITION" => Some(Self::IllegalMetamodelStateTransition),
+"INVALID_METAMODEL_DEPRECATION_POLICY" => Some(Self::InvalidMetamodelDeprecationPolicy),
+"METAMODEL_DELETION_DENIED_UNTIL" => Some(Self::MetamodelDeletionDeniedUntil),
+"INVALID_FIELD" => Some(Self::InvalidField),
+"METAMODEL_PRECONDITION_FAILED" => Some(Self::MetamodelPreconditionFailed),
+"DUPLICATE_FIELD_KEY" => Some(Self::DuplicateFieldKey),
+"ILLEGAL_FIELD_REMOVAL" => Some(Self::IllegalFieldRemoval),
+"ILLEGAL_FIELD_OPTIONS_FOR_FIELD" => Some(Self::IllegalFieldOptionsForField),
+"UNSUPPORTED_CHANGE_TO_PUBLISHED_METAMODEL" => Some(Self::UnsupportedChangeToPublishedMetamodel),
+"ILLEGAL_METAMODEL_STATE_TRANSITION_IN_UPDATE" => Some(Self::IllegalMetamodelStateTransitionInUpdate),
+"PAGE_TOKEN_EXPIRED" => Some(Self::PageTokenExpired),
+"NOT_AUTHORIZED" => Some(Self::NotAuthorized),
+"ILLEGAL_FIELD_STATE_TRANSITION" => Some(Self::IllegalFieldStateTransition),
+"ILLEGAL_CHOICE_SET_OPTION_STATE_TRANSITION" => Some(Self::IllegalChoiceSetOptionStateTransition),
+"INVALID_CHOICE_SET_OPTIONS" => Some(Self::InvalidChoiceSetOptions),
+"INVALID_FIELD_KEY" => Some(Self::InvalidFieldKey),
+"INVALID_FIELD_PROPERTY_RANGE" => Some(Self::InvalidFieldPropertyRange),
+"INVALID_LOCALIZED_STRING" => Some(Self::InvalidLocalizedString),
+"ILLEGAL_CHANGE_TO_PUBLISHED_FIELD" => Some(Self::IllegalChangeToPublishedField),
+"INVALID_FIELD_UPDATE_NOT_INCLUSIVE" => Some(Self::InvalidFieldUpdateNotInclusive),
+"INVALID_CHOICE_SET_STATE" => Some(Self::InvalidChoiceSetState),
+"INTERNAL_SERVER_ERROR" => Some(Self::InternalServerError),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LabelLimits {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub max_title_length: i32,
-    #[prost(int32, tag = "3")]
-    pub max_description_length: i32,
-    #[prost(int32, tag = "4")]
-    pub max_fields: i32,
-    #[prost(int32, tag = "5")]
-    pub max_deleted_fields: i32,
-    #[prost(int32, tag = "6")]
-    pub max_draft_revisions: i32,
-    #[prost(message, optional, tag = "7")]
-    pub field_limits: ::core::option::Option<FieldLimits>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub max_title_length: i32,
+#[prost(int32, tag = "3")]
+pub max_description_length: i32,
+#[prost(int32, tag = "4")]
+pub max_fields: i32,
+#[prost(int32, tag = "5")]
+pub max_deleted_fields: i32,
+#[prost(int32, tag = "6")]
+pub max_draft_revisions: i32,
+#[prost(message, optional, tag = "7")]
+pub field_limits: ::core::option::Option<FieldLimits>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FieldLimits {
-    #[prost(int32, tag = "1")]
-    pub max_id_length: i32,
-    #[prost(int32, tag = "2")]
-    pub max_display_name_length: i32,
-    #[prost(int32, tag = "3")]
-    pub max_description_length: i32,
-    #[prost(message, optional, tag = "4")]
-    pub text_limits: ::core::option::Option<TextLimits>,
-    #[prost(message, optional, tag = "5")]
-    pub long_text_limits: ::core::option::Option<LongTextLimits>,
-    #[prost(message, optional, tag = "6")]
-    pub integer_limits: ::core::option::Option<IntegerLimits>,
-    #[prost(message, optional, tag = "7")]
-    pub date_limits: ::core::option::Option<DateLimits>,
-    #[prost(message, optional, tag = "8")]
-    pub user_limits: ::core::option::Option<UserLimits>,
-    #[prost(message, optional, tag = "9")]
-    pub selection_limits: ::core::option::Option<SelectionLimits>,
+#[prost(int32, tag = "1")]
+pub max_id_length: i32,
+#[prost(int32, tag = "2")]
+pub max_display_name_length: i32,
+#[prost(int32, tag = "3")]
+pub max_description_length: i32,
+#[prost(message, optional, tag = "4")]
+pub text_limits: ::core::option::Option<TextLimits>,
+#[prost(message, optional, tag = "5")]
+pub long_text_limits: ::core::option::Option<LongTextLimits>,
+#[prost(message, optional, tag = "6")]
+pub integer_limits: ::core::option::Option<IntegerLimits>,
+#[prost(message, optional, tag = "7")]
+pub date_limits: ::core::option::Option<DateLimits>,
+#[prost(message, optional, tag = "8")]
+pub user_limits: ::core::option::Option<UserLimits>,
+#[prost(message, optional, tag = "9")]
+pub selection_limits: ::core::option::Option<SelectionLimits>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ListLimits {
-    #[prost(int32, tag = "1")]
-    pub max_entries: i32,
+#[prost(int32, tag = "1")]
+pub max_entries: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TextLimits {
-    #[prost(int32, tag = "1")]
-    pub min_length: i32,
-    #[prost(int32, tag = "2")]
-    pub max_length: i32,
+#[prost(int32, tag = "1")]
+pub min_length: i32,
+#[prost(int32, tag = "2")]
+pub max_length: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LongTextLimits {
-    #[prost(int32, tag = "1")]
-    pub min_length: i32,
-    #[prost(int32, tag = "2")]
-    pub max_length: i32,
+#[prost(int32, tag = "1")]
+pub min_length: i32,
+#[prost(int32, tag = "2")]
+pub max_length: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct IntegerLimits {
-    #[prost(int64, tag = "1")]
-    pub min_value: i64,
-    #[prost(int64, tag = "2")]
-    pub max_value: i64,
+#[prost(int64, tag = "1")]
+pub min_value: i64,
+#[prost(int64, tag = "2")]
+pub max_value: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DateLimits {
-    #[prost(message, optional, tag = "1")]
-    pub min_value: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(message, optional, tag = "2")]
-    pub max_value: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(message, optional, tag = "1")]
+pub min_value: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(message, optional, tag = "2")]
+pub max_value: ::core::option::Option<super::super::super::super::r#type::Date>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SelectionLimits {
-    #[prost(message, optional, tag = "1")]
-    pub list_limits: ::core::option::Option<ListLimits>,
-    #[prost(int32, tag = "2")]
-    pub max_id_length: i32,
-    #[prost(int32, tag = "3")]
-    pub max_display_name_length: i32,
-    #[prost(int32, tag = "4")]
-    pub max_choices: i32,
-    #[prost(int32, tag = "5")]
-    pub max_deleted_choices: i32,
+#[prost(message, optional, tag = "1")]
+pub list_limits: ::core::option::Option<ListLimits>,
+#[prost(int32, tag = "2")]
+pub max_id_length: i32,
+#[prost(int32, tag = "3")]
+pub max_display_name_length: i32,
+#[prost(int32, tag = "4")]
+pub max_choices: i32,
+#[prost(int32, tag = "5")]
+pub max_deleted_choices: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UserLimits {
-    #[prost(message, optional, tag = "1")]
-    pub list_limits: ::core::option::Option<ListLimits>,
+#[prost(message, optional, tag = "1")]
+pub list_limits: ::core::option::Option<ListLimits>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Field {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub query_key: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub properties: ::core::option::Option<field::Properties>,
-    #[prost(message, optional, tag = "4")]
-    pub lifecycle: ::core::option::Option<Lifecycle>,
-    #[prost(message, optional, tag = "5")]
-    pub display_hints: ::core::option::Option<field::DisplayHints>,
-    #[prost(message, optional, tag = "6")]
-    pub schema_capabilities: ::core::option::Option<field::SchemaCapabilities>,
-    #[prost(message, optional, tag = "7")]
-    pub applied_capabilities: ::core::option::Option<field::AppliedCapabilities>,
-    #[prost(message, optional, tag = "8")]
-    pub creator: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "9")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "10")]
-    pub updater: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "11")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "12")]
-    pub publisher: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "13")]
-    pub disabler: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "14")]
-    pub disable_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "15")]
-    pub lock_status: ::core::option::Option<LockStatus>,
-    #[prost(oneof = "field::Type", tags = "16, 18, 19, 20, 21")]
-    pub r#type: ::core::option::Option<field::Type>,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub query_key: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub properties: ::core::option::Option<field::Properties>,
+#[prost(message, optional, tag = "4")]
+pub lifecycle: ::core::option::Option<Lifecycle>,
+#[prost(message, optional, tag = "5")]
+pub display_hints: ::core::option::Option<field::DisplayHints>,
+#[prost(message, optional, tag = "6")]
+pub schema_capabilities: ::core::option::Option<field::SchemaCapabilities>,
+#[prost(message, optional, tag = "7")]
+pub applied_capabilities: ::core::option::Option<field::AppliedCapabilities>,
+#[prost(message, optional, tag = "8")]
+pub creator: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "9")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub updater: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "11")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "12")]
+pub publisher: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "13")]
+pub disabler: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "14")]
+pub disable_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "15")]
+pub lock_status: ::core::option::Option<LockStatus>,
+#[prost(oneof = "field::Type", tags = "16, 18, 19, 20, 21")]
+pub r#type: ::core::option::Option<field::Type>,
 }
 /// Nested message and enum types in `Field`.
 pub mod field {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Properties {
-        #[prost(string, tag = "1")]
-        pub display_name: ::prost::alloc::string::String,
-        #[prost(bool, tag = "2")]
-        pub required: bool,
-        #[prost(string, tag = "3")]
-        pub insert_before_field: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct DisplayHints {
-        #[prost(bool, tag = "1")]
-        pub required: bool,
-        #[prost(bool, tag = "2")]
-        pub disabled: bool,
-        #[prost(bool, tag = "3")]
-        pub hidden_in_search: bool,
-        #[prost(bool, tag = "4")]
-        pub shown_in_apply: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SchemaCapabilities {
-        #[prost(bool, tag = "1")]
-        pub can_update: bool,
-        #[prost(bool, tag = "2")]
-        pub can_delete: bool,
-        #[prost(bool, tag = "3")]
-        pub can_disable: bool,
-        #[prost(bool, tag = "4")]
-        pub can_enable: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct AppliedCapabilities {
-        #[prost(bool, tag = "1")]
-        pub can_read: bool,
-        #[prost(bool, tag = "2")]
-        pub can_search: bool,
-        #[prost(bool, tag = "3")]
-        pub can_write: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ListOptions {
-        #[prost(int32, tag = "1")]
-        pub max_entries: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct TextOptions {
-        #[prost(int32, tag = "1")]
-        pub min_length: i32,
-        #[prost(int32, tag = "2")]
-        pub max_length: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct IntegerOptions {
-        #[prost(int64, tag = "1")]
-        pub min_value: i64,
-        #[prost(int64, tag = "2")]
-        pub max_value: i64,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DateOptions {
-        #[prost(enumeration = "date_options::DateFormat", tag = "1")]
-        pub date_format_type: i32,
-        #[prost(string, tag = "2")]
-        pub date_format: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "3")]
-        pub min_value: ::core::option::Option<
-            super::super::super::super::super::r#type::Date,
-        >,
-        #[prost(message, optional, tag = "4")]
-        pub max_value: ::core::option::Option<
-            super::super::super::super::super::r#type::Date,
-        >,
-    }
-    /// Nested message and enum types in `DateOptions`.
-    pub mod date_options {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum DateFormat {
-            Unspecified = 0,
-            LongDate = 1,
-            ShortDate = 2,
-        }
-        impl DateFormat {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    DateFormat::Unspecified => "DATE_FORMAT_UNSPECIFIED",
-                    DateFormat::LongDate => "LONG_DATE",
-                    DateFormat::ShortDate => "SHORT_DATE",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "DATE_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-                    "LONG_DATE" => Some(Self::LongDate),
-                    "SHORT_DATE" => Some(Self::ShortDate),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SelectionOptions {
-        #[prost(message, optional, tag = "1")]
-        pub list_options: ::core::option::Option<ListOptions>,
-        #[prost(message, repeated, tag = "2")]
-        pub choices: ::prost::alloc::vec::Vec<selection_options::Choice>,
-    }
-    /// Nested message and enum types in `SelectionOptions`.
-    pub mod selection_options {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Choice {
-            #[prost(string, tag = "1")]
-            pub id: ::prost::alloc::string::String,
-            #[prost(message, optional, tag = "2")]
-            pub properties: ::core::option::Option<choice::Properties>,
-            #[prost(message, optional, tag = "3")]
-            pub lifecycle: ::core::option::Option<super::super::Lifecycle>,
-            #[prost(message, optional, tag = "4")]
-            pub display_hints: ::core::option::Option<choice::DisplayHints>,
-            #[prost(message, optional, tag = "5")]
-            pub schema_capabilities: ::core::option::Option<choice::SchemaCapabilities>,
-            #[prost(message, optional, tag = "6")]
-            pub applied_capabilities: ::core::option::Option<
-                choice::AppliedCapabilities,
-            >,
-            #[prost(message, optional, tag = "7")]
-            pub creator: ::core::option::Option<super::super::UserInfo>,
-            #[prost(message, optional, tag = "8")]
-            pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-            #[prost(message, optional, tag = "9")]
-            pub updater: ::core::option::Option<super::super::UserInfo>,
-            #[prost(message, optional, tag = "10")]
-            pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-            #[prost(message, optional, tag = "11")]
-            pub publisher: ::core::option::Option<super::super::UserInfo>,
-            #[prost(message, optional, tag = "12")]
-            pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
-            #[prost(message, optional, tag = "13")]
-            pub disabler: ::core::option::Option<super::super::UserInfo>,
-            #[prost(message, optional, tag = "14")]
-            pub disable_time: ::core::option::Option<::prost_types::Timestamp>,
-            #[prost(message, optional, tag = "15")]
-            pub lock_status: ::core::option::Option<super::super::LockStatus>,
-        }
-        /// Nested message and enum types in `Choice`.
-        pub mod choice {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct Properties {
-                #[prost(string, tag = "1")]
-                pub display_name: ::prost::alloc::string::String,
-                #[prost(string, tag = "2")]
-                pub description: ::prost::alloc::string::String,
-                #[prost(message, optional, tag = "3")]
-                pub badge_config: ::core::option::Option<
-                    super::super::super::BadgeConfig,
-                >,
-                #[prost(string, tag = "4")]
-                pub insert_before_choice: ::prost::alloc::string::String,
-            }
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-            pub struct DisplayHints {
-                #[prost(bool, tag = "1")]
-                pub disabled: bool,
-                #[prost(bool, tag = "2")]
-                pub hidden_in_search: bool,
-                #[prost(bool, tag = "3")]
-                pub shown_in_apply: bool,
-                #[prost(message, optional, tag = "4")]
-                pub badge_colors: ::core::option::Option<
-                    super::super::super::BadgeColors,
-                >,
-                #[prost(message, optional, tag = "5")]
-                pub dark_badge_colors: ::core::option::Option<
-                    super::super::super::BadgeColors,
-                >,
-                #[prost(int64, tag = "6")]
-                pub badge_priority: i64,
-            }
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-            pub struct SchemaCapabilities {
-                #[prost(bool, tag = "1")]
-                pub can_update: bool,
-                #[prost(bool, tag = "2")]
-                pub can_delete: bool,
-                #[prost(bool, tag = "3")]
-                pub can_disable: bool,
-                #[prost(bool, tag = "4")]
-                pub can_enable: bool,
-            }
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-            pub struct AppliedCapabilities {
-                #[prost(bool, tag = "1")]
-                pub can_read: bool,
-                #[prost(bool, tag = "2")]
-                pub can_search: bool,
-                #[prost(bool, tag = "3")]
-                pub can_select: bool,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct UserOptions {
-        #[prost(message, optional, tag = "1")]
-        pub list_options: ::core::option::Option<ListOptions>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Type {
-        #[prost(message, tag = "16")]
-        TextOptions(TextOptions),
-        #[prost(message, tag = "18")]
-        IntegerOptions(IntegerOptions),
-        #[prost(message, tag = "19")]
-        DateOptions(DateOptions),
-        #[prost(message, tag = "20")]
-        SelectionOptions(SelectionOptions),
-        #[prost(message, tag = "21")]
-        UserOptions(UserOptions),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Properties {
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub required: bool,
+#[prost(string, tag = "3")]
+pub insert_before_field: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DisplayHints {
+#[prost(bool, tag = "1")]
+pub required: bool,
+#[prost(bool, tag = "2")]
+pub disabled: bool,
+#[prost(bool, tag = "3")]
+pub hidden_in_search: bool,
+#[prost(bool, tag = "4")]
+pub shown_in_apply: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SchemaCapabilities {
+#[prost(bool, tag = "1")]
+pub can_update: bool,
+#[prost(bool, tag = "2")]
+pub can_delete: bool,
+#[prost(bool, tag = "3")]
+pub can_disable: bool,
+#[prost(bool, tag = "4")]
+pub can_enable: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AppliedCapabilities {
+#[prost(bool, tag = "1")]
+pub can_read: bool,
+#[prost(bool, tag = "2")]
+pub can_search: bool,
+#[prost(bool, tag = "3")]
+pub can_write: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ListOptions {
+#[prost(int32, tag = "1")]
+pub max_entries: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TextOptions {
+#[prost(int32, tag = "1")]
+pub min_length: i32,
+#[prost(int32, tag = "2")]
+pub max_length: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct IntegerOptions {
+#[prost(int64, tag = "1")]
+pub min_value: i64,
+#[prost(int64, tag = "2")]
+pub max_value: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DateOptions {
+#[prost(enumeration = "date_options::DateFormat", tag = "1")]
+pub date_format_type: i32,
+#[prost(string, tag = "2")]
+pub date_format: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub min_value: ::core::option::Option<super::super::super::super::super::r#type::Date>,
+#[prost(message, optional, tag = "4")]
+pub max_value: ::core::option::Option<super::super::super::super::super::r#type::Date>,
+}
+/// Nested message and enum types in `DateOptions`.
+pub mod date_options {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DateFormat {
+Unspecified = 0,
+LongDate = 1,
+ShortDate = 2,
+}
+impl DateFormat {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DateFormat::Unspecified => "DATE_FORMAT_UNSPECIFIED",
+DateFormat::LongDate => "LONG_DATE",
+DateFormat::ShortDate => "SHORT_DATE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DATE_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+"LONG_DATE" => Some(Self::LongDate),
+"SHORT_DATE" => Some(Self::ShortDate),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SelectionOptions {
+#[prost(message, optional, tag = "1")]
+pub list_options: ::core::option::Option<ListOptions>,
+#[prost(message, repeated, tag = "2")]
+pub choices: ::prost::alloc::vec::Vec<selection_options::Choice>,
+}
+/// Nested message and enum types in `SelectionOptions`.
+pub mod selection_options {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Choice {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub properties: ::core::option::Option<choice::Properties>,
+#[prost(message, optional, tag = "3")]
+pub lifecycle: ::core::option::Option<super::super::Lifecycle>,
+#[prost(message, optional, tag = "4")]
+pub display_hints: ::core::option::Option<choice::DisplayHints>,
+#[prost(message, optional, tag = "5")]
+pub schema_capabilities: ::core::option::Option<choice::SchemaCapabilities>,
+#[prost(message, optional, tag = "6")]
+pub applied_capabilities: ::core::option::Option<choice::AppliedCapabilities>,
+#[prost(message, optional, tag = "7")]
+pub creator: ::core::option::Option<super::super::UserInfo>,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub updater: ::core::option::Option<super::super::UserInfo>,
+#[prost(message, optional, tag = "10")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "11")]
+pub publisher: ::core::option::Option<super::super::UserInfo>,
+#[prost(message, optional, tag = "12")]
+pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "13")]
+pub disabler: ::core::option::Option<super::super::UserInfo>,
+#[prost(message, optional, tag = "14")]
+pub disable_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "15")]
+pub lock_status: ::core::option::Option<super::super::LockStatus>,
+}
+/// Nested message and enum types in `Choice`.
+pub mod choice {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Properties {
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub badge_config: ::core::option::Option<super::super::super::BadgeConfig>,
+#[prost(string, tag = "4")]
+pub insert_before_choice: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DisplayHints {
+#[prost(bool, tag = "1")]
+pub disabled: bool,
+#[prost(bool, tag = "2")]
+pub hidden_in_search: bool,
+#[prost(bool, tag = "3")]
+pub shown_in_apply: bool,
+#[prost(message, optional, tag = "4")]
+pub badge_colors: ::core::option::Option<super::super::super::BadgeColors>,
+#[prost(message, optional, tag = "5")]
+pub dark_badge_colors: ::core::option::Option<super::super::super::BadgeColors>,
+#[prost(int64, tag = "6")]
+pub badge_priority: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SchemaCapabilities {
+#[prost(bool, tag = "1")]
+pub can_update: bool,
+#[prost(bool, tag = "2")]
+pub can_delete: bool,
+#[prost(bool, tag = "3")]
+pub can_disable: bool,
+#[prost(bool, tag = "4")]
+pub can_enable: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AppliedCapabilities {
+#[prost(bool, tag = "1")]
+pub can_read: bool,
+#[prost(bool, tag = "2")]
+pub can_search: bool,
+#[prost(bool, tag = "3")]
+pub can_select: bool,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UserOptions {
+#[prost(message, optional, tag = "1")]
+pub list_options: ::core::option::Option<ListOptions>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "16")]
+TextOptions(TextOptions),
+#[prost(message, tag = "18")]
+IntegerOptions(IntegerOptions),
+#[prost(message, tag = "19")]
+DateOptions(DateOptions),
+#[prost(message, tag = "20")]
+SelectionOptions(SelectionOptions),
+#[prost(message, tag = "21")]
+UserOptions(UserOptions),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Label {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub revision_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "label::LabelType", tag = "4")]
-    pub label_type: i32,
-    #[prost(message, optional, tag = "5")]
-    pub creator: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub revision_creator: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "8")]
-    pub revision_create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub publisher: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "10")]
-    pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "11")]
-    pub disabler: ::core::option::Option<UserInfo>,
-    #[prost(message, optional, tag = "12")]
-    pub disable_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "13")]
-    pub customer: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "14")]
-    pub properties: ::core::option::Option<label::Properties>,
-    #[prost(message, optional, tag = "15")]
-    pub lifecycle: ::core::option::Option<Lifecycle>,
-    #[prost(message, optional, tag = "16")]
-    pub display_hints: ::core::option::Option<label::DisplayHints>,
-    #[prost(message, optional, tag = "17")]
-    pub applied_capabilities: ::core::option::Option<label::AppliedCapabilities>,
-    #[prost(message, optional, tag = "18")]
-    pub schema_capabilities: ::core::option::Option<label::SchemaCapabilities>,
-    #[prost(message, optional, tag = "19")]
-    pub applied_label_policy: ::core::option::Option<label::AppliedLabelPolicy>,
-    #[prost(message, repeated, tag = "20")]
-    pub fields: ::prost::alloc::vec::Vec<Field>,
-    #[prost(string, tag = "21")]
-    pub learn_more_uri: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "22")]
-    pub lock_status: ::core::option::Option<LockStatus>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub revision_id: ::prost::alloc::string::String,
+#[prost(enumeration = "label::LabelType", tag = "4")]
+pub label_type: i32,
+#[prost(message, optional, tag = "5")]
+pub creator: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "6")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub revision_creator: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "8")]
+pub revision_create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub publisher: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "10")]
+pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "11")]
+pub disabler: ::core::option::Option<UserInfo>,
+#[prost(message, optional, tag = "12")]
+pub disable_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "13")]
+pub customer: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "14")]
+pub properties: ::core::option::Option<label::Properties>,
+#[prost(message, optional, tag = "15")]
+pub lifecycle: ::core::option::Option<Lifecycle>,
+#[prost(message, optional, tag = "16")]
+pub display_hints: ::core::option::Option<label::DisplayHints>,
+#[prost(message, optional, tag = "17")]
+pub applied_capabilities: ::core::option::Option<label::AppliedCapabilities>,
+#[prost(message, optional, tag = "18")]
+pub schema_capabilities: ::core::option::Option<label::SchemaCapabilities>,
+#[prost(message, optional, tag = "19")]
+pub applied_label_policy: ::core::option::Option<label::AppliedLabelPolicy>,
+#[prost(message, repeated, tag = "20")]
+pub fields: ::prost::alloc::vec::Vec<Field>,
+#[prost(string, tag = "21")]
+pub learn_more_uri: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "22")]
+pub lock_status: ::core::option::Option<LockStatus>,
 }
 /// Nested message and enum types in `Label`.
 pub mod label {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Properties {
-        #[prost(string, tag = "1")]
-        pub title: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub description: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct DisplayHints {
-        #[prost(bool, tag = "1")]
-        pub disabled: bool,
-        #[prost(bool, tag = "2")]
-        pub hidden_in_search: bool,
-        #[prost(bool, tag = "3")]
-        pub shown_in_apply: bool,
-        #[prost(int64, tag = "4")]
-        pub priority: i64,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct AppliedCapabilities {
-        #[prost(bool, tag = "1")]
-        pub can_read: bool,
-        #[prost(bool, tag = "2")]
-        pub can_apply: bool,
-        #[prost(bool, tag = "3")]
-        pub can_remove: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct SchemaCapabilities {
-        #[prost(bool, tag = "1")]
-        pub can_update: bool,
-        #[prost(bool, tag = "2")]
-        pub can_delete: bool,
-        #[prost(bool, tag = "3")]
-        pub can_disable: bool,
-        #[prost(bool, tag = "4")]
-        pub can_enable: bool,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct AppliedLabelPolicy {
-        #[prost(enumeration = "applied_label_policy::CopyMode", tag = "1")]
-        pub copy_mode: i32,
-    }
-    /// Nested message and enum types in `AppliedLabelPolicy`.
-    pub mod applied_label_policy {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum CopyMode {
-            Unspecified = 0,
-            DoNotCopy = 1,
-            AlwaysCopy = 2,
-            CopyAppliable = 3,
-        }
-        impl CopyMode {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    CopyMode::Unspecified => "COPY_MODE_UNSPECIFIED",
-                    CopyMode::DoNotCopy => "DO_NOT_COPY",
-                    CopyMode::AlwaysCopy => "ALWAYS_COPY",
-                    CopyMode::CopyAppliable => "COPY_APPLIABLE",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "COPY_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "DO_NOT_COPY" => Some(Self::DoNotCopy),
-                    "ALWAYS_COPY" => Some(Self::AlwaysCopy),
-                    "COPY_APPLIABLE" => Some(Self::CopyAppliable),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum LabelType {
-        Unspecified = 0,
-        Shared = 1,
-        Admin = 2,
-        GoogleApp = 3,
-    }
-    impl LabelType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                LabelType::Unspecified => "LABEL_TYPE_UNSPECIFIED",
-                LabelType::Shared => "SHARED",
-                LabelType::Admin => "ADMIN",
-                LabelType::GoogleApp => "GOOGLE_APP",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "LABEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SHARED" => Some(Self::Shared),
-                "ADMIN" => Some(Self::Admin),
-                "GOOGLE_APP" => Some(Self::GoogleApp),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Properties {
+#[prost(string, tag = "1")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DisplayHints {
+#[prost(bool, tag = "1")]
+pub disabled: bool,
+#[prost(bool, tag = "2")]
+pub hidden_in_search: bool,
+#[prost(bool, tag = "3")]
+pub shown_in_apply: bool,
+#[prost(int64, tag = "4")]
+pub priority: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AppliedCapabilities {
+#[prost(bool, tag = "1")]
+pub can_read: bool,
+#[prost(bool, tag = "2")]
+pub can_apply: bool,
+#[prost(bool, tag = "3")]
+pub can_remove: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SchemaCapabilities {
+#[prost(bool, tag = "1")]
+pub can_update: bool,
+#[prost(bool, tag = "2")]
+pub can_delete: bool,
+#[prost(bool, tag = "3")]
+pub can_disable: bool,
+#[prost(bool, tag = "4")]
+pub can_enable: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AppliedLabelPolicy {
+#[prost(enumeration = "applied_label_policy::CopyMode", tag = "1")]
+pub copy_mode: i32,
+}
+/// Nested message and enum types in `AppliedLabelPolicy`.
+pub mod applied_label_policy {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CopyMode {
+Unspecified = 0,
+DoNotCopy = 1,
+AlwaysCopy = 2,
+CopyAppliable = 3,
+}
+impl CopyMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CopyMode::Unspecified => "COPY_MODE_UNSPECIFIED",
+CopyMode::DoNotCopy => "DO_NOT_COPY",
+CopyMode::AlwaysCopy => "ALWAYS_COPY",
+CopyMode::CopyAppliable => "COPY_APPLIABLE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"COPY_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"DO_NOT_COPY" => Some(Self::DoNotCopy),
+"ALWAYS_COPY" => Some(Self::AlwaysCopy),
+"COPY_APPLIABLE" => Some(Self::CopyAppliable),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LabelType {
+Unspecified = 0,
+Shared = 1,
+Admin = 2,
+GoogleApp = 3,
+}
+impl LabelType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LabelType::Unspecified => "LABEL_TYPE_UNSPECIFIED",
+LabelType::Shared => "SHARED",
+LabelType::Admin => "ADMIN",
+LabelType::GoogleApp => "GOOGLE_APP",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LABEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SHARED" => Some(Self::Shared),
+"ADMIN" => Some(Self::Admin),
+"GOOGLE_APP" => Some(Self::GoogleApp),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LabelPermission {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub email: ::prost::alloc::string::String,
-    #[prost(enumeration = "label_permission::LabelRole", tag = "6")]
-    pub role: i32,
-    #[prost(oneof = "label_permission::Principal", tags = "3, 4, 5")]
-    pub principal: ::core::option::Option<label_permission::Principal>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub email: ::prost::alloc::string::String,
+#[prost(enumeration = "label_permission::LabelRole", tag = "6")]
+pub role: i32,
+#[prost(oneof = "label_permission::Principal", tags = "3, 4, 5")]
+pub principal: ::core::option::Option<label_permission::Principal>,
 }
 /// Nested message and enum types in `LabelPermission`.
 pub mod label_permission {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum LabelRole {
-        Unspecified = 0,
-        Reader = 1,
-        Applier = 2,
-        Organizer = 3,
-        Editor = 4,
-    }
-    impl LabelRole {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                LabelRole::Unspecified => "LABEL_ROLE_UNSPECIFIED",
-                LabelRole::Reader => "READER",
-                LabelRole::Applier => "APPLIER",
-                LabelRole::Organizer => "ORGANIZER",
-                LabelRole::Editor => "EDITOR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "LABEL_ROLE_UNSPECIFIED" => Some(Self::Unspecified),
-                "READER" => Some(Self::Reader),
-                "APPLIER" => Some(Self::Applier),
-                "ORGANIZER" => Some(Self::Organizer),
-                "EDITOR" => Some(Self::Editor),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Principal {
-        #[prost(string, tag = "3")]
-        Person(::prost::alloc::string::String),
-        #[prost(string, tag = "4")]
-        Group(::prost::alloc::string::String),
-        #[prost(string, tag = "5")]
-        Audience(::prost::alloc::string::String),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LabelRole {
+Unspecified = 0,
+Reader = 1,
+Applier = 2,
+Organizer = 3,
+Editor = 4,
+}
+impl LabelRole {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LabelRole::Unspecified => "LABEL_ROLE_UNSPECIFIED",
+LabelRole::Reader => "READER",
+LabelRole::Applier => "APPLIER",
+LabelRole::Organizer => "ORGANIZER",
+LabelRole::Editor => "EDITOR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LABEL_ROLE_UNSPECIFIED" => Some(Self::Unspecified),
+"READER" => Some(Self::Reader),
+"APPLIER" => Some(Self::Applier),
+"ORGANIZER" => Some(Self::Organizer),
+"EDITOR" => Some(Self::Editor),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Principal {
+#[prost(string, tag = "3")]
+Person(::prost::alloc::string::String),
+#[prost(string, tag = "4")]
+Group(::prost::alloc::string::String),
+#[prost(string, tag = "5")]
+Audience(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UserCapabilities {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub can_access_label_manager: bool,
-    #[prost(bool, tag = "3")]
-    pub can_administrate_labels: bool,
-    #[prost(bool, tag = "4")]
-    pub can_create_shared_labels: bool,
-    #[prost(bool, tag = "5")]
-    pub can_create_admin_labels: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub can_access_label_manager: bool,
+#[prost(bool, tag = "3")]
+pub can_administrate_labels: bool,
+#[prost(bool, tag = "4")]
+pub can_create_shared_labels: bool,
+#[prost(bool, tag = "5")]
+pub can_create_admin_labels: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WriteControl {
-    #[prost(oneof = "write_control::Control", tags = "1")]
-    pub control: ::core::option::Option<write_control::Control>,
+#[prost(oneof = "write_control::Control", tags = "1")]
+pub control: ::core::option::Option<write_control::Control>,
 }
 /// Nested message and enum types in `WriteControl`.
 pub mod write_control {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Control {
-        #[prost(string, tag = "1")]
-        RequiredRevisionId(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Control {
+#[prost(string, tag = "1")]
+RequiredRevisionId(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetUserCapabilitiesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub customer: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub customer: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateLabelRequest {
-    #[prost(message, optional, tag = "1")]
-    pub label: ::core::option::Option<Label>,
-    #[prost(bool, tag = "2")]
-    pub use_admin_access: bool,
-    #[prost(string, tag = "3")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub label: ::core::option::Option<Label>,
+#[prost(bool, tag = "2")]
+pub use_admin_access: bool,
+#[prost(string, tag = "3")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLabelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub use_admin_access: bool,
-    #[prost(string, tag = "3")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(enumeration = "LabelView", tag = "4")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub use_admin_access: bool,
+#[prost(string, tag = "3")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(enumeration = "LabelView", tag = "4")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeltaUpdateLabelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub write_control: ::core::option::Option<WriteControl>,
-    #[prost(message, repeated, tag = "3")]
-    pub requests: ::prost::alloc::vec::Vec<delta_update_label_request::Request>,
-    #[prost(bool, tag = "4")]
-    pub use_admin_access: bool,
-    #[prost(enumeration = "LabelView", tag = "5")]
-    pub view: i32,
-    #[prost(string, tag = "6")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub write_control: ::core::option::Option<WriteControl>,
+#[prost(message, repeated, tag = "3")]
+pub requests: ::prost::alloc::vec::Vec<delta_update_label_request::Request>,
+#[prost(bool, tag = "4")]
+pub use_admin_access: bool,
+#[prost(enumeration = "LabelView", tag = "5")]
+pub view: i32,
+#[prost(string, tag = "6")]
+pub language_code: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `DeltaUpdateLabelRequest`.
 pub mod delta_update_label_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Request {
-        #[prost(oneof = "request::Kind", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12")]
-        pub kind: ::core::option::Option<request::Kind>,
-    }
-    /// Nested message and enum types in `Request`.
-    pub mod request {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Kind {
-            #[prost(message, tag = "1")]
-            UpdateLabel(super::UpdateLabelPropertiesRequest),
-            #[prost(message, tag = "2")]
-            CreateField(super::CreateFieldRequest),
-            #[prost(message, tag = "3")]
-            UpdateField(super::UpdateFieldPropertiesRequest),
-            #[prost(message, tag = "4")]
-            UpdateFieldType(super::UpdateFieldTypeRequest),
-            #[prost(message, tag = "5")]
-            EnableField(super::EnableFieldRequest),
-            #[prost(message, tag = "6")]
-            DisableField(super::DisableFieldRequest),
-            #[prost(message, tag = "7")]
-            DeleteField(super::DeleteFieldRequest),
-            #[prost(message, tag = "8")]
-            CreateSelectionChoice(super::CreateSelectionChoiceRequest),
-            #[prost(message, tag = "9")]
-            UpdateSelectionChoiceProperties(
-                super::UpdateSelectionChoicePropertiesRequest,
-            ),
-            #[prost(message, tag = "10")]
-            EnableSelectionChoice(super::EnableSelectionChoiceRequest),
-            #[prost(message, tag = "11")]
-            DisableSelectionChoice(super::DisableSelectionChoiceRequest),
-            #[prost(message, tag = "12")]
-            DeleteSelectionChoice(super::DeleteSelectionChoiceRequest),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct UpdateLabelPropertiesRequest {
-        #[prost(message, optional, tag = "1")]
-        pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-        #[prost(message, optional, tag = "2")]
-        pub properties: ::core::option::Option<super::label::Properties>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DisableFieldRequest {
-        #[prost(message, optional, tag = "1")]
-        pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-        #[prost(string, tag = "2")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "3")]
-        pub disabled_policy: ::core::option::Option<super::lifecycle::DisabledPolicy>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct EnableFieldRequest {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DeleteFieldRequest {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CreateFieldRequest {
-        #[prost(message, optional, tag = "1")]
-        pub field: ::core::option::Option<super::Field>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct UpdateFieldPropertiesRequest {
-        #[prost(message, optional, tag = "1")]
-        pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-        #[prost(string, tag = "2")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "3")]
-        pub properties: ::core::option::Option<super::field::Properties>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct UpdateFieldTypeRequest {
-        #[prost(message, optional, tag = "1")]
-        pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-        #[prost(string, tag = "2")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(
-            oneof = "update_field_type_request::TypeOptions",
-            tags = "3, 5, 6, 7, 8"
-        )]
-        pub type_options: ::core::option::Option<update_field_type_request::TypeOptions>,
-    }
-    /// Nested message and enum types in `UpdateFieldTypeRequest`.
-    pub mod update_field_type_request {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum TypeOptions {
-            #[prost(message, tag = "3")]
-            TextOptions(super::super::field::TextOptions),
-            #[prost(message, tag = "5")]
-            IntegerOptions(super::super::field::IntegerOptions),
-            #[prost(message, tag = "6")]
-            DateOptions(super::super::field::DateOptions),
-            #[prost(message, tag = "7")]
-            SelectionOptions(super::super::field::SelectionOptions),
-            #[prost(message, tag = "8")]
-            UserOptions(super::super::field::UserOptions),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CreateSelectionChoiceRequest {
-        #[prost(string, tag = "1")]
-        pub field_id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub choice: ::core::option::Option<super::field::selection_options::Choice>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct UpdateSelectionChoicePropertiesRequest {
-        #[prost(message, optional, tag = "1")]
-        pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-        #[prost(string, tag = "2")]
-        pub field_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "4")]
-        pub properties: ::core::option::Option<
-            super::field::selection_options::choice::Properties,
-        >,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DeleteSelectionChoiceRequest {
-        #[prost(string, tag = "1")]
-        pub field_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub id: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DisableSelectionChoiceRequest {
-        #[prost(message, optional, tag = "1")]
-        pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-        #[prost(string, tag = "2")]
-        pub field_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "4")]
-        pub disabled_policy: ::core::option::Option<super::lifecycle::DisabledPolicy>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct EnableSelectionChoiceRequest {
-        #[prost(string, tag = "1")]
-        pub field_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub id: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Request {
+#[prost(oneof = "request::Kind", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12")]
+pub kind: ::core::option::Option<request::Kind>,
+}
+/// Nested message and enum types in `Request`.
+pub mod request {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Kind {
+#[prost(message, tag = "1")]
+UpdateLabel(super::UpdateLabelPropertiesRequest),
+#[prost(message, tag = "2")]
+CreateField(super::CreateFieldRequest),
+#[prost(message, tag = "3")]
+UpdateField(super::UpdateFieldPropertiesRequest),
+#[prost(message, tag = "4")]
+UpdateFieldType(super::UpdateFieldTypeRequest),
+#[prost(message, tag = "5")]
+EnableField(super::EnableFieldRequest),
+#[prost(message, tag = "6")]
+DisableField(super::DisableFieldRequest),
+#[prost(message, tag = "7")]
+DeleteField(super::DeleteFieldRequest),
+#[prost(message, tag = "8")]
+CreateSelectionChoice(super::CreateSelectionChoiceRequest),
+#[prost(message, tag = "9")]
+UpdateSelectionChoiceProperties(super::UpdateSelectionChoicePropertiesRequest),
+#[prost(message, tag = "10")]
+EnableSelectionChoice(super::EnableSelectionChoiceRequest),
+#[prost(message, tag = "11")]
+DisableSelectionChoice(super::DisableSelectionChoiceRequest),
+#[prost(message, tag = "12")]
+DeleteSelectionChoice(super::DeleteSelectionChoiceRequest),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateLabelPropertiesRequest {
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub properties: ::core::option::Option<super::label::Properties>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DisableFieldRequest {
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub disabled_policy: ::core::option::Option<super::lifecycle::DisabledPolicy>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnableFieldRequest {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteFieldRequest {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateFieldRequest {
+#[prost(message, optional, tag = "1")]
+pub field: ::core::option::Option<super::Field>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateFieldPropertiesRequest {
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub properties: ::core::option::Option<super::field::Properties>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateFieldTypeRequest {
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(oneof = "update_field_type_request::TypeOptions", tags = "3, 5, 6, 7, 8")]
+pub type_options: ::core::option::Option<update_field_type_request::TypeOptions>,
+}
+/// Nested message and enum types in `UpdateFieldTypeRequest`.
+pub mod update_field_type_request {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum TypeOptions {
+#[prost(message, tag = "3")]
+TextOptions(super::super::field::TextOptions),
+#[prost(message, tag = "5")]
+IntegerOptions(super::super::field::IntegerOptions),
+#[prost(message, tag = "6")]
+DateOptions(super::super::field::DateOptions),
+#[prost(message, tag = "7")]
+SelectionOptions(super::super::field::SelectionOptions),
+#[prost(message, tag = "8")]
+UserOptions(super::super::field::UserOptions),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateSelectionChoiceRequest {
+#[prost(string, tag = "1")]
+pub field_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub choice: ::core::option::Option<super::field::selection_options::Choice>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateSelectionChoicePropertiesRequest {
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "2")]
+pub field_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub properties: ::core::option::Option<super::field::selection_options::choice::Properties>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteSelectionChoiceRequest {
+#[prost(string, tag = "1")]
+pub field_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DisableSelectionChoiceRequest {
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "2")]
+pub field_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub disabled_policy: ::core::option::Option<super::lifecycle::DisabledPolicy>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnableSelectionChoiceRequest {
+#[prost(string, tag = "1")]
+pub field_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeltaUpdateLabelResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub responses: ::prost::alloc::vec::Vec<delta_update_label_response::Response>,
-    #[prost(message, optional, tag = "6")]
-    pub updated_label: ::core::option::Option<Label>,
+#[prost(message, repeated, tag = "1")]
+pub responses: ::prost::alloc::vec::Vec<delta_update_label_response::Response>,
+#[prost(message, optional, tag = "6")]
+pub updated_label: ::core::option::Option<Label>,
 }
 /// Nested message and enum types in `DeltaUpdateLabelResponse`.
 pub mod delta_update_label_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Response {
-        #[prost(
-            oneof = "response::Response",
-            tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12"
-        )]
-        pub response: ::core::option::Option<response::Response>,
-    }
-    /// Nested message and enum types in `Response`.
-    pub mod response {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Response {
-            #[prost(message, tag = "1")]
-            UpdateLabel(super::UpdateLabelPropertiesResponse),
-            #[prost(message, tag = "2")]
-            CreateField(super::CreateFieldResponse),
-            #[prost(message, tag = "3")]
-            UpdateField(super::UpdateFieldPropertiesResponse),
-            #[prost(message, tag = "4")]
-            UpdateFieldType(super::UpdateFieldTypeResponse),
-            #[prost(message, tag = "5")]
-            EnableField(super::EnableFieldResponse),
-            #[prost(message, tag = "6")]
-            DisableField(super::DisableFieldResponse),
-            #[prost(message, tag = "7")]
-            DeleteField(super::DeleteFieldResponse),
-            #[prost(message, tag = "8")]
-            CreateSelectionChoice(super::CreateSelectionChoiceResponse),
-            #[prost(message, tag = "9")]
-            UpdateSelectionChoiceProperties(
-                super::UpdateSelectionChoicePropertiesResponse,
-            ),
-            #[prost(message, tag = "10")]
-            EnableSelectionChoice(super::EnableSelectionChoiceResponse),
-            #[prost(message, tag = "11")]
-            DisableSelectionChoice(super::DisableSelectionChoiceResponse),
-            #[prost(message, tag = "12")]
-            DeleteSelectionChoice(super::DeleteSelectionChoiceResponse),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct UpdateLabelPropertiesResponse {}
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CreateFieldResponse {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(int32, tag = "2")]
-        pub priority: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct UpdateFieldPropertiesResponse {
-        #[prost(int32, tag = "1")]
-        pub priority: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct UpdateFieldTypeResponse {}
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct EnableFieldResponse {}
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct DisableFieldResponse {}
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct DeleteFieldResponse {}
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CreateSelectionChoiceResponse {
-        #[prost(string, tag = "1")]
-        pub field_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub id: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct UpdateSelectionChoicePropertiesResponse {
-        #[prost(int32, tag = "1")]
-        pub priority: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct EnableSelectionChoiceResponse {}
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct DisableSelectionChoiceResponse {}
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct DeleteSelectionChoiceResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Response {
+#[prost(oneof = "response::Response", tags = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12")]
+pub response: ::core::option::Option<response::Response>,
+}
+/// Nested message and enum types in `Response`.
+pub mod response {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Response {
+#[prost(message, tag = "1")]
+UpdateLabel(super::UpdateLabelPropertiesResponse),
+#[prost(message, tag = "2")]
+CreateField(super::CreateFieldResponse),
+#[prost(message, tag = "3")]
+UpdateField(super::UpdateFieldPropertiesResponse),
+#[prost(message, tag = "4")]
+UpdateFieldType(super::UpdateFieldTypeResponse),
+#[prost(message, tag = "5")]
+EnableField(super::EnableFieldResponse),
+#[prost(message, tag = "6")]
+DisableField(super::DisableFieldResponse),
+#[prost(message, tag = "7")]
+DeleteField(super::DeleteFieldResponse),
+#[prost(message, tag = "8")]
+CreateSelectionChoice(super::CreateSelectionChoiceResponse),
+#[prost(message, tag = "9")]
+UpdateSelectionChoiceProperties(super::UpdateSelectionChoicePropertiesResponse),
+#[prost(message, tag = "10")]
+EnableSelectionChoice(super::EnableSelectionChoiceResponse),
+#[prost(message, tag = "11")]
+DisableSelectionChoice(super::DisableSelectionChoiceResponse),
+#[prost(message, tag = "12")]
+DeleteSelectionChoice(super::DeleteSelectionChoiceResponse),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UpdateLabelPropertiesResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateFieldResponse {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub priority: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UpdateFieldPropertiesResponse {
+#[prost(int32, tag = "1")]
+pub priority: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UpdateFieldTypeResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct EnableFieldResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DisableFieldResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DeleteFieldResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateSelectionChoiceResponse {
+#[prost(string, tag = "1")]
+pub field_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct UpdateSelectionChoicePropertiesResponse {
+#[prost(int32, tag = "1")]
+pub priority: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct EnableSelectionChoiceResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DisableSelectionChoiceResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct DeleteSelectionChoiceResponse {}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateLabelCopyModeRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "label::applied_label_policy::CopyMode", tag = "2")]
-    pub copy_mode: i32,
-    #[prost(bool, tag = "3")]
-    pub use_admin_access: bool,
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(enumeration = "LabelView", tag = "5")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "label::applied_label_policy::CopyMode", tag = "2")]
+pub copy_mode: i32,
+#[prost(bool, tag = "3")]
+pub use_admin_access: bool,
+#[prost(string, tag = "4")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(enumeration = "LabelView", tag = "5")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLabelLimitsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLabelsRequest {
-    #[prost(bool, tag = "1")]
-    pub published_only: bool,
-    #[prost(string, tag = "2")]
-    pub customer: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(int32, tag = "6")]
-    pub page_size: i32,
-    #[prost(string, tag = "7")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(enumeration = "LabelView", tag = "8")]
-    pub view: i32,
-    #[prost(oneof = "list_labels_request::Access", tags = "3, 4")]
-    pub access: ::core::option::Option<list_labels_request::Access>,
+#[prost(bool, tag = "1")]
+pub published_only: bool,
+#[prost(string, tag = "2")]
+pub customer: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(int32, tag = "6")]
+pub page_size: i32,
+#[prost(string, tag = "7")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(enumeration = "LabelView", tag = "8")]
+pub view: i32,
+#[prost(oneof = "list_labels_request::Access", tags = "3, 4")]
+pub access: ::core::option::Option<list_labels_request::Access>,
 }
 /// Nested message and enum types in `ListLabelsRequest`.
 pub mod list_labels_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Access {
-        #[prost(bool, tag = "3")]
-        UseAdminAccess(bool),
-        #[prost(enumeration = "super::label_permission::LabelRole", tag = "4")]
-        MinimumRole(i32),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Access {
+#[prost(bool, tag = "3")]
+UseAdminAccess(bool),
+#[prost(enumeration = "super::label_permission::LabelRole", tag = "4")]
+MinimumRole(i32),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLabelsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub labels: ::prost::alloc::vec::Vec<Label>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub labels: ::prost::alloc::vec::Vec<Label>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateLabelPermissionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub label_permission: ::core::option::Option<LabelPermission>,
-    #[prost(bool, tag = "3")]
-    pub use_admin_access: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub label_permission: ::core::option::Option<LabelPermission>,
+#[prost(bool, tag = "3")]
+pub use_admin_access: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLabelPermissionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub use_admin_access: bool,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub use_admin_access: bool,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLabelPermissionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub label_permissions: ::prost::alloc::vec::Vec<LabelPermission>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub label_permissions: ::prost::alloc::vec::Vec<LabelPermission>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateLabelPermissionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub label_permission: ::core::option::Option<LabelPermission>,
-    #[prost(bool, tag = "3")]
-    pub use_admin_access: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub label_permission: ::core::option::Option<LabelPermission>,
+#[prost(bool, tag = "3")]
+pub use_admin_access: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteLabelPermissionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub use_admin_access: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub use_admin_access: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdateLabelPermissionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub requests: ::prost::alloc::vec::Vec<UpdateLabelPermissionRequest>,
-    #[prost(bool, tag = "3")]
-    pub use_admin_access: bool,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub requests: ::prost::alloc::vec::Vec<UpdateLabelPermissionRequest>,
+#[prost(bool, tag = "3")]
+pub use_admin_access: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchUpdateLabelPermissionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub permissions: ::prost::alloc::vec::Vec<LabelPermission>,
+#[prost(message, repeated, tag = "1")]
+pub permissions: ::prost::alloc::vec::Vec<LabelPermission>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchDeleteLabelPermissionsRequest {
-    #[prost(message, repeated, tag = "1")]
-    pub requests: ::prost::alloc::vec::Vec<DeleteLabelPermissionRequest>,
-    #[prost(bool, tag = "2")]
-    pub use_admin_access: bool,
-    #[prost(string, tag = "3")]
-    pub parent: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub requests: ::prost::alloc::vec::Vec<DeleteLabelPermissionRequest>,
+#[prost(bool, tag = "2")]
+pub use_admin_access: bool,
+#[prost(string, tag = "3")]
+pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DisableLabelRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub use_admin_access: bool,
-    #[prost(message, optional, tag = "4")]
-    pub write_control: ::core::option::Option<WriteControl>,
-    #[prost(message, optional, tag = "5")]
-    pub disabled_policy: ::core::option::Option<lifecycle::DisabledPolicy>,
-    #[prost(string, tag = "6")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub use_admin_access: bool,
+#[prost(message, optional, tag = "4")]
+pub write_control: ::core::option::Option<WriteControl>,
+#[prost(message, optional, tag = "5")]
+pub disabled_policy: ::core::option::Option<lifecycle::DisabledPolicy>,
+#[prost(string, tag = "6")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PublishLabelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub use_admin_access: bool,
-    #[prost(message, optional, tag = "3")]
-    pub write_control: ::core::option::Option<WriteControl>,
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub use_admin_access: bool,
+#[prost(message, optional, tag = "3")]
+pub write_control: ::core::option::Option<WriteControl>,
+#[prost(string, tag = "4")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnableLabelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub use_admin_access: bool,
-    #[prost(message, optional, tag = "3")]
-    pub write_control: ::core::option::Option<WriteControl>,
-    #[prost(string, tag = "4")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub use_admin_access: bool,
+#[prost(message, optional, tag = "3")]
+pub write_control: ::core::option::Option<WriteControl>,
+#[prost(string, tag = "4")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteLabelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub use_admin_access: bool,
-    #[prost(message, optional, tag = "3")]
-    pub write_control: ::core::option::Option<WriteControl>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub use_admin_access: bool,
+#[prost(message, optional, tag = "3")]
+pub write_control: ::core::option::Option<WriteControl>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLabelLocksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListLabelLocksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub label_locks: ::prost::alloc::vec::Vec<LabelLock>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub label_locks: ::prost::alloc::vec::Vec<LabelLock>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LabelView {
-    Basic = 0,
-    Full = 1,
+Basic = 0,
+Full = 1,
 }
 impl LabelView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            LabelView::Basic => "LABEL_VIEW_BASIC",
-            LabelView::Full => "LABEL_VIEW_FULL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "LABEL_VIEW_BASIC" => Some(Self::Basic),
-            "LABEL_VIEW_FULL" => Some(Self::Full),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LabelView::Basic => "LABEL_VIEW_BASIC",
+LabelView::Full => "LABEL_VIEW_FULL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LABEL_VIEW_BASIC" => Some(Self::Basic),
+"LABEL_VIEW_FULL" => Some(Self::Full),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod label_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Manage metadata taxonomies based on Labels and Fields that may be used within
-    /// Google Drive to organize and find files using custom metadata.
-    #[derive(Debug, Clone)]
-    pub struct LabelServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> LabelServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> LabelServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            LabelServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Gets the user capabilities.
-        pub async fn get_user_capabilities(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetUserCapabilitiesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UserCapabilities>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/GetUserCapabilities",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "GetUserCapabilities",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// List labels.
-        pub async fn list_labels(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListLabelsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListLabelsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/ListLabels",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "ListLabels",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get a label by its resource name.
-        /// Resource name may be any of:
-        ///
-        /// * `labels/{id}` - See `labels/{id}@latest`
-        /// * `labels/{id}@latest` - Gets the latest revision of the label.
-        /// * `labels/{id}@published` - Gets the current published revision of the
-        ///   label.
-        /// * `labels/{id}@{revision_id}` - Gets the label at the specified revision
-        ///   ID.
-        pub async fn get_label(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetLabelRequest>,
-        ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/GetLabel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "GetLabel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get the constraints on the structure of a Label; such as, the maximum
-        /// number of Fields allowed and maximum length of the label title.
-        pub async fn get_label_limits(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetLabelLimitsRequest>,
-        ) -> std::result::Result<tonic::Response<super::LabelLimits>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/GetLabelLimits",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "GetLabelLimits",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Label.
-        pub async fn create_label(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateLabelRequest>,
-        ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/CreateLabel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "CreateLabel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a single Label by applying a set of update requests resulting in a
-        /// new draft revision. The batch update is all-or-nothing: If any of the
-        /// update requests are invalid, no changes are applied. The resulting draft
-        /// revision must be published before the changes may be used with Drive Items.
-        pub async fn delta_update_label(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeltaUpdateLabelRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::DeltaUpdateLabelResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/DeltaUpdateLabel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "DeltaUpdateLabel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Label's `CopyMode`. Changes to this policy are not revisioned, do
-        /// not require publishing, and take effect immediately.
-        pub async fn update_label_copy_mode(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateLabelCopyModeRequest>,
-        ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/UpdateLabelCopyMode",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "UpdateLabelCopyMode",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Publish all draft changes to the Label. Once published, the Label may not
-        /// return to its draft state. See
-        /// `google.apps.drive.labels.v2.Lifecycle` for more information.
-        ///
-        /// Publishing a Label will result in a new published revision. All previous
-        /// draft revisions will be deleted. Previous published revisions will be kept
-        /// but are subject to automated deletion as needed.
-        ///
-        /// Once published, some changes are no longer permitted. Generally, any change
-        /// that would invalidate or cause new restrictions on existing metadata
-        /// related to the Label will be rejected. For example, the following changes
-        /// to a Label will be rejected after the Label is published:
-        /// * The label cannot be directly deleted. It must be disabled first, then
-        ///   deleted.
-        /// * Field.FieldType cannot be changed.
-        /// * Changes to Field validation options cannot reject something that was
-        ///   previously accepted.
-        /// * Reducing the max entries.
-        pub async fn publish_label(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PublishLabelRequest>,
-        ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/PublishLabel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "PublishLabel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Disable a published Label.
-        /// Disabling a Label will result in a new disabled published revision based on
-        /// the current published revision. If there is a draft revision, a new
-        /// disabled draft revision will be created based on the latest draft revision.
-        /// Older draft revisions will be deleted.
-        ///
-        /// Once disabled, a label may be deleted with `DeleteLabel`.
-        pub async fn disable_label(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DisableLabelRequest>,
-        ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/DisableLabel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "DisableLabel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Enable a disabled Label and restore it to its published state.
-        /// This will result in a new published revision based on the current disabled
-        /// published revision. If there is an existing disabled draft revision, a new
-        /// revision will be created based on that draft and will be enabled.
-        pub async fn enable_label(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EnableLabelRequest>,
-        ) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/EnableLabel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "EnableLabel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Permanently deletes a Label and related metadata on Drive Items.
-        ///
-        /// Once deleted, the Label and related Drive item metadata will be deleted.
-        /// Only draft Labels, and disabled Labels may be deleted.
-        pub async fn delete_label(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteLabelRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/DeleteLabel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "DeleteLabel",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists a Label's permissions.
-        pub async fn list_label_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListLabelPermissionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListLabelPermissionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/ListLabelPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "ListLabelPermissions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Label's permissions. If a permission for the indicated principal
-        /// doesn't exist, a new Label Permission is created, otherwise the existing
-        /// permission is updated. Permissions affect the Label resource as a whole,
-        /// are not revisioned, and do not require publishing.
-        pub async fn create_label_permission(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateLabelPermissionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::LabelPermission>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/CreateLabelPermission",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "CreateLabelPermission",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Label's permissions. If a permission for the indicated principal
-        /// doesn't exist, a new Label Permission is created, otherwise the existing
-        /// permission is updated. Permissions affect the Label resource as a whole,
-        /// are not revisioned, and do not require publishing.
-        pub async fn update_label_permission(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateLabelPermissionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::LabelPermission>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/UpdateLabelPermission",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "UpdateLabelPermission",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Label's permission. Permissions affect the Label resource as a
-        /// whole, are not revisioned, and do not require publishing.
-        pub async fn delete_label_permission(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteLabelPermissionRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/DeleteLabelPermission",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "DeleteLabelPermission",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates Label permissions. If a permission for the
-        /// indicated principal doesn't exist, a new Label Permission is created,
-        /// otherwise the existing permission is updated. Permissions affect the Label
-        /// resource as a whole, are not revisioned, and do not require publishing.
-        pub async fn batch_update_label_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchUpdateLabelPermissionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchUpdateLabelPermissionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/BatchUpdateLabelPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "BatchUpdateLabelPermissions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes Label permissions. Permissions affect the Label resource as a
-        /// whole, are not revisioned, and do not require publishing.
-        pub async fn batch_delete_label_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchDeleteLabelPermissionsRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/BatchDeleteLabelPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "BatchDeleteLabelPermissions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists the LabelLocks on a Label.
-        pub async fn list_label_locks(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListLabelLocksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListLabelLocksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.apps.drive.labels.v2.LabelService/ListLabelLocks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.apps.drive.labels.v2.LabelService",
-                        "ListLabelLocks",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Manage metadata taxonomies based on Labels and Fields that may be used within
+/// Google Drive to organize and find files using custom metadata.
+#[derive(Debug, Clone)]
+pub struct LabelServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> LabelServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> LabelServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+LabelServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Gets the user capabilities.
+pub async fn get_user_capabilities(&mut self, request: impl tonic::IntoRequest<super::GetUserCapabilitiesRequest>) -> std::result::Result<tonic::Response<super::UserCapabilities>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/GetUserCapabilities");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "GetUserCapabilities"));
+self.inner.unary(req, path, codec).await
+}
+/// List labels.
+pub async fn list_labels(&mut self, request: impl tonic::IntoRequest<super::ListLabelsRequest>) -> std::result::Result<tonic::Response<super::ListLabelsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/ListLabels");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "ListLabels"));
+self.inner.unary(req, path, codec).await
+}
+/// Get a label by its resource name.
+/// Resource name may be any of:
+///
+/// * `labels/{id}` - See `labels/{id}@latest`
+/// * `labels/{id}@latest` - Gets the latest revision of the label.
+/// * `labels/{id}@published` - Gets the current published revision of the
+///   label.
+/// * `labels/{id}@{revision_id}` - Gets the label at the specified revision
+///   ID.
+pub async fn get_label(&mut self, request: impl tonic::IntoRequest<super::GetLabelRequest>) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/GetLabel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "GetLabel"));
+self.inner.unary(req, path, codec).await
+}
+/// Get the constraints on the structure of a Label; such as, the maximum
+/// number of Fields allowed and maximum length of the label title.
+pub async fn get_label_limits(&mut self, request: impl tonic::IntoRequest<super::GetLabelLimitsRequest>) -> std::result::Result<tonic::Response<super::LabelLimits>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/GetLabelLimits");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "GetLabelLimits"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Label.
+pub async fn create_label(&mut self, request: impl tonic::IntoRequest<super::CreateLabelRequest>) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/CreateLabel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "CreateLabel"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a single Label by applying a set of update requests resulting in a
+/// new draft revision. The batch update is all-or-nothing: If any of the
+/// update requests are invalid, no changes are applied. The resulting draft
+/// revision must be published before the changes may be used with Drive Items.
+pub async fn delta_update_label(&mut self, request: impl tonic::IntoRequest<super::DeltaUpdateLabelRequest>) -> std::result::Result<tonic::Response<super::DeltaUpdateLabelResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/DeltaUpdateLabel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "DeltaUpdateLabel"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Label's `CopyMode`. Changes to this policy are not revisioned, do
+/// not require publishing, and take effect immediately.
+pub async fn update_label_copy_mode(&mut self, request: impl tonic::IntoRequest<super::UpdateLabelCopyModeRequest>) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/UpdateLabelCopyMode");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "UpdateLabelCopyMode"));
+self.inner.unary(req, path, codec).await
+}
+/// Publish all draft changes to the Label. Once published, the Label may not
+/// return to its draft state. See
+/// `google.apps.drive.labels.v2.Lifecycle` for more information.
+///
+/// Publishing a Label will result in a new published revision. All previous
+/// draft revisions will be deleted. Previous published revisions will be kept
+/// but are subject to automated deletion as needed.
+///
+/// Once published, some changes are no longer permitted. Generally, any change
+/// that would invalidate or cause new restrictions on existing metadata
+/// related to the Label will be rejected. For example, the following changes
+/// to a Label will be rejected after the Label is published:
+/// * The label cannot be directly deleted. It must be disabled first, then
+///   deleted.
+/// * Field.FieldType cannot be changed.
+/// * Changes to Field validation options cannot reject something that was
+///   previously accepted.
+/// * Reducing the max entries.
+pub async fn publish_label(&mut self, request: impl tonic::IntoRequest<super::PublishLabelRequest>) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/PublishLabel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "PublishLabel"));
+self.inner.unary(req, path, codec).await
+}
+/// Disable a published Label.
+/// Disabling a Label will result in a new disabled published revision based on
+/// the current published revision. If there is a draft revision, a new
+/// disabled draft revision will be created based on the latest draft revision.
+/// Older draft revisions will be deleted.
+///
+/// Once disabled, a label may be deleted with `DeleteLabel`.
+pub async fn disable_label(&mut self, request: impl tonic::IntoRequest<super::DisableLabelRequest>) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/DisableLabel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "DisableLabel"));
+self.inner.unary(req, path, codec).await
+}
+/// Enable a disabled Label and restore it to its published state.
+/// This will result in a new published revision based on the current disabled
+/// published revision. If there is an existing disabled draft revision, a new
+/// revision will be created based on that draft and will be enabled.
+pub async fn enable_label(&mut self, request: impl tonic::IntoRequest<super::EnableLabelRequest>) -> std::result::Result<tonic::Response<super::Label>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/EnableLabel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "EnableLabel"));
+self.inner.unary(req, path, codec).await
+}
+/// Permanently deletes a Label and related metadata on Drive Items.
+///
+/// Once deleted, the Label and related Drive item metadata will be deleted.
+/// Only draft Labels, and disabled Labels may be deleted.
+pub async fn delete_label(&mut self, request: impl tonic::IntoRequest<super::DeleteLabelRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/DeleteLabel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "DeleteLabel"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists a Label's permissions.
+pub async fn list_label_permissions(&mut self, request: impl tonic::IntoRequest<super::ListLabelPermissionsRequest>) -> std::result::Result<tonic::Response<super::ListLabelPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/ListLabelPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "ListLabelPermissions"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Label's permissions. If a permission for the indicated principal
+/// doesn't exist, a new Label Permission is created, otherwise the existing
+/// permission is updated. Permissions affect the Label resource as a whole,
+/// are not revisioned, and do not require publishing.
+pub async fn create_label_permission(&mut self, request: impl tonic::IntoRequest<super::CreateLabelPermissionRequest>) -> std::result::Result<tonic::Response<super::LabelPermission>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/CreateLabelPermission");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "CreateLabelPermission"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Label's permissions. If a permission for the indicated principal
+/// doesn't exist, a new Label Permission is created, otherwise the existing
+/// permission is updated. Permissions affect the Label resource as a whole,
+/// are not revisioned, and do not require publishing.
+pub async fn update_label_permission(&mut self, request: impl tonic::IntoRequest<super::UpdateLabelPermissionRequest>) -> std::result::Result<tonic::Response<super::LabelPermission>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/UpdateLabelPermission");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "UpdateLabelPermission"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Label's permission. Permissions affect the Label resource as a
+/// whole, are not revisioned, and do not require publishing.
+pub async fn delete_label_permission(&mut self, request: impl tonic::IntoRequest<super::DeleteLabelPermissionRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/DeleteLabelPermission");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "DeleteLabelPermission"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates Label permissions. If a permission for the
+/// indicated principal doesn't exist, a new Label Permission is created,
+/// otherwise the existing permission is updated. Permissions affect the Label
+/// resource as a whole, are not revisioned, and do not require publishing.
+pub async fn batch_update_label_permissions(&mut self, request: impl tonic::IntoRequest<super::BatchUpdateLabelPermissionsRequest>) -> std::result::Result<tonic::Response<super::BatchUpdateLabelPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/BatchUpdateLabelPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "BatchUpdateLabelPermissions"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes Label permissions. Permissions affect the Label resource as a
+/// whole, are not revisioned, and do not require publishing.
+pub async fn batch_delete_label_permissions(&mut self, request: impl tonic::IntoRequest<super::BatchDeleteLabelPermissionsRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/BatchDeleteLabelPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "BatchDeleteLabelPermissions"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists the LabelLocks on a Label.
+pub async fn list_label_locks(&mut self, request: impl tonic::IntoRequest<super::ListLabelLocksRequest>) -> std::result::Result<tonic::Response<super::ListLabelLocksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.apps.drive.labels.v2.LabelService/ListLabelLocks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.apps.drive.labels.v2.LabelService", "ListLabelLocks"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InvalidArgument {
-    #[prost(message, repeated, tag = "1")]
-    pub field_violations: ::prost::alloc::vec::Vec<invalid_argument::FieldViolation>,
+#[prost(message, repeated, tag = "1")]
+pub field_violations: ::prost::alloc::vec::Vec<invalid_argument::FieldViolation>,
 }
 /// Nested message and enum types in `InvalidArgument`.
 pub mod invalid_argument {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FieldViolation {
-        #[prost(string, tag = "1")]
-        pub field: ::prost::alloc::string::String,
-        #[prost(enumeration = "field_violation::Reason", tag = "2")]
-        pub reason: i32,
-        #[prost(string, tag = "3")]
-        pub display_message: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `FieldViolation`.
-    pub mod field_violation {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            FieldRequired = 1,
-            InvalidValue = 2,
-            ValueOutOfRange = 3,
-            StringValueTooLong = 4,
-            MaxEntriesExceeded = 5,
-            FieldNotFound = 6,
-            ChoiceNotFound = 7,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::FieldRequired => "FIELD_REQUIRED",
-                    Reason::InvalidValue => "INVALID_VALUE",
-                    Reason::ValueOutOfRange => "VALUE_OUT_OF_RANGE",
-                    Reason::StringValueTooLong => "STRING_VALUE_TOO_LONG",
-                    Reason::MaxEntriesExceeded => "MAX_ENTRIES_EXCEEDED",
-                    Reason::FieldNotFound => "FIELD_NOT_FOUND",
-                    Reason::ChoiceNotFound => "CHOICE_NOT_FOUND",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "FIELD_REQUIRED" => Some(Self::FieldRequired),
-                    "INVALID_VALUE" => Some(Self::InvalidValue),
-                    "VALUE_OUT_OF_RANGE" => Some(Self::ValueOutOfRange),
-                    "STRING_VALUE_TOO_LONG" => Some(Self::StringValueTooLong),
-                    "MAX_ENTRIES_EXCEEDED" => Some(Self::MaxEntriesExceeded),
-                    "FIELD_NOT_FOUND" => Some(Self::FieldNotFound),
-                    "CHOICE_NOT_FOUND" => Some(Self::ChoiceNotFound),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FieldViolation {
+#[prost(string, tag = "1")]
+pub field: ::prost::alloc::string::String,
+#[prost(enumeration = "field_violation::Reason", tag = "2")]
+pub reason: i32,
+#[prost(string, tag = "3")]
+pub display_message: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `FieldViolation`.
+pub mod field_violation {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+FieldRequired = 1,
+InvalidValue = 2,
+ValueOutOfRange = 3,
+StringValueTooLong = 4,
+MaxEntriesExceeded = 5,
+FieldNotFound = 6,
+ChoiceNotFound = 7,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::FieldRequired => "FIELD_REQUIRED",
+Reason::InvalidValue => "INVALID_VALUE",
+Reason::ValueOutOfRange => "VALUE_OUT_OF_RANGE",
+Reason::StringValueTooLong => "STRING_VALUE_TOO_LONG",
+Reason::MaxEntriesExceeded => "MAX_ENTRIES_EXCEEDED",
+Reason::FieldNotFound => "FIELD_NOT_FOUND",
+Reason::ChoiceNotFound => "CHOICE_NOT_FOUND",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"FIELD_REQUIRED" => Some(Self::FieldRequired),
+"INVALID_VALUE" => Some(Self::InvalidValue),
+"VALUE_OUT_OF_RANGE" => Some(Self::ValueOutOfRange),
+"STRING_VALUE_TOO_LONG" => Some(Self::StringValueTooLong),
+"MAX_ENTRIES_EXCEEDED" => Some(Self::MaxEntriesExceeded),
+"FIELD_NOT_FOUND" => Some(Self::FieldNotFound),
+"CHOICE_NOT_FOUND" => Some(Self::ChoiceNotFound),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PreconditionFailure {
-    #[prost(message, repeated, tag = "1")]
-    pub violation: ::prost::alloc::vec::Vec<precondition_failure::Violation>,
+#[prost(message, repeated, tag = "1")]
+pub violation: ::prost::alloc::vec::Vec<precondition_failure::Violation>,
 }
 /// Nested message and enum types in `PreconditionFailure`.
 pub mod precondition_failure {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Violation {
-        #[prost(string, tag = "1")]
-        pub field: ::prost::alloc::string::String,
-        #[prost(enumeration = "violation::Reason", tag = "2")]
-        pub reason: i32,
-        #[prost(string, tag = "3")]
-        pub display_message: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `Violation`.
-    pub mod violation {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Reason {
-            Unspecified = 0,
-            CannotDisable = 1,
-            CannotEnable = 2,
-            CannotPublish = 3,
-            CannotUnpublish = 4,
-            CannotDelete = 5,
-            CannotRestrictRange = 6,
-            CannotChangePublishedField = 7,
-            CannotCreateMoreLabels = 8,
-            CannotChangePublishedFieldType = 9,
-            CannotModifyLockedComponent = 10,
-            UnsupportEnabledAppSettings = 11,
-        }
-        impl Reason {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Reason::Unspecified => "REASON_UNSPECIFIED",
-                    Reason::CannotDisable => "CANNOT_DISABLE",
-                    Reason::CannotEnable => "CANNOT_ENABLE",
-                    Reason::CannotPublish => "CANNOT_PUBLISH",
-                    Reason::CannotUnpublish => "CANNOT_UNPUBLISH",
-                    Reason::CannotDelete => "CANNOT_DELETE",
-                    Reason::CannotRestrictRange => "CANNOT_RESTRICT_RANGE",
-                    Reason::CannotChangePublishedField => "CANNOT_CHANGE_PUBLISHED_FIELD",
-                    Reason::CannotCreateMoreLabels => "CANNOT_CREATE_MORE_LABELS",
-                    Reason::CannotChangePublishedFieldType => {
-                        "CANNOT_CHANGE_PUBLISHED_FIELD_TYPE"
-                    }
-                    Reason::CannotModifyLockedComponent => {
-                        "CANNOT_MODIFY_LOCKED_COMPONENT"
-                    }
-                    Reason::UnsupportEnabledAppSettings => {
-                        "UNSUPPORT_ENABLED_APP_SETTINGS"
-                    }
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "REASON_UNSPECIFIED" => Some(Self::Unspecified),
-                    "CANNOT_DISABLE" => Some(Self::CannotDisable),
-                    "CANNOT_ENABLE" => Some(Self::CannotEnable),
-                    "CANNOT_PUBLISH" => Some(Self::CannotPublish),
-                    "CANNOT_UNPUBLISH" => Some(Self::CannotUnpublish),
-                    "CANNOT_DELETE" => Some(Self::CannotDelete),
-                    "CANNOT_RESTRICT_RANGE" => Some(Self::CannotRestrictRange),
-                    "CANNOT_CHANGE_PUBLISHED_FIELD" => {
-                        Some(Self::CannotChangePublishedField)
-                    }
-                    "CANNOT_CREATE_MORE_LABELS" => Some(Self::CannotCreateMoreLabels),
-                    "CANNOT_CHANGE_PUBLISHED_FIELD_TYPE" => {
-                        Some(Self::CannotChangePublishedFieldType)
-                    }
-                    "CANNOT_MODIFY_LOCKED_COMPONENT" => {
-                        Some(Self::CannotModifyLockedComponent)
-                    }
-                    "UNSUPPORT_ENABLED_APP_SETTINGS" => {
-                        Some(Self::UnsupportEnabledAppSettings)
-                    }
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Violation {
+#[prost(string, tag = "1")]
+pub field: ::prost::alloc::string::String,
+#[prost(enumeration = "violation::Reason", tag = "2")]
+pub reason: i32,
+#[prost(string, tag = "3")]
+pub display_message: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `Violation`.
+pub mod violation {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Reason {
+Unspecified = 0,
+CannotDisable = 1,
+CannotEnable = 2,
+CannotPublish = 3,
+CannotUnpublish = 4,
+CannotDelete = 5,
+CannotRestrictRange = 6,
+CannotChangePublishedField = 7,
+CannotCreateMoreLabels = 8,
+CannotChangePublishedFieldType = 9,
+CannotModifyLockedComponent = 10,
+UnsupportEnabledAppSettings = 11,
+}
+impl Reason {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Reason::Unspecified => "REASON_UNSPECIFIED",
+Reason::CannotDisable => "CANNOT_DISABLE",
+Reason::CannotEnable => "CANNOT_ENABLE",
+Reason::CannotPublish => "CANNOT_PUBLISH",
+Reason::CannotUnpublish => "CANNOT_UNPUBLISH",
+Reason::CannotDelete => "CANNOT_DELETE",
+Reason::CannotRestrictRange => "CANNOT_RESTRICT_RANGE",
+Reason::CannotChangePublishedField => "CANNOT_CHANGE_PUBLISHED_FIELD",
+Reason::CannotCreateMoreLabels => "CANNOT_CREATE_MORE_LABELS",
+Reason::CannotChangePublishedFieldType => "CANNOT_CHANGE_PUBLISHED_FIELD_TYPE",
+Reason::CannotModifyLockedComponent => "CANNOT_MODIFY_LOCKED_COMPONENT",
+Reason::UnsupportEnabledAppSettings => "UNSUPPORT_ENABLED_APP_SETTINGS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REASON_UNSPECIFIED" => Some(Self::Unspecified),
+"CANNOT_DISABLE" => Some(Self::CannotDisable),
+"CANNOT_ENABLE" => Some(Self::CannotEnable),
+"CANNOT_PUBLISH" => Some(Self::CannotPublish),
+"CANNOT_UNPUBLISH" => Some(Self::CannotUnpublish),
+"CANNOT_DELETE" => Some(Self::CannotDelete),
+"CANNOT_RESTRICT_RANGE" => Some(Self::CannotRestrictRange),
+"CANNOT_CHANGE_PUBLISHED_FIELD" => Some(Self::CannotChangePublishedField),
+"CANNOT_CREATE_MORE_LABELS" => Some(Self::CannotCreateMoreLabels),
+"CANNOT_CHANGE_PUBLISHED_FIELD_TYPE" => Some(Self::CannotChangePublishedFieldType),
+"CANNOT_MODIFY_LOCKED_COMPONENT" => Some(Self::CannotModifyLockedComponent),
+"UNSUPPORT_ENABLED_APP_SETTINGS" => Some(Self::UnsupportEnabledAppSettings),
+_ => None,
+}
+}
+}
+}
 }

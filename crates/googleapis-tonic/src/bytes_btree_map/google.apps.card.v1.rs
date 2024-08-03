@@ -2,280 +2,234 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Card {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<card::CardHeader>,
-    #[prost(message, repeated, tag = "2")]
-    pub sections: ::prost::alloc::vec::Vec<card::Section>,
-    #[prost(enumeration = "card::DividerStyle", tag = "9")]
-    pub section_divider_style: i32,
-    #[prost(message, repeated, tag = "3")]
-    pub card_actions: ::prost::alloc::vec::Vec<card::CardAction>,
-    #[prost(string, tag = "4")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, boxed, tag = "5")]
-    pub fixed_footer: ::core::option::Option<
-        ::prost::alloc::boxed::Box<card::CardFixedFooter>,
-    >,
-    #[prost(enumeration = "card::DisplayStyle", tag = "6")]
-    pub display_style: i32,
-    #[prost(message, optional, tag = "7")]
-    pub peek_card_header: ::core::option::Option<card::CardHeader>,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<card::CardHeader>,
+#[prost(message, repeated, tag = "2")]
+pub sections: ::prost::alloc::vec::Vec<card::Section>,
+#[prost(enumeration = "card::DividerStyle", tag = "9")]
+pub section_divider_style: i32,
+#[prost(message, repeated, tag = "3")]
+pub card_actions: ::prost::alloc::vec::Vec<card::CardAction>,
+#[prost(string, tag = "4")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, boxed, tag = "5")]
+pub fixed_footer: ::core::option::Option<::prost::alloc::boxed::Box<card::CardFixedFooter>>,
+#[prost(enumeration = "card::DisplayStyle", tag = "6")]
+pub display_style: i32,
+#[prost(message, optional, tag = "7")]
+pub peek_card_header: ::core::option::Option<card::CardHeader>,
 }
 /// Nested message and enum types in `Card`.
 pub mod card {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CardHeader {
-        #[prost(string, tag = "1")]
-        pub title: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub subtitle: ::prost::alloc::string::String,
-        #[prost(enumeration = "super::widget::ImageType", tag = "3")]
-        pub image_type: i32,
-        #[prost(string, tag = "4")]
-        pub image_url: ::prost::alloc::string::String,
-        #[prost(string, tag = "5")]
-        pub image_alt_text: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Section {
-        #[prost(string, tag = "1")]
-        pub header: ::prost::alloc::string::String,
-        #[prost(message, repeated, tag = "2")]
-        pub widgets: ::prost::alloc::vec::Vec<super::Widget>,
-        #[prost(bool, tag = "5")]
-        pub collapsible: bool,
-        #[prost(int32, tag = "6")]
-        pub uncollapsible_widgets_count: i32,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CardAction {
-        #[prost(string, tag = "1")]
-        pub action_label: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub on_click: ::core::option::Option<super::OnClick>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct CardFixedFooter {
-        #[prost(message, optional, boxed, tag = "1")]
-        pub primary_button: ::core::option::Option<
-            ::prost::alloc::boxed::Box<super::Button>,
-        >,
-        #[prost(message, optional, boxed, tag = "2")]
-        pub secondary_button: ::core::option::Option<
-            ::prost::alloc::boxed::Box<super::Button>,
-        >,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DividerStyle {
-        Unspecified = 0,
-        SolidDivider = 1,
-        NoDivider = 2,
-    }
-    impl DividerStyle {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DividerStyle::Unspecified => "DIVIDER_STYLE_UNSPECIFIED",
-                DividerStyle::SolidDivider => "SOLID_DIVIDER",
-                DividerStyle::NoDivider => "NO_DIVIDER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DIVIDER_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SOLID_DIVIDER" => Some(Self::SolidDivider),
-                "NO_DIVIDER" => Some(Self::NoDivider),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DisplayStyle {
-        Unspecified = 0,
-        Peek = 1,
-        Replace = 2,
-    }
-    impl DisplayStyle {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DisplayStyle::Unspecified => "DISPLAY_STYLE_UNSPECIFIED",
-                DisplayStyle::Peek => "PEEK",
-                DisplayStyle::Replace => "REPLACE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DISPLAY_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PEEK" => Some(Self::Peek),
-                "REPLACE" => Some(Self::Replace),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CardHeader {
+#[prost(string, tag = "1")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub subtitle: ::prost::alloc::string::String,
+#[prost(enumeration = "super::widget::ImageType", tag = "3")]
+pub image_type: i32,
+#[prost(string, tag = "4")]
+pub image_url: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub image_alt_text: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Section {
+#[prost(string, tag = "1")]
+pub header: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub widgets: ::prost::alloc::vec::Vec<super::Widget>,
+#[prost(bool, tag = "5")]
+pub collapsible: bool,
+#[prost(int32, tag = "6")]
+pub uncollapsible_widgets_count: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CardAction {
+#[prost(string, tag = "1")]
+pub action_label: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub on_click: ::core::option::Option<super::OnClick>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CardFixedFooter {
+#[prost(message, optional, boxed, tag = "1")]
+pub primary_button: ::core::option::Option<::prost::alloc::boxed::Box<super::Button>>,
+#[prost(message, optional, boxed, tag = "2")]
+pub secondary_button: ::core::option::Option<::prost::alloc::boxed::Box<super::Button>>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DividerStyle {
+Unspecified = 0,
+SolidDivider = 1,
+NoDivider = 2,
+}
+impl DividerStyle {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DividerStyle::Unspecified => "DIVIDER_STYLE_UNSPECIFIED",
+DividerStyle::SolidDivider => "SOLID_DIVIDER",
+DividerStyle::NoDivider => "NO_DIVIDER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DIVIDER_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
+"SOLID_DIVIDER" => Some(Self::SolidDivider),
+"NO_DIVIDER" => Some(Self::NoDivider),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DisplayStyle {
+Unspecified = 0,
+Peek = 1,
+Replace = 2,
+}
+impl DisplayStyle {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DisplayStyle::Unspecified => "DISPLAY_STYLE_UNSPECIFIED",
+DisplayStyle::Peek => "PEEK",
+DisplayStyle::Replace => "REPLACE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DISPLAY_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
+"PEEK" => Some(Self::Peek),
+"REPLACE" => Some(Self::Replace),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Widget {
-    #[prost(enumeration = "widget::HorizontalAlignment", tag = "8")]
-    pub horizontal_alignment: i32,
-    #[prost(oneof = "widget::Data", tags = "1, 2, 3, 4, 5, 6, 7, 9, 10, 11")]
-    pub data: ::core::option::Option<widget::Data>,
+#[prost(enumeration = "widget::HorizontalAlignment", tag = "8")]
+pub horizontal_alignment: i32,
+#[prost(oneof = "widget::Data", tags = "1, 2, 3, 4, 5, 6, 7, 9, 10, 11")]
+pub data: ::core::option::Option<widget::Data>,
 }
 /// Nested message and enum types in `Widget`.
 pub mod widget {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ImageType {
-        Square = 0,
-        Circle = 1,
-    }
-    impl ImageType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ImageType::Square => "SQUARE",
-                ImageType::Circle => "CIRCLE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SQUARE" => Some(Self::Square),
-                "CIRCLE" => Some(Self::Circle),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum HorizontalAlignment {
-        Unspecified = 0,
-        Start = 1,
-        Center = 2,
-        End = 3,
-    }
-    impl HorizontalAlignment {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                HorizontalAlignment::Unspecified => "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
-                HorizontalAlignment::Start => "START",
-                HorizontalAlignment::Center => "CENTER",
-                HorizontalAlignment::End => "END",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "HORIZONTAL_ALIGNMENT_UNSPECIFIED" => Some(Self::Unspecified),
-                "START" => Some(Self::Start),
-                "CENTER" => Some(Self::Center),
-                "END" => Some(Self::End),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Data {
-        #[prost(message, tag = "1")]
-        TextParagraph(super::TextParagraph),
-        #[prost(message, tag = "2")]
-        Image(super::Image),
-        #[prost(message, tag = "3")]
-        DecoratedText(super::DecoratedText),
-        #[prost(message, tag = "4")]
-        ButtonList(super::ButtonList),
-        #[prost(message, tag = "5")]
-        TextInput(super::TextInput),
-        #[prost(message, tag = "6")]
-        SelectionInput(super::SelectionInput),
-        #[prost(message, tag = "7")]
-        DateTimePicker(super::DateTimePicker),
-        #[prost(message, tag = "9")]
-        Divider(super::Divider),
-        #[prost(message, tag = "10")]
-        Grid(super::Grid),
-        #[prost(message, tag = "11")]
-        Columns(super::Columns),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ImageType {
+Square = 0,
+Circle = 1,
+}
+impl ImageType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ImageType::Square => "SQUARE",
+ImageType::Circle => "CIRCLE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SQUARE" => Some(Self::Square),
+"CIRCLE" => Some(Self::Circle),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum HorizontalAlignment {
+Unspecified = 0,
+Start = 1,
+Center = 2,
+End = 3,
+}
+impl HorizontalAlignment {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+HorizontalAlignment::Unspecified => "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+HorizontalAlignment::Start => "START",
+HorizontalAlignment::Center => "CENTER",
+HorizontalAlignment::End => "END",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"HORIZONTAL_ALIGNMENT_UNSPECIFIED" => Some(Self::Unspecified),
+"START" => Some(Self::Start),
+"CENTER" => Some(Self::Center),
+"END" => Some(Self::End),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Data {
+#[prost(message, tag = "1")]
+TextParagraph(super::TextParagraph),
+#[prost(message, tag = "2")]
+Image(super::Image),
+#[prost(message, tag = "3")]
+DecoratedText(super::DecoratedText),
+#[prost(message, tag = "4")]
+ButtonList(super::ButtonList),
+#[prost(message, tag = "5")]
+TextInput(super::TextInput),
+#[prost(message, tag = "6")]
+SelectionInput(super::SelectionInput),
+#[prost(message, tag = "7")]
+DateTimePicker(super::DateTimePicker),
+#[prost(message, tag = "9")]
+Divider(super::Divider),
+#[prost(message, tag = "10")]
+Grid(super::Grid),
+#[prost(message, tag = "11")]
+Columns(super::Columns),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextParagraph {
-    #[prost(string, tag = "1")]
-    pub text: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub text: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Image {
-    #[prost(string, tag = "1")]
-    pub image_url: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub on_click: ::core::option::Option<OnClick>,
-    #[prost(string, tag = "3")]
-    pub alt_text: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub image_url: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub on_click: ::core::option::Option<OnClick>,
+#[prost(string, tag = "3")]
+pub alt_text: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -283,963 +237,819 @@ pub struct Divider {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DecoratedText {
-    #[deprecated]
-    #[prost(message, optional, tag = "1")]
-    pub icon: ::core::option::Option<Icon>,
-    #[prost(message, optional, tag = "12")]
-    pub start_icon: ::core::option::Option<Icon>,
-    #[prost(string, tag = "3")]
-    pub top_label: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub text: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub wrap_text: bool,
-    #[prost(string, tag = "6")]
-    pub bottom_label: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub on_click: ::core::option::Option<OnClick>,
-    #[prost(oneof = "decorated_text::Control", tags = "8, 9, 11")]
-    pub control: ::core::option::Option<decorated_text::Control>,
+#[deprecated]
+#[prost(message, optional, tag = "1")]
+pub icon: ::core::option::Option<Icon>,
+#[prost(message, optional, tag = "12")]
+pub start_icon: ::core::option::Option<Icon>,
+#[prost(string, tag = "3")]
+pub top_label: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub text: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub wrap_text: bool,
+#[prost(string, tag = "6")]
+pub bottom_label: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub on_click: ::core::option::Option<OnClick>,
+#[prost(oneof = "decorated_text::Control", tags = "8, 9, 11")]
+pub control: ::core::option::Option<decorated_text::Control>,
 }
 /// Nested message and enum types in `DecoratedText`.
 pub mod decorated_text {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SwitchControl {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
-        #[prost(bool, tag = "3")]
-        pub selected: bool,
-        #[prost(message, optional, tag = "4")]
-        pub on_change_action: ::core::option::Option<super::Action>,
-        #[prost(enumeration = "switch_control::ControlType", tag = "5")]
-        pub control_type: i32,
-    }
-    /// Nested message and enum types in `SwitchControl`.
-    pub mod switch_control {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ControlType {
-            Switch = 0,
-            Checkbox = 1,
-            CheckBox = 2,
-        }
-        impl ControlType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    ControlType::Switch => "SWITCH",
-                    ControlType::Checkbox => "CHECKBOX",
-                    ControlType::CheckBox => "CHECK_BOX",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "SWITCH" => Some(Self::Switch),
-                    "CHECKBOX" => Some(Self::Checkbox),
-                    "CHECK_BOX" => Some(Self::CheckBox),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Control {
-        #[prost(message, tag = "8")]
-        Button(super::Button),
-        #[prost(message, tag = "9")]
-        SwitchControl(SwitchControl),
-        #[prost(message, tag = "11")]
-        EndIcon(super::Icon),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SwitchControl {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub selected: bool,
+#[prost(message, optional, tag = "4")]
+pub on_change_action: ::core::option::Option<super::Action>,
+#[prost(enumeration = "switch_control::ControlType", tag = "5")]
+pub control_type: i32,
+}
+/// Nested message and enum types in `SwitchControl`.
+pub mod switch_control {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ControlType {
+Switch = 0,
+Checkbox = 1,
+CheckBox = 2,
+}
+impl ControlType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ControlType::Switch => "SWITCH",
+ControlType::Checkbox => "CHECKBOX",
+ControlType::CheckBox => "CHECK_BOX",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SWITCH" => Some(Self::Switch),
+"CHECKBOX" => Some(Self::Checkbox),
+"CHECK_BOX" => Some(Self::CheckBox),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Control {
+#[prost(message, tag = "8")]
+Button(super::Button),
+#[prost(message, tag = "9")]
+SwitchControl(SwitchControl),
+#[prost(message, tag = "11")]
+EndIcon(super::Icon),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextInput {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub label: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub hint_text: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub value: ::prost::alloc::string::String,
-    #[prost(enumeration = "text_input::Type", tag = "5")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "6")]
-    pub on_change_action: ::core::option::Option<Action>,
-    #[prost(message, optional, tag = "7")]
-    pub initial_suggestions: ::core::option::Option<Suggestions>,
-    #[prost(message, optional, tag = "8")]
-    pub auto_complete_action: ::core::option::Option<Action>,
-    #[prost(string, tag = "12")]
-    pub placeholder_text: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub label: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub hint_text: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub value: ::prost::alloc::string::String,
+#[prost(enumeration = "text_input::Type", tag = "5")]
+pub r#type: i32,
+#[prost(message, optional, tag = "6")]
+pub on_change_action: ::core::option::Option<Action>,
+#[prost(message, optional, tag = "7")]
+pub initial_suggestions: ::core::option::Option<Suggestions>,
+#[prost(message, optional, tag = "8")]
+pub auto_complete_action: ::core::option::Option<Action>,
+#[prost(string, tag = "12")]
+pub placeholder_text: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `TextInput`.
 pub mod text_input {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        SingleLine = 0,
-        MultipleLine = 1,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::SingleLine => "SINGLE_LINE",
-                Type::MultipleLine => "MULTIPLE_LINE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SINGLE_LINE" => Some(Self::SingleLine),
-                "MULTIPLE_LINE" => Some(Self::MultipleLine),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+SingleLine = 0,
+MultipleLine = 1,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::SingleLine => "SINGLE_LINE",
+Type::MultipleLine => "MULTIPLE_LINE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SINGLE_LINE" => Some(Self::SingleLine),
+"MULTIPLE_LINE" => Some(Self::MultipleLine),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Suggestions {
-    #[prost(message, repeated, tag = "1")]
-    pub items: ::prost::alloc::vec::Vec<suggestions::SuggestionItem>,
+#[prost(message, repeated, tag = "1")]
+pub items: ::prost::alloc::vec::Vec<suggestions::SuggestionItem>,
 }
 /// Nested message and enum types in `Suggestions`.
 pub mod suggestions {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SuggestionItem {
-        #[prost(oneof = "suggestion_item::Content", tags = "1")]
-        pub content: ::core::option::Option<suggestion_item::Content>,
-    }
-    /// Nested message and enum types in `SuggestionItem`.
-    pub mod suggestion_item {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Content {
-            #[prost(string, tag = "1")]
-            Text(::prost::alloc::string::String),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SuggestionItem {
+#[prost(oneof = "suggestion_item::Content", tags = "1")]
+pub content: ::core::option::Option<suggestion_item::Content>,
+}
+/// Nested message and enum types in `SuggestionItem`.
+pub mod suggestion_item {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Content {
+#[prost(string, tag = "1")]
+Text(::prost::alloc::string::String),
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ButtonList {
-    #[prost(message, repeated, tag = "1")]
-    pub buttons: ::prost::alloc::vec::Vec<Button>,
+#[prost(message, repeated, tag = "1")]
+pub buttons: ::prost::alloc::vec::Vec<Button>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SelectionInput {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub label: ::prost::alloc::string::String,
-    #[prost(enumeration = "selection_input::SelectionType", tag = "3")]
-    pub r#type: i32,
-    #[prost(message, repeated, tag = "4")]
-    pub items: ::prost::alloc::vec::Vec<selection_input::SelectionItem>,
-    #[prost(message, optional, tag = "5")]
-    pub on_change_action: ::core::option::Option<Action>,
-    #[prost(int32, tag = "6")]
-    pub multi_select_max_selected_items: i32,
-    #[prost(int32, tag = "7")]
-    pub multi_select_min_query_length: i32,
-    #[prost(oneof = "selection_input::MultiSelectDataSource", tags = "8, 9")]
-    pub multi_select_data_source: ::core::option::Option<
-        selection_input::MultiSelectDataSource,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub label: ::prost::alloc::string::String,
+#[prost(enumeration = "selection_input::SelectionType", tag = "3")]
+pub r#type: i32,
+#[prost(message, repeated, tag = "4")]
+pub items: ::prost::alloc::vec::Vec<selection_input::SelectionItem>,
+#[prost(message, optional, tag = "5")]
+pub on_change_action: ::core::option::Option<Action>,
+#[prost(int32, tag = "6")]
+pub multi_select_max_selected_items: i32,
+#[prost(int32, tag = "7")]
+pub multi_select_min_query_length: i32,
+#[prost(oneof = "selection_input::MultiSelectDataSource", tags = "8, 9")]
+pub multi_select_data_source: ::core::option::Option<selection_input::MultiSelectDataSource>,
 }
 /// Nested message and enum types in `SelectionInput`.
 pub mod selection_input {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SelectionItem {
-        #[prost(string, tag = "1")]
-        pub text: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
-        #[prost(bool, tag = "3")]
-        pub selected: bool,
-        #[prost(string, tag = "4")]
-        pub start_icon_uri: ::prost::alloc::string::String,
-        #[prost(string, tag = "5")]
-        pub bottom_text: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct PlatformDataSource {
-        #[prost(oneof = "platform_data_source::DataSource", tags = "1")]
-        pub data_source: ::core::option::Option<platform_data_source::DataSource>,
-    }
-    /// Nested message and enum types in `PlatformDataSource`.
-    pub mod platform_data_source {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum CommonDataSource {
-            Unknown = 0,
-            User = 1,
-        }
-        impl CommonDataSource {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    CommonDataSource::Unknown => "UNKNOWN",
-                    CommonDataSource::User => "USER",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "UNKNOWN" => Some(Self::Unknown),
-                    "USER" => Some(Self::User),
-                    _ => None,
-                }
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-        pub enum DataSource {
-            #[prost(enumeration = "CommonDataSource", tag = "1")]
-            CommonDataSource(i32),
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SelectionType {
-        CheckBox = 0,
-        RadioButton = 1,
-        Switch = 2,
-        Dropdown = 3,
-        MultiSelect = 4,
-    }
-    impl SelectionType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SelectionType::CheckBox => "CHECK_BOX",
-                SelectionType::RadioButton => "RADIO_BUTTON",
-                SelectionType::Switch => "SWITCH",
-                SelectionType::Dropdown => "DROPDOWN",
-                SelectionType::MultiSelect => "MULTI_SELECT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CHECK_BOX" => Some(Self::CheckBox),
-                "RADIO_BUTTON" => Some(Self::RadioButton),
-                "SWITCH" => Some(Self::Switch),
-                "DROPDOWN" => Some(Self::Dropdown),
-                "MULTI_SELECT" => Some(Self::MultiSelect),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum MultiSelectDataSource {
-        #[prost(message, tag = "8")]
-        ExternalDataSource(super::Action),
-        #[prost(message, tag = "9")]
-        PlatformDataSource(PlatformDataSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SelectionItem {
+#[prost(string, tag = "1")]
+pub text: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub selected: bool,
+#[prost(string, tag = "4")]
+pub start_icon_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub bottom_text: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct PlatformDataSource {
+#[prost(oneof = "platform_data_source::DataSource", tags = "1")]
+pub data_source: ::core::option::Option<platform_data_source::DataSource>,
+}
+/// Nested message and enum types in `PlatformDataSource`.
+pub mod platform_data_source {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CommonDataSource {
+Unknown = 0,
+User = 1,
+}
+impl CommonDataSource {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CommonDataSource::Unknown => "UNKNOWN",
+CommonDataSource::User => "USER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN" => Some(Self::Unknown),
+"USER" => Some(Self::User),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum DataSource {
+#[prost(enumeration = "CommonDataSource", tag = "1")]
+CommonDataSource(i32),
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SelectionType {
+CheckBox = 0,
+RadioButton = 1,
+Switch = 2,
+Dropdown = 3,
+MultiSelect = 4,
+}
+impl SelectionType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SelectionType::CheckBox => "CHECK_BOX",
+SelectionType::RadioButton => "RADIO_BUTTON",
+SelectionType::Switch => "SWITCH",
+SelectionType::Dropdown => "DROPDOWN",
+SelectionType::MultiSelect => "MULTI_SELECT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CHECK_BOX" => Some(Self::CheckBox),
+"RADIO_BUTTON" => Some(Self::RadioButton),
+"SWITCH" => Some(Self::Switch),
+"DROPDOWN" => Some(Self::Dropdown),
+"MULTI_SELECT" => Some(Self::MultiSelect),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum MultiSelectDataSource {
+#[prost(message, tag = "8")]
+ExternalDataSource(super::Action),
+#[prost(message, tag = "9")]
+PlatformDataSource(PlatformDataSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DateTimePicker {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub label: ::prost::alloc::string::String,
-    #[prost(enumeration = "date_time_picker::DateTimePickerType", tag = "3")]
-    pub r#type: i32,
-    #[prost(int64, tag = "4")]
-    pub value_ms_epoch: i64,
-    #[prost(int32, tag = "5")]
-    pub timezone_offset_date: i32,
-    #[prost(message, optional, tag = "6")]
-    pub on_change_action: ::core::option::Option<Action>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub label: ::prost::alloc::string::String,
+#[prost(enumeration = "date_time_picker::DateTimePickerType", tag = "3")]
+pub r#type: i32,
+#[prost(int64, tag = "4")]
+pub value_ms_epoch: i64,
+#[prost(int32, tag = "5")]
+pub timezone_offset_date: i32,
+#[prost(message, optional, tag = "6")]
+pub on_change_action: ::core::option::Option<Action>,
 }
 /// Nested message and enum types in `DateTimePicker`.
 pub mod date_time_picker {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DateTimePickerType {
-        DateAndTime = 0,
-        DateOnly = 1,
-        TimeOnly = 2,
-    }
-    impl DateTimePickerType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DateTimePickerType::DateAndTime => "DATE_AND_TIME",
-                DateTimePickerType::DateOnly => "DATE_ONLY",
-                DateTimePickerType::TimeOnly => "TIME_ONLY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DATE_AND_TIME" => Some(Self::DateAndTime),
-                "DATE_ONLY" => Some(Self::DateOnly),
-                "TIME_ONLY" => Some(Self::TimeOnly),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DateTimePickerType {
+DateAndTime = 0,
+DateOnly = 1,
+TimeOnly = 2,
+}
+impl DateTimePickerType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DateTimePickerType::DateAndTime => "DATE_AND_TIME",
+DateTimePickerType::DateOnly => "DATE_ONLY",
+DateTimePickerType::TimeOnly => "TIME_ONLY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DATE_AND_TIME" => Some(Self::DateAndTime),
+"DATE_ONLY" => Some(Self::DateOnly),
+"TIME_ONLY" => Some(Self::TimeOnly),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Button {
-    #[prost(string, tag = "1")]
-    pub text: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub icon: ::core::option::Option<Icon>,
-    #[prost(message, optional, tag = "3")]
-    pub color: ::core::option::Option<super::super::super::r#type::Color>,
-    #[prost(message, optional, boxed, tag = "4")]
-    pub on_click: ::core::option::Option<::prost::alloc::boxed::Box<OnClick>>,
-    #[prost(bool, tag = "5")]
-    pub disabled: bool,
-    #[prost(string, tag = "6")]
-    pub alt_text: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub text: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub icon: ::core::option::Option<Icon>,
+#[prost(message, optional, tag = "3")]
+pub color: ::core::option::Option<super::super::super::r#type::Color>,
+#[prost(message, optional, boxed, tag = "4")]
+pub on_click: ::core::option::Option<::prost::alloc::boxed::Box<OnClick>>,
+#[prost(bool, tag = "5")]
+pub disabled: bool,
+#[prost(string, tag = "6")]
+pub alt_text: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Icon {
-    #[prost(string, tag = "3")]
-    pub alt_text: ::prost::alloc::string::String,
-    #[prost(enumeration = "widget::ImageType", tag = "4")]
-    pub image_type: i32,
-    #[prost(oneof = "icon::Icons", tags = "1, 2, 5")]
-    pub icons: ::core::option::Option<icon::Icons>,
+#[prost(string, tag = "3")]
+pub alt_text: ::prost::alloc::string::String,
+#[prost(enumeration = "widget::ImageType", tag = "4")]
+pub image_type: i32,
+#[prost(oneof = "icon::Icons", tags = "1, 2, 5")]
+pub icons: ::core::option::Option<icon::Icons>,
 }
 /// Nested message and enum types in `Icon`.
 pub mod icon {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Icons {
-        #[prost(string, tag = "1")]
-        KnownIcon(::prost::alloc::string::String),
-        #[prost(string, tag = "2")]
-        IconUrl(::prost::alloc::string::String),
-        #[prost(message, tag = "5")]
-        MaterialIcon(super::MaterialIcon),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Icons {
+#[prost(string, tag = "1")]
+KnownIcon(::prost::alloc::string::String),
+#[prost(string, tag = "2")]
+IconUrl(::prost::alloc::string::String),
+#[prost(message, tag = "5")]
+MaterialIcon(super::MaterialIcon),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MaterialIcon {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub fill: bool,
-    #[prost(int32, tag = "3")]
-    pub weight: i32,
-    #[prost(int32, tag = "4")]
-    pub grade: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub fill: bool,
+#[prost(int32, tag = "3")]
+pub weight: i32,
+#[prost(int32, tag = "4")]
+pub grade: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImageCropStyle {
-    #[prost(enumeration = "image_crop_style::ImageCropType", tag = "1")]
-    pub r#type: i32,
-    #[prost(double, tag = "2")]
-    pub aspect_ratio: f64,
+#[prost(enumeration = "image_crop_style::ImageCropType", tag = "1")]
+pub r#type: i32,
+#[prost(double, tag = "2")]
+pub aspect_ratio: f64,
 }
 /// Nested message and enum types in `ImageCropStyle`.
 pub mod image_crop_style {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ImageCropType {
-        Unspecified = 0,
-        Square = 1,
-        Circle = 2,
-        RectangleCustom = 3,
-        Rectangle43 = 4,
-    }
-    impl ImageCropType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ImageCropType::Unspecified => "IMAGE_CROP_TYPE_UNSPECIFIED",
-                ImageCropType::Square => "SQUARE",
-                ImageCropType::Circle => "CIRCLE",
-                ImageCropType::RectangleCustom => "RECTANGLE_CUSTOM",
-                ImageCropType::Rectangle43 => "RECTANGLE_4_3",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "IMAGE_CROP_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SQUARE" => Some(Self::Square),
-                "CIRCLE" => Some(Self::Circle),
-                "RECTANGLE_CUSTOM" => Some(Self::RectangleCustom),
-                "RECTANGLE_4_3" => Some(Self::Rectangle43),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ImageCropType {
+Unspecified = 0,
+Square = 1,
+Circle = 2,
+RectangleCustom = 3,
+Rectangle43 = 4,
+}
+impl ImageCropType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ImageCropType::Unspecified => "IMAGE_CROP_TYPE_UNSPECIFIED",
+ImageCropType::Square => "SQUARE",
+ImageCropType::Circle => "CIRCLE",
+ImageCropType::RectangleCustom => "RECTANGLE_CUSTOM",
+ImageCropType::Rectangle43 => "RECTANGLE_4_3",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"IMAGE_CROP_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SQUARE" => Some(Self::Square),
+"CIRCLE" => Some(Self::Circle),
+"RECTANGLE_CUSTOM" => Some(Self::RectangleCustom),
+"RECTANGLE_4_3" => Some(Self::Rectangle43),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BorderStyle {
-    #[prost(enumeration = "border_style::BorderType", tag = "1")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "2")]
-    pub stroke_color: ::core::option::Option<super::super::super::r#type::Color>,
-    #[prost(int32, tag = "3")]
-    pub corner_radius: i32,
+#[prost(enumeration = "border_style::BorderType", tag = "1")]
+pub r#type: i32,
+#[prost(message, optional, tag = "2")]
+pub stroke_color: ::core::option::Option<super::super::super::r#type::Color>,
+#[prost(int32, tag = "3")]
+pub corner_radius: i32,
 }
 /// Nested message and enum types in `BorderStyle`.
 pub mod border_style {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum BorderType {
-        Unspecified = 0,
-        NoBorder = 1,
-        Stroke = 2,
-    }
-    impl BorderType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                BorderType::Unspecified => "BORDER_TYPE_UNSPECIFIED",
-                BorderType::NoBorder => "NO_BORDER",
-                BorderType::Stroke => "STROKE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "BORDER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "NO_BORDER" => Some(Self::NoBorder),
-                "STROKE" => Some(Self::Stroke),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum BorderType {
+Unspecified = 0,
+NoBorder = 1,
+Stroke = 2,
+}
+impl BorderType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+BorderType::Unspecified => "BORDER_TYPE_UNSPECIFIED",
+BorderType::NoBorder => "NO_BORDER",
+BorderType::Stroke => "STROKE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BORDER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"NO_BORDER" => Some(Self::NoBorder),
+"STROKE" => Some(Self::Stroke),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageComponent {
-    #[prost(string, tag = "1")]
-    pub image_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub alt_text: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub crop_style: ::core::option::Option<ImageCropStyle>,
-    #[prost(message, optional, tag = "4")]
-    pub border_style: ::core::option::Option<BorderStyle>,
+#[prost(string, tag = "1")]
+pub image_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub alt_text: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub crop_style: ::core::option::Option<ImageCropStyle>,
+#[prost(message, optional, tag = "4")]
+pub border_style: ::core::option::Option<BorderStyle>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Grid {
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub items: ::prost::alloc::vec::Vec<grid::GridItem>,
-    #[prost(message, optional, tag = "3")]
-    pub border_style: ::core::option::Option<BorderStyle>,
-    #[prost(int32, tag = "4")]
-    pub column_count: i32,
-    #[prost(message, optional, tag = "5")]
-    pub on_click: ::core::option::Option<OnClick>,
+#[prost(string, tag = "1")]
+pub title: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub items: ::prost::alloc::vec::Vec<grid::GridItem>,
+#[prost(message, optional, tag = "3")]
+pub border_style: ::core::option::Option<BorderStyle>,
+#[prost(int32, tag = "4")]
+pub column_count: i32,
+#[prost(message, optional, tag = "5")]
+pub on_click: ::core::option::Option<OnClick>,
 }
 /// Nested message and enum types in `Grid`.
 pub mod grid {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GridItem {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "2")]
-        pub image: ::core::option::Option<super::ImageComponent>,
-        #[prost(string, tag = "3")]
-        pub title: ::prost::alloc::string::String,
-        #[prost(string, tag = "4")]
-        pub subtitle: ::prost::alloc::string::String,
-        #[prost(enumeration = "grid_item::GridItemLayout", tag = "9")]
-        pub layout: i32,
-    }
-    /// Nested message and enum types in `GridItem`.
-    pub mod grid_item {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum GridItemLayout {
-            Unspecified = 0,
-            TextBelow = 1,
-            TextAbove = 2,
-        }
-        impl GridItemLayout {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    GridItemLayout::Unspecified => "GRID_ITEM_LAYOUT_UNSPECIFIED",
-                    GridItemLayout::TextBelow => "TEXT_BELOW",
-                    GridItemLayout::TextAbove => "TEXT_ABOVE",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "GRID_ITEM_LAYOUT_UNSPECIFIED" => Some(Self::Unspecified),
-                    "TEXT_BELOW" => Some(Self::TextBelow),
-                    "TEXT_ABOVE" => Some(Self::TextAbove),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GridItem {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub image: ::core::option::Option<super::ImageComponent>,
+#[prost(string, tag = "3")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub subtitle: ::prost::alloc::string::String,
+#[prost(enumeration = "grid_item::GridItemLayout", tag = "9")]
+pub layout: i32,
+}
+/// Nested message and enum types in `GridItem`.
+pub mod grid_item {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum GridItemLayout {
+Unspecified = 0,
+TextBelow = 1,
+TextAbove = 2,
+}
+impl GridItemLayout {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+GridItemLayout::Unspecified => "GRID_ITEM_LAYOUT_UNSPECIFIED",
+GridItemLayout::TextBelow => "TEXT_BELOW",
+GridItemLayout::TextAbove => "TEXT_ABOVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"GRID_ITEM_LAYOUT_UNSPECIFIED" => Some(Self::Unspecified),
+"TEXT_BELOW" => Some(Self::TextBelow),
+"TEXT_ABOVE" => Some(Self::TextAbove),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Columns {
-    #[prost(message, repeated, tag = "2")]
-    pub column_items: ::prost::alloc::vec::Vec<columns::Column>,
+#[prost(message, repeated, tag = "2")]
+pub column_items: ::prost::alloc::vec::Vec<columns::Column>,
 }
 /// Nested message and enum types in `Columns`.
 pub mod columns {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Column {
-        #[prost(enumeration = "column::HorizontalSizeStyle", tag = "1")]
-        pub horizontal_size_style: i32,
-        #[prost(enumeration = "super::widget::HorizontalAlignment", tag = "2")]
-        pub horizontal_alignment: i32,
-        #[prost(enumeration = "column::VerticalAlignment", tag = "3")]
-        pub vertical_alignment: i32,
-        #[prost(message, repeated, tag = "4")]
-        pub widgets: ::prost::alloc::vec::Vec<column::Widgets>,
-    }
-    /// Nested message and enum types in `Column`.
-    pub mod column {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Widgets {
-            #[prost(oneof = "widgets::Data", tags = "1, 2, 3, 4, 5, 6, 7")]
-            pub data: ::core::option::Option<widgets::Data>,
-        }
-        /// Nested message and enum types in `Widgets`.
-        pub mod widgets {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Oneof)]
-            pub enum Data {
-                #[prost(message, tag = "1")]
-                TextParagraph(super::super::super::TextParagraph),
-                #[prost(message, tag = "2")]
-                Image(super::super::super::Image),
-                #[prost(message, tag = "3")]
-                DecoratedText(super::super::super::DecoratedText),
-                #[prost(message, tag = "4")]
-                ButtonList(super::super::super::ButtonList),
-                #[prost(message, tag = "5")]
-                TextInput(super::super::super::TextInput),
-                #[prost(message, tag = "6")]
-                SelectionInput(super::super::super::SelectionInput),
-                #[prost(message, tag = "7")]
-                DateTimePicker(super::super::super::DateTimePicker),
-            }
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum HorizontalSizeStyle {
-            Unspecified = 0,
-            FillAvailableSpace = 1,
-            FillMinimumSpace = 2,
-        }
-        impl HorizontalSizeStyle {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    HorizontalSizeStyle::Unspecified => {
-                        "HORIZONTAL_SIZE_STYLE_UNSPECIFIED"
-                    }
-                    HorizontalSizeStyle::FillAvailableSpace => "FILL_AVAILABLE_SPACE",
-                    HorizontalSizeStyle::FillMinimumSpace => "FILL_MINIMUM_SPACE",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "HORIZONTAL_SIZE_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "FILL_AVAILABLE_SPACE" => Some(Self::FillAvailableSpace),
-                    "FILL_MINIMUM_SPACE" => Some(Self::FillMinimumSpace),
-                    _ => None,
-                }
-            }
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum VerticalAlignment {
-            Unspecified = 0,
-            Center = 1,
-            Top = 2,
-            Bottom = 3,
-        }
-        impl VerticalAlignment {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    VerticalAlignment::Unspecified => "VERTICAL_ALIGNMENT_UNSPECIFIED",
-                    VerticalAlignment::Center => "CENTER",
-                    VerticalAlignment::Top => "TOP",
-                    VerticalAlignment::Bottom => "BOTTOM",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "VERTICAL_ALIGNMENT_UNSPECIFIED" => Some(Self::Unspecified),
-                    "CENTER" => Some(Self::Center),
-                    "TOP" => Some(Self::Top),
-                    "BOTTOM" => Some(Self::Bottom),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Column {
+#[prost(enumeration = "column::HorizontalSizeStyle", tag = "1")]
+pub horizontal_size_style: i32,
+#[prost(enumeration = "super::widget::HorizontalAlignment", tag = "2")]
+pub horizontal_alignment: i32,
+#[prost(enumeration = "column::VerticalAlignment", tag = "3")]
+pub vertical_alignment: i32,
+#[prost(message, repeated, tag = "4")]
+pub widgets: ::prost::alloc::vec::Vec<column::Widgets>,
+}
+/// Nested message and enum types in `Column`.
+pub mod column {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Widgets {
+#[prost(oneof = "widgets::Data", tags = "1, 2, 3, 4, 5, 6, 7")]
+pub data: ::core::option::Option<widgets::Data>,
+}
+/// Nested message and enum types in `Widgets`.
+pub mod widgets {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Data {
+#[prost(message, tag = "1")]
+TextParagraph(super::super::super::TextParagraph),
+#[prost(message, tag = "2")]
+Image(super::super::super::Image),
+#[prost(message, tag = "3")]
+DecoratedText(super::super::super::DecoratedText),
+#[prost(message, tag = "4")]
+ButtonList(super::super::super::ButtonList),
+#[prost(message, tag = "5")]
+TextInput(super::super::super::TextInput),
+#[prost(message, tag = "6")]
+SelectionInput(super::super::super::SelectionInput),
+#[prost(message, tag = "7")]
+DateTimePicker(super::super::super::DateTimePicker),
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum HorizontalSizeStyle {
+Unspecified = 0,
+FillAvailableSpace = 1,
+FillMinimumSpace = 2,
+}
+impl HorizontalSizeStyle {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+HorizontalSizeStyle::Unspecified => "HORIZONTAL_SIZE_STYLE_UNSPECIFIED",
+HorizontalSizeStyle::FillAvailableSpace => "FILL_AVAILABLE_SPACE",
+HorizontalSizeStyle::FillMinimumSpace => "FILL_MINIMUM_SPACE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"HORIZONTAL_SIZE_STYLE_UNSPECIFIED" => Some(Self::Unspecified),
+"FILL_AVAILABLE_SPACE" => Some(Self::FillAvailableSpace),
+"FILL_MINIMUM_SPACE" => Some(Self::FillMinimumSpace),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum VerticalAlignment {
+Unspecified = 0,
+Center = 1,
+Top = 2,
+Bottom = 3,
+}
+impl VerticalAlignment {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VerticalAlignment::Unspecified => "VERTICAL_ALIGNMENT_UNSPECIFIED",
+VerticalAlignment::Center => "CENTER",
+VerticalAlignment::Top => "TOP",
+VerticalAlignment::Bottom => "BOTTOM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VERTICAL_ALIGNMENT_UNSPECIFIED" => Some(Self::Unspecified),
+"CENTER" => Some(Self::Center),
+"TOP" => Some(Self::Top),
+"BOTTOM" => Some(Self::Bottom),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OnClick {
-    #[prost(oneof = "on_click::Data", tags = "1, 2, 3, 4")]
-    pub data: ::core::option::Option<on_click::Data>,
+#[prost(oneof = "on_click::Data", tags = "1, 2, 3, 4")]
+pub data: ::core::option::Option<on_click::Data>,
 }
 /// Nested message and enum types in `OnClick`.
 pub mod on_click {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Data {
-        #[prost(message, tag = "1")]
-        Action(super::Action),
-        #[prost(message, tag = "2")]
-        OpenLink(super::OpenLink),
-        #[prost(message, tag = "3")]
-        OpenDynamicLinkAction(super::Action),
-        #[prost(message, tag = "4")]
-        Card(::prost::alloc::boxed::Box<super::Card>),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Data {
+#[prost(message, tag = "1")]
+Action(super::Action),
+#[prost(message, tag = "2")]
+OpenLink(super::OpenLink),
+#[prost(message, tag = "3")]
+OpenDynamicLinkAction(super::Action),
+#[prost(message, tag = "4")]
+Card(::prost::alloc::boxed::Box<super::Card>),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OpenLink {
-    #[prost(string, tag = "1")]
-    pub url: ::prost::alloc::string::String,
-    #[prost(enumeration = "open_link::OpenAs", tag = "2")]
-    pub open_as: i32,
-    #[prost(enumeration = "open_link::OnClose", tag = "3")]
-    pub on_close: i32,
+#[prost(string, tag = "1")]
+pub url: ::prost::alloc::string::String,
+#[prost(enumeration = "open_link::OpenAs", tag = "2")]
+pub open_as: i32,
+#[prost(enumeration = "open_link::OnClose", tag = "3")]
+pub on_close: i32,
 }
 /// Nested message and enum types in `OpenLink`.
 pub mod open_link {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum OpenAs {
-        FullSize = 0,
-        Overlay = 1,
-    }
-    impl OpenAs {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                OpenAs::FullSize => "FULL_SIZE",
-                OpenAs::Overlay => "OVERLAY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "FULL_SIZE" => Some(Self::FullSize),
-                "OVERLAY" => Some(Self::Overlay),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum OnClose {
-        Nothing = 0,
-        Reload = 1,
-    }
-    impl OnClose {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                OnClose::Nothing => "NOTHING",
-                OnClose::Reload => "RELOAD",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "NOTHING" => Some(Self::Nothing),
-                "RELOAD" => Some(Self::Reload),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OpenAs {
+FullSize = 0,
+Overlay = 1,
+}
+impl OpenAs {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OpenAs::FullSize => "FULL_SIZE",
+OpenAs::Overlay => "OVERLAY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FULL_SIZE" => Some(Self::FullSize),
+"OVERLAY" => Some(Self::Overlay),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OnClose {
+Nothing = 0,
+Reload = 1,
+}
+impl OnClose {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OnClose::Nothing => "NOTHING",
+OnClose::Reload => "RELOAD",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"NOTHING" => Some(Self::Nothing),
+"RELOAD" => Some(Self::Reload),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Action {
-    #[prost(string, tag = "1")]
-    pub function: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub parameters: ::prost::alloc::vec::Vec<action::ActionParameter>,
-    #[prost(enumeration = "action::LoadIndicator", tag = "3")]
-    pub load_indicator: i32,
-    #[prost(bool, tag = "4")]
-    pub persist_values: bool,
-    #[prost(enumeration = "action::Interaction", tag = "5")]
-    pub interaction: i32,
+#[prost(string, tag = "1")]
+pub function: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub parameters: ::prost::alloc::vec::Vec<action::ActionParameter>,
+#[prost(enumeration = "action::LoadIndicator", tag = "3")]
+pub load_indicator: i32,
+#[prost(bool, tag = "4")]
+pub persist_values: bool,
+#[prost(enumeration = "action::Interaction", tag = "5")]
+pub interaction: i32,
 }
 /// Nested message and enum types in `Action`.
 pub mod action {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ActionParameter {
-        #[prost(string, tag = "1")]
-        pub key: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum LoadIndicator {
-        Spinner = 0,
-        None = 1,
-    }
-    impl LoadIndicator {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                LoadIndicator::Spinner => "SPINNER",
-                LoadIndicator::None => "NONE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SPINNER" => Some(Self::Spinner),
-                "NONE" => Some(Self::None),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Interaction {
-        Unspecified = 0,
-        OpenDialog = 1,
-    }
-    impl Interaction {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Interaction::Unspecified => "INTERACTION_UNSPECIFIED",
-                Interaction::OpenDialog => "OPEN_DIALOG",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INTERACTION_UNSPECIFIED" => Some(Self::Unspecified),
-                "OPEN_DIALOG" => Some(Self::OpenDialog),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ActionParameter {
+#[prost(string, tag = "1")]
+pub key: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LoadIndicator {
+Spinner = 0,
+None = 1,
+}
+impl LoadIndicator {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LoadIndicator::Spinner => "SPINNER",
+LoadIndicator::None => "NONE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SPINNER" => Some(Self::Spinner),
+"NONE" => Some(Self::None),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Interaction {
+Unspecified = 0,
+OpenDialog = 1,
+}
+impl Interaction {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Interaction::Unspecified => "INTERACTION_UNSPECIFIED",
+Interaction::OpenDialog => "OPEN_DIALOG",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INTERACTION_UNSPECIFIED" => Some(Self::Unspecified),
+"OPEN_DIALOG" => Some(Self::OpenDialog),
+_ => None,
+}
+}
+}
 }

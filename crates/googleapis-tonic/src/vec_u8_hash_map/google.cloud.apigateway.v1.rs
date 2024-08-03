@@ -2,1021 +2,641 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Api {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "5")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub managed_service: ::prost::alloc::string::String,
-    #[prost(enumeration = "api::State", tag = "12")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub managed_service: ::prost::alloc::string::String,
+#[prost(enumeration = "api::State", tag = "12")]
+pub state: i32,
 }
 /// Nested message and enum types in `Api`.
 pub mod api {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Active = 2,
-        Failed = 3,
-        Deleting = 4,
-        Updating = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "FAILED" => Some(Self::Failed),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Failed = 3,
+Deleting = 4,
+Updating = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Failed => "FAILED",
+State::Deleting => "DELETING",
+State::Updating => "UPDATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"FAILED" => Some(Self::Failed),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApiConfig {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "5")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "14")]
-    pub gateway_service_account: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub service_config_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "api_config::State", tag = "8")]
-    pub state: i32,
-    #[prost(message, repeated, tag = "9")]
-    pub openapi_documents: ::prost::alloc::vec::Vec<api_config::OpenApiDocument>,
-    #[prost(message, repeated, tag = "10")]
-    pub grpc_services: ::prost::alloc::vec::Vec<api_config::GrpcServiceDefinition>,
-    #[prost(message, repeated, tag = "11")]
-    pub managed_service_configs: ::prost::alloc::vec::Vec<api_config::File>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "14")]
+pub gateway_service_account: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub service_config_id: ::prost::alloc::string::String,
+#[prost(enumeration = "api_config::State", tag = "8")]
+pub state: i32,
+#[prost(message, repeated, tag = "9")]
+pub openapi_documents: ::prost::alloc::vec::Vec<api_config::OpenApiDocument>,
+#[prost(message, repeated, tag = "10")]
+pub grpc_services: ::prost::alloc::vec::Vec<api_config::GrpcServiceDefinition>,
+#[prost(message, repeated, tag = "11")]
+pub managed_service_configs: ::prost::alloc::vec::Vec<api_config::File>,
 }
 /// Nested message and enum types in `ApiConfig`.
 pub mod api_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct File {
-        #[prost(string, tag = "1")]
-        pub path: ::prost::alloc::string::String,
-        #[prost(bytes = "vec", tag = "2")]
-        pub contents: ::prost::alloc::vec::Vec<u8>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct OpenApiDocument {
-        #[prost(message, optional, tag = "1")]
-        pub document: ::core::option::Option<File>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GrpcServiceDefinition {
-        #[prost(message, optional, tag = "1")]
-        pub file_descriptor_set: ::core::option::Option<File>,
-        #[prost(message, repeated, tag = "2")]
-        pub source: ::prost::alloc::vec::Vec<File>,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Active = 2,
-        Failed = 3,
-        Deleting = 4,
-        Updating = 5,
-        Activating = 6,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-                State::Activating => "ACTIVATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "FAILED" => Some(Self::Failed),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                "ACTIVATING" => Some(Self::Activating),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct File {
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(bytes = "vec", tag = "2")]
+pub contents: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OpenApiDocument {
+#[prost(message, optional, tag = "1")]
+pub document: ::core::option::Option<File>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GrpcServiceDefinition {
+#[prost(message, optional, tag = "1")]
+pub file_descriptor_set: ::core::option::Option<File>,
+#[prost(message, repeated, tag = "2")]
+pub source: ::prost::alloc::vec::Vec<File>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Failed = 3,
+Deleting = 4,
+Updating = 5,
+Activating = 6,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Failed => "FAILED",
+State::Deleting => "DELETING",
+State::Updating => "UPDATING",
+State::Activating => "ACTIVATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"FAILED" => Some(Self::Failed),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+"ACTIVATING" => Some(Self::Activating),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Gateway {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, string", tag = "4")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "5")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub api_config: ::prost::alloc::string::String,
-    #[prost(enumeration = "gateway::State", tag = "7")]
-    pub state: i32,
-    #[prost(string, tag = "9")]
-    pub default_hostname: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, string", tag = "4")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub api_config: ::prost::alloc::string::String,
+#[prost(enumeration = "gateway::State", tag = "7")]
+pub state: i32,
+#[prost(string, tag = "9")]
+pub default_hostname: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Gateway`.
 pub mod gateway {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Active = 2,
-        Failed = 3,
-        Deleting = 4,
-        Updating = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Failed => "FAILED",
-                State::Deleting => "DELETING",
-                State::Updating => "UPDATING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "FAILED" => Some(Self::Failed),
-                "DELETING" => Some(Self::Deleting),
-                "UPDATING" => Some(Self::Updating),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Failed = 3,
+Deleting = 4,
+Updating = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Failed => "FAILED",
+State::Deleting => "DELETING",
+State::Updating => "UPDATING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"FAILED" => Some(Self::Failed),
+"DELETING" => Some(Self::Deleting),
+"UPDATING" => Some(Self::Updating),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGatewaysRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGatewaysResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub gateways: ::prost::alloc::vec::Vec<Gateway>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub gateways: ::prost::alloc::vec::Vec<Gateway>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetGatewayRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateGatewayRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub gateway_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub gateway: ::core::option::Option<Gateway>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub gateway_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub gateway: ::core::option::Option<Gateway>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateGatewayRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub gateway: ::core::option::Option<Gateway>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub gateway: ::core::option::Option<Gateway>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteGatewayRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListApisRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListApisResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub apis: ::prost::alloc::vec::Vec<Api>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub apis: ::prost::alloc::vec::Vec<Api>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetApiRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateApiRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub api_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub api: ::core::option::Option<Api>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub api_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub api: ::core::option::Option<Api>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateApiRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub api: ::core::option::Option<Api>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub api: ::core::option::Option<Api>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteApiRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListApiConfigsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListApiConfigsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub api_configs: ::prost::alloc::vec::Vec<ApiConfig>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub api_configs: ::prost::alloc::vec::Vec<ApiConfig>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetApiConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "get_api_config_request::ConfigView", tag = "3")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "get_api_config_request::ConfigView", tag = "3")]
+pub view: i32,
 }
 /// Nested message and enum types in `GetApiConfigRequest`.
 pub mod get_api_config_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ConfigView {
-        Unspecified = 0,
-        Basic = 1,
-        Full = 2,
-    }
-    impl ConfigView {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ConfigView::Unspecified => "CONFIG_VIEW_UNSPECIFIED",
-                ConfigView::Basic => "BASIC",
-                ConfigView::Full => "FULL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONFIG_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
-                "BASIC" => Some(Self::Basic),
-                "FULL" => Some(Self::Full),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ConfigView {
+Unspecified = 0,
+Basic = 1,
+Full = 2,
+}
+impl ConfigView {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ConfigView::Unspecified => "CONFIG_VIEW_UNSPECIFIED",
+ConfigView::Basic => "BASIC",
+ConfigView::Full => "FULL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONFIG_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+"BASIC" => Some(Self::Basic),
+"FULL" => Some(Self::Full),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateApiConfigRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub api_config_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub api_config: ::core::option::Option<ApiConfig>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub api_config_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub api_config: ::core::option::Option<ApiConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateApiConfigRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub api_config: ::core::option::Option<ApiConfig>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub api_config: ::core::option::Option<ApiConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteApiConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_message: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub requested_cancellation: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "8")]
-    pub diagnostics: ::prost::alloc::vec::Vec<operation_metadata::Diagnostic>,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub requested_cancellation: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "8")]
+pub diagnostics: ::prost::alloc::vec::Vec<operation_metadata::Diagnostic>,
 }
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Diagnostic {
-        #[prost(string, tag = "1")]
-        pub location: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub message: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Diagnostic {
+#[prost(string, tag = "1")]
+pub location: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub message: ::prost::alloc::string::String,
+}
 }
 /// Generated client implementations.
 pub mod api_gateway_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The API Gateway Service is the interface for managing API Gateways.
-    #[derive(Debug, Clone)]
-    pub struct ApiGatewayServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ApiGatewayServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ApiGatewayServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ApiGatewayServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists Gateways in a given project and location.
-        pub async fn list_gateways(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListGatewaysRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListGatewaysResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/ListGateways",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "ListGateways",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single Gateway.
-        pub async fn get_gateway(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetGatewayRequest>,
-        ) -> std::result::Result<tonic::Response<super::Gateway>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/GetGateway",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "GetGateway",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Gateway in a given project and location.
-        pub async fn create_gateway(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateGatewayRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/CreateGateway",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "CreateGateway",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the parameters of a single Gateway.
-        pub async fn update_gateway(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateGatewayRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/UpdateGateway",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "UpdateGateway",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single Gateway.
-        pub async fn delete_gateway(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteGatewayRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/DeleteGateway",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "DeleteGateway",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Apis in a given project and location.
-        pub async fn list_apis(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListApisRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListApisResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/ListApis",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "ListApis",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single Api.
-        pub async fn get_api(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetApiRequest>,
-        ) -> std::result::Result<tonic::Response<super::Api>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/GetApi",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "GetApi",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new Api in a given project and location.
-        pub async fn create_api(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateApiRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/CreateApi",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "CreateApi",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the parameters of a single Api.
-        pub async fn update_api(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateApiRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/UpdateApi",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "UpdateApi",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single Api.
-        pub async fn delete_api(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteApiRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/DeleteApi",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "DeleteApi",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists ApiConfigs in a given project and location.
-        pub async fn list_api_configs(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListApiConfigsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListApiConfigsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/ListApiConfigs",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "ListApiConfigs",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets details of a single ApiConfig.
-        pub async fn get_api_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetApiConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::ApiConfig>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/GetApiConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "GetApiConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a new ApiConfig in a given project and location.
-        pub async fn create_api_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateApiConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/CreateApiConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "CreateApiConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the parameters of a single ApiConfig.
-        pub async fn update_api_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateApiConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/UpdateApiConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "UpdateApiConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a single ApiConfig.
-        pub async fn delete_api_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteApiConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apigateway.v1.ApiGatewayService/DeleteApiConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apigateway.v1.ApiGatewayService",
-                        "DeleteApiConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The API Gateway Service is the interface for managing API Gateways.
+#[derive(Debug, Clone)]
+pub struct ApiGatewayServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ApiGatewayServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ApiGatewayServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ApiGatewayServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists Gateways in a given project and location.
+pub async fn list_gateways(&mut self, request: impl tonic::IntoRequest<super::ListGatewaysRequest>) -> std::result::Result<tonic::Response<super::ListGatewaysResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/ListGateways");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "ListGateways"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single Gateway.
+pub async fn get_gateway(&mut self, request: impl tonic::IntoRequest<super::GetGatewayRequest>) -> std::result::Result<tonic::Response<super::Gateway>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/GetGateway");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "GetGateway"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Gateway in a given project and location.
+pub async fn create_gateway(&mut self, request: impl tonic::IntoRequest<super::CreateGatewayRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/CreateGateway");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "CreateGateway"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the parameters of a single Gateway.
+pub async fn update_gateway(&mut self, request: impl tonic::IntoRequest<super::UpdateGatewayRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/UpdateGateway");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "UpdateGateway"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single Gateway.
+pub async fn delete_gateway(&mut self, request: impl tonic::IntoRequest<super::DeleteGatewayRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/DeleteGateway");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "DeleteGateway"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Apis in a given project and location.
+pub async fn list_apis(&mut self, request: impl tonic::IntoRequest<super::ListApisRequest>) -> std::result::Result<tonic::Response<super::ListApisResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/ListApis");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "ListApis"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single Api.
+pub async fn get_api(&mut self, request: impl tonic::IntoRequest<super::GetApiRequest>) -> std::result::Result<tonic::Response<super::Api>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/GetApi");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "GetApi"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new Api in a given project and location.
+pub async fn create_api(&mut self, request: impl tonic::IntoRequest<super::CreateApiRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/CreateApi");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "CreateApi"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the parameters of a single Api.
+pub async fn update_api(&mut self, request: impl tonic::IntoRequest<super::UpdateApiRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/UpdateApi");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "UpdateApi"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single Api.
+pub async fn delete_api(&mut self, request: impl tonic::IntoRequest<super::DeleteApiRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/DeleteApi");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "DeleteApi"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists ApiConfigs in a given project and location.
+pub async fn list_api_configs(&mut self, request: impl tonic::IntoRequest<super::ListApiConfigsRequest>) -> std::result::Result<tonic::Response<super::ListApiConfigsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/ListApiConfigs");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "ListApiConfigs"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets details of a single ApiConfig.
+pub async fn get_api_config(&mut self, request: impl tonic::IntoRequest<super::GetApiConfigRequest>) -> std::result::Result<tonic::Response<super::ApiConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/GetApiConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "GetApiConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a new ApiConfig in a given project and location.
+pub async fn create_api_config(&mut self, request: impl tonic::IntoRequest<super::CreateApiConfigRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/CreateApiConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "CreateApiConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the parameters of a single ApiConfig.
+pub async fn update_api_config(&mut self, request: impl tonic::IntoRequest<super::UpdateApiConfigRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/UpdateApiConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "UpdateApiConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a single ApiConfig.
+pub async fn delete_api_config(&mut self, request: impl tonic::IntoRequest<super::DeleteApiConfigRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apigateway.v1.ApiGatewayService/DeleteApiConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apigateway.v1.ApiGatewayService", "DeleteApiConfig"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

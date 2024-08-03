@@ -2,8 +2,6 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FeatureSpec {
-    #[prost(string, repeated, tag = "1")]
-    pub allowlisted_service_accounts: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, repeated, tag = "1")]
+pub allowlisted_service_accounts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }

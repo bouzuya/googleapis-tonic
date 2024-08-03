@@ -2,306 +2,226 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParseRequest {
-    #[prost(string, tag = "1")]
-    pub cel_source: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub syntax_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub source_location: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub disable_macros: bool,
+#[prost(string, tag = "1")]
+pub cel_source: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub syntax_version: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub source_location: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub disable_macros: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ParseResponse {
-    #[prost(message, optional, tag = "1")]
-    pub parsed_expr: ::core::option::Option<super::super::v1alpha1::ParsedExpr>,
-    #[prost(message, repeated, tag = "2")]
-    pub issues: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "1")]
+pub parsed_expr: ::core::option::Option<super::super::v1alpha1::ParsedExpr>,
+#[prost(message, repeated, tag = "2")]
+pub issues: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckRequest {
-    #[prost(message, optional, tag = "1")]
-    pub parsed_expr: ::core::option::Option<super::super::v1alpha1::ParsedExpr>,
-    #[prost(message, repeated, tag = "2")]
-    pub type_env: ::prost::alloc::vec::Vec<super::super::v1alpha1::Decl>,
-    #[prost(string, tag = "3")]
-    pub container: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub no_std_env: bool,
+#[prost(message, optional, tag = "1")]
+pub parsed_expr: ::core::option::Option<super::super::v1alpha1::ParsedExpr>,
+#[prost(message, repeated, tag = "2")]
+pub type_env: ::prost::alloc::vec::Vec<super::super::v1alpha1::Decl>,
+#[prost(string, tag = "3")]
+pub container: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub no_std_env: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CheckResponse {
-    #[prost(message, optional, tag = "1")]
-    pub checked_expr: ::core::option::Option<super::super::v1alpha1::CheckedExpr>,
-    #[prost(message, repeated, tag = "2")]
-    pub issues: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "1")]
+pub checked_expr: ::core::option::Option<super::super::v1alpha1::CheckedExpr>,
+#[prost(message, repeated, tag = "2")]
+pub issues: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvalRequest {
-    #[prost(btree_map = "string, message", tag = "3")]
-    pub bindings: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        super::super::v1alpha1::ExprValue,
-    >,
-    #[prost(string, tag = "4")]
-    pub container: ::prost::alloc::string::String,
-    #[prost(oneof = "eval_request::ExprKind", tags = "1, 2")]
-    pub expr_kind: ::core::option::Option<eval_request::ExprKind>,
+#[prost(btree_map = "string, message", tag = "3")]
+pub bindings: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, super::super::v1alpha1::ExprValue>,
+#[prost(string, tag = "4")]
+pub container: ::prost::alloc::string::String,
+#[prost(oneof = "eval_request::ExprKind", tags = "1, 2")]
+pub expr_kind: ::core::option::Option<eval_request::ExprKind>,
 }
 /// Nested message and enum types in `EvalRequest`.
 pub mod eval_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum ExprKind {
-        #[prost(message, tag = "1")]
-        ParsedExpr(super::super::super::v1alpha1::ParsedExpr),
-        #[prost(message, tag = "2")]
-        CheckedExpr(super::super::super::v1alpha1::CheckedExpr),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum ExprKind {
+#[prost(message, tag = "1")]
+ParsedExpr(super::super::super::v1alpha1::ParsedExpr),
+#[prost(message, tag = "2")]
+CheckedExpr(super::super::super::v1alpha1::CheckedExpr),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvalResponse {
-    #[prost(message, optional, tag = "1")]
-    pub result: ::core::option::Option<super::super::v1alpha1::ExprValue>,
-    #[prost(message, repeated, tag = "2")]
-    pub issues: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "1")]
+pub result: ::core::option::Option<super::super::v1alpha1::ExprValue>,
+#[prost(message, repeated, tag = "2")]
+pub issues: ::prost::alloc::vec::Vec<super::super::super::super::rpc::Status>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SourcePosition {
-    #[prost(string, tag = "1")]
-    pub location: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub offset: i32,
-    #[prost(int32, tag = "3")]
-    pub line: i32,
-    #[prost(int32, tag = "4")]
-    pub column: i32,
+#[prost(string, tag = "1")]
+pub location: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub offset: i32,
+#[prost(int32, tag = "3")]
+pub line: i32,
+#[prost(int32, tag = "4")]
+pub column: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct IssueDetails {
-    #[prost(enumeration = "issue_details::Severity", tag = "1")]
-    pub severity: i32,
-    #[prost(message, optional, tag = "2")]
-    pub position: ::core::option::Option<SourcePosition>,
-    #[prost(int64, tag = "3")]
-    pub id: i64,
+#[prost(enumeration = "issue_details::Severity", tag = "1")]
+pub severity: i32,
+#[prost(message, optional, tag = "2")]
+pub position: ::core::option::Option<SourcePosition>,
+#[prost(int64, tag = "3")]
+pub id: i64,
 }
 /// Nested message and enum types in `IssueDetails`.
 pub mod issue_details {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Severity {
-        Unspecified = 0,
-        Deprecation = 1,
-        Warning = 2,
-        Error = 3,
-    }
-    impl Severity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Deprecation => "DEPRECATION",
-                Severity::Warning => "WARNING",
-                Severity::Error => "ERROR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "DEPRECATION" => Some(Self::Deprecation),
-                "WARNING" => Some(Self::Warning),
-                "ERROR" => Some(Self::Error),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Severity {
+Unspecified = 0,
+Deprecation = 1,
+Warning = 2,
+Error = 3,
+}
+impl Severity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+Severity::Deprecation => "DEPRECATION",
+Severity::Warning => "WARNING",
+Severity::Error => "ERROR",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"DEPRECATION" => Some(Self::Deprecation),
+"WARNING" => Some(Self::Warning),
+"ERROR" => Some(Self::Error),
+_ => None,
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod conformance_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Access a CEL implementation from another process or machine.
-    /// A CEL implementation is decomposed as a parser, a static checker,
-    /// and an evaluator.  Every CEL implementation is expected to provide
-    /// a server for this API.  The API will be used for conformance testing
-    /// and other utilities.
-    #[derive(Debug, Clone)]
-    pub struct ConformanceServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ConformanceServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ConformanceServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ConformanceServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Transforms CEL source text into a parsed representation.
-        pub async fn parse(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ParseRequest>,
-        ) -> std::result::Result<tonic::Response<super::ParseResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.expr.conformance.v1alpha1.ConformanceService/Parse",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.expr.conformance.v1alpha1.ConformanceService",
-                        "Parse",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Runs static checks on a parsed CEL representation and return
-        /// an annotated representation, or a set of issues.
-        pub async fn check(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CheckRequest>,
-        ) -> std::result::Result<tonic::Response<super::CheckResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.expr.conformance.v1alpha1.ConformanceService/Check",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.expr.conformance.v1alpha1.ConformanceService",
-                        "Check",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Evaluates a parsed or annotation CEL representation given
-        /// values of external bindings.
-        pub async fn eval(
-            &mut self,
-            request: impl tonic::IntoRequest<super::EvalRequest>,
-        ) -> std::result::Result<tonic::Response<super::EvalResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.api.expr.conformance.v1alpha1.ConformanceService/Eval",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.api.expr.conformance.v1alpha1.ConformanceService",
-                        "Eval",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Access a CEL implementation from another process or machine.
+/// A CEL implementation is decomposed as a parser, a static checker,
+/// and an evaluator.  Every CEL implementation is expected to provide
+/// a server for this API.  The API will be used for conformance testing
+/// and other utilities.
+#[derive(Debug, Clone)]
+pub struct ConformanceServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ConformanceServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ConformanceServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ConformanceServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Transforms CEL source text into a parsed representation.
+pub async fn parse(&mut self, request: impl tonic::IntoRequest<super::ParseRequest>) -> std::result::Result<tonic::Response<super::ParseResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.expr.conformance.v1alpha1.ConformanceService/Parse");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.expr.conformance.v1alpha1.ConformanceService", "Parse"));
+self.inner.unary(req, path, codec).await
+}
+/// Runs static checks on a parsed CEL representation and return
+/// an annotated representation, or a set of issues.
+pub async fn check(&mut self, request: impl tonic::IntoRequest<super::CheckRequest>) -> std::result::Result<tonic::Response<super::CheckResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.expr.conformance.v1alpha1.ConformanceService/Check");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.expr.conformance.v1alpha1.ConformanceService", "Check"));
+self.inner.unary(req, path, codec).await
+}
+/// Evaluates a parsed or annotation CEL representation given
+/// values of external bindings.
+pub async fn eval(&mut self, request: impl tonic::IntoRequest<super::EvalRequest>) -> std::result::Result<tonic::Response<super::EvalResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.api.expr.conformance.v1alpha1.ConformanceService/Eval");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.api.expr.conformance.v1alpha1.ConformanceService", "Eval"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

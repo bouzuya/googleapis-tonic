@@ -2,128 +2,110 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClassReference {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub list: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub list: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityDisplay {
-    #[prost(string, tag = "1")]
-    pub icon_title: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub icon_url: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub icon_title: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub icon_url: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FreeTextType {
-    #[prost(message, optional, tag = "2")]
-    pub display: ::core::option::Option<EntityDisplay>,
+#[prost(message, optional, tag = "2")]
+pub display: ::core::option::Option<EntityDisplay>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RegularExpressionType {
-    #[prost(map = "string, message", tag = "1")]
-    pub entities: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        regular_expression_type::Entity,
-    >,
+#[prost(map = "string, message", tag = "1")]
+pub entities: ::std::collections::HashMap<::prost::alloc::string::String, regular_expression_type::Entity>,
 }
 /// Nested message and enum types in `RegularExpressionType`.
 pub mod regular_expression_type {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Entity {
-        #[prost(message, optional, tag = "1")]
-        pub display: ::core::option::Option<super::EntityDisplay>,
-        #[prost(string, repeated, tag = "2")]
-        pub regular_expressions: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Entity {
+#[prost(message, optional, tag = "1")]
+pub display: ::core::option::Option<super::EntityDisplay>,
+#[prost(string, repeated, tag = "2")]
+pub regular_expressions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SynonymType {
-    #[prost(enumeration = "synonym_type::MatchType", tag = "1")]
-    pub match_type: i32,
-    #[prost(bool, tag = "3")]
-    pub accept_unknown_values: bool,
-    #[prost(map = "string, message", tag = "2")]
-    pub entities: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        synonym_type::Entity,
-    >,
+#[prost(enumeration = "synonym_type::MatchType", tag = "1")]
+pub match_type: i32,
+#[prost(bool, tag = "3")]
+pub accept_unknown_values: bool,
+#[prost(map = "string, message", tag = "2")]
+pub entities: ::std::collections::HashMap<::prost::alloc::string::String, synonym_type::Entity>,
 }
 /// Nested message and enum types in `SynonymType`.
 pub mod synonym_type {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Entity {
-        #[prost(message, optional, tag = "1")]
-        pub display: ::core::option::Option<super::EntityDisplay>,
-        #[prost(string, repeated, tag = "2")]
-        pub synonyms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MatchType {
-        Unspecified = 0,
-        ExactMatch = 1,
-        FuzzyMatch = 2,
-    }
-    impl MatchType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MatchType::Unspecified => "UNSPECIFIED",
-                MatchType::ExactMatch => "EXACT_MATCH",
-                MatchType::FuzzyMatch => "FUZZY_MATCH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "EXACT_MATCH" => Some(Self::ExactMatch),
-                "FUZZY_MATCH" => Some(Self::FuzzyMatch),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Entity {
+#[prost(message, optional, tag = "1")]
+pub display: ::core::option::Option<super::EntityDisplay>,
+#[prost(string, repeated, tag = "2")]
+pub synonyms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MatchType {
+Unspecified = 0,
+ExactMatch = 1,
+FuzzyMatch = 2,
+}
+impl MatchType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MatchType::Unspecified => "UNSPECIFIED",
+MatchType::ExactMatch => "EXACT_MATCH",
+MatchType::FuzzyMatch => "FUZZY_MATCH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED" => Some(Self::Unspecified),
+"EXACT_MATCH" => Some(Self::ExactMatch),
+"FUZZY_MATCH" => Some(Self::FuzzyMatch),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Type {
-    #[prost(string, repeated, tag = "4")]
-    pub exclusions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(oneof = "r#type::SubType", tags = "1, 2, 3")]
-    pub sub_type: ::core::option::Option<r#type::SubType>,
+#[prost(string, repeated, tag = "4")]
+pub exclusions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(oneof = "r#type::SubType", tags = "1, 2, 3")]
+pub sub_type: ::core::option::Option<r#type::SubType>,
 }
 /// Nested message and enum types in `Type`.
 pub mod r#type {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum SubType {
-        #[prost(message, tag = "1")]
-        Synonym(super::SynonymType),
-        #[prost(message, tag = "2")]
-        RegularExpression(super::RegularExpressionType),
-        #[prost(message, tag = "3")]
-        FreeText(super::FreeTextType),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum SubType {
+#[prost(message, tag = "1")]
+Synonym(super::SynonymType),
+#[prost(message, tag = "2")]
+RegularExpression(super::RegularExpressionType),
+#[prost(message, tag = "3")]
+FreeText(super::FreeTextType),
+}
 }

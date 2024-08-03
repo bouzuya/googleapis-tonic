@@ -2,68 +2,68 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Device {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub traits: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub name: ::core::option::Option<DeviceNames>,
-    #[prost(bool, tag = "5")]
-    pub will_report_state: bool,
-    #[prost(string, tag = "6")]
-    pub room_hint: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub structure_hint: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub device_info: ::core::option::Option<DeviceInfo>,
-    #[prost(message, optional, tag = "9")]
-    pub attributes: ::core::option::Option<::prost_types::Struct>,
-    #[prost(message, optional, tag = "10")]
-    pub custom_data: ::core::option::Option<::prost_types::Struct>,
-    #[prost(message, repeated, tag = "11")]
-    pub other_device_ids: ::prost::alloc::vec::Vec<AgentOtherDeviceId>,
-    #[prost(bool, tag = "12")]
-    pub notification_supported_by_agent: bool,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub traits: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "4")]
+pub name: ::core::option::Option<DeviceNames>,
+#[prost(bool, tag = "5")]
+pub will_report_state: bool,
+#[prost(string, tag = "6")]
+pub room_hint: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub structure_hint: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub device_info: ::core::option::Option<DeviceInfo>,
+#[prost(message, optional, tag = "9")]
+pub attributes: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "10")]
+pub custom_data: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, repeated, tag = "11")]
+pub other_device_ids: ::prost::alloc::vec::Vec<AgentOtherDeviceId>,
+#[prost(bool, tag = "12")]
+pub notification_supported_by_agent: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceNames {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub nicknames: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "3")]
-    pub default_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub nicknames: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub default_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceInfo {
-    #[prost(string, tag = "1")]
-    pub manufacturer: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub hw_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub sw_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub manufacturer: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub model: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub hw_version: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub sw_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AgentOtherDeviceId {
-    #[prost(string, tag = "1")]
-    pub agent_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub device_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub agent_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub device_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequestSyncDevicesRequest {
-    #[prost(string, tag = "1")]
-    pub agent_user_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub r#async: bool,
+#[prost(string, tag = "1")]
+pub agent_user_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub r#async: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -71,382 +71,274 @@ pub struct RequestSyncDevicesResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportStateAndNotificationRequest {
-    #[prost(string, tag = "1")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub event_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub agent_user_id: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(string, tag = "5")]
-    pub follow_up_token: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub payload: ::core::option::Option<StateAndNotificationPayload>,
+#[prost(string, tag = "1")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub event_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub agent_user_id: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(string, tag = "5")]
+pub follow_up_token: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub payload: ::core::option::Option<StateAndNotificationPayload>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportStateAndNotificationResponse {
-    #[prost(string, tag = "1")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StateAndNotificationPayload {
-    #[prost(message, optional, tag = "1")]
-    pub devices: ::core::option::Option<ReportStateAndNotificationDevice>,
+#[prost(message, optional, tag = "1")]
+pub devices: ::core::option::Option<ReportStateAndNotificationDevice>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportStateAndNotificationDevice {
-    #[prost(message, optional, tag = "1")]
-    pub states: ::core::option::Option<::prost_types::Struct>,
-    #[prost(message, optional, tag = "2")]
-    pub notifications: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "1")]
+pub states: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "2")]
+pub notifications: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAgentUserRequest {
-    #[prost(string, tag = "1")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub agent_user_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub agent_user_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryRequest {
-    #[prost(string, tag = "1")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub agent_user_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub inputs: ::prost::alloc::vec::Vec<QueryRequestInput>,
+#[prost(string, tag = "1")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub agent_user_id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub inputs: ::prost::alloc::vec::Vec<QueryRequestInput>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryRequestInput {
-    #[prost(message, optional, tag = "1")]
-    pub payload: ::core::option::Option<QueryRequestPayload>,
+#[prost(message, optional, tag = "1")]
+pub payload: ::core::option::Option<QueryRequestPayload>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryRequestPayload {
-    #[prost(message, repeated, tag = "1")]
-    pub devices: ::prost::alloc::vec::Vec<AgentDeviceId>,
+#[prost(message, repeated, tag = "1")]
+pub devices: ::prost::alloc::vec::Vec<AgentDeviceId>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AgentDeviceId {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryResponse {
-    #[prost(string, tag = "1")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub payload: ::core::option::Option<QueryResponsePayload>,
+#[prost(string, tag = "1")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub payload: ::core::option::Option<QueryResponsePayload>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryResponsePayload {
-    #[prost(btree_map = "string, message", tag = "1")]
-    pub devices: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost_types::Struct,
-    >,
+#[prost(btree_map = "string, message", tag = "1")]
+pub devices: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncRequest {
-    #[prost(string, tag = "1")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub agent_user_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub agent_user_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncResponse {
-    #[prost(string, tag = "1")]
-    pub request_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub payload: ::core::option::Option<SyncResponsePayload>,
+#[prost(string, tag = "1")]
+pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub payload: ::core::option::Option<SyncResponsePayload>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncResponsePayload {
-    #[prost(string, tag = "1")]
-    pub agent_user_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub devices: ::prost::alloc::vec::Vec<Device>,
+#[prost(string, tag = "1")]
+pub agent_user_id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub devices: ::prost::alloc::vec::Vec<Device>,
 }
 /// Generated client implementations.
 pub mod home_graph_api_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Google Home Graph API service. The Home Graph service provides support for
-    /// accessing first-party and third-party devices stored in Google's Home Graph.
-    /// The Home Graph database provides contextual data about the relationships
-    /// between devices and the home.
-    ///
-    /// For more details, see the [Home Graph developer
-    /// guide](https://developers.home.google.com/cloud-to-cloud/primer/home-graph).
-    #[derive(Debug, Clone)]
-    pub struct HomeGraphApiServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> HomeGraphApiServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> HomeGraphApiServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            HomeGraphApiServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Requests Google to send an `action.devices.SYNC`
-        /// [intent](https://developers.home.google.com/cloud-to-cloud/intents/sync)
-        /// to your smart home Action to update device metadata for the given user.
-        ///
-        ///
-        /// The third-party user's identity is passed via the `agent_user_id`
-        /// (see
-        /// [RequestSyncDevicesRequest][google.home.graph.v1.RequestSyncDevicesRequest]).
-        /// This request must be authorized using service account credentials from your
-        /// Actions console project.
-        pub async fn request_sync_devices(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RequestSyncDevicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::RequestSyncDevicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.home.graph.v1.HomeGraphApiService/RequestSyncDevices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.home.graph.v1.HomeGraphApiService",
-                        "RequestSyncDevices",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Reports device state and optionally sends device notifications.
-        /// Called by your smart home Action when the state of a third-party device
-        /// changes or you need to send a notification about the device.
-        /// See [Implement Report
-        /// State](https://developers.home.google.com/cloud-to-cloud/integration/report-state)
-        /// for more information.
-        ///
-        /// This method updates the device state according to its declared
-        /// [traits](https://developers.home.google.com/cloud-to-cloud/primer/device-types-and-traits).
-        /// Publishing a new state value outside of these traits will result in an
-        /// `INVALID_ARGUMENT` error response.
-        ///
-        /// The third-party user's identity is passed in via the `agent_user_id`
-        /// (see
-        /// [ReportStateAndNotificationRequest][google.home.graph.v1.ReportStateAndNotificationRequest]).
-        /// This request must be authorized using service account credentials from your
-        /// Actions console project.
-        pub async fn report_state_and_notification(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ReportStateAndNotificationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ReportStateAndNotificationResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.home.graph.v1.HomeGraphApiService/ReportStateAndNotification",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.home.graph.v1.HomeGraphApiService",
-                        "ReportStateAndNotification",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Unlinks the given third-party user from your smart home Action.
-        /// All data related to this user will be deleted.
-        ///
-        /// For more details on how users link their accounts, see
-        /// [fulfillment and
-        /// authentication](https://developers.home.google.com/cloud-to-cloud/primer/fulfillment).
-        ///
-        /// The third-party user's identity is passed in via the `agent_user_id`
-        /// (see
-        /// [DeleteAgentUserRequest][google.home.graph.v1.DeleteAgentUserRequest]).
-        /// This request must be authorized using service account credentials from your
-        /// Actions console project.
-        pub async fn delete_agent_user(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteAgentUserRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.home.graph.v1.HomeGraphApiService/DeleteAgentUser",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.home.graph.v1.HomeGraphApiService",
-                        "DeleteAgentUser",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the current states in Home Graph for the given set of the third-party
-        /// user's devices.
-        ///
-        /// The third-party user's identity is passed in via the `agent_user_id`
-        /// (see [QueryRequest][google.home.graph.v1.QueryRequest]).
-        /// This request must be authorized using service account credentials from your
-        /// Actions console project.
-        pub async fn query(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryRequest>,
-        ) -> std::result::Result<tonic::Response<super::QueryResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.home.graph.v1.HomeGraphApiService/Query",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.home.graph.v1.HomeGraphApiService", "Query"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets all the devices associated with the given third-party user.
-        ///
-        /// The third-party user's identity is passed in via the `agent_user_id`
-        /// (see [SyncRequest][google.home.graph.v1.SyncRequest]).
-        /// This request must be authorized using service account credentials from your
-        /// Actions console project.
-        pub async fn sync(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SyncRequest>,
-        ) -> std::result::Result<tonic::Response<super::SyncResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.home.graph.v1.HomeGraphApiService/Sync",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.home.graph.v1.HomeGraphApiService", "Sync"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Google Home Graph API service. The Home Graph service provides support for
+/// accessing first-party and third-party devices stored in Google's Home Graph.
+/// The Home Graph database provides contextual data about the relationships
+/// between devices and the home.
+///
+/// For more details, see the [Home Graph developer
+/// guide](https://developers.home.google.com/cloud-to-cloud/primer/home-graph).
+#[derive(Debug, Clone)]
+pub struct HomeGraphApiServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> HomeGraphApiServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> HomeGraphApiServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+HomeGraphApiServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Requests Google to send an `action.devices.SYNC`
+/// [intent](https://developers.home.google.com/cloud-to-cloud/intents/sync)
+/// to your smart home Action to update device metadata for the given user.
+///
+///
+/// The third-party user's identity is passed via the `agent_user_id`
+/// (see
+/// [RequestSyncDevicesRequest][google.home.graph.v1.RequestSyncDevicesRequest]).
+/// This request must be authorized using service account credentials from your
+/// Actions console project.
+pub async fn request_sync_devices(&mut self, request: impl tonic::IntoRequest<super::RequestSyncDevicesRequest>) -> std::result::Result<tonic::Response<super::RequestSyncDevicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.home.graph.v1.HomeGraphApiService/RequestSyncDevices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.home.graph.v1.HomeGraphApiService", "RequestSyncDevices"));
+self.inner.unary(req, path, codec).await
+}
+/// Reports device state and optionally sends device notifications.
+/// Called by your smart home Action when the state of a third-party device
+/// changes or you need to send a notification about the device.
+/// See [Implement Report
+/// State](https://developers.home.google.com/cloud-to-cloud/integration/report-state)
+/// for more information.
+///
+/// This method updates the device state according to its declared
+/// [traits](https://developers.home.google.com/cloud-to-cloud/primer/device-types-and-traits).
+/// Publishing a new state value outside of these traits will result in an
+/// `INVALID_ARGUMENT` error response.
+///
+/// The third-party user's identity is passed in via the `agent_user_id`
+/// (see
+/// [ReportStateAndNotificationRequest][google.home.graph.v1.ReportStateAndNotificationRequest]).
+/// This request must be authorized using service account credentials from your
+/// Actions console project.
+pub async fn report_state_and_notification(&mut self, request: impl tonic::IntoRequest<super::ReportStateAndNotificationRequest>) -> std::result::Result<tonic::Response<super::ReportStateAndNotificationResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.home.graph.v1.HomeGraphApiService/ReportStateAndNotification");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.home.graph.v1.HomeGraphApiService", "ReportStateAndNotification"));
+self.inner.unary(req, path, codec).await
+}
+/// Unlinks the given third-party user from your smart home Action.
+/// All data related to this user will be deleted.
+///
+/// For more details on how users link their accounts, see
+/// [fulfillment and
+/// authentication](https://developers.home.google.com/cloud-to-cloud/primer/fulfillment).
+///
+/// The third-party user's identity is passed in via the `agent_user_id`
+/// (see
+/// [DeleteAgentUserRequest][google.home.graph.v1.DeleteAgentUserRequest]).
+/// This request must be authorized using service account credentials from your
+/// Actions console project.
+pub async fn delete_agent_user(&mut self, request: impl tonic::IntoRequest<super::DeleteAgentUserRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.home.graph.v1.HomeGraphApiService/DeleteAgentUser");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.home.graph.v1.HomeGraphApiService", "DeleteAgentUser"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the current states in Home Graph for the given set of the third-party
+/// user's devices.
+///
+/// The third-party user's identity is passed in via the `agent_user_id`
+/// (see [QueryRequest][google.home.graph.v1.QueryRequest]).
+/// This request must be authorized using service account credentials from your
+/// Actions console project.
+pub async fn query(&mut self, request: impl tonic::IntoRequest<super::QueryRequest>) -> std::result::Result<tonic::Response<super::QueryResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.home.graph.v1.HomeGraphApiService/Query");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.home.graph.v1.HomeGraphApiService", "Query"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets all the devices associated with the given third-party user.
+///
+/// The third-party user's identity is passed in via the `agent_user_id`
+/// (see [SyncRequest][google.home.graph.v1.SyncRequest]).
+/// This request must be authorized using service account credentials from your
+/// Actions console project.
+pub async fn sync(&mut self, request: impl tonic::IntoRequest<super::SyncRequest>) -> std::result::Result<tonic::Response<super::SyncResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.home.graph.v1.HomeGraphApiService/Sync");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.home.graph.v1.HomeGraphApiService", "Sync"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

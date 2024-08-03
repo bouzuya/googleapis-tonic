@@ -2,2067 +2,1677 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RequestHeader {
-    #[prost(string, tag = "1")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub region_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub sdk_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub os_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub device_model: ::prost::alloc::string::String,
-    #[prost(enumeration = "request_header::SdkType", tag = "6")]
-    pub sdk_type: i32,
-    #[prost(string, tag = "7")]
-    pub maps_sdk_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub nav_sdk_version: ::prost::alloc::string::String,
-    #[prost(enumeration = "request_header::Platform", tag = "9")]
-    pub platform: i32,
-    #[prost(string, tag = "10")]
-    pub manufacturer: ::prost::alloc::string::String,
-    #[prost(int32, tag = "11")]
-    pub android_api_level: i32,
-    #[prost(string, tag = "12")]
-    pub trace_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub region_code: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub sdk_version: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub os_version: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub device_model: ::prost::alloc::string::String,
+#[prost(enumeration = "request_header::SdkType", tag = "6")]
+pub sdk_type: i32,
+#[prost(string, tag = "7")]
+pub maps_sdk_version: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub nav_sdk_version: ::prost::alloc::string::String,
+#[prost(enumeration = "request_header::Platform", tag = "9")]
+pub platform: i32,
+#[prost(string, tag = "10")]
+pub manufacturer: ::prost::alloc::string::String,
+#[prost(int32, tag = "11")]
+pub android_api_level: i32,
+#[prost(string, tag = "12")]
+pub trace_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `RequestHeader`.
 pub mod request_header {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SdkType {
-        Unspecified = 0,
-        Consumer = 1,
-        Driver = 2,
-        Javascript = 3,
-    }
-    impl SdkType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SdkType::Unspecified => "SDK_TYPE_UNSPECIFIED",
-                SdkType::Consumer => "CONSUMER",
-                SdkType::Driver => "DRIVER",
-                SdkType::Javascript => "JAVASCRIPT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SDK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CONSUMER" => Some(Self::Consumer),
-                "DRIVER" => Some(Self::Driver),
-                "JAVASCRIPT" => Some(Self::Javascript),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Platform {
-        Unspecified = 0,
-        Android = 1,
-        Ios = 2,
-        Web = 3,
-    }
-    impl Platform {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Platform::Unspecified => "PLATFORM_UNSPECIFIED",
-                Platform::Android => "ANDROID",
-                Platform::Ios => "IOS",
-                Platform::Web => "WEB",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PLATFORM_UNSPECIFIED" => Some(Self::Unspecified),
-                "ANDROID" => Some(Self::Android),
-                "IOS" => Some(Self::Ios),
-                "WEB" => Some(Self::Web),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SdkType {
+Unspecified = 0,
+Consumer = 1,
+Driver = 2,
+Javascript = 3,
+}
+impl SdkType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SdkType::Unspecified => "SDK_TYPE_UNSPECIFIED",
+SdkType::Consumer => "CONSUMER",
+SdkType::Driver => "DRIVER",
+SdkType::Javascript => "JAVASCRIPT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SDK_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"CONSUMER" => Some(Self::Consumer),
+"DRIVER" => Some(Self::Driver),
+"JAVASCRIPT" => Some(Self::Javascript),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Platform {
+Unspecified = 0,
+Android = 1,
+Ios = 2,
+Web = 3,
+}
+impl Platform {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Platform::Unspecified => "PLATFORM_UNSPECIFIED",
+Platform::Android => "ANDROID",
+Platform::Ios => "IOS",
+Platform::Web => "WEB",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PLATFORM_UNSPECIFIED" => Some(Self::Unspecified),
+"ANDROID" => Some(Self::Android),
+"IOS" => Some(Self::Ios),
+"WEB" => Some(Self::Web),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SpeedReadingInterval {
-    #[prost(int32, tag = "1")]
-    pub start_polyline_point_index: i32,
-    #[prost(int32, tag = "2")]
-    pub end_polyline_point_index: i32,
-    #[prost(enumeration = "speed_reading_interval::Speed", tag = "3")]
-    pub speed: i32,
+#[prost(int32, tag = "1")]
+pub start_polyline_point_index: i32,
+#[prost(int32, tag = "2")]
+pub end_polyline_point_index: i32,
+#[prost(enumeration = "speed_reading_interval::Speed", tag = "3")]
+pub speed: i32,
 }
 /// Nested message and enum types in `SpeedReadingInterval`.
 pub mod speed_reading_interval {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Speed {
-        Unspecified = 0,
-        Normal = 1,
-        Slow = 2,
-        TrafficJam = 3,
-    }
-    impl Speed {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Speed::Unspecified => "SPEED_UNSPECIFIED",
-                Speed::Normal => "NORMAL",
-                Speed::Slow => "SLOW",
-                Speed::TrafficJam => "TRAFFIC_JAM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SPEED_UNSPECIFIED" => Some(Self::Unspecified),
-                "NORMAL" => Some(Self::Normal),
-                "SLOW" => Some(Self::Slow),
-                "TRAFFIC_JAM" => Some(Self::TrafficJam),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Speed {
+Unspecified = 0,
+Normal = 1,
+Slow = 2,
+TrafficJam = 3,
+}
+impl Speed {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Speed::Unspecified => "SPEED_UNSPECIFIED",
+Speed::Normal => "NORMAL",
+Speed::Slow => "SLOW",
+Speed::TrafficJam => "TRAFFIC_JAM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SPEED_UNSPECIFIED" => Some(Self::Unspecified),
+"NORMAL" => Some(Self::Normal),
+"SLOW" => Some(Self::Slow),
+"TRAFFIC_JAM" => Some(Self::TrafficJam),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConsumableTrafficPolyline {
-    #[prost(message, repeated, tag = "1")]
-    pub speed_reading_interval: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
-    #[prost(string, tag = "2")]
-    pub encoded_path_to_waypoint: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub speed_reading_interval: ::prost::alloc::vec::Vec<SpeedReadingInterval>,
+#[prost(string, tag = "2")]
+pub encoded_path_to_waypoint: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TerminalPointId {
-    #[deprecated]
-    #[prost(string, tag = "4")]
-    pub value: ::prost::alloc::string::String,
-    #[prost(oneof = "terminal_point_id::Id", tags = "2, 3")]
-    pub id: ::core::option::Option<terminal_point_id::Id>,
+#[deprecated]
+#[prost(string, tag = "4")]
+pub value: ::prost::alloc::string::String,
+#[prost(oneof = "terminal_point_id::Id", tags = "2, 3")]
+pub id: ::core::option::Option<terminal_point_id::Id>,
 }
 /// Nested message and enum types in `TerminalPointId`.
 pub mod terminal_point_id {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Id {
-        #[prost(string, tag = "2")]
-        PlaceId(::prost::alloc::string::String),
-        #[prost(string, tag = "3")]
-        GeneratedId(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Id {
+#[prost(string, tag = "2")]
+PlaceId(::prost::alloc::string::String),
+#[prost(string, tag = "3")]
+GeneratedId(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TerminalLocation {
-    #[prost(message, optional, tag = "1")]
-    pub point: ::core::option::Option<super::super::super::google::r#type::LatLng>,
-    #[deprecated]
-    #[prost(message, optional, tag = "2")]
-    pub terminal_point_id: ::core::option::Option<TerminalPointId>,
-    #[deprecated]
-    #[prost(string, tag = "3")]
-    pub access_point_id: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(string, tag = "4")]
-    pub trip_id: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(enumeration = "WaypointType", tag = "5")]
-    pub terminal_location_type: i32,
+#[prost(message, optional, tag = "1")]
+pub point: ::core::option::Option<super::super::super::google::r#type::LatLng>,
+#[deprecated]
+#[prost(message, optional, tag = "2")]
+pub terminal_point_id: ::core::option::Option<TerminalPointId>,
+#[deprecated]
+#[prost(string, tag = "3")]
+pub access_point_id: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(string, tag = "4")]
+pub trip_id: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(enumeration = "WaypointType", tag = "5")]
+pub terminal_location_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TripWaypoint {
-    #[prost(message, optional, tag = "1")]
-    pub location: ::core::option::Option<TerminalLocation>,
-    #[prost(string, tag = "2")]
-    pub trip_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "WaypointType", tag = "3")]
-    pub waypoint_type: i32,
-    #[prost(message, repeated, tag = "4")]
-    pub path_to_waypoint: ::prost::alloc::vec::Vec<
-        super::super::super::google::r#type::LatLng,
-    >,
-    #[prost(string, tag = "5")]
-    pub encoded_path_to_waypoint: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "10")]
-    pub traffic_to_waypoint: ::core::option::Option<ConsumableTrafficPolyline>,
-    #[prost(message, optional, tag = "6")]
-    pub distance_meters: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "7")]
-    pub eta: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub location: ::core::option::Option<TerminalLocation>,
+#[prost(string, tag = "2")]
+pub trip_id: ::prost::alloc::string::String,
+#[prost(enumeration = "WaypointType", tag = "3")]
+pub waypoint_type: i32,
+#[prost(message, repeated, tag = "4")]
+pub path_to_waypoint: ::prost::alloc::vec::Vec<super::super::super::google::r#type::LatLng>,
+#[prost(string, tag = "5")]
+pub encoded_path_to_waypoint: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "10")]
+pub traffic_to_waypoint: ::core::option::Option<ConsumableTrafficPolyline>,
+#[prost(message, optional, tag = "6")]
+pub distance_meters: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "7")]
+pub eta: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VehicleAttribute {
-    #[prost(string, tag = "1")]
-    pub key: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub value: ::prost::alloc::string::String,
-    #[prost(oneof = "vehicle_attribute::VehicleAttributeValue", tags = "3, 4, 5")]
-    pub vehicle_attribute_value: ::core::option::Option<
-        vehicle_attribute::VehicleAttributeValue,
-    >,
+#[prost(string, tag = "1")]
+pub key: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+#[prost(oneof = "vehicle_attribute::VehicleAttributeValue", tags = "3, 4, 5")]
+pub vehicle_attribute_value: ::core::option::Option<vehicle_attribute::VehicleAttributeValue>,
 }
 /// Nested message and enum types in `VehicleAttribute`.
 pub mod vehicle_attribute {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum VehicleAttributeValue {
-        #[prost(string, tag = "3")]
-        StringValue(::prost::alloc::string::String),
-        #[prost(bool, tag = "4")]
-        BoolValue(bool),
-        #[prost(double, tag = "5")]
-        NumberValue(f64),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum VehicleAttributeValue {
+#[prost(string, tag = "3")]
+StringValue(::prost::alloc::string::String),
+#[prost(bool, tag = "4")]
+BoolValue(bool),
+#[prost(double, tag = "5")]
+NumberValue(f64),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct VehicleLocation {
-    #[prost(message, optional, tag = "1")]
-    pub location: ::core::option::Option<super::super::super::google::r#type::LatLng>,
-    #[deprecated]
-    #[prost(message, optional, tag = "8")]
-    pub horizontal_accuracy: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "22")]
-    pub latlng_accuracy: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "2")]
-    pub heading: ::core::option::Option<i32>,
-    #[deprecated]
-    #[prost(message, optional, tag = "10")]
-    pub bearing_accuracy: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "23")]
-    pub heading_accuracy: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "5")]
-    pub altitude: ::core::option::Option<f64>,
-    #[deprecated]
-    #[prost(message, optional, tag = "9")]
-    pub vertical_accuracy: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "24")]
-    pub altitude_accuracy: ::core::option::Option<f64>,
-    #[deprecated]
-    #[prost(message, optional, tag = "3")]
-    pub speed_kmph: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "6")]
-    pub speed: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "7")]
-    pub speed_accuracy: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "13")]
-    pub server_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "LocationSensor", tag = "11")]
-    pub location_sensor: i32,
-    #[prost(message, optional, tag = "27")]
-    pub is_road_snapped: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "12")]
-    pub is_gps_sensor_enabled: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "14")]
-    pub time_since_update: ::core::option::Option<i32>,
-    #[deprecated]
-    #[prost(message, optional, tag = "15")]
-    pub num_stale_updates: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "16")]
-    pub raw_location: ::core::option::Option<
-        super::super::super::google::r#type::LatLng,
-    >,
-    #[prost(message, optional, tag = "17")]
-    pub raw_location_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "LocationSensor", tag = "28")]
-    pub raw_location_sensor: i32,
-    #[prost(message, optional, tag = "25")]
-    pub raw_location_accuracy: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "18")]
-    pub supplemental_location: ::core::option::Option<
-        super::super::super::google::r#type::LatLng,
-    >,
-    #[prost(message, optional, tag = "19")]
-    pub supplemental_location_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "LocationSensor", tag = "20")]
-    pub supplemental_location_sensor: i32,
-    #[prost(message, optional, tag = "21")]
-    pub supplemental_location_accuracy: ::core::option::Option<f64>,
-    #[deprecated]
-    #[prost(bool, tag = "26")]
-    pub road_snapped: bool,
+#[prost(message, optional, tag = "1")]
+pub location: ::core::option::Option<super::super::super::google::r#type::LatLng>,
+#[deprecated]
+#[prost(message, optional, tag = "8")]
+pub horizontal_accuracy: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "22")]
+pub latlng_accuracy: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "2")]
+pub heading: ::core::option::Option<i32>,
+#[deprecated]
+#[prost(message, optional, tag = "10")]
+pub bearing_accuracy: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "23")]
+pub heading_accuracy: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "5")]
+pub altitude: ::core::option::Option<f64>,
+#[deprecated]
+#[prost(message, optional, tag = "9")]
+pub vertical_accuracy: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "24")]
+pub altitude_accuracy: ::core::option::Option<f64>,
+#[deprecated]
+#[prost(message, optional, tag = "3")]
+pub speed_kmph: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "6")]
+pub speed: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "7")]
+pub speed_accuracy: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "13")]
+pub server_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "LocationSensor", tag = "11")]
+pub location_sensor: i32,
+#[prost(message, optional, tag = "27")]
+pub is_road_snapped: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "12")]
+pub is_gps_sensor_enabled: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "14")]
+pub time_since_update: ::core::option::Option<i32>,
+#[deprecated]
+#[prost(message, optional, tag = "15")]
+pub num_stale_updates: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "16")]
+pub raw_location: ::core::option::Option<super::super::super::google::r#type::LatLng>,
+#[prost(message, optional, tag = "17")]
+pub raw_location_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "LocationSensor", tag = "28")]
+pub raw_location_sensor: i32,
+#[prost(message, optional, tag = "25")]
+pub raw_location_accuracy: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "18")]
+pub supplemental_location: ::core::option::Option<super::super::super::google::r#type::LatLng>,
+#[prost(message, optional, tag = "19")]
+pub supplemental_location_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "LocationSensor", tag = "20")]
+pub supplemental_location_sensor: i32,
+#[prost(message, optional, tag = "21")]
+pub supplemental_location_accuracy: ::core::option::Option<f64>,
+#[deprecated]
+#[prost(bool, tag = "26")]
+pub road_snapped: bool,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TripType {
-    UnknownTripType = 0,
-    Shared = 1,
-    Exclusive = 2,
+UnknownTripType = 0,
+Shared = 1,
+Exclusive = 2,
 }
 impl TripType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TripType::UnknownTripType => "UNKNOWN_TRIP_TYPE",
-            TripType::Shared => "SHARED",
-            TripType::Exclusive => "EXCLUSIVE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_TRIP_TYPE" => Some(Self::UnknownTripType),
-            "SHARED" => Some(Self::Shared),
-            "EXCLUSIVE" => Some(Self::Exclusive),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TripType::UnknownTripType => "UNKNOWN_TRIP_TYPE",
+TripType::Shared => "SHARED",
+TripType::Exclusive => "EXCLUSIVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_TRIP_TYPE" => Some(Self::UnknownTripType),
+"SHARED" => Some(Self::Shared),
+"EXCLUSIVE" => Some(Self::Exclusive),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum WaypointType {
-    UnknownWaypointType = 0,
-    PickupWaypointType = 1,
-    DropOffWaypointType = 2,
-    IntermediateDestinationWaypointType = 3,
+UnknownWaypointType = 0,
+PickupWaypointType = 1,
+DropOffWaypointType = 2,
+IntermediateDestinationWaypointType = 3,
 }
 impl WaypointType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            WaypointType::UnknownWaypointType => "UNKNOWN_WAYPOINT_TYPE",
-            WaypointType::PickupWaypointType => "PICKUP_WAYPOINT_TYPE",
-            WaypointType::DropOffWaypointType => "DROP_OFF_WAYPOINT_TYPE",
-            WaypointType::IntermediateDestinationWaypointType => {
-                "INTERMEDIATE_DESTINATION_WAYPOINT_TYPE"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_WAYPOINT_TYPE" => Some(Self::UnknownWaypointType),
-            "PICKUP_WAYPOINT_TYPE" => Some(Self::PickupWaypointType),
-            "DROP_OFF_WAYPOINT_TYPE" => Some(Self::DropOffWaypointType),
-            "INTERMEDIATE_DESTINATION_WAYPOINT_TYPE" => {
-                Some(Self::IntermediateDestinationWaypointType)
-            }
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+WaypointType::UnknownWaypointType => "UNKNOWN_WAYPOINT_TYPE",
+WaypointType::PickupWaypointType => "PICKUP_WAYPOINT_TYPE",
+WaypointType::DropOffWaypointType => "DROP_OFF_WAYPOINT_TYPE",
+WaypointType::IntermediateDestinationWaypointType => "INTERMEDIATE_DESTINATION_WAYPOINT_TYPE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_WAYPOINT_TYPE" => Some(Self::UnknownWaypointType),
+"PICKUP_WAYPOINT_TYPE" => Some(Self::PickupWaypointType),
+"DROP_OFF_WAYPOINT_TYPE" => Some(Self::DropOffWaypointType),
+"INTERMEDIATE_DESTINATION_WAYPOINT_TYPE" => Some(Self::IntermediateDestinationWaypointType),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PolylineFormatType {
-    UnknownFormatType = 0,
-    LatLngListType = 1,
-    EncodedPolylineType = 2,
+UnknownFormatType = 0,
+LatLngListType = 1,
+EncodedPolylineType = 2,
 }
 impl PolylineFormatType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            PolylineFormatType::UnknownFormatType => "UNKNOWN_FORMAT_TYPE",
-            PolylineFormatType::LatLngListType => "LAT_LNG_LIST_TYPE",
-            PolylineFormatType::EncodedPolylineType => "ENCODED_POLYLINE_TYPE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_FORMAT_TYPE" => Some(Self::UnknownFormatType),
-            "LAT_LNG_LIST_TYPE" => Some(Self::LatLngListType),
-            "ENCODED_POLYLINE_TYPE" => Some(Self::EncodedPolylineType),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PolylineFormatType::UnknownFormatType => "UNKNOWN_FORMAT_TYPE",
+PolylineFormatType::LatLngListType => "LAT_LNG_LIST_TYPE",
+PolylineFormatType::EncodedPolylineType => "ENCODED_POLYLINE_TYPE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_FORMAT_TYPE" => Some(Self::UnknownFormatType),
+"LAT_LNG_LIST_TYPE" => Some(Self::LatLngListType),
+"ENCODED_POLYLINE_TYPE" => Some(Self::EncodedPolylineType),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum NavigationStatus {
-    UnknownNavigationStatus = 0,
-    NoGuidance = 1,
-    EnrouteToDestination = 2,
-    OffRoute = 3,
-    ArrivedAtDestination = 4,
+UnknownNavigationStatus = 0,
+NoGuidance = 1,
+EnrouteToDestination = 2,
+OffRoute = 3,
+ArrivedAtDestination = 4,
 }
 impl NavigationStatus {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            NavigationStatus::UnknownNavigationStatus => "UNKNOWN_NAVIGATION_STATUS",
-            NavigationStatus::NoGuidance => "NO_GUIDANCE",
-            NavigationStatus::EnrouteToDestination => "ENROUTE_TO_DESTINATION",
-            NavigationStatus::OffRoute => "OFF_ROUTE",
-            NavigationStatus::ArrivedAtDestination => "ARRIVED_AT_DESTINATION",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_NAVIGATION_STATUS" => Some(Self::UnknownNavigationStatus),
-            "NO_GUIDANCE" => Some(Self::NoGuidance),
-            "ENROUTE_TO_DESTINATION" => Some(Self::EnrouteToDestination),
-            "OFF_ROUTE" => Some(Self::OffRoute),
-            "ARRIVED_AT_DESTINATION" => Some(Self::ArrivedAtDestination),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+NavigationStatus::UnknownNavigationStatus => "UNKNOWN_NAVIGATION_STATUS",
+NavigationStatus::NoGuidance => "NO_GUIDANCE",
+NavigationStatus::EnrouteToDestination => "ENROUTE_TO_DESTINATION",
+NavigationStatus::OffRoute => "OFF_ROUTE",
+NavigationStatus::ArrivedAtDestination => "ARRIVED_AT_DESTINATION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_NAVIGATION_STATUS" => Some(Self::UnknownNavigationStatus),
+"NO_GUIDANCE" => Some(Self::NoGuidance),
+"ENROUTE_TO_DESTINATION" => Some(Self::EnrouteToDestination),
+"OFF_ROUTE" => Some(Self::OffRoute),
+"ARRIVED_AT_DESTINATION" => Some(Self::ArrivedAtDestination),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LocationSensor {
-    UnknownSensor = 0,
-    Gps = 1,
-    Network = 2,
-    Passive = 3,
-    RoadSnappedLocationProvider = 4,
-    CustomerSuppliedLocation = 5,
-    FleetEngineLocation = 6,
-    FusedLocationProvider = 100,
-    CoreLocation = 200,
+UnknownSensor = 0,
+Gps = 1,
+Network = 2,
+Passive = 3,
+RoadSnappedLocationProvider = 4,
+CustomerSuppliedLocation = 5,
+FleetEngineLocation = 6,
+FusedLocationProvider = 100,
+CoreLocation = 200,
 }
 impl LocationSensor {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            LocationSensor::UnknownSensor => "UNKNOWN_SENSOR",
-            LocationSensor::Gps => "GPS",
-            LocationSensor::Network => "NETWORK",
-            LocationSensor::Passive => "PASSIVE",
-            LocationSensor::RoadSnappedLocationProvider => {
-                "ROAD_SNAPPED_LOCATION_PROVIDER"
-            }
-            LocationSensor::CustomerSuppliedLocation => "CUSTOMER_SUPPLIED_LOCATION",
-            LocationSensor::FleetEngineLocation => "FLEET_ENGINE_LOCATION",
-            LocationSensor::FusedLocationProvider => "FUSED_LOCATION_PROVIDER",
-            LocationSensor::CoreLocation => "CORE_LOCATION",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_SENSOR" => Some(Self::UnknownSensor),
-            "GPS" => Some(Self::Gps),
-            "NETWORK" => Some(Self::Network),
-            "PASSIVE" => Some(Self::Passive),
-            "ROAD_SNAPPED_LOCATION_PROVIDER" => Some(Self::RoadSnappedLocationProvider),
-            "CUSTOMER_SUPPLIED_LOCATION" => Some(Self::CustomerSuppliedLocation),
-            "FLEET_ENGINE_LOCATION" => Some(Self::FleetEngineLocation),
-            "FUSED_LOCATION_PROVIDER" => Some(Self::FusedLocationProvider),
-            "CORE_LOCATION" => Some(Self::CoreLocation),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LocationSensor::UnknownSensor => "UNKNOWN_SENSOR",
+LocationSensor::Gps => "GPS",
+LocationSensor::Network => "NETWORK",
+LocationSensor::Passive => "PASSIVE",
+LocationSensor::RoadSnappedLocationProvider => "ROAD_SNAPPED_LOCATION_PROVIDER",
+LocationSensor::CustomerSuppliedLocation => "CUSTOMER_SUPPLIED_LOCATION",
+LocationSensor::FleetEngineLocation => "FLEET_ENGINE_LOCATION",
+LocationSensor::FusedLocationProvider => "FUSED_LOCATION_PROVIDER",
+LocationSensor::CoreLocation => "CORE_LOCATION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_SENSOR" => Some(Self::UnknownSensor),
+"GPS" => Some(Self::Gps),
+"NETWORK" => Some(Self::Network),
+"PASSIVE" => Some(Self::Passive),
+"ROAD_SNAPPED_LOCATION_PROVIDER" => Some(Self::RoadSnappedLocationProvider),
+"CUSTOMER_SUPPLIED_LOCATION" => Some(Self::CustomerSuppliedLocation),
+"FLEET_ENGINE_LOCATION" => Some(Self::FleetEngineLocation),
+"FUSED_LOCATION_PROVIDER" => Some(Self::FusedLocationProvider),
+"CORE_LOCATION" => Some(Self::CoreLocation),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Trip {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub vehicle_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "TripStatus", tag = "3")]
-    pub trip_status: i32,
-    #[prost(enumeration = "TripType", tag = "4")]
-    pub trip_type: i32,
-    #[prost(message, optional, tag = "5")]
-    pub pickup_point: ::core::option::Option<TerminalLocation>,
-    #[prost(message, optional, tag = "22")]
-    pub actual_pickup_point: ::core::option::Option<StopLocation>,
-    #[prost(message, optional, tag = "32")]
-    pub actual_pickup_arrival_point: ::core::option::Option<StopLocation>,
-    #[prost(message, optional, tag = "6")]
-    pub pickup_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, repeated, tag = "14")]
-    pub intermediate_destinations: ::prost::alloc::vec::Vec<TerminalLocation>,
-    #[prost(message, optional, tag = "25")]
-    pub intermediate_destinations_version: ::core::option::Option<
-        ::prost_types::Timestamp,
-    >,
-    #[prost(int32, tag = "15")]
-    pub intermediate_destination_index: i32,
-    #[prost(message, repeated, tag = "33")]
-    pub actual_intermediate_destination_arrival_points: ::prost::alloc::vec::Vec<
-        StopLocation,
-    >,
-    #[prost(message, repeated, tag = "34")]
-    pub actual_intermediate_destinations: ::prost::alloc::vec::Vec<StopLocation>,
-    #[prost(message, optional, tag = "7")]
-    pub dropoff_point: ::core::option::Option<TerminalLocation>,
-    #[prost(message, optional, tag = "23")]
-    pub actual_dropoff_point: ::core::option::Option<StopLocation>,
-    #[prost(message, optional, tag = "8")]
-    pub dropoff_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, repeated, tag = "16")]
-    pub remaining_waypoints: ::prost::alloc::vec::Vec<TripWaypoint>,
-    #[prost(message, repeated, tag = "20")]
-    pub vehicle_waypoints: ::prost::alloc::vec::Vec<TripWaypoint>,
-    #[prost(message, repeated, tag = "9")]
-    pub route: ::prost::alloc::vec::Vec<super::super::super::google::r#type::LatLng>,
-    #[prost(string, tag = "21")]
-    pub current_route_segment: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "17")]
-    pub current_route_segment_version: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "28")]
-    pub current_route_segment_traffic: ::core::option::Option<ConsumableTrafficPolyline>,
-    #[prost(message, optional, tag = "30")]
-    pub current_route_segment_traffic_version: ::core::option::Option<
-        ::prost_types::Timestamp,
-    >,
-    #[prost(message, optional, tag = "24")]
-    pub current_route_segment_end_point: ::core::option::Option<TripWaypoint>,
-    #[prost(message, optional, tag = "12")]
-    pub remaining_distance_meters: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "13")]
-    pub eta_to_first_waypoint: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "27")]
-    pub remaining_time_to_first_waypoint: ::core::option::Option<
-        ::prost_types::Duration,
-    >,
-    #[prost(message, optional, tag = "19")]
-    pub remaining_waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "29")]
-    pub remaining_waypoints_route_version: ::core::option::Option<
-        ::prost_types::Timestamp,
-    >,
-    #[prost(int32, tag = "10")]
-    pub number_of_passengers: i32,
-    #[prost(message, optional, tag = "11")]
-    pub last_location: ::core::option::Option<VehicleLocation>,
-    #[prost(bool, tag = "26")]
-    pub last_location_snappable: bool,
-    #[prost(enumeration = "TripView", tag = "31")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub vehicle_id: ::prost::alloc::string::String,
+#[prost(enumeration = "TripStatus", tag = "3")]
+pub trip_status: i32,
+#[prost(enumeration = "TripType", tag = "4")]
+pub trip_type: i32,
+#[prost(message, optional, tag = "5")]
+pub pickup_point: ::core::option::Option<TerminalLocation>,
+#[prost(message, optional, tag = "22")]
+pub actual_pickup_point: ::core::option::Option<StopLocation>,
+#[prost(message, optional, tag = "32")]
+pub actual_pickup_arrival_point: ::core::option::Option<StopLocation>,
+#[prost(message, optional, tag = "6")]
+pub pickup_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, repeated, tag = "14")]
+pub intermediate_destinations: ::prost::alloc::vec::Vec<TerminalLocation>,
+#[prost(message, optional, tag = "25")]
+pub intermediate_destinations_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int32, tag = "15")]
+pub intermediate_destination_index: i32,
+#[prost(message, repeated, tag = "33")]
+pub actual_intermediate_destination_arrival_points: ::prost::alloc::vec::Vec<StopLocation>,
+#[prost(message, repeated, tag = "34")]
+pub actual_intermediate_destinations: ::prost::alloc::vec::Vec<StopLocation>,
+#[prost(message, optional, tag = "7")]
+pub dropoff_point: ::core::option::Option<TerminalLocation>,
+#[prost(message, optional, tag = "23")]
+pub actual_dropoff_point: ::core::option::Option<StopLocation>,
+#[prost(message, optional, tag = "8")]
+pub dropoff_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, repeated, tag = "16")]
+pub remaining_waypoints: ::prost::alloc::vec::Vec<TripWaypoint>,
+#[prost(message, repeated, tag = "20")]
+pub vehicle_waypoints: ::prost::alloc::vec::Vec<TripWaypoint>,
+#[prost(message, repeated, tag = "9")]
+pub route: ::prost::alloc::vec::Vec<super::super::super::google::r#type::LatLng>,
+#[prost(string, tag = "21")]
+pub current_route_segment: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "17")]
+pub current_route_segment_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "28")]
+pub current_route_segment_traffic: ::core::option::Option<ConsumableTrafficPolyline>,
+#[prost(message, optional, tag = "30")]
+pub current_route_segment_traffic_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "24")]
+pub current_route_segment_end_point: ::core::option::Option<TripWaypoint>,
+#[prost(message, optional, tag = "12")]
+pub remaining_distance_meters: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "13")]
+pub eta_to_first_waypoint: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "27")]
+pub remaining_time_to_first_waypoint: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "19")]
+pub remaining_waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "29")]
+pub remaining_waypoints_route_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int32, tag = "10")]
+pub number_of_passengers: i32,
+#[prost(message, optional, tag = "11")]
+pub last_location: ::core::option::Option<VehicleLocation>,
+#[prost(bool, tag = "26")]
+pub last_location_snappable: bool,
+#[prost(enumeration = "TripView", tag = "31")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StopLocation {
-    #[prost(message, optional, tag = "1")]
-    pub point: ::core::option::Option<super::super::super::google::r#type::LatLng>,
-    #[prost(message, optional, tag = "2")]
-    pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
-    #[deprecated]
-    #[prost(message, optional, tag = "3")]
-    pub stop_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "1")]
+pub point: ::core::option::Option<super::super::super::google::r#type::LatLng>,
+#[prost(message, optional, tag = "2")]
+pub timestamp: ::core::option::Option<::prost_types::Timestamp>,
+#[deprecated]
+#[prost(message, optional, tag = "3")]
+pub stop_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TripStatus {
-    UnknownTripStatus = 0,
-    New = 1,
-    EnrouteToPickup = 2,
-    ArrivedAtPickup = 3,
-    ArrivedAtIntermediateDestination = 7,
-    EnrouteToIntermediateDestination = 8,
-    EnrouteToDropoff = 4,
-    Complete = 5,
-    Canceled = 6,
+UnknownTripStatus = 0,
+New = 1,
+EnrouteToPickup = 2,
+ArrivedAtPickup = 3,
+ArrivedAtIntermediateDestination = 7,
+EnrouteToIntermediateDestination = 8,
+EnrouteToDropoff = 4,
+Complete = 5,
+Canceled = 6,
 }
 impl TripStatus {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TripStatus::UnknownTripStatus => "UNKNOWN_TRIP_STATUS",
-            TripStatus::New => "NEW",
-            TripStatus::EnrouteToPickup => "ENROUTE_TO_PICKUP",
-            TripStatus::ArrivedAtPickup => "ARRIVED_AT_PICKUP",
-            TripStatus::ArrivedAtIntermediateDestination => {
-                "ARRIVED_AT_INTERMEDIATE_DESTINATION"
-            }
-            TripStatus::EnrouteToIntermediateDestination => {
-                "ENROUTE_TO_INTERMEDIATE_DESTINATION"
-            }
-            TripStatus::EnrouteToDropoff => "ENROUTE_TO_DROPOFF",
-            TripStatus::Complete => "COMPLETE",
-            TripStatus::Canceled => "CANCELED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_TRIP_STATUS" => Some(Self::UnknownTripStatus),
-            "NEW" => Some(Self::New),
-            "ENROUTE_TO_PICKUP" => Some(Self::EnrouteToPickup),
-            "ARRIVED_AT_PICKUP" => Some(Self::ArrivedAtPickup),
-            "ARRIVED_AT_INTERMEDIATE_DESTINATION" => {
-                Some(Self::ArrivedAtIntermediateDestination)
-            }
-            "ENROUTE_TO_INTERMEDIATE_DESTINATION" => {
-                Some(Self::EnrouteToIntermediateDestination)
-            }
-            "ENROUTE_TO_DROPOFF" => Some(Self::EnrouteToDropoff),
-            "COMPLETE" => Some(Self::Complete),
-            "CANCELED" => Some(Self::Canceled),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TripStatus::UnknownTripStatus => "UNKNOWN_TRIP_STATUS",
+TripStatus::New => "NEW",
+TripStatus::EnrouteToPickup => "ENROUTE_TO_PICKUP",
+TripStatus::ArrivedAtPickup => "ARRIVED_AT_PICKUP",
+TripStatus::ArrivedAtIntermediateDestination => "ARRIVED_AT_INTERMEDIATE_DESTINATION",
+TripStatus::EnrouteToIntermediateDestination => "ENROUTE_TO_INTERMEDIATE_DESTINATION",
+TripStatus::EnrouteToDropoff => "ENROUTE_TO_DROPOFF",
+TripStatus::Complete => "COMPLETE",
+TripStatus::Canceled => "CANCELED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_TRIP_STATUS" => Some(Self::UnknownTripStatus),
+"NEW" => Some(Self::New),
+"ENROUTE_TO_PICKUP" => Some(Self::EnrouteToPickup),
+"ARRIVED_AT_PICKUP" => Some(Self::ArrivedAtPickup),
+"ARRIVED_AT_INTERMEDIATE_DESTINATION" => Some(Self::ArrivedAtIntermediateDestination),
+"ENROUTE_TO_INTERMEDIATE_DESTINATION" => Some(Self::EnrouteToIntermediateDestination),
+"ENROUTE_TO_DROPOFF" => Some(Self::EnrouteToDropoff),
+"COMPLETE" => Some(Self::Complete),
+"CANCELED" => Some(Self::Canceled),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum BillingPlatformIdentifier {
-    Unspecified = 0,
-    Server = 1,
-    Web = 2,
-    Android = 3,
-    Ios = 4,
-    Others = 5,
+Unspecified = 0,
+Server = 1,
+Web = 2,
+Android = 3,
+Ios = 4,
+Others = 5,
 }
 impl BillingPlatformIdentifier {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            BillingPlatformIdentifier::Unspecified => {
-                "BILLING_PLATFORM_IDENTIFIER_UNSPECIFIED"
-            }
-            BillingPlatformIdentifier::Server => "SERVER",
-            BillingPlatformIdentifier::Web => "WEB",
-            BillingPlatformIdentifier::Android => "ANDROID",
-            BillingPlatformIdentifier::Ios => "IOS",
-            BillingPlatformIdentifier::Others => "OTHERS",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "BILLING_PLATFORM_IDENTIFIER_UNSPECIFIED" => Some(Self::Unspecified),
-            "SERVER" => Some(Self::Server),
-            "WEB" => Some(Self::Web),
-            "ANDROID" => Some(Self::Android),
-            "IOS" => Some(Self::Ios),
-            "OTHERS" => Some(Self::Others),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+BillingPlatformIdentifier::Unspecified => "BILLING_PLATFORM_IDENTIFIER_UNSPECIFIED",
+BillingPlatformIdentifier::Server => "SERVER",
+BillingPlatformIdentifier::Web => "WEB",
+BillingPlatformIdentifier::Android => "ANDROID",
+BillingPlatformIdentifier::Ios => "IOS",
+BillingPlatformIdentifier::Others => "OTHERS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BILLING_PLATFORM_IDENTIFIER_UNSPECIFIED" => Some(Self::Unspecified),
+"SERVER" => Some(Self::Server),
+"WEB" => Some(Self::Web),
+"ANDROID" => Some(Self::Android),
+"IOS" => Some(Self::Ios),
+"OTHERS" => Some(Self::Others),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TripView {
-    Unspecified = 0,
-    Sdk = 1,
-    JourneySharingV1s = 2,
+Unspecified = 0,
+Sdk = 1,
+JourneySharingV1s = 2,
 }
 impl TripView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TripView::Unspecified => "TRIP_VIEW_UNSPECIFIED",
-            TripView::Sdk => "SDK",
-            TripView::JourneySharingV1s => "JOURNEY_SHARING_V1S",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TRIP_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
-            "SDK" => Some(Self::Sdk),
-            "JOURNEY_SHARING_V1S" => Some(Self::JourneySharingV1s),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TripView::Unspecified => "TRIP_VIEW_UNSPECIFIED",
+TripView::Sdk => "SDK",
+TripView::JourneySharingV1s => "JOURNEY_SHARING_V1S",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TRIP_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+"SDK" => Some(Self::Sdk),
+"JOURNEY_SHARING_V1S" => Some(Self::JourneySharingV1s),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Vehicle {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "VehicleState", tag = "2")]
-    pub vehicle_state: i32,
-    #[prost(enumeration = "TripType", repeated, tag = "3")]
-    pub supported_trip_types: ::prost::alloc::vec::Vec<i32>,
-    #[prost(string, repeated, tag = "4")]
-    pub current_trips: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub last_location: ::core::option::Option<VehicleLocation>,
-    #[prost(int32, tag = "6")]
-    pub maximum_capacity: i32,
-    #[prost(message, repeated, tag = "8")]
-    pub attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
-    #[prost(message, optional, tag = "9")]
-    pub vehicle_type: ::core::option::Option<vehicle::VehicleType>,
-    #[prost(message, optional, tag = "10")]
-    pub license_plate: ::core::option::Option<LicensePlate>,
-    #[deprecated]
-    #[prost(message, repeated, tag = "12")]
-    pub route: ::prost::alloc::vec::Vec<TerminalLocation>,
-    #[prost(string, tag = "20")]
-    pub current_route_segment: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "28")]
-    pub current_route_segment_traffic: ::core::option::Option<TrafficPolylineData>,
-    #[prost(message, optional, tag = "15")]
-    pub current_route_segment_version: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "24")]
-    pub current_route_segment_end_point: ::core::option::Option<TripWaypoint>,
-    #[prost(message, optional, tag = "18")]
-    pub remaining_distance_meters: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "19")]
-    pub eta_to_first_waypoint: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "25")]
-    pub remaining_time_seconds: ::core::option::Option<i32>,
-    #[prost(message, repeated, tag = "22")]
-    pub waypoints: ::prost::alloc::vec::Vec<TripWaypoint>,
-    #[prost(message, optional, tag = "16")]
-    pub waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(bool, tag = "23")]
-    pub back_to_back_enabled: bool,
-    #[prost(enumeration = "NavigationStatus", tag = "26")]
-    pub navigation_status: i32,
-    #[prost(message, optional, tag = "27")]
-    pub device_settings: ::core::option::Option<DeviceSettings>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "VehicleState", tag = "2")]
+pub vehicle_state: i32,
+#[prost(enumeration = "TripType", repeated, tag = "3")]
+pub supported_trip_types: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, repeated, tag = "4")]
+pub current_trips: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "5")]
+pub last_location: ::core::option::Option<VehicleLocation>,
+#[prost(int32, tag = "6")]
+pub maximum_capacity: i32,
+#[prost(message, repeated, tag = "8")]
+pub attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
+#[prost(message, optional, tag = "9")]
+pub vehicle_type: ::core::option::Option<vehicle::VehicleType>,
+#[prost(message, optional, tag = "10")]
+pub license_plate: ::core::option::Option<LicensePlate>,
+#[deprecated]
+#[prost(message, repeated, tag = "12")]
+pub route: ::prost::alloc::vec::Vec<TerminalLocation>,
+#[prost(string, tag = "20")]
+pub current_route_segment: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "28")]
+pub current_route_segment_traffic: ::core::option::Option<TrafficPolylineData>,
+#[prost(message, optional, tag = "15")]
+pub current_route_segment_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "24")]
+pub current_route_segment_end_point: ::core::option::Option<TripWaypoint>,
+#[prost(message, optional, tag = "18")]
+pub remaining_distance_meters: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "19")]
+pub eta_to_first_waypoint: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "25")]
+pub remaining_time_seconds: ::core::option::Option<i32>,
+#[prost(message, repeated, tag = "22")]
+pub waypoints: ::prost::alloc::vec::Vec<TripWaypoint>,
+#[prost(message, optional, tag = "16")]
+pub waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(bool, tag = "23")]
+pub back_to_back_enabled: bool,
+#[prost(enumeration = "NavigationStatus", tag = "26")]
+pub navigation_status: i32,
+#[prost(message, optional, tag = "27")]
+pub device_settings: ::core::option::Option<DeviceSettings>,
 }
 /// Nested message and enum types in `Vehicle`.
 pub mod vehicle {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct VehicleType {
-        #[prost(enumeration = "vehicle_type::Category", tag = "1")]
-        pub category: i32,
-    }
-    /// Nested message and enum types in `VehicleType`.
-    pub mod vehicle_type {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Category {
-            Unknown = 0,
-            Auto = 1,
-            Taxi = 2,
-            Truck = 3,
-            TwoWheeler = 4,
-            Bicycle = 5,
-            Pedestrian = 6,
-        }
-        impl Category {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Category::Unknown => "UNKNOWN",
-                    Category::Auto => "AUTO",
-                    Category::Taxi => "TAXI",
-                    Category::Truck => "TRUCK",
-                    Category::TwoWheeler => "TWO_WHEELER",
-                    Category::Bicycle => "BICYCLE",
-                    Category::Pedestrian => "PEDESTRIAN",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "UNKNOWN" => Some(Self::Unknown),
-                    "AUTO" => Some(Self::Auto),
-                    "TAXI" => Some(Self::Taxi),
-                    "TRUCK" => Some(Self::Truck),
-                    "TWO_WHEELER" => Some(Self::TwoWheeler),
-                    "BICYCLE" => Some(Self::Bicycle),
-                    "PEDESTRIAN" => Some(Self::Pedestrian),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct VehicleType {
+#[prost(enumeration = "vehicle_type::Category", tag = "1")]
+pub category: i32,
+}
+/// Nested message and enum types in `VehicleType`.
+pub mod vehicle_type {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Category {
+Unknown = 0,
+Auto = 1,
+Taxi = 2,
+Truck = 3,
+TwoWheeler = 4,
+Bicycle = 5,
+Pedestrian = 6,
+}
+impl Category {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Category::Unknown => "UNKNOWN",
+Category::Auto => "AUTO",
+Category::Taxi => "TAXI",
+Category::Truck => "TRUCK",
+Category::TwoWheeler => "TWO_WHEELER",
+Category::Bicycle => "BICYCLE",
+Category::Pedestrian => "PEDESTRIAN",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN" => Some(Self::Unknown),
+"AUTO" => Some(Self::Auto),
+"TAXI" => Some(Self::Taxi),
+"TRUCK" => Some(Self::Truck),
+"TWO_WHEELER" => Some(Self::TwoWheeler),
+"BICYCLE" => Some(Self::Bicycle),
+"PEDESTRIAN" => Some(Self::Pedestrian),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct BatteryInfo {
-    #[prost(enumeration = "BatteryStatus", tag = "1")]
-    pub battery_status: i32,
-    #[prost(enumeration = "PowerSource", tag = "2")]
-    pub power_source: i32,
-    #[prost(float, tag = "3")]
-    pub battery_percentage: f32,
+#[prost(enumeration = "BatteryStatus", tag = "1")]
+pub battery_status: i32,
+#[prost(enumeration = "PowerSource", tag = "2")]
+pub power_source: i32,
+#[prost(float, tag = "3")]
+pub battery_percentage: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DeviceSettings {
-    #[prost(enumeration = "LocationPowerSaveMode", tag = "1")]
-    pub location_power_save_mode: i32,
-    #[prost(bool, tag = "2")]
-    pub is_power_save_mode: bool,
-    #[prost(bool, tag = "3")]
-    pub is_interactive: bool,
-    #[prost(message, optional, tag = "4")]
-    pub battery_info: ::core::option::Option<BatteryInfo>,
+#[prost(enumeration = "LocationPowerSaveMode", tag = "1")]
+pub location_power_save_mode: i32,
+#[prost(bool, tag = "2")]
+pub is_power_save_mode: bool,
+#[prost(bool, tag = "3")]
+pub is_interactive: bool,
+#[prost(message, optional, tag = "4")]
+pub battery_info: ::core::option::Option<BatteryInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LicensePlate {
-    #[prost(string, tag = "1")]
-    pub country_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub last_character: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub country_code: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub last_character: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VisualTrafficReportPolylineRendering {
-    #[prost(message, repeated, tag = "1")]
-    pub road_stretch: ::prost::alloc::vec::Vec<
-        visual_traffic_report_polyline_rendering::RoadStretch,
-    >,
+#[prost(message, repeated, tag = "1")]
+pub road_stretch: ::prost::alloc::vec::Vec<visual_traffic_report_polyline_rendering::RoadStretch>,
 }
 /// Nested message and enum types in `VisualTrafficReportPolylineRendering`.
 pub mod visual_traffic_report_polyline_rendering {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct RoadStretch {
-        #[prost(enumeration = "road_stretch::Style", tag = "1")]
-        pub style: i32,
-        #[prost(int32, tag = "2")]
-        pub offset_meters: i32,
-        #[prost(int32, tag = "3")]
-        pub length_meters: i32,
-    }
-    /// Nested message and enum types in `RoadStretch`.
-    pub mod road_stretch {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum Style {
-            Unspecified = 0,
-            SlowerTraffic = 1,
-            TrafficJam = 2,
-        }
-        impl Style {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    Style::Unspecified => "STYLE_UNSPECIFIED",
-                    Style::SlowerTraffic => "SLOWER_TRAFFIC",
-                    Style::TrafficJam => "TRAFFIC_JAM",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "STYLE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "SLOWER_TRAFFIC" => Some(Self::SlowerTraffic),
-                    "TRAFFIC_JAM" => Some(Self::TrafficJam),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct RoadStretch {
+#[prost(enumeration = "road_stretch::Style", tag = "1")]
+pub style: i32,
+#[prost(int32, tag = "2")]
+pub offset_meters: i32,
+#[prost(int32, tag = "3")]
+pub length_meters: i32,
+}
+/// Nested message and enum types in `RoadStretch`.
+pub mod road_stretch {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Style {
+Unspecified = 0,
+SlowerTraffic = 1,
+TrafficJam = 2,
+}
+impl Style {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Style::Unspecified => "STYLE_UNSPECIFIED",
+Style::SlowerTraffic => "SLOWER_TRAFFIC",
+Style::TrafficJam => "TRAFFIC_JAM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STYLE_UNSPECIFIED" => Some(Self::Unspecified),
+"SLOWER_TRAFFIC" => Some(Self::SlowerTraffic),
+"TRAFFIC_JAM" => Some(Self::TrafficJam),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrafficPolylineData {
-    #[prost(message, optional, tag = "1")]
-    pub traffic_rendering: ::core::option::Option<VisualTrafficReportPolylineRendering>,
+#[prost(message, optional, tag = "1")]
+pub traffic_rendering: ::core::option::Option<VisualTrafficReportPolylineRendering>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum VehicleState {
-    UnknownVehicleState = 0,
-    Offline = 1,
-    Online = 2,
+UnknownVehicleState = 0,
+Offline = 1,
+Online = 2,
 }
 impl VehicleState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            VehicleState::UnknownVehicleState => "UNKNOWN_VEHICLE_STATE",
-            VehicleState::Offline => "OFFLINE",
-            VehicleState::Online => "ONLINE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_VEHICLE_STATE" => Some(Self::UnknownVehicleState),
-            "OFFLINE" => Some(Self::Offline),
-            "ONLINE" => Some(Self::Online),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VehicleState::UnknownVehicleState => "UNKNOWN_VEHICLE_STATE",
+VehicleState::Offline => "OFFLINE",
+VehicleState::Online => "ONLINE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_VEHICLE_STATE" => Some(Self::UnknownVehicleState),
+"OFFLINE" => Some(Self::Offline),
+"ONLINE" => Some(Self::Online),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LocationPowerSaveMode {
-    UnknownLocationPowerSaveMode = 0,
-    LocationModeNoChange = 1,
-    LocationModeGpsDisabledWhenScreenOff = 2,
-    LocationModeAllDisabledWhenScreenOff = 3,
-    LocationModeForegroundOnly = 4,
-    LocationModeThrottleRequestsWhenScreenOff = 5,
+UnknownLocationPowerSaveMode = 0,
+LocationModeNoChange = 1,
+LocationModeGpsDisabledWhenScreenOff = 2,
+LocationModeAllDisabledWhenScreenOff = 3,
+LocationModeForegroundOnly = 4,
+LocationModeThrottleRequestsWhenScreenOff = 5,
 }
 impl LocationPowerSaveMode {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            LocationPowerSaveMode::UnknownLocationPowerSaveMode => {
-                "UNKNOWN_LOCATION_POWER_SAVE_MODE"
-            }
-            LocationPowerSaveMode::LocationModeNoChange => "LOCATION_MODE_NO_CHANGE",
-            LocationPowerSaveMode::LocationModeGpsDisabledWhenScreenOff => {
-                "LOCATION_MODE_GPS_DISABLED_WHEN_SCREEN_OFF"
-            }
-            LocationPowerSaveMode::LocationModeAllDisabledWhenScreenOff => {
-                "LOCATION_MODE_ALL_DISABLED_WHEN_SCREEN_OFF"
-            }
-            LocationPowerSaveMode::LocationModeForegroundOnly => {
-                "LOCATION_MODE_FOREGROUND_ONLY"
-            }
-            LocationPowerSaveMode::LocationModeThrottleRequestsWhenScreenOff => {
-                "LOCATION_MODE_THROTTLE_REQUESTS_WHEN_SCREEN_OFF"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_LOCATION_POWER_SAVE_MODE" => {
-                Some(Self::UnknownLocationPowerSaveMode)
-            }
-            "LOCATION_MODE_NO_CHANGE" => Some(Self::LocationModeNoChange),
-            "LOCATION_MODE_GPS_DISABLED_WHEN_SCREEN_OFF" => {
-                Some(Self::LocationModeGpsDisabledWhenScreenOff)
-            }
-            "LOCATION_MODE_ALL_DISABLED_WHEN_SCREEN_OFF" => {
-                Some(Self::LocationModeAllDisabledWhenScreenOff)
-            }
-            "LOCATION_MODE_FOREGROUND_ONLY" => Some(Self::LocationModeForegroundOnly),
-            "LOCATION_MODE_THROTTLE_REQUESTS_WHEN_SCREEN_OFF" => {
-                Some(Self::LocationModeThrottleRequestsWhenScreenOff)
-            }
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LocationPowerSaveMode::UnknownLocationPowerSaveMode => "UNKNOWN_LOCATION_POWER_SAVE_MODE",
+LocationPowerSaveMode::LocationModeNoChange => "LOCATION_MODE_NO_CHANGE",
+LocationPowerSaveMode::LocationModeGpsDisabledWhenScreenOff => "LOCATION_MODE_GPS_DISABLED_WHEN_SCREEN_OFF",
+LocationPowerSaveMode::LocationModeAllDisabledWhenScreenOff => "LOCATION_MODE_ALL_DISABLED_WHEN_SCREEN_OFF",
+LocationPowerSaveMode::LocationModeForegroundOnly => "LOCATION_MODE_FOREGROUND_ONLY",
+LocationPowerSaveMode::LocationModeThrottleRequestsWhenScreenOff => "LOCATION_MODE_THROTTLE_REQUESTS_WHEN_SCREEN_OFF",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_LOCATION_POWER_SAVE_MODE" => Some(Self::UnknownLocationPowerSaveMode),
+"LOCATION_MODE_NO_CHANGE" => Some(Self::LocationModeNoChange),
+"LOCATION_MODE_GPS_DISABLED_WHEN_SCREEN_OFF" => Some(Self::LocationModeGpsDisabledWhenScreenOff),
+"LOCATION_MODE_ALL_DISABLED_WHEN_SCREEN_OFF" => Some(Self::LocationModeAllDisabledWhenScreenOff),
+"LOCATION_MODE_FOREGROUND_ONLY" => Some(Self::LocationModeForegroundOnly),
+"LOCATION_MODE_THROTTLE_REQUESTS_WHEN_SCREEN_OFF" => Some(Self::LocationModeThrottleRequestsWhenScreenOff),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum BatteryStatus {
-    UnknownBatteryStatus = 0,
-    Charging = 1,
-    Discharging = 2,
-    Full = 3,
-    NotCharging = 4,
-    PowerLow = 5,
+UnknownBatteryStatus = 0,
+Charging = 1,
+Discharging = 2,
+Full = 3,
+NotCharging = 4,
+PowerLow = 5,
 }
 impl BatteryStatus {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            BatteryStatus::UnknownBatteryStatus => "UNKNOWN_BATTERY_STATUS",
-            BatteryStatus::Charging => "BATTERY_STATUS_CHARGING",
-            BatteryStatus::Discharging => "BATTERY_STATUS_DISCHARGING",
-            BatteryStatus::Full => "BATTERY_STATUS_FULL",
-            BatteryStatus::NotCharging => "BATTERY_STATUS_NOT_CHARGING",
-            BatteryStatus::PowerLow => "BATTERY_STATUS_POWER_LOW",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_BATTERY_STATUS" => Some(Self::UnknownBatteryStatus),
-            "BATTERY_STATUS_CHARGING" => Some(Self::Charging),
-            "BATTERY_STATUS_DISCHARGING" => Some(Self::Discharging),
-            "BATTERY_STATUS_FULL" => Some(Self::Full),
-            "BATTERY_STATUS_NOT_CHARGING" => Some(Self::NotCharging),
-            "BATTERY_STATUS_POWER_LOW" => Some(Self::PowerLow),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+BatteryStatus::UnknownBatteryStatus => "UNKNOWN_BATTERY_STATUS",
+BatteryStatus::Charging => "BATTERY_STATUS_CHARGING",
+BatteryStatus::Discharging => "BATTERY_STATUS_DISCHARGING",
+BatteryStatus::Full => "BATTERY_STATUS_FULL",
+BatteryStatus::NotCharging => "BATTERY_STATUS_NOT_CHARGING",
+BatteryStatus::PowerLow => "BATTERY_STATUS_POWER_LOW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_BATTERY_STATUS" => Some(Self::UnknownBatteryStatus),
+"BATTERY_STATUS_CHARGING" => Some(Self::Charging),
+"BATTERY_STATUS_DISCHARGING" => Some(Self::Discharging),
+"BATTERY_STATUS_FULL" => Some(Self::Full),
+"BATTERY_STATUS_NOT_CHARGING" => Some(Self::NotCharging),
+"BATTERY_STATUS_POWER_LOW" => Some(Self::PowerLow),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PowerSource {
-    UnknownPowerSource = 0,
-    Ac = 1,
-    Usb = 2,
-    Wireless = 3,
-    Unplugged = 4,
+UnknownPowerSource = 0,
+Ac = 1,
+Usb = 2,
+Wireless = 3,
+Unplugged = 4,
 }
 impl PowerSource {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            PowerSource::UnknownPowerSource => "UNKNOWN_POWER_SOURCE",
-            PowerSource::Ac => "POWER_SOURCE_AC",
-            PowerSource::Usb => "POWER_SOURCE_USB",
-            PowerSource::Wireless => "POWER_SOURCE_WIRELESS",
-            PowerSource::Unplugged => "POWER_SOURCE_UNPLUGGED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "UNKNOWN_POWER_SOURCE" => Some(Self::UnknownPowerSource),
-            "POWER_SOURCE_AC" => Some(Self::Ac),
-            "POWER_SOURCE_USB" => Some(Self::Usb),
-            "POWER_SOURCE_WIRELESS" => Some(Self::Wireless),
-            "POWER_SOURCE_UNPLUGGED" => Some(Self::Unplugged),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PowerSource::UnknownPowerSource => "UNKNOWN_POWER_SOURCE",
+PowerSource::Ac => "POWER_SOURCE_AC",
+PowerSource::Usb => "POWER_SOURCE_USB",
+PowerSource::Wireless => "POWER_SOURCE_WIRELESS",
+PowerSource::Unplugged => "POWER_SOURCE_UNPLUGGED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_POWER_SOURCE" => Some(Self::UnknownPowerSource),
+"POWER_SOURCE_AC" => Some(Self::Ac),
+"POWER_SOURCE_USB" => Some(Self::Usb),
+"POWER_SOURCE_WIRELESS" => Some(Self::Wireless),
+"POWER_SOURCE_UNPLUGGED" => Some(Self::Unplugged),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTripRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub trip_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub trip: ::core::option::Option<Trip>,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub trip_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub trip: ::core::option::Option<Trip>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTripRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "TripView", tag = "11")]
-    pub view: i32,
-    #[prost(message, optional, tag = "6")]
-    pub current_route_segment_version: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub remaining_waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "PolylineFormatType", tag = "8")]
-    pub route_format_type: i32,
-    #[prost(message, optional, tag = "9")]
-    pub current_route_segment_traffic_version: ::core::option::Option<
-        ::prost_types::Timestamp,
-    >,
-    #[prost(message, optional, tag = "10")]
-    pub remaining_waypoints_route_version: ::core::option::Option<
-        ::prost_types::Timestamp,
-    >,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "TripView", tag = "11")]
+pub view: i32,
+#[prost(message, optional, tag = "6")]
+pub current_route_segment_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub remaining_waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "PolylineFormatType", tag = "8")]
+pub route_format_type: i32,
+#[prost(message, optional, tag = "9")]
+pub current_route_segment_traffic_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub remaining_waypoints_route_version: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportBillableTripRequest {
-    #[prost(string, tag = "2")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub country_code: ::prost::alloc::string::String,
-    #[prost(enumeration = "BillingPlatformIdentifier", tag = "5")]
-    pub platform: i32,
-    #[prost(string, repeated, tag = "6")]
-    pub related_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(enumeration = "report_billable_trip_request::SolutionType", tag = "7")]
-    pub solution_type: i32,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub country_code: ::prost::alloc::string::String,
+#[prost(enumeration = "BillingPlatformIdentifier", tag = "5")]
+pub platform: i32,
+#[prost(string, repeated, tag = "6")]
+pub related_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "report_billable_trip_request::SolutionType", tag = "7")]
+pub solution_type: i32,
 }
 /// Nested message and enum types in `ReportBillableTripRequest`.
 pub mod report_billable_trip_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SolutionType {
-        Unspecified = 0,
-        OnDemandRidesharingAndDeliveries = 1,
-    }
-    impl SolutionType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SolutionType::Unspecified => "SOLUTION_TYPE_UNSPECIFIED",
-                SolutionType::OnDemandRidesharingAndDeliveries => {
-                    "ON_DEMAND_RIDESHARING_AND_DELIVERIES"
-                }
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SOLUTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ON_DEMAND_RIDESHARING_AND_DELIVERIES" => {
-                    Some(Self::OnDemandRidesharingAndDeliveries)
-                }
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SolutionType {
+Unspecified = 0,
+OnDemandRidesharingAndDeliveries = 1,
+}
+impl SolutionType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SolutionType::Unspecified => "SOLUTION_TYPE_UNSPECIFIED",
+SolutionType::OnDemandRidesharingAndDeliveries => "ON_DEMAND_RIDESHARING_AND_DELIVERIES",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SOLUTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"ON_DEMAND_RIDESHARING_AND_DELIVERIES" => Some(Self::OnDemandRidesharingAndDeliveries),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTripRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub trip: ::core::option::Option<Trip>,
-    #[prost(message, optional, tag = "5")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub trip: ::core::option::Option<Trip>,
+#[prost(message, optional, tag = "5")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchTripsRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub vehicle_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub active_trips_only: bool,
-    #[prost(int32, tag = "6")]
-    pub page_size: i32,
-    #[prost(string, tag = "7")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub minimum_staleness: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub vehicle_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub active_trips_only: bool,
+#[prost(int32, tag = "6")]
+pub page_size: i32,
+#[prost(string, tag = "7")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub minimum_staleness: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchTripsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub trips: ::prost::alloc::vec::Vec<Trip>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub trips: ::prost::alloc::vec::Vec<Trip>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod trip_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Trip management service.
-    #[derive(Debug, Clone)]
-    pub struct TripServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> TripServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> TripServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            TripServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a trip in the Fleet Engine and returns the new trip.
-        pub async fn create_trip(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateTripRequest>,
-        ) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.TripService/CreateTrip",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("maps.fleetengine.v1.TripService", "CreateTrip"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get information about a single trip.
-        pub async fn get_trip(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTripRequest>,
-        ) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.TripService/GetTrip",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("maps.fleetengine.v1.TripService", "GetTrip"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Report billable trip usage.
-        pub async fn report_billable_trip(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ReportBillableTripRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.TripService/ReportBillableTrip",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "maps.fleetengine.v1.TripService",
-                        "ReportBillableTrip",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get all the trips for a specific vehicle.
-        pub async fn search_trips(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchTripsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchTripsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.TripService/SearchTrips",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("maps.fleetengine.v1.TripService", "SearchTrips"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates trip data.
-        pub async fn update_trip(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateTripRequest>,
-        ) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.TripService/UpdateTrip",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("maps.fleetengine.v1.TripService", "UpdateTrip"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Trip management service.
+#[derive(Debug, Clone)]
+pub struct TripServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> TripServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> TripServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+TripServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a trip in the Fleet Engine and returns the new trip.
+pub async fn create_trip(&mut self, request: impl tonic::IntoRequest<super::CreateTripRequest>) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.TripService/CreateTrip");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.TripService", "CreateTrip"));
+self.inner.unary(req, path, codec).await
+}
+/// Get information about a single trip.
+pub async fn get_trip(&mut self, request: impl tonic::IntoRequest<super::GetTripRequest>) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.TripService/GetTrip");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.TripService", "GetTrip"));
+self.inner.unary(req, path, codec).await
+}
+/// Report billable trip usage.
+pub async fn report_billable_trip(&mut self, request: impl tonic::IntoRequest<super::ReportBillableTripRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.TripService/ReportBillableTrip");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.TripService", "ReportBillableTrip"));
+self.inner.unary(req, path, codec).await
+}
+/// Get all the trips for a specific vehicle.
+pub async fn search_trips(&mut self, request: impl tonic::IntoRequest<super::SearchTripsRequest>) -> std::result::Result<tonic::Response<super::SearchTripsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.TripService/SearchTrips");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.TripService", "SearchTrips"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates trip data.
+pub async fn update_trip(&mut self, request: impl tonic::IntoRequest<super::UpdateTripRequest>) -> std::result::Result<tonic::Response<super::Trip>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.TripService/UpdateTrip");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.TripService", "UpdateTrip"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateVehicleRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub vehicle_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub vehicle: ::core::option::Option<Vehicle>,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub vehicle_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub vehicle: ::core::option::Option<Vehicle>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetVehicleRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub current_route_segment_version: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub current_route_segment_version: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub waypoints_version: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateVehicleRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub vehicle: ::core::option::Option<Vehicle>,
-    #[prost(message, optional, tag = "5")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub vehicle: ::core::option::Option<Vehicle>,
+#[prost(message, optional, tag = "5")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateVehicleAttributesRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateVehicleAttributesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
+#[prost(message, repeated, tag = "1")]
+pub attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchVehiclesRequest {
-    #[prost(message, optional, tag = "1")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "3")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub pickup_point: ::core::option::Option<TerminalLocation>,
-    #[prost(message, optional, tag = "5")]
-    pub dropoff_point: ::core::option::Option<TerminalLocation>,
-    #[prost(int32, tag = "6")]
-    pub pickup_radius_meters: i32,
-    #[prost(int32, tag = "7")]
-    pub count: i32,
-    #[prost(int32, tag = "8")]
-    pub minimum_capacity: i32,
-    #[prost(enumeration = "TripType", repeated, packed = "false", tag = "9")]
-    pub trip_types: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, optional, tag = "10")]
-    pub maximum_staleness: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, repeated, tag = "14")]
-    pub vehicle_types: ::prost::alloc::vec::Vec<vehicle::VehicleType>,
-    #[prost(message, repeated, tag = "12")]
-    pub required_attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
-    #[prost(message, repeated, tag = "15")]
-    pub required_one_of_attributes: ::prost::alloc::vec::Vec<VehicleAttributeList>,
-    #[prost(message, repeated, tag = "20")]
-    pub required_one_of_attribute_sets: ::prost::alloc::vec::Vec<VehicleAttributeList>,
-    #[prost(enumeration = "search_vehicles_request::VehicleMatchOrder", tag = "13")]
-    pub order_by: i32,
-    #[prost(bool, tag = "18")]
-    pub include_back_to_back: bool,
-    #[prost(string, tag = "19")]
-    pub trip_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "search_vehicles_request::CurrentTripsPresent", tag = "21")]
-    pub current_trips_present: i32,
-    #[prost(string, tag = "22")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "3")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub pickup_point: ::core::option::Option<TerminalLocation>,
+#[prost(message, optional, tag = "5")]
+pub dropoff_point: ::core::option::Option<TerminalLocation>,
+#[prost(int32, tag = "6")]
+pub pickup_radius_meters: i32,
+#[prost(int32, tag = "7")]
+pub count: i32,
+#[prost(int32, tag = "8")]
+pub minimum_capacity: i32,
+#[prost(enumeration = "TripType", repeated, packed = "false", tag = "9")]
+pub trip_types: ::prost::alloc::vec::Vec<i32>,
+#[prost(message, optional, tag = "10")]
+pub maximum_staleness: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, repeated, tag = "14")]
+pub vehicle_types: ::prost::alloc::vec::Vec<vehicle::VehicleType>,
+#[prost(message, repeated, tag = "12")]
+pub required_attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
+#[prost(message, repeated, tag = "15")]
+pub required_one_of_attributes: ::prost::alloc::vec::Vec<VehicleAttributeList>,
+#[prost(message, repeated, tag = "20")]
+pub required_one_of_attribute_sets: ::prost::alloc::vec::Vec<VehicleAttributeList>,
+#[prost(enumeration = "search_vehicles_request::VehicleMatchOrder", tag = "13")]
+pub order_by: i32,
+#[prost(bool, tag = "18")]
+pub include_back_to_back: bool,
+#[prost(string, tag = "19")]
+pub trip_id: ::prost::alloc::string::String,
+#[prost(enumeration = "search_vehicles_request::CurrentTripsPresent", tag = "21")]
+pub current_trips_present: i32,
+#[prost(string, tag = "22")]
+pub filter: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `SearchVehiclesRequest`.
 pub mod search_vehicles_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VehicleMatchOrder {
-        UnknownVehicleMatchOrder = 0,
-        PickupPointEta = 1,
-        PickupPointDistance = 2,
-        DropoffPointEta = 3,
-        PickupPointStraightDistance = 4,
-        Cost = 5,
-    }
-    impl VehicleMatchOrder {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VehicleMatchOrder::UnknownVehicleMatchOrder => {
-                    "UNKNOWN_VEHICLE_MATCH_ORDER"
-                }
-                VehicleMatchOrder::PickupPointEta => "PICKUP_POINT_ETA",
-                VehicleMatchOrder::PickupPointDistance => "PICKUP_POINT_DISTANCE",
-                VehicleMatchOrder::DropoffPointEta => "DROPOFF_POINT_ETA",
-                VehicleMatchOrder::PickupPointStraightDistance => {
-                    "PICKUP_POINT_STRAIGHT_DISTANCE"
-                }
-                VehicleMatchOrder::Cost => "COST",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNKNOWN_VEHICLE_MATCH_ORDER" => Some(Self::UnknownVehicleMatchOrder),
-                "PICKUP_POINT_ETA" => Some(Self::PickupPointEta),
-                "PICKUP_POINT_DISTANCE" => Some(Self::PickupPointDistance),
-                "DROPOFF_POINT_ETA" => Some(Self::DropoffPointEta),
-                "PICKUP_POINT_STRAIGHT_DISTANCE" => {
-                    Some(Self::PickupPointStraightDistance)
-                }
-                "COST" => Some(Self::Cost),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum CurrentTripsPresent {
-        Unspecified = 0,
-        None = 1,
-        Any = 2,
-    }
-    impl CurrentTripsPresent {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                CurrentTripsPresent::Unspecified => "CURRENT_TRIPS_PRESENT_UNSPECIFIED",
-                CurrentTripsPresent::None => "NONE",
-                CurrentTripsPresent::Any => "ANY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CURRENT_TRIPS_PRESENT_UNSPECIFIED" => Some(Self::Unspecified),
-                "NONE" => Some(Self::None),
-                "ANY" => Some(Self::Any),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum VehicleMatchOrder {
+UnknownVehicleMatchOrder = 0,
+PickupPointEta = 1,
+PickupPointDistance = 2,
+DropoffPointEta = 3,
+PickupPointStraightDistance = 4,
+Cost = 5,
+}
+impl VehicleMatchOrder {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VehicleMatchOrder::UnknownVehicleMatchOrder => "UNKNOWN_VEHICLE_MATCH_ORDER",
+VehicleMatchOrder::PickupPointEta => "PICKUP_POINT_ETA",
+VehicleMatchOrder::PickupPointDistance => "PICKUP_POINT_DISTANCE",
+VehicleMatchOrder::DropoffPointEta => "DROPOFF_POINT_ETA",
+VehicleMatchOrder::PickupPointStraightDistance => "PICKUP_POINT_STRAIGHT_DISTANCE",
+VehicleMatchOrder::Cost => "COST",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN_VEHICLE_MATCH_ORDER" => Some(Self::UnknownVehicleMatchOrder),
+"PICKUP_POINT_ETA" => Some(Self::PickupPointEta),
+"PICKUP_POINT_DISTANCE" => Some(Self::PickupPointDistance),
+"DROPOFF_POINT_ETA" => Some(Self::DropoffPointEta),
+"PICKUP_POINT_STRAIGHT_DISTANCE" => Some(Self::PickupPointStraightDistance),
+"COST" => Some(Self::Cost),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CurrentTripsPresent {
+Unspecified = 0,
+None = 1,
+Any = 2,
+}
+impl CurrentTripsPresent {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CurrentTripsPresent::Unspecified => "CURRENT_TRIPS_PRESENT_UNSPECIFIED",
+CurrentTripsPresent::None => "NONE",
+CurrentTripsPresent::Any => "ANY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CURRENT_TRIPS_PRESENT_UNSPECIFIED" => Some(Self::Unspecified),
+"NONE" => Some(Self::None),
+"ANY" => Some(Self::Any),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchVehiclesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub matches: ::prost::alloc::vec::Vec<VehicleMatch>,
+#[prost(message, repeated, tag = "1")]
+pub matches: ::prost::alloc::vec::Vec<VehicleMatch>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVehiclesRequest {
-    #[prost(message, optional, tag = "12")]
-    pub header: ::core::option::Option<RequestHeader>,
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "6")]
-    pub minimum_capacity: ::core::option::Option<i32>,
-    #[prost(enumeration = "TripType", repeated, tag = "7")]
-    pub trip_types: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, optional, tag = "8")]
-    pub maximum_staleness: ::core::option::Option<::prost_types::Duration>,
-    #[prost(
-        enumeration = "vehicle::vehicle_type::Category",
-        repeated,
-        packed = "false",
-        tag = "9"
-    )]
-    pub vehicle_type_categories: ::prost::alloc::vec::Vec<i32>,
-    #[prost(string, repeated, tag = "10")]
-    pub required_attributes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "13")]
-    pub required_one_of_attributes: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, repeated, tag = "15")]
-    pub required_one_of_attribute_sets: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(enumeration = "VehicleState", tag = "11")]
-    pub vehicle_state: i32,
-    #[prost(bool, tag = "14")]
-    pub on_trip_only: bool,
-    #[prost(string, tag = "16")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "17")]
-    pub viewport: ::core::option::Option<
-        super::super::super::google::geo::r#type::Viewport,
-    >,
+#[prost(message, optional, tag = "12")]
+pub header: ::core::option::Option<RequestHeader>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "6")]
+pub minimum_capacity: ::core::option::Option<i32>,
+#[prost(enumeration = "TripType", repeated, tag = "7")]
+pub trip_types: ::prost::alloc::vec::Vec<i32>,
+#[prost(message, optional, tag = "8")]
+pub maximum_staleness: ::core::option::Option<::prost_types::Duration>,
+#[prost(enumeration = "vehicle::vehicle_type::Category", repeated, packed = "false", tag = "9")]
+pub vehicle_type_categories: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, repeated, tag = "10")]
+pub required_attributes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "13")]
+pub required_one_of_attributes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "15")]
+pub required_one_of_attribute_sets: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "VehicleState", tag = "11")]
+pub vehicle_state: i32,
+#[prost(bool, tag = "14")]
+pub on_trip_only: bool,
+#[prost(string, tag = "16")]
+pub filter: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "17")]
+pub viewport: ::core::option::Option<super::super::super::google::geo::r#type::Viewport>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListVehiclesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub vehicles: ::prost::alloc::vec::Vec<Vehicle>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(int64, tag = "3")]
-    pub total_size: i64,
+#[prost(message, repeated, tag = "1")]
+pub vehicles: ::prost::alloc::vec::Vec<Vehicle>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(int64, tag = "3")]
+pub total_size: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Waypoint {
-    #[prost(message, optional, tag = "1")]
-    pub lat_lng: ::core::option::Option<super::super::super::google::r#type::LatLng>,
-    #[prost(message, optional, tag = "2")]
-    pub eta: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "1")]
+pub lat_lng: ::core::option::Option<super::super::super::google::r#type::LatLng>,
+#[prost(message, optional, tag = "2")]
+pub eta: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VehicleMatch {
-    #[prost(message, optional, tag = "1")]
-    pub vehicle: ::core::option::Option<Vehicle>,
-    #[prost(message, optional, tag = "2")]
-    pub vehicle_pickup_eta: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub vehicle_pickup_distance_meters: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "11")]
-    pub vehicle_pickup_straight_line_distance_meters: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "4")]
-    pub vehicle_dropoff_eta: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub vehicle_pickup_to_dropoff_distance_meters: ::core::option::Option<i32>,
-    #[prost(enumeration = "TripType", tag = "6")]
-    pub trip_type: i32,
-    #[prost(message, repeated, tag = "7")]
-    pub vehicle_trips_waypoints: ::prost::alloc::vec::Vec<Waypoint>,
-    #[prost(enumeration = "vehicle_match::VehicleMatchType", tag = "8")]
-    pub vehicle_match_type: i32,
-    #[prost(enumeration = "search_vehicles_request::VehicleMatchOrder", tag = "9")]
-    pub requested_ordered_by: i32,
-    #[prost(enumeration = "search_vehicles_request::VehicleMatchOrder", tag = "10")]
-    pub ordered_by: i32,
+#[prost(message, optional, tag = "1")]
+pub vehicle: ::core::option::Option<Vehicle>,
+#[prost(message, optional, tag = "2")]
+pub vehicle_pickup_eta: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub vehicle_pickup_distance_meters: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "11")]
+pub vehicle_pickup_straight_line_distance_meters: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "4")]
+pub vehicle_dropoff_eta: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub vehicle_pickup_to_dropoff_distance_meters: ::core::option::Option<i32>,
+#[prost(enumeration = "TripType", tag = "6")]
+pub trip_type: i32,
+#[prost(message, repeated, tag = "7")]
+pub vehicle_trips_waypoints: ::prost::alloc::vec::Vec<Waypoint>,
+#[prost(enumeration = "vehicle_match::VehicleMatchType", tag = "8")]
+pub vehicle_match_type: i32,
+#[prost(enumeration = "search_vehicles_request::VehicleMatchOrder", tag = "9")]
+pub requested_ordered_by: i32,
+#[prost(enumeration = "search_vehicles_request::VehicleMatchOrder", tag = "10")]
+pub ordered_by: i32,
 }
 /// Nested message and enum types in `VehicleMatch`.
 pub mod vehicle_match {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum VehicleMatchType {
-        Unknown = 0,
-        Exclusive = 1,
-        BackToBack = 2,
-        Carpool = 3,
-        CarpoolBackToBack = 4,
-    }
-    impl VehicleMatchType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                VehicleMatchType::Unknown => "UNKNOWN",
-                VehicleMatchType::Exclusive => "EXCLUSIVE",
-                VehicleMatchType::BackToBack => "BACK_TO_BACK",
-                VehicleMatchType::Carpool => "CARPOOL",
-                VehicleMatchType::CarpoolBackToBack => "CARPOOL_BACK_TO_BACK",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNKNOWN" => Some(Self::Unknown),
-                "EXCLUSIVE" => Some(Self::Exclusive),
-                "BACK_TO_BACK" => Some(Self::BackToBack),
-                "CARPOOL" => Some(Self::Carpool),
-                "CARPOOL_BACK_TO_BACK" => Some(Self::CarpoolBackToBack),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum VehicleMatchType {
+Unknown = 0,
+Exclusive = 1,
+BackToBack = 2,
+Carpool = 3,
+CarpoolBackToBack = 4,
+}
+impl VehicleMatchType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+VehicleMatchType::Unknown => "UNKNOWN",
+VehicleMatchType::Exclusive => "EXCLUSIVE",
+VehicleMatchType::BackToBack => "BACK_TO_BACK",
+VehicleMatchType::Carpool => "CARPOOL",
+VehicleMatchType::CarpoolBackToBack => "CARPOOL_BACK_TO_BACK",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNKNOWN" => Some(Self::Unknown),
+"EXCLUSIVE" => Some(Self::Exclusive),
+"BACK_TO_BACK" => Some(Self::BackToBack),
+"CARPOOL" => Some(Self::Carpool),
+"CARPOOL_BACK_TO_BACK" => Some(Self::CarpoolBackToBack),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VehicleAttributeList {
-    #[prost(message, repeated, tag = "1")]
-    pub attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
+#[prost(message, repeated, tag = "1")]
+pub attributes: ::prost::alloc::vec::Vec<VehicleAttribute>,
 }
 /// Generated client implementations.
 pub mod vehicle_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Vehicle management service.
-    #[derive(Debug, Clone)]
-    pub struct VehicleServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> VehicleServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> VehicleServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            VehicleServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Instantiates a new vehicle associated with an on-demand rideshare or
-        /// deliveries provider. Each `Vehicle` must have a unique vehicle ID.
-        ///
-        /// The following `Vehicle` fields are required when creating a `Vehicle`:
-        ///
-        /// * `vehicleState`
-        /// * `supportedTripTypes`
-        /// * `maximumCapacity`
-        /// * `vehicleType`
-        ///
-        /// The following `Vehicle` fields are ignored when creating a `Vehicle`:
-        ///
-        /// * `name`
-        /// * `currentTrips`
-        /// * `availableCapacity`
-        /// * `current_route_segment`
-        /// * `current_route_segment_end_point`
-        /// * `current_route_segment_version`
-        /// * `current_route_segment_traffic`
-        /// * `route`
-        /// * `waypoints`
-        /// * `waypoints_version`
-        /// * `remaining_distance_meters`
-        /// * `remaining_time_seconds`
-        /// * `eta_to_next_waypoint`
-        /// * `navigation_status`
-        ///
-        /// All other fields are optional and used if provided.
-        pub async fn create_vehicle(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateVehicleRequest>,
-        ) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.VehicleService/CreateVehicle",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "maps.fleetengine.v1.VehicleService",
-                        "CreateVehicle",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a vehicle from the Fleet Engine.
-        pub async fn get_vehicle(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetVehicleRequest>,
-        ) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.VehicleService/GetVehicle",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("maps.fleetengine.v1.VehicleService", "GetVehicle"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Writes updated vehicle data to the Fleet Engine.
-        ///
-        /// When updating a `Vehicle`, the following fields cannot be updated since
-        /// they are managed by the server:
-        ///
-        /// * `currentTrips`
-        /// * `availableCapacity`
-        /// * `current_route_segment_version`
-        /// * `waypoints_version`
-        ///
-        /// The vehicle `name` also cannot be updated.
-        ///
-        /// If the `attributes` field is updated, **all** the vehicle's attributes are
-        /// replaced with the attributes provided in the request. If you want to update
-        /// only some attributes, see the `UpdateVehicleAttributes` method. Likewise,
-        /// the `waypoints` field can be updated, but must contain all the waypoints
-        /// currently on the vehicle, and no other waypoints.
-        pub async fn update_vehicle(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateVehicleRequest>,
-        ) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.VehicleService/UpdateVehicle",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "maps.fleetengine.v1.VehicleService",
-                        "UpdateVehicle",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Partially updates a vehicle's attributes.
-        /// Only the attributes mentioned in the request will be updated, other
-        /// attributes will NOT be altered. Note: this is different in `UpdateVehicle`,
-        /// where the whole `attributes` field will be replaced by the one in
-        /// `UpdateVehicleRequest`, attributes not in the request would be removed.
-        pub async fn update_vehicle_attributes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateVehicleAttributesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UpdateVehicleAttributesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.VehicleService/UpdateVehicleAttributes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "maps.fleetengine.v1.VehicleService",
-                        "UpdateVehicleAttributes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a paginated list of vehicles associated with
-        /// a provider that match the request options.
-        pub async fn list_vehicles(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListVehiclesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListVehiclesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.VehicleService/ListVehicles",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("maps.fleetengine.v1.VehicleService", "ListVehicles"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a list of vehicles that match the request options.
-        pub async fn search_vehicles(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchVehiclesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchVehiclesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/maps.fleetengine.v1.VehicleService/SearchVehicles",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "maps.fleetengine.v1.VehicleService",
-                        "SearchVehicles",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Vehicle management service.
+#[derive(Debug, Clone)]
+pub struct VehicleServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> VehicleServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> VehicleServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+VehicleServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Instantiates a new vehicle associated with an on-demand rideshare or
+/// deliveries provider. Each `Vehicle` must have a unique vehicle ID.
+///
+/// The following `Vehicle` fields are required when creating a `Vehicle`:
+///
+/// * `vehicleState`
+/// * `supportedTripTypes`
+/// * `maximumCapacity`
+/// * `vehicleType`
+///
+/// The following `Vehicle` fields are ignored when creating a `Vehicle`:
+///
+/// * `name`
+/// * `currentTrips`
+/// * `availableCapacity`
+/// * `current_route_segment`
+/// * `current_route_segment_end_point`
+/// * `current_route_segment_version`
+/// * `current_route_segment_traffic`
+/// * `route`
+/// * `waypoints`
+/// * `waypoints_version`
+/// * `remaining_distance_meters`
+/// * `remaining_time_seconds`
+/// * `eta_to_next_waypoint`
+/// * `navigation_status`
+///
+/// All other fields are optional and used if provided.
+pub async fn create_vehicle(&mut self, request: impl tonic::IntoRequest<super::CreateVehicleRequest>) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.VehicleService/CreateVehicle");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.VehicleService", "CreateVehicle"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a vehicle from the Fleet Engine.
+pub async fn get_vehicle(&mut self, request: impl tonic::IntoRequest<super::GetVehicleRequest>) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.VehicleService/GetVehicle");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.VehicleService", "GetVehicle"));
+self.inner.unary(req, path, codec).await
+}
+/// Writes updated vehicle data to the Fleet Engine.
+///
+/// When updating a `Vehicle`, the following fields cannot be updated since
+/// they are managed by the server:
+///
+/// * `currentTrips`
+/// * `availableCapacity`
+/// * `current_route_segment_version`
+/// * `waypoints_version`
+///
+/// The vehicle `name` also cannot be updated.
+///
+/// If the `attributes` field is updated, **all** the vehicle's attributes are
+/// replaced with the attributes provided in the request. If you want to update
+/// only some attributes, see the `UpdateVehicleAttributes` method. Likewise,
+/// the `waypoints` field can be updated, but must contain all the waypoints
+/// currently on the vehicle, and no other waypoints.
+pub async fn update_vehicle(&mut self, request: impl tonic::IntoRequest<super::UpdateVehicleRequest>) -> std::result::Result<tonic::Response<super::Vehicle>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.VehicleService/UpdateVehicle");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.VehicleService", "UpdateVehicle"));
+self.inner.unary(req, path, codec).await
+}
+/// Partially updates a vehicle's attributes.
+/// Only the attributes mentioned in the request will be updated, other
+/// attributes will NOT be altered. Note: this is different in `UpdateVehicle`,
+/// where the whole `attributes` field will be replaced by the one in
+/// `UpdateVehicleRequest`, attributes not in the request would be removed.
+pub async fn update_vehicle_attributes(&mut self, request: impl tonic::IntoRequest<super::UpdateVehicleAttributesRequest>) -> std::result::Result<tonic::Response<super::UpdateVehicleAttributesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.VehicleService/UpdateVehicleAttributes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.VehicleService", "UpdateVehicleAttributes"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a paginated list of vehicles associated with
+/// a provider that match the request options.
+pub async fn list_vehicles(&mut self, request: impl tonic::IntoRequest<super::ListVehiclesRequest>) -> std::result::Result<tonic::Response<super::ListVehiclesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.VehicleService/ListVehicles");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.VehicleService", "ListVehicles"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a list of vehicles that match the request options.
+pub async fn search_vehicles(&mut self, request: impl tonic::IntoRequest<super::SearchVehiclesRequest>) -> std::result::Result<tonic::Response<super::SearchVehiclesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/maps.fleetengine.v1.VehicleService/SearchVehicles");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("maps.fleetengine.v1.VehicleService", "SearchVehicles"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

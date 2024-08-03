@@ -2,6 +2,6 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditData {
-    #[prost(message, optional, tag = "2")]
-    pub policy_delta: ::core::option::Option<super::PolicyDelta>,
+#[prost(message, optional, tag = "2")]
+pub policy_delta: ::core::option::Option<super::PolicyDelta>,
 }

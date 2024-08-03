@@ -2,1316 +2,977 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomClass {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub custom_class_id: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub items: ::prost::alloc::vec::Vec<custom_class::ClassItem>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub custom_class_id: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub items: ::prost::alloc::vec::Vec<custom_class::ClassItem>,
 }
 /// Nested message and enum types in `CustomClass`.
 pub mod custom_class {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ClassItem {
-        #[prost(string, tag = "1")]
-        pub value: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClassItem {
+#[prost(string, tag = "1")]
+pub value: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PhraseSet {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub phrases: ::prost::alloc::vec::Vec<phrase_set::Phrase>,
-    #[prost(float, tag = "4")]
-    pub boost: f32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub phrases: ::prost::alloc::vec::Vec<phrase_set::Phrase>,
+#[prost(float, tag = "4")]
+pub boost: f32,
 }
 /// Nested message and enum types in `PhraseSet`.
 pub mod phrase_set {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Phrase {
-        #[prost(string, tag = "1")]
-        pub value: ::prost::alloc::string::String,
-        #[prost(float, tag = "2")]
-        pub boost: f32,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Phrase {
+#[prost(string, tag = "1")]
+pub value: ::prost::alloc::string::String,
+#[prost(float, tag = "2")]
+pub boost: f32,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechAdaptation {
-    #[prost(message, repeated, tag = "1")]
-    pub phrase_sets: ::prost::alloc::vec::Vec<PhraseSet>,
-    #[prost(string, repeated, tag = "2")]
-    pub phrase_set_references: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "3")]
-    pub custom_classes: ::prost::alloc::vec::Vec<CustomClass>,
-    #[prost(message, optional, tag = "4")]
-    pub abnf_grammar: ::core::option::Option<speech_adaptation::AbnfGrammar>,
+#[prost(message, repeated, tag = "1")]
+pub phrase_sets: ::prost::alloc::vec::Vec<PhraseSet>,
+#[prost(string, repeated, tag = "2")]
+pub phrase_set_references: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "3")]
+pub custom_classes: ::prost::alloc::vec::Vec<CustomClass>,
+#[prost(message, optional, tag = "4")]
+pub abnf_grammar: ::core::option::Option<speech_adaptation::AbnfGrammar>,
 }
 /// Nested message and enum types in `SpeechAdaptation`.
 pub mod speech_adaptation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AbnfGrammar {
-        #[prost(string, repeated, tag = "1")]
-        pub abnf_strings: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AbnfGrammar {
+#[prost(string, repeated, tag = "1")]
+pub abnf_strings: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranscriptNormalization {
-    #[prost(message, repeated, tag = "1")]
-    pub entries: ::prost::alloc::vec::Vec<transcript_normalization::Entry>,
+#[prost(message, repeated, tag = "1")]
+pub entries: ::prost::alloc::vec::Vec<transcript_normalization::Entry>,
 }
 /// Nested message and enum types in `TranscriptNormalization`.
 pub mod transcript_normalization {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Entry {
-        #[prost(string, tag = "1")]
-        pub search: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub replace: ::prost::alloc::string::String,
-        #[prost(bool, tag = "3")]
-        pub case_sensitive: bool,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Entry {
+#[prost(string, tag = "1")]
+pub search: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub replace: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub case_sensitive: bool,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecognizeRequest {
-    #[prost(message, optional, tag = "1")]
-    pub config: ::core::option::Option<RecognitionConfig>,
-    #[prost(message, optional, tag = "2")]
-    pub audio: ::core::option::Option<RecognitionAudio>,
+#[prost(message, optional, tag = "1")]
+pub config: ::core::option::Option<RecognitionConfig>,
+#[prost(message, optional, tag = "2")]
+pub audio: ::core::option::Option<RecognitionAudio>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LongRunningRecognizeRequest {
-    #[prost(message, optional, tag = "1")]
-    pub config: ::core::option::Option<RecognitionConfig>,
-    #[prost(message, optional, tag = "2")]
-    pub audio: ::core::option::Option<RecognitionAudio>,
-    #[prost(message, optional, tag = "4")]
-    pub output_config: ::core::option::Option<TranscriptOutputConfig>,
+#[prost(message, optional, tag = "1")]
+pub config: ::core::option::Option<RecognitionConfig>,
+#[prost(message, optional, tag = "2")]
+pub audio: ::core::option::Option<RecognitionAudio>,
+#[prost(message, optional, tag = "4")]
+pub output_config: ::core::option::Option<TranscriptOutputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranscriptOutputConfig {
-    #[prost(oneof = "transcript_output_config::OutputType", tags = "1")]
-    pub output_type: ::core::option::Option<transcript_output_config::OutputType>,
+#[prost(oneof = "transcript_output_config::OutputType", tags = "1")]
+pub output_type: ::core::option::Option<transcript_output_config::OutputType>,
 }
 /// Nested message and enum types in `TranscriptOutputConfig`.
 pub mod transcript_output_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum OutputType {
-        #[prost(string, tag = "1")]
-        GcsUri(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum OutputType {
+#[prost(string, tag = "1")]
+GcsUri(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingRecognizeRequest {
-    #[prost(oneof = "streaming_recognize_request::StreamingRequest", tags = "1, 2")]
-    pub streaming_request: ::core::option::Option<
-        streaming_recognize_request::StreamingRequest,
-    >,
+#[prost(oneof = "streaming_recognize_request::StreamingRequest", tags = "1, 2")]
+pub streaming_request: ::core::option::Option<streaming_recognize_request::StreamingRequest>,
 }
 /// Nested message and enum types in `StreamingRecognizeRequest`.
 pub mod streaming_recognize_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum StreamingRequest {
-        #[prost(message, tag = "1")]
-        StreamingConfig(super::StreamingRecognitionConfig),
-        #[prost(bytes, tag = "2")]
-        AudioContent(::prost::alloc::vec::Vec<u8>),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum StreamingRequest {
+#[prost(message, tag = "1")]
+StreamingConfig(super::StreamingRecognitionConfig),
+#[prost(bytes, tag = "2")]
+AudioContent(::prost::alloc::vec::Vec<u8>),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingRecognitionConfig {
-    #[prost(message, optional, tag = "1")]
-    pub config: ::core::option::Option<RecognitionConfig>,
-    #[prost(bool, tag = "2")]
-    pub single_utterance: bool,
-    #[prost(bool, tag = "3")]
-    pub interim_results: bool,
-    #[prost(bool, tag = "5")]
-    pub enable_voice_activity_events: bool,
-    #[prost(message, optional, tag = "6")]
-    pub voice_activity_timeout: ::core::option::Option<
-        streaming_recognition_config::VoiceActivityTimeout,
-    >,
+#[prost(message, optional, tag = "1")]
+pub config: ::core::option::Option<RecognitionConfig>,
+#[prost(bool, tag = "2")]
+pub single_utterance: bool,
+#[prost(bool, tag = "3")]
+pub interim_results: bool,
+#[prost(bool, tag = "5")]
+pub enable_voice_activity_events: bool,
+#[prost(message, optional, tag = "6")]
+pub voice_activity_timeout: ::core::option::Option<streaming_recognition_config::VoiceActivityTimeout>,
 }
 /// Nested message and enum types in `StreamingRecognitionConfig`.
 pub mod streaming_recognition_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct VoiceActivityTimeout {
-        #[prost(message, optional, tag = "1")]
-        pub speech_start_timeout: ::core::option::Option<::prost_types::Duration>,
-        #[prost(message, optional, tag = "2")]
-        pub speech_end_timeout: ::core::option::Option<::prost_types::Duration>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct VoiceActivityTimeout {
+#[prost(message, optional, tag = "1")]
+pub speech_start_timeout: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub speech_end_timeout: ::core::option::Option<::prost_types::Duration>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecognitionConfig {
-    #[prost(enumeration = "recognition_config::AudioEncoding", tag = "1")]
-    pub encoding: i32,
-    #[prost(int32, tag = "2")]
-    pub sample_rate_hertz: i32,
-    #[prost(int32, tag = "7")]
-    pub audio_channel_count: i32,
-    #[prost(bool, tag = "12")]
-    pub enable_separate_recognition_per_channel: bool,
-    #[prost(string, tag = "3")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "18")]
-    pub alternative_language_codes: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(int32, tag = "4")]
-    pub max_alternatives: i32,
-    #[prost(bool, tag = "5")]
-    pub profanity_filter: bool,
-    #[prost(message, optional, tag = "20")]
-    pub adaptation: ::core::option::Option<SpeechAdaptation>,
-    #[prost(message, optional, tag = "24")]
-    pub transcript_normalization: ::core::option::Option<TranscriptNormalization>,
-    #[prost(message, repeated, tag = "6")]
-    pub speech_contexts: ::prost::alloc::vec::Vec<SpeechContext>,
-    #[prost(bool, tag = "8")]
-    pub enable_word_time_offsets: bool,
-    #[prost(bool, tag = "15")]
-    pub enable_word_confidence: bool,
-    #[prost(bool, tag = "11")]
-    pub enable_automatic_punctuation: bool,
-    #[prost(message, optional, tag = "22")]
-    pub enable_spoken_punctuation: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "23")]
-    pub enable_spoken_emojis: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "19")]
-    pub diarization_config: ::core::option::Option<SpeakerDiarizationConfig>,
-    #[prost(message, optional, tag = "9")]
-    pub metadata: ::core::option::Option<RecognitionMetadata>,
-    #[prost(string, tag = "13")]
-    pub model: ::prost::alloc::string::String,
-    #[prost(bool, tag = "14")]
-    pub use_enhanced: bool,
+#[prost(enumeration = "recognition_config::AudioEncoding", tag = "1")]
+pub encoding: i32,
+#[prost(int32, tag = "2")]
+pub sample_rate_hertz: i32,
+#[prost(int32, tag = "7")]
+pub audio_channel_count: i32,
+#[prost(bool, tag = "12")]
+pub enable_separate_recognition_per_channel: bool,
+#[prost(string, tag = "3")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "18")]
+pub alternative_language_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, tag = "4")]
+pub max_alternatives: i32,
+#[prost(bool, tag = "5")]
+pub profanity_filter: bool,
+#[prost(message, optional, tag = "20")]
+pub adaptation: ::core::option::Option<SpeechAdaptation>,
+#[prost(message, optional, tag = "24")]
+pub transcript_normalization: ::core::option::Option<TranscriptNormalization>,
+#[prost(message, repeated, tag = "6")]
+pub speech_contexts: ::prost::alloc::vec::Vec<SpeechContext>,
+#[prost(bool, tag = "8")]
+pub enable_word_time_offsets: bool,
+#[prost(bool, tag = "15")]
+pub enable_word_confidence: bool,
+#[prost(bool, tag = "11")]
+pub enable_automatic_punctuation: bool,
+#[prost(message, optional, tag = "22")]
+pub enable_spoken_punctuation: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "23")]
+pub enable_spoken_emojis: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "19")]
+pub diarization_config: ::core::option::Option<SpeakerDiarizationConfig>,
+#[prost(message, optional, tag = "9")]
+pub metadata: ::core::option::Option<RecognitionMetadata>,
+#[prost(string, tag = "13")]
+pub model: ::prost::alloc::string::String,
+#[prost(bool, tag = "14")]
+pub use_enhanced: bool,
 }
 /// Nested message and enum types in `RecognitionConfig`.
 pub mod recognition_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AudioEncoding {
-        EncodingUnspecified = 0,
-        Linear16 = 1,
-        Flac = 2,
-        Mulaw = 3,
-        Amr = 4,
-        AmrWb = 5,
-        OggOpus = 6,
-        SpeexWithHeaderByte = 7,
-        Mp3 = 8,
-        WebmOpus = 9,
-    }
-    impl AudioEncoding {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AudioEncoding::EncodingUnspecified => "ENCODING_UNSPECIFIED",
-                AudioEncoding::Linear16 => "LINEAR16",
-                AudioEncoding::Flac => "FLAC",
-                AudioEncoding::Mulaw => "MULAW",
-                AudioEncoding::Amr => "AMR",
-                AudioEncoding::AmrWb => "AMR_WB",
-                AudioEncoding::OggOpus => "OGG_OPUS",
-                AudioEncoding::SpeexWithHeaderByte => "SPEEX_WITH_HEADER_BYTE",
-                AudioEncoding::Mp3 => "MP3",
-                AudioEncoding::WebmOpus => "WEBM_OPUS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ENCODING_UNSPECIFIED" => Some(Self::EncodingUnspecified),
-                "LINEAR16" => Some(Self::Linear16),
-                "FLAC" => Some(Self::Flac),
-                "MULAW" => Some(Self::Mulaw),
-                "AMR" => Some(Self::Amr),
-                "AMR_WB" => Some(Self::AmrWb),
-                "OGG_OPUS" => Some(Self::OggOpus),
-                "SPEEX_WITH_HEADER_BYTE" => Some(Self::SpeexWithHeaderByte),
-                "MP3" => Some(Self::Mp3),
-                "WEBM_OPUS" => Some(Self::WebmOpus),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AudioEncoding {
+EncodingUnspecified = 0,
+Linear16 = 1,
+Flac = 2,
+Mulaw = 3,
+Amr = 4,
+AmrWb = 5,
+OggOpus = 6,
+SpeexWithHeaderByte = 7,
+Mp3 = 8,
+WebmOpus = 9,
+}
+impl AudioEncoding {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AudioEncoding::EncodingUnspecified => "ENCODING_UNSPECIFIED",
+AudioEncoding::Linear16 => "LINEAR16",
+AudioEncoding::Flac => "FLAC",
+AudioEncoding::Mulaw => "MULAW",
+AudioEncoding::Amr => "AMR",
+AudioEncoding::AmrWb => "AMR_WB",
+AudioEncoding::OggOpus => "OGG_OPUS",
+AudioEncoding::SpeexWithHeaderByte => "SPEEX_WITH_HEADER_BYTE",
+AudioEncoding::Mp3 => "MP3",
+AudioEncoding::WebmOpus => "WEBM_OPUS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENCODING_UNSPECIFIED" => Some(Self::EncodingUnspecified),
+"LINEAR16" => Some(Self::Linear16),
+"FLAC" => Some(Self::Flac),
+"MULAW" => Some(Self::Mulaw),
+"AMR" => Some(Self::Amr),
+"AMR_WB" => Some(Self::AmrWb),
+"OGG_OPUS" => Some(Self::OggOpus),
+"SPEEX_WITH_HEADER_BYTE" => Some(Self::SpeexWithHeaderByte),
+"MP3" => Some(Self::Mp3),
+"WEBM_OPUS" => Some(Self::WebmOpus),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SpeakerDiarizationConfig {
-    #[prost(bool, tag = "1")]
-    pub enable_speaker_diarization: bool,
-    #[prost(int32, tag = "2")]
-    pub min_speaker_count: i32,
-    #[prost(int32, tag = "3")]
-    pub max_speaker_count: i32,
-    #[deprecated]
-    #[prost(int32, tag = "5")]
-    pub speaker_tag: i32,
+#[prost(bool, tag = "1")]
+pub enable_speaker_diarization: bool,
+#[prost(int32, tag = "2")]
+pub min_speaker_count: i32,
+#[prost(int32, tag = "3")]
+pub max_speaker_count: i32,
+#[deprecated]
+#[prost(int32, tag = "5")]
+pub speaker_tag: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecognitionMetadata {
-    #[prost(enumeration = "recognition_metadata::InteractionType", tag = "1")]
-    pub interaction_type: i32,
-    #[prost(uint32, tag = "3")]
-    pub industry_naics_code_of_audio: u32,
-    #[prost(enumeration = "recognition_metadata::MicrophoneDistance", tag = "4")]
-    pub microphone_distance: i32,
-    #[prost(enumeration = "recognition_metadata::OriginalMediaType", tag = "5")]
-    pub original_media_type: i32,
-    #[prost(enumeration = "recognition_metadata::RecordingDeviceType", tag = "6")]
-    pub recording_device_type: i32,
-    #[prost(string, tag = "7")]
-    pub recording_device_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub original_mime_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "10")]
-    pub audio_topic: ::prost::alloc::string::String,
+#[prost(enumeration = "recognition_metadata::InteractionType", tag = "1")]
+pub interaction_type: i32,
+#[prost(uint32, tag = "3")]
+pub industry_naics_code_of_audio: u32,
+#[prost(enumeration = "recognition_metadata::MicrophoneDistance", tag = "4")]
+pub microphone_distance: i32,
+#[prost(enumeration = "recognition_metadata::OriginalMediaType", tag = "5")]
+pub original_media_type: i32,
+#[prost(enumeration = "recognition_metadata::RecordingDeviceType", tag = "6")]
+pub recording_device_type: i32,
+#[prost(string, tag = "7")]
+pub recording_device_name: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub original_mime_type: ::prost::alloc::string::String,
+#[prost(string, tag = "10")]
+pub audio_topic: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `RecognitionMetadata`.
 pub mod recognition_metadata {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum InteractionType {
-        Unspecified = 0,
-        Discussion = 1,
-        Presentation = 2,
-        PhoneCall = 3,
-        Voicemail = 4,
-        ProfessionallyProduced = 5,
-        VoiceSearch = 6,
-        VoiceCommand = 7,
-        Dictation = 8,
-    }
-    impl InteractionType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                InteractionType::Unspecified => "INTERACTION_TYPE_UNSPECIFIED",
-                InteractionType::Discussion => "DISCUSSION",
-                InteractionType::Presentation => "PRESENTATION",
-                InteractionType::PhoneCall => "PHONE_CALL",
-                InteractionType::Voicemail => "VOICEMAIL",
-                InteractionType::ProfessionallyProduced => "PROFESSIONALLY_PRODUCED",
-                InteractionType::VoiceSearch => "VOICE_SEARCH",
-                InteractionType::VoiceCommand => "VOICE_COMMAND",
-                InteractionType::Dictation => "DICTATION",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INTERACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DISCUSSION" => Some(Self::Discussion),
-                "PRESENTATION" => Some(Self::Presentation),
-                "PHONE_CALL" => Some(Self::PhoneCall),
-                "VOICEMAIL" => Some(Self::Voicemail),
-                "PROFESSIONALLY_PRODUCED" => Some(Self::ProfessionallyProduced),
-                "VOICE_SEARCH" => Some(Self::VoiceSearch),
-                "VOICE_COMMAND" => Some(Self::VoiceCommand),
-                "DICTATION" => Some(Self::Dictation),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MicrophoneDistance {
-        Unspecified = 0,
-        Nearfield = 1,
-        Midfield = 2,
-        Farfield = 3,
-    }
-    impl MicrophoneDistance {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MicrophoneDistance::Unspecified => "MICROPHONE_DISTANCE_UNSPECIFIED",
-                MicrophoneDistance::Nearfield => "NEARFIELD",
-                MicrophoneDistance::Midfield => "MIDFIELD",
-                MicrophoneDistance::Farfield => "FARFIELD",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MICROPHONE_DISTANCE_UNSPECIFIED" => Some(Self::Unspecified),
-                "NEARFIELD" => Some(Self::Nearfield),
-                "MIDFIELD" => Some(Self::Midfield),
-                "FARFIELD" => Some(Self::Farfield),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum OriginalMediaType {
-        Unspecified = 0,
-        Audio = 1,
-        Video = 2,
-    }
-    impl OriginalMediaType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                OriginalMediaType::Unspecified => "ORIGINAL_MEDIA_TYPE_UNSPECIFIED",
-                OriginalMediaType::Audio => "AUDIO",
-                OriginalMediaType::Video => "VIDEO",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "ORIGINAL_MEDIA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "AUDIO" => Some(Self::Audio),
-                "VIDEO" => Some(Self::Video),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RecordingDeviceType {
-        Unspecified = 0,
-        Smartphone = 1,
-        Pc = 2,
-        PhoneLine = 3,
-        Vehicle = 4,
-        OtherOutdoorDevice = 5,
-        OtherIndoorDevice = 6,
-    }
-    impl RecordingDeviceType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RecordingDeviceType::Unspecified => "RECORDING_DEVICE_TYPE_UNSPECIFIED",
-                RecordingDeviceType::Smartphone => "SMARTPHONE",
-                RecordingDeviceType::Pc => "PC",
-                RecordingDeviceType::PhoneLine => "PHONE_LINE",
-                RecordingDeviceType::Vehicle => "VEHICLE",
-                RecordingDeviceType::OtherOutdoorDevice => "OTHER_OUTDOOR_DEVICE",
-                RecordingDeviceType::OtherIndoorDevice => "OTHER_INDOOR_DEVICE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RECORDING_DEVICE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SMARTPHONE" => Some(Self::Smartphone),
-                "PC" => Some(Self::Pc),
-                "PHONE_LINE" => Some(Self::PhoneLine),
-                "VEHICLE" => Some(Self::Vehicle),
-                "OTHER_OUTDOOR_DEVICE" => Some(Self::OtherOutdoorDevice),
-                "OTHER_INDOOR_DEVICE" => Some(Self::OtherIndoorDevice),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum InteractionType {
+Unspecified = 0,
+Discussion = 1,
+Presentation = 2,
+PhoneCall = 3,
+Voicemail = 4,
+ProfessionallyProduced = 5,
+VoiceSearch = 6,
+VoiceCommand = 7,
+Dictation = 8,
+}
+impl InteractionType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+InteractionType::Unspecified => "INTERACTION_TYPE_UNSPECIFIED",
+InteractionType::Discussion => "DISCUSSION",
+InteractionType::Presentation => "PRESENTATION",
+InteractionType::PhoneCall => "PHONE_CALL",
+InteractionType::Voicemail => "VOICEMAIL",
+InteractionType::ProfessionallyProduced => "PROFESSIONALLY_PRODUCED",
+InteractionType::VoiceSearch => "VOICE_SEARCH",
+InteractionType::VoiceCommand => "VOICE_COMMAND",
+InteractionType::Dictation => "DICTATION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INTERACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"DISCUSSION" => Some(Self::Discussion),
+"PRESENTATION" => Some(Self::Presentation),
+"PHONE_CALL" => Some(Self::PhoneCall),
+"VOICEMAIL" => Some(Self::Voicemail),
+"PROFESSIONALLY_PRODUCED" => Some(Self::ProfessionallyProduced),
+"VOICE_SEARCH" => Some(Self::VoiceSearch),
+"VOICE_COMMAND" => Some(Self::VoiceCommand),
+"DICTATION" => Some(Self::Dictation),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MicrophoneDistance {
+Unspecified = 0,
+Nearfield = 1,
+Midfield = 2,
+Farfield = 3,
+}
+impl MicrophoneDistance {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MicrophoneDistance::Unspecified => "MICROPHONE_DISTANCE_UNSPECIFIED",
+MicrophoneDistance::Nearfield => "NEARFIELD",
+MicrophoneDistance::Midfield => "MIDFIELD",
+MicrophoneDistance::Farfield => "FARFIELD",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MICROPHONE_DISTANCE_UNSPECIFIED" => Some(Self::Unspecified),
+"NEARFIELD" => Some(Self::Nearfield),
+"MIDFIELD" => Some(Self::Midfield),
+"FARFIELD" => Some(Self::Farfield),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OriginalMediaType {
+Unspecified = 0,
+Audio = 1,
+Video = 2,
+}
+impl OriginalMediaType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OriginalMediaType::Unspecified => "ORIGINAL_MEDIA_TYPE_UNSPECIFIED",
+OriginalMediaType::Audio => "AUDIO",
+OriginalMediaType::Video => "VIDEO",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ORIGINAL_MEDIA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"AUDIO" => Some(Self::Audio),
+"VIDEO" => Some(Self::Video),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RecordingDeviceType {
+Unspecified = 0,
+Smartphone = 1,
+Pc = 2,
+PhoneLine = 3,
+Vehicle = 4,
+OtherOutdoorDevice = 5,
+OtherIndoorDevice = 6,
+}
+impl RecordingDeviceType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RecordingDeviceType::Unspecified => "RECORDING_DEVICE_TYPE_UNSPECIFIED",
+RecordingDeviceType::Smartphone => "SMARTPHONE",
+RecordingDeviceType::Pc => "PC",
+RecordingDeviceType::PhoneLine => "PHONE_LINE",
+RecordingDeviceType::Vehicle => "VEHICLE",
+RecordingDeviceType::OtherOutdoorDevice => "OTHER_OUTDOOR_DEVICE",
+RecordingDeviceType::OtherIndoorDevice => "OTHER_INDOOR_DEVICE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RECORDING_DEVICE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"SMARTPHONE" => Some(Self::Smartphone),
+"PC" => Some(Self::Pc),
+"PHONE_LINE" => Some(Self::PhoneLine),
+"VEHICLE" => Some(Self::Vehicle),
+"OTHER_OUTDOOR_DEVICE" => Some(Self::OtherOutdoorDevice),
+"OTHER_INDOOR_DEVICE" => Some(Self::OtherIndoorDevice),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechContext {
-    #[prost(string, repeated, tag = "1")]
-    pub phrases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(float, tag = "4")]
-    pub boost: f32,
+#[prost(string, repeated, tag = "1")]
+pub phrases: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(float, tag = "4")]
+pub boost: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecognitionAudio {
-    #[prost(oneof = "recognition_audio::AudioSource", tags = "1, 2")]
-    pub audio_source: ::core::option::Option<recognition_audio::AudioSource>,
+#[prost(oneof = "recognition_audio::AudioSource", tags = "1, 2")]
+pub audio_source: ::core::option::Option<recognition_audio::AudioSource>,
 }
 /// Nested message and enum types in `RecognitionAudio`.
 pub mod recognition_audio {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum AudioSource {
-        #[prost(bytes, tag = "1")]
-        Content(::prost::alloc::vec::Vec<u8>),
-        #[prost(string, tag = "2")]
-        Uri(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum AudioSource {
+#[prost(bytes, tag = "1")]
+Content(::prost::alloc::vec::Vec<u8>),
+#[prost(string, tag = "2")]
+Uri(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecognizeResponse {
-    #[prost(message, repeated, tag = "2")]
-    pub results: ::prost::alloc::vec::Vec<SpeechRecognitionResult>,
-    #[prost(message, optional, tag = "3")]
-    pub total_billed_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "7")]
-    pub speech_adaptation_info: ::core::option::Option<SpeechAdaptationInfo>,
-    #[prost(int64, tag = "8")]
-    pub request_id: i64,
+#[prost(message, repeated, tag = "2")]
+pub results: ::prost::alloc::vec::Vec<SpeechRecognitionResult>,
+#[prost(message, optional, tag = "3")]
+pub total_billed_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "7")]
+pub speech_adaptation_info: ::core::option::Option<SpeechAdaptationInfo>,
+#[prost(int64, tag = "8")]
+pub request_id: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LongRunningRecognizeResponse {
-    #[prost(message, repeated, tag = "2")]
-    pub results: ::prost::alloc::vec::Vec<SpeechRecognitionResult>,
-    #[prost(message, optional, tag = "3")]
-    pub total_billed_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "6")]
-    pub output_config: ::core::option::Option<TranscriptOutputConfig>,
-    #[prost(message, optional, tag = "7")]
-    pub output_error: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "8")]
-    pub speech_adaptation_info: ::core::option::Option<SpeechAdaptationInfo>,
-    #[prost(int64, tag = "9")]
-    pub request_id: i64,
+#[prost(message, repeated, tag = "2")]
+pub results: ::prost::alloc::vec::Vec<SpeechRecognitionResult>,
+#[prost(message, optional, tag = "3")]
+pub total_billed_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "6")]
+pub output_config: ::core::option::Option<TranscriptOutputConfig>,
+#[prost(message, optional, tag = "7")]
+pub output_error: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "8")]
+pub speech_adaptation_info: ::core::option::Option<SpeechAdaptationInfo>,
+#[prost(int64, tag = "9")]
+pub request_id: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LongRunningRecognizeMetadata {
-    #[prost(int32, tag = "1")]
-    pub progress_percent: i32,
-    #[prost(message, optional, tag = "2")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "4")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub progress_percent: i32,
+#[prost(message, optional, tag = "2")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub last_update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "4")]
+pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingRecognizeResponse {
-    #[prost(message, optional, tag = "1")]
-    pub error: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(message, repeated, tag = "2")]
-    pub results: ::prost::alloc::vec::Vec<StreamingRecognitionResult>,
-    #[prost(enumeration = "streaming_recognize_response::SpeechEventType", tag = "4")]
-    pub speech_event_type: i32,
-    #[prost(message, optional, tag = "8")]
-    pub speech_event_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "5")]
-    pub total_billed_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "9")]
-    pub speech_adaptation_info: ::core::option::Option<SpeechAdaptationInfo>,
-    #[prost(int64, tag = "10")]
-    pub request_id: i64,
+#[prost(message, optional, tag = "1")]
+pub error: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(message, repeated, tag = "2")]
+pub results: ::prost::alloc::vec::Vec<StreamingRecognitionResult>,
+#[prost(enumeration = "streaming_recognize_response::SpeechEventType", tag = "4")]
+pub speech_event_type: i32,
+#[prost(message, optional, tag = "8")]
+pub speech_event_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "5")]
+pub total_billed_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "9")]
+pub speech_adaptation_info: ::core::option::Option<SpeechAdaptationInfo>,
+#[prost(int64, tag = "10")]
+pub request_id: i64,
 }
 /// Nested message and enum types in `StreamingRecognizeResponse`.
 pub mod streaming_recognize_response {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SpeechEventType {
-        SpeechEventUnspecified = 0,
-        EndOfSingleUtterance = 1,
-        SpeechActivityBegin = 2,
-        SpeechActivityEnd = 3,
-        SpeechActivityTimeout = 4,
-    }
-    impl SpeechEventType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SpeechEventType::SpeechEventUnspecified => "SPEECH_EVENT_UNSPECIFIED",
-                SpeechEventType::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
-                SpeechEventType::SpeechActivityBegin => "SPEECH_ACTIVITY_BEGIN",
-                SpeechEventType::SpeechActivityEnd => "SPEECH_ACTIVITY_END",
-                SpeechEventType::SpeechActivityTimeout => "SPEECH_ACTIVITY_TIMEOUT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SPEECH_EVENT_UNSPECIFIED" => Some(Self::SpeechEventUnspecified),
-                "END_OF_SINGLE_UTTERANCE" => Some(Self::EndOfSingleUtterance),
-                "SPEECH_ACTIVITY_BEGIN" => Some(Self::SpeechActivityBegin),
-                "SPEECH_ACTIVITY_END" => Some(Self::SpeechActivityEnd),
-                "SPEECH_ACTIVITY_TIMEOUT" => Some(Self::SpeechActivityTimeout),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SpeechEventType {
+SpeechEventUnspecified = 0,
+EndOfSingleUtterance = 1,
+SpeechActivityBegin = 2,
+SpeechActivityEnd = 3,
+SpeechActivityTimeout = 4,
+}
+impl SpeechEventType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SpeechEventType::SpeechEventUnspecified => "SPEECH_EVENT_UNSPECIFIED",
+SpeechEventType::EndOfSingleUtterance => "END_OF_SINGLE_UTTERANCE",
+SpeechEventType::SpeechActivityBegin => "SPEECH_ACTIVITY_BEGIN",
+SpeechEventType::SpeechActivityEnd => "SPEECH_ACTIVITY_END",
+SpeechEventType::SpeechActivityTimeout => "SPEECH_ACTIVITY_TIMEOUT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SPEECH_EVENT_UNSPECIFIED" => Some(Self::SpeechEventUnspecified),
+"END_OF_SINGLE_UTTERANCE" => Some(Self::EndOfSingleUtterance),
+"SPEECH_ACTIVITY_BEGIN" => Some(Self::SpeechActivityBegin),
+"SPEECH_ACTIVITY_END" => Some(Self::SpeechActivityEnd),
+"SPEECH_ACTIVITY_TIMEOUT" => Some(Self::SpeechActivityTimeout),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StreamingRecognitionResult {
-    #[prost(message, repeated, tag = "1")]
-    pub alternatives: ::prost::alloc::vec::Vec<SpeechRecognitionAlternative>,
-    #[prost(bool, tag = "2")]
-    pub is_final: bool,
-    #[prost(float, tag = "3")]
-    pub stability: f32,
-    #[prost(message, optional, tag = "4")]
-    pub result_end_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(int32, tag = "5")]
-    pub channel_tag: i32,
-    #[prost(string, tag = "6")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub alternatives: ::prost::alloc::vec::Vec<SpeechRecognitionAlternative>,
+#[prost(bool, tag = "2")]
+pub is_final: bool,
+#[prost(float, tag = "3")]
+pub stability: f32,
+#[prost(message, optional, tag = "4")]
+pub result_end_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(int32, tag = "5")]
+pub channel_tag: i32,
+#[prost(string, tag = "6")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechRecognitionResult {
-    #[prost(message, repeated, tag = "1")]
-    pub alternatives: ::prost::alloc::vec::Vec<SpeechRecognitionAlternative>,
-    #[prost(int32, tag = "2")]
-    pub channel_tag: i32,
-    #[prost(message, optional, tag = "4")]
-    pub result_end_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag = "5")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub alternatives: ::prost::alloc::vec::Vec<SpeechRecognitionAlternative>,
+#[prost(int32, tag = "2")]
+pub channel_tag: i32,
+#[prost(message, optional, tag = "4")]
+pub result_end_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "5")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechRecognitionAlternative {
-    #[prost(string, tag = "1")]
-    pub transcript: ::prost::alloc::string::String,
-    #[prost(float, tag = "2")]
-    pub confidence: f32,
-    #[prost(message, repeated, tag = "3")]
-    pub words: ::prost::alloc::vec::Vec<WordInfo>,
+#[prost(string, tag = "1")]
+pub transcript: ::prost::alloc::string::String,
+#[prost(float, tag = "2")]
+pub confidence: f32,
+#[prost(message, repeated, tag = "3")]
+pub words: ::prost::alloc::vec::Vec<WordInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WordInfo {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Duration>,
-    #[prost(string, tag = "3")]
-    pub word: ::prost::alloc::string::String,
-    #[prost(float, tag = "4")]
-    pub confidence: f32,
-    #[deprecated]
-    #[prost(int32, tag = "5")]
-    pub speaker_tag: i32,
-    #[prost(string, tag = "6")]
-    pub speaker_label: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Duration>,
+#[prost(string, tag = "3")]
+pub word: ::prost::alloc::string::String,
+#[prost(float, tag = "4")]
+pub confidence: f32,
+#[deprecated]
+#[prost(int32, tag = "5")]
+pub speaker_tag: i32,
+#[prost(string, tag = "6")]
+pub speaker_label: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SpeechAdaptationInfo {
-    #[prost(bool, tag = "1")]
-    pub adaptation_timeout: bool,
-    #[prost(string, tag = "4")]
-    pub timeout_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "1")]
+pub adaptation_timeout: bool,
+#[prost(string, tag = "4")]
+pub timeout_message: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod speech_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service that implements Google Cloud Speech API.
-    #[derive(Debug, Clone)]
-    pub struct SpeechClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> SpeechClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> SpeechClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            SpeechClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Performs synchronous speech recognition: receive results after all audio
-        /// has been sent and processed.
-        pub async fn recognize(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RecognizeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::RecognizeResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Speech/Recognize",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.speech.v1.Speech", "Recognize"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Performs asynchronous speech recognition: receive results via the
-        /// google.longrunning.Operations interface. Returns either an
-        /// `Operation.error` or an `Operation.response` which contains
-        /// a `LongRunningRecognizeResponse` message.
-        /// For more information on asynchronous speech recognition, see the
-        /// [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize).
-        pub async fn long_running_recognize(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LongRunningRecognizeRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Speech/LongRunningRecognize",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Speech",
-                        "LongRunningRecognize",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Performs bidirectional streaming speech recognition: receive results while
-        /// sending audio. This method is only available via the gRPC API (not REST).
-        pub async fn streaming_recognize(
-            &mut self,
-            request: impl tonic::IntoStreamingRequest<
-                Message = super::StreamingRecognizeRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::StreamingRecognizeResponse>>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Speech/StreamingRecognize",
-            );
-            let mut req = request.into_streaming_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Speech",
-                        "StreamingRecognize",
-                    ),
-                );
-            self.inner.streaming(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service that implements Google Cloud Speech API.
+#[derive(Debug, Clone)]
+pub struct SpeechClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> SpeechClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> SpeechClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+SpeechClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Performs synchronous speech recognition: receive results after all audio
+/// has been sent and processed.
+pub async fn recognize(&mut self, request: impl tonic::IntoRequest<super::RecognizeRequest>) -> std::result::Result<tonic::Response<super::RecognizeResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Speech/Recognize");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Speech", "Recognize"));
+self.inner.unary(req, path, codec).await
+}
+/// Performs asynchronous speech recognition: receive results via the
+/// google.longrunning.Operations interface. Returns either an
+/// `Operation.error` or an `Operation.response` which contains
+/// a `LongRunningRecognizeResponse` message.
+/// For more information on asynchronous speech recognition, see the
+/// [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize).
+pub async fn long_running_recognize(&mut self, request: impl tonic::IntoRequest<super::LongRunningRecognizeRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Speech/LongRunningRecognize");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Speech", "LongRunningRecognize"));
+self.inner.unary(req, path, codec).await
+}
+/// Performs bidirectional streaming speech recognition: receive results while
+/// sending audio. This method is only available via the gRPC API (not REST).
+pub async fn streaming_recognize(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::StreamingRecognizeRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::StreamingRecognizeResponse>>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Speech/StreamingRecognize");
+let mut req = request.into_streaming_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Speech", "StreamingRecognize"));
+self.inner.streaming(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePhraseSetRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub phrase_set_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub phrase_set: ::core::option::Option<PhraseSet>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub phrase_set_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub phrase_set: ::core::option::Option<PhraseSet>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePhraseSetRequest {
-    #[prost(message, optional, tag = "1")]
-    pub phrase_set: ::core::option::Option<PhraseSet>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub phrase_set: ::core::option::Option<PhraseSet>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPhraseSetRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPhraseSetRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPhraseSetResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub phrase_sets: ::prost::alloc::vec::Vec<PhraseSet>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub phrase_sets: ::prost::alloc::vec::Vec<PhraseSet>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePhraseSetRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCustomClassRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub custom_class_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub custom_class: ::core::option::Option<CustomClass>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub custom_class_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub custom_class: ::core::option::Option<CustomClass>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCustomClassRequest {
-    #[prost(message, optional, tag = "1")]
-    pub custom_class: ::core::option::Option<CustomClass>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub custom_class: ::core::option::Option<CustomClass>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCustomClassRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomClassesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomClassesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub custom_classes: ::prost::alloc::vec::Vec<CustomClass>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub custom_classes: ::prost::alloc::vec::Vec<CustomClass>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteCustomClassRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod adaptation_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service that implements Google Cloud Speech Adaptation API.
-    #[derive(Debug, Clone)]
-    pub struct AdaptationClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AdaptationClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AdaptationClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AdaptationClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Create a set of phrase hints. Each item in the set can be a single word or
-        /// a multi-word phrase. The items in the PhraseSet are favored by the
-        /// recognition model when you send a call that includes the PhraseSet.
-        pub async fn create_phrase_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePhraseSetRequest>,
-        ) -> std::result::Result<tonic::Response<super::PhraseSet>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/CreatePhraseSet",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Adaptation",
-                        "CreatePhraseSet",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get a phrase set.
-        pub async fn get_phrase_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPhraseSetRequest>,
-        ) -> std::result::Result<tonic::Response<super::PhraseSet>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/GetPhraseSet",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.speech.v1.Adaptation", "GetPhraseSet"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// List phrase sets.
-        pub async fn list_phrase_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPhraseSetRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPhraseSetResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/ListPhraseSet",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.speech.v1.Adaptation", "ListPhraseSet"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update a phrase set.
-        pub async fn update_phrase_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdatePhraseSetRequest>,
-        ) -> std::result::Result<tonic::Response<super::PhraseSet>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/UpdatePhraseSet",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Adaptation",
-                        "UpdatePhraseSet",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Delete a phrase set.
-        pub async fn delete_phrase_set(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePhraseSetRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/DeletePhraseSet",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Adaptation",
-                        "DeletePhraseSet",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Create a custom class.
-        pub async fn create_custom_class(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCustomClassRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomClass>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/CreateCustomClass",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Adaptation",
-                        "CreateCustomClass",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get a custom class.
-        pub async fn get_custom_class(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCustomClassRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomClass>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/GetCustomClass",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Adaptation",
-                        "GetCustomClass",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// List custom classes.
-        pub async fn list_custom_classes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCustomClassesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCustomClassesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/ListCustomClasses",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Adaptation",
-                        "ListCustomClasses",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Update a custom class.
-        pub async fn update_custom_class(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCustomClassRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomClass>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/UpdateCustomClass",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Adaptation",
-                        "UpdateCustomClass",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Delete a custom class.
-        pub async fn delete_custom_class(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteCustomClassRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.speech.v1.Adaptation/DeleteCustomClass",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.speech.v1.Adaptation",
-                        "DeleteCustomClass",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service that implements Google Cloud Speech Adaptation API.
+#[derive(Debug, Clone)]
+pub struct AdaptationClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AdaptationClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AdaptationClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AdaptationClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Create a set of phrase hints. Each item in the set can be a single word or
+/// a multi-word phrase. The items in the PhraseSet are favored by the
+/// recognition model when you send a call that includes the PhraseSet.
+pub async fn create_phrase_set(&mut self, request: impl tonic::IntoRequest<super::CreatePhraseSetRequest>) -> std::result::Result<tonic::Response<super::PhraseSet>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/CreatePhraseSet");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "CreatePhraseSet"));
+self.inner.unary(req, path, codec).await
+}
+/// Get a phrase set.
+pub async fn get_phrase_set(&mut self, request: impl tonic::IntoRequest<super::GetPhraseSetRequest>) -> std::result::Result<tonic::Response<super::PhraseSet>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/GetPhraseSet");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "GetPhraseSet"));
+self.inner.unary(req, path, codec).await
+}
+/// List phrase sets.
+pub async fn list_phrase_set(&mut self, request: impl tonic::IntoRequest<super::ListPhraseSetRequest>) -> std::result::Result<tonic::Response<super::ListPhraseSetResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/ListPhraseSet");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "ListPhraseSet"));
+self.inner.unary(req, path, codec).await
+}
+/// Update a phrase set.
+pub async fn update_phrase_set(&mut self, request: impl tonic::IntoRequest<super::UpdatePhraseSetRequest>) -> std::result::Result<tonic::Response<super::PhraseSet>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/UpdatePhraseSet");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "UpdatePhraseSet"));
+self.inner.unary(req, path, codec).await
+}
+/// Delete a phrase set.
+pub async fn delete_phrase_set(&mut self, request: impl tonic::IntoRequest<super::DeletePhraseSetRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/DeletePhraseSet");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "DeletePhraseSet"));
+self.inner.unary(req, path, codec).await
+}
+/// Create a custom class.
+pub async fn create_custom_class(&mut self, request: impl tonic::IntoRequest<super::CreateCustomClassRequest>) -> std::result::Result<tonic::Response<super::CustomClass>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/CreateCustomClass");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "CreateCustomClass"));
+self.inner.unary(req, path, codec).await
+}
+/// Get a custom class.
+pub async fn get_custom_class(&mut self, request: impl tonic::IntoRequest<super::GetCustomClassRequest>) -> std::result::Result<tonic::Response<super::CustomClass>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/GetCustomClass");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "GetCustomClass"));
+self.inner.unary(req, path, codec).await
+}
+/// List custom classes.
+pub async fn list_custom_classes(&mut self, request: impl tonic::IntoRequest<super::ListCustomClassesRequest>) -> std::result::Result<tonic::Response<super::ListCustomClassesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/ListCustomClasses");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "ListCustomClasses"));
+self.inner.unary(req, path, codec).await
+}
+/// Update a custom class.
+pub async fn update_custom_class(&mut self, request: impl tonic::IntoRequest<super::UpdateCustomClassRequest>) -> std::result::Result<tonic::Response<super::CustomClass>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/UpdateCustomClass");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "UpdateCustomClass"));
+self.inner.unary(req, path, codec).await
+}
+/// Delete a custom class.
+pub async fn delete_custom_class(&mut self, request: impl tonic::IntoRequest<super::DeleteCustomClassRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.speech.v1.Adaptation/DeleteCustomClass");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.speech.v1.Adaptation", "DeleteCustomClass"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

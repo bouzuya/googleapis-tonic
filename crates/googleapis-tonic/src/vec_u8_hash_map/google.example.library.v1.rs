@@ -2,526 +2,301 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Book {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub author: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub read: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub author: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub title: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub read: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Shelf {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub theme: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub theme: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateShelfRequest {
-    #[prost(message, optional, tag = "1")]
-    pub shelf: ::core::option::Option<Shelf>,
+#[prost(message, optional, tag = "1")]
+pub shelf: ::core::option::Option<Shelf>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetShelfRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListShelvesRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListShelvesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub shelves: ::prost::alloc::vec::Vec<Shelf>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub shelves: ::prost::alloc::vec::Vec<Shelf>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteShelfRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MergeShelvesRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub other_shelf: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub other_shelf: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBookRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub book: ::core::option::Option<Book>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub book: ::core::option::Option<Book>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBookRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBooksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListBooksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub books: ::prost::alloc::vec::Vec<Book>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub books: ::prost::alloc::vec::Vec<Book>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBookRequest {
-    #[prost(message, optional, tag = "1")]
-    pub book: ::core::option::Option<Book>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub book: ::core::option::Option<Book>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteBookRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MoveBookRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub other_shelf_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub other_shelf_name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod library_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// This API represents a simple digital library. It lets you manage Shelf
-    /// resources and Book resources in the library. It defines the following
-    /// resource model:
-    ///
-    /// - The API has a collection of [Shelf][google.example.library.v1.Shelf]
-    ///   resources, named `shelves/*`
-    ///
-    /// - Each Shelf has a collection of [Book][google.example.library.v1.Book]
-    ///   resources, named `shelves/*/books/*`
-    #[derive(Debug, Clone)]
-    pub struct LibraryServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> LibraryServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> LibraryServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            LibraryServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a shelf, and returns the new Shelf.
-        pub async fn create_shelf(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateShelfRequest>,
-        ) -> std::result::Result<tonic::Response<super::Shelf>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/CreateShelf",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "CreateShelf",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a shelf. Returns NOT_FOUND if the shelf does not exist.
-        pub async fn get_shelf(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetShelfRequest>,
-        ) -> std::result::Result<tonic::Response<super::Shelf>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/GetShelf",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "GetShelf",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists shelves. The order is unspecified but deterministic. Newly created
-        /// shelves will not necessarily be added to the end of this list.
-        pub async fn list_shelves(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListShelvesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListShelvesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/ListShelves",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "ListShelves",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a shelf. Returns NOT_FOUND if the shelf does not exist.
-        pub async fn delete_shelf(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteShelfRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/DeleteShelf",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "DeleteShelf",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Merges two shelves by adding all books from the shelf named
-        /// `other_shelf_name` to shelf `name`, and deletes
-        /// `other_shelf_name`. Returns the updated shelf.
-        /// The book ids of the moved books may not be the same as the original books.
-        ///
-        /// Returns NOT_FOUND if either shelf does not exist.
-        /// This call is a no-op if the specified shelves are the same.
-        pub async fn merge_shelves(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MergeShelvesRequest>,
-        ) -> std::result::Result<tonic::Response<super::Shelf>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/MergeShelves",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "MergeShelves",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a book, and returns the new Book.
-        pub async fn create_book(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateBookRequest>,
-        ) -> std::result::Result<tonic::Response<super::Book>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/CreateBook",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "CreateBook",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a book. Returns NOT_FOUND if the book does not exist.
-        pub async fn get_book(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetBookRequest>,
-        ) -> std::result::Result<tonic::Response<super::Book>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/GetBook",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "GetBook",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists books in a shelf. The order is unspecified but deterministic. Newly
-        /// created books will not necessarily be added to the end of this list.
-        /// Returns NOT_FOUND if the shelf does not exist.
-        pub async fn list_books(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListBooksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListBooksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/ListBooks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "ListBooks",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a book. Returns NOT_FOUND if the book does not exist.
-        pub async fn delete_book(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteBookRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/DeleteBook",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "DeleteBook",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a book. Returns INVALID_ARGUMENT if the name of the book
-        /// is non-empty and does not equal the existing name.
-        pub async fn update_book(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateBookRequest>,
-        ) -> std::result::Result<tonic::Response<super::Book>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/UpdateBook",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "UpdateBook",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Moves a book to another shelf, and returns the new book. The book
-        /// id of the new book may not be the same as the original book.
-        pub async fn move_book(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MoveBookRequest>,
-        ) -> std::result::Result<tonic::Response<super::Book>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.example.library.v1.LibraryService/MoveBook",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.example.library.v1.LibraryService",
-                        "MoveBook",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// This API represents a simple digital library. It lets you manage Shelf
+/// resources and Book resources in the library. It defines the following
+/// resource model:
+///
+/// - The API has a collection of [Shelf][google.example.library.v1.Shelf]
+///   resources, named `shelves/*`
+///
+/// - Each Shelf has a collection of [Book][google.example.library.v1.Book]
+///   resources, named `shelves/*/books/*`
+#[derive(Debug, Clone)]
+pub struct LibraryServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> LibraryServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> LibraryServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+LibraryServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a shelf, and returns the new Shelf.
+pub async fn create_shelf(&mut self, request: impl tonic::IntoRequest<super::CreateShelfRequest>) -> std::result::Result<tonic::Response<super::Shelf>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/CreateShelf");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "CreateShelf"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a shelf. Returns NOT_FOUND if the shelf does not exist.
+pub async fn get_shelf(&mut self, request: impl tonic::IntoRequest<super::GetShelfRequest>) -> std::result::Result<tonic::Response<super::Shelf>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/GetShelf");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "GetShelf"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists shelves. The order is unspecified but deterministic. Newly created
+/// shelves will not necessarily be added to the end of this list.
+pub async fn list_shelves(&mut self, request: impl tonic::IntoRequest<super::ListShelvesRequest>) -> std::result::Result<tonic::Response<super::ListShelvesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/ListShelves");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "ListShelves"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a shelf. Returns NOT_FOUND if the shelf does not exist.
+pub async fn delete_shelf(&mut self, request: impl tonic::IntoRequest<super::DeleteShelfRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/DeleteShelf");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "DeleteShelf"));
+self.inner.unary(req, path, codec).await
+}
+/// Merges two shelves by adding all books from the shelf named
+/// `other_shelf_name` to shelf `name`, and deletes
+/// `other_shelf_name`. Returns the updated shelf.
+/// The book ids of the moved books may not be the same as the original books.
+///
+/// Returns NOT_FOUND if either shelf does not exist.
+/// This call is a no-op if the specified shelves are the same.
+pub async fn merge_shelves(&mut self, request: impl tonic::IntoRequest<super::MergeShelvesRequest>) -> std::result::Result<tonic::Response<super::Shelf>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/MergeShelves");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "MergeShelves"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a book, and returns the new Book.
+pub async fn create_book(&mut self, request: impl tonic::IntoRequest<super::CreateBookRequest>) -> std::result::Result<tonic::Response<super::Book>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/CreateBook");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "CreateBook"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a book. Returns NOT_FOUND if the book does not exist.
+pub async fn get_book(&mut self, request: impl tonic::IntoRequest<super::GetBookRequest>) -> std::result::Result<tonic::Response<super::Book>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/GetBook");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "GetBook"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists books in a shelf. The order is unspecified but deterministic. Newly
+/// created books will not necessarily be added to the end of this list.
+/// Returns NOT_FOUND if the shelf does not exist.
+pub async fn list_books(&mut self, request: impl tonic::IntoRequest<super::ListBooksRequest>) -> std::result::Result<tonic::Response<super::ListBooksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/ListBooks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "ListBooks"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a book. Returns NOT_FOUND if the book does not exist.
+pub async fn delete_book(&mut self, request: impl tonic::IntoRequest<super::DeleteBookRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/DeleteBook");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "DeleteBook"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a book. Returns INVALID_ARGUMENT if the name of the book
+/// is non-empty and does not equal the existing name.
+pub async fn update_book(&mut self, request: impl tonic::IntoRequest<super::UpdateBookRequest>) -> std::result::Result<tonic::Response<super::Book>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/UpdateBook");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "UpdateBook"));
+self.inner.unary(req, path, codec).await
+}
+/// Moves a book to another shelf, and returns the new book. The book
+/// id of the new book may not be the same as the original book.
+pub async fn move_book(&mut self, request: impl tonic::IntoRequest<super::MoveBookRequest>) -> std::result::Result<tonic::Response<super::Book>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.example.library.v1.LibraryService/MoveBook");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.example.library.v1.LibraryService", "MoveBook"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

@@ -2,312 +2,279 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Address {
-    #[prost(string, tag = "2")]
-    pub formatted_address: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub postal_address: ::core::option::Option<
-        super::super::super::r#type::PostalAddress,
-    >,
-    #[prost(message, repeated, tag = "4")]
-    pub address_components: ::prost::alloc::vec::Vec<AddressComponent>,
-    #[prost(string, repeated, tag = "5")]
-    pub missing_component_types: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, repeated, tag = "6")]
-    pub unconfirmed_component_types: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, repeated, tag = "7")]
-    pub unresolved_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub formatted_address: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub postal_address: ::core::option::Option<super::super::super::r#type::PostalAddress>,
+#[prost(message, repeated, tag = "4")]
+pub address_components: ::prost::alloc::vec::Vec<AddressComponent>,
+#[prost(string, repeated, tag = "5")]
+pub missing_component_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "6")]
+pub unconfirmed_component_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "7")]
+pub unresolved_tokens: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AddressComponent {
-    #[prost(message, optional, tag = "1")]
-    pub component_name: ::core::option::Option<ComponentName>,
-    #[prost(string, tag = "2")]
-    pub component_type: ::prost::alloc::string::String,
-    #[prost(enumeration = "address_component::ConfirmationLevel", tag = "3")]
-    pub confirmation_level: i32,
-    #[prost(bool, tag = "4")]
-    pub inferred: bool,
-    #[prost(bool, tag = "5")]
-    pub spell_corrected: bool,
-    #[prost(bool, tag = "6")]
-    pub replaced: bool,
-    #[prost(bool, tag = "7")]
-    pub unexpected: bool,
+#[prost(message, optional, tag = "1")]
+pub component_name: ::core::option::Option<ComponentName>,
+#[prost(string, tag = "2")]
+pub component_type: ::prost::alloc::string::String,
+#[prost(enumeration = "address_component::ConfirmationLevel", tag = "3")]
+pub confirmation_level: i32,
+#[prost(bool, tag = "4")]
+pub inferred: bool,
+#[prost(bool, tag = "5")]
+pub spell_corrected: bool,
+#[prost(bool, tag = "6")]
+pub replaced: bool,
+#[prost(bool, tag = "7")]
+pub unexpected: bool,
 }
 /// Nested message and enum types in `AddressComponent`.
 pub mod address_component {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ConfirmationLevel {
-        Unspecified = 0,
-        Confirmed = 1,
-        UnconfirmedButPlausible = 2,
-        UnconfirmedAndSuspicious = 3,
-    }
-    impl ConfirmationLevel {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ConfirmationLevel::Unspecified => "CONFIRMATION_LEVEL_UNSPECIFIED",
-                ConfirmationLevel::Confirmed => "CONFIRMED",
-                ConfirmationLevel::UnconfirmedButPlausible => "UNCONFIRMED_BUT_PLAUSIBLE",
-                ConfirmationLevel::UnconfirmedAndSuspicious => {
-                    "UNCONFIRMED_AND_SUSPICIOUS"
-                }
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONFIRMATION_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-                "CONFIRMED" => Some(Self::Confirmed),
-                "UNCONFIRMED_BUT_PLAUSIBLE" => Some(Self::UnconfirmedButPlausible),
-                "UNCONFIRMED_AND_SUSPICIOUS" => Some(Self::UnconfirmedAndSuspicious),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ConfirmationLevel {
+Unspecified = 0,
+Confirmed = 1,
+UnconfirmedButPlausible = 2,
+UnconfirmedAndSuspicious = 3,
+}
+impl ConfirmationLevel {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ConfirmationLevel::Unspecified => "CONFIRMATION_LEVEL_UNSPECIFIED",
+ConfirmationLevel::Confirmed => "CONFIRMED",
+ConfirmationLevel::UnconfirmedButPlausible => "UNCONFIRMED_BUT_PLAUSIBLE",
+ConfirmationLevel::UnconfirmedAndSuspicious => "UNCONFIRMED_AND_SUSPICIOUS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONFIRMATION_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+"CONFIRMED" => Some(Self::Confirmed),
+"UNCONFIRMED_BUT_PLAUSIBLE" => Some(Self::UnconfirmedButPlausible),
+"UNCONFIRMED_AND_SUSPICIOUS" => Some(Self::UnconfirmedAndSuspicious),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ComponentName {
-    #[prost(string, tag = "1")]
-    pub text: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub text: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Geocode {
-    #[prost(message, optional, tag = "1")]
-    pub location: ::core::option::Option<super::super::super::r#type::LatLng>,
-    #[prost(message, optional, tag = "2")]
-    pub plus_code: ::core::option::Option<PlusCode>,
-    #[prost(message, optional, tag = "4")]
-    pub bounds: ::core::option::Option<super::super::super::geo::r#type::Viewport>,
-    #[prost(float, tag = "5")]
-    pub feature_size_meters: f32,
-    #[prost(string, tag = "6")]
-    pub place_id: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "7")]
-    pub place_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "1")]
+pub location: ::core::option::Option<super::super::super::r#type::LatLng>,
+#[prost(message, optional, tag = "2")]
+pub plus_code: ::core::option::Option<PlusCode>,
+#[prost(message, optional, tag = "4")]
+pub bounds: ::core::option::Option<super::super::super::geo::r#type::Viewport>,
+#[prost(float, tag = "5")]
+pub feature_size_meters: f32,
+#[prost(string, tag = "6")]
+pub place_id: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "7")]
+pub place_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlusCode {
-    #[prost(string, tag = "1")]
-    pub global_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub compound_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub global_code: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub compound_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AddressMetadata {
-    #[prost(bool, optional, tag = "2")]
-    pub business: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "3")]
-    pub po_box: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "6")]
-    pub residential: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "2")]
+pub business: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "3")]
+pub po_box: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "6")]
+pub residential: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UspsAddress {
-    #[prost(string, tag = "1")]
-    pub first_address_line: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub firm: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub second_address_line: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub urbanization: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub city_state_zip_address_line: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub city: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub state: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub zip_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub zip_code_extension: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub first_address_line: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub firm: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub second_address_line: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub urbanization: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub city_state_zip_address_line: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub city: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub state: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub zip_code: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub zip_code_extension: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UspsData {
-    #[prost(message, optional, tag = "1")]
-    pub standardized_address: ::core::option::Option<UspsAddress>,
-    #[prost(string, tag = "2")]
-    pub delivery_point_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub delivery_point_check_digit: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub dpv_confirmation: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub dpv_footnote: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub dpv_cmra: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub dpv_vacant: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub dpv_no_stat: ::prost::alloc::string::String,
-    #[prost(int32, tag = "29")]
-    pub dpv_no_stat_reason_code: i32,
-    #[prost(string, tag = "30")]
-    pub dpv_drop: ::prost::alloc::string::String,
-    #[prost(string, tag = "31")]
-    pub dpv_throwback: ::prost::alloc::string::String,
-    #[prost(string, tag = "32")]
-    pub dpv_non_delivery_days: ::prost::alloc::string::String,
-    #[prost(int32, tag = "33")]
-    pub dpv_non_delivery_days_values: i32,
-    #[prost(string, tag = "34")]
-    pub dpv_no_secure_location: ::prost::alloc::string::String,
-    #[prost(string, tag = "35")]
-    pub dpv_pbsa: ::prost::alloc::string::String,
-    #[prost(string, tag = "36")]
-    pub dpv_door_not_accessible: ::prost::alloc::string::String,
-    #[prost(string, tag = "37")]
-    pub dpv_enhanced_delivery_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub carrier_route: ::prost::alloc::string::String,
-    #[prost(string, tag = "10")]
-    pub carrier_route_indicator: ::prost::alloc::string::String,
-    #[prost(bool, tag = "11")]
-    pub ews_no_match: bool,
-    #[prost(string, tag = "12")]
-    pub post_office_city: ::prost::alloc::string::String,
-    #[prost(string, tag = "13")]
-    pub post_office_state: ::prost::alloc::string::String,
-    #[prost(string, tag = "14")]
-    pub abbreviated_city: ::prost::alloc::string::String,
-    #[prost(string, tag = "15")]
-    pub fips_county_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "16")]
-    pub county: ::prost::alloc::string::String,
-    #[prost(string, tag = "17")]
-    pub elot_number: ::prost::alloc::string::String,
-    #[prost(string, tag = "18")]
-    pub elot_flag: ::prost::alloc::string::String,
-    #[prost(string, tag = "19")]
-    pub lacs_link_return_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "20")]
-    pub lacs_link_indicator: ::prost::alloc::string::String,
-    #[prost(bool, tag = "21")]
-    pub po_box_only_postal_code: bool,
-    #[prost(string, tag = "22")]
-    pub suitelink_footnote: ::prost::alloc::string::String,
-    #[prost(string, tag = "23")]
-    pub pmb_designator: ::prost::alloc::string::String,
-    #[prost(string, tag = "24")]
-    pub pmb_number: ::prost::alloc::string::String,
-    #[prost(string, tag = "25")]
-    pub address_record_type: ::prost::alloc::string::String,
-    #[prost(bool, tag = "26")]
-    pub default_address: bool,
-    #[prost(string, tag = "27")]
-    pub error_message: ::prost::alloc::string::String,
-    #[prost(bool, tag = "28")]
-    pub cass_processed: bool,
+#[prost(message, optional, tag = "1")]
+pub standardized_address: ::core::option::Option<UspsAddress>,
+#[prost(string, tag = "2")]
+pub delivery_point_code: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub delivery_point_check_digit: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub dpv_confirmation: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub dpv_footnote: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub dpv_cmra: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub dpv_vacant: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub dpv_no_stat: ::prost::alloc::string::String,
+#[prost(int32, tag = "29")]
+pub dpv_no_stat_reason_code: i32,
+#[prost(string, tag = "30")]
+pub dpv_drop: ::prost::alloc::string::String,
+#[prost(string, tag = "31")]
+pub dpv_throwback: ::prost::alloc::string::String,
+#[prost(string, tag = "32")]
+pub dpv_non_delivery_days: ::prost::alloc::string::String,
+#[prost(int32, tag = "33")]
+pub dpv_non_delivery_days_values: i32,
+#[prost(string, tag = "34")]
+pub dpv_no_secure_location: ::prost::alloc::string::String,
+#[prost(string, tag = "35")]
+pub dpv_pbsa: ::prost::alloc::string::String,
+#[prost(string, tag = "36")]
+pub dpv_door_not_accessible: ::prost::alloc::string::String,
+#[prost(string, tag = "37")]
+pub dpv_enhanced_delivery_code: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub carrier_route: ::prost::alloc::string::String,
+#[prost(string, tag = "10")]
+pub carrier_route_indicator: ::prost::alloc::string::String,
+#[prost(bool, tag = "11")]
+pub ews_no_match: bool,
+#[prost(string, tag = "12")]
+pub post_office_city: ::prost::alloc::string::String,
+#[prost(string, tag = "13")]
+pub post_office_state: ::prost::alloc::string::String,
+#[prost(string, tag = "14")]
+pub abbreviated_city: ::prost::alloc::string::String,
+#[prost(string, tag = "15")]
+pub fips_county_code: ::prost::alloc::string::String,
+#[prost(string, tag = "16")]
+pub county: ::prost::alloc::string::String,
+#[prost(string, tag = "17")]
+pub elot_number: ::prost::alloc::string::String,
+#[prost(string, tag = "18")]
+pub elot_flag: ::prost::alloc::string::String,
+#[prost(string, tag = "19")]
+pub lacs_link_return_code: ::prost::alloc::string::String,
+#[prost(string, tag = "20")]
+pub lacs_link_indicator: ::prost::alloc::string::String,
+#[prost(bool, tag = "21")]
+pub po_box_only_postal_code: bool,
+#[prost(string, tag = "22")]
+pub suitelink_footnote: ::prost::alloc::string::String,
+#[prost(string, tag = "23")]
+pub pmb_designator: ::prost::alloc::string::String,
+#[prost(string, tag = "24")]
+pub pmb_number: ::prost::alloc::string::String,
+#[prost(string, tag = "25")]
+pub address_record_type: ::prost::alloc::string::String,
+#[prost(bool, tag = "26")]
+pub default_address: bool,
+#[prost(string, tag = "27")]
+pub error_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "28")]
+pub cass_processed: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValidateAddressRequest {
-    #[prost(message, optional, tag = "1")]
-    pub address: ::core::option::Option<super::super::super::r#type::PostalAddress>,
-    #[prost(string, tag = "2")]
-    pub previous_response_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub enable_usps_cass: bool,
-    #[prost(string, tag = "5")]
-    pub session_token: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub address: ::core::option::Option<super::super::super::r#type::PostalAddress>,
+#[prost(string, tag = "2")]
+pub previous_response_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub enable_usps_cass: bool,
+#[prost(string, tag = "5")]
+pub session_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValidateAddressResponse {
-    #[prost(message, optional, tag = "1")]
-    pub result: ::core::option::Option<ValidationResult>,
-    #[prost(string, tag = "2")]
-    pub response_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub result: ::core::option::Option<ValidationResult>,
+#[prost(string, tag = "2")]
+pub response_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProvideValidationFeedbackRequest {
-    #[prost(
-        enumeration = "provide_validation_feedback_request::ValidationConclusion",
-        tag = "1"
-    )]
-    pub conclusion: i32,
-    #[prost(string, tag = "2")]
-    pub response_id: ::prost::alloc::string::String,
+#[prost(enumeration = "provide_validation_feedback_request::ValidationConclusion", tag = "1")]
+pub conclusion: i32,
+#[prost(string, tag = "2")]
+pub response_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `ProvideValidationFeedbackRequest`.
 pub mod provide_validation_feedback_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ValidationConclusion {
-        Unspecified = 0,
-        ValidatedVersionUsed = 1,
-        UserVersionUsed = 2,
-        UnvalidatedVersionUsed = 3,
-        Unused = 4,
-    }
-    impl ValidationConclusion {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ValidationConclusion::Unspecified => "VALIDATION_CONCLUSION_UNSPECIFIED",
-                ValidationConclusion::ValidatedVersionUsed => "VALIDATED_VERSION_USED",
-                ValidationConclusion::UserVersionUsed => "USER_VERSION_USED",
-                ValidationConclusion::UnvalidatedVersionUsed => {
-                    "UNVALIDATED_VERSION_USED"
-                }
-                ValidationConclusion::Unused => "UNUSED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "VALIDATION_CONCLUSION_UNSPECIFIED" => Some(Self::Unspecified),
-                "VALIDATED_VERSION_USED" => Some(Self::ValidatedVersionUsed),
-                "USER_VERSION_USED" => Some(Self::UserVersionUsed),
-                "UNVALIDATED_VERSION_USED" => Some(Self::UnvalidatedVersionUsed),
-                "UNUSED" => Some(Self::Unused),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ValidationConclusion {
+Unspecified = 0,
+ValidatedVersionUsed = 1,
+UserVersionUsed = 2,
+UnvalidatedVersionUsed = 3,
+Unused = 4,
+}
+impl ValidationConclusion {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ValidationConclusion::Unspecified => "VALIDATION_CONCLUSION_UNSPECIFIED",
+ValidationConclusion::ValidatedVersionUsed => "VALIDATED_VERSION_USED",
+ValidationConclusion::UserVersionUsed => "USER_VERSION_USED",
+ValidationConclusion::UnvalidatedVersionUsed => "UNVALIDATED_VERSION_USED",
+ValidationConclusion::Unused => "UNUSED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"VALIDATION_CONCLUSION_UNSPECIFIED" => Some(Self::Unspecified),
+"VALIDATED_VERSION_USED" => Some(Self::ValidatedVersionUsed),
+"USER_VERSION_USED" => Some(Self::UserVersionUsed),
+"UNVALIDATED_VERSION_USED" => Some(Self::UnvalidatedVersionUsed),
+"UNUSED" => Some(Self::Unused),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -315,229 +282,165 @@ pub struct ProvideValidationFeedbackResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValidationResult {
-    #[prost(message, optional, tag = "1")]
-    pub verdict: ::core::option::Option<Verdict>,
-    #[prost(message, optional, tag = "2")]
-    pub address: ::core::option::Option<Address>,
-    #[prost(message, optional, tag = "3")]
-    pub geocode: ::core::option::Option<Geocode>,
-    #[prost(message, optional, tag = "4")]
-    pub metadata: ::core::option::Option<AddressMetadata>,
-    #[prost(message, optional, tag = "5")]
-    pub usps_data: ::core::option::Option<UspsData>,
+#[prost(message, optional, tag = "1")]
+pub verdict: ::core::option::Option<Verdict>,
+#[prost(message, optional, tag = "2")]
+pub address: ::core::option::Option<Address>,
+#[prost(message, optional, tag = "3")]
+pub geocode: ::core::option::Option<Geocode>,
+#[prost(message, optional, tag = "4")]
+pub metadata: ::core::option::Option<AddressMetadata>,
+#[prost(message, optional, tag = "5")]
+pub usps_data: ::core::option::Option<UspsData>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Verdict {
-    #[prost(enumeration = "verdict::Granularity", tag = "1")]
-    pub input_granularity: i32,
-    #[prost(enumeration = "verdict::Granularity", tag = "2")]
-    pub validation_granularity: i32,
-    #[prost(enumeration = "verdict::Granularity", tag = "3")]
-    pub geocode_granularity: i32,
-    #[prost(bool, tag = "4")]
-    pub address_complete: bool,
-    #[prost(bool, tag = "5")]
-    pub has_unconfirmed_components: bool,
-    #[prost(bool, tag = "6")]
-    pub has_inferred_components: bool,
-    #[prost(bool, tag = "7")]
-    pub has_replaced_components: bool,
+#[prost(enumeration = "verdict::Granularity", tag = "1")]
+pub input_granularity: i32,
+#[prost(enumeration = "verdict::Granularity", tag = "2")]
+pub validation_granularity: i32,
+#[prost(enumeration = "verdict::Granularity", tag = "3")]
+pub geocode_granularity: i32,
+#[prost(bool, tag = "4")]
+pub address_complete: bool,
+#[prost(bool, tag = "5")]
+pub has_unconfirmed_components: bool,
+#[prost(bool, tag = "6")]
+pub has_inferred_components: bool,
+#[prost(bool, tag = "7")]
+pub has_replaced_components: bool,
 }
 /// Nested message and enum types in `Verdict`.
 pub mod verdict {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Granularity {
-        Unspecified = 0,
-        SubPremise = 1,
-        Premise = 2,
-        PremiseProximity = 3,
-        Block = 4,
-        Route = 5,
-        Other = 6,
-    }
-    impl Granularity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
-                Granularity::SubPremise => "SUB_PREMISE",
-                Granularity::Premise => "PREMISE",
-                Granularity::PremiseProximity => "PREMISE_PROXIMITY",
-                Granularity::Block => "BLOCK",
-                Granularity::Route => "ROUTE",
-                Granularity::Other => "OTHER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "GRANULARITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "SUB_PREMISE" => Some(Self::SubPremise),
-                "PREMISE" => Some(Self::Premise),
-                "PREMISE_PROXIMITY" => Some(Self::PremiseProximity),
-                "BLOCK" => Some(Self::Block),
-                "ROUTE" => Some(Self::Route),
-                "OTHER" => Some(Self::Other),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Granularity {
+Unspecified = 0,
+SubPremise = 1,
+Premise = 2,
+PremiseProximity = 3,
+Block = 4,
+Route = 5,
+Other = 6,
+}
+impl Granularity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Granularity::Unspecified => "GRANULARITY_UNSPECIFIED",
+Granularity::SubPremise => "SUB_PREMISE",
+Granularity::Premise => "PREMISE",
+Granularity::PremiseProximity => "PREMISE_PROXIMITY",
+Granularity::Block => "BLOCK",
+Granularity::Route => "ROUTE",
+Granularity::Other => "OTHER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"GRANULARITY_UNSPECIFIED" => Some(Self::Unspecified),
+"SUB_PREMISE" => Some(Self::SubPremise),
+"PREMISE" => Some(Self::Premise),
+"PREMISE_PROXIMITY" => Some(Self::PremiseProximity),
+"BLOCK" => Some(Self::Block),
+"ROUTE" => Some(Self::Route),
+"OTHER" => Some(Self::Other),
+_ => None,
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod address_validation_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The service for validating addresses.
-    #[derive(Debug, Clone)]
-    pub struct AddressValidationClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AddressValidationClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AddressValidationClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AddressValidationClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Validates an address.
-        pub async fn validate_address(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ValidateAddressRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ValidateAddressResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.addressvalidation.v1.AddressValidation/ValidateAddress",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.maps.addressvalidation.v1.AddressValidation",
-                        "ValidateAddress",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Feedback about the outcome of the sequence of validation attempts. This
-        /// should be the last call made after a sequence of validation calls for the
-        /// same address, and should be called once the transaction is concluded. This
-        /// should only be sent once for the sequence of `ValidateAddress` requests
-        /// needed to validate an address fully.
-        pub async fn provide_validation_feedback(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ProvideValidationFeedbackRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ProvideValidationFeedbackResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.addressvalidation.v1.AddressValidation/ProvideValidationFeedback",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.maps.addressvalidation.v1.AddressValidation",
-                        "ProvideValidationFeedback",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The service for validating addresses.
+#[derive(Debug, Clone)]
+pub struct AddressValidationClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AddressValidationClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AddressValidationClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AddressValidationClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Validates an address.
+pub async fn validate_address(&mut self, request: impl tonic::IntoRequest<super::ValidateAddressRequest>) -> std::result::Result<tonic::Response<super::ValidateAddressResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.addressvalidation.v1.AddressValidation/ValidateAddress");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.addressvalidation.v1.AddressValidation", "ValidateAddress"));
+self.inner.unary(req, path, codec).await
+}
+/// Feedback about the outcome of the sequence of validation attempts. This
+/// should be the last call made after a sequence of validation calls for the
+/// same address, and should be called once the transaction is concluded. This
+/// should only be sent once for the sequence of `ValidateAddress` requests
+/// needed to validate an address fully.
+pub async fn provide_validation_feedback(&mut self, request: impl tonic::IntoRequest<super::ProvideValidationFeedbackRequest>) -> std::result::Result<tonic::Response<super::ProvideValidationFeedbackResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.addressvalidation.v1.AddressValidation/ProvideValidationFeedback");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.addressvalidation.v1.AddressValidation", "ProvideValidationFeedback"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

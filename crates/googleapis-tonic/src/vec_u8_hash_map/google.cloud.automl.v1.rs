@@ -2,149 +2,140 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InputConfig {
-    #[prost(map = "string, string", tag = "2")]
-    pub params: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(oneof = "input_config::Source", tags = "1")]
-    pub source: ::core::option::Option<input_config::Source>,
+#[prost(map = "string, string", tag = "2")]
+pub params: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "input_config::Source", tags = "1")]
+pub source: ::core::option::Option<input_config::Source>,
 }
 /// Nested message and enum types in `InputConfig`.
 pub mod input_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "1")]
-        GcsSource(super::GcsSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "1")]
+GcsSource(super::GcsSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictInputConfig {
-    #[prost(oneof = "batch_predict_input_config::Source", tags = "1")]
-    pub source: ::core::option::Option<batch_predict_input_config::Source>,
+#[prost(oneof = "batch_predict_input_config::Source", tags = "1")]
+pub source: ::core::option::Option<batch_predict_input_config::Source>,
 }
 /// Nested message and enum types in `BatchPredictInputConfig`.
 pub mod batch_predict_input_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "1")]
-        GcsSource(super::GcsSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "1")]
+GcsSource(super::GcsSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DocumentInputConfig {
-    #[prost(message, optional, tag = "1")]
-    pub gcs_source: ::core::option::Option<GcsSource>,
+#[prost(message, optional, tag = "1")]
+pub gcs_source: ::core::option::Option<GcsSource>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
-    #[prost(oneof = "output_config::Destination", tags = "1")]
-    pub destination: ::core::option::Option<output_config::Destination>,
+#[prost(oneof = "output_config::Destination", tags = "1")]
+pub destination: ::core::option::Option<output_config::Destination>,
 }
 /// Nested message and enum types in `OutputConfig`.
 pub mod output_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(message, tag = "1")]
-        GcsDestination(super::GcsDestination),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(message, tag = "1")]
+GcsDestination(super::GcsDestination),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictOutputConfig {
-    #[prost(oneof = "batch_predict_output_config::Destination", tags = "1")]
-    pub destination: ::core::option::Option<batch_predict_output_config::Destination>,
+#[prost(oneof = "batch_predict_output_config::Destination", tags = "1")]
+pub destination: ::core::option::Option<batch_predict_output_config::Destination>,
 }
 /// Nested message and enum types in `BatchPredictOutputConfig`.
 pub mod batch_predict_output_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(message, tag = "1")]
-        GcsDestination(super::GcsDestination),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(message, tag = "1")]
+GcsDestination(super::GcsDestination),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModelExportOutputConfig {
-    #[prost(string, tag = "4")]
-    pub model_format: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "2")]
-    pub params: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(oneof = "model_export_output_config::Destination", tags = "1")]
-    pub destination: ::core::option::Option<model_export_output_config::Destination>,
+#[prost(string, tag = "4")]
+pub model_format: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "2")]
+pub params: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "model_export_output_config::Destination", tags = "1")]
+pub destination: ::core::option::Option<model_export_output_config::Destination>,
 }
 /// Nested message and enum types in `ModelExportOutputConfig`.
 pub mod model_export_output_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(message, tag = "1")]
-        GcsDestination(super::GcsDestination),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(message, tag = "1")]
+GcsDestination(super::GcsDestination),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsSource {
-    #[prost(string, repeated, tag = "1")]
-    pub input_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "1")]
+pub input_uris: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsDestination {
-    #[prost(string, tag = "1")]
-    pub output_uri_prefix: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub output_uri_prefix: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(int32, tag = "13")]
-    pub progress_percent: i32,
-    #[prost(message, repeated, tag = "2")]
-    pub partial_failures: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(
-        oneof = "operation_metadata::Details",
-        tags = "8, 24, 25, 10, 30, 15, 16, 21, 22"
-    )]
-    pub details: ::core::option::Option<operation_metadata::Details>,
+#[prost(int32, tag = "13")]
+pub progress_percent: i32,
+#[prost(message, repeated, tag = "2")]
+pub partial_failures: ::prost::alloc::vec::Vec<super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(oneof = "operation_metadata::Details", tags = "8, 24, 25, 10, 30, 15, 16, 21, 22")]
+pub details: ::core::option::Option<operation_metadata::Details>,
 }
 /// Nested message and enum types in `OperationMetadata`.
 pub mod operation_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Details {
-        #[prost(message, tag = "8")]
-        DeleteDetails(super::DeleteOperationMetadata),
-        #[prost(message, tag = "24")]
-        DeployModelDetails(super::DeployModelOperationMetadata),
-        #[prost(message, tag = "25")]
-        UndeployModelDetails(super::UndeployModelOperationMetadata),
-        #[prost(message, tag = "10")]
-        CreateModelDetails(super::CreateModelOperationMetadata),
-        #[prost(message, tag = "30")]
-        CreateDatasetDetails(super::CreateDatasetOperationMetadata),
-        #[prost(message, tag = "15")]
-        ImportDataDetails(super::ImportDataOperationMetadata),
-        #[prost(message, tag = "16")]
-        BatchPredictDetails(super::BatchPredictOperationMetadata),
-        #[prost(message, tag = "21")]
-        ExportDataDetails(super::ExportDataOperationMetadata),
-        #[prost(message, tag = "22")]
-        ExportModelDetails(super::ExportModelOperationMetadata),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Details {
+#[prost(message, tag = "8")]
+DeleteDetails(super::DeleteOperationMetadata),
+#[prost(message, tag = "24")]
+DeployModelDetails(super::DeployModelOperationMetadata),
+#[prost(message, tag = "25")]
+UndeployModelDetails(super::UndeployModelOperationMetadata),
+#[prost(message, tag = "10")]
+CreateModelDetails(super::CreateModelOperationMetadata),
+#[prost(message, tag = "30")]
+CreateDatasetDetails(super::CreateDatasetOperationMetadata),
+#[prost(message, tag = "15")]
+ImportDataDetails(super::ImportDataOperationMetadata),
+#[prost(message, tag = "16")]
+BatchPredictDetails(super::BatchPredictOperationMetadata),
+#[prost(message, tag = "21")]
+ExportDataDetails(super::ExportDataOperationMetadata),
+#[prost(message, tag = "22")]
+ExportModelDetails(super::ExportModelOperationMetadata),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -167,449 +158,411 @@ pub struct ImportDataOperationMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDataOperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub output_info: ::core::option::Option<
-        export_data_operation_metadata::ExportDataOutputInfo,
-    >,
+#[prost(message, optional, tag = "1")]
+pub output_info: ::core::option::Option<export_data_operation_metadata::ExportDataOutputInfo>,
 }
 /// Nested message and enum types in `ExportDataOperationMetadata`.
 pub mod export_data_operation_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ExportDataOutputInfo {
-        #[prost(oneof = "export_data_output_info::OutputLocation", tags = "1")]
-        pub output_location: ::core::option::Option<
-            export_data_output_info::OutputLocation,
-        >,
-    }
-    /// Nested message and enum types in `ExportDataOutputInfo`.
-    pub mod export_data_output_info {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum OutputLocation {
-            #[prost(string, tag = "1")]
-            GcsOutputDirectory(::prost::alloc::string::String),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExportDataOutputInfo {
+#[prost(oneof = "export_data_output_info::OutputLocation", tags = "1")]
+pub output_location: ::core::option::Option<export_data_output_info::OutputLocation>,
+}
+/// Nested message and enum types in `ExportDataOutputInfo`.
+pub mod export_data_output_info {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum OutputLocation {
+#[prost(string, tag = "1")]
+GcsOutputDirectory(::prost::alloc::string::String),
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictOperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub input_config: ::core::option::Option<BatchPredictInputConfig>,
-    #[prost(message, optional, tag = "2")]
-    pub output_info: ::core::option::Option<
-        batch_predict_operation_metadata::BatchPredictOutputInfo,
-    >,
+#[prost(message, optional, tag = "1")]
+pub input_config: ::core::option::Option<BatchPredictInputConfig>,
+#[prost(message, optional, tag = "2")]
+pub output_info: ::core::option::Option<batch_predict_operation_metadata::BatchPredictOutputInfo>,
 }
 /// Nested message and enum types in `BatchPredictOperationMetadata`.
 pub mod batch_predict_operation_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct BatchPredictOutputInfo {
-        #[prost(oneof = "batch_predict_output_info::OutputLocation", tags = "1")]
-        pub output_location: ::core::option::Option<
-            batch_predict_output_info::OutputLocation,
-        >,
-    }
-    /// Nested message and enum types in `BatchPredictOutputInfo`.
-    pub mod batch_predict_output_info {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum OutputLocation {
-            #[prost(string, tag = "1")]
-            GcsOutputDirectory(::prost::alloc::string::String),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BatchPredictOutputInfo {
+#[prost(oneof = "batch_predict_output_info::OutputLocation", tags = "1")]
+pub output_location: ::core::option::Option<batch_predict_output_info::OutputLocation>,
+}
+/// Nested message and enum types in `BatchPredictOutputInfo`.
+pub mod batch_predict_output_info {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum OutputLocation {
+#[prost(string, tag = "1")]
+GcsOutputDirectory(::prost::alloc::string::String),
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportModelOperationMetadata {
-    #[prost(message, optional, tag = "2")]
-    pub output_info: ::core::option::Option<
-        export_model_operation_metadata::ExportModelOutputInfo,
-    >,
+#[prost(message, optional, tag = "2")]
+pub output_info: ::core::option::Option<export_model_operation_metadata::ExportModelOutputInfo>,
 }
 /// Nested message and enum types in `ExportModelOperationMetadata`.
 pub mod export_model_operation_metadata {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ExportModelOutputInfo {
-        #[prost(string, tag = "1")]
-        pub gcs_output_directory: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExportModelOutputInfo {
+#[prost(string, tag = "1")]
+pub gcs_output_directory: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotationSpec {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "9")]
-    pub example_count: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(int32, tag = "9")]
+pub example_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NormalizedVertex {
-    #[prost(float, tag = "1")]
-    pub x: f32,
-    #[prost(float, tag = "2")]
-    pub y: f32,
+#[prost(float, tag = "1")]
+pub x: f32,
+#[prost(float, tag = "2")]
+pub y: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BoundingPoly {
-    #[prost(message, repeated, tag = "2")]
-    pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
+#[prost(message, repeated, tag = "2")]
+pub normalized_vertices: ::prost::alloc::vec::Vec<NormalizedVertex>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextSegment {
-    #[prost(string, tag = "3")]
-    pub content: ::prost::alloc::string::String,
-    #[prost(int64, tag = "1")]
-    pub start_offset: i64,
-    #[prost(int64, tag = "2")]
-    pub end_offset: i64,
+#[prost(string, tag = "3")]
+pub content: ::prost::alloc::string::String,
+#[prost(int64, tag = "1")]
+pub start_offset: i64,
+#[prost(int64, tag = "2")]
+pub end_offset: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Image {
-    #[prost(string, tag = "4")]
-    pub thumbnail_uri: ::prost::alloc::string::String,
-    #[prost(oneof = "image::Data", tags = "1")]
-    pub data: ::core::option::Option<image::Data>,
+#[prost(string, tag = "4")]
+pub thumbnail_uri: ::prost::alloc::string::String,
+#[prost(oneof = "image::Data", tags = "1")]
+pub data: ::core::option::Option<image::Data>,
 }
 /// Nested message and enum types in `Image`.
 pub mod image {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Data {
-        #[prost(bytes, tag = "1")]
-        ImageBytes(::prost::alloc::vec::Vec<u8>),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Data {
+#[prost(bytes, tag = "1")]
+ImageBytes(::prost::alloc::vec::Vec<u8>),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextSnippet {
-    #[prost(string, tag = "1")]
-    pub content: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub mime_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub content_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub content: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub mime_type: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub content_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct DocumentDimensions {
-    #[prost(enumeration = "document_dimensions::DocumentDimensionUnit", tag = "1")]
-    pub unit: i32,
-    #[prost(float, tag = "2")]
-    pub width: f32,
-    #[prost(float, tag = "3")]
-    pub height: f32,
+#[prost(enumeration = "document_dimensions::DocumentDimensionUnit", tag = "1")]
+pub unit: i32,
+#[prost(float, tag = "2")]
+pub width: f32,
+#[prost(float, tag = "3")]
+pub height: f32,
 }
 /// Nested message and enum types in `DocumentDimensions`.
 pub mod document_dimensions {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DocumentDimensionUnit {
-        Unspecified = 0,
-        Inch = 1,
-        Centimeter = 2,
-        Point = 3,
-    }
-    impl DocumentDimensionUnit {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DocumentDimensionUnit::Unspecified => {
-                    "DOCUMENT_DIMENSION_UNIT_UNSPECIFIED"
-                }
-                DocumentDimensionUnit::Inch => "INCH",
-                DocumentDimensionUnit::Centimeter => "CENTIMETER",
-                DocumentDimensionUnit::Point => "POINT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DOCUMENT_DIMENSION_UNIT_UNSPECIFIED" => Some(Self::Unspecified),
-                "INCH" => Some(Self::Inch),
-                "CENTIMETER" => Some(Self::Centimeter),
-                "POINT" => Some(Self::Point),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DocumentDimensionUnit {
+Unspecified = 0,
+Inch = 1,
+Centimeter = 2,
+Point = 3,
+}
+impl DocumentDimensionUnit {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DocumentDimensionUnit::Unspecified => "DOCUMENT_DIMENSION_UNIT_UNSPECIFIED",
+DocumentDimensionUnit::Inch => "INCH",
+DocumentDimensionUnit::Centimeter => "CENTIMETER",
+DocumentDimensionUnit::Point => "POINT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DOCUMENT_DIMENSION_UNIT_UNSPECIFIED" => Some(Self::Unspecified),
+"INCH" => Some(Self::Inch),
+"CENTIMETER" => Some(Self::Centimeter),
+"POINT" => Some(Self::Point),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Document {
-    #[prost(message, optional, tag = "1")]
-    pub input_config: ::core::option::Option<DocumentInputConfig>,
-    #[prost(message, optional, tag = "2")]
-    pub document_text: ::core::option::Option<TextSnippet>,
-    #[prost(message, repeated, tag = "3")]
-    pub layout: ::prost::alloc::vec::Vec<document::Layout>,
-    #[prost(message, optional, tag = "4")]
-    pub document_dimensions: ::core::option::Option<DocumentDimensions>,
-    #[prost(int32, tag = "5")]
-    pub page_count: i32,
+#[prost(message, optional, tag = "1")]
+pub input_config: ::core::option::Option<DocumentInputConfig>,
+#[prost(message, optional, tag = "2")]
+pub document_text: ::core::option::Option<TextSnippet>,
+#[prost(message, repeated, tag = "3")]
+pub layout: ::prost::alloc::vec::Vec<document::Layout>,
+#[prost(message, optional, tag = "4")]
+pub document_dimensions: ::core::option::Option<DocumentDimensions>,
+#[prost(int32, tag = "5")]
+pub page_count: i32,
 }
 /// Nested message and enum types in `Document`.
 pub mod document {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Layout {
-        #[prost(message, optional, tag = "1")]
-        pub text_segment: ::core::option::Option<super::TextSegment>,
-        #[prost(int32, tag = "2")]
-        pub page_number: i32,
-        #[prost(message, optional, tag = "3")]
-        pub bounding_poly: ::core::option::Option<super::BoundingPoly>,
-        #[prost(enumeration = "layout::TextSegmentType", tag = "4")]
-        pub text_segment_type: i32,
-    }
-    /// Nested message and enum types in `Layout`.
-    pub mod layout {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum TextSegmentType {
-            Unspecified = 0,
-            Token = 1,
-            Paragraph = 2,
-            FormField = 3,
-            FormFieldName = 4,
-            FormFieldContents = 5,
-            Table = 6,
-            TableHeader = 7,
-            TableRow = 8,
-            TableCell = 9,
-        }
-        impl TextSegmentType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    TextSegmentType::Unspecified => "TEXT_SEGMENT_TYPE_UNSPECIFIED",
-                    TextSegmentType::Token => "TOKEN",
-                    TextSegmentType::Paragraph => "PARAGRAPH",
-                    TextSegmentType::FormField => "FORM_FIELD",
-                    TextSegmentType::FormFieldName => "FORM_FIELD_NAME",
-                    TextSegmentType::FormFieldContents => "FORM_FIELD_CONTENTS",
-                    TextSegmentType::Table => "TABLE",
-                    TextSegmentType::TableHeader => "TABLE_HEADER",
-                    TextSegmentType::TableRow => "TABLE_ROW",
-                    TextSegmentType::TableCell => "TABLE_CELL",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "TEXT_SEGMENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "TOKEN" => Some(Self::Token),
-                    "PARAGRAPH" => Some(Self::Paragraph),
-                    "FORM_FIELD" => Some(Self::FormField),
-                    "FORM_FIELD_NAME" => Some(Self::FormFieldName),
-                    "FORM_FIELD_CONTENTS" => Some(Self::FormFieldContents),
-                    "TABLE" => Some(Self::Table),
-                    "TABLE_HEADER" => Some(Self::TableHeader),
-                    "TABLE_ROW" => Some(Self::TableRow),
-                    "TABLE_CELL" => Some(Self::TableCell),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Layout {
+#[prost(message, optional, tag = "1")]
+pub text_segment: ::core::option::Option<super::TextSegment>,
+#[prost(int32, tag = "2")]
+pub page_number: i32,
+#[prost(message, optional, tag = "3")]
+pub bounding_poly: ::core::option::Option<super::BoundingPoly>,
+#[prost(enumeration = "layout::TextSegmentType", tag = "4")]
+pub text_segment_type: i32,
+}
+/// Nested message and enum types in `Layout`.
+pub mod layout {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum TextSegmentType {
+Unspecified = 0,
+Token = 1,
+Paragraph = 2,
+FormField = 3,
+FormFieldName = 4,
+FormFieldContents = 5,
+Table = 6,
+TableHeader = 7,
+TableRow = 8,
+TableCell = 9,
+}
+impl TextSegmentType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TextSegmentType::Unspecified => "TEXT_SEGMENT_TYPE_UNSPECIFIED",
+TextSegmentType::Token => "TOKEN",
+TextSegmentType::Paragraph => "PARAGRAPH",
+TextSegmentType::FormField => "FORM_FIELD",
+TextSegmentType::FormFieldName => "FORM_FIELD_NAME",
+TextSegmentType::FormFieldContents => "FORM_FIELD_CONTENTS",
+TextSegmentType::Table => "TABLE",
+TextSegmentType::TableHeader => "TABLE_HEADER",
+TextSegmentType::TableRow => "TABLE_ROW",
+TextSegmentType::TableCell => "TABLE_CELL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TEXT_SEGMENT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"TOKEN" => Some(Self::Token),
+"PARAGRAPH" => Some(Self::Paragraph),
+"FORM_FIELD" => Some(Self::FormField),
+"FORM_FIELD_NAME" => Some(Self::FormFieldName),
+"FORM_FIELD_CONTENTS" => Some(Self::FormFieldContents),
+"TABLE" => Some(Self::Table),
+"TABLE_HEADER" => Some(Self::TableHeader),
+"TABLE_ROW" => Some(Self::TableRow),
+"TABLE_CELL" => Some(Self::TableCell),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExamplePayload {
-    #[prost(oneof = "example_payload::Payload", tags = "1, 2, 4")]
-    pub payload: ::core::option::Option<example_payload::Payload>,
+#[prost(oneof = "example_payload::Payload", tags = "1, 2, 4")]
+pub payload: ::core::option::Option<example_payload::Payload>,
 }
 /// Nested message and enum types in `ExamplePayload`.
 pub mod example_payload {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Payload {
-        #[prost(message, tag = "1")]
-        Image(super::Image),
-        #[prost(message, tag = "2")]
-        TextSnippet(super::TextSnippet),
-        #[prost(message, tag = "4")]
-        Document(super::Document),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Payload {
+#[prost(message, tag = "1")]
+Image(super::Image),
+#[prost(message, tag = "2")]
+TextSnippet(super::TextSnippet),
+#[prost(message, tag = "4")]
+Document(super::Document),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ClassificationAnnotation {
-    #[prost(float, tag = "1")]
-    pub score: f32,
+#[prost(float, tag = "1")]
+pub score: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ClassificationEvaluationMetrics {
-    #[prost(float, tag = "1")]
-    pub au_prc: f32,
-    #[prost(float, tag = "6")]
-    pub au_roc: f32,
-    #[prost(float, tag = "7")]
-    pub log_loss: f32,
-    #[prost(message, repeated, tag = "3")]
-    pub confidence_metrics_entry: ::prost::alloc::vec::Vec<
-        classification_evaluation_metrics::ConfidenceMetricsEntry,
-    >,
-    #[prost(message, optional, tag = "4")]
-    pub confusion_matrix: ::core::option::Option<
-        classification_evaluation_metrics::ConfusionMatrix,
-    >,
-    #[prost(string, repeated, tag = "5")]
-    pub annotation_spec_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(float, tag = "1")]
+pub au_prc: f32,
+#[prost(float, tag = "6")]
+pub au_roc: f32,
+#[prost(float, tag = "7")]
+pub log_loss: f32,
+#[prost(message, repeated, tag = "3")]
+pub confidence_metrics_entry: ::prost::alloc::vec::Vec<classification_evaluation_metrics::ConfidenceMetricsEntry>,
+#[prost(message, optional, tag = "4")]
+pub confusion_matrix: ::core::option::Option<classification_evaluation_metrics::ConfusionMatrix>,
+#[prost(string, repeated, tag = "5")]
+pub annotation_spec_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `ClassificationEvaluationMetrics`.
 pub mod classification_evaluation_metrics {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ConfidenceMetricsEntry {
-        #[prost(float, tag = "1")]
-        pub confidence_threshold: f32,
-        #[prost(int32, tag = "14")]
-        pub position_threshold: i32,
-        #[prost(float, tag = "2")]
-        pub recall: f32,
-        #[prost(float, tag = "3")]
-        pub precision: f32,
-        #[prost(float, tag = "8")]
-        pub false_positive_rate: f32,
-        #[prost(float, tag = "4")]
-        pub f1_score: f32,
-        #[prost(float, tag = "5")]
-        pub recall_at1: f32,
-        #[prost(float, tag = "6")]
-        pub precision_at1: f32,
-        #[prost(float, tag = "9")]
-        pub false_positive_rate_at1: f32,
-        #[prost(float, tag = "7")]
-        pub f1_score_at1: f32,
-        #[prost(int64, tag = "10")]
-        pub true_positive_count: i64,
-        #[prost(int64, tag = "11")]
-        pub false_positive_count: i64,
-        #[prost(int64, tag = "12")]
-        pub false_negative_count: i64,
-        #[prost(int64, tag = "13")]
-        pub true_negative_count: i64,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ConfusionMatrix {
-        #[prost(string, repeated, tag = "1")]
-        pub annotation_spec_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "3")]
-        pub display_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(message, repeated, tag = "2")]
-        pub row: ::prost::alloc::vec::Vec<confusion_matrix::Row>,
-    }
-    /// Nested message and enum types in `ConfusionMatrix`.
-    pub mod confusion_matrix {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct Row {
-            #[prost(int32, repeated, tag = "1")]
-            pub example_count: ::prost::alloc::vec::Vec<i32>,
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ConfidenceMetricsEntry {
+#[prost(float, tag = "1")]
+pub confidence_threshold: f32,
+#[prost(int32, tag = "14")]
+pub position_threshold: i32,
+#[prost(float, tag = "2")]
+pub recall: f32,
+#[prost(float, tag = "3")]
+pub precision: f32,
+#[prost(float, tag = "8")]
+pub false_positive_rate: f32,
+#[prost(float, tag = "4")]
+pub f1_score: f32,
+#[prost(float, tag = "5")]
+pub recall_at1: f32,
+#[prost(float, tag = "6")]
+pub precision_at1: f32,
+#[prost(float, tag = "9")]
+pub false_positive_rate_at1: f32,
+#[prost(float, tag = "7")]
+pub f1_score_at1: f32,
+#[prost(int64, tag = "10")]
+pub true_positive_count: i64,
+#[prost(int64, tag = "11")]
+pub false_positive_count: i64,
+#[prost(int64, tag = "12")]
+pub false_negative_count: i64,
+#[prost(int64, tag = "13")]
+pub true_negative_count: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfusionMatrix {
+#[prost(string, repeated, tag = "1")]
+pub annotation_spec_id: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub display_name: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "2")]
+pub row: ::prost::alloc::vec::Vec<confusion_matrix::Row>,
+}
+/// Nested message and enum types in `ConfusionMatrix`.
+pub mod confusion_matrix {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Row {
+#[prost(int32, repeated, tag = "1")]
+pub example_count: ::prost::alloc::vec::Vec<i32>,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ClassificationType {
-    Unspecified = 0,
-    Multiclass = 1,
-    Multilabel = 2,
+Unspecified = 0,
+Multiclass = 1,
+Multilabel = 2,
 }
 impl ClassificationType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ClassificationType::Unspecified => "CLASSIFICATION_TYPE_UNSPECIFIED",
-            ClassificationType::Multiclass => "MULTICLASS",
-            ClassificationType::Multilabel => "MULTILABEL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "CLASSIFICATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "MULTICLASS" => Some(Self::Multiclass),
-            "MULTILABEL" => Some(Self::Multilabel),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ClassificationType::Unspecified => "CLASSIFICATION_TYPE_UNSPECIFIED",
+ClassificationType::Multiclass => "MULTICLASS",
+ClassificationType::Multilabel => "MULTILABEL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CLASSIFICATION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"MULTICLASS" => Some(Self::Multiclass),
+"MULTILABEL" => Some(Self::Multilabel),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TextSentimentAnnotation {
-    #[prost(int32, tag = "1")]
-    pub sentiment: i32,
+#[prost(int32, tag = "1")]
+pub sentiment: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextSentimentEvaluationMetrics {
-    #[prost(float, tag = "1")]
-    pub precision: f32,
-    #[prost(float, tag = "2")]
-    pub recall: f32,
-    #[prost(float, tag = "3")]
-    pub f1_score: f32,
-    #[prost(float, tag = "4")]
-    pub mean_absolute_error: f32,
-    #[prost(float, tag = "5")]
-    pub mean_squared_error: f32,
-    #[prost(float, tag = "6")]
-    pub linear_kappa: f32,
-    #[prost(float, tag = "7")]
-    pub quadratic_kappa: f32,
-    #[prost(message, optional, tag = "8")]
-    pub confusion_matrix: ::core::option::Option<
-        classification_evaluation_metrics::ConfusionMatrix,
-    >,
+#[prost(float, tag = "1")]
+pub precision: f32,
+#[prost(float, tag = "2")]
+pub recall: f32,
+#[prost(float, tag = "3")]
+pub f1_score: f32,
+#[prost(float, tag = "4")]
+pub mean_absolute_error: f32,
+#[prost(float, tag = "5")]
+pub mean_squared_error: f32,
+#[prost(float, tag = "6")]
+pub linear_kappa: f32,
+#[prost(float, tag = "7")]
+pub quadratic_kappa: f32,
+#[prost(message, optional, tag = "8")]
+pub confusion_matrix: ::core::option::Option<classification_evaluation_metrics::ConfusionMatrix>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImageClassificationDatasetMetadata {
-    #[prost(enumeration = "ClassificationType", tag = "1")]
-    pub classification_type: i32,
+#[prost(enumeration = "ClassificationType", tag = "1")]
+pub classification_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -617,60 +570,60 @@ pub struct ImageObjectDetectionDatasetMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageClassificationModelMetadata {
-    #[prost(string, tag = "1")]
-    pub base_model_id: ::prost::alloc::string::String,
-    #[prost(int64, tag = "16")]
-    pub train_budget_milli_node_hours: i64,
-    #[prost(int64, tag = "17")]
-    pub train_cost_milli_node_hours: i64,
-    #[prost(string, tag = "5")]
-    pub stop_reason: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub model_type: ::prost::alloc::string::String,
-    #[prost(double, tag = "13")]
-    pub node_qps: f64,
-    #[prost(int64, tag = "14")]
-    pub node_count: i64,
+#[prost(string, tag = "1")]
+pub base_model_id: ::prost::alloc::string::String,
+#[prost(int64, tag = "16")]
+pub train_budget_milli_node_hours: i64,
+#[prost(int64, tag = "17")]
+pub train_cost_milli_node_hours: i64,
+#[prost(string, tag = "5")]
+pub stop_reason: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub model_type: ::prost::alloc::string::String,
+#[prost(double, tag = "13")]
+pub node_qps: f64,
+#[prost(int64, tag = "14")]
+pub node_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageObjectDetectionModelMetadata {
-    #[prost(string, tag = "1")]
-    pub model_type: ::prost::alloc::string::String,
-    #[prost(int64, tag = "3")]
-    pub node_count: i64,
-    #[prost(double, tag = "4")]
-    pub node_qps: f64,
-    #[prost(string, tag = "5")]
-    pub stop_reason: ::prost::alloc::string::String,
-    #[prost(int64, tag = "6")]
-    pub train_budget_milli_node_hours: i64,
-    #[prost(int64, tag = "7")]
-    pub train_cost_milli_node_hours: i64,
+#[prost(string, tag = "1")]
+pub model_type: ::prost::alloc::string::String,
+#[prost(int64, tag = "3")]
+pub node_count: i64,
+#[prost(double, tag = "4")]
+pub node_qps: f64,
+#[prost(string, tag = "5")]
+pub stop_reason: ::prost::alloc::string::String,
+#[prost(int64, tag = "6")]
+pub train_budget_milli_node_hours: i64,
+#[prost(int64, tag = "7")]
+pub train_cost_milli_node_hours: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImageClassificationModelDeploymentMetadata {
-    #[prost(int64, tag = "1")]
-    pub node_count: i64,
+#[prost(int64, tag = "1")]
+pub node_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ImageObjectDetectionModelDeploymentMetadata {
-    #[prost(int64, tag = "1")]
-    pub node_count: i64,
+#[prost(int64, tag = "1")]
+pub node_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TextClassificationDatasetMetadata {
-    #[prost(enumeration = "ClassificationType", tag = "1")]
-    pub classification_type: i32,
+#[prost(enumeration = "ClassificationType", tag = "1")]
+pub classification_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TextClassificationModelMetadata {
-    #[prost(enumeration = "ClassificationType", tag = "3")]
-    pub classification_type: i32,
+#[prost(enumeration = "ClassificationType", tag = "3")]
+pub classification_type: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -681,8 +634,8 @@ pub struct TextExtractionModelMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TextSentimentDatasetMetadata {
-    #[prost(int32, tag = "1")]
-    pub sentiment_max: i32,
+#[prost(int32, tag = "1")]
+pub sentiment_max: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -690,1339 +643,922 @@ pub struct TextSentimentModelMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranslationDatasetMetadata {
-    #[prost(string, tag = "1")]
-    pub source_language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub target_language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub source_language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub target_language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TranslationEvaluationMetrics {
-    #[prost(double, tag = "1")]
-    pub bleu_score: f64,
-    #[prost(double, tag = "2")]
-    pub base_bleu_score: f64,
+#[prost(double, tag = "1")]
+pub bleu_score: f64,
+#[prost(double, tag = "2")]
+pub base_bleu_score: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranslationModelMetadata {
-    #[prost(string, tag = "1")]
-    pub base_model: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub source_language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub target_language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub base_model: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub source_language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub target_language_code: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TranslationAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub translated_content: ::core::option::Option<TextSnippet>,
+#[prost(message, optional, tag = "1")]
+pub translated_content: ::core::option::Option<TextSnippet>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Dataset {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(int32, tag = "21")]
-    pub example_count: i32,
-    #[prost(message, optional, tag = "14")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "17")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "39")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(oneof = "dataset::DatasetMetadata", tags = "23, 24, 25, 26, 28, 30")]
-    pub dataset_metadata: ::core::option::Option<dataset::DatasetMetadata>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(int32, tag = "21")]
+pub example_count: i32,
+#[prost(message, optional, tag = "14")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "17")]
+pub etag: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "39")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "dataset::DatasetMetadata", tags = "23, 24, 25, 26, 28, 30")]
+pub dataset_metadata: ::core::option::Option<dataset::DatasetMetadata>,
 }
 /// Nested message and enum types in `Dataset`.
 pub mod dataset {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum DatasetMetadata {
-        #[prost(message, tag = "23")]
-        TranslationDatasetMetadata(super::TranslationDatasetMetadata),
-        #[prost(message, tag = "24")]
-        ImageClassificationDatasetMetadata(super::ImageClassificationDatasetMetadata),
-        #[prost(message, tag = "25")]
-        TextClassificationDatasetMetadata(super::TextClassificationDatasetMetadata),
-        #[prost(message, tag = "26")]
-        ImageObjectDetectionDatasetMetadata(super::ImageObjectDetectionDatasetMetadata),
-        #[prost(message, tag = "28")]
-        TextExtractionDatasetMetadata(super::TextExtractionDatasetMetadata),
-        #[prost(message, tag = "30")]
-        TextSentimentDatasetMetadata(super::TextSentimentDatasetMetadata),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum DatasetMetadata {
+#[prost(message, tag = "23")]
+TranslationDatasetMetadata(super::TranslationDatasetMetadata),
+#[prost(message, tag = "24")]
+ImageClassificationDatasetMetadata(super::ImageClassificationDatasetMetadata),
+#[prost(message, tag = "25")]
+TextClassificationDatasetMetadata(super::TextClassificationDatasetMetadata),
+#[prost(message, tag = "26")]
+ImageObjectDetectionDatasetMetadata(super::ImageObjectDetectionDatasetMetadata),
+#[prost(message, tag = "28")]
+TextExtractionDatasetMetadata(super::TextExtractionDatasetMetadata),
+#[prost(message, tag = "30")]
+TextSentimentDatasetMetadata(super::TextSentimentDatasetMetadata),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageObjectDetectionAnnotation {
-    #[prost(message, optional, tag = "1")]
-    pub bounding_box: ::core::option::Option<BoundingPoly>,
-    #[prost(float, tag = "2")]
-    pub score: f32,
+#[prost(message, optional, tag = "1")]
+pub bounding_box: ::core::option::Option<BoundingPoly>,
+#[prost(float, tag = "2")]
+pub score: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BoundingBoxMetricsEntry {
-    #[prost(float, tag = "1")]
-    pub iou_threshold: f32,
-    #[prost(float, tag = "2")]
-    pub mean_average_precision: f32,
-    #[prost(message, repeated, tag = "3")]
-    pub confidence_metrics_entries: ::prost::alloc::vec::Vec<
-        bounding_box_metrics_entry::ConfidenceMetricsEntry,
-    >,
+#[prost(float, tag = "1")]
+pub iou_threshold: f32,
+#[prost(float, tag = "2")]
+pub mean_average_precision: f32,
+#[prost(message, repeated, tag = "3")]
+pub confidence_metrics_entries: ::prost::alloc::vec::Vec<bounding_box_metrics_entry::ConfidenceMetricsEntry>,
 }
 /// Nested message and enum types in `BoundingBoxMetricsEntry`.
 pub mod bounding_box_metrics_entry {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ConfidenceMetricsEntry {
-        #[prost(float, tag = "1")]
-        pub confidence_threshold: f32,
-        #[prost(float, tag = "2")]
-        pub recall: f32,
-        #[prost(float, tag = "3")]
-        pub precision: f32,
-        #[prost(float, tag = "4")]
-        pub f1_score: f32,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ConfidenceMetricsEntry {
+#[prost(float, tag = "1")]
+pub confidence_threshold: f32,
+#[prost(float, tag = "2")]
+pub recall: f32,
+#[prost(float, tag = "3")]
+pub precision: f32,
+#[prost(float, tag = "4")]
+pub f1_score: f32,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImageObjectDetectionEvaluationMetrics {
-    #[prost(int32, tag = "1")]
-    pub evaluated_bounding_box_count: i32,
-    #[prost(message, repeated, tag = "2")]
-    pub bounding_box_metrics_entries: ::prost::alloc::vec::Vec<BoundingBoxMetricsEntry>,
-    #[prost(float, tag = "3")]
-    pub bounding_box_mean_average_precision: f32,
+#[prost(int32, tag = "1")]
+pub evaluated_bounding_box_count: i32,
+#[prost(message, repeated, tag = "2")]
+pub bounding_box_metrics_entries: ::prost::alloc::vec::Vec<BoundingBoxMetricsEntry>,
+#[prost(float, tag = "3")]
+pub bounding_box_mean_average_precision: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextExtractionAnnotation {
-    #[prost(float, tag = "1")]
-    pub score: f32,
-    #[prost(oneof = "text_extraction_annotation::Annotation", tags = "3")]
-    pub annotation: ::core::option::Option<text_extraction_annotation::Annotation>,
+#[prost(float, tag = "1")]
+pub score: f32,
+#[prost(oneof = "text_extraction_annotation::Annotation", tags = "3")]
+pub annotation: ::core::option::Option<text_extraction_annotation::Annotation>,
 }
 /// Nested message and enum types in `TextExtractionAnnotation`.
 pub mod text_extraction_annotation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Annotation {
-        #[prost(message, tag = "3")]
-        TextSegment(super::TextSegment),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Annotation {
+#[prost(message, tag = "3")]
+TextSegment(super::TextSegment),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TextExtractionEvaluationMetrics {
-    #[prost(float, tag = "1")]
-    pub au_prc: f32,
-    #[prost(message, repeated, tag = "2")]
-    pub confidence_metrics_entries: ::prost::alloc::vec::Vec<
-        text_extraction_evaluation_metrics::ConfidenceMetricsEntry,
-    >,
+#[prost(float, tag = "1")]
+pub au_prc: f32,
+#[prost(message, repeated, tag = "2")]
+pub confidence_metrics_entries: ::prost::alloc::vec::Vec<text_extraction_evaluation_metrics::ConfidenceMetricsEntry>,
 }
 /// Nested message and enum types in `TextExtractionEvaluationMetrics`.
 pub mod text_extraction_evaluation_metrics {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ConfidenceMetricsEntry {
-        #[prost(float, tag = "1")]
-        pub confidence_threshold: f32,
-        #[prost(float, tag = "3")]
-        pub recall: f32,
-        #[prost(float, tag = "4")]
-        pub precision: f32,
-        #[prost(float, tag = "5")]
-        pub f1_score: f32,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ConfidenceMetricsEntry {
+#[prost(float, tag = "1")]
+pub confidence_threshold: f32,
+#[prost(float, tag = "3")]
+pub recall: f32,
+#[prost(float, tag = "4")]
+pub precision: f32,
+#[prost(float, tag = "5")]
+pub f1_score: f32,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ModelEvaluation {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "15")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(int32, tag = "6")]
-    pub evaluated_example_count: i32,
-    #[prost(oneof = "model_evaluation::Metrics", tags = "8, 9, 12, 11, 13")]
-    pub metrics: ::core::option::Option<model_evaluation::Metrics>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "15")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int32, tag = "6")]
+pub evaluated_example_count: i32,
+#[prost(oneof = "model_evaluation::Metrics", tags = "8, 9, 12, 11, 13")]
+pub metrics: ::core::option::Option<model_evaluation::Metrics>,
 }
 /// Nested message and enum types in `ModelEvaluation`.
 pub mod model_evaluation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Metrics {
-        #[prost(message, tag = "8")]
-        ClassificationEvaluationMetrics(super::ClassificationEvaluationMetrics),
-        #[prost(message, tag = "9")]
-        TranslationEvaluationMetrics(super::TranslationEvaluationMetrics),
-        #[prost(message, tag = "12")]
-        ImageObjectDetectionEvaluationMetrics(
-            super::ImageObjectDetectionEvaluationMetrics,
-        ),
-        #[prost(message, tag = "11")]
-        TextSentimentEvaluationMetrics(super::TextSentimentEvaluationMetrics),
-        #[prost(message, tag = "13")]
-        TextExtractionEvaluationMetrics(super::TextExtractionEvaluationMetrics),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Metrics {
+#[prost(message, tag = "8")]
+ClassificationEvaluationMetrics(super::ClassificationEvaluationMetrics),
+#[prost(message, tag = "9")]
+TranslationEvaluationMetrics(super::TranslationEvaluationMetrics),
+#[prost(message, tag = "12")]
+ImageObjectDetectionEvaluationMetrics(super::ImageObjectDetectionEvaluationMetrics),
+#[prost(message, tag = "11")]
+TextSentimentEvaluationMetrics(super::TextSentimentEvaluationMetrics),
+#[prost(message, tag = "13")]
+TextExtractionEvaluationMetrics(super::TextExtractionEvaluationMetrics),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AnnotationPayload {
-    #[prost(string, tag = "1")]
-    pub annotation_spec_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(oneof = "annotation_payload::Detail", tags = "2, 3, 4, 6, 7")]
-    pub detail: ::core::option::Option<annotation_payload::Detail>,
+#[prost(string, tag = "1")]
+pub annotation_spec_id: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(oneof = "annotation_payload::Detail", tags = "2, 3, 4, 6, 7")]
+pub detail: ::core::option::Option<annotation_payload::Detail>,
 }
 /// Nested message and enum types in `AnnotationPayload`.
 pub mod annotation_payload {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Detail {
-        #[prost(message, tag = "2")]
-        Translation(super::TranslationAnnotation),
-        #[prost(message, tag = "3")]
-        Classification(super::ClassificationAnnotation),
-        #[prost(message, tag = "4")]
-        ImageObjectDetection(super::ImageObjectDetectionAnnotation),
-        #[prost(message, tag = "6")]
-        TextExtraction(super::TextExtractionAnnotation),
-        #[prost(message, tag = "7")]
-        TextSentiment(super::TextSentimentAnnotation),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Detail {
+#[prost(message, tag = "2")]
+Translation(super::TranslationAnnotation),
+#[prost(message, tag = "3")]
+Classification(super::ClassificationAnnotation),
+#[prost(message, tag = "4")]
+ImageObjectDetection(super::ImageObjectDetectionAnnotation),
+#[prost(message, tag = "6")]
+TextExtraction(super::TextExtractionAnnotation),
+#[prost(message, tag = "7")]
+TextSentiment(super::TextSentimentAnnotation),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub payload: ::core::option::Option<ExamplePayload>,
-    #[prost(map = "string, string", tag = "3")]
-    pub params: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub payload: ::core::option::Option<ExamplePayload>,
+#[prost(map = "string, string", tag = "3")]
+pub params: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PredictResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub payload: ::prost::alloc::vec::Vec<AnnotationPayload>,
-    #[prost(message, optional, tag = "3")]
-    pub preprocessed_input: ::core::option::Option<ExamplePayload>,
-    #[prost(map = "string, string", tag = "2")]
-    pub metadata: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(message, repeated, tag = "1")]
+pub payload: ::prost::alloc::vec::Vec<AnnotationPayload>,
+#[prost(message, optional, tag = "3")]
+pub preprocessed_input: ::core::option::Option<ExamplePayload>,
+#[prost(map = "string, string", tag = "2")]
+pub metadata: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub input_config: ::core::option::Option<BatchPredictInputConfig>,
-    #[prost(message, optional, tag = "4")]
-    pub output_config: ::core::option::Option<BatchPredictOutputConfig>,
-    #[prost(map = "string, string", tag = "5")]
-    pub params: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub input_config: ::core::option::Option<BatchPredictInputConfig>,
+#[prost(message, optional, tag = "4")]
+pub output_config: ::core::option::Option<BatchPredictOutputConfig>,
+#[prost(map = "string, string", tag = "5")]
+pub params: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchPredictResult {
-    #[prost(map = "string, string", tag = "1")]
-    pub metadata: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(map = "string, string", tag = "1")]
+pub metadata: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Generated client implementations.
 pub mod prediction_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// AutoML Prediction API.
-    ///
-    /// On any input that is documented to expect a string parameter in
-    /// snake_case or dash-case, either of those cases is accepted.
-    #[derive(Debug, Clone)]
-    pub struct PredictionServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> PredictionServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> PredictionServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            PredictionServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Perform an online prediction. The prediction result is directly
-        /// returned in the response.
-        /// Available for following ML scenarios, and their expected request payloads:
-        ///
-        /// AutoML Vision Classification
-        ///
-        /// * An image in .JPEG, .GIF or .PNG format, image_bytes up to 30MB.
-        ///
-        /// AutoML Vision Object Detection
-        ///
-        /// * An image in .JPEG, .GIF or .PNG format, image_bytes up to 30MB.
-        ///
-        /// AutoML Natural Language Classification
-        ///
-        /// * A TextSnippet up to 60,000 characters, UTF-8 encoded or a document in
-        /// .PDF, .TIF or .TIFF format with size upto 2MB.
-        ///
-        /// AutoML Natural Language Entity Extraction
-        ///
-        /// * A TextSnippet up to 10,000 characters, UTF-8 NFC encoded or a document
-        ///  in .PDF, .TIF or .TIFF format with size upto 20MB.
-        ///
-        /// AutoML Natural Language Sentiment Analysis
-        ///
-        /// * A TextSnippet up to 60,000 characters, UTF-8 encoded or a document in
-        /// .PDF, .TIF or .TIFF format with size upto 2MB.
-        ///
-        /// AutoML Translation
-        ///
-        /// * A TextSnippet up to 25,000 characters, UTF-8 encoded.
-        ///
-        /// AutoML Tables
-        ///
-        /// * A row with column values matching
-        ///   the columns of the model, up to 5MB. Not available for FORECASTING
-        ///   `prediction_type`.
-        pub async fn predict(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PredictRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::PredictResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.PredictionService/Predict",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.automl.v1.PredictionService",
-                        "Predict",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Perform a batch prediction. Unlike the online [Predict][google.cloud.automl.v1.PredictionService.Predict], batch
-        /// prediction result won't be immediately available in the response. Instead,
-        /// a long running operation object is returned. User can poll the operation
-        /// result via [GetOperation][google.longrunning.Operations.GetOperation]
-        /// method. Once the operation is done, [BatchPredictResult][google.cloud.automl.v1.BatchPredictResult] is returned in
-        /// the [response][google.longrunning.Operation.response] field.
-        /// Available for following ML scenarios:
-        ///
-        /// * AutoML Vision Classification
-        /// * AutoML Vision Object Detection
-        /// * AutoML Video Intelligence Classification
-        /// * AutoML Video Intelligence Object Tracking * AutoML Natural Language Classification
-        /// * AutoML Natural Language Entity Extraction
-        /// * AutoML Natural Language Sentiment Analysis
-        /// * AutoML Tables
-        pub async fn batch_predict(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchPredictRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.PredictionService/BatchPredict",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.automl.v1.PredictionService",
-                        "BatchPredict",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// AutoML Prediction API.
+///
+/// On any input that is documented to expect a string parameter in
+/// snake_case or dash-case, either of those cases is accepted.
+#[derive(Debug, Clone)]
+pub struct PredictionServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> PredictionServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> PredictionServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+PredictionServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Perform an online prediction. The prediction result is directly
+/// returned in the response.
+/// Available for following ML scenarios, and their expected request payloads:
+///
+/// AutoML Vision Classification
+///
+/// * An image in .JPEG, .GIF or .PNG format, image_bytes up to 30MB.
+///
+/// AutoML Vision Object Detection
+///
+/// * An image in .JPEG, .GIF or .PNG format, image_bytes up to 30MB.
+///
+/// AutoML Natural Language Classification
+///
+/// * A TextSnippet up to 60,000 characters, UTF-8 encoded or a document in
+/// .PDF, .TIF or .TIFF format with size upto 2MB.
+///
+/// AutoML Natural Language Entity Extraction
+///
+/// * A TextSnippet up to 10,000 characters, UTF-8 NFC encoded or a document
+///  in .PDF, .TIF or .TIFF format with size upto 20MB.
+///
+/// AutoML Natural Language Sentiment Analysis
+///
+/// * A TextSnippet up to 60,000 characters, UTF-8 encoded or a document in
+/// .PDF, .TIF or .TIFF format with size upto 2MB.
+///
+/// AutoML Translation
+///
+/// * A TextSnippet up to 25,000 characters, UTF-8 encoded.
+///
+/// AutoML Tables
+///
+/// * A row with column values matching
+///   the columns of the model, up to 5MB. Not available for FORECASTING
+///   `prediction_type`.
+pub async fn predict(&mut self, request: impl tonic::IntoRequest<super::PredictRequest>) -> std::result::Result<tonic::Response<super::PredictResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.PredictionService/Predict");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.PredictionService", "Predict"));
+self.inner.unary(req, path, codec).await
+}
+/// Perform a batch prediction. Unlike the online [Predict][google.cloud.automl.v1.PredictionService.Predict], batch
+/// prediction result won't be immediately available in the response. Instead,
+/// a long running operation object is returned. User can poll the operation
+/// result via [GetOperation][google.longrunning.Operations.GetOperation]
+/// method. Once the operation is done, [BatchPredictResult][google.cloud.automl.v1.BatchPredictResult] is returned in
+/// the [response][google.longrunning.Operation.response] field.
+/// Available for following ML scenarios:
+///
+/// * AutoML Vision Classification
+/// * AutoML Vision Object Detection
+/// * AutoML Video Intelligence Classification
+/// * AutoML Video Intelligence Object Tracking * AutoML Natural Language Classification
+/// * AutoML Natural Language Entity Extraction
+/// * AutoML Natural Language Sentiment Analysis
+/// * AutoML Tables
+pub async fn batch_predict(&mut self, request: impl tonic::IntoRequest<super::BatchPredictRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.PredictionService/BatchPredict");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.PredictionService", "BatchPredict"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Model {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub dataset_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "11")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "model::DeploymentState", tag = "8")]
-    pub deployment_state: i32,
-    #[prost(string, tag = "10")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "34")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(oneof = "model::ModelMetadata", tags = "15, 13, 14, 20, 19, 22")]
-    pub model_metadata: ::core::option::Option<model::ModelMetadata>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub dataset_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "11")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "model::DeploymentState", tag = "8")]
+pub deployment_state: i32,
+#[prost(string, tag = "10")]
+pub etag: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "34")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(oneof = "model::ModelMetadata", tags = "15, 13, 14, 20, 19, 22")]
+pub model_metadata: ::core::option::Option<model::ModelMetadata>,
 }
 /// Nested message and enum types in `Model`.
 pub mod model {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DeploymentState {
-        Unspecified = 0,
-        Deployed = 1,
-        Undeployed = 2,
-    }
-    impl DeploymentState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DeploymentState::Unspecified => "DEPLOYMENT_STATE_UNSPECIFIED",
-                DeploymentState::Deployed => "DEPLOYED",
-                DeploymentState::Undeployed => "UNDEPLOYED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DEPLOYMENT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DEPLOYED" => Some(Self::Deployed),
-                "UNDEPLOYED" => Some(Self::Undeployed),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum ModelMetadata {
-        #[prost(message, tag = "15")]
-        TranslationModelMetadata(super::TranslationModelMetadata),
-        #[prost(message, tag = "13")]
-        ImageClassificationModelMetadata(super::ImageClassificationModelMetadata),
-        #[prost(message, tag = "14")]
-        TextClassificationModelMetadata(super::TextClassificationModelMetadata),
-        #[prost(message, tag = "20")]
-        ImageObjectDetectionModelMetadata(super::ImageObjectDetectionModelMetadata),
-        #[prost(message, tag = "19")]
-        TextExtractionModelMetadata(super::TextExtractionModelMetadata),
-        #[prost(message, tag = "22")]
-        TextSentimentModelMetadata(super::TextSentimentModelMetadata),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DeploymentState {
+Unspecified = 0,
+Deployed = 1,
+Undeployed = 2,
+}
+impl DeploymentState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DeploymentState::Unspecified => "DEPLOYMENT_STATE_UNSPECIFIED",
+DeploymentState::Deployed => "DEPLOYED",
+DeploymentState::Undeployed => "UNDEPLOYED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DEPLOYMENT_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"DEPLOYED" => Some(Self::Deployed),
+"UNDEPLOYED" => Some(Self::Undeployed),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum ModelMetadata {
+#[prost(message, tag = "15")]
+TranslationModelMetadata(super::TranslationModelMetadata),
+#[prost(message, tag = "13")]
+ImageClassificationModelMetadata(super::ImageClassificationModelMetadata),
+#[prost(message, tag = "14")]
+TextClassificationModelMetadata(super::TextClassificationModelMetadata),
+#[prost(message, tag = "20")]
+ImageObjectDetectionModelMetadata(super::ImageObjectDetectionModelMetadata),
+#[prost(message, tag = "19")]
+TextExtractionModelMetadata(super::TextExtractionModelMetadata),
+#[prost(message, tag = "22")]
+TextSentimentModelMetadata(super::TextSentimentModelMetadata),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDatasetRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub dataset: ::core::option::Option<Dataset>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub dataset: ::core::option::Option<Dataset>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDatasetRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDatasetsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub page_size: i32,
-    #[prost(string, tag = "6")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub page_size: i32,
+#[prost(string, tag = "6")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDatasetsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub datasets: ::prost::alloc::vec::Vec<Dataset>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub datasets: ::prost::alloc::vec::Vec<Dataset>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDatasetRequest {
-    #[prost(message, optional, tag = "1")]
-    pub dataset: ::core::option::Option<Dataset>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub dataset: ::core::option::Option<Dataset>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDatasetRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportDataRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub input_config: ::core::option::Option<InputConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub input_config: ::core::option::Option<InputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportDataRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub output_config: ::core::option::Option<OutputConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub output_config: ::core::option::Option<OutputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAnnotationSpecRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateModelRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub model: ::core::option::Option<Model>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub model: ::core::option::Option<Model>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetModelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub page_size: i32,
-    #[prost(string, tag = "6")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub page_size: i32,
+#[prost(string, tag = "6")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub model: ::prost::alloc::vec::Vec<Model>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub model: ::prost::alloc::vec::Vec<Model>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteModelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateModelRequest {
-    #[prost(message, optional, tag = "1")]
-    pub model: ::core::option::Option<Model>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub model: ::core::option::Option<Model>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeployModelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(oneof = "deploy_model_request::ModelDeploymentMetadata", tags = "2, 4")]
-    pub model_deployment_metadata: ::core::option::Option<
-        deploy_model_request::ModelDeploymentMetadata,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(oneof = "deploy_model_request::ModelDeploymentMetadata", tags = "2, 4")]
+pub model_deployment_metadata: ::core::option::Option<deploy_model_request::ModelDeploymentMetadata>,
 }
 /// Nested message and enum types in `DeployModelRequest`.
 pub mod deploy_model_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum ModelDeploymentMetadata {
-        #[prost(message, tag = "2")]
-        ImageObjectDetectionModelDeploymentMetadata(
-            super::ImageObjectDetectionModelDeploymentMetadata,
-        ),
-        #[prost(message, tag = "4")]
-        ImageClassificationModelDeploymentMetadata(
-            super::ImageClassificationModelDeploymentMetadata,
-        ),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum ModelDeploymentMetadata {
+#[prost(message, tag = "2")]
+ImageObjectDetectionModelDeploymentMetadata(super::ImageObjectDetectionModelDeploymentMetadata),
+#[prost(message, tag = "4")]
+ImageClassificationModelDeploymentMetadata(super::ImageClassificationModelDeploymentMetadata),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UndeployModelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportModelRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub output_config: ::core::option::Option<ModelExportOutputConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub output_config: ::core::option::Option<ModelExportOutputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetModelEvaluationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelEvaluationsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub page_size: i32,
-    #[prost(string, tag = "6")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub page_size: i32,
+#[prost(string, tag = "6")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListModelEvaluationsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub model_evaluation: ::prost::alloc::vec::Vec<ModelEvaluation>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub model_evaluation: ::prost::alloc::vec::Vec<ModelEvaluation>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod auto_ml_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// AutoML Server API.
-    ///
-    /// The resource names are assigned by the server.
-    /// The server never reuses names that it has created after the resources with
-    /// those names are deleted.
-    ///
-    /// An ID of a resource is the last element of the item's resource name. For
-    /// `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`, then
-    /// the id for the item is `{dataset_id}`.
-    ///
-    /// Currently the only supported `location_id` is "us-central1".
-    ///
-    /// On any input that is documented to expect a string parameter in
-    /// snake_case or dash-case, either of those cases is accepted.
-    #[derive(Debug, Clone)]
-    pub struct AutoMlClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AutoMlClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AutoMlClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AutoMlClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a dataset.
-        pub async fn create_dataset(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateDatasetRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/CreateDataset",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "CreateDataset"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a dataset.
-        pub async fn get_dataset(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDatasetRequest>,
-        ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/GetDataset",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetDataset"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists datasets in a project.
-        pub async fn list_datasets(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDatasetsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDatasetsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/ListDatasets",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ListDatasets"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a dataset.
-        pub async fn update_dataset(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateDatasetRequest>,
-        ) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/UpdateDataset",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UpdateDataset"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a dataset and all of its contents.
-        /// Returns empty response in the
-        /// [response][google.longrunning.Operation.response] field when it completes,
-        /// and `delete_details` in the
-        /// [metadata][google.longrunning.Operation.metadata] field.
-        pub async fn delete_dataset(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteDatasetRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/DeleteDataset",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeleteDataset"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Imports data into a dataset.
-        /// For Tables this method can only be called on an empty Dataset.
-        ///
-        /// For Tables:
-        /// *   A
-        /// [schema_inference_version][google.cloud.automl.v1.InputConfig.params]
-        ///     parameter must be explicitly set.
-        /// Returns an empty response in the
-        /// [response][google.longrunning.Operation.response] field when it completes.
-        pub async fn import_data(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportDataRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/ImportData",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ImportData"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Exports dataset's data to the provided output location.
-        /// Returns an empty response in the
-        /// [response][google.longrunning.Operation.response] field when it completes.
-        pub async fn export_data(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ExportDataRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/ExportData",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ExportData"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets an annotation spec.
-        pub async fn get_annotation_spec(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetAnnotationSpecRequest>,
-        ) -> std::result::Result<tonic::Response<super::AnnotationSpec>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/GetAnnotationSpec",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetAnnotationSpec"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a model.
-        /// Returns a Model in the [response][google.longrunning.Operation.response]
-        /// field when it completes.
-        /// When you create a model, several model evaluations are created for it:
-        /// a global evaluation, and one evaluation for each annotation spec.
-        pub async fn create_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateModelRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/CreateModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "CreateModel"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a model.
-        pub async fn get_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetModelRequest>,
-        ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/GetModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetModel"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists models.
-        pub async fn list_models(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListModelsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListModelsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/ListModels",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ListModels"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a model.
-        /// Returns `google.protobuf.Empty` in the
-        /// [response][google.longrunning.Operation.response] field when it completes,
-        /// and `delete_details` in the
-        /// [metadata][google.longrunning.Operation.metadata] field.
-        pub async fn delete_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteModelRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/DeleteModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeleteModel"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a model.
-        pub async fn update_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateModelRequest>,
-        ) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/UpdateModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UpdateModel"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deploys a model. If a model is already deployed, deploying it with the
-        /// same parameters has no effect. Deploying with different parametrs
-        /// (as e.g. changing
-        /// [node_number][google.cloud.automl.v1p1beta.ImageObjectDetectionModelDeploymentMetadata.node_number])
-        ///  will reset the deployment state without pausing the model's availability.
-        ///
-        /// Only applicable for Text Classification, Image Object Detection , Tables, and Image Segmentation; all other domains manage
-        /// deployment automatically.
-        ///
-        /// Returns an empty response in the
-        /// [response][google.longrunning.Operation.response] field when it completes.
-        pub async fn deploy_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeployModelRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/DeployModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeployModel"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Undeploys a model. If the model is not deployed this method has no effect.
-        ///
-        /// Only applicable for Text Classification, Image Object Detection and Tables;
-        /// all other domains manage deployment automatically.
-        ///
-        /// Returns an empty response in the
-        /// [response][google.longrunning.Operation.response] field when it completes.
-        pub async fn undeploy_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UndeployModelRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/UndeployModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UndeployModel"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Exports a trained, "export-able", model to a user specified Google Cloud
-        /// Storage location. A model is considered export-able if and only if it has
-        /// an export format defined for it in
-        /// [ModelExportOutputConfig][google.cloud.automl.v1.ModelExportOutputConfig].
-        ///
-        /// Returns an empty response in the
-        /// [response][google.longrunning.Operation.response] field when it completes.
-        pub async fn export_model(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ExportModelRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/ExportModel",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ExportModel"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a model evaluation.
-        pub async fn get_model_evaluation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetModelEvaluationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ModelEvaluation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/GetModelEvaluation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.automl.v1.AutoMl",
-                        "GetModelEvaluation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists model evaluations.
-        pub async fn list_model_evaluations(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListModelEvaluationsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListModelEvaluationsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.automl.v1.AutoMl/ListModelEvaluations",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.automl.v1.AutoMl",
-                        "ListModelEvaluations",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// AutoML Server API.
+///
+/// The resource names are assigned by the server.
+/// The server never reuses names that it has created after the resources with
+/// those names are deleted.
+///
+/// An ID of a resource is the last element of the item's resource name. For
+/// `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`, then
+/// the id for the item is `{dataset_id}`.
+///
+/// Currently the only supported `location_id` is "us-central1".
+///
+/// On any input that is documented to expect a string parameter in
+/// snake_case or dash-case, either of those cases is accepted.
+#[derive(Debug, Clone)]
+pub struct AutoMlClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AutoMlClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AutoMlClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AutoMlClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a dataset.
+pub async fn create_dataset(&mut self, request: impl tonic::IntoRequest<super::CreateDatasetRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/CreateDataset");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "CreateDataset"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a dataset.
+pub async fn get_dataset(&mut self, request: impl tonic::IntoRequest<super::GetDatasetRequest>) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/GetDataset");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetDataset"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists datasets in a project.
+pub async fn list_datasets(&mut self, request: impl tonic::IntoRequest<super::ListDatasetsRequest>) -> std::result::Result<tonic::Response<super::ListDatasetsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ListDatasets");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ListDatasets"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a dataset.
+pub async fn update_dataset(&mut self, request: impl tonic::IntoRequest<super::UpdateDatasetRequest>) -> std::result::Result<tonic::Response<super::Dataset>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/UpdateDataset");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UpdateDataset"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a dataset and all of its contents.
+/// Returns empty response in the
+/// [response][google.longrunning.Operation.response] field when it completes,
+/// and `delete_details` in the
+/// [metadata][google.longrunning.Operation.metadata] field.
+pub async fn delete_dataset(&mut self, request: impl tonic::IntoRequest<super::DeleteDatasetRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/DeleteDataset");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeleteDataset"));
+self.inner.unary(req, path, codec).await
+}
+/// Imports data into a dataset.
+/// For Tables this method can only be called on an empty Dataset.
+///
+/// For Tables:
+/// *   A
+/// [schema_inference_version][google.cloud.automl.v1.InputConfig.params]
+///     parameter must be explicitly set.
+/// Returns an empty response in the
+/// [response][google.longrunning.Operation.response] field when it completes.
+pub async fn import_data(&mut self, request: impl tonic::IntoRequest<super::ImportDataRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ImportData");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ImportData"));
+self.inner.unary(req, path, codec).await
+}
+/// Exports dataset's data to the provided output location.
+/// Returns an empty response in the
+/// [response][google.longrunning.Operation.response] field when it completes.
+pub async fn export_data(&mut self, request: impl tonic::IntoRequest<super::ExportDataRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ExportData");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ExportData"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets an annotation spec.
+pub async fn get_annotation_spec(&mut self, request: impl tonic::IntoRequest<super::GetAnnotationSpecRequest>) -> std::result::Result<tonic::Response<super::AnnotationSpec>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/GetAnnotationSpec");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetAnnotationSpec"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a model.
+/// Returns a Model in the [response][google.longrunning.Operation.response]
+/// field when it completes.
+/// When you create a model, several model evaluations are created for it:
+/// a global evaluation, and one evaluation for each annotation spec.
+pub async fn create_model(&mut self, request: impl tonic::IntoRequest<super::CreateModelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/CreateModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "CreateModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a model.
+pub async fn get_model(&mut self, request: impl tonic::IntoRequest<super::GetModelRequest>) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/GetModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists models.
+pub async fn list_models(&mut self, request: impl tonic::IntoRequest<super::ListModelsRequest>) -> std::result::Result<tonic::Response<super::ListModelsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ListModels");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ListModels"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a model.
+/// Returns `google.protobuf.Empty` in the
+/// [response][google.longrunning.Operation.response] field when it completes,
+/// and `delete_details` in the
+/// [metadata][google.longrunning.Operation.metadata] field.
+pub async fn delete_model(&mut self, request: impl tonic::IntoRequest<super::DeleteModelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/DeleteModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeleteModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a model.
+pub async fn update_model(&mut self, request: impl tonic::IntoRequest<super::UpdateModelRequest>) -> std::result::Result<tonic::Response<super::Model>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/UpdateModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UpdateModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Deploys a model. If a model is already deployed, deploying it with the
+/// same parameters has no effect. Deploying with different parametrs
+/// (as e.g. changing
+/// [node_number][google.cloud.automl.v1p1beta.ImageObjectDetectionModelDeploymentMetadata.node_number])
+///  will reset the deployment state without pausing the model's availability.
+///
+/// Only applicable for Text Classification, Image Object Detection , Tables, and Image Segmentation; all other domains manage
+/// deployment automatically.
+///
+/// Returns an empty response in the
+/// [response][google.longrunning.Operation.response] field when it completes.
+pub async fn deploy_model(&mut self, request: impl tonic::IntoRequest<super::DeployModelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/DeployModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "DeployModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Undeploys a model. If the model is not deployed this method has no effect.
+///
+/// Only applicable for Text Classification, Image Object Detection and Tables;
+/// all other domains manage deployment automatically.
+///
+/// Returns an empty response in the
+/// [response][google.longrunning.Operation.response] field when it completes.
+pub async fn undeploy_model(&mut self, request: impl tonic::IntoRequest<super::UndeployModelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/UndeployModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "UndeployModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Exports a trained, "export-able", model to a user specified Google Cloud
+/// Storage location. A model is considered export-able if and only if it has
+/// an export format defined for it in
+/// [ModelExportOutputConfig][google.cloud.automl.v1.ModelExportOutputConfig].
+///
+/// Returns an empty response in the
+/// [response][google.longrunning.Operation.response] field when it completes.
+pub async fn export_model(&mut self, request: impl tonic::IntoRequest<super::ExportModelRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ExportModel");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ExportModel"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a model evaluation.
+pub async fn get_model_evaluation(&mut self, request: impl tonic::IntoRequest<super::GetModelEvaluationRequest>) -> std::result::Result<tonic::Response<super::ModelEvaluation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/GetModelEvaluation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "GetModelEvaluation"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists model evaluations.
+pub async fn list_model_evaluations(&mut self, request: impl tonic::IntoRequest<super::ListModelEvaluationsRequest>) -> std::result::Result<tonic::Response<super::ListModelEvaluationsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.automl.v1.AutoMl/ListModelEvaluations");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.automl.v1.AutoMl", "ListModelEvaluations"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

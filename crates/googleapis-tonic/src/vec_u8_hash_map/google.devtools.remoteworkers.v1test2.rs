@@ -2,538 +2,480 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Worker {
-    #[prost(message, repeated, tag = "1")]
-    pub devices: ::prost::alloc::vec::Vec<Device>,
-    #[prost(message, repeated, tag = "2")]
-    pub properties: ::prost::alloc::vec::Vec<worker::Property>,
-    #[prost(message, repeated, tag = "3")]
-    pub configs: ::prost::alloc::vec::Vec<worker::Config>,
+#[prost(message, repeated, tag = "1")]
+pub devices: ::prost::alloc::vec::Vec<Device>,
+#[prost(message, repeated, tag = "2")]
+pub properties: ::prost::alloc::vec::Vec<worker::Property>,
+#[prost(message, repeated, tag = "3")]
+pub configs: ::prost::alloc::vec::Vec<worker::Config>,
 }
 /// Nested message and enum types in `Worker`.
 pub mod worker {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Property {
-        #[prost(string, tag = "1")]
-        pub key: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Config {
-        #[prost(string, tag = "1")]
-        pub key: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Property {
+#[prost(string, tag = "1")]
+pub key: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Config {
+#[prost(string, tag = "1")]
+pub key: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Device {
-    #[prost(string, tag = "1")]
-    pub handle: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub properties: ::prost::alloc::vec::Vec<device::Property>,
+#[prost(string, tag = "1")]
+pub handle: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub properties: ::prost::alloc::vec::Vec<device::Property>,
 }
 /// Nested message and enum types in `Device`.
 pub mod device {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Property {
-        #[prost(string, tag = "1")]
-        pub key: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Property {
+#[prost(string, tag = "1")]
+pub key: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BotSession {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub bot_id: ::prost::alloc::string::String,
-    #[prost(enumeration = "BotStatus", tag = "3")]
-    pub status: i32,
-    #[prost(message, optional, tag = "4")]
-    pub worker: ::core::option::Option<Worker>,
-    #[prost(message, repeated, tag = "5")]
-    pub leases: ::prost::alloc::vec::Vec<Lease>,
-    #[prost(message, optional, tag = "6")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "7")]
-    pub version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub bot_id: ::prost::alloc::string::String,
+#[prost(enumeration = "BotStatus", tag = "3")]
+pub status: i32,
+#[prost(message, optional, tag = "4")]
+pub worker: ::core::option::Option<Worker>,
+#[prost(message, repeated, tag = "5")]
+pub leases: ::prost::alloc::vec::Vec<Lease>,
+#[prost(message, optional, tag = "6")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "7")]
+pub version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Lease {
-    #[prost(string, tag = "7")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub payload: ::core::option::Option<::prost_types::Any>,
-    #[prost(message, optional, tag = "9")]
-    pub result: ::core::option::Option<::prost_types::Any>,
-    #[prost(enumeration = "LeaseState", tag = "2")]
-    pub state: i32,
-    #[prost(message, optional, tag = "3")]
-    pub status: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(message, optional, tag = "4")]
-    pub requirements: ::core::option::Option<Worker>,
-    #[prost(message, optional, tag = "5")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[deprecated]
-    #[prost(string, tag = "1")]
-    pub assignment: ::prost::alloc::string::String,
-    #[deprecated]
-    #[prost(message, optional, tag = "6")]
-    pub inline_assignment: ::core::option::Option<::prost_types::Any>,
+#[prost(string, tag = "7")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub payload: ::core::option::Option<::prost_types::Any>,
+#[prost(message, optional, tag = "9")]
+pub result: ::core::option::Option<::prost_types::Any>,
+#[prost(enumeration = "LeaseState", tag = "2")]
+pub state: i32,
+#[prost(message, optional, tag = "3")]
+pub status: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(message, optional, tag = "4")]
+pub requirements: ::core::option::Option<Worker>,
+#[prost(message, optional, tag = "5")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[deprecated]
+#[prost(string, tag = "1")]
+pub assignment: ::prost::alloc::string::String,
+#[deprecated]
+#[prost(message, optional, tag = "6")]
+pub inline_assignment: ::core::option::Option<::prost_types::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AdminTemp {
-    #[prost(enumeration = "admin_temp::Command", tag = "1")]
-    pub command: i32,
-    #[prost(string, tag = "2")]
-    pub arg: ::prost::alloc::string::String,
+#[prost(enumeration = "admin_temp::Command", tag = "1")]
+pub command: i32,
+#[prost(string, tag = "2")]
+pub arg: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `AdminTemp`.
 pub mod admin_temp {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Command {
-        Unspecified = 0,
-        BotUpdate = 1,
-        BotRestart = 2,
-        BotTerminate = 3,
-        HostRestart = 4,
-    }
-    impl Command {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Command::Unspecified => "UNSPECIFIED",
-                Command::BotUpdate => "BOT_UPDATE",
-                Command::BotRestart => "BOT_RESTART",
-                Command::BotTerminate => "BOT_TERMINATE",
-                Command::HostRestart => "HOST_RESTART",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "BOT_UPDATE" => Some(Self::BotUpdate),
-                "BOT_RESTART" => Some(Self::BotRestart),
-                "BOT_TERMINATE" => Some(Self::BotTerminate),
-                "HOST_RESTART" => Some(Self::HostRestart),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Command {
+Unspecified = 0,
+BotUpdate = 1,
+BotRestart = 2,
+BotTerminate = 3,
+HostRestart = 4,
+}
+impl Command {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Command::Unspecified => "UNSPECIFIED",
+Command::BotUpdate => "BOT_UPDATE",
+Command::BotRestart => "BOT_RESTART",
+Command::BotTerminate => "BOT_TERMINATE",
+Command::HostRestart => "HOST_RESTART",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"UNSPECIFIED" => Some(Self::Unspecified),
+"BOT_UPDATE" => Some(Self::BotUpdate),
+"BOT_RESTART" => Some(Self::BotRestart),
+"BOT_TERMINATE" => Some(Self::BotTerminate),
+"HOST_RESTART" => Some(Self::HostRestart),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateBotSessionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub bot_session: ::core::option::Option<BotSession>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub bot_session: ::core::option::Option<BotSession>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateBotSessionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub bot_session: ::core::option::Option<BotSession>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub bot_session: ::core::option::Option<BotSession>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum BotStatus {
-    Unspecified = 0,
-    Ok = 1,
-    Unhealthy = 2,
-    HostRebooting = 3,
-    BotTerminating = 4,
-    Initializing = 5,
+Unspecified = 0,
+Ok = 1,
+Unhealthy = 2,
+HostRebooting = 3,
+BotTerminating = 4,
+Initializing = 5,
 }
 impl BotStatus {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            BotStatus::Unspecified => "BOT_STATUS_UNSPECIFIED",
-            BotStatus::Ok => "OK",
-            BotStatus::Unhealthy => "UNHEALTHY",
-            BotStatus::HostRebooting => "HOST_REBOOTING",
-            BotStatus::BotTerminating => "BOT_TERMINATING",
-            BotStatus::Initializing => "INITIALIZING",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "BOT_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-            "OK" => Some(Self::Ok),
-            "UNHEALTHY" => Some(Self::Unhealthy),
-            "HOST_REBOOTING" => Some(Self::HostRebooting),
-            "BOT_TERMINATING" => Some(Self::BotTerminating),
-            "INITIALIZING" => Some(Self::Initializing),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+BotStatus::Unspecified => "BOT_STATUS_UNSPECIFIED",
+BotStatus::Ok => "OK",
+BotStatus::Unhealthy => "UNHEALTHY",
+BotStatus::HostRebooting => "HOST_REBOOTING",
+BotStatus::BotTerminating => "BOT_TERMINATING",
+BotStatus::Initializing => "INITIALIZING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BOT_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"OK" => Some(Self::Ok),
+"UNHEALTHY" => Some(Self::Unhealthy),
+"HOST_REBOOTING" => Some(Self::HostRebooting),
+"BOT_TERMINATING" => Some(Self::BotTerminating),
+"INITIALIZING" => Some(Self::Initializing),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum LeaseState {
-    Unspecified = 0,
-    Pending = 1,
-    Active = 2,
-    Completed = 4,
-    Cancelled = 5,
+Unspecified = 0,
+Pending = 1,
+Active = 2,
+Completed = 4,
+Cancelled = 5,
 }
 impl LeaseState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            LeaseState::Unspecified => "LEASE_STATE_UNSPECIFIED",
-            LeaseState::Pending => "PENDING",
-            LeaseState::Active => "ACTIVE",
-            LeaseState::Completed => "COMPLETED",
-            LeaseState::Cancelled => "CANCELLED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "LEASE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "PENDING" => Some(Self::Pending),
-            "ACTIVE" => Some(Self::Active),
-            "COMPLETED" => Some(Self::Completed),
-            "CANCELLED" => Some(Self::Cancelled),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+LeaseState::Unspecified => "LEASE_STATE_UNSPECIFIED",
+LeaseState::Pending => "PENDING",
+LeaseState::Active => "ACTIVE",
+LeaseState::Completed => "COMPLETED",
+LeaseState::Cancelled => "CANCELLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"LEASE_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"PENDING" => Some(Self::Pending),
+"ACTIVE" => Some(Self::Active),
+"COMPLETED" => Some(Self::Completed),
+"CANCELLED" => Some(Self::Cancelled),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod bots_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Design doc: https://goo.gl/oojM5H
-    ///
-    /// Loosely speaking, the Bots interface monitors a collection of workers (think
-    /// of them as "computers" for a moment). This collection is known as a "farm,"
-    /// and its purpose is to perform work on behalf of a client.
-    ///
-    /// Each worker runs a small program known as a "bot" that allows it to be
-    /// controlled by the server. This interface contains only methods that are
-    /// called by the bots themselves; admin functionality is out of scope for this
-    /// interface.
-    ///
-    /// More precisely, we use the term "worker" to refer to the physical "thing"
-    /// running the bot. We use the term "worker," and not "machine" or "computer,"
-    /// since a worker may consist of more than one machine - e.g., a computer with
-    /// multiple attached devices, or even a cluster of computers, with only one of
-    /// them running the bot. Conversely, a single machine may host several bots, in
-    /// which case each bot has a "worker" corresponding to the slice of the machine
-    /// being managed by that bot.
-    ///
-    /// The main resource in the Bots interface is not, surprisingly, a Bot - it is a
-    /// BotSession, which represents a period of time in which a bot is in continuous
-    /// contact with the server (see the BotSession message for more information).
-    /// The parent of a bot session can be thought of as an instance of a farm. That
-    /// is, one endpoint may be able to manage many farms for many users. For
-    /// example, for a farm managed through GCP, the parent resource will typically
-    /// take the form "projects/{project_id}". This is referred to below as "the farm
-    /// resource."
-    #[derive(Debug, Clone)]
-    pub struct BotsClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> BotsClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> BotsClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            BotsClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// CreateBotSession is called when the bot first joins the farm, and
-        /// establishes a session ID to ensure that multiple machines do not register
-        /// using the same name accidentally.
-        pub async fn create_bot_session(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateBotSessionRequest>,
-        ) -> std::result::Result<tonic::Response<super::BotSession>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.remoteworkers.v1test2.Bots/CreateBotSession",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.remoteworkers.v1test2.Bots",
-                        "CreateBotSession",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// UpdateBotSession must be called periodically by the bot (on a schedule
-        /// determined by the server) to let the server know about its status, and to
-        /// pick up new lease requests from the server.
-        pub async fn update_bot_session(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateBotSessionRequest>,
-        ) -> std::result::Result<tonic::Response<super::BotSession>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.devtools.remoteworkers.v1test2.Bots/UpdateBotSession",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.devtools.remoteworkers.v1test2.Bots",
-                        "UpdateBotSession",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Design doc: https://goo.gl/oojM5H
+///
+/// Loosely speaking, the Bots interface monitors a collection of workers (think
+/// of them as "computers" for a moment). This collection is known as a "farm,"
+/// and its purpose is to perform work on behalf of a client.
+///
+/// Each worker runs a small program known as a "bot" that allows it to be
+/// controlled by the server. This interface contains only methods that are
+/// called by the bots themselves; admin functionality is out of scope for this
+/// interface.
+///
+/// More precisely, we use the term "worker" to refer to the physical "thing"
+/// running the bot. We use the term "worker," and not "machine" or "computer,"
+/// since a worker may consist of more than one machine - e.g., a computer with
+/// multiple attached devices, or even a cluster of computers, with only one of
+/// them running the bot. Conversely, a single machine may host several bots, in
+/// which case each bot has a "worker" corresponding to the slice of the machine
+/// being managed by that bot.
+///
+/// The main resource in the Bots interface is not, surprisingly, a Bot - it is a
+/// BotSession, which represents a period of time in which a bot is in continuous
+/// contact with the server (see the BotSession message for more information).
+/// The parent of a bot session can be thought of as an instance of a farm. That
+/// is, one endpoint may be able to manage many farms for many users. For
+/// example, for a farm managed through GCP, the parent resource will typically
+/// take the form "projects/{project_id}". This is referred to below as "the farm
+/// resource."
+#[derive(Debug, Clone)]
+pub struct BotsClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> BotsClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> BotsClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+BotsClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// CreateBotSession is called when the bot first joins the farm, and
+/// establishes a session ID to ensure that multiple machines do not register
+/// using the same name accidentally.
+pub async fn create_bot_session(&mut self, request: impl tonic::IntoRequest<super::CreateBotSessionRequest>) -> std::result::Result<tonic::Response<super::BotSession>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.remoteworkers.v1test2.Bots/CreateBotSession");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.remoteworkers.v1test2.Bots", "CreateBotSession"));
+self.inner.unary(req, path, codec).await
+}
+/// UpdateBotSession must be called periodically by the bot (on a schedule
+/// determined by the server) to let the server know about its status, and to
+/// pick up new lease requests from the server.
+pub async fn update_bot_session(&mut self, request: impl tonic::IntoRequest<super::UpdateBotSessionRequest>) -> std::result::Result<tonic::Response<super::BotSession>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.devtools.remoteworkers.v1test2.Bots/UpdateBotSession");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.devtools.remoteworkers.v1test2.Bots", "UpdateBotSession"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommandTask {
-    #[prost(message, optional, tag = "1")]
-    pub inputs: ::core::option::Option<command_task::Inputs>,
-    #[prost(message, optional, tag = "4")]
-    pub expected_outputs: ::core::option::Option<command_task::Outputs>,
-    #[prost(message, optional, tag = "5")]
-    pub timeouts: ::core::option::Option<command_task::Timeouts>,
+#[prost(message, optional, tag = "1")]
+pub inputs: ::core::option::Option<command_task::Inputs>,
+#[prost(message, optional, tag = "4")]
+pub expected_outputs: ::core::option::Option<command_task::Outputs>,
+#[prost(message, optional, tag = "5")]
+pub timeouts: ::core::option::Option<command_task::Timeouts>,
 }
 /// Nested message and enum types in `CommandTask`.
 pub mod command_task {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Inputs {
-        #[prost(string, repeated, tag = "1")]
-        pub arguments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(message, repeated, tag = "2")]
-        pub files: ::prost::alloc::vec::Vec<super::Digest>,
-        #[prost(message, repeated, tag = "4")]
-        pub inline_blobs: ::prost::alloc::vec::Vec<super::Blob>,
-        #[prost(message, repeated, tag = "3")]
-        pub environment_variables: ::prost::alloc::vec::Vec<inputs::EnvironmentVariable>,
-        #[prost(string, tag = "5")]
-        pub working_directory: ::prost::alloc::string::String,
-    }
-    /// Nested message and enum types in `Inputs`.
-    pub mod inputs {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct EnvironmentVariable {
-            #[prost(string, tag = "1")]
-            pub name: ::prost::alloc::string::String,
-            #[prost(string, tag = "2")]
-            pub value: ::prost::alloc::string::String,
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Outputs {
-        #[prost(string, repeated, tag = "1")]
-        pub files: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "2")]
-        pub directories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, tag = "3")]
-        pub stdout_destination: ::prost::alloc::string::String,
-        #[prost(string, tag = "4")]
-        pub stderr_destination: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct Timeouts {
-        #[prost(message, optional, tag = "1")]
-        pub execution: ::core::option::Option<::prost_types::Duration>,
-        #[prost(message, optional, tag = "2")]
-        pub idle: ::core::option::Option<::prost_types::Duration>,
-        #[prost(message, optional, tag = "3")]
-        pub shutdown: ::core::option::Option<::prost_types::Duration>,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Inputs {
+#[prost(string, repeated, tag = "1")]
+pub arguments: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "2")]
+pub files: ::prost::alloc::vec::Vec<super::Digest>,
+#[prost(message, repeated, tag = "4")]
+pub inline_blobs: ::prost::alloc::vec::Vec<super::Blob>,
+#[prost(message, repeated, tag = "3")]
+pub environment_variables: ::prost::alloc::vec::Vec<inputs::EnvironmentVariable>,
+#[prost(string, tag = "5")]
+pub working_directory: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `Inputs`.
+pub mod inputs {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnvironmentVariable {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Outputs {
+#[prost(string, repeated, tag = "1")]
+pub files: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "2")]
+pub directories: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub stdout_destination: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub stderr_destination: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Timeouts {
+#[prost(message, optional, tag = "1")]
+pub execution: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub idle: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "3")]
+pub shutdown: ::core::option::Option<::prost_types::Duration>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommandOutputs {
-    #[prost(int32, tag = "1")]
-    pub exit_code: i32,
-    #[prost(message, optional, tag = "2")]
-    pub outputs: ::core::option::Option<Digest>,
+#[prost(int32, tag = "1")]
+pub exit_code: i32,
+#[prost(message, optional, tag = "2")]
+pub outputs: ::core::option::Option<Digest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct CommandOverhead {
-    #[prost(message, optional, tag = "1")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "2")]
-    pub overhead: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "2")]
+pub overhead: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommandResult {
-    #[prost(message, optional, tag = "1")]
-    pub status: ::core::option::Option<super::super::super::rpc::Status>,
-    #[prost(int32, tag = "2")]
-    pub exit_code: i32,
-    #[prost(message, optional, tag = "3")]
-    pub outputs: ::core::option::Option<Digest>,
-    #[deprecated]
-    #[prost(message, optional, tag = "4")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
-    #[deprecated]
-    #[prost(message, optional, tag = "5")]
-    pub overhead: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, repeated, tag = "6")]
-    pub metadata: ::prost::alloc::vec::Vec<::prost_types::Any>,
+#[prost(message, optional, tag = "1")]
+pub status: ::core::option::Option<super::super::super::rpc::Status>,
+#[prost(int32, tag = "2")]
+pub exit_code: i32,
+#[prost(message, optional, tag = "3")]
+pub outputs: ::core::option::Option<Digest>,
+#[deprecated]
+#[prost(message, optional, tag = "4")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
+#[deprecated]
+#[prost(message, optional, tag = "5")]
+pub overhead: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, repeated, tag = "6")]
+pub metadata: ::prost::alloc::vec::Vec<::prost_types::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FileMetadata {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub digest: ::core::option::Option<Digest>,
-    #[prost(bytes = "vec", tag = "3")]
-    pub contents: ::prost::alloc::vec::Vec<u8>,
-    #[prost(bool, tag = "4")]
-    pub is_executable: bool,
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub digest: ::core::option::Option<Digest>,
+#[prost(bytes = "vec", tag = "3")]
+pub contents: ::prost::alloc::vec::Vec<u8>,
+#[prost(bool, tag = "4")]
+pub is_executable: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DirectoryMetadata {
-    #[prost(string, tag = "1")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub digest: ::core::option::Option<Digest>,
+#[prost(string, tag = "1")]
+pub path: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub digest: ::core::option::Option<Digest>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Digest {
-    #[prost(string, tag = "1")]
-    pub hash: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub size_bytes: i64,
+#[prost(string, tag = "1")]
+pub hash: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub size_bytes: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Blob {
-    #[prost(message, optional, tag = "1")]
-    pub digest: ::core::option::Option<Digest>,
-    #[prost(bytes = "vec", tag = "2")]
-    pub contents: ::prost::alloc::vec::Vec<u8>,
+#[prost(message, optional, tag = "1")]
+pub digest: ::core::option::Option<Digest>,
+#[prost(bytes = "vec", tag = "2")]
+pub contents: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Directory {
-    #[prost(message, repeated, tag = "1")]
-    pub files: ::prost::alloc::vec::Vec<FileMetadata>,
-    #[prost(message, repeated, tag = "2")]
-    pub directories: ::prost::alloc::vec::Vec<DirectoryMetadata>,
+#[prost(message, repeated, tag = "1")]
+pub files: ::prost::alloc::vec::Vec<FileMetadata>,
+#[prost(message, repeated, tag = "2")]
+pub directories: ::prost::alloc::vec::Vec<DirectoryMetadata>,
 }

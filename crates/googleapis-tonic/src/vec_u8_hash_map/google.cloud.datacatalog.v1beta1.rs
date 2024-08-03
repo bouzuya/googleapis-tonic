@@ -2,2735 +2,1772 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Tag {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub template: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub template_display_name: ::prost::alloc::string::String,
-    #[prost(map = "string, message", tag = "3")]
-    pub fields: ::std::collections::HashMap<::prost::alloc::string::String, TagField>,
-    #[prost(oneof = "tag::Scope", tags = "4")]
-    pub scope: ::core::option::Option<tag::Scope>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub template: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub template_display_name: ::prost::alloc::string::String,
+#[prost(map = "string, message", tag = "3")]
+pub fields: ::std::collections::HashMap<::prost::alloc::string::String, TagField>,
+#[prost(oneof = "tag::Scope", tags = "4")]
+pub scope: ::core::option::Option<tag::Scope>,
 }
 /// Nested message and enum types in `Tag`.
 pub mod tag {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Scope {
-        #[prost(string, tag = "4")]
-        Column(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Scope {
+#[prost(string, tag = "4")]
+Column(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TagField {
-    #[prost(string, tag = "1")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "7")]
-    pub order: i32,
-    #[prost(oneof = "tag_field::Kind", tags = "2, 3, 4, 5, 6")]
-    pub kind: ::core::option::Option<tag_field::Kind>,
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(int32, tag = "7")]
+pub order: i32,
+#[prost(oneof = "tag_field::Kind", tags = "2, 3, 4, 5, 6")]
+pub kind: ::core::option::Option<tag_field::Kind>,
 }
 /// Nested message and enum types in `TagField`.
 pub mod tag_field {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct EnumValue {
-        #[prost(string, tag = "1")]
-        pub display_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Kind {
-        #[prost(double, tag = "2")]
-        DoubleValue(f64),
-        #[prost(string, tag = "3")]
-        StringValue(::prost::alloc::string::String),
-        #[prost(bool, tag = "4")]
-        BoolValue(bool),
-        #[prost(message, tag = "5")]
-        TimestampValue(::prost_types::Timestamp),
-        #[prost(message, tag = "6")]
-        EnumValue(EnumValue),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnumValue {
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Kind {
+#[prost(double, tag = "2")]
+DoubleValue(f64),
+#[prost(string, tag = "3")]
+StringValue(::prost::alloc::string::String),
+#[prost(bool, tag = "4")]
+BoolValue(bool),
+#[prost(message, tag = "5")]
+TimestampValue(::prost_types::Timestamp),
+#[prost(message, tag = "6")]
+EnumValue(EnumValue),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TagTemplate {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(map = "string, message", tag = "3")]
-    pub fields: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        TagTemplateField,
-    >,
-    #[prost(enumeration = "tag_template::DataplexTransferStatus", tag = "7")]
-    pub dataplex_transfer_status: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(map = "string, message", tag = "3")]
+pub fields: ::std::collections::HashMap<::prost::alloc::string::String, TagTemplateField>,
+#[prost(enumeration = "tag_template::DataplexTransferStatus", tag = "7")]
+pub dataplex_transfer_status: i32,
 }
 /// Nested message and enum types in `TagTemplate`.
 pub mod tag_template {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DataplexTransferStatus {
-        Unspecified = 0,
-        Migrated = 1,
-    }
-    impl DataplexTransferStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DataplexTransferStatus::Unspecified => {
-                    "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED"
-                }
-                DataplexTransferStatus::Migrated => "MIGRATED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                "MIGRATED" => Some(Self::Migrated),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DataplexTransferStatus {
+Unspecified = 0,
+Migrated = 1,
+}
+impl DataplexTransferStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DataplexTransferStatus::Unspecified => "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
+DataplexTransferStatus::Migrated => "MIGRATED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DATAPLEX_TRANSFER_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"MIGRATED" => Some(Self::Migrated),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TagTemplateField {
-    #[prost(string, tag = "6")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "1")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub r#type: ::core::option::Option<FieldType>,
-    #[prost(bool, tag = "3")]
-    pub is_required: bool,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(int32, tag = "5")]
-    pub order: i32,
+#[prost(string, tag = "6")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub r#type: ::core::option::Option<FieldType>,
+#[prost(bool, tag = "3")]
+pub is_required: bool,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(int32, tag = "5")]
+pub order: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FieldType {
-    #[prost(oneof = "field_type::TypeDecl", tags = "1, 2")]
-    pub type_decl: ::core::option::Option<field_type::TypeDecl>,
+#[prost(oneof = "field_type::TypeDecl", tags = "1, 2")]
+pub type_decl: ::core::option::Option<field_type::TypeDecl>,
 }
 /// Nested message and enum types in `FieldType`.
 pub mod field_type {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct EnumType {
-        #[prost(message, repeated, tag = "1")]
-        pub allowed_values: ::prost::alloc::vec::Vec<enum_type::EnumValue>,
-    }
-    /// Nested message and enum types in `EnumType`.
-    pub mod enum_type {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct EnumValue {
-            #[prost(string, tag = "1")]
-            pub display_name: ::prost::alloc::string::String,
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PrimitiveType {
-        Unspecified = 0,
-        Double = 1,
-        String = 2,
-        Bool = 3,
-        Timestamp = 4,
-    }
-    impl PrimitiveType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PrimitiveType::Unspecified => "PRIMITIVE_TYPE_UNSPECIFIED",
-                PrimitiveType::Double => "DOUBLE",
-                PrimitiveType::String => "STRING",
-                PrimitiveType::Bool => "BOOL",
-                PrimitiveType::Timestamp => "TIMESTAMP",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PRIMITIVE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DOUBLE" => Some(Self::Double),
-                "STRING" => Some(Self::String),
-                "BOOL" => Some(Self::Bool),
-                "TIMESTAMP" => Some(Self::Timestamp),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum TypeDecl {
-        #[prost(enumeration = "PrimitiveType", tag = "1")]
-        PrimitiveType(i32),
-        #[prost(message, tag = "2")]
-        EnumType(EnumType),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnumType {
+#[prost(message, repeated, tag = "1")]
+pub allowed_values: ::prost::alloc::vec::Vec<enum_type::EnumValue>,
+}
+/// Nested message and enum types in `EnumType`.
+pub mod enum_type {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnumValue {
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PrimitiveType {
+Unspecified = 0,
+Double = 1,
+String = 2,
+Bool = 3,
+Timestamp = 4,
+}
+impl PrimitiveType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PrimitiveType::Unspecified => "PRIMITIVE_TYPE_UNSPECIFIED",
+PrimitiveType::Double => "DOUBLE",
+PrimitiveType::String => "STRING",
+PrimitiveType::Bool => "BOOL",
+PrimitiveType::Timestamp => "TIMESTAMP",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PRIMITIVE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"DOUBLE" => Some(Self::Double),
+"STRING" => Some(Self::String),
+"BOOL" => Some(Self::Bool),
+"TIMESTAMP" => Some(Self::Timestamp),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum TypeDecl {
+#[prost(enumeration = "PrimitiveType", tag = "1")]
+PrimitiveType(i32),
+#[prost(message, tag = "2")]
+EnumType(EnumType),
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum IntegratedSystem {
-    Unspecified = 0,
-    Bigquery = 1,
-    CloudPubsub = 2,
+Unspecified = 0,
+Bigquery = 1,
+CloudPubsub = 2,
 }
 impl IntegratedSystem {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            IntegratedSystem::Unspecified => "INTEGRATED_SYSTEM_UNSPECIFIED",
-            IntegratedSystem::Bigquery => "BIGQUERY",
-            IntegratedSystem::CloudPubsub => "CLOUD_PUBSUB",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "INTEGRATED_SYSTEM_UNSPECIFIED" => Some(Self::Unspecified),
-            "BIGQUERY" => Some(Self::Bigquery),
-            "CLOUD_PUBSUB" => Some(Self::CloudPubsub),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+IntegratedSystem::Unspecified => "INTEGRATED_SYSTEM_UNSPECIFIED",
+IntegratedSystem::Bigquery => "BIGQUERY",
+IntegratedSystem::CloudPubsub => "CLOUD_PUBSUB",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INTEGRATED_SYSTEM_UNSPECIFIED" => Some(Self::Unspecified),
+"BIGQUERY" => Some(Self::Bigquery),
+"CLOUD_PUBSUB" => Some(Self::CloudPubsub),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ManagingSystem {
-    Unspecified = 0,
-    Dataplex = 1,
-    Other = 2,
+Unspecified = 0,
+Dataplex = 1,
+Other = 2,
 }
 impl ManagingSystem {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ManagingSystem::Unspecified => "MANAGING_SYSTEM_UNSPECIFIED",
-            ManagingSystem::Dataplex => "MANAGING_SYSTEM_DATAPLEX",
-            ManagingSystem::Other => "MANAGING_SYSTEM_OTHER",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "MANAGING_SYSTEM_UNSPECIFIED" => Some(Self::Unspecified),
-            "MANAGING_SYSTEM_DATAPLEX" => Some(Self::Dataplex),
-            "MANAGING_SYSTEM_OTHER" => Some(Self::Other),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ManagingSystem::Unspecified => "MANAGING_SYSTEM_UNSPECIFIED",
+ManagingSystem::Dataplex => "MANAGING_SYSTEM_DATAPLEX",
+ManagingSystem::Other => "MANAGING_SYSTEM_OTHER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MANAGING_SYSTEM_UNSPECIFIED" => Some(Self::Unspecified),
+"MANAGING_SYSTEM_DATAPLEX" => Some(Self::Dataplex),
+"MANAGING_SYSTEM_OTHER" => Some(Self::Other),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SystemTimestamps {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsFilesetSpec {
-    #[prost(string, repeated, tag = "1")]
-    pub file_patterns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "2")]
-    pub sample_gcs_file_specs: ::prost::alloc::vec::Vec<GcsFileSpec>,
+#[prost(string, repeated, tag = "1")]
+pub file_patterns: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "2")]
+pub sample_gcs_file_specs: ::prost::alloc::vec::Vec<GcsFileSpec>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsFileSpec {
-    #[prost(string, tag = "1")]
-    pub file_path: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub gcs_timestamps: ::core::option::Option<SystemTimestamps>,
-    #[prost(int64, tag = "4")]
-    pub size_bytes: i64,
+#[prost(string, tag = "1")]
+pub file_path: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub gcs_timestamps: ::core::option::Option<SystemTimestamps>,
+#[prost(int64, tag = "4")]
+pub size_bytes: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Schema {
-    #[prost(message, repeated, tag = "2")]
-    pub columns: ::prost::alloc::vec::Vec<ColumnSchema>,
+#[prost(message, repeated, tag = "2")]
+pub columns: ::prost::alloc::vec::Vec<ColumnSchema>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ColumnSchema {
-    #[prost(string, tag = "6")]
-    pub column: ::prost::alloc::string::String,
-    #[prost(string, tag = "1")]
-    pub r#type: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub mode: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "7")]
-    pub subcolumns: ::prost::alloc::vec::Vec<ColumnSchema>,
+#[prost(string, tag = "6")]
+pub column: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub mode: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "7")]
+pub subcolumns: ::prost::alloc::vec::Vec<ColumnSchema>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchCatalogResult {
-    #[prost(enumeration = "SearchResultType", tag = "1")]
-    pub search_result_type: i32,
-    #[prost(string, tag = "2")]
-    pub search_result_subtype: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub relative_resource_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub linked_resource: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub modify_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "SearchResultType", tag = "1")]
+pub search_result_type: i32,
+#[prost(string, tag = "2")]
+pub search_result_subtype: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub relative_resource_name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub linked_resource: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub modify_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SearchResultType {
-    Unspecified = 0,
-    Entry = 1,
-    TagTemplate = 2,
-    EntryGroup = 3,
+Unspecified = 0,
+Entry = 1,
+TagTemplate = 2,
+EntryGroup = 3,
 }
 impl SearchResultType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            SearchResultType::Unspecified => "SEARCH_RESULT_TYPE_UNSPECIFIED",
-            SearchResultType::Entry => "ENTRY",
-            SearchResultType::TagTemplate => "TAG_TEMPLATE",
-            SearchResultType::EntryGroup => "ENTRY_GROUP",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SEARCH_RESULT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "ENTRY" => Some(Self::Entry),
-            "TAG_TEMPLATE" => Some(Self::TagTemplate),
-            "ENTRY_GROUP" => Some(Self::EntryGroup),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SearchResultType::Unspecified => "SEARCH_RESULT_TYPE_UNSPECIFIED",
+SearchResultType::Entry => "ENTRY",
+SearchResultType::TagTemplate => "TAG_TEMPLATE",
+SearchResultType::EntryGroup => "ENTRY_GROUP",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SEARCH_RESULT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"ENTRY" => Some(Self::Entry),
+"TAG_TEMPLATE" => Some(Self::TagTemplate),
+"ENTRY_GROUP" => Some(Self::EntryGroup),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryTableSpec {
-    #[prost(enumeration = "TableSourceType", tag = "1")]
-    pub table_source_type: i32,
-    #[prost(oneof = "big_query_table_spec::TypeSpec", tags = "2, 3")]
-    pub type_spec: ::core::option::Option<big_query_table_spec::TypeSpec>,
+#[prost(enumeration = "TableSourceType", tag = "1")]
+pub table_source_type: i32,
+#[prost(oneof = "big_query_table_spec::TypeSpec", tags = "2, 3")]
+pub type_spec: ::core::option::Option<big_query_table_spec::TypeSpec>,
 }
 /// Nested message and enum types in `BigQueryTableSpec`.
 pub mod big_query_table_spec {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum TypeSpec {
-        #[prost(message, tag = "2")]
-        ViewSpec(super::ViewSpec),
-        #[prost(message, tag = "3")]
-        TableSpec(super::TableSpec),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum TypeSpec {
+#[prost(message, tag = "2")]
+ViewSpec(super::ViewSpec),
+#[prost(message, tag = "3")]
+TableSpec(super::TableSpec),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ViewSpec {
-    #[prost(string, tag = "1")]
-    pub view_query: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub view_query: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableSpec {
-    #[prost(string, tag = "1")]
-    pub grouped_entry: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub grouped_entry: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BigQueryDateShardedSpec {
-    #[prost(string, tag = "1")]
-    pub dataset: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub table_prefix: ::prost::alloc::string::String,
-    #[prost(int64, tag = "3")]
-    pub shard_count: i64,
+#[prost(string, tag = "1")]
+pub dataset: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub table_prefix: ::prost::alloc::string::String,
+#[prost(int64, tag = "3")]
+pub shard_count: i64,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TableSourceType {
-    Unspecified = 0,
-    BigqueryView = 2,
-    BigqueryTable = 5,
-    BigqueryMaterializedView = 7,
+Unspecified = 0,
+BigqueryView = 2,
+BigqueryTable = 5,
+BigqueryMaterializedView = 7,
 }
 impl TableSourceType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            TableSourceType::Unspecified => "TABLE_SOURCE_TYPE_UNSPECIFIED",
-            TableSourceType::BigqueryView => "BIGQUERY_VIEW",
-            TableSourceType::BigqueryTable => "BIGQUERY_TABLE",
-            TableSourceType::BigqueryMaterializedView => "BIGQUERY_MATERIALIZED_VIEW",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "TABLE_SOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "BIGQUERY_VIEW" => Some(Self::BigqueryView),
-            "BIGQUERY_TABLE" => Some(Self::BigqueryTable),
-            "BIGQUERY_MATERIALIZED_VIEW" => Some(Self::BigqueryMaterializedView),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TableSourceType::Unspecified => "TABLE_SOURCE_TYPE_UNSPECIFIED",
+TableSourceType::BigqueryView => "BIGQUERY_VIEW",
+TableSourceType::BigqueryTable => "BIGQUERY_TABLE",
+TableSourceType::BigqueryMaterializedView => "BIGQUERY_MATERIALIZED_VIEW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TABLE_SOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"BIGQUERY_VIEW" => Some(Self::BigqueryView),
+"BIGQUERY_TABLE" => Some(Self::BigqueryTable),
+"BIGQUERY_MATERIALIZED_VIEW" => Some(Self::BigqueryMaterializedView),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct UsageStats {
-    #[prost(float, tag = "1")]
-    pub total_completions: f32,
-    #[prost(float, tag = "2")]
-    pub total_failures: f32,
-    #[prost(float, tag = "3")]
-    pub total_cancellations: f32,
-    #[prost(float, tag = "4")]
-    pub total_execution_time_for_completions_millis: f32,
+#[prost(float, tag = "1")]
+pub total_completions: f32,
+#[prost(float, tag = "2")]
+pub total_failures: f32,
+#[prost(float, tag = "3")]
+pub total_cancellations: f32,
+#[prost(float, tag = "4")]
+pub total_execution_time_for_completions_millis: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UsageSignal {
-    #[prost(message, optional, tag = "1")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(map = "string, message", tag = "2")]
-    pub usage_within_time_range: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        UsageStats,
-    >,
+#[prost(message, optional, tag = "1")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(map = "string, message", tag = "2")]
+pub usage_within_time_range: ::std::collections::HashMap<::prost::alloc::string::String, UsageStats>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchCatalogRequest {
-    #[prost(message, optional, tag = "6")]
-    pub scope: ::core::option::Option<search_catalog_request::Scope>,
-    #[prost(string, tag = "1")]
-    pub query: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "6")]
+pub scope: ::core::option::Option<search_catalog_request::Scope>,
+#[prost(string, tag = "1")]
+pub query: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `SearchCatalogRequest`.
 pub mod search_catalog_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Scope {
-        #[prost(string, repeated, tag = "2")]
-        pub include_org_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, repeated, tag = "3")]
-        pub include_project_ids: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-        #[prost(bool, tag = "7")]
-        pub include_gcp_public_datasets: bool,
-        #[prost(string, repeated, tag = "16")]
-        pub restricted_locations: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Scope {
+#[prost(string, repeated, tag = "2")]
+pub include_org_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub include_project_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "7")]
+pub include_gcp_public_datasets: bool,
+#[prost(string, repeated, tag = "16")]
+pub restricted_locations: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchCatalogResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub results: ::prost::alloc::vec::Vec<SearchCatalogResult>,
-    #[prost(int32, tag = "2")]
-    pub total_size: i32,
-    #[prost(string, tag = "3")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "6")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub results: ::prost::alloc::vec::Vec<SearchCatalogResult>,
+#[prost(int32, tag = "2")]
+pub total_size: i32,
+#[prost(string, tag = "3")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "6")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateEntryGroupRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub entry_group_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub entry_group: ::core::option::Option<EntryGroup>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub entry_group_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub entry_group: ::core::option::Option<EntryGroup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateEntryGroupRequest {
-    #[prost(message, optional, tag = "1")]
-    pub entry_group: ::core::option::Option<EntryGroup>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub entry_group: ::core::option::Option<EntryGroup>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEntryGroupRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEntryGroupRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntryGroupsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntryGroupsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub entry_groups: ::prost::alloc::vec::Vec<EntryGroup>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub entry_groups: ::prost::alloc::vec::Vec<EntryGroup>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateEntryRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub entry_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub entry: ::core::option::Option<Entry>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub entry_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub entry: ::core::option::Option<Entry>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateEntryRequest {
-    #[prost(message, optional, tag = "1")]
-    pub entry: ::core::option::Option<Entry>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub entry: ::core::option::Option<Entry>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteEntryRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEntryRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupEntryRequest {
-    #[prost(oneof = "lookup_entry_request::TargetName", tags = "1, 3")]
-    pub target_name: ::core::option::Option<lookup_entry_request::TargetName>,
+#[prost(oneof = "lookup_entry_request::TargetName", tags = "1, 3")]
+pub target_name: ::core::option::Option<lookup_entry_request::TargetName>,
 }
 /// Nested message and enum types in `LookupEntryRequest`.
 pub mod lookup_entry_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum TargetName {
-        #[prost(string, tag = "1")]
-        LinkedResource(::prost::alloc::string::String),
-        #[prost(string, tag = "3")]
-        SqlResource(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum TargetName {
+#[prost(string, tag = "1")]
+LinkedResource(::prost::alloc::string::String),
+#[prost(string, tag = "3")]
+SqlResource(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Entry {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub linked_resource: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "5")]
-    pub schema: ::core::option::Option<Schema>,
-    #[prost(message, optional, tag = "7")]
-    pub source_system_timestamps: ::core::option::Option<SystemTimestamps>,
-    #[prost(message, optional, tag = "13")]
-    pub usage_signal: ::core::option::Option<UsageSignal>,
-    #[prost(oneof = "entry::EntryType", tags = "2, 16")]
-    pub entry_type: ::core::option::Option<entry::EntryType>,
-    #[prost(oneof = "entry::System", tags = "17, 18")]
-    pub system: ::core::option::Option<entry::System>,
-    #[prost(oneof = "entry::TypeSpec", tags = "6, 12, 15")]
-    pub type_spec: ::core::option::Option<entry::TypeSpec>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub linked_resource: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "5")]
+pub schema: ::core::option::Option<Schema>,
+#[prost(message, optional, tag = "7")]
+pub source_system_timestamps: ::core::option::Option<SystemTimestamps>,
+#[prost(message, optional, tag = "13")]
+pub usage_signal: ::core::option::Option<UsageSignal>,
+#[prost(oneof = "entry::EntryType", tags = "2, 16")]
+pub entry_type: ::core::option::Option<entry::EntryType>,
+#[prost(oneof = "entry::System", tags = "17, 18")]
+pub system: ::core::option::Option<entry::System>,
+#[prost(oneof = "entry::TypeSpec", tags = "6, 12, 15")]
+pub type_spec: ::core::option::Option<entry::TypeSpec>,
 }
 /// Nested message and enum types in `Entry`.
 pub mod entry {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum EntryType {
-        #[prost(enumeration = "super::EntryType", tag = "2")]
-        Type(i32),
-        #[prost(string, tag = "16")]
-        UserSpecifiedType(::prost::alloc::string::String),
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum System {
-        #[prost(enumeration = "super::IntegratedSystem", tag = "17")]
-        IntegratedSystem(i32),
-        #[prost(string, tag = "18")]
-        UserSpecifiedSystem(::prost::alloc::string::String),
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum TypeSpec {
-        #[prost(message, tag = "6")]
-        GcsFilesetSpec(super::GcsFilesetSpec),
-        #[prost(message, tag = "12")]
-        BigqueryTableSpec(super::BigQueryTableSpec),
-        #[prost(message, tag = "15")]
-        BigqueryDateShardedSpec(super::BigQueryDateShardedSpec),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum EntryType {
+#[prost(enumeration = "super::EntryType", tag = "2")]
+Type(i32),
+#[prost(string, tag = "16")]
+UserSpecifiedType(::prost::alloc::string::String),
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum System {
+#[prost(enumeration = "super::IntegratedSystem", tag = "17")]
+IntegratedSystem(i32),
+#[prost(string, tag = "18")]
+UserSpecifiedSystem(::prost::alloc::string::String),
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum TypeSpec {
+#[prost(message, tag = "6")]
+GcsFilesetSpec(super::GcsFilesetSpec),
+#[prost(message, tag = "12")]
+BigqueryTableSpec(super::BigQueryTableSpec),
+#[prost(message, tag = "15")]
+BigqueryDateShardedSpec(super::BigQueryDateShardedSpec),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntryGroup {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub data_catalog_timestamps: ::core::option::Option<SystemTimestamps>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub data_catalog_timestamps: ::core::option::Option<SystemTimestamps>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTagTemplateRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub tag_template_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub tag_template: ::core::option::Option<TagTemplate>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub tag_template_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub tag_template: ::core::option::Option<TagTemplate>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTagTemplateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTagTemplateRequest {
-    #[prost(message, optional, tag = "1")]
-    pub tag_template: ::core::option::Option<TagTemplate>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub tag_template: ::core::option::Option<TagTemplate>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTagTemplateRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTagRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub tag: ::core::option::Option<Tag>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub tag: ::core::option::Option<Tag>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTagRequest {
-    #[prost(message, optional, tag = "1")]
-    pub tag: ::core::option::Option<Tag>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub tag: ::core::option::Option<Tag>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTagRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTagTemplateFieldRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub tag_template_field_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub tag_template_field: ::core::option::Option<TagTemplateField>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub tag_template_field_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub tag_template_field: ::core::option::Option<TagTemplateField>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTagTemplateFieldRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub tag_template_field: ::core::option::Option<TagTemplateField>,
-    #[prost(message, optional, tag = "3")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub tag_template_field: ::core::option::Option<TagTemplateField>,
+#[prost(message, optional, tag = "3")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenameTagTemplateFieldRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub new_tag_template_field_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub new_tag_template_field_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RenameTagTemplateFieldEnumValueRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub new_enum_value_display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub new_enum_value_display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTagTemplateFieldRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub force: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub force: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTagsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTagsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub tags: ::prost::alloc::vec::Vec<Tag>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub tags: ::prost::alloc::vec::Vec<Tag>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntriesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub read_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEntriesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub entries: ::prost::alloc::vec::Vec<Entry>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub entries: ::prost::alloc::vec::Vec<Entry>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum EntryType {
-    Unspecified = 0,
-    Table = 2,
-    Model = 5,
-    DataStream = 3,
-    Fileset = 4,
+Unspecified = 0,
+Table = 2,
+Model = 5,
+DataStream = 3,
+Fileset = 4,
 }
 impl EntryType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EntryType::Unspecified => "ENTRY_TYPE_UNSPECIFIED",
-            EntryType::Table => "TABLE",
-            EntryType::Model => "MODEL",
-            EntryType::DataStream => "DATA_STREAM",
-            EntryType::Fileset => "FILESET",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ENTRY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "TABLE" => Some(Self::Table),
-            "MODEL" => Some(Self::Model),
-            "DATA_STREAM" => Some(Self::DataStream),
-            "FILESET" => Some(Self::Fileset),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EntryType::Unspecified => "ENTRY_TYPE_UNSPECIFIED",
+EntryType::Table => "TABLE",
+EntryType::Model => "MODEL",
+EntryType::DataStream => "DATA_STREAM",
+EntryType::Fileset => "FILESET",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENTRY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"TABLE" => Some(Self::Table),
+"MODEL" => Some(Self::Model),
+"DATA_STREAM" => Some(Self::DataStream),
+"FILESET" => Some(Self::Fileset),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod data_catalog_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Data Catalog API service allows clients to discover, understand, and manage
-    /// their data.
-    #[derive(Debug, Clone)]
-    pub struct DataCatalogClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> DataCatalogClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> DataCatalogClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            DataCatalogClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Searches Data Catalog for multiple resources like entries, tags that
-        /// match a query.
-        ///
-        /// This is a custom method
-        /// (https://cloud.google.com/apis/design/custom_methods) and does not return
-        /// the complete resource, only the resource identifier and high level
-        /// fields. Clients can subsequently call `Get` methods.
-        ///
-        /// Note that Data Catalog search queries do not guarantee full recall. Query
-        /// results that match your query may not be returned, even in subsequent
-        /// result pages. Also note that results returned (and not returned) can vary
-        /// across repeated search queries.
-        ///
-        /// See [Data Catalog Search
-        /// Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference)
-        /// for more information.
-        pub async fn search_catalog(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchCatalogRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchCatalogResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/SearchCatalog",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "SearchCatalog",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// A maximum of 10,000 entry groups may be created per organization across all
-        /// locations.
-        ///
-        /// Users should enable the Data Catalog API in the project identified by
-        /// the `parent` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn create_entry_group(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateEntryGroupRequest>,
-        ) -> std::result::Result<tonic::Response<super::EntryGroup>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/CreateEntryGroup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "CreateEntryGroup",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an EntryGroup. The user should enable the Data Catalog API in the
-        /// project identified by the `entry_group.name` parameter (see [Data Catalog
-        /// Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn update_entry_group(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateEntryGroupRequest>,
-        ) -> std::result::Result<tonic::Response<super::EntryGroup>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateEntryGroup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "UpdateEntryGroup",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets an EntryGroup.
-        pub async fn get_entry_group(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetEntryGroupRequest>,
-        ) -> std::result::Result<tonic::Response<super::EntryGroup>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/GetEntryGroup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "GetEntryGroup",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes an EntryGroup. Only entry groups that do not contain entries can be
-        /// deleted. Users should enable the Data Catalog API in the project
-        /// identified by the `name` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn delete_entry_group(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteEntryGroupRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteEntryGroup",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "DeleteEntryGroup",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists entry groups.
-        pub async fn list_entry_groups(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListEntryGroupsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListEntryGroupsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/ListEntryGroups",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "ListEntryGroups",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates an entry. Only entries of 'FILESET' type or user-specified type can
-        /// be created.
-        ///
-        /// Users should enable the Data Catalog API in the project identified by
-        /// the `parent` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        ///
-        /// A maximum of 100,000 entries may be created per entry group.
-        pub async fn create_entry(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateEntryRequest>,
-        ) -> std::result::Result<tonic::Response<super::Entry>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/CreateEntry",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "CreateEntry",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an existing entry.
-        /// Users should enable the Data Catalog API in the project identified by
-        /// the `entry.name` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn update_entry(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateEntryRequest>,
-        ) -> std::result::Result<tonic::Response<super::Entry>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateEntry",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "UpdateEntry",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes an existing entry. Only entries created through
-        /// [CreateEntry][google.cloud.datacatalog.v1beta1.DataCatalog.CreateEntry]
-        /// method can be deleted.
-        /// Users should enable the Data Catalog API in the project identified by
-        /// the `name` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn delete_entry(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteEntryRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteEntry",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "DeleteEntry",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets an entry.
-        pub async fn get_entry(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetEntryRequest>,
-        ) -> std::result::Result<tonic::Response<super::Entry>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/GetEntry",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "GetEntry",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get an entry by target resource name. This method allows clients to use
-        /// the resource name from the source Google Cloud Platform service to get the
-        /// Data Catalog Entry.
-        pub async fn lookup_entry(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LookupEntryRequest>,
-        ) -> std::result::Result<tonic::Response<super::Entry>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/LookupEntry",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "LookupEntry",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists entries.
-        pub async fn list_entries(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListEntriesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListEntriesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/ListEntries",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "ListEntries",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a tag template. The user should enable the Data Catalog API in
-        /// the project identified by the `parent` parameter (see [Data Catalog
-        /// Resource
-        /// Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project)
-        /// for more information).
-        pub async fn create_tag_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateTagTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::TagTemplate>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/CreateTagTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "CreateTagTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a tag template.
-        pub async fn get_tag_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTagTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::TagTemplate>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/GetTagTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "GetTagTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a tag template. This method cannot be used to update the fields of
-        /// a template. The tag template fields are represented as separate resources
-        /// and should be updated using their own create/update/delete methods.
-        /// Users should enable the Data Catalog API in the project identified by
-        /// the `tag_template.name` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn update_tag_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateTagTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<super::TagTemplate>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateTagTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "UpdateTagTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a tag template and all tags using the template.
-        /// Users should enable the Data Catalog API in the project identified by
-        /// the `name` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn delete_tag_template(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteTagTemplateRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteTagTemplate",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "DeleteTagTemplate",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a field in a tag template. The user should enable the Data Catalog
-        /// API in the project identified by the `parent` parameter (see
-        /// [Data Catalog Resource
-        /// Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project)
-        /// for more information).
-        pub async fn create_tag_template_field(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateTagTemplateFieldRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::TagTemplateField>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/CreateTagTemplateField",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "CreateTagTemplateField",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a field in a tag template. This method cannot be used to update the
-        /// field type. Users should enable the Data Catalog API in the project
-        /// identified by the `name` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn update_tag_template_field(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateTagTemplateFieldRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::TagTemplateField>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateTagTemplateField",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "UpdateTagTemplateField",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Renames a field in a tag template. The user should enable the Data Catalog
-        /// API in the project identified by the `name` parameter (see [Data Catalog
-        /// Resource
-        /// Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project)
-        /// for more information).
-        pub async fn rename_tag_template_field(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RenameTagTemplateFieldRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::TagTemplateField>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/RenameTagTemplateField",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "RenameTagTemplateField",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Renames an enum value in a tag template. The enum values have to be unique
-        /// within one enum field. Thus, an enum value cannot be renamed with a name
-        /// used in any other enum value within the same enum field.
-        pub async fn rename_tag_template_field_enum_value(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::RenameTagTemplateFieldEnumValueRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::TagTemplateField>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/RenameTagTemplateFieldEnumValue",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "RenameTagTemplateFieldEnumValue",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a field in a tag template and all uses of that field.
-        /// Users should enable the Data Catalog API in the project identified by
-        /// the `name` parameter (see [Data Catalog Resource Project]
-        /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
-        /// more information).
-        pub async fn delete_tag_template_field(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteTagTemplateFieldRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteTagTemplateField",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "DeleteTagTemplateField",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a tag on an [Entry][google.cloud.datacatalog.v1beta1.Entry].
-        /// Note: The project identified by the `parent` parameter for the
-        /// [tag](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters)
-        /// and the
-        /// [tag
-        /// template](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.tagTemplates/create#path-parameters)
-        /// used to create the tag must be from the same organization.
-        pub async fn create_tag(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateTagRequest>,
-        ) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/CreateTag",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "CreateTag",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an existing tag.
-        pub async fn update_tag(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateTagRequest>,
-        ) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateTag",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "UpdateTag",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a tag.
-        pub async fn delete_tag(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteTagRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteTag",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "DeleteTag",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1beta1.Entry].
-        /// The [columns][google.cloud.datacatalog.v1beta1.Tag.column] in the response
-        /// are lowercased.
-        pub async fn list_tags(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTagsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTagsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/ListTags",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "ListTags",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Sets the access control policy for a resource. Replaces any existing
-        /// policy.
-        /// Supported resources are:
-        ///   - Tag templates.
-        ///   - Entries.
-        ///   - Entry groups.
-        /// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
-        /// and any external Google Cloud Platform resources synced to Data Catalog.
-        ///
-        /// Callers must have following Google IAM permission
-        ///   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
-        ///     templates.
-        ///   - `datacatalog.entries.setIamPolicy` to set policies on entries.
-        ///   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
-        pub async fn set_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::SetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/SetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "SetIamPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the access control policy for a resource. A `NOT_FOUND` error
-        /// is returned if the resource does not exist. An empty policy is returned
-        /// if the resource exists but does not have a policy set on it.
-        ///
-        /// Supported resources are:
-        ///   - Tag templates.
-        ///   - Entries.
-        ///   - Entry groups.
-        /// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
-        /// and any external Google Cloud Platform resources synced to Data Catalog.
-        ///
-        /// Callers must have following Google IAM permission
-        ///   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
-        ///     templates.
-        ///   - `datacatalog.entries.getIamPolicy` to get policies on entries.
-        ///   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
-        pub async fn get_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::GetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/GetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "GetIamPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the caller's permissions on a resource.
-        /// If the resource does not exist, an empty set of permissions is returned
-        /// (We don't return a `NOT_FOUND` error).
-        ///
-        /// Supported resources are:
-        ///   - Tag templates.
-        ///   - Entries.
-        ///   - Entry groups.
-        /// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
-        /// and any external Google Cloud Platform resources synced to Data Catalog.
-        ///
-        /// A caller is not required to have Google IAM permission to make this
-        /// request.
-        pub async fn test_iam_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::TestIamPermissionsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::iam::v1::TestIamPermissionsResponse,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.DataCatalog/TestIamPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.DataCatalog",
-                        "TestIamPermissions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Data Catalog API service allows clients to discover, understand, and manage
+/// their data.
+#[derive(Debug, Clone)]
+pub struct DataCatalogClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> DataCatalogClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> DataCatalogClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+DataCatalogClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Searches Data Catalog for multiple resources like entries, tags that
+/// match a query.
+///
+/// This is a custom method
+/// (https://cloud.google.com/apis/design/custom_methods) and does not return
+/// the complete resource, only the resource identifier and high level
+/// fields. Clients can subsequently call `Get` methods.
+///
+/// Note that Data Catalog search queries do not guarantee full recall. Query
+/// results that match your query may not be returned, even in subsequent
+/// result pages. Also note that results returned (and not returned) can vary
+/// across repeated search queries.
+///
+/// See [Data Catalog Search
+/// Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference)
+/// for more information.
+pub async fn search_catalog(&mut self, request: impl tonic::IntoRequest<super::SearchCatalogRequest>) -> std::result::Result<tonic::Response<super::SearchCatalogResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/SearchCatalog");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "SearchCatalog"));
+self.inner.unary(req, path, codec).await
+}
+/// A maximum of 10,000 entry groups may be created per organization across all
+/// locations.
+///
+/// Users should enable the Data Catalog API in the project identified by
+/// the `parent` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn create_entry_group(&mut self, request: impl tonic::IntoRequest<super::CreateEntryGroupRequest>) -> std::result::Result<tonic::Response<super::EntryGroup>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/CreateEntryGroup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "CreateEntryGroup"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an EntryGroup. The user should enable the Data Catalog API in the
+/// project identified by the `entry_group.name` parameter (see [Data Catalog
+/// Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn update_entry_group(&mut self, request: impl tonic::IntoRequest<super::UpdateEntryGroupRequest>) -> std::result::Result<tonic::Response<super::EntryGroup>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateEntryGroup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "UpdateEntryGroup"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets an EntryGroup.
+pub async fn get_entry_group(&mut self, request: impl tonic::IntoRequest<super::GetEntryGroupRequest>) -> std::result::Result<tonic::Response<super::EntryGroup>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/GetEntryGroup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "GetEntryGroup"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes an EntryGroup. Only entry groups that do not contain entries can be
+/// deleted. Users should enable the Data Catalog API in the project
+/// identified by the `name` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn delete_entry_group(&mut self, request: impl tonic::IntoRequest<super::DeleteEntryGroupRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteEntryGroup");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "DeleteEntryGroup"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists entry groups.
+pub async fn list_entry_groups(&mut self, request: impl tonic::IntoRequest<super::ListEntryGroupsRequest>) -> std::result::Result<tonic::Response<super::ListEntryGroupsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/ListEntryGroups");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "ListEntryGroups"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates an entry. Only entries of 'FILESET' type or user-specified type can
+/// be created.
+///
+/// Users should enable the Data Catalog API in the project identified by
+/// the `parent` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+///
+/// A maximum of 100,000 entries may be created per entry group.
+pub async fn create_entry(&mut self, request: impl tonic::IntoRequest<super::CreateEntryRequest>) -> std::result::Result<tonic::Response<super::Entry>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/CreateEntry");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "CreateEntry"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an existing entry.
+/// Users should enable the Data Catalog API in the project identified by
+/// the `entry.name` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn update_entry(&mut self, request: impl tonic::IntoRequest<super::UpdateEntryRequest>) -> std::result::Result<tonic::Response<super::Entry>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateEntry");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "UpdateEntry"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes an existing entry. Only entries created through
+/// [CreateEntry][google.cloud.datacatalog.v1beta1.DataCatalog.CreateEntry]
+/// method can be deleted.
+/// Users should enable the Data Catalog API in the project identified by
+/// the `name` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn delete_entry(&mut self, request: impl tonic::IntoRequest<super::DeleteEntryRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteEntry");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "DeleteEntry"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets an entry.
+pub async fn get_entry(&mut self, request: impl tonic::IntoRequest<super::GetEntryRequest>) -> std::result::Result<tonic::Response<super::Entry>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/GetEntry");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "GetEntry"));
+self.inner.unary(req, path, codec).await
+}
+/// Get an entry by target resource name. This method allows clients to use
+/// the resource name from the source Google Cloud Platform service to get the
+/// Data Catalog Entry.
+pub async fn lookup_entry(&mut self, request: impl tonic::IntoRequest<super::LookupEntryRequest>) -> std::result::Result<tonic::Response<super::Entry>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/LookupEntry");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "LookupEntry"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists entries.
+pub async fn list_entries(&mut self, request: impl tonic::IntoRequest<super::ListEntriesRequest>) -> std::result::Result<tonic::Response<super::ListEntriesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/ListEntries");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "ListEntries"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a tag template. The user should enable the Data Catalog API in
+/// the project identified by the `parent` parameter (see [Data Catalog
+/// Resource
+/// Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project)
+/// for more information).
+pub async fn create_tag_template(&mut self, request: impl tonic::IntoRequest<super::CreateTagTemplateRequest>) -> std::result::Result<tonic::Response<super::TagTemplate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/CreateTagTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "CreateTagTemplate"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a tag template.
+pub async fn get_tag_template(&mut self, request: impl tonic::IntoRequest<super::GetTagTemplateRequest>) -> std::result::Result<tonic::Response<super::TagTemplate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/GetTagTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "GetTagTemplate"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a tag template. This method cannot be used to update the fields of
+/// a template. The tag template fields are represented as separate resources
+/// and should be updated using their own create/update/delete methods.
+/// Users should enable the Data Catalog API in the project identified by
+/// the `tag_template.name` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn update_tag_template(&mut self, request: impl tonic::IntoRequest<super::UpdateTagTemplateRequest>) -> std::result::Result<tonic::Response<super::TagTemplate>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateTagTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "UpdateTagTemplate"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a tag template and all tags using the template.
+/// Users should enable the Data Catalog API in the project identified by
+/// the `name` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn delete_tag_template(&mut self, request: impl tonic::IntoRequest<super::DeleteTagTemplateRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteTagTemplate");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "DeleteTagTemplate"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a field in a tag template. The user should enable the Data Catalog
+/// API in the project identified by the `parent` parameter (see
+/// [Data Catalog Resource
+/// Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project)
+/// for more information).
+pub async fn create_tag_template_field(&mut self, request: impl tonic::IntoRequest<super::CreateTagTemplateFieldRequest>) -> std::result::Result<tonic::Response<super::TagTemplateField>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/CreateTagTemplateField");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "CreateTagTemplateField"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a field in a tag template. This method cannot be used to update the
+/// field type. Users should enable the Data Catalog API in the project
+/// identified by the `name` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn update_tag_template_field(&mut self, request: impl tonic::IntoRequest<super::UpdateTagTemplateFieldRequest>) -> std::result::Result<tonic::Response<super::TagTemplateField>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateTagTemplateField");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "UpdateTagTemplateField"));
+self.inner.unary(req, path, codec).await
+}
+/// Renames a field in a tag template. The user should enable the Data Catalog
+/// API in the project identified by the `name` parameter (see [Data Catalog
+/// Resource
+/// Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project)
+/// for more information).
+pub async fn rename_tag_template_field(&mut self, request: impl tonic::IntoRequest<super::RenameTagTemplateFieldRequest>) -> std::result::Result<tonic::Response<super::TagTemplateField>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/RenameTagTemplateField");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "RenameTagTemplateField"));
+self.inner.unary(req, path, codec).await
+}
+/// Renames an enum value in a tag template. The enum values have to be unique
+/// within one enum field. Thus, an enum value cannot be renamed with a name
+/// used in any other enum value within the same enum field.
+pub async fn rename_tag_template_field_enum_value(&mut self, request: impl tonic::IntoRequest<super::RenameTagTemplateFieldEnumValueRequest>) -> std::result::Result<tonic::Response<super::TagTemplateField>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/RenameTagTemplateFieldEnumValue");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "RenameTagTemplateFieldEnumValue"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a field in a tag template and all uses of that field.
+/// Users should enable the Data Catalog API in the project identified by
+/// the `name` parameter (see [Data Catalog Resource Project]
+/// (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for
+/// more information).
+pub async fn delete_tag_template_field(&mut self, request: impl tonic::IntoRequest<super::DeleteTagTemplateFieldRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteTagTemplateField");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "DeleteTagTemplateField"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a tag on an [Entry][google.cloud.datacatalog.v1beta1.Entry].
+/// Note: The project identified by the `parent` parameter for the
+/// [tag](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters)
+/// and the
+/// [tag
+/// template](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.tagTemplates/create#path-parameters)
+/// used to create the tag must be from the same organization.
+pub async fn create_tag(&mut self, request: impl tonic::IntoRequest<super::CreateTagRequest>) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/CreateTag");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "CreateTag"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an existing tag.
+pub async fn update_tag(&mut self, request: impl tonic::IntoRequest<super::UpdateTagRequest>) -> std::result::Result<tonic::Response<super::Tag>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/UpdateTag");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "UpdateTag"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a tag.
+pub async fn delete_tag(&mut self, request: impl tonic::IntoRequest<super::DeleteTagRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/DeleteTag");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "DeleteTag"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1beta1.Entry].
+/// The [columns][google.cloud.datacatalog.v1beta1.Tag.column] in the response
+/// are lowercased.
+pub async fn list_tags(&mut self, request: impl tonic::IntoRequest<super::ListTagsRequest>) -> std::result::Result<tonic::Response<super::ListTagsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/ListTags");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "ListTags"));
+self.inner.unary(req, path, codec).await
+}
+/// Sets the access control policy for a resource. Replaces any existing
+/// policy.
+/// Supported resources are:
+///   - Tag templates.
+///   - Entries.
+///   - Entry groups.
+/// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
+/// and any external Google Cloud Platform resources synced to Data Catalog.
+///
+/// Callers must have following Google IAM permission
+///   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
+///     templates.
+///   - `datacatalog.entries.setIamPolicy` to set policies on entries.
+///   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/SetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "SetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the access control policy for a resource. A `NOT_FOUND` error
+/// is returned if the resource does not exist. An empty policy is returned
+/// if the resource exists but does not have a policy set on it.
+///
+/// Supported resources are:
+///   - Tag templates.
+///   - Entries.
+///   - Entry groups.
+/// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
+/// and any external Google Cloud Platform resources synced to Data Catalog.
+///
+/// Callers must have following Google IAM permission
+///   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
+///     templates.
+///   - `datacatalog.entries.getIamPolicy` to get policies on entries.
+///   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/GetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "GetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the caller's permissions on a resource.
+/// If the resource does not exist, an empty set of permissions is returned
+/// (We don't return a `NOT_FOUND` error).
+///
+/// Supported resources are:
+///   - Tag templates.
+///   - Entries.
+///   - Entry groups.
+/// Note, this method cannot be used to manage policies for BigQuery, Pub/Sub
+/// and any external Google Cloud Platform resources synced to Data Catalog.
+///
+/// A caller is not required to have Google IAM permission to make this
+/// request.
+pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.DataCatalog/TestIamPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.DataCatalog", "TestIamPermissions"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Taxonomy {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(int32, tag = "4")]
-    pub policy_tag_count: i32,
-    #[prost(message, optional, tag = "5")]
-    pub taxonomy_timestamps: ::core::option::Option<SystemTimestamps>,
-    #[prost(enumeration = "taxonomy::PolicyType", repeated, packed = "false", tag = "6")]
-    pub activated_policy_types: ::prost::alloc::vec::Vec<i32>,
-    #[prost(message, optional, tag = "7")]
-    pub service: ::core::option::Option<taxonomy::Service>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(int32, tag = "4")]
+pub policy_tag_count: i32,
+#[prost(message, optional, tag = "5")]
+pub taxonomy_timestamps: ::core::option::Option<SystemTimestamps>,
+#[prost(enumeration = "taxonomy::PolicyType", repeated, packed = "false", tag = "6")]
+pub activated_policy_types: ::prost::alloc::vec::Vec<i32>,
+#[prost(message, optional, tag = "7")]
+pub service: ::core::option::Option<taxonomy::Service>,
 }
 /// Nested message and enum types in `Taxonomy`.
 pub mod taxonomy {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Service {
-        #[prost(enumeration = "super::ManagingSystem", tag = "1")]
-        pub name: i32,
-        #[prost(string, tag = "2")]
-        pub identity: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PolicyType {
-        Unspecified = 0,
-        FineGrainedAccessControl = 1,
-    }
-    impl PolicyType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PolicyType::Unspecified => "POLICY_TYPE_UNSPECIFIED",
-                PolicyType::FineGrainedAccessControl => "FINE_GRAINED_ACCESS_CONTROL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "POLICY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "FINE_GRAINED_ACCESS_CONTROL" => Some(Self::FineGrainedAccessControl),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Service {
+#[prost(enumeration = "super::ManagingSystem", tag = "1")]
+pub name: i32,
+#[prost(string, tag = "2")]
+pub identity: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PolicyType {
+Unspecified = 0,
+FineGrainedAccessControl = 1,
+}
+impl PolicyType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PolicyType::Unspecified => "POLICY_TYPE_UNSPECIFIED",
+PolicyType::FineGrainedAccessControl => "FINE_GRAINED_ACCESS_CONTROL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"POLICY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"FINE_GRAINED_ACCESS_CONTROL" => Some(Self::FineGrainedAccessControl),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PolicyTag {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub parent_policy_tag: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "5")]
-    pub child_policy_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub parent_policy_tag: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "5")]
+pub child_policy_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateTaxonomyRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub taxonomy: ::core::option::Option<Taxonomy>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub taxonomy: ::core::option::Option<Taxonomy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteTaxonomyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateTaxonomyRequest {
-    #[prost(message, optional, tag = "1")]
-    pub taxonomy: ::core::option::Option<Taxonomy>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub taxonomy: ::core::option::Option<Taxonomy>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTaxonomiesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListTaxonomiesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub taxonomies: ::prost::alloc::vec::Vec<Taxonomy>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub taxonomies: ::prost::alloc::vec::Vec<Taxonomy>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetTaxonomyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePolicyTagRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub policy_tag: ::core::option::Option<PolicyTag>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub policy_tag: ::core::option::Option<PolicyTag>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePolicyTagRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePolicyTagRequest {
-    #[prost(message, optional, tag = "1")]
-    pub policy_tag: ::core::option::Option<PolicyTag>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub policy_tag: ::core::option::Option<PolicyTag>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPolicyTagsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPolicyTagsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub policy_tags: ::prost::alloc::vec::Vec<PolicyTag>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub policy_tags: ::prost::alloc::vec::Vec<PolicyTag>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPolicyTagRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod policy_tag_manager_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The policy tag manager API service allows clients to manage their taxonomies
-    /// and policy tags.
-    #[derive(Debug, Clone)]
-    pub struct PolicyTagManagerClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> PolicyTagManagerClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> PolicyTagManagerClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            PolicyTagManagerClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a taxonomy in the specified project.
-        pub async fn create_taxonomy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateTaxonomyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Taxonomy>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/CreateTaxonomy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "CreateTaxonomy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a taxonomy. This operation will also delete all
-        /// policy tags in this taxonomy along with their associated policies.
-        pub async fn delete_taxonomy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteTaxonomyRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/DeleteTaxonomy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "DeleteTaxonomy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a taxonomy.
-        pub async fn update_taxonomy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateTaxonomyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Taxonomy>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/UpdateTaxonomy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "UpdateTaxonomy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all taxonomies in a project in a particular location that the caller
-        /// has permission to view.
-        pub async fn list_taxonomies(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListTaxonomiesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListTaxonomiesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/ListTaxonomies",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "ListTaxonomies",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a taxonomy.
-        pub async fn get_taxonomy(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTaxonomyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Taxonomy>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/GetTaxonomy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "GetTaxonomy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a policy tag in the specified taxonomy.
-        pub async fn create_policy_tag(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePolicyTagRequest>,
-        ) -> std::result::Result<tonic::Response<super::PolicyTag>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/CreatePolicyTag",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "CreatePolicyTag",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a policy tag. Also deletes all of its descendant policy tags.
-        pub async fn delete_policy_tag(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePolicyTagRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/DeletePolicyTag",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "DeletePolicyTag",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a policy tag.
-        pub async fn update_policy_tag(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdatePolicyTagRequest>,
-        ) -> std::result::Result<tonic::Response<super::PolicyTag>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/UpdatePolicyTag",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "UpdatePolicyTag",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all policy tags in a taxonomy.
-        pub async fn list_policy_tags(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPolicyTagsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPolicyTagsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/ListPolicyTags",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "ListPolicyTags",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a policy tag.
-        pub async fn get_policy_tag(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPolicyTagRequest>,
-        ) -> std::result::Result<tonic::Response<super::PolicyTag>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/GetPolicyTag",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "GetPolicyTag",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the IAM policy for a taxonomy or a policy tag.
-        pub async fn get_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::GetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/GetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "GetIamPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Sets the IAM policy for a taxonomy or a policy tag.
-        pub async fn set_iam_policy(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::SetIamPolicyRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::iam::v1::Policy>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/SetIamPolicy",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "SetIamPolicy",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the permissions that a caller has on the specified taxonomy or
-        /// policy tag.
-        pub async fn test_iam_permissions(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::super::super::super::iam::v1::TestIamPermissionsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<
-                super::super::super::super::iam::v1::TestIamPermissionsResponse,
-            >,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManager/TestIamPermissions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManager",
-                        "TestIamPermissions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The policy tag manager API service allows clients to manage their taxonomies
+/// and policy tags.
+#[derive(Debug, Clone)]
+pub struct PolicyTagManagerClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> PolicyTagManagerClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> PolicyTagManagerClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+PolicyTagManagerClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a taxonomy in the specified project.
+pub async fn create_taxonomy(&mut self, request: impl tonic::IntoRequest<super::CreateTaxonomyRequest>) -> std::result::Result<tonic::Response<super::Taxonomy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/CreateTaxonomy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "CreateTaxonomy"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a taxonomy. This operation will also delete all
+/// policy tags in this taxonomy along with their associated policies.
+pub async fn delete_taxonomy(&mut self, request: impl tonic::IntoRequest<super::DeleteTaxonomyRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/DeleteTaxonomy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "DeleteTaxonomy"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a taxonomy.
+pub async fn update_taxonomy(&mut self, request: impl tonic::IntoRequest<super::UpdateTaxonomyRequest>) -> std::result::Result<tonic::Response<super::Taxonomy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/UpdateTaxonomy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "UpdateTaxonomy"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all taxonomies in a project in a particular location that the caller
+/// has permission to view.
+pub async fn list_taxonomies(&mut self, request: impl tonic::IntoRequest<super::ListTaxonomiesRequest>) -> std::result::Result<tonic::Response<super::ListTaxonomiesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/ListTaxonomies");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "ListTaxonomies"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a taxonomy.
+pub async fn get_taxonomy(&mut self, request: impl tonic::IntoRequest<super::GetTaxonomyRequest>) -> std::result::Result<tonic::Response<super::Taxonomy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/GetTaxonomy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "GetTaxonomy"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a policy tag in the specified taxonomy.
+pub async fn create_policy_tag(&mut self, request: impl tonic::IntoRequest<super::CreatePolicyTagRequest>) -> std::result::Result<tonic::Response<super::PolicyTag>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/CreatePolicyTag");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "CreatePolicyTag"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a policy tag. Also deletes all of its descendant policy tags.
+pub async fn delete_policy_tag(&mut self, request: impl tonic::IntoRequest<super::DeletePolicyTagRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/DeletePolicyTag");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "DeletePolicyTag"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a policy tag.
+pub async fn update_policy_tag(&mut self, request: impl tonic::IntoRequest<super::UpdatePolicyTagRequest>) -> std::result::Result<tonic::Response<super::PolicyTag>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/UpdatePolicyTag");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "UpdatePolicyTag"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all policy tags in a taxonomy.
+pub async fn list_policy_tags(&mut self, request: impl tonic::IntoRequest<super::ListPolicyTagsRequest>) -> std::result::Result<tonic::Response<super::ListPolicyTagsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/ListPolicyTags");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "ListPolicyTags"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a policy tag.
+pub async fn get_policy_tag(&mut self, request: impl tonic::IntoRequest<super::GetPolicyTagRequest>) -> std::result::Result<tonic::Response<super::PolicyTag>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/GetPolicyTag");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "GetPolicyTag"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the IAM policy for a taxonomy or a policy tag.
+pub async fn get_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::GetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/GetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "GetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Sets the IAM policy for a taxonomy or a policy tag.
+pub async fn set_iam_policy(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::SetIamPolicyRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::Policy>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/SetIamPolicy");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "SetIamPolicy"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the permissions that a caller has on the specified taxonomy or
+/// policy tag.
+pub async fn test_iam_permissions(&mut self, request: impl tonic::IntoRequest<super::super::super::super::iam::v1::TestIamPermissionsRequest>) -> std::result::Result<tonic::Response<super::super::super::super::iam::v1::TestIamPermissionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManager/TestIamPermissions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManager", "TestIamPermissions"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SerializedTaxonomy {
-    #[prost(string, tag = "1")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "3")]
-    pub policy_tags: ::prost::alloc::vec::Vec<SerializedPolicyTag>,
-    #[prost(enumeration = "taxonomy::PolicyType", repeated, tag = "4")]
-    pub activated_policy_types: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "3")]
+pub policy_tags: ::prost::alloc::vec::Vec<SerializedPolicyTag>,
+#[prost(enumeration = "taxonomy::PolicyType", repeated, tag = "4")]
+pub activated_policy_types: ::prost::alloc::vec::Vec<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SerializedPolicyTag {
-    #[prost(string, tag = "1")]
-    pub policy_tag: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub child_policy_tags: ::prost::alloc::vec::Vec<SerializedPolicyTag>,
+#[prost(string, tag = "1")]
+pub policy_tag: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub child_policy_tags: ::prost::alloc::vec::Vec<SerializedPolicyTag>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportTaxonomiesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(oneof = "import_taxonomies_request::Source", tags = "2")]
-    pub source: ::core::option::Option<import_taxonomies_request::Source>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(oneof = "import_taxonomies_request::Source", tags = "2")]
+pub source: ::core::option::Option<import_taxonomies_request::Source>,
 }
 /// Nested message and enum types in `ImportTaxonomiesRequest`.
 pub mod import_taxonomies_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "2")]
-        InlineSource(super::InlineSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "2")]
+InlineSource(super::InlineSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InlineSource {
-    #[prost(message, repeated, tag = "1")]
-    pub taxonomies: ::prost::alloc::vec::Vec<SerializedTaxonomy>,
+#[prost(message, repeated, tag = "1")]
+pub taxonomies: ::prost::alloc::vec::Vec<SerializedTaxonomy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportTaxonomiesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub taxonomies: ::prost::alloc::vec::Vec<Taxonomy>,
+#[prost(message, repeated, tag = "1")]
+pub taxonomies: ::prost::alloc::vec::Vec<Taxonomy>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportTaxonomiesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub taxonomies: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(oneof = "export_taxonomies_request::Destination", tags = "3")]
-    pub destination: ::core::option::Option<export_taxonomies_request::Destination>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub taxonomies: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(oneof = "export_taxonomies_request::Destination", tags = "3")]
+pub destination: ::core::option::Option<export_taxonomies_request::Destination>,
 }
 /// Nested message and enum types in `ExportTaxonomiesRequest`.
 pub mod export_taxonomies_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(bool, tag = "3")]
-        SerializedTaxonomies(bool),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(bool, tag = "3")]
+SerializedTaxonomies(bool),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportTaxonomiesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub taxonomies: ::prost::alloc::vec::Vec<SerializedTaxonomy>,
+#[prost(message, repeated, tag = "1")]
+pub taxonomies: ::prost::alloc::vec::Vec<SerializedTaxonomy>,
 }
 /// Generated client implementations.
 pub mod policy_tag_manager_serialization_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Policy tag manager serialization API service allows clients to manipulate
-    /// their taxonomies and policy tags data with serialized format.
-    #[derive(Debug, Clone)]
-    pub struct PolicyTagManagerSerializationClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> PolicyTagManagerSerializationClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> PolicyTagManagerSerializationClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            PolicyTagManagerSerializationClient::new(
-                InterceptedService::new(inner, interceptor),
-            )
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Imports all taxonomies and their policy tags to a project as new
-        /// taxonomies.
-        ///
-        /// This method provides a bulk taxonomy / policy tag creation using nested
-        /// proto structure.
-        pub async fn import_taxonomies(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportTaxonomiesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ImportTaxonomiesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManagerSerialization/ImportTaxonomies",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManagerSerialization",
-                        "ImportTaxonomies",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Exports all taxonomies and their policy tags in a project.
-        ///
-        /// This method generates SerializedTaxonomy protos with nested policy tags
-        /// that can be used as an input for future ImportTaxonomies calls.
-        pub async fn export_taxonomies(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ExportTaxonomiesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ExportTaxonomiesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.datacatalog.v1beta1.PolicyTagManagerSerialization/ExportTaxonomies",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.datacatalog.v1beta1.PolicyTagManagerSerialization",
-                        "ExportTaxonomies",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Policy tag manager serialization API service allows clients to manipulate
+/// their taxonomies and policy tags data with serialized format.
+#[derive(Debug, Clone)]
+pub struct PolicyTagManagerSerializationClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> PolicyTagManagerSerializationClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> PolicyTagManagerSerializationClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+PolicyTagManagerSerializationClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Imports all taxonomies and their policy tags to a project as new
+/// taxonomies.
+///
+/// This method provides a bulk taxonomy / policy tag creation using nested
+/// proto structure.
+pub async fn import_taxonomies(&mut self, request: impl tonic::IntoRequest<super::ImportTaxonomiesRequest>) -> std::result::Result<tonic::Response<super::ImportTaxonomiesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManagerSerialization/ImportTaxonomies");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManagerSerialization", "ImportTaxonomies"));
+self.inner.unary(req, path, codec).await
+}
+/// Exports all taxonomies and their policy tags in a project.
+///
+/// This method generates SerializedTaxonomy protos with nested policy tags
+/// that can be used as an input for future ImportTaxonomies calls.
+pub async fn export_taxonomies(&mut self, request: impl tonic::IntoRequest<super::ExportTaxonomiesRequest>) -> std::result::Result<tonic::Response<super::ExportTaxonomiesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.datacatalog.v1beta1.PolicyTagManagerSerialization/ExportTaxonomies");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.datacatalog.v1beta1.PolicyTagManagerSerialization", "ExportTaxonomies"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

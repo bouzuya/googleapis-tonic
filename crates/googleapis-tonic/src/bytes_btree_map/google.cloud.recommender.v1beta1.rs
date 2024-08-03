@@ -2,1266 +2,870 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Insight {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "9")]
-    pub target_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "10")]
-    pub insight_subtype: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub content: ::core::option::Option<::prost_types::Struct>,
-    #[prost(message, optional, tag = "4")]
-    pub last_refresh_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub observation_period: ::core::option::Option<::prost_types::Duration>,
-    #[prost(message, optional, tag = "6")]
-    pub state_info: ::core::option::Option<InsightStateInfo>,
-    #[prost(enumeration = "insight::Category", tag = "7")]
-    pub category: i32,
-    #[prost(enumeration = "insight::Severity", tag = "15")]
-    pub severity: i32,
-    #[prost(string, tag = "11")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "8")]
-    pub associated_recommendations: ::prost::alloc::vec::Vec<
-        insight::RecommendationReference,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "9")]
+pub target_resources: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "10")]
+pub insight_subtype: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub content: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "4")]
+pub last_refresh_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub observation_period: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "6")]
+pub state_info: ::core::option::Option<InsightStateInfo>,
+#[prost(enumeration = "insight::Category", tag = "7")]
+pub category: i32,
+#[prost(enumeration = "insight::Severity", tag = "15")]
+pub severity: i32,
+#[prost(string, tag = "11")]
+pub etag: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "8")]
+pub associated_recommendations: ::prost::alloc::vec::Vec<insight::RecommendationReference>,
 }
 /// Nested message and enum types in `Insight`.
 pub mod insight {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct RecommendationReference {
-        #[prost(string, tag = "1")]
-        pub recommendation: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Category {
-        Unspecified = 0,
-        Cost = 1,
-        Security = 2,
-        Performance = 3,
-        Manageability = 4,
-    }
-    impl Category {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Category::Unspecified => "CATEGORY_UNSPECIFIED",
-                Category::Cost => "COST",
-                Category::Security => "SECURITY",
-                Category::Performance => "PERFORMANCE",
-                Category::Manageability => "MANAGEABILITY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
-                "COST" => Some(Self::Cost),
-                "SECURITY" => Some(Self::Security),
-                "PERFORMANCE" => Some(Self::Performance),
-                "MANAGEABILITY" => Some(Self::Manageability),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Severity {
-        Unspecified = 0,
-        Low = 1,
-        Medium = 2,
-        High = 3,
-        Critical = 4,
-    }
-    impl Severity {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Severity::Unspecified => "SEVERITY_UNSPECIFIED",
-                Severity::Low => "LOW",
-                Severity::Medium => "MEDIUM",
-                Severity::High => "HIGH",
-                Severity::Critical => "CRITICAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "LOW" => Some(Self::Low),
-                "MEDIUM" => Some(Self::Medium),
-                "HIGH" => Some(Self::High),
-                "CRITICAL" => Some(Self::Critical),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RecommendationReference {
+#[prost(string, tag = "1")]
+pub recommendation: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Category {
+Unspecified = 0,
+Cost = 1,
+Security = 2,
+Performance = 3,
+Manageability = 4,
+}
+impl Category {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Category::Unspecified => "CATEGORY_UNSPECIFIED",
+Category::Cost => "COST",
+Category::Security => "SECURITY",
+Category::Performance => "PERFORMANCE",
+Category::Manageability => "MANAGEABILITY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+"COST" => Some(Self::Cost),
+"SECURITY" => Some(Self::Security),
+"PERFORMANCE" => Some(Self::Performance),
+"MANAGEABILITY" => Some(Self::Manageability),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Severity {
+Unspecified = 0,
+Low = 1,
+Medium = 2,
+High = 3,
+Critical = 4,
+}
+impl Severity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Severity::Unspecified => "SEVERITY_UNSPECIFIED",
+Severity::Low => "LOW",
+Severity::Medium => "MEDIUM",
+Severity::High => "HIGH",
+Severity::Critical => "CRITICAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"LOW" => Some(Self::Low),
+"MEDIUM" => Some(Self::Medium),
+"HIGH" => Some(Self::High),
+"CRITICAL" => Some(Self::Critical),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InsightStateInfo {
-    #[prost(enumeration = "insight_state_info::State", tag = "1")]
-    pub state: i32,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub state_metadata: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(enumeration = "insight_state_info::State", tag = "1")]
+pub state: i32,
+#[prost(btree_map = "string, string", tag = "2")]
+pub state_metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `InsightStateInfo`.
 pub mod insight_state_info {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Accepted = 2,
-        Dismissed = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Accepted => "ACCEPTED",
-                State::Dismissed => "DISMISSED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "ACCEPTED" => Some(Self::Accepted),
-                "DISMISSED" => Some(Self::Dismissed),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Accepted = 2,
+Dismissed = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Accepted => "ACCEPTED",
+State::Dismissed => "DISMISSED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"ACCEPTED" => Some(Self::Accepted),
+"DISMISSED" => Some(Self::Dismissed),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InsightType {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InsightTypeConfig {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub insight_type_generation_config: ::core::option::Option<
-        InsightTypeGenerationConfig,
-    >,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "5")]
-    pub revision_id: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "6")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "7")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub insight_type_generation_config: ::core::option::Option<InsightTypeGenerationConfig>,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "5")]
+pub revision_id: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "6")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "7")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InsightTypeGenerationConfig {
-    #[prost(message, optional, tag = "1")]
-    pub params: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "1")]
+pub params: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Recommendation {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "12")]
-    pub recommender_subtype: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub last_refresh_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub primary_impact: ::core::option::Option<Impact>,
-    #[prost(message, repeated, tag = "6")]
-    pub additional_impact: ::prost::alloc::vec::Vec<Impact>,
-    #[prost(enumeration = "recommendation::Priority", tag = "17")]
-    pub priority: i32,
-    #[prost(message, optional, tag = "7")]
-    pub content: ::core::option::Option<RecommendationContent>,
-    #[prost(message, optional, tag = "10")]
-    pub state_info: ::core::option::Option<RecommendationStateInfo>,
-    #[prost(string, tag = "11")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "14")]
-    pub associated_insights: ::prost::alloc::vec::Vec<recommendation::InsightReference>,
-    #[prost(string, tag = "18")]
-    pub xor_group_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub recommender_subtype: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub last_refresh_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub primary_impact: ::core::option::Option<Impact>,
+#[prost(message, repeated, tag = "6")]
+pub additional_impact: ::prost::alloc::vec::Vec<Impact>,
+#[prost(enumeration = "recommendation::Priority", tag = "17")]
+pub priority: i32,
+#[prost(message, optional, tag = "7")]
+pub content: ::core::option::Option<RecommendationContent>,
+#[prost(message, optional, tag = "10")]
+pub state_info: ::core::option::Option<RecommendationStateInfo>,
+#[prost(string, tag = "11")]
+pub etag: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "14")]
+pub associated_insights: ::prost::alloc::vec::Vec<recommendation::InsightReference>,
+#[prost(string, tag = "18")]
+pub xor_group_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `Recommendation`.
 pub mod recommendation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct InsightReference {
-        #[prost(string, tag = "1")]
-        pub insight: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Priority {
-        Unspecified = 0,
-        P4 = 1,
-        P3 = 2,
-        P2 = 3,
-        P1 = 4,
-    }
-    impl Priority {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Priority::Unspecified => "PRIORITY_UNSPECIFIED",
-                Priority::P4 => "P4",
-                Priority::P3 => "P3",
-                Priority::P2 => "P2",
-                Priority::P1 => "P1",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PRIORITY_UNSPECIFIED" => Some(Self::Unspecified),
-                "P4" => Some(Self::P4),
-                "P3" => Some(Self::P3),
-                "P2" => Some(Self::P2),
-                "P1" => Some(Self::P1),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InsightReference {
+#[prost(string, tag = "1")]
+pub insight: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Priority {
+Unspecified = 0,
+P4 = 1,
+P3 = 2,
+P2 = 3,
+P1 = 4,
+}
+impl Priority {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Priority::Unspecified => "PRIORITY_UNSPECIFIED",
+Priority::P4 => "P4",
+Priority::P3 => "P3",
+Priority::P2 => "P2",
+Priority::P1 => "P1",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PRIORITY_UNSPECIFIED" => Some(Self::Unspecified),
+"P4" => Some(Self::P4),
+"P3" => Some(Self::P3),
+"P2" => Some(Self::P2),
+"P1" => Some(Self::P1),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecommendationContent {
-    #[prost(message, repeated, tag = "2")]
-    pub operation_groups: ::prost::alloc::vec::Vec<OperationGroup>,
-    #[prost(message, optional, tag = "3")]
-    pub overview: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, repeated, tag = "2")]
+pub operation_groups: ::prost::alloc::vec::Vec<OperationGroup>,
+#[prost(message, optional, tag = "3")]
+pub overview: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationGroup {
-    #[prost(message, repeated, tag = "1")]
-    pub operations: ::prost::alloc::vec::Vec<Operation>,
+#[prost(message, repeated, tag = "1")]
+pub operations: ::prost::alloc::vec::Vec<Operation>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Operation {
-    #[prost(string, tag = "1")]
-    pub action: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub resource_type: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub path: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub source_resource: ::prost::alloc::string::String,
-    #[prost(string, tag = "6")]
-    pub source_path: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, message", tag = "8")]
-    pub path_filters: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost_types::Value,
-    >,
-    #[prost(btree_map = "string, message", tag = "11")]
-    pub path_value_matchers: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ValueMatcher,
-    >,
-    #[prost(oneof = "operation::PathValue", tags = "7, 10")]
-    pub path_value: ::core::option::Option<operation::PathValue>,
+#[prost(string, tag = "1")]
+pub action: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub resource_type: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub resource: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub source_resource: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub source_path: ::prost::alloc::string::String,
+#[prost(btree_map = "string, message", tag = "8")]
+pub path_filters: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost_types::Value>,
+#[prost(btree_map = "string, message", tag = "11")]
+pub path_value_matchers: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ValueMatcher>,
+#[prost(oneof = "operation::PathValue", tags = "7, 10")]
+pub path_value: ::core::option::Option<operation::PathValue>,
 }
 /// Nested message and enum types in `Operation`.
 pub mod operation {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum PathValue {
-        #[prost(message, tag = "7")]
-        Value(::prost_types::Value),
-        #[prost(message, tag = "10")]
-        ValueMatcher(super::ValueMatcher),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum PathValue {
+#[prost(message, tag = "7")]
+Value(::prost_types::Value),
+#[prost(message, tag = "10")]
+ValueMatcher(super::ValueMatcher),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValueMatcher {
-    #[prost(oneof = "value_matcher::MatchVariant", tags = "1")]
-    pub match_variant: ::core::option::Option<value_matcher::MatchVariant>,
+#[prost(oneof = "value_matcher::MatchVariant", tags = "1")]
+pub match_variant: ::core::option::Option<value_matcher::MatchVariant>,
 }
 /// Nested message and enum types in `ValueMatcher`.
 pub mod value_matcher {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum MatchVariant {
-        #[prost(string, tag = "1")]
-        MatchesPattern(::prost::alloc::string::String),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum MatchVariant {
+#[prost(string, tag = "1")]
+MatchesPattern(::prost::alloc::string::String),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CostProjection {
-    #[prost(message, optional, tag = "1")]
-    pub cost: ::core::option::Option<super::super::super::r#type::Money>,
-    #[prost(message, optional, tag = "2")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(message, optional, tag = "1")]
+pub cost: ::core::option::Option<super::super::super::r#type::Money>,
+#[prost(message, optional, tag = "2")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SecurityProjection {
-    #[prost(message, optional, tag = "2")]
-    pub details: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "2")]
+pub details: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct SustainabilityProjection {
-    #[prost(double, tag = "1")]
-    pub kg_c_o2e: f64,
-    #[prost(message, optional, tag = "2")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(double, tag = "1")]
+pub kg_c_o2e: f64,
+#[prost(message, optional, tag = "2")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Impact {
-    #[prost(enumeration = "impact::Category", tag = "1")]
-    pub category: i32,
-    #[prost(oneof = "impact::Projection", tags = "100, 101, 102")]
-    pub projection: ::core::option::Option<impact::Projection>,
+#[prost(enumeration = "impact::Category", tag = "1")]
+pub category: i32,
+#[prost(oneof = "impact::Projection", tags = "100, 101, 102")]
+pub projection: ::core::option::Option<impact::Projection>,
 }
 /// Nested message and enum types in `Impact`.
 pub mod impact {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Category {
-        Unspecified = 0,
-        Cost = 1,
-        Security = 2,
-        Performance = 3,
-        Manageability = 4,
-        Sustainability = 5,
-    }
-    impl Category {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Category::Unspecified => "CATEGORY_UNSPECIFIED",
-                Category::Cost => "COST",
-                Category::Security => "SECURITY",
-                Category::Performance => "PERFORMANCE",
-                Category::Manageability => "MANAGEABILITY",
-                Category::Sustainability => "SUSTAINABILITY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
-                "COST" => Some(Self::Cost),
-                "SECURITY" => Some(Self::Security),
-                "PERFORMANCE" => Some(Self::Performance),
-                "MANAGEABILITY" => Some(Self::Manageability),
-                "SUSTAINABILITY" => Some(Self::Sustainability),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Projection {
-        #[prost(message, tag = "100")]
-        CostProjection(super::CostProjection),
-        #[prost(message, tag = "101")]
-        SecurityProjection(super::SecurityProjection),
-        #[prost(message, tag = "102")]
-        SustainabilityProjection(super::SustainabilityProjection),
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Category {
+Unspecified = 0,
+Cost = 1,
+Security = 2,
+Performance = 3,
+Manageability = 4,
+Sustainability = 5,
+}
+impl Category {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Category::Unspecified => "CATEGORY_UNSPECIFIED",
+Category::Cost => "COST",
+Category::Security => "SECURITY",
+Category::Performance => "PERFORMANCE",
+Category::Manageability => "MANAGEABILITY",
+Category::Sustainability => "SUSTAINABILITY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+"COST" => Some(Self::Cost),
+"SECURITY" => Some(Self::Security),
+"PERFORMANCE" => Some(Self::Performance),
+"MANAGEABILITY" => Some(Self::Manageability),
+"SUSTAINABILITY" => Some(Self::Sustainability),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Projection {
+#[prost(message, tag = "100")]
+CostProjection(super::CostProjection),
+#[prost(message, tag = "101")]
+SecurityProjection(super::SecurityProjection),
+#[prost(message, tag = "102")]
+SustainabilityProjection(super::SustainabilityProjection),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecommendationStateInfo {
-    #[prost(enumeration = "recommendation_state_info::State", tag = "1")]
-    pub state: i32,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub state_metadata: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
+#[prost(enumeration = "recommendation_state_info::State", tag = "1")]
+pub state: i32,
+#[prost(btree_map = "string, string", tag = "2")]
+pub state_metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `RecommendationStateInfo`.
 pub mod recommendation_state_info {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Claimed = 6,
-        Succeeded = 3,
-        Failed = 4,
-        Dismissed = 5,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Claimed => "CLAIMED",
-                State::Succeeded => "SUCCEEDED",
-                State::Failed => "FAILED",
-                State::Dismissed => "DISMISSED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "CLAIMED" => Some(Self::Claimed),
-                "SUCCEEDED" => Some(Self::Succeeded),
-                "FAILED" => Some(Self::Failed),
-                "DISMISSED" => Some(Self::Dismissed),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Claimed = 6,
+Succeeded = 3,
+Failed = 4,
+Dismissed = 5,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Claimed => "CLAIMED",
+State::Succeeded => "SUCCEEDED",
+State::Failed => "FAILED",
+State::Dismissed => "DISMISSED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"CLAIMED" => Some(Self::Claimed),
+"SUCCEEDED" => Some(Self::Succeeded),
+"FAILED" => Some(Self::Failed),
+"DISMISSED" => Some(Self::Dismissed),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecommenderType {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecommenderConfig {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub recommender_generation_config: ::core::option::Option<
-        RecommenderGenerationConfig,
-    >,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "5")]
-    pub revision_id: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "6")]
-    pub annotations: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "7")]
-    pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub recommender_generation_config: ::core::option::Option<RecommenderGenerationConfig>,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "5")]
+pub revision_id: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "6")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "7")]
+pub display_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecommenderGenerationConfig {
-    #[prost(message, optional, tag = "1")]
-    pub params: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "1")]
+pub params: ::core::option::Option<::prost_types::Struct>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInsightsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInsightsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub insights: ::prost::alloc::vec::Vec<Insight>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub insights: ::prost::alloc::vec::Vec<Insight>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInsightRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MarkInsightAcceptedRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub state_metadata: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub state_metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRecommendationsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRecommendationsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub recommendations: ::prost::alloc::vec::Vec<Recommendation>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub recommendations: ::prost::alloc::vec::Vec<Recommendation>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRecommendationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MarkRecommendationClaimedRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub state_metadata: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub state_metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MarkRecommendationSucceededRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub state_metadata: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub state_metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MarkRecommendationFailedRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(btree_map = "string, string", tag = "2")]
-    pub state_metadata: ::prost::alloc::collections::BTreeMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "3")]
-    pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "2")]
+pub state_metadata: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub etag: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRecommenderConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateRecommenderConfigRequest {
-    #[prost(message, optional, tag = "1")]
-    pub recommender_config: ::core::option::Option<RecommenderConfig>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(bool, tag = "3")]
-    pub validate_only: bool,
+#[prost(message, optional, tag = "1")]
+pub recommender_config: ::core::option::Option<RecommenderConfig>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(bool, tag = "3")]
+pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInsightTypeConfigRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInsightTypeConfigRequest {
-    #[prost(message, optional, tag = "1")]
-    pub insight_type_config: ::core::option::Option<InsightTypeConfig>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(bool, tag = "3")]
-    pub validate_only: bool,
+#[prost(message, optional, tag = "1")]
+pub insight_type_config: ::core::option::Option<InsightTypeConfig>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(bool, tag = "3")]
+pub validate_only: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRecommendersRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListRecommendersResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub recommenders: ::prost::alloc::vec::Vec<RecommenderType>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub recommenders: ::prost::alloc::vec::Vec<RecommenderType>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInsightTypesRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInsightTypesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub insight_types: ::prost::alloc::vec::Vec<InsightType>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub insight_types: ::prost::alloc::vec::Vec<InsightType>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod recommender_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Provides insights and recommendations for cloud customers for various
-    /// categories like performance optimization, cost savings, reliability, feature
-    /// discovery, etc. Insights and recommendations are generated automatically
-    /// based on analysis of user resources, configuration and monitoring metrics.
-    #[derive(Debug, Clone)]
-    pub struct RecommenderClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> RecommenderClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> RecommenderClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            RecommenderClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists insights for the specified Cloud Resource. Requires the
-        /// recommender.*.list IAM permission for the specified insight type.
-        pub async fn list_insights(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListInsightsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListInsightsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/ListInsights",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "ListInsights",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the requested insight. Requires the recommender.*.get IAM permission
-        /// for the specified insight type.
-        pub async fn get_insight(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetInsightRequest>,
-        ) -> std::result::Result<tonic::Response<super::Insight>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/GetInsight",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "GetInsight",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Marks the Insight State as Accepted. Users can use this method to
-        /// indicate to the Recommender API that they have applied some action based
-        /// on the insight. This stops the insight content from being updated.
-        ///
-        /// MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
-        /// the recommender.*.update IAM permission for the specified insight.
-        pub async fn mark_insight_accepted(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MarkInsightAcceptedRequest>,
-        ) -> std::result::Result<tonic::Response<super::Insight>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/MarkInsightAccepted",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "MarkInsightAccepted",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists recommendations for the specified Cloud Resource. Requires the
-        /// recommender.*.list IAM permission for the specified recommender.
-        pub async fn list_recommendations(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRecommendationsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRecommendationsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/ListRecommendations",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "ListRecommendations",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the requested recommendation. Requires the recommender.*.get
-        /// IAM permission for the specified recommender.
-        pub async fn get_recommendation(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRecommendationRequest>,
-        ) -> std::result::Result<tonic::Response<super::Recommendation>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/GetRecommendation",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "GetRecommendation",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Marks the Recommendation State as Claimed. Users can use this method to
-        /// indicate to the Recommender API that they are starting to apply the
-        /// recommendation themselves. This stops the recommendation content from being
-        /// updated. Associated insights are frozen and placed in the ACCEPTED state.
-        ///
-        /// MarkRecommendationClaimed can be applied to recommendations in CLAIMED or
-        /// ACTIVE state.
-        ///
-        /// Requires the recommender.*.update IAM permission for the specified
-        /// recommender.
-        pub async fn mark_recommendation_claimed(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MarkRecommendationClaimedRequest>,
-        ) -> std::result::Result<tonic::Response<super::Recommendation>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/MarkRecommendationClaimed",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "MarkRecommendationClaimed",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Marks the Recommendation State as Succeeded. Users can use this method to
-        /// indicate to the Recommender API that they have applied the recommendation
-        /// themselves, and the operation was successful. This stops the recommendation
-        /// content from being updated. Associated insights are frozen and placed in
-        /// the ACCEPTED state.
-        ///
-        /// MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
-        /// CLAIMED, SUCCEEDED, or FAILED state.
-        ///
-        /// Requires the recommender.*.update IAM permission for the specified
-        /// recommender.
-        pub async fn mark_recommendation_succeeded(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MarkRecommendationSucceededRequest>,
-        ) -> std::result::Result<tonic::Response<super::Recommendation>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/MarkRecommendationSucceeded",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "MarkRecommendationSucceeded",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Marks the Recommendation State as Failed. Users can use this method to
-        /// indicate to the Recommender API that they have applied the recommendation
-        /// themselves, and the operation failed. This stops the recommendation content
-        /// from being updated. Associated insights are frozen and placed in the
-        /// ACCEPTED state.
-        ///
-        /// MarkRecommendationFailed can be applied to recommendations in ACTIVE,
-        /// CLAIMED, SUCCEEDED, or FAILED state.
-        ///
-        /// Requires the recommender.*.update IAM permission for the specified
-        /// recommender.
-        pub async fn mark_recommendation_failed(
-            &mut self,
-            request: impl tonic::IntoRequest<super::MarkRecommendationFailedRequest>,
-        ) -> std::result::Result<tonic::Response<super::Recommendation>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/MarkRecommendationFailed",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "MarkRecommendationFailed",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the requested Recommender Config. There is only one instance of the
-        /// config for each Recommender.
-        pub async fn get_recommender_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetRecommenderConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::RecommenderConfig>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/GetRecommenderConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "GetRecommenderConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Recommender Config. This will create a new revision of the
-        /// config.
-        pub async fn update_recommender_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateRecommenderConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::RecommenderConfig>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/UpdateRecommenderConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "UpdateRecommenderConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the requested InsightTypeConfig. There is only one instance of the
-        /// config for each InsightType.
-        pub async fn get_insight_type_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetInsightTypeConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::InsightTypeConfig>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/GetInsightTypeConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "GetInsightTypeConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an InsightTypeConfig change. This will create a new revision of the
-        /// config.
-        pub async fn update_insight_type_config(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateInsightTypeConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::InsightTypeConfig>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/UpdateInsightTypeConfig",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "UpdateInsightTypeConfig",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists all available Recommenders.
-        /// No IAM permissions are required.
-        pub async fn list_recommenders(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListRecommendersRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListRecommendersResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/ListRecommenders",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "ListRecommenders",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists available InsightTypes.
-        /// No IAM permissions are required.
-        pub async fn list_insight_types(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListInsightTypesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListInsightTypesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.recommender.v1beta1.Recommender/ListInsightTypes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.recommender.v1beta1.Recommender",
-                        "ListInsightTypes",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Provides insights and recommendations for cloud customers for various
+/// categories like performance optimization, cost savings, reliability, feature
+/// discovery, etc. Insights and recommendations are generated automatically
+/// based on analysis of user resources, configuration and monitoring metrics.
+#[derive(Debug, Clone)]
+pub struct RecommenderClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> RecommenderClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> RecommenderClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+RecommenderClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists insights for the specified Cloud Resource. Requires the
+/// recommender.*.list IAM permission for the specified insight type.
+pub async fn list_insights(&mut self, request: impl tonic::IntoRequest<super::ListInsightsRequest>) -> std::result::Result<tonic::Response<super::ListInsightsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/ListInsights");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "ListInsights"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the requested insight. Requires the recommender.*.get IAM permission
+/// for the specified insight type.
+pub async fn get_insight(&mut self, request: impl tonic::IntoRequest<super::GetInsightRequest>) -> std::result::Result<tonic::Response<super::Insight>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/GetInsight");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "GetInsight"));
+self.inner.unary(req, path, codec).await
+}
+/// Marks the Insight State as Accepted. Users can use this method to
+/// indicate to the Recommender API that they have applied some action based
+/// on the insight. This stops the insight content from being updated.
+///
+/// MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
+/// the recommender.*.update IAM permission for the specified insight.
+pub async fn mark_insight_accepted(&mut self, request: impl tonic::IntoRequest<super::MarkInsightAcceptedRequest>) -> std::result::Result<tonic::Response<super::Insight>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/MarkInsightAccepted");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "MarkInsightAccepted"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists recommendations for the specified Cloud Resource. Requires the
+/// recommender.*.list IAM permission for the specified recommender.
+pub async fn list_recommendations(&mut self, request: impl tonic::IntoRequest<super::ListRecommendationsRequest>) -> std::result::Result<tonic::Response<super::ListRecommendationsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/ListRecommendations");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "ListRecommendations"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the requested recommendation. Requires the recommender.*.get
+/// IAM permission for the specified recommender.
+pub async fn get_recommendation(&mut self, request: impl tonic::IntoRequest<super::GetRecommendationRequest>) -> std::result::Result<tonic::Response<super::Recommendation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/GetRecommendation");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "GetRecommendation"));
+self.inner.unary(req, path, codec).await
+}
+/// Marks the Recommendation State as Claimed. Users can use this method to
+/// indicate to the Recommender API that they are starting to apply the
+/// recommendation themselves. This stops the recommendation content from being
+/// updated. Associated insights are frozen and placed in the ACCEPTED state.
+///
+/// MarkRecommendationClaimed can be applied to recommendations in CLAIMED or
+/// ACTIVE state.
+///
+/// Requires the recommender.*.update IAM permission for the specified
+/// recommender.
+pub async fn mark_recommendation_claimed(&mut self, request: impl tonic::IntoRequest<super::MarkRecommendationClaimedRequest>) -> std::result::Result<tonic::Response<super::Recommendation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/MarkRecommendationClaimed");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "MarkRecommendationClaimed"));
+self.inner.unary(req, path, codec).await
+}
+/// Marks the Recommendation State as Succeeded. Users can use this method to
+/// indicate to the Recommender API that they have applied the recommendation
+/// themselves, and the operation was successful. This stops the recommendation
+/// content from being updated. Associated insights are frozen and placed in
+/// the ACCEPTED state.
+///
+/// MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
+/// CLAIMED, SUCCEEDED, or FAILED state.
+///
+/// Requires the recommender.*.update IAM permission for the specified
+/// recommender.
+pub async fn mark_recommendation_succeeded(&mut self, request: impl tonic::IntoRequest<super::MarkRecommendationSucceededRequest>) -> std::result::Result<tonic::Response<super::Recommendation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/MarkRecommendationSucceeded");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "MarkRecommendationSucceeded"));
+self.inner.unary(req, path, codec).await
+}
+/// Marks the Recommendation State as Failed. Users can use this method to
+/// indicate to the Recommender API that they have applied the recommendation
+/// themselves, and the operation failed. This stops the recommendation content
+/// from being updated. Associated insights are frozen and placed in the
+/// ACCEPTED state.
+///
+/// MarkRecommendationFailed can be applied to recommendations in ACTIVE,
+/// CLAIMED, SUCCEEDED, or FAILED state.
+///
+/// Requires the recommender.*.update IAM permission for the specified
+/// recommender.
+pub async fn mark_recommendation_failed(&mut self, request: impl tonic::IntoRequest<super::MarkRecommendationFailedRequest>) -> std::result::Result<tonic::Response<super::Recommendation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/MarkRecommendationFailed");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "MarkRecommendationFailed"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the requested Recommender Config. There is only one instance of the
+/// config for each Recommender.
+pub async fn get_recommender_config(&mut self, request: impl tonic::IntoRequest<super::GetRecommenderConfigRequest>) -> std::result::Result<tonic::Response<super::RecommenderConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/GetRecommenderConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "GetRecommenderConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Recommender Config. This will create a new revision of the
+/// config.
+pub async fn update_recommender_config(&mut self, request: impl tonic::IntoRequest<super::UpdateRecommenderConfigRequest>) -> std::result::Result<tonic::Response<super::RecommenderConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/UpdateRecommenderConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "UpdateRecommenderConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the requested InsightTypeConfig. There is only one instance of the
+/// config for each InsightType.
+pub async fn get_insight_type_config(&mut self, request: impl tonic::IntoRequest<super::GetInsightTypeConfigRequest>) -> std::result::Result<tonic::Response<super::InsightTypeConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/GetInsightTypeConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "GetInsightTypeConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an InsightTypeConfig change. This will create a new revision of the
+/// config.
+pub async fn update_insight_type_config(&mut self, request: impl tonic::IntoRequest<super::UpdateInsightTypeConfigRequest>) -> std::result::Result<tonic::Response<super::InsightTypeConfig>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/UpdateInsightTypeConfig");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "UpdateInsightTypeConfig"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists all available Recommenders.
+/// No IAM permissions are required.
+pub async fn list_recommenders(&mut self, request: impl tonic::IntoRequest<super::ListRecommendersRequest>) -> std::result::Result<tonic::Response<super::ListRecommendersResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/ListRecommenders");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "ListRecommenders"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists available InsightTypes.
+/// No IAM permissions are required.
+pub async fn list_insight_types(&mut self, request: impl tonic::IntoRequest<super::ListInsightTypesRequest>) -> std::result::Result<tonic::Response<super::ListInsightTypesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.recommender.v1beta1.Recommender/ListInsightTypes");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.recommender.v1beta1.Recommender", "ListInsightTypes"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

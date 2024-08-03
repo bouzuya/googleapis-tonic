@@ -2,571 +2,501 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Attributes {
-    #[prost(message, optional, tag = "1")]
-    pub criticality: ::core::option::Option<Criticality>,
-    #[prost(message, optional, tag = "2")]
-    pub environment: ::core::option::Option<Environment>,
-    #[prost(message, repeated, tag = "3")]
-    pub developer_owners: ::prost::alloc::vec::Vec<ContactInfo>,
-    #[prost(message, repeated, tag = "4")]
-    pub operator_owners: ::prost::alloc::vec::Vec<ContactInfo>,
-    #[prost(message, repeated, tag = "5")]
-    pub business_owners: ::prost::alloc::vec::Vec<ContactInfo>,
+#[prost(message, optional, tag = "1")]
+pub criticality: ::core::option::Option<Criticality>,
+#[prost(message, optional, tag = "2")]
+pub environment: ::core::option::Option<Environment>,
+#[prost(message, repeated, tag = "3")]
+pub developer_owners: ::prost::alloc::vec::Vec<ContactInfo>,
+#[prost(message, repeated, tag = "4")]
+pub operator_owners: ::prost::alloc::vec::Vec<ContactInfo>,
+#[prost(message, repeated, tag = "5")]
+pub business_owners: ::prost::alloc::vec::Vec<ContactInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Criticality {
-    #[prost(enumeration = "criticality::Type", tag = "3")]
-    pub r#type: i32,
+#[prost(enumeration = "criticality::Type", tag = "3")]
+pub r#type: i32,
 }
 /// Nested message and enum types in `Criticality`.
 pub mod criticality {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        MissionCritical = 1,
-        High = 2,
-        Medium = 3,
-        Low = 4,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::MissionCritical => "MISSION_CRITICAL",
-                Type::High => "HIGH",
-                Type::Medium => "MEDIUM",
-                Type::Low => "LOW",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "MISSION_CRITICAL" => Some(Self::MissionCritical),
-                "HIGH" => Some(Self::High),
-                "MEDIUM" => Some(Self::Medium),
-                "LOW" => Some(Self::Low),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+MissionCritical = 1,
+High = 2,
+Medium = 3,
+Low = 4,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::MissionCritical => "MISSION_CRITICAL",
+Type::High => "HIGH",
+Type::Medium => "MEDIUM",
+Type::Low => "LOW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"MISSION_CRITICAL" => Some(Self::MissionCritical),
+"HIGH" => Some(Self::High),
+"MEDIUM" => Some(Self::Medium),
+"LOW" => Some(Self::Low),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Environment {
-    #[prost(enumeration = "environment::Type", tag = "2")]
-    pub r#type: i32,
+#[prost(enumeration = "environment::Type", tag = "2")]
+pub r#type: i32,
 }
 /// Nested message and enum types in `Environment`.
 pub mod environment {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        Production = 1,
-        Staging = 2,
-        Test = 3,
-        Development = 4,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Production => "PRODUCTION",
-                Type::Staging => "STAGING",
-                Type::Test => "TEST",
-                Type::Development => "DEVELOPMENT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "PRODUCTION" => Some(Self::Production),
-                "STAGING" => Some(Self::Staging),
-                "TEST" => Some(Self::Test),
-                "DEVELOPMENT" => Some(Self::Development),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+Production = 1,
+Staging = 2,
+Test = 3,
+Development = 4,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::Production => "PRODUCTION",
+Type::Staging => "STAGING",
+Type::Test => "TEST",
+Type::Development => "DEVELOPMENT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"PRODUCTION" => Some(Self::Production),
+"STAGING" => Some(Self::Staging),
+"TEST" => Some(Self::Test),
+"DEVELOPMENT" => Some(Self::Development),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContactInfo {
-    #[prost(string, tag = "1")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub email: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub email: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Application {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub attributes: ::core::option::Option<Attributes>,
-    #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "6")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub scope: ::core::option::Option<Scope>,
-    #[prost(string, tag = "10")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(enumeration = "application::State", tag = "11")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub attributes: ::core::option::Option<Attributes>,
+#[prost(message, optional, tag = "5")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "6")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub scope: ::core::option::Option<Scope>,
+#[prost(string, tag = "10")]
+pub uid: ::prost::alloc::string::String,
+#[prost(enumeration = "application::State", tag = "11")]
+pub state: i32,
 }
 /// Nested message and enum types in `Application`.
 pub mod application {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Active = 2,
-        Deleting = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "DELETING" => Some(Self::Deleting),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Deleting = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Deleting => "DELETING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"DELETING" => Some(Self::Deleting),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Scope {
-    #[prost(enumeration = "scope::Type", tag = "1")]
-    pub r#type: i32,
+#[prost(enumeration = "scope::Type", tag = "1")]
+pub r#type: i32,
 }
 /// Nested message and enum types in `Scope`.
 pub mod scope {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        Regional = 1,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Regional => "REGIONAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "REGIONAL" => Some(Self::Regional),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+Regional = 1,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::Regional => "REGIONAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"REGIONAL" => Some(Self::Regional),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Workload {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub workload_reference: ::core::option::Option<WorkloadReference>,
-    #[prost(message, optional, tag = "5")]
-    pub workload_properties: ::core::option::Option<WorkloadProperties>,
-    #[prost(string, tag = "6")]
-    pub discovered_workload: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub attributes: ::core::option::Option<Attributes>,
-    #[prost(message, optional, tag = "8")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "10")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(enumeration = "workload::State", tag = "11")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub workload_reference: ::core::option::Option<WorkloadReference>,
+#[prost(message, optional, tag = "5")]
+pub workload_properties: ::core::option::Option<WorkloadProperties>,
+#[prost(string, tag = "6")]
+pub discovered_workload: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub attributes: ::core::option::Option<Attributes>,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "10")]
+pub uid: ::prost::alloc::string::String,
+#[prost(enumeration = "workload::State", tag = "11")]
+pub state: i32,
 }
 /// Nested message and enum types in `Workload`.
 pub mod workload {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Active = 2,
-        Deleting = 3,
-        Detached = 4,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-                State::Detached => "DETACHED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "DELETING" => Some(Self::Deleting),
-                "DETACHED" => Some(Self::Detached),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Deleting = 3,
+Detached = 4,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Deleting => "DELETING",
+State::Detached => "DETACHED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"DELETING" => Some(Self::Deleting),
+"DETACHED" => Some(Self::Detached),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkloadReference {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkloadProperties {
-    #[prost(string, tag = "1")]
-    pub gcp_project: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub location: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub zone: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub gcp_project: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub location: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub zone: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveredWorkload {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub workload_reference: ::core::option::Option<WorkloadReference>,
-    #[prost(message, optional, tag = "3")]
-    pub workload_properties: ::core::option::Option<WorkloadProperties>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub workload_reference: ::core::option::Option<WorkloadReference>,
+#[prost(message, optional, tag = "3")]
+pub workload_properties: ::core::option::Option<WorkloadProperties>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Service {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub service_reference: ::core::option::Option<ServiceReference>,
-    #[prost(message, optional, tag = "5")]
-    pub service_properties: ::core::option::Option<ServiceProperties>,
-    #[prost(message, optional, tag = "6")]
-    pub attributes: ::core::option::Option<Attributes>,
-    #[prost(string, tag = "7")]
-    pub discovered_service: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "9")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "10")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(enumeration = "service::State", tag = "11")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub service_reference: ::core::option::Option<ServiceReference>,
+#[prost(message, optional, tag = "5")]
+pub service_properties: ::core::option::Option<ServiceProperties>,
+#[prost(message, optional, tag = "6")]
+pub attributes: ::core::option::Option<Attributes>,
+#[prost(string, tag = "7")]
+pub discovered_service: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "10")]
+pub uid: ::prost::alloc::string::String,
+#[prost(enumeration = "service::State", tag = "11")]
+pub state: i32,
 }
 /// Nested message and enum types in `Service`.
 pub mod service {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Active = 2,
-        Deleting = 3,
-        Detached = 4,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-                State::Detached => "DETACHED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "DELETING" => Some(Self::Deleting),
-                "DETACHED" => Some(Self::Detached),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Deleting = 3,
+Detached = 4,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Deleting => "DELETING",
+State::Detached => "DETACHED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"DELETING" => Some(Self::Deleting),
+"DETACHED" => Some(Self::Detached),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceReference {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceProperties {
-    #[prost(string, tag = "1")]
-    pub gcp_project: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub location: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub zone: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub gcp_project: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub location: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub zone: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DiscoveredService {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub service_reference: ::core::option::Option<ServiceReference>,
-    #[prost(message, optional, tag = "3")]
-    pub service_properties: ::core::option::Option<ServiceProperties>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub service_reference: ::core::option::Option<ServiceReference>,
+#[prost(message, optional, tag = "3")]
+pub service_properties: ::core::option::Option<ServiceProperties>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ServiceProjectAttachment {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub service_project: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "4")]
-    pub uid: ::prost::alloc::string::String,
-    #[prost(enumeration = "service_project_attachment::State", tag = "5")]
-    pub state: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub service_project: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "4")]
+pub uid: ::prost::alloc::string::String,
+#[prost(enumeration = "service_project_attachment::State", tag = "5")]
+pub state: i32,
 }
 /// Nested message and enum types in `ServiceProjectAttachment`.
 pub mod service_project_attachment {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Active = 2,
-        Deleting = 3,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Active => "ACTIVE",
-                State::Deleting => "DELETING",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "ACTIVE" => Some(Self::Active),
-                "DELETING" => Some(Self::Deleting),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Active = 2,
+Deleting = 3,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Active => "ACTIVE",
+State::Deleting => "DELETING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"ACTIVE" => Some(Self::Active),
+"DELETING" => Some(Self::Deleting),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupServiceProjectAttachmentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupServiceProjectAttachmentResponse {
-    #[prost(message, optional, tag = "1")]
-    pub service_project_attachment: ::core::option::Option<ServiceProjectAttachment>,
+#[prost(message, optional, tag = "1")]
+pub service_project_attachment: ::core::option::Option<ServiceProjectAttachment>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServiceProjectAttachmentsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServiceProjectAttachmentsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub service_project_attachments: ::prost::alloc::vec::Vec<ServiceProjectAttachment>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub service_project_attachments: ::prost::alloc::vec::Vec<ServiceProjectAttachment>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServiceProjectAttachmentRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub service_project_attachment_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub service_project_attachment: ::core::option::Option<ServiceProjectAttachment>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub service_project_attachment_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub service_project_attachment: ::core::option::Option<ServiceProjectAttachment>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceProjectAttachmentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteServiceProjectAttachmentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DetachServiceProjectAttachmentRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -574,1157 +504,603 @@ pub struct DetachServiceProjectAttachmentResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub services: ::prost::alloc::vec::Vec<Service>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub services: ::prost::alloc::vec::Vec<Service>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDiscoveredServicesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDiscoveredServicesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub discovered_services: ::prost::alloc::vec::Vec<DiscoveredService>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub discovered_services: ::prost::alloc::vec::Vec<DiscoveredService>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateServiceRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub service_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub service: ::core::option::Option<Service>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub service_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub service: ::core::option::Option<Service>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDiscoveredServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupDiscoveredServiceRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupDiscoveredServiceResponse {
-    #[prost(message, optional, tag = "1")]
-    pub discovered_service: ::core::option::Option<DiscoveredService>,
+#[prost(message, optional, tag = "1")]
+pub discovered_service: ::core::option::Option<DiscoveredService>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateServiceRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub service: ::core::option::Option<Service>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub service: ::core::option::Option<Service>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteServiceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListApplicationsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListApplicationsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub applications: ::prost::alloc::vec::Vec<Application>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub applications: ::prost::alloc::vec::Vec<Application>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateApplicationRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub application_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub application: ::core::option::Option<Application>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub application_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub application: ::core::option::Option<Application>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetApplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateApplicationRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub application: ::core::option::Option<Application>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub application: ::core::option::Option<Application>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteApplicationRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkloadsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListWorkloadsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub workloads: ::prost::alloc::vec::Vec<Workload>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub workloads: ::prost::alloc::vec::Vec<Workload>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDiscoveredWorkloadsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub order_by: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub order_by: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDiscoveredWorkloadsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub discovered_workloads: ::prost::alloc::vec::Vec<DiscoveredWorkload>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub discovered_workloads: ::prost::alloc::vec::Vec<DiscoveredWorkload>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWorkloadRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub workload_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub workload: ::core::option::Option<Workload>,
-    #[prost(string, tag = "4")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub workload_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub workload: ::core::option::Option<Workload>,
+#[prost(string, tag = "4")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWorkloadRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDiscoveredWorkloadRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupDiscoveredWorkloadRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LookupDiscoveredWorkloadResponse {
-    #[prost(message, optional, tag = "1")]
-    pub discovered_workload: ::core::option::Option<DiscoveredWorkload>,
+#[prost(message, optional, tag = "1")]
+pub discovered_workload: ::core::option::Option<DiscoveredWorkload>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateWorkloadRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub workload: ::core::option::Option<Workload>,
-    #[prost(string, tag = "3")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub workload: ::core::option::Option<Workload>,
+#[prost(string, tag = "3")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteWorkloadRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub request_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub request_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OperationMetadata {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub target: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub verb: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub status_message: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub requested_cancellation: bool,
-    #[prost(string, tag = "7")]
-    pub api_version: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub target: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub verb: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub requested_cancellation: bool,
+#[prost(string, tag = "7")]
+pub api_version: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod app_hub_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// The App Hub API allows you to manage App Hub resources.
-    #[derive(Debug, Clone)]
-    pub struct AppHubClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AppHubClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AppHubClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AppHubClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists a service project attachment for a given service project. You can
-        /// call this API from any project to find if it is attached to a host project.
-        pub async fn lookup_service_project_attachment(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::LookupServiceProjectAttachmentRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::LookupServiceProjectAttachmentResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/LookupServiceProjectAttachment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "LookupServiceProjectAttachment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists service projects attached to the host project.
-        pub async fn list_service_project_attachments(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListServiceProjectAttachmentsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListServiceProjectAttachmentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/ListServiceProjectAttachments",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "ListServiceProjectAttachments",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Attaches a service project to the host project.
-        pub async fn create_service_project_attachment(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::CreateServiceProjectAttachmentRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/CreateServiceProjectAttachment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "CreateServiceProjectAttachment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a service project attachment.
-        pub async fn get_service_project_attachment(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetServiceProjectAttachmentRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ServiceProjectAttachment>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/GetServiceProjectAttachment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "GetServiceProjectAttachment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a service project attachment.
-        pub async fn delete_service_project_attachment(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::DeleteServiceProjectAttachmentRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/DeleteServiceProjectAttachment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "DeleteServiceProjectAttachment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Detaches a service project from a host project.
-        /// You can call this API from any service project without needing access to
-        /// the host project that it is attached to.
-        pub async fn detach_service_project_attachment(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::DetachServiceProjectAttachmentRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::DetachServiceProjectAttachmentResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/DetachServiceProjectAttachment",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "DetachServiceProjectAttachment",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Discovered Services that can be added to an Application in a host
-        /// project and location.
-        pub async fn list_discovered_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDiscoveredServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDiscoveredServicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/ListDiscoveredServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "ListDiscoveredServices",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a Discovered Service in a host project and location.
-        pub async fn get_discovered_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDiscoveredServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::DiscoveredService>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/GetDiscoveredService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "GetDiscoveredService",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists a Discovered Service in a host project and location, with a
-        /// given resource URI.
-        pub async fn lookup_discovered_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LookupDiscoveredServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::LookupDiscoveredServiceResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/LookupDiscoveredService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "LookupDiscoveredService",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Services in an Application.
-        pub async fn list_services(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListServicesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListServicesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/ListServices",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListServices"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a Service in an Application.
-        pub async fn create_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/CreateService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateService"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a Service in an Application.
-        pub async fn get_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetServiceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/GetService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetService"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Service in an Application.
-        pub async fn update_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/UpdateService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateService"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Service from an Application.
-        pub async fn delete_service(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteServiceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/DeleteService",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteService"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Discovered Workloads that can be added to an Application in a host
-        /// project and location.
-        pub async fn list_discovered_workloads(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDiscoveredWorkloadsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDiscoveredWorkloadsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/ListDiscoveredWorkloads",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "ListDiscoveredWorkloads",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a Discovered Workload in a host project and location.
-        pub async fn get_discovered_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDiscoveredWorkloadRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::DiscoveredWorkload>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/GetDiscoveredWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "GetDiscoveredWorkload",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists a Discovered Workload in a host project and location, with a
-        /// given resource URI.
-        pub async fn lookup_discovered_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::LookupDiscoveredWorkloadRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::LookupDiscoveredWorkloadResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/LookupDiscoveredWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.apphub.v1.AppHub",
-                        "LookupDiscoveredWorkload",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Workloads in an Application.
-        pub async fn list_workloads(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListWorkloadsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListWorkloadsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/ListWorkloads",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListWorkloads"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a Workload in an Application.
-        pub async fn create_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateWorkloadRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/CreateWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateWorkload"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets a Workload in an Application.
-        pub async fn get_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetWorkloadRequest>,
-        ) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/GetWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetWorkload"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Workload in an Application.
-        pub async fn update_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateWorkloadRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/UpdateWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateWorkload"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Workload from an Application.
-        pub async fn delete_workload(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteWorkloadRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/DeleteWorkload",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteWorkload"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists Applications in a host project and location.
-        pub async fn list_applications(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListApplicationsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListApplicationsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/ListApplications",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListApplications"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates an Application in a host project and location.
-        pub async fn create_application(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateApplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/CreateApplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateApplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets an Application in a host project and location.
-        pub async fn get_application(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetApplicationRequest>,
-        ) -> std::result::Result<tonic::Response<super::Application>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/GetApplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetApplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an Application in a host project and location.
-        pub async fn update_application(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateApplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/UpdateApplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateApplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes an Application in a host project and location.
-        pub async fn delete_application(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteApplicationRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.apphub.v1.AppHub/DeleteApplication",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteApplication"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// The App Hub API allows you to manage App Hub resources.
+#[derive(Debug, Clone)]
+pub struct AppHubClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AppHubClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AppHubClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AppHubClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists a service project attachment for a given service project. You can
+/// call this API from any project to find if it is attached to a host project.
+pub async fn lookup_service_project_attachment(&mut self, request: impl tonic::IntoRequest<super::LookupServiceProjectAttachmentRequest>) -> std::result::Result<tonic::Response<super::LookupServiceProjectAttachmentResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/LookupServiceProjectAttachment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "LookupServiceProjectAttachment"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists service projects attached to the host project.
+pub async fn list_service_project_attachments(&mut self, request: impl tonic::IntoRequest<super::ListServiceProjectAttachmentsRequest>) -> std::result::Result<tonic::Response<super::ListServiceProjectAttachmentsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/ListServiceProjectAttachments");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListServiceProjectAttachments"));
+self.inner.unary(req, path, codec).await
+}
+/// Attaches a service project to the host project.
+pub async fn create_service_project_attachment(&mut self, request: impl tonic::IntoRequest<super::CreateServiceProjectAttachmentRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/CreateServiceProjectAttachment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateServiceProjectAttachment"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a service project attachment.
+pub async fn get_service_project_attachment(&mut self, request: impl tonic::IntoRequest<super::GetServiceProjectAttachmentRequest>) -> std::result::Result<tonic::Response<super::ServiceProjectAttachment>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/GetServiceProjectAttachment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetServiceProjectAttachment"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a service project attachment.
+pub async fn delete_service_project_attachment(&mut self, request: impl tonic::IntoRequest<super::DeleteServiceProjectAttachmentRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/DeleteServiceProjectAttachment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteServiceProjectAttachment"));
+self.inner.unary(req, path, codec).await
+}
+/// Detaches a service project from a host project.
+/// You can call this API from any service project without needing access to
+/// the host project that it is attached to.
+pub async fn detach_service_project_attachment(&mut self, request: impl tonic::IntoRequest<super::DetachServiceProjectAttachmentRequest>) -> std::result::Result<tonic::Response<super::DetachServiceProjectAttachmentResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/DetachServiceProjectAttachment");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DetachServiceProjectAttachment"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Discovered Services that can be added to an Application in a host
+/// project and location.
+pub async fn list_discovered_services(&mut self, request: impl tonic::IntoRequest<super::ListDiscoveredServicesRequest>) -> std::result::Result<tonic::Response<super::ListDiscoveredServicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/ListDiscoveredServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListDiscoveredServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a Discovered Service in a host project and location.
+pub async fn get_discovered_service(&mut self, request: impl tonic::IntoRequest<super::GetDiscoveredServiceRequest>) -> std::result::Result<tonic::Response<super::DiscoveredService>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/GetDiscoveredService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetDiscoveredService"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists a Discovered Service in a host project and location, with a
+/// given resource URI.
+pub async fn lookup_discovered_service(&mut self, request: impl tonic::IntoRequest<super::LookupDiscoveredServiceRequest>) -> std::result::Result<tonic::Response<super::LookupDiscoveredServiceResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/LookupDiscoveredService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "LookupDiscoveredService"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Services in an Application.
+pub async fn list_services(&mut self, request: impl tonic::IntoRequest<super::ListServicesRequest>) -> std::result::Result<tonic::Response<super::ListServicesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/ListServices");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListServices"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a Service in an Application.
+pub async fn create_service(&mut self, request: impl tonic::IntoRequest<super::CreateServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/CreateService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateService"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a Service in an Application.
+pub async fn get_service(&mut self, request: impl tonic::IntoRequest<super::GetServiceRequest>) -> std::result::Result<tonic::Response<super::Service>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/GetService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetService"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Service in an Application.
+pub async fn update_service(&mut self, request: impl tonic::IntoRequest<super::UpdateServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/UpdateService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateService"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Service from an Application.
+pub async fn delete_service(&mut self, request: impl tonic::IntoRequest<super::DeleteServiceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/DeleteService");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteService"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Discovered Workloads that can be added to an Application in a host
+/// project and location.
+pub async fn list_discovered_workloads(&mut self, request: impl tonic::IntoRequest<super::ListDiscoveredWorkloadsRequest>) -> std::result::Result<tonic::Response<super::ListDiscoveredWorkloadsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/ListDiscoveredWorkloads");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListDiscoveredWorkloads"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a Discovered Workload in a host project and location.
+pub async fn get_discovered_workload(&mut self, request: impl tonic::IntoRequest<super::GetDiscoveredWorkloadRequest>) -> std::result::Result<tonic::Response<super::DiscoveredWorkload>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/GetDiscoveredWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetDiscoveredWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists a Discovered Workload in a host project and location, with a
+/// given resource URI.
+pub async fn lookup_discovered_workload(&mut self, request: impl tonic::IntoRequest<super::LookupDiscoveredWorkloadRequest>) -> std::result::Result<tonic::Response<super::LookupDiscoveredWorkloadResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/LookupDiscoveredWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "LookupDiscoveredWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Workloads in an Application.
+pub async fn list_workloads(&mut self, request: impl tonic::IntoRequest<super::ListWorkloadsRequest>) -> std::result::Result<tonic::Response<super::ListWorkloadsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/ListWorkloads");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListWorkloads"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a Workload in an Application.
+pub async fn create_workload(&mut self, request: impl tonic::IntoRequest<super::CreateWorkloadRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/CreateWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets a Workload in an Application.
+pub async fn get_workload(&mut self, request: impl tonic::IntoRequest<super::GetWorkloadRequest>) -> std::result::Result<tonic::Response<super::Workload>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/GetWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Workload in an Application.
+pub async fn update_workload(&mut self, request: impl tonic::IntoRequest<super::UpdateWorkloadRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/UpdateWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Workload from an Application.
+pub async fn delete_workload(&mut self, request: impl tonic::IntoRequest<super::DeleteWorkloadRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/DeleteWorkload");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteWorkload"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists Applications in a host project and location.
+pub async fn list_applications(&mut self, request: impl tonic::IntoRequest<super::ListApplicationsRequest>) -> std::result::Result<tonic::Response<super::ListApplicationsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/ListApplications");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "ListApplications"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates an Application in a host project and location.
+pub async fn create_application(&mut self, request: impl tonic::IntoRequest<super::CreateApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/CreateApplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "CreateApplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets an Application in a host project and location.
+pub async fn get_application(&mut self, request: impl tonic::IntoRequest<super::GetApplicationRequest>) -> std::result::Result<tonic::Response<super::Application>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/GetApplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "GetApplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an Application in a host project and location.
+pub async fn update_application(&mut self, request: impl tonic::IntoRequest<super::UpdateApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/UpdateApplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "UpdateApplication"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes an Application in a host project and location.
+pub async fn delete_application(&mut self, request: impl tonic::IntoRequest<super::DeleteApplicationRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.apphub.v1.AppHub/DeleteApplication");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.apphub.v1.AppHub", "DeleteApplication"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

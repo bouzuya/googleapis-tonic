@@ -2,162 +2,147 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AttributeContext {
-    #[prost(message, optional, tag = "7")]
-    pub origin: ::core::option::Option<attribute_context::Peer>,
-    #[prost(message, optional, tag = "1")]
-    pub source: ::core::option::Option<attribute_context::Peer>,
-    #[prost(message, optional, tag = "2")]
-    pub destination: ::core::option::Option<attribute_context::Peer>,
-    #[prost(message, optional, tag = "3")]
-    pub request: ::core::option::Option<attribute_context::Request>,
-    #[prost(message, optional, tag = "4")]
-    pub response: ::core::option::Option<attribute_context::Response>,
-    #[prost(message, optional, tag = "5")]
-    pub resource: ::core::option::Option<attribute_context::Resource>,
-    #[prost(message, optional, tag = "6")]
-    pub api: ::core::option::Option<attribute_context::Api>,
-    #[prost(message, repeated, tag = "8")]
-    pub extensions: ::prost::alloc::vec::Vec<::prost_types::Any>,
+#[prost(message, optional, tag = "7")]
+pub origin: ::core::option::Option<attribute_context::Peer>,
+#[prost(message, optional, tag = "1")]
+pub source: ::core::option::Option<attribute_context::Peer>,
+#[prost(message, optional, tag = "2")]
+pub destination: ::core::option::Option<attribute_context::Peer>,
+#[prost(message, optional, tag = "3")]
+pub request: ::core::option::Option<attribute_context::Request>,
+#[prost(message, optional, tag = "4")]
+pub response: ::core::option::Option<attribute_context::Response>,
+#[prost(message, optional, tag = "5")]
+pub resource: ::core::option::Option<attribute_context::Resource>,
+#[prost(message, optional, tag = "6")]
+pub api: ::core::option::Option<attribute_context::Api>,
+#[prost(message, repeated, tag = "8")]
+pub extensions: ::prost::alloc::vec::Vec<::prost_types::Any>,
 }
 /// Nested message and enum types in `AttributeContext`.
 pub mod attribute_context {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Peer {
-        #[prost(string, tag = "1")]
-        pub ip: ::prost::alloc::string::String,
-        #[prost(int64, tag = "2")]
-        pub port: i64,
-        #[prost(btree_map = "string, string", tag = "6")]
-        pub labels: ::prost::alloc::collections::BTreeMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, tag = "7")]
-        pub principal: ::prost::alloc::string::String,
-        #[prost(string, tag = "8")]
-        pub region_code: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Api {
-        #[prost(string, tag = "1")]
-        pub service: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub operation: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub protocol: ::prost::alloc::string::String,
-        #[prost(string, tag = "4")]
-        pub version: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Auth {
-        #[prost(string, tag = "1")]
-        pub principal: ::prost::alloc::string::String,
-        #[prost(string, repeated, tag = "2")]
-        pub audiences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, tag = "3")]
-        pub presenter: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "4")]
-        pub claims: ::core::option::Option<::prost_types::Struct>,
-        #[prost(string, repeated, tag = "5")]
-        pub access_levels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Request {
-        #[prost(string, tag = "1")]
-        pub id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub method: ::prost::alloc::string::String,
-        #[prost(btree_map = "string, string", tag = "3")]
-        pub headers: ::prost::alloc::collections::BTreeMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, tag = "4")]
-        pub path: ::prost::alloc::string::String,
-        #[prost(string, tag = "5")]
-        pub host: ::prost::alloc::string::String,
-        #[prost(string, tag = "6")]
-        pub scheme: ::prost::alloc::string::String,
-        #[prost(string, tag = "7")]
-        pub query: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "9")]
-        pub time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(int64, tag = "10")]
-        pub size: i64,
-        #[prost(string, tag = "11")]
-        pub protocol: ::prost::alloc::string::String,
-        #[prost(string, tag = "12")]
-        pub reason: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "13")]
-        pub auth: ::core::option::Option<Auth>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Response {
-        #[prost(int64, tag = "1")]
-        pub code: i64,
-        #[prost(int64, tag = "2")]
-        pub size: i64,
-        #[prost(btree_map = "string, string", tag = "3")]
-        pub headers: ::prost::alloc::collections::BTreeMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(message, optional, tag = "4")]
-        pub time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "5")]
-        pub backend_latency: ::core::option::Option<::prost_types::Duration>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Resource {
-        #[prost(string, tag = "1")]
-        pub service: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub r#type: ::prost::alloc::string::String,
-        #[prost(btree_map = "string, string", tag = "4")]
-        pub labels: ::prost::alloc::collections::BTreeMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, tag = "5")]
-        pub uid: ::prost::alloc::string::String,
-        #[prost(btree_map = "string, string", tag = "6")]
-        pub annotations: ::prost::alloc::collections::BTreeMap<
-            ::prost::alloc::string::String,
-            ::prost::alloc::string::String,
-        >,
-        #[prost(string, tag = "7")]
-        pub display_name: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "8")]
-        pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "9")]
-        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(message, optional, tag = "10")]
-        pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-        #[prost(string, tag = "11")]
-        pub etag: ::prost::alloc::string::String,
-        #[prost(string, tag = "12")]
-        pub location: ::prost::alloc::string::String,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Peer {
+#[prost(string, tag = "1")]
+pub ip: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub port: i64,
+#[prost(btree_map = "string, string", tag = "6")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "7")]
+pub principal: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub region_code: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Api {
+#[prost(string, tag = "1")]
+pub service: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub operation: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub protocol: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub version: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Auth {
+#[prost(string, tag = "1")]
+pub principal: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub audiences: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "3")]
+pub presenter: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub claims: ::core::option::Option<::prost_types::Struct>,
+#[prost(string, repeated, tag = "5")]
+pub access_levels: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Request {
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub method: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "3")]
+pub headers: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub path: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub host: ::prost::alloc::string::String,
+#[prost(string, tag = "6")]
+pub scheme: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub query: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "9")]
+pub time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int64, tag = "10")]
+pub size: i64,
+#[prost(string, tag = "11")]
+pub protocol: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub reason: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "13")]
+pub auth: ::core::option::Option<Auth>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Response {
+#[prost(int64, tag = "1")]
+pub code: i64,
+#[prost(int64, tag = "2")]
+pub size: i64,
+#[prost(btree_map = "string, string", tag = "3")]
+pub headers: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(message, optional, tag = "4")]
+pub time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub backend_latency: ::core::option::Option<::prost_types::Duration>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Resource {
+#[prost(string, tag = "1")]
+pub service: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub r#type: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "4")]
+pub labels: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "5")]
+pub uid: ::prost::alloc::string::String,
+#[prost(btree_map = "string, string", tag = "6")]
+pub annotations: ::prost::alloc::collections::BTreeMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "7")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "9")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "10")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "11")]
+pub etag: ::prost::alloc::string::String,
+#[prost(string, tag = "12")]
+pub location: ::prost::alloc::string::String,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuditContext {
-    #[prost(bytes = "bytes", tag = "1")]
-    pub audit_log: ::prost::bytes::Bytes,
-    #[prost(message, optional, tag = "2")]
-    pub scrubbed_request: ::core::option::Option<::prost_types::Struct>,
-    #[prost(message, optional, tag = "3")]
-    pub scrubbed_response: ::core::option::Option<::prost_types::Struct>,
-    #[prost(int32, tag = "4")]
-    pub scrubbed_response_item_count: i32,
-    #[prost(string, tag = "5")]
-    pub target_resource: ::prost::alloc::string::String,
+#[prost(bytes = "bytes", tag = "1")]
+pub audit_log: ::prost::bytes::Bytes,
+#[prost(message, optional, tag = "2")]
+pub scrubbed_request: ::core::option::Option<::prost_types::Struct>,
+#[prost(message, optional, tag = "3")]
+pub scrubbed_response: ::core::option::Option<::prost_types::Struct>,
+#[prost(int32, tag = "4")]
+pub scrubbed_response_item_count: i32,
+#[prost(string, tag = "5")]
+pub target_resource: ::prost::alloc::string::String,
 }

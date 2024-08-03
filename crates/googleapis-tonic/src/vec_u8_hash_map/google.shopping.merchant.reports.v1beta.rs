@@ -2,1123 +2,908 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub query: ::prost::alloc::string::String,
-    #[prost(int32, tag = "3")]
-    pub page_size: i32,
-    #[prost(string, tag = "4")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub query: ::prost::alloc::string::String,
+#[prost(int32, tag = "3")]
+pub page_size: i32,
+#[prost(string, tag = "4")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub results: ::prost::alloc::vec::Vec<ReportRow>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub results: ::prost::alloc::vec::Vec<ReportRow>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReportRow {
-    #[prost(message, optional, tag = "1")]
-    pub product_performance_view: ::core::option::Option<ProductPerformanceView>,
-    #[prost(message, optional, tag = "7")]
-    pub non_product_performance_view: ::core::option::Option<NonProductPerformanceView>,
-    #[prost(message, optional, tag = "2")]
-    pub product_view: ::core::option::Option<ProductView>,
-    #[prost(message, optional, tag = "3")]
-    pub price_competitiveness_product_view: ::core::option::Option<
-        PriceCompetitivenessProductView,
-    >,
-    #[prost(message, optional, tag = "4")]
-    pub price_insights_product_view: ::core::option::Option<PriceInsightsProductView>,
-    #[prost(message, optional, tag = "5")]
-    pub best_sellers_product_cluster_view: ::core::option::Option<
-        BestSellersProductClusterView,
-    >,
-    #[prost(message, optional, tag = "6")]
-    pub best_sellers_brand_view: ::core::option::Option<BestSellersBrandView>,
-    #[prost(message, optional, tag = "8")]
-    pub competitive_visibility_competitor_view: ::core::option::Option<
-        CompetitiveVisibilityCompetitorView,
-    >,
-    #[prost(message, optional, tag = "9")]
-    pub competitive_visibility_top_merchant_view: ::core::option::Option<
-        CompetitiveVisibilityTopMerchantView,
-    >,
-    #[prost(message, optional, tag = "10")]
-    pub competitive_visibility_benchmark_view: ::core::option::Option<
-        CompetitiveVisibilityBenchmarkView,
-    >,
+#[prost(message, optional, tag = "1")]
+pub product_performance_view: ::core::option::Option<ProductPerformanceView>,
+#[prost(message, optional, tag = "7")]
+pub non_product_performance_view: ::core::option::Option<NonProductPerformanceView>,
+#[prost(message, optional, tag = "2")]
+pub product_view: ::core::option::Option<ProductView>,
+#[prost(message, optional, tag = "3")]
+pub price_competitiveness_product_view: ::core::option::Option<PriceCompetitivenessProductView>,
+#[prost(message, optional, tag = "4")]
+pub price_insights_product_view: ::core::option::Option<PriceInsightsProductView>,
+#[prost(message, optional, tag = "5")]
+pub best_sellers_product_cluster_view: ::core::option::Option<BestSellersProductClusterView>,
+#[prost(message, optional, tag = "6")]
+pub best_sellers_brand_view: ::core::option::Option<BestSellersBrandView>,
+#[prost(message, optional, tag = "8")]
+pub competitive_visibility_competitor_view: ::core::option::Option<CompetitiveVisibilityCompetitorView>,
+#[prost(message, optional, tag = "9")]
+pub competitive_visibility_top_merchant_view: ::core::option::Option<CompetitiveVisibilityTopMerchantView>,
+#[prost(message, optional, tag = "10")]
+pub competitive_visibility_benchmark_view: ::core::option::Option<CompetitiveVisibilityBenchmarkView>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductPerformanceView {
-    #[prost(enumeration = "marketing_method::MarketingMethodEnum", optional, tag = "1")]
-    pub marketing_method: ::core::option::Option<i32>,
-    #[prost(message, optional, tag = "2")]
-    pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(message, optional, tag = "3")]
-    pub week: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(string, optional, tag = "4")]
-    pub customer_country_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "5")]
-    pub offer_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "6")]
-    pub title: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "7")]
-    pub brand: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "8")]
-    pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "9")]
-    pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "10")]
-    pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "11")]
-    pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "12")]
-    pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "13")]
-    pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "14")]
-    pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "15")]
-    pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "16")]
-    pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "17")]
-    pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "18")]
-    pub custom_label0: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "19")]
-    pub custom_label1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "20")]
-    pub custom_label2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "21")]
-    pub custom_label3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "22")]
-    pub custom_label4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(int64, optional, tag = "23")]
-    pub clicks: ::core::option::Option<i64>,
-    #[prost(int64, optional, tag = "24")]
-    pub impressions: ::core::option::Option<i64>,
-    #[prost(double, optional, tag = "25")]
-    pub click_through_rate: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "26")]
-    pub conversions: ::core::option::Option<f64>,
-    #[prost(message, optional, tag = "27")]
-    pub conversion_value: ::core::option::Option<super::super::super::r#type::Price>,
-    #[prost(double, optional, tag = "28")]
-    pub conversion_rate: ::core::option::Option<f64>,
+#[prost(enumeration = "marketing_method::MarketingMethodEnum", optional, tag = "1")]
+pub marketing_method: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "2")]
+pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(message, optional, tag = "3")]
+pub week: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(string, optional, tag = "4")]
+pub customer_country_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "5")]
+pub offer_id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "6")]
+pub title: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "7")]
+pub brand: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "8")]
+pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "9")]
+pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "10")]
+pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "11")]
+pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "12")]
+pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "13")]
+pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "14")]
+pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "15")]
+pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "16")]
+pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "17")]
+pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "18")]
+pub custom_label0: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "19")]
+pub custom_label1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "20")]
+pub custom_label2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "21")]
+pub custom_label3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "22")]
+pub custom_label4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "23")]
+pub clicks: ::core::option::Option<i64>,
+#[prost(int64, optional, tag = "24")]
+pub impressions: ::core::option::Option<i64>,
+#[prost(double, optional, tag = "25")]
+pub click_through_rate: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "26")]
+pub conversions: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "27")]
+pub conversion_value: ::core::option::Option<super::super::super::r#type::Price>,
+#[prost(double, optional, tag = "28")]
+pub conversion_rate: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProductView {
-    #[prost(string, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(
-        enumeration = "super::super::super::r#type::channel::ChannelEnum",
-        optional,
-        tag = "28"
-    )]
-    pub channel: ::core::option::Option<i32>,
-    #[prost(string, optional, tag = "2")]
-    pub language_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "3")]
-    pub feed_label: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "4")]
-    pub offer_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "5")]
-    pub title: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "6")]
-    pub brand: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "7")]
-    pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "8")]
-    pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "9")]
-    pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "10")]
-    pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "11")]
-    pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "12")]
-    pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "13")]
-    pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "14")]
-    pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "15")]
-    pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "16")]
-    pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "17")]
-    pub price: ::core::option::Option<super::super::super::r#type::Price>,
-    #[prost(string, optional, tag = "18")]
-    pub condition: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "19")]
-    pub availability: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "20")]
-    pub shipping_label: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "21")]
-    pub gtin: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "22")]
-    pub item_group_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "23")]
-    pub thumbnail_link: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "24")]
-    pub creation_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "25")]
-    pub expiration_date: ::core::option::Option<
-        super::super::super::super::r#type::Date,
-    >,
-    #[prost(
-        enumeration = "product_view::AggregatedReportingContextStatus",
-        optional,
-        tag = "26"
-    )]
-    pub aggregated_reporting_context_status: ::core::option::Option<i32>,
-    #[prost(message, repeated, tag = "27")]
-    pub item_issues: ::prost::alloc::vec::Vec<product_view::ItemIssue>,
-    #[prost(enumeration = "product_view::ClickPotential", tag = "29")]
-    pub click_potential: i32,
-    #[prost(int64, optional, tag = "30")]
-    pub click_potential_rank: ::core::option::Option<i64>,
+#[prost(string, optional, tag = "1")]
+pub id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(enumeration = "super::super::super::r#type::channel::ChannelEnum", optional, tag = "28")]
+pub channel: ::core::option::Option<i32>,
+#[prost(string, optional, tag = "2")]
+pub language_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "3")]
+pub feed_label: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "4")]
+pub offer_id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "5")]
+pub title: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "6")]
+pub brand: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "7")]
+pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "8")]
+pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "9")]
+pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "10")]
+pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "11")]
+pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "12")]
+pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "13")]
+pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "14")]
+pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "15")]
+pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "16")]
+pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "17")]
+pub price: ::core::option::Option<super::super::super::r#type::Price>,
+#[prost(string, optional, tag = "18")]
+pub condition: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "19")]
+pub availability: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "20")]
+pub shipping_label: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "21")]
+pub gtin: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "22")]
+pub item_group_id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "23")]
+pub thumbnail_link: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "24")]
+pub creation_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "25")]
+pub expiration_date: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(enumeration = "product_view::AggregatedReportingContextStatus", optional, tag = "26")]
+pub aggregated_reporting_context_status: ::core::option::Option<i32>,
+#[prost(message, repeated, tag = "27")]
+pub item_issues: ::prost::alloc::vec::Vec<product_view::ItemIssue>,
+#[prost(enumeration = "product_view::ClickPotential", tag = "29")]
+pub click_potential: i32,
+#[prost(int64, optional, tag = "30")]
+pub click_potential_rank: ::core::option::Option<i64>,
 }
 /// Nested message and enum types in `ProductView`.
 pub mod product_view {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ItemIssue {
-        #[prost(message, optional, tag = "1")]
-        pub r#type: ::core::option::Option<item_issue::ItemIssueType>,
-        #[prost(message, optional, tag = "2")]
-        pub severity: ::core::option::Option<item_issue::ItemIssueSeverity>,
-        #[prost(enumeration = "item_issue::ItemIssueResolution", optional, tag = "3")]
-        pub resolution: ::core::option::Option<i32>,
-    }
-    /// Nested message and enum types in `ItemIssue`.
-    pub mod item_issue {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ItemIssueType {
-            #[prost(string, optional, tag = "1")]
-            pub code: ::core::option::Option<::prost::alloc::string::String>,
-            #[prost(string, optional, tag = "2")]
-            pub canonical_attribute: ::core::option::Option<
-                ::prost::alloc::string::String,
-            >,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ItemIssueSeverity {
-            #[prost(message, repeated, tag = "1")]
-            pub severity_per_reporting_context: ::prost::alloc::vec::Vec<
-                item_issue_severity::IssueSeverityPerReportingContext,
-            >,
-            #[prost(
-                enumeration = "item_issue_severity::AggregatedIssueSeverity",
-                optional,
-                tag = "2"
-            )]
-            pub aggregated_severity: ::core::option::Option<i32>,
-        }
-        /// Nested message and enum types in `ItemIssueSeverity`.
-        pub mod item_issue_severity {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct IssueSeverityPerReportingContext {
-                #[prost(
-                    enumeration = "super::super::super::super::super::super::r#type::reporting_context::ReportingContextEnum",
-                    optional,
-                    tag = "1"
-                )]
-                pub reporting_context: ::core::option::Option<i32>,
-                #[prost(string, repeated, tag = "2")]
-                pub disapproved_countries: ::prost::alloc::vec::Vec<
-                    ::prost::alloc::string::String,
-                >,
-                #[prost(string, repeated, tag = "3")]
-                pub demoted_countries: ::prost::alloc::vec::Vec<
-                    ::prost::alloc::string::String,
-                >,
-            }
-            #[derive(
-                Clone,
-                Copy,
-                Debug,
-                PartialEq,
-                Eq,
-                Hash,
-                PartialOrd,
-                Ord,
-                ::prost::Enumeration
-            )]
-            #[repr(i32)]
-            pub enum AggregatedIssueSeverity {
-                Unspecified = 0,
-                Disapproved = 1,
-                Demoted = 2,
-                Pending = 3,
-            }
-            impl AggregatedIssueSeverity {
-                /// String value of the enum field names used in the ProtoBuf definition.
-                ///
-                /// The values are not transformed in any way and thus are considered stable
-                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-                pub fn as_str_name(&self) -> &'static str {
-                    match self {
-                        AggregatedIssueSeverity::Unspecified => {
-                            "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED"
-                        }
-                        AggregatedIssueSeverity::Disapproved => "DISAPPROVED",
-                        AggregatedIssueSeverity::Demoted => "DEMOTED",
-                        AggregatedIssueSeverity::Pending => "PENDING",
-                    }
-                }
-                /// Creates an enum from field names used in the ProtoBuf definition.
-                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                    match value {
-                        "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED" => {
-                            Some(Self::Unspecified)
-                        }
-                        "DISAPPROVED" => Some(Self::Disapproved),
-                        "DEMOTED" => Some(Self::Demoted),
-                        "PENDING" => Some(Self::Pending),
-                        _ => None,
-                    }
-                }
-            }
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum ItemIssueResolution {
-            Unspecified = 0,
-            MerchantAction = 1,
-            PendingProcessing = 2,
-        }
-        impl ItemIssueResolution {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    ItemIssueResolution::Unspecified => {
-                        "ITEM_ISSUE_RESOLUTION_UNSPECIFIED"
-                    }
-                    ItemIssueResolution::MerchantAction => "MERCHANT_ACTION",
-                    ItemIssueResolution::PendingProcessing => "PENDING_PROCESSING",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "ITEM_ISSUE_RESOLUTION_UNSPECIFIED" => Some(Self::Unspecified),
-                    "MERCHANT_ACTION" => Some(Self::MerchantAction),
-                    "PENDING_PROCESSING" => Some(Self::PendingProcessing),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum AggregatedReportingContextStatus {
-        Unspecified = 0,
-        NotEligibleOrDisapproved = 1,
-        Pending = 2,
-        EligibleLimited = 3,
-        Eligible = 4,
-    }
-    impl AggregatedReportingContextStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                AggregatedReportingContextStatus::Unspecified => {
-                    "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED"
-                }
-                AggregatedReportingContextStatus::NotEligibleOrDisapproved => {
-                    "NOT_ELIGIBLE_OR_DISAPPROVED"
-                }
-                AggregatedReportingContextStatus::Pending => "PENDING",
-                AggregatedReportingContextStatus::EligibleLimited => "ELIGIBLE_LIMITED",
-                AggregatedReportingContextStatus::Eligible => "ELIGIBLE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED" => {
-                    Some(Self::Unspecified)
-                }
-                "NOT_ELIGIBLE_OR_DISAPPROVED" => Some(Self::NotEligibleOrDisapproved),
-                "PENDING" => Some(Self::Pending),
-                "ELIGIBLE_LIMITED" => Some(Self::EligibleLimited),
-                "ELIGIBLE" => Some(Self::Eligible),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ClickPotential {
-        Unspecified = 0,
-        Low = 1,
-        Medium = 2,
-        High = 3,
-    }
-    impl ClickPotential {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ClickPotential::Unspecified => "CLICK_POTENTIAL_UNSPECIFIED",
-                ClickPotential::Low => "LOW",
-                ClickPotential::Medium => "MEDIUM",
-                ClickPotential::High => "HIGH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CLICK_POTENTIAL_UNSPECIFIED" => Some(Self::Unspecified),
-                "LOW" => Some(Self::Low),
-                "MEDIUM" => Some(Self::Medium),
-                "HIGH" => Some(Self::High),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ItemIssue {
+#[prost(message, optional, tag = "1")]
+pub r#type: ::core::option::Option<item_issue::ItemIssueType>,
+#[prost(message, optional, tag = "2")]
+pub severity: ::core::option::Option<item_issue::ItemIssueSeverity>,
+#[prost(enumeration = "item_issue::ItemIssueResolution", optional, tag = "3")]
+pub resolution: ::core::option::Option<i32>,
+}
+/// Nested message and enum types in `ItemIssue`.
+pub mod item_issue {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ItemIssueType {
+#[prost(string, optional, tag = "1")]
+pub code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "2")]
+pub canonical_attribute: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ItemIssueSeverity {
+#[prost(message, repeated, tag = "1")]
+pub severity_per_reporting_context: ::prost::alloc::vec::Vec<item_issue_severity::IssueSeverityPerReportingContext>,
+#[prost(enumeration = "item_issue_severity::AggregatedIssueSeverity", optional, tag = "2")]
+pub aggregated_severity: ::core::option::Option<i32>,
+}
+/// Nested message and enum types in `ItemIssueSeverity`.
+pub mod item_issue_severity {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IssueSeverityPerReportingContext {
+#[prost(enumeration = "super::super::super::super::super::super::r#type::reporting_context::ReportingContextEnum", optional, tag = "1")]
+pub reporting_context: ::core::option::Option<i32>,
+#[prost(string, repeated, tag = "2")]
+pub disapproved_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "3")]
+pub demoted_countries: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AggregatedIssueSeverity {
+Unspecified = 0,
+Disapproved = 1,
+Demoted = 2,
+Pending = 3,
+}
+impl AggregatedIssueSeverity {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AggregatedIssueSeverity::Unspecified => "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED",
+AggregatedIssueSeverity::Disapproved => "DISAPPROVED",
+AggregatedIssueSeverity::Demoted => "DEMOTED",
+AggregatedIssueSeverity::Pending => "PENDING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED" => Some(Self::Unspecified),
+"DISAPPROVED" => Some(Self::Disapproved),
+"DEMOTED" => Some(Self::Demoted),
+"PENDING" => Some(Self::Pending),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ItemIssueResolution {
+Unspecified = 0,
+MerchantAction = 1,
+PendingProcessing = 2,
+}
+impl ItemIssueResolution {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ItemIssueResolution::Unspecified => "ITEM_ISSUE_RESOLUTION_UNSPECIFIED",
+ItemIssueResolution::MerchantAction => "MERCHANT_ACTION",
+ItemIssueResolution::PendingProcessing => "PENDING_PROCESSING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ITEM_ISSUE_RESOLUTION_UNSPECIFIED" => Some(Self::Unspecified),
+"MERCHANT_ACTION" => Some(Self::MerchantAction),
+"PENDING_PROCESSING" => Some(Self::PendingProcessing),
+_ => None,
+}
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AggregatedReportingContextStatus {
+Unspecified = 0,
+NotEligibleOrDisapproved = 1,
+Pending = 2,
+EligibleLimited = 3,
+Eligible = 4,
+}
+impl AggregatedReportingContextStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+AggregatedReportingContextStatus::Unspecified => "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED",
+AggregatedReportingContextStatus::NotEligibleOrDisapproved => "NOT_ELIGIBLE_OR_DISAPPROVED",
+AggregatedReportingContextStatus::Pending => "PENDING",
+AggregatedReportingContextStatus::EligibleLimited => "ELIGIBLE_LIMITED",
+AggregatedReportingContextStatus::Eligible => "ELIGIBLE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"NOT_ELIGIBLE_OR_DISAPPROVED" => Some(Self::NotEligibleOrDisapproved),
+"PENDING" => Some(Self::Pending),
+"ELIGIBLE_LIMITED" => Some(Self::EligibleLimited),
+"ELIGIBLE" => Some(Self::Eligible),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ClickPotential {
+Unspecified = 0,
+Low = 1,
+Medium = 2,
+High = 3,
+}
+impl ClickPotential {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ClickPotential::Unspecified => "CLICK_POTENTIAL_UNSPECIFIED",
+ClickPotential::Low => "LOW",
+ClickPotential::Medium => "MEDIUM",
+ClickPotential::High => "HIGH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CLICK_POTENTIAL_UNSPECIFIED" => Some(Self::Unspecified),
+"LOW" => Some(Self::Low),
+"MEDIUM" => Some(Self::Medium),
+"HIGH" => Some(Self::High),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PriceCompetitivenessProductView {
-    #[prost(string, optional, tag = "1")]
-    pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "2")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "3")]
-    pub offer_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "4")]
-    pub title: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "5")]
-    pub brand: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "6")]
-    pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "7")]
-    pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "8")]
-    pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "9")]
-    pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "10")]
-    pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "11")]
-    pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "12")]
-    pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "13")]
-    pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "14")]
-    pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "15")]
-    pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "16")]
-    pub price: ::core::option::Option<super::super::super::r#type::Price>,
-    #[prost(message, optional, tag = "17")]
-    pub benchmark_price: ::core::option::Option<super::super::super::r#type::Price>,
+#[prost(string, optional, tag = "1")]
+pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "2")]
+pub id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "3")]
+pub offer_id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "4")]
+pub title: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "5")]
+pub brand: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "6")]
+pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "7")]
+pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "8")]
+pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "9")]
+pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "10")]
+pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "11")]
+pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "12")]
+pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "13")]
+pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "14")]
+pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "15")]
+pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "16")]
+pub price: ::core::option::Option<super::super::super::r#type::Price>,
+#[prost(message, optional, tag = "17")]
+pub benchmark_price: ::core::option::Option<super::super::super::r#type::Price>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PriceInsightsProductView {
-    #[prost(string, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "2")]
-    pub offer_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "3")]
-    pub title: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "4")]
-    pub brand: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "5")]
-    pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "6")]
-    pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "7")]
-    pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "8")]
-    pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "9")]
-    pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "10")]
-    pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "11")]
-    pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "12")]
-    pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "13")]
-    pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "14")]
-    pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "15")]
-    pub price: ::core::option::Option<super::super::super::r#type::Price>,
-    #[prost(message, optional, tag = "16")]
-    pub suggested_price: ::core::option::Option<super::super::super::r#type::Price>,
-    #[prost(double, optional, tag = "17")]
-    pub predicted_impressions_change_fraction: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "18")]
-    pub predicted_clicks_change_fraction: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "19")]
-    pub predicted_conversions_change_fraction: ::core::option::Option<f64>,
-    #[prost(enumeration = "price_insights_product_view::Effectiveness", tag = "22")]
-    pub effectiveness: i32,
+#[prost(string, optional, tag = "1")]
+pub id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "2")]
+pub offer_id: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "3")]
+pub title: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "4")]
+pub brand: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "5")]
+pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "6")]
+pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "7")]
+pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "8")]
+pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "9")]
+pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "10")]
+pub product_type_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "11")]
+pub product_type_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "12")]
+pub product_type_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "13")]
+pub product_type_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "14")]
+pub product_type_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "15")]
+pub price: ::core::option::Option<super::super::super::r#type::Price>,
+#[prost(message, optional, tag = "16")]
+pub suggested_price: ::core::option::Option<super::super::super::r#type::Price>,
+#[prost(double, optional, tag = "17")]
+pub predicted_impressions_change_fraction: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "18")]
+pub predicted_clicks_change_fraction: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "19")]
+pub predicted_conversions_change_fraction: ::core::option::Option<f64>,
+#[prost(enumeration = "price_insights_product_view::Effectiveness", tag = "22")]
+pub effectiveness: i32,
 }
 /// Nested message and enum types in `PriceInsightsProductView`.
 pub mod price_insights_product_view {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Effectiveness {
-        Unspecified = 0,
-        Low = 1,
-        Medium = 2,
-        High = 3,
-    }
-    impl Effectiveness {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Effectiveness::Unspecified => "EFFECTIVENESS_UNSPECIFIED",
-                Effectiveness::Low => "LOW",
-                Effectiveness::Medium => "MEDIUM",
-                Effectiveness::High => "HIGH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "EFFECTIVENESS_UNSPECIFIED" => Some(Self::Unspecified),
-                "LOW" => Some(Self::Low),
-                "MEDIUM" => Some(Self::Medium),
-                "HIGH" => Some(Self::High),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Effectiveness {
+Unspecified = 0,
+Low = 1,
+Medium = 2,
+High = 3,
+}
+impl Effectiveness {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Effectiveness::Unspecified => "EFFECTIVENESS_UNSPECIFIED",
+Effectiveness::Low => "LOW",
+Effectiveness::Medium => "MEDIUM",
+Effectiveness::High => "HIGH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EFFECTIVENESS_UNSPECIFIED" => Some(Self::Unspecified),
+"LOW" => Some(Self::Low),
+"MEDIUM" => Some(Self::Medium),
+"HIGH" => Some(Self::High),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BestSellersProductClusterView {
-    #[prost(message, optional, tag = "1")]
-    pub report_date: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(
-        enumeration = "report_granularity::ReportGranularityEnum",
-        optional,
-        tag = "2"
-    )]
-    pub report_granularity: ::core::option::Option<i32>,
-    #[prost(string, optional, tag = "3")]
-    pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(int64, optional, tag = "4")]
-    pub report_category_id: ::core::option::Option<i64>,
-    #[prost(string, optional, tag = "6")]
-    pub title: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "7")]
-    pub brand: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "8")]
-    pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "9")]
-    pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "10")]
-    pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "11")]
-    pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, optional, tag = "12")]
-    pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "13")]
-    pub variant_gtins: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(
-        enumeration = "best_sellers_product_cluster_view::InventoryStatus",
-        optional,
-        tag = "14"
-    )]
-    pub inventory_status: ::core::option::Option<i32>,
-    #[prost(
-        enumeration = "best_sellers_product_cluster_view::InventoryStatus",
-        optional,
-        tag = "15"
-    )]
-    pub brand_inventory_status: ::core::option::Option<i32>,
-    #[prost(int64, optional, tag = "16")]
-    pub rank: ::core::option::Option<i64>,
-    #[prost(int64, optional, tag = "17")]
-    pub previous_rank: ::core::option::Option<i64>,
-    #[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "18")]
-    pub relative_demand: ::core::option::Option<i32>,
-    #[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "19")]
-    pub previous_relative_demand: ::core::option::Option<i32>,
-    #[prost(
-        enumeration = "relative_demand_change_type::RelativeDemandChangeTypeEnum",
-        optional,
-        tag = "20"
-    )]
-    pub relative_demand_change: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "1")]
+pub report_date: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(enumeration = "report_granularity::ReportGranularityEnum", optional, tag = "2")]
+pub report_granularity: ::core::option::Option<i32>,
+#[prost(string, optional, tag = "3")]
+pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "4")]
+pub report_category_id: ::core::option::Option<i64>,
+#[prost(string, optional, tag = "6")]
+pub title: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "7")]
+pub brand: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "8")]
+pub category_l1: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "9")]
+pub category_l2: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "10")]
+pub category_l3: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "11")]
+pub category_l4: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, optional, tag = "12")]
+pub category_l5: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "13")]
+pub variant_gtins: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "best_sellers_product_cluster_view::InventoryStatus", optional, tag = "14")]
+pub inventory_status: ::core::option::Option<i32>,
+#[prost(enumeration = "best_sellers_product_cluster_view::InventoryStatus", optional, tag = "15")]
+pub brand_inventory_status: ::core::option::Option<i32>,
+#[prost(int64, optional, tag = "16")]
+pub rank: ::core::option::Option<i64>,
+#[prost(int64, optional, tag = "17")]
+pub previous_rank: ::core::option::Option<i64>,
+#[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "18")]
+pub relative_demand: ::core::option::Option<i32>,
+#[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "19")]
+pub previous_relative_demand: ::core::option::Option<i32>,
+#[prost(enumeration = "relative_demand_change_type::RelativeDemandChangeTypeEnum", optional, tag = "20")]
+pub relative_demand_change: ::core::option::Option<i32>,
 }
 /// Nested message and enum types in `BestSellersProductClusterView`.
 pub mod best_sellers_product_cluster_view {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum InventoryStatus {
-        Unspecified = 0,
-        InStock = 1,
-        OutOfStock = 2,
-        NotInInventory = 3,
-    }
-    impl InventoryStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                InventoryStatus::Unspecified => "INVENTORY_STATUS_UNSPECIFIED",
-                InventoryStatus::InStock => "IN_STOCK",
-                InventoryStatus::OutOfStock => "OUT_OF_STOCK",
-                InventoryStatus::NotInInventory => "NOT_IN_INVENTORY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "INVENTORY_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                "IN_STOCK" => Some(Self::InStock),
-                "OUT_OF_STOCK" => Some(Self::OutOfStock),
-                "NOT_IN_INVENTORY" => Some(Self::NotInInventory),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum InventoryStatus {
+Unspecified = 0,
+InStock = 1,
+OutOfStock = 2,
+NotInInventory = 3,
+}
+impl InventoryStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+InventoryStatus::Unspecified => "INVENTORY_STATUS_UNSPECIFIED",
+InventoryStatus::InStock => "IN_STOCK",
+InventoryStatus::OutOfStock => "OUT_OF_STOCK",
+InventoryStatus::NotInInventory => "NOT_IN_INVENTORY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INVENTORY_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"IN_STOCK" => Some(Self::InStock),
+"OUT_OF_STOCK" => Some(Self::OutOfStock),
+"NOT_IN_INVENTORY" => Some(Self::NotInInventory),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BestSellersBrandView {
-    #[prost(message, optional, tag = "1")]
-    pub report_date: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(
-        enumeration = "report_granularity::ReportGranularityEnum",
-        optional,
-        tag = "2"
-    )]
-    pub report_granularity: ::core::option::Option<i32>,
-    #[prost(string, optional, tag = "3")]
-    pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(int64, optional, tag = "4")]
-    pub report_category_id: ::core::option::Option<i64>,
-    #[prost(string, optional, tag = "6")]
-    pub brand: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(int64, optional, tag = "7")]
-    pub rank: ::core::option::Option<i64>,
-    #[prost(int64, optional, tag = "8")]
-    pub previous_rank: ::core::option::Option<i64>,
-    #[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "9")]
-    pub relative_demand: ::core::option::Option<i32>,
-    #[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "10")]
-    pub previous_relative_demand: ::core::option::Option<i32>,
-    #[prost(
-        enumeration = "relative_demand_change_type::RelativeDemandChangeTypeEnum",
-        optional,
-        tag = "11"
-    )]
-    pub relative_demand_change: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "1")]
+pub report_date: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(enumeration = "report_granularity::ReportGranularityEnum", optional, tag = "2")]
+pub report_granularity: ::core::option::Option<i32>,
+#[prost(string, optional, tag = "3")]
+pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "4")]
+pub report_category_id: ::core::option::Option<i64>,
+#[prost(string, optional, tag = "6")]
+pub brand: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "7")]
+pub rank: ::core::option::Option<i64>,
+#[prost(int64, optional, tag = "8")]
+pub previous_rank: ::core::option::Option<i64>,
+#[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "9")]
+pub relative_demand: ::core::option::Option<i32>,
+#[prost(enumeration = "relative_demand::RelativeDemandEnum", optional, tag = "10")]
+pub previous_relative_demand: ::core::option::Option<i32>,
+#[prost(enumeration = "relative_demand_change_type::RelativeDemandChangeTypeEnum", optional, tag = "11")]
+pub relative_demand_change: ::core::option::Option<i32>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NonProductPerformanceView {
-    #[prost(message, optional, tag = "1")]
-    pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(message, optional, tag = "2")]
-    pub week: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(int64, optional, tag = "3")]
-    pub clicks: ::core::option::Option<i64>,
-    #[prost(int64, optional, tag = "4")]
-    pub impressions: ::core::option::Option<i64>,
-    #[prost(double, optional, tag = "5")]
-    pub click_through_rate: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "1")]
+pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(message, optional, tag = "2")]
+pub week: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(int64, optional, tag = "3")]
+pub clicks: ::core::option::Option<i64>,
+#[prost(int64, optional, tag = "4")]
+pub impressions: ::core::option::Option<i64>,
+#[prost(double, optional, tag = "5")]
+pub click_through_rate: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CompetitiveVisibilityCompetitorView {
-    #[prost(message, optional, tag = "1")]
-    pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(string, optional, tag = "2")]
-    pub domain: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(bool, optional, tag = "3")]
-    pub is_your_domain: ::core::option::Option<bool>,
-    #[prost(string, optional, tag = "4")]
-    pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(int64, optional, tag = "5")]
-    pub report_category_id: ::core::option::Option<i64>,
-    #[prost(enumeration = "traffic_source::TrafficSourceEnum", optional, tag = "6")]
-    pub traffic_source: ::core::option::Option<i32>,
-    #[prost(int64, optional, tag = "7")]
-    pub rank: ::core::option::Option<i64>,
-    #[prost(double, optional, tag = "8")]
-    pub ads_organic_ratio: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "9")]
-    pub page_overlap_rate: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "10")]
-    pub higher_position_rate: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "11")]
-    pub relative_visibility: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "1")]
+pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(string, optional, tag = "2")]
+pub domain: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(bool, optional, tag = "3")]
+pub is_your_domain: ::core::option::Option<bool>,
+#[prost(string, optional, tag = "4")]
+pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "5")]
+pub report_category_id: ::core::option::Option<i64>,
+#[prost(enumeration = "traffic_source::TrafficSourceEnum", optional, tag = "6")]
+pub traffic_source: ::core::option::Option<i32>,
+#[prost(int64, optional, tag = "7")]
+pub rank: ::core::option::Option<i64>,
+#[prost(double, optional, tag = "8")]
+pub ads_organic_ratio: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "9")]
+pub page_overlap_rate: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "10")]
+pub higher_position_rate: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "11")]
+pub relative_visibility: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CompetitiveVisibilityTopMerchantView {
-    #[prost(message, optional, tag = "1")]
-    pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(string, optional, tag = "2")]
-    pub domain: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(bool, optional, tag = "3")]
-    pub is_your_domain: ::core::option::Option<bool>,
-    #[prost(string, optional, tag = "4")]
-    pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(int64, optional, tag = "5")]
-    pub report_category_id: ::core::option::Option<i64>,
-    #[prost(enumeration = "traffic_source::TrafficSourceEnum", optional, tag = "6")]
-    pub traffic_source: ::core::option::Option<i32>,
-    #[prost(int64, optional, tag = "7")]
-    pub rank: ::core::option::Option<i64>,
-    #[prost(double, optional, tag = "8")]
-    pub ads_organic_ratio: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "9")]
-    pub page_overlap_rate: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "10")]
-    pub higher_position_rate: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "1")]
+pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(string, optional, tag = "2")]
+pub domain: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(bool, optional, tag = "3")]
+pub is_your_domain: ::core::option::Option<bool>,
+#[prost(string, optional, tag = "4")]
+pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "5")]
+pub report_category_id: ::core::option::Option<i64>,
+#[prost(enumeration = "traffic_source::TrafficSourceEnum", optional, tag = "6")]
+pub traffic_source: ::core::option::Option<i32>,
+#[prost(int64, optional, tag = "7")]
+pub rank: ::core::option::Option<i64>,
+#[prost(double, optional, tag = "8")]
+pub ads_organic_ratio: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "9")]
+pub page_overlap_rate: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "10")]
+pub higher_position_rate: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CompetitiveVisibilityBenchmarkView {
-    #[prost(message, optional, tag = "1")]
-    pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
-    #[prost(string, optional, tag = "2")]
-    pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(int64, optional, tag = "3")]
-    pub report_category_id: ::core::option::Option<i64>,
-    #[prost(enumeration = "traffic_source::TrafficSourceEnum", optional, tag = "4")]
-    pub traffic_source: ::core::option::Option<i32>,
-    #[prost(double, optional, tag = "5")]
-    pub your_domain_visibility_trend: ::core::option::Option<f64>,
-    #[prost(double, optional, tag = "6")]
-    pub category_benchmark_visibility_trend: ::core::option::Option<f64>,
+#[prost(message, optional, tag = "1")]
+pub date: ::core::option::Option<super::super::super::super::r#type::Date>,
+#[prost(string, optional, tag = "2")]
+pub report_country_code: ::core::option::Option<::prost::alloc::string::String>,
+#[prost(int64, optional, tag = "3")]
+pub report_category_id: ::core::option::Option<i64>,
+#[prost(enumeration = "traffic_source::TrafficSourceEnum", optional, tag = "4")]
+pub traffic_source: ::core::option::Option<i32>,
+#[prost(double, optional, tag = "5")]
+pub your_domain_visibility_trend: ::core::option::Option<f64>,
+#[prost(double, optional, tag = "6")]
+pub category_benchmark_visibility_trend: ::core::option::Option<f64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MarketingMethod {}
 /// Nested message and enum types in `MarketingMethod`.
 pub mod marketing_method {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MarketingMethodEnum {
-        Unspecified = 0,
-        Organic = 1,
-        Ads = 2,
-    }
-    impl MarketingMethodEnum {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MarketingMethodEnum::Unspecified => "MARKETING_METHOD_ENUM_UNSPECIFIED",
-                MarketingMethodEnum::Organic => "ORGANIC",
-                MarketingMethodEnum::Ads => "ADS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MARKETING_METHOD_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "ORGANIC" => Some(Self::Organic),
-                "ADS" => Some(Self::Ads),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MarketingMethodEnum {
+Unspecified = 0,
+Organic = 1,
+Ads = 2,
+}
+impl MarketingMethodEnum {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MarketingMethodEnum::Unspecified => "MARKETING_METHOD_ENUM_UNSPECIFIED",
+MarketingMethodEnum::Organic => "ORGANIC",
+MarketingMethodEnum::Ads => "ADS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MARKETING_METHOD_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
+"ORGANIC" => Some(Self::Organic),
+"ADS" => Some(Self::Ads),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ReportGranularity {}
 /// Nested message and enum types in `ReportGranularity`.
 pub mod report_granularity {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ReportGranularityEnum {
-        Unspecified = 0,
-        Weekly = 1,
-        Monthly = 2,
-    }
-    impl ReportGranularityEnum {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ReportGranularityEnum::Unspecified => {
-                    "REPORT_GRANULARITY_ENUM_UNSPECIFIED"
-                }
-                ReportGranularityEnum::Weekly => "WEEKLY",
-                ReportGranularityEnum::Monthly => "MONTHLY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "REPORT_GRANULARITY_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "WEEKLY" => Some(Self::Weekly),
-                "MONTHLY" => Some(Self::Monthly),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ReportGranularityEnum {
+Unspecified = 0,
+Weekly = 1,
+Monthly = 2,
+}
+impl ReportGranularityEnum {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ReportGranularityEnum::Unspecified => "REPORT_GRANULARITY_ENUM_UNSPECIFIED",
+ReportGranularityEnum::Weekly => "WEEKLY",
+ReportGranularityEnum::Monthly => "MONTHLY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"REPORT_GRANULARITY_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
+"WEEKLY" => Some(Self::Weekly),
+"MONTHLY" => Some(Self::Monthly),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RelativeDemand {}
 /// Nested message and enum types in `RelativeDemand`.
 pub mod relative_demand {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RelativeDemandEnum {
-        Unspecified = 0,
-        VeryLow = 10,
-        Low = 20,
-        Medium = 30,
-        High = 40,
-        VeryHigh = 50,
-    }
-    impl RelativeDemandEnum {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RelativeDemandEnum::Unspecified => "RELATIVE_DEMAND_ENUM_UNSPECIFIED",
-                RelativeDemandEnum::VeryLow => "VERY_LOW",
-                RelativeDemandEnum::Low => "LOW",
-                RelativeDemandEnum::Medium => "MEDIUM",
-                RelativeDemandEnum::High => "HIGH",
-                RelativeDemandEnum::VeryHigh => "VERY_HIGH",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RELATIVE_DEMAND_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "VERY_LOW" => Some(Self::VeryLow),
-                "LOW" => Some(Self::Low),
-                "MEDIUM" => Some(Self::Medium),
-                "HIGH" => Some(Self::High),
-                "VERY_HIGH" => Some(Self::VeryHigh),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RelativeDemandEnum {
+Unspecified = 0,
+VeryLow = 10,
+Low = 20,
+Medium = 30,
+High = 40,
+VeryHigh = 50,
+}
+impl RelativeDemandEnum {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RelativeDemandEnum::Unspecified => "RELATIVE_DEMAND_ENUM_UNSPECIFIED",
+RelativeDemandEnum::VeryLow => "VERY_LOW",
+RelativeDemandEnum::Low => "LOW",
+RelativeDemandEnum::Medium => "MEDIUM",
+RelativeDemandEnum::High => "HIGH",
+RelativeDemandEnum::VeryHigh => "VERY_HIGH",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RELATIVE_DEMAND_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
+"VERY_LOW" => Some(Self::VeryLow),
+"LOW" => Some(Self::Low),
+"MEDIUM" => Some(Self::Medium),
+"HIGH" => Some(Self::High),
+"VERY_HIGH" => Some(Self::VeryHigh),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct RelativeDemandChangeType {}
 /// Nested message and enum types in `RelativeDemandChangeType`.
 pub mod relative_demand_change_type {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RelativeDemandChangeTypeEnum {
-        Unspecified = 0,
-        Sinker = 1,
-        Flat = 2,
-        Riser = 3,
-    }
-    impl RelativeDemandChangeTypeEnum {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RelativeDemandChangeTypeEnum::Unspecified => {
-                    "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED"
-                }
-                RelativeDemandChangeTypeEnum::Sinker => "SINKER",
-                RelativeDemandChangeTypeEnum::Flat => "FLAT",
-                RelativeDemandChangeTypeEnum::Riser => "RISER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "SINKER" => Some(Self::Sinker),
-                "FLAT" => Some(Self::Flat),
-                "RISER" => Some(Self::Riser),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RelativeDemandChangeTypeEnum {
+Unspecified = 0,
+Sinker = 1,
+Flat = 2,
+Riser = 3,
+}
+impl RelativeDemandChangeTypeEnum {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RelativeDemandChangeTypeEnum::Unspecified => "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED",
+RelativeDemandChangeTypeEnum::Sinker => "SINKER",
+RelativeDemandChangeTypeEnum::Flat => "FLAT",
+RelativeDemandChangeTypeEnum::Riser => "RISER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
+"SINKER" => Some(Self::Sinker),
+"FLAT" => Some(Self::Flat),
+"RISER" => Some(Self::Riser),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct TrafficSource {}
 /// Nested message and enum types in `TrafficSource`.
 pub mod traffic_source {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum TrafficSourceEnum {
-        Unspecified = 0,
-        Organic = 1,
-        Ads = 2,
-        All = 3,
-    }
-    impl TrafficSourceEnum {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                TrafficSourceEnum::Unspecified => "TRAFFIC_SOURCE_ENUM_UNSPECIFIED",
-                TrafficSourceEnum::Organic => "ORGANIC",
-                TrafficSourceEnum::Ads => "ADS",
-                TrafficSourceEnum::All => "ALL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TRAFFIC_SOURCE_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
-                "ORGANIC" => Some(Self::Organic),
-                "ADS" => Some(Self::Ads),
-                "ALL" => Some(Self::All),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum TrafficSourceEnum {
+Unspecified = 0,
+Organic = 1,
+Ads = 2,
+All = 3,
+}
+impl TrafficSourceEnum {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TrafficSourceEnum::Unspecified => "TRAFFIC_SOURCE_ENUM_UNSPECIFIED",
+TrafficSourceEnum::Organic => "ORGANIC",
+TrafficSourceEnum::Ads => "ADS",
+TrafficSourceEnum::All => "ALL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TRAFFIC_SOURCE_ENUM_UNSPECIFIED" => Some(Self::Unspecified),
+"ORGANIC" => Some(Self::Organic),
+"ADS" => Some(Self::Ads),
+"ALL" => Some(Self::All),
+_ => None,
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod report_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service for retrieving reports and insights about your products, their
-    /// performance, and their competitive environment on Google.
-    #[derive(Debug, Clone)]
-    pub struct ReportServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ReportServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ReportServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ReportServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Retrieves a report defined by a search query. The response might contain
-        /// fewer rows than specified by `page_size`. Rely on `next_page_token` to
-        /// determine if there are more rows to be requested.
-        pub async fn search(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchRequest>,
-        ) -> std::result::Result<tonic::Response<super::SearchResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.shopping.merchant.reports.v1beta.ReportService/Search",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.shopping.merchant.reports.v1beta.ReportService",
-                        "Search",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service for retrieving reports and insights about your products, their
+/// performance, and their competitive environment on Google.
+#[derive(Debug, Clone)]
+pub struct ReportServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ReportServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ReportServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ReportServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Retrieves a report defined by a search query. The response might contain
+/// fewer rows than specified by `page_size`. Rely on `next_page_token` to
+/// determine if there are more rows to be requested.
+pub async fn search(&mut self, request: impl tonic::IntoRequest<super::SearchRequest>) -> std::result::Result<tonic::Response<super::SearchResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.shopping.merchant.reports.v1beta.ReportService/Search");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.shopping.merchant.reports.v1beta.ReportService", "Search"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

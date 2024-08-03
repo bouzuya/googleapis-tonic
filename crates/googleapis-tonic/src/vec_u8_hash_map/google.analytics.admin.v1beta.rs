@@ -2,1623 +2,1479 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessDimension {
-    #[prost(string, tag = "1")]
-    pub dimension_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub dimension_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessMetric {
-    #[prost(string, tag = "1")]
-    pub metric_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub metric_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessDateRange {
-    #[prost(string, tag = "1")]
-    pub start_date: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub end_date: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub start_date: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub end_date: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessFilterExpression {
-    #[prost(oneof = "access_filter_expression::OneExpression", tags = "1, 2, 3, 4")]
-    pub one_expression: ::core::option::Option<access_filter_expression::OneExpression>,
+#[prost(oneof = "access_filter_expression::OneExpression", tags = "1, 2, 3, 4")]
+pub one_expression: ::core::option::Option<access_filter_expression::OneExpression>,
 }
 /// Nested message and enum types in `AccessFilterExpression`.
 pub mod access_filter_expression {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum OneExpression {
-        #[prost(message, tag = "1")]
-        AndGroup(super::AccessFilterExpressionList),
-        #[prost(message, tag = "2")]
-        OrGroup(super::AccessFilterExpressionList),
-        #[prost(message, tag = "3")]
-        NotExpression(::prost::alloc::boxed::Box<super::AccessFilterExpression>),
-        #[prost(message, tag = "4")]
-        AccessFilter(super::AccessFilter),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum OneExpression {
+#[prost(message, tag = "1")]
+AndGroup(super::AccessFilterExpressionList),
+#[prost(message, tag = "2")]
+OrGroup(super::AccessFilterExpressionList),
+#[prost(message, tag = "3")]
+NotExpression(::prost::alloc::boxed::Box<super::AccessFilterExpression>),
+#[prost(message, tag = "4")]
+AccessFilter(super::AccessFilter),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessFilterExpressionList {
-    #[prost(message, repeated, tag = "1")]
-    pub expressions: ::prost::alloc::vec::Vec<AccessFilterExpression>,
+#[prost(message, repeated, tag = "1")]
+pub expressions: ::prost::alloc::vec::Vec<AccessFilterExpression>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessFilter {
-    #[prost(string, tag = "1")]
-    pub field_name: ::prost::alloc::string::String,
-    #[prost(oneof = "access_filter::OneFilter", tags = "2, 3, 4, 5")]
-    pub one_filter: ::core::option::Option<access_filter::OneFilter>,
+#[prost(string, tag = "1")]
+pub field_name: ::prost::alloc::string::String,
+#[prost(oneof = "access_filter::OneFilter", tags = "2, 3, 4, 5")]
+pub one_filter: ::core::option::Option<access_filter::OneFilter>,
 }
 /// Nested message and enum types in `AccessFilter`.
 pub mod access_filter {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum OneFilter {
-        #[prost(message, tag = "2")]
-        StringFilter(super::AccessStringFilter),
-        #[prost(message, tag = "3")]
-        InListFilter(super::AccessInListFilter),
-        #[prost(message, tag = "4")]
-        NumericFilter(super::AccessNumericFilter),
-        #[prost(message, tag = "5")]
-        BetweenFilter(super::AccessBetweenFilter),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum OneFilter {
+#[prost(message, tag = "2")]
+StringFilter(super::AccessStringFilter),
+#[prost(message, tag = "3")]
+InListFilter(super::AccessInListFilter),
+#[prost(message, tag = "4")]
+NumericFilter(super::AccessNumericFilter),
+#[prost(message, tag = "5")]
+BetweenFilter(super::AccessBetweenFilter),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessStringFilter {
-    #[prost(enumeration = "access_string_filter::MatchType", tag = "1")]
-    pub match_type: i32,
-    #[prost(string, tag = "2")]
-    pub value: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub case_sensitive: bool,
+#[prost(enumeration = "access_string_filter::MatchType", tag = "1")]
+pub match_type: i32,
+#[prost(string, tag = "2")]
+pub value: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub case_sensitive: bool,
 }
 /// Nested message and enum types in `AccessStringFilter`.
 pub mod access_string_filter {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MatchType {
-        Unspecified = 0,
-        Exact = 1,
-        BeginsWith = 2,
-        EndsWith = 3,
-        Contains = 4,
-        FullRegexp = 5,
-        PartialRegexp = 6,
-    }
-    impl MatchType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MatchType::Unspecified => "MATCH_TYPE_UNSPECIFIED",
-                MatchType::Exact => "EXACT",
-                MatchType::BeginsWith => "BEGINS_WITH",
-                MatchType::EndsWith => "ENDS_WITH",
-                MatchType::Contains => "CONTAINS",
-                MatchType::FullRegexp => "FULL_REGEXP",
-                MatchType::PartialRegexp => "PARTIAL_REGEXP",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MATCH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "EXACT" => Some(Self::Exact),
-                "BEGINS_WITH" => Some(Self::BeginsWith),
-                "ENDS_WITH" => Some(Self::EndsWith),
-                "CONTAINS" => Some(Self::Contains),
-                "FULL_REGEXP" => Some(Self::FullRegexp),
-                "PARTIAL_REGEXP" => Some(Self::PartialRegexp),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MatchType {
+Unspecified = 0,
+Exact = 1,
+BeginsWith = 2,
+EndsWith = 3,
+Contains = 4,
+FullRegexp = 5,
+PartialRegexp = 6,
+}
+impl MatchType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MatchType::Unspecified => "MATCH_TYPE_UNSPECIFIED",
+MatchType::Exact => "EXACT",
+MatchType::BeginsWith => "BEGINS_WITH",
+MatchType::EndsWith => "ENDS_WITH",
+MatchType::Contains => "CONTAINS",
+MatchType::FullRegexp => "FULL_REGEXP",
+MatchType::PartialRegexp => "PARTIAL_REGEXP",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MATCH_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"EXACT" => Some(Self::Exact),
+"BEGINS_WITH" => Some(Self::BeginsWith),
+"ENDS_WITH" => Some(Self::EndsWith),
+"CONTAINS" => Some(Self::Contains),
+"FULL_REGEXP" => Some(Self::FullRegexp),
+"PARTIAL_REGEXP" => Some(Self::PartialRegexp),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessInListFilter {
-    #[prost(string, repeated, tag = "1")]
-    pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(bool, tag = "2")]
-    pub case_sensitive: bool,
+#[prost(string, repeated, tag = "1")]
+pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(bool, tag = "2")]
+pub case_sensitive: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AccessNumericFilter {
-    #[prost(enumeration = "access_numeric_filter::Operation", tag = "1")]
-    pub operation: i32,
-    #[prost(message, optional, tag = "2")]
-    pub value: ::core::option::Option<NumericValue>,
+#[prost(enumeration = "access_numeric_filter::Operation", tag = "1")]
+pub operation: i32,
+#[prost(message, optional, tag = "2")]
+pub value: ::core::option::Option<NumericValue>,
 }
 /// Nested message and enum types in `AccessNumericFilter`.
 pub mod access_numeric_filter {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Operation {
-        Unspecified = 0,
-        Equal = 1,
-        LessThan = 2,
-        LessThanOrEqual = 3,
-        GreaterThan = 4,
-        GreaterThanOrEqual = 5,
-    }
-    impl Operation {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Operation::Unspecified => "OPERATION_UNSPECIFIED",
-                Operation::Equal => "EQUAL",
-                Operation::LessThan => "LESS_THAN",
-                Operation::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
-                Operation::GreaterThan => "GREATER_THAN",
-                Operation::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "OPERATION_UNSPECIFIED" => Some(Self::Unspecified),
-                "EQUAL" => Some(Self::Equal),
-                "LESS_THAN" => Some(Self::LessThan),
-                "LESS_THAN_OR_EQUAL" => Some(Self::LessThanOrEqual),
-                "GREATER_THAN" => Some(Self::GreaterThan),
-                "GREATER_THAN_OR_EQUAL" => Some(Self::GreaterThanOrEqual),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Operation {
+Unspecified = 0,
+Equal = 1,
+LessThan = 2,
+LessThanOrEqual = 3,
+GreaterThan = 4,
+GreaterThanOrEqual = 5,
+}
+impl Operation {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Operation::Unspecified => "OPERATION_UNSPECIFIED",
+Operation::Equal => "EQUAL",
+Operation::LessThan => "LESS_THAN",
+Operation::LessThanOrEqual => "LESS_THAN_OR_EQUAL",
+Operation::GreaterThan => "GREATER_THAN",
+Operation::GreaterThanOrEqual => "GREATER_THAN_OR_EQUAL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"OPERATION_UNSPECIFIED" => Some(Self::Unspecified),
+"EQUAL" => Some(Self::Equal),
+"LESS_THAN" => Some(Self::LessThan),
+"LESS_THAN_OR_EQUAL" => Some(Self::LessThanOrEqual),
+"GREATER_THAN" => Some(Self::GreaterThan),
+"GREATER_THAN_OR_EQUAL" => Some(Self::GreaterThanOrEqual),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AccessBetweenFilter {
-    #[prost(message, optional, tag = "1")]
-    pub from_value: ::core::option::Option<NumericValue>,
-    #[prost(message, optional, tag = "2")]
-    pub to_value: ::core::option::Option<NumericValue>,
+#[prost(message, optional, tag = "1")]
+pub from_value: ::core::option::Option<NumericValue>,
+#[prost(message, optional, tag = "2")]
+pub to_value: ::core::option::Option<NumericValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct NumericValue {
-    #[prost(oneof = "numeric_value::OneValue", tags = "1, 2")]
-    pub one_value: ::core::option::Option<numeric_value::OneValue>,
+#[prost(oneof = "numeric_value::OneValue", tags = "1, 2")]
+pub one_value: ::core::option::Option<numeric_value::OneValue>,
 }
 /// Nested message and enum types in `NumericValue`.
 pub mod numeric_value {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-    pub enum OneValue {
-        #[prost(int64, tag = "1")]
-        Int64Value(i64),
-        #[prost(double, tag = "2")]
-        DoubleValue(f64),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum OneValue {
+#[prost(int64, tag = "1")]
+Int64Value(i64),
+#[prost(double, tag = "2")]
+DoubleValue(f64),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessOrderBy {
-    #[prost(bool, tag = "3")]
-    pub desc: bool,
-    #[prost(oneof = "access_order_by::OneOrderBy", tags = "1, 2")]
-    pub one_order_by: ::core::option::Option<access_order_by::OneOrderBy>,
+#[prost(bool, tag = "3")]
+pub desc: bool,
+#[prost(oneof = "access_order_by::OneOrderBy", tags = "1, 2")]
+pub one_order_by: ::core::option::Option<access_order_by::OneOrderBy>,
 }
 /// Nested message and enum types in `AccessOrderBy`.
 pub mod access_order_by {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct MetricOrderBy {
-        #[prost(string, tag = "1")]
-        pub metric_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DimensionOrderBy {
-        #[prost(string, tag = "1")]
-        pub dimension_name: ::prost::alloc::string::String,
-        #[prost(enumeration = "dimension_order_by::OrderType", tag = "2")]
-        pub order_type: i32,
-    }
-    /// Nested message and enum types in `DimensionOrderBy`.
-    pub mod dimension_order_by {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum OrderType {
-            Unspecified = 0,
-            Alphanumeric = 1,
-            CaseInsensitiveAlphanumeric = 2,
-            Numeric = 3,
-        }
-        impl OrderType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    OrderType::Unspecified => "ORDER_TYPE_UNSPECIFIED",
-                    OrderType::Alphanumeric => "ALPHANUMERIC",
-                    OrderType::CaseInsensitiveAlphanumeric => {
-                        "CASE_INSENSITIVE_ALPHANUMERIC"
-                    }
-                    OrderType::Numeric => "NUMERIC",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "ORDER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "ALPHANUMERIC" => Some(Self::Alphanumeric),
-                    "CASE_INSENSITIVE_ALPHANUMERIC" => {
-                        Some(Self::CaseInsensitiveAlphanumeric)
-                    }
-                    "NUMERIC" => Some(Self::Numeric),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum OneOrderBy {
-        #[prost(message, tag = "1")]
-        Metric(MetricOrderBy),
-        #[prost(message, tag = "2")]
-        Dimension(DimensionOrderBy),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MetricOrderBy {
+#[prost(string, tag = "1")]
+pub metric_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DimensionOrderBy {
+#[prost(string, tag = "1")]
+pub dimension_name: ::prost::alloc::string::String,
+#[prost(enumeration = "dimension_order_by::OrderType", tag = "2")]
+pub order_type: i32,
+}
+/// Nested message and enum types in `DimensionOrderBy`.
+pub mod dimension_order_by {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum OrderType {
+Unspecified = 0,
+Alphanumeric = 1,
+CaseInsensitiveAlphanumeric = 2,
+Numeric = 3,
+}
+impl OrderType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OrderType::Unspecified => "ORDER_TYPE_UNSPECIFIED",
+OrderType::Alphanumeric => "ALPHANUMERIC",
+OrderType::CaseInsensitiveAlphanumeric => "CASE_INSENSITIVE_ALPHANUMERIC",
+OrderType::Numeric => "NUMERIC",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ORDER_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"ALPHANUMERIC" => Some(Self::Alphanumeric),
+"CASE_INSENSITIVE_ALPHANUMERIC" => Some(Self::CaseInsensitiveAlphanumeric),
+"NUMERIC" => Some(Self::Numeric),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum OneOrderBy {
+#[prost(message, tag = "1")]
+Metric(MetricOrderBy),
+#[prost(message, tag = "2")]
+Dimension(DimensionOrderBy),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessDimensionHeader {
-    #[prost(string, tag = "1")]
-    pub dimension_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub dimension_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessMetricHeader {
-    #[prost(string, tag = "1")]
-    pub metric_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub metric_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessRow {
-    #[prost(message, repeated, tag = "1")]
-    pub dimension_values: ::prost::alloc::vec::Vec<AccessDimensionValue>,
-    #[prost(message, repeated, tag = "2")]
-    pub metric_values: ::prost::alloc::vec::Vec<AccessMetricValue>,
+#[prost(message, repeated, tag = "1")]
+pub dimension_values: ::prost::alloc::vec::Vec<AccessDimensionValue>,
+#[prost(message, repeated, tag = "2")]
+pub metric_values: ::prost::alloc::vec::Vec<AccessMetricValue>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessDimensionValue {
-    #[prost(string, tag = "1")]
-    pub value: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub value: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccessMetricValue {
-    #[prost(string, tag = "1")]
-    pub value: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub value: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AccessQuota {
-    #[prost(message, optional, tag = "1")]
-    pub tokens_per_day: ::core::option::Option<AccessQuotaStatus>,
-    #[prost(message, optional, tag = "2")]
-    pub tokens_per_hour: ::core::option::Option<AccessQuotaStatus>,
-    #[prost(message, optional, tag = "3")]
-    pub concurrent_requests: ::core::option::Option<AccessQuotaStatus>,
-    #[prost(message, optional, tag = "4")]
-    pub server_errors_per_project_per_hour: ::core::option::Option<AccessQuotaStatus>,
-    #[prost(message, optional, tag = "5")]
-    pub tokens_per_project_per_hour: ::core::option::Option<AccessQuotaStatus>,
+#[prost(message, optional, tag = "1")]
+pub tokens_per_day: ::core::option::Option<AccessQuotaStatus>,
+#[prost(message, optional, tag = "2")]
+pub tokens_per_hour: ::core::option::Option<AccessQuotaStatus>,
+#[prost(message, optional, tag = "3")]
+pub concurrent_requests: ::core::option::Option<AccessQuotaStatus>,
+#[prost(message, optional, tag = "4")]
+pub server_errors_per_project_per_hour: ::core::option::Option<AccessQuotaStatus>,
+#[prost(message, optional, tag = "5")]
+pub tokens_per_project_per_hour: ::core::option::Option<AccessQuotaStatus>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct AccessQuotaStatus {
-    #[prost(int32, tag = "1")]
-    pub consumed: i32,
-    #[prost(int32, tag = "2")]
-    pub remaining: i32,
+#[prost(int32, tag = "1")]
+pub consumed: i32,
+#[prost(int32, tag = "2")]
+pub remaining: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Account {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "3")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "4")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub region_code: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
-    pub deleted: bool,
-    #[prost(string, tag = "7")]
-    pub gmp_organization: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "4")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub region_code: ::prost::alloc::string::String,
+#[prost(bool, tag = "6")]
+pub deleted: bool,
+#[prost(string, tag = "7")]
+pub gmp_organization: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Property {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "PropertyType", tag = "14")]
-    pub property_type: i32,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "2")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "IndustryCategory", tag = "6")]
-    pub industry_category: i32,
-    #[prost(string, tag = "7")]
-    pub time_zone: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub currency_code: ::prost::alloc::string::String,
-    #[prost(enumeration = "ServiceLevel", tag = "10")]
-    pub service_level: i32,
-    #[prost(message, optional, tag = "11")]
-    pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "12")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "13")]
-    pub account: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "PropertyType", tag = "14")]
+pub property_type: i32,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "2")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(enumeration = "IndustryCategory", tag = "6")]
+pub industry_category: i32,
+#[prost(string, tag = "7")]
+pub time_zone: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub currency_code: ::prost::alloc::string::String,
+#[prost(enumeration = "ServiceLevel", tag = "10")]
+pub service_level: i32,
+#[prost(message, optional, tag = "11")]
+pub delete_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "12")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "13")]
+pub account: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataStream {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "data_stream::DataStreamType", tag = "2")]
-    pub r#type: i32,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "4")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(oneof = "data_stream::StreamData", tags = "6, 7, 8")]
-    pub stream_data: ::core::option::Option<data_stream::StreamData>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "data_stream::DataStreamType", tag = "2")]
+pub r#type: i32,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "4")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(oneof = "data_stream::StreamData", tags = "6, 7, 8")]
+pub stream_data: ::core::option::Option<data_stream::StreamData>,
 }
 /// Nested message and enum types in `DataStream`.
 pub mod data_stream {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct WebStreamData {
-        #[prost(string, tag = "1")]
-        pub measurement_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub firebase_app_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "3")]
-        pub default_uri: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AndroidAppStreamData {
-        #[prost(string, tag = "1")]
-        pub firebase_app_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub package_name: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct IosAppStreamData {
-        #[prost(string, tag = "1")]
-        pub firebase_app_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub bundle_id: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DataStreamType {
-        Unspecified = 0,
-        WebDataStream = 1,
-        AndroidAppDataStream = 2,
-        IosAppDataStream = 3,
-    }
-    impl DataStreamType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DataStreamType::Unspecified => "DATA_STREAM_TYPE_UNSPECIFIED",
-                DataStreamType::WebDataStream => "WEB_DATA_STREAM",
-                DataStreamType::AndroidAppDataStream => "ANDROID_APP_DATA_STREAM",
-                DataStreamType::IosAppDataStream => "IOS_APP_DATA_STREAM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DATA_STREAM_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "WEB_DATA_STREAM" => Some(Self::WebDataStream),
-                "ANDROID_APP_DATA_STREAM" => Some(Self::AndroidAppDataStream),
-                "IOS_APP_DATA_STREAM" => Some(Self::IosAppDataStream),
-                _ => None,
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum StreamData {
-        #[prost(message, tag = "6")]
-        WebStreamData(WebStreamData),
-        #[prost(message, tag = "7")]
-        AndroidAppStreamData(AndroidAppStreamData),
-        #[prost(message, tag = "8")]
-        IosAppStreamData(IosAppStreamData),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct WebStreamData {
+#[prost(string, tag = "1")]
+pub measurement_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub firebase_app_id: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub default_uri: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AndroidAppStreamData {
+#[prost(string, tag = "1")]
+pub firebase_app_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub package_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IosAppStreamData {
+#[prost(string, tag = "1")]
+pub firebase_app_id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub bundle_id: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DataStreamType {
+Unspecified = 0,
+WebDataStream = 1,
+AndroidAppDataStream = 2,
+IosAppDataStream = 3,
+}
+impl DataStreamType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DataStreamType::Unspecified => "DATA_STREAM_TYPE_UNSPECIFIED",
+DataStreamType::WebDataStream => "WEB_DATA_STREAM",
+DataStreamType::AndroidAppDataStream => "ANDROID_APP_DATA_STREAM",
+DataStreamType::IosAppDataStream => "IOS_APP_DATA_STREAM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DATA_STREAM_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"WEB_DATA_STREAM" => Some(Self::WebDataStream),
+"ANDROID_APP_DATA_STREAM" => Some(Self::AndroidAppDataStream),
+"IOS_APP_DATA_STREAM" => Some(Self::IosAppDataStream),
+_ => None,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum StreamData {
+#[prost(message, tag = "6")]
+WebStreamData(WebStreamData),
+#[prost(message, tag = "7")]
+AndroidAppStreamData(AndroidAppStreamData),
+#[prost(message, tag = "8")]
+IosAppStreamData(IosAppStreamData),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FirebaseLink {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub project: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub project: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GoogleAdsLink {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub customer_id: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub can_manage_clients: bool,
-    #[prost(message, optional, tag = "5")]
-    pub ads_personalization_enabled: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "7")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "8")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "9")]
-    pub creator_email_address: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub customer_id: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub can_manage_clients: bool,
+#[prost(message, optional, tag = "5")]
+pub ads_personalization_enabled: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "7")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "8")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "9")]
+pub creator_email_address: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataSharingSettings {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(bool, tag = "2")]
-    pub sharing_with_google_support_enabled: bool,
-    #[prost(bool, tag = "3")]
-    pub sharing_with_google_assigned_sales_enabled: bool,
-    #[prost(bool, tag = "4")]
-    pub sharing_with_google_any_sales_enabled: bool,
-    #[prost(bool, tag = "5")]
-    pub sharing_with_google_products_enabled: bool,
-    #[prost(bool, tag = "6")]
-    pub sharing_with_others_enabled: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(bool, tag = "2")]
+pub sharing_with_google_support_enabled: bool,
+#[prost(bool, tag = "3")]
+pub sharing_with_google_assigned_sales_enabled: bool,
+#[prost(bool, tag = "4")]
+pub sharing_with_google_any_sales_enabled: bool,
+#[prost(bool, tag = "5")]
+pub sharing_with_google_products_enabled: bool,
+#[prost(bool, tag = "6")]
+pub sharing_with_others_enabled: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AccountSummary {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub account: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub property_summaries: ::prost::alloc::vec::Vec<PropertySummary>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub account: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub property_summaries: ::prost::alloc::vec::Vec<PropertySummary>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PropertySummary {
-    #[prost(string, tag = "1")]
-    pub property: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(enumeration = "PropertyType", tag = "3")]
-    pub property_type: i32,
-    #[prost(string, tag = "4")]
-    pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub property: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(enumeration = "PropertyType", tag = "3")]
+pub property_type: i32,
+#[prost(string, tag = "4")]
+pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MeasurementProtocolSecret {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub secret_value: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub secret_value: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeHistoryEvent {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub change_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "ActorType", tag = "3")]
-    pub actor_type: i32,
-    #[prost(string, tag = "4")]
-    pub user_actor_email: ::prost::alloc::string::String,
-    #[prost(bool, tag = "5")]
-    pub changes_filtered: bool,
-    #[prost(message, repeated, tag = "6")]
-    pub changes: ::prost::alloc::vec::Vec<ChangeHistoryChange>,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub change_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "ActorType", tag = "3")]
+pub actor_type: i32,
+#[prost(string, tag = "4")]
+pub user_actor_email: ::prost::alloc::string::String,
+#[prost(bool, tag = "5")]
+pub changes_filtered: bool,
+#[prost(message, repeated, tag = "6")]
+pub changes: ::prost::alloc::vec::Vec<ChangeHistoryChange>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChangeHistoryChange {
-    #[prost(string, tag = "1")]
-    pub resource: ::prost::alloc::string::String,
-    #[prost(enumeration = "ActionType", tag = "2")]
-    pub action: i32,
-    #[prost(message, optional, tag = "3")]
-    pub resource_before_change: ::core::option::Option<
-        change_history_change::ChangeHistoryResource,
-    >,
-    #[prost(message, optional, tag = "4")]
-    pub resource_after_change: ::core::option::Option<
-        change_history_change::ChangeHistoryResource,
-    >,
+#[prost(string, tag = "1")]
+pub resource: ::prost::alloc::string::String,
+#[prost(enumeration = "ActionType", tag = "2")]
+pub action: i32,
+#[prost(message, optional, tag = "3")]
+pub resource_before_change: ::core::option::Option<change_history_change::ChangeHistoryResource>,
+#[prost(message, optional, tag = "4")]
+pub resource_after_change: ::core::option::Option<change_history_change::ChangeHistoryResource>,
 }
 /// Nested message and enum types in `ChangeHistoryChange`.
 pub mod change_history_change {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ChangeHistoryResource {
-        #[prost(
-            oneof = "change_history_resource::Resource",
-            tags = "1, 2, 6, 7, 11, 12, 15, 18"
-        )]
-        pub resource: ::core::option::Option<change_history_resource::Resource>,
-    }
-    /// Nested message and enum types in `ChangeHistoryResource`.
-    pub mod change_history_resource {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Resource {
-            #[prost(message, tag = "1")]
-            Account(super::super::Account),
-            #[prost(message, tag = "2")]
-            Property(super::super::Property),
-            #[prost(message, tag = "6")]
-            FirebaseLink(super::super::FirebaseLink),
-            #[prost(message, tag = "7")]
-            GoogleAdsLink(super::super::GoogleAdsLink),
-            #[prost(message, tag = "11")]
-            ConversionEvent(super::super::ConversionEvent),
-            #[prost(message, tag = "12")]
-            MeasurementProtocolSecret(super::super::MeasurementProtocolSecret),
-            #[prost(message, tag = "15")]
-            DataRetentionSettings(super::super::DataRetentionSettings),
-            #[prost(message, tag = "18")]
-            DataStream(super::super::DataStream),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ChangeHistoryResource {
+#[prost(oneof = "change_history_resource::Resource", tags = "1, 2, 6, 7, 11, 12, 15, 18")]
+pub resource: ::core::option::Option<change_history_resource::Resource>,
+}
+/// Nested message and enum types in `ChangeHistoryResource`.
+pub mod change_history_resource {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Resource {
+#[prost(message, tag = "1")]
+Account(super::super::Account),
+#[prost(message, tag = "2")]
+Property(super::super::Property),
+#[prost(message, tag = "6")]
+FirebaseLink(super::super::FirebaseLink),
+#[prost(message, tag = "7")]
+GoogleAdsLink(super::super::GoogleAdsLink),
+#[prost(message, tag = "11")]
+ConversionEvent(super::super::ConversionEvent),
+#[prost(message, tag = "12")]
+MeasurementProtocolSecret(super::super::MeasurementProtocolSecret),
+#[prost(message, tag = "15")]
+DataRetentionSettings(super::super::DataRetentionSettings),
+#[prost(message, tag = "18")]
+DataStream(super::super::DataStream),
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConversionEvent {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub event_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(bool, tag = "4")]
-    pub deletable: bool,
-    #[prost(bool, tag = "5")]
-    pub custom: bool,
-    #[prost(enumeration = "conversion_event::ConversionCountingMethod", tag = "6")]
-    pub counting_method: i32,
-    #[prost(message, optional, tag = "7")]
-    pub default_conversion_value: ::core::option::Option<
-        conversion_event::DefaultConversionValue,
-    >,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub event_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(bool, tag = "4")]
+pub deletable: bool,
+#[prost(bool, tag = "5")]
+pub custom: bool,
+#[prost(enumeration = "conversion_event::ConversionCountingMethod", tag = "6")]
+pub counting_method: i32,
+#[prost(message, optional, tag = "7")]
+pub default_conversion_value: ::core::option::Option<conversion_event::DefaultConversionValue>,
 }
 /// Nested message and enum types in `ConversionEvent`.
 pub mod conversion_event {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DefaultConversionValue {
-        #[prost(double, optional, tag = "1")]
-        pub value: ::core::option::Option<f64>,
-        #[prost(string, optional, tag = "2")]
-        pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ConversionCountingMethod {
-        Unspecified = 0,
-        OncePerEvent = 1,
-        OncePerSession = 2,
-    }
-    impl ConversionCountingMethod {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ConversionCountingMethod::Unspecified => {
-                    "CONVERSION_COUNTING_METHOD_UNSPECIFIED"
-                }
-                ConversionCountingMethod::OncePerEvent => "ONCE_PER_EVENT",
-                ConversionCountingMethod::OncePerSession => "ONCE_PER_SESSION",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONVERSION_COUNTING_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-                "ONCE_PER_EVENT" => Some(Self::OncePerEvent),
-                "ONCE_PER_SESSION" => Some(Self::OncePerSession),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DefaultConversionValue {
+#[prost(double, optional, tag = "1")]
+pub value: ::core::option::Option<f64>,
+#[prost(string, optional, tag = "2")]
+pub currency_code: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ConversionCountingMethod {
+Unspecified = 0,
+OncePerEvent = 1,
+OncePerSession = 2,
+}
+impl ConversionCountingMethod {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ConversionCountingMethod::Unspecified => "CONVERSION_COUNTING_METHOD_UNSPECIFIED",
+ConversionCountingMethod::OncePerEvent => "ONCE_PER_EVENT",
+ConversionCountingMethod::OncePerSession => "ONCE_PER_SESSION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONVERSION_COUNTING_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+"ONCE_PER_EVENT" => Some(Self::OncePerEvent),
+"ONCE_PER_SESSION" => Some(Self::OncePerSession),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KeyEvent {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub event_name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(bool, tag = "4")]
-    pub deletable: bool,
-    #[prost(bool, tag = "5")]
-    pub custom: bool,
-    #[prost(enumeration = "key_event::CountingMethod", tag = "6")]
-    pub counting_method: i32,
-    #[prost(message, optional, tag = "7")]
-    pub default_value: ::core::option::Option<key_event::DefaultValue>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub event_name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(bool, tag = "4")]
+pub deletable: bool,
+#[prost(bool, tag = "5")]
+pub custom: bool,
+#[prost(enumeration = "key_event::CountingMethod", tag = "6")]
+pub counting_method: i32,
+#[prost(message, optional, tag = "7")]
+pub default_value: ::core::option::Option<key_event::DefaultValue>,
 }
 /// Nested message and enum types in `KeyEvent`.
 pub mod key_event {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct DefaultValue {
-        #[prost(double, tag = "1")]
-        pub numeric_value: f64,
-        #[prost(string, tag = "2")]
-        pub currency_code: ::prost::alloc::string::String,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum CountingMethod {
-        Unspecified = 0,
-        OncePerEvent = 1,
-        OncePerSession = 2,
-    }
-    impl CountingMethod {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                CountingMethod::Unspecified => "COUNTING_METHOD_UNSPECIFIED",
-                CountingMethod::OncePerEvent => "ONCE_PER_EVENT",
-                CountingMethod::OncePerSession => "ONCE_PER_SESSION",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "COUNTING_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
-                "ONCE_PER_EVENT" => Some(Self::OncePerEvent),
-                "ONCE_PER_SESSION" => Some(Self::OncePerSession),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DefaultValue {
+#[prost(double, tag = "1")]
+pub numeric_value: f64,
+#[prost(string, tag = "2")]
+pub currency_code: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum CountingMethod {
+Unspecified = 0,
+OncePerEvent = 1,
+OncePerSession = 2,
+}
+impl CountingMethod {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+CountingMethod::Unspecified => "COUNTING_METHOD_UNSPECIFIED",
+CountingMethod::OncePerEvent => "ONCE_PER_EVENT",
+CountingMethod::OncePerSession => "ONCE_PER_SESSION",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"COUNTING_METHOD_UNSPECIFIED" => Some(Self::Unspecified),
+"ONCE_PER_EVENT" => Some(Self::OncePerEvent),
+"ONCE_PER_SESSION" => Some(Self::OncePerSession),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomDimension {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub parameter_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(enumeration = "custom_dimension::DimensionScope", tag = "5")]
-    pub scope: i32,
-    #[prost(bool, tag = "6")]
-    pub disallow_ads_personalization: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub parameter_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(enumeration = "custom_dimension::DimensionScope", tag = "5")]
+pub scope: i32,
+#[prost(bool, tag = "6")]
+pub disallow_ads_personalization: bool,
 }
 /// Nested message and enum types in `CustomDimension`.
 pub mod custom_dimension {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DimensionScope {
-        Unspecified = 0,
-        Event = 1,
-        User = 2,
-        Item = 3,
-    }
-    impl DimensionScope {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DimensionScope::Unspecified => "DIMENSION_SCOPE_UNSPECIFIED",
-                DimensionScope::Event => "EVENT",
-                DimensionScope::User => "USER",
-                DimensionScope::Item => "ITEM",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DIMENSION_SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "EVENT" => Some(Self::Event),
-                "USER" => Some(Self::User),
-                "ITEM" => Some(Self::Item),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DimensionScope {
+Unspecified = 0,
+Event = 1,
+User = 2,
+Item = 3,
+}
+impl DimensionScope {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DimensionScope::Unspecified => "DIMENSION_SCOPE_UNSPECIFIED",
+DimensionScope::Event => "EVENT",
+DimensionScope::User => "USER",
+DimensionScope::Item => "ITEM",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DIMENSION_SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
+"EVENT" => Some(Self::Event),
+"USER" => Some(Self::User),
+"ITEM" => Some(Self::Item),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CustomMetric {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub parameter_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(enumeration = "custom_metric::MeasurementUnit", tag = "5")]
-    pub measurement_unit: i32,
-    #[prost(enumeration = "custom_metric::MetricScope", tag = "6")]
-    pub scope: i32,
-    #[prost(
-        enumeration = "custom_metric::RestrictedMetricType",
-        repeated,
-        packed = "false",
-        tag = "8"
-    )]
-    pub restricted_metric_type: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub parameter_name: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub description: ::prost::alloc::string::String,
+#[prost(enumeration = "custom_metric::MeasurementUnit", tag = "5")]
+pub measurement_unit: i32,
+#[prost(enumeration = "custom_metric::MetricScope", tag = "6")]
+pub scope: i32,
+#[prost(enumeration = "custom_metric::RestrictedMetricType", repeated, packed = "false", tag = "8")]
+pub restricted_metric_type: ::prost::alloc::vec::Vec<i32>,
 }
 /// Nested message and enum types in `CustomMetric`.
 pub mod custom_metric {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MeasurementUnit {
-        Unspecified = 0,
-        Standard = 1,
-        Currency = 2,
-        Feet = 3,
-        Meters = 4,
-        Kilometers = 5,
-        Miles = 6,
-        Milliseconds = 7,
-        Seconds = 8,
-        Minutes = 9,
-        Hours = 10,
-    }
-    impl MeasurementUnit {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MeasurementUnit::Unspecified => "MEASUREMENT_UNIT_UNSPECIFIED",
-                MeasurementUnit::Standard => "STANDARD",
-                MeasurementUnit::Currency => "CURRENCY",
-                MeasurementUnit::Feet => "FEET",
-                MeasurementUnit::Meters => "METERS",
-                MeasurementUnit::Kilometers => "KILOMETERS",
-                MeasurementUnit::Miles => "MILES",
-                MeasurementUnit::Milliseconds => "MILLISECONDS",
-                MeasurementUnit::Seconds => "SECONDS",
-                MeasurementUnit::Minutes => "MINUTES",
-                MeasurementUnit::Hours => "HOURS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MEASUREMENT_UNIT_UNSPECIFIED" => Some(Self::Unspecified),
-                "STANDARD" => Some(Self::Standard),
-                "CURRENCY" => Some(Self::Currency),
-                "FEET" => Some(Self::Feet),
-                "METERS" => Some(Self::Meters),
-                "KILOMETERS" => Some(Self::Kilometers),
-                "MILES" => Some(Self::Miles),
-                "MILLISECONDS" => Some(Self::Milliseconds),
-                "SECONDS" => Some(Self::Seconds),
-                "MINUTES" => Some(Self::Minutes),
-                "HOURS" => Some(Self::Hours),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum MetricScope {
-        Unspecified = 0,
-        Event = 1,
-    }
-    impl MetricScope {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                MetricScope::Unspecified => "METRIC_SCOPE_UNSPECIFIED",
-                MetricScope::Event => "EVENT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "METRIC_SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "EVENT" => Some(Self::Event),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RestrictedMetricType {
-        Unspecified = 0,
-        CostData = 1,
-        RevenueData = 2,
-    }
-    impl RestrictedMetricType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RestrictedMetricType::Unspecified => "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
-                RestrictedMetricType::CostData => "COST_DATA",
-                RestrictedMetricType::RevenueData => "REVENUE_DATA",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RESTRICTED_METRIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "COST_DATA" => Some(Self::CostData),
-                "REVENUE_DATA" => Some(Self::RevenueData),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MeasurementUnit {
+Unspecified = 0,
+Standard = 1,
+Currency = 2,
+Feet = 3,
+Meters = 4,
+Kilometers = 5,
+Miles = 6,
+Milliseconds = 7,
+Seconds = 8,
+Minutes = 9,
+Hours = 10,
+}
+impl MeasurementUnit {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MeasurementUnit::Unspecified => "MEASUREMENT_UNIT_UNSPECIFIED",
+MeasurementUnit::Standard => "STANDARD",
+MeasurementUnit::Currency => "CURRENCY",
+MeasurementUnit::Feet => "FEET",
+MeasurementUnit::Meters => "METERS",
+MeasurementUnit::Kilometers => "KILOMETERS",
+MeasurementUnit::Miles => "MILES",
+MeasurementUnit::Milliseconds => "MILLISECONDS",
+MeasurementUnit::Seconds => "SECONDS",
+MeasurementUnit::Minutes => "MINUTES",
+MeasurementUnit::Hours => "HOURS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MEASUREMENT_UNIT_UNSPECIFIED" => Some(Self::Unspecified),
+"STANDARD" => Some(Self::Standard),
+"CURRENCY" => Some(Self::Currency),
+"FEET" => Some(Self::Feet),
+"METERS" => Some(Self::Meters),
+"KILOMETERS" => Some(Self::Kilometers),
+"MILES" => Some(Self::Miles),
+"MILLISECONDS" => Some(Self::Milliseconds),
+"SECONDS" => Some(Self::Seconds),
+"MINUTES" => Some(Self::Minutes),
+"HOURS" => Some(Self::Hours),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum MetricScope {
+Unspecified = 0,
+Event = 1,
+}
+impl MetricScope {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+MetricScope::Unspecified => "METRIC_SCOPE_UNSPECIFIED",
+MetricScope::Event => "EVENT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"METRIC_SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
+"EVENT" => Some(Self::Event),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RestrictedMetricType {
+Unspecified = 0,
+CostData = 1,
+RevenueData = 2,
+}
+impl RestrictedMetricType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RestrictedMetricType::Unspecified => "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
+RestrictedMetricType::CostData => "COST_DATA",
+RestrictedMetricType::RevenueData => "REVENUE_DATA",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RESTRICTED_METRIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"COST_DATA" => Some(Self::CostData),
+"REVENUE_DATA" => Some(Self::RevenueData),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DataRetentionSettings {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "data_retention_settings::RetentionDuration", tag = "2")]
-    pub event_data_retention: i32,
-    #[prost(bool, tag = "3")]
-    pub reset_user_data_on_new_activity: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "data_retention_settings::RetentionDuration", tag = "2")]
+pub event_data_retention: i32,
+#[prost(bool, tag = "3")]
+pub reset_user_data_on_new_activity: bool,
 }
 /// Nested message and enum types in `DataRetentionSettings`.
 pub mod data_retention_settings {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RetentionDuration {
-        Unspecified = 0,
-        TwoMonths = 1,
-        FourteenMonths = 3,
-        TwentySixMonths = 4,
-        ThirtyEightMonths = 5,
-        FiftyMonths = 6,
-    }
-    impl RetentionDuration {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RetentionDuration::Unspecified => "RETENTION_DURATION_UNSPECIFIED",
-                RetentionDuration::TwoMonths => "TWO_MONTHS",
-                RetentionDuration::FourteenMonths => "FOURTEEN_MONTHS",
-                RetentionDuration::TwentySixMonths => "TWENTY_SIX_MONTHS",
-                RetentionDuration::ThirtyEightMonths => "THIRTY_EIGHT_MONTHS",
-                RetentionDuration::FiftyMonths => "FIFTY_MONTHS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RETENTION_DURATION_UNSPECIFIED" => Some(Self::Unspecified),
-                "TWO_MONTHS" => Some(Self::TwoMonths),
-                "FOURTEEN_MONTHS" => Some(Self::FourteenMonths),
-                "TWENTY_SIX_MONTHS" => Some(Self::TwentySixMonths),
-                "THIRTY_EIGHT_MONTHS" => Some(Self::ThirtyEightMonths),
-                "FIFTY_MONTHS" => Some(Self::FiftyMonths),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RetentionDuration {
+Unspecified = 0,
+TwoMonths = 1,
+FourteenMonths = 3,
+TwentySixMonths = 4,
+ThirtyEightMonths = 5,
+FiftyMonths = 6,
+}
+impl RetentionDuration {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RetentionDuration::Unspecified => "RETENTION_DURATION_UNSPECIFIED",
+RetentionDuration::TwoMonths => "TWO_MONTHS",
+RetentionDuration::FourteenMonths => "FOURTEEN_MONTHS",
+RetentionDuration::TwentySixMonths => "TWENTY_SIX_MONTHS",
+RetentionDuration::ThirtyEightMonths => "THIRTY_EIGHT_MONTHS",
+RetentionDuration::FiftyMonths => "FIFTY_MONTHS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RETENTION_DURATION_UNSPECIFIED" => Some(Self::Unspecified),
+"TWO_MONTHS" => Some(Self::TwoMonths),
+"FOURTEEN_MONTHS" => Some(Self::FourteenMonths),
+"TWENTY_SIX_MONTHS" => Some(Self::TwentySixMonths),
+"THIRTY_EIGHT_MONTHS" => Some(Self::ThirtyEightMonths),
+"FIFTY_MONTHS" => Some(Self::FiftyMonths),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum IndustryCategory {
-    Unspecified = 0,
-    Automotive = 1,
-    BusinessAndIndustrialMarkets = 2,
-    Finance = 3,
-    Healthcare = 4,
-    Technology = 5,
-    Travel = 6,
-    Other = 7,
-    ArtsAndEntertainment = 8,
-    BeautyAndFitness = 9,
-    BooksAndLiterature = 10,
-    FoodAndDrink = 11,
-    Games = 12,
-    HobbiesAndLeisure = 13,
-    HomeAndGarden = 14,
-    InternetAndTelecom = 15,
-    LawAndGovernment = 16,
-    News = 17,
-    OnlineCommunities = 18,
-    PeopleAndSociety = 19,
-    PetsAndAnimals = 20,
-    RealEstate = 21,
-    Reference = 22,
-    Science = 23,
-    Sports = 24,
-    JobsAndEducation = 25,
-    Shopping = 26,
+Unspecified = 0,
+Automotive = 1,
+BusinessAndIndustrialMarkets = 2,
+Finance = 3,
+Healthcare = 4,
+Technology = 5,
+Travel = 6,
+Other = 7,
+ArtsAndEntertainment = 8,
+BeautyAndFitness = 9,
+BooksAndLiterature = 10,
+FoodAndDrink = 11,
+Games = 12,
+HobbiesAndLeisure = 13,
+HomeAndGarden = 14,
+InternetAndTelecom = 15,
+LawAndGovernment = 16,
+News = 17,
+OnlineCommunities = 18,
+PeopleAndSociety = 19,
+PetsAndAnimals = 20,
+RealEstate = 21,
+Reference = 22,
+Science = 23,
+Sports = 24,
+JobsAndEducation = 25,
+Shopping = 26,
 }
 impl IndustryCategory {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            IndustryCategory::Unspecified => "INDUSTRY_CATEGORY_UNSPECIFIED",
-            IndustryCategory::Automotive => "AUTOMOTIVE",
-            IndustryCategory::BusinessAndIndustrialMarkets => {
-                "BUSINESS_AND_INDUSTRIAL_MARKETS"
-            }
-            IndustryCategory::Finance => "FINANCE",
-            IndustryCategory::Healthcare => "HEALTHCARE",
-            IndustryCategory::Technology => "TECHNOLOGY",
-            IndustryCategory::Travel => "TRAVEL",
-            IndustryCategory::Other => "OTHER",
-            IndustryCategory::ArtsAndEntertainment => "ARTS_AND_ENTERTAINMENT",
-            IndustryCategory::BeautyAndFitness => "BEAUTY_AND_FITNESS",
-            IndustryCategory::BooksAndLiterature => "BOOKS_AND_LITERATURE",
-            IndustryCategory::FoodAndDrink => "FOOD_AND_DRINK",
-            IndustryCategory::Games => "GAMES",
-            IndustryCategory::HobbiesAndLeisure => "HOBBIES_AND_LEISURE",
-            IndustryCategory::HomeAndGarden => "HOME_AND_GARDEN",
-            IndustryCategory::InternetAndTelecom => "INTERNET_AND_TELECOM",
-            IndustryCategory::LawAndGovernment => "LAW_AND_GOVERNMENT",
-            IndustryCategory::News => "NEWS",
-            IndustryCategory::OnlineCommunities => "ONLINE_COMMUNITIES",
-            IndustryCategory::PeopleAndSociety => "PEOPLE_AND_SOCIETY",
-            IndustryCategory::PetsAndAnimals => "PETS_AND_ANIMALS",
-            IndustryCategory::RealEstate => "REAL_ESTATE",
-            IndustryCategory::Reference => "REFERENCE",
-            IndustryCategory::Science => "SCIENCE",
-            IndustryCategory::Sports => "SPORTS",
-            IndustryCategory::JobsAndEducation => "JOBS_AND_EDUCATION",
-            IndustryCategory::Shopping => "SHOPPING",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "INDUSTRY_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
-            "AUTOMOTIVE" => Some(Self::Automotive),
-            "BUSINESS_AND_INDUSTRIAL_MARKETS" => Some(Self::BusinessAndIndustrialMarkets),
-            "FINANCE" => Some(Self::Finance),
-            "HEALTHCARE" => Some(Self::Healthcare),
-            "TECHNOLOGY" => Some(Self::Technology),
-            "TRAVEL" => Some(Self::Travel),
-            "OTHER" => Some(Self::Other),
-            "ARTS_AND_ENTERTAINMENT" => Some(Self::ArtsAndEntertainment),
-            "BEAUTY_AND_FITNESS" => Some(Self::BeautyAndFitness),
-            "BOOKS_AND_LITERATURE" => Some(Self::BooksAndLiterature),
-            "FOOD_AND_DRINK" => Some(Self::FoodAndDrink),
-            "GAMES" => Some(Self::Games),
-            "HOBBIES_AND_LEISURE" => Some(Self::HobbiesAndLeisure),
-            "HOME_AND_GARDEN" => Some(Self::HomeAndGarden),
-            "INTERNET_AND_TELECOM" => Some(Self::InternetAndTelecom),
-            "LAW_AND_GOVERNMENT" => Some(Self::LawAndGovernment),
-            "NEWS" => Some(Self::News),
-            "ONLINE_COMMUNITIES" => Some(Self::OnlineCommunities),
-            "PEOPLE_AND_SOCIETY" => Some(Self::PeopleAndSociety),
-            "PETS_AND_ANIMALS" => Some(Self::PetsAndAnimals),
-            "REAL_ESTATE" => Some(Self::RealEstate),
-            "REFERENCE" => Some(Self::Reference),
-            "SCIENCE" => Some(Self::Science),
-            "SPORTS" => Some(Self::Sports),
-            "JOBS_AND_EDUCATION" => Some(Self::JobsAndEducation),
-            "SHOPPING" => Some(Self::Shopping),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+IndustryCategory::Unspecified => "INDUSTRY_CATEGORY_UNSPECIFIED",
+IndustryCategory::Automotive => "AUTOMOTIVE",
+IndustryCategory::BusinessAndIndustrialMarkets => "BUSINESS_AND_INDUSTRIAL_MARKETS",
+IndustryCategory::Finance => "FINANCE",
+IndustryCategory::Healthcare => "HEALTHCARE",
+IndustryCategory::Technology => "TECHNOLOGY",
+IndustryCategory::Travel => "TRAVEL",
+IndustryCategory::Other => "OTHER",
+IndustryCategory::ArtsAndEntertainment => "ARTS_AND_ENTERTAINMENT",
+IndustryCategory::BeautyAndFitness => "BEAUTY_AND_FITNESS",
+IndustryCategory::BooksAndLiterature => "BOOKS_AND_LITERATURE",
+IndustryCategory::FoodAndDrink => "FOOD_AND_DRINK",
+IndustryCategory::Games => "GAMES",
+IndustryCategory::HobbiesAndLeisure => "HOBBIES_AND_LEISURE",
+IndustryCategory::HomeAndGarden => "HOME_AND_GARDEN",
+IndustryCategory::InternetAndTelecom => "INTERNET_AND_TELECOM",
+IndustryCategory::LawAndGovernment => "LAW_AND_GOVERNMENT",
+IndustryCategory::News => "NEWS",
+IndustryCategory::OnlineCommunities => "ONLINE_COMMUNITIES",
+IndustryCategory::PeopleAndSociety => "PEOPLE_AND_SOCIETY",
+IndustryCategory::PetsAndAnimals => "PETS_AND_ANIMALS",
+IndustryCategory::RealEstate => "REAL_ESTATE",
+IndustryCategory::Reference => "REFERENCE",
+IndustryCategory::Science => "SCIENCE",
+IndustryCategory::Sports => "SPORTS",
+IndustryCategory::JobsAndEducation => "JOBS_AND_EDUCATION",
+IndustryCategory::Shopping => "SHOPPING",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"INDUSTRY_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+"AUTOMOTIVE" => Some(Self::Automotive),
+"BUSINESS_AND_INDUSTRIAL_MARKETS" => Some(Self::BusinessAndIndustrialMarkets),
+"FINANCE" => Some(Self::Finance),
+"HEALTHCARE" => Some(Self::Healthcare),
+"TECHNOLOGY" => Some(Self::Technology),
+"TRAVEL" => Some(Self::Travel),
+"OTHER" => Some(Self::Other),
+"ARTS_AND_ENTERTAINMENT" => Some(Self::ArtsAndEntertainment),
+"BEAUTY_AND_FITNESS" => Some(Self::BeautyAndFitness),
+"BOOKS_AND_LITERATURE" => Some(Self::BooksAndLiterature),
+"FOOD_AND_DRINK" => Some(Self::FoodAndDrink),
+"GAMES" => Some(Self::Games),
+"HOBBIES_AND_LEISURE" => Some(Self::HobbiesAndLeisure),
+"HOME_AND_GARDEN" => Some(Self::HomeAndGarden),
+"INTERNET_AND_TELECOM" => Some(Self::InternetAndTelecom),
+"LAW_AND_GOVERNMENT" => Some(Self::LawAndGovernment),
+"NEWS" => Some(Self::News),
+"ONLINE_COMMUNITIES" => Some(Self::OnlineCommunities),
+"PEOPLE_AND_SOCIETY" => Some(Self::PeopleAndSociety),
+"PETS_AND_ANIMALS" => Some(Self::PetsAndAnimals),
+"REAL_ESTATE" => Some(Self::RealEstate),
+"REFERENCE" => Some(Self::Reference),
+"SCIENCE" => Some(Self::Science),
+"SPORTS" => Some(Self::Sports),
+"JOBS_AND_EDUCATION" => Some(Self::JobsAndEducation),
+"SHOPPING" => Some(Self::Shopping),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ServiceLevel {
-    Unspecified = 0,
-    GoogleAnalyticsStandard = 1,
-    GoogleAnalytics360 = 2,
+Unspecified = 0,
+GoogleAnalyticsStandard = 1,
+GoogleAnalytics360 = 2,
 }
 impl ServiceLevel {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ServiceLevel::Unspecified => "SERVICE_LEVEL_UNSPECIFIED",
-            ServiceLevel::GoogleAnalyticsStandard => "GOOGLE_ANALYTICS_STANDARD",
-            ServiceLevel::GoogleAnalytics360 => "GOOGLE_ANALYTICS_360",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "SERVICE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-            "GOOGLE_ANALYTICS_STANDARD" => Some(Self::GoogleAnalyticsStandard),
-            "GOOGLE_ANALYTICS_360" => Some(Self::GoogleAnalytics360),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ServiceLevel::Unspecified => "SERVICE_LEVEL_UNSPECIFIED",
+ServiceLevel::GoogleAnalyticsStandard => "GOOGLE_ANALYTICS_STANDARD",
+ServiceLevel::GoogleAnalytics360 => "GOOGLE_ANALYTICS_360",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SERVICE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+"GOOGLE_ANALYTICS_STANDARD" => Some(Self::GoogleAnalyticsStandard),
+"GOOGLE_ANALYTICS_360" => Some(Self::GoogleAnalytics360),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ActorType {
-    Unspecified = 0,
-    User = 1,
-    System = 2,
-    Support = 3,
+Unspecified = 0,
+User = 1,
+System = 2,
+Support = 3,
 }
 impl ActorType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ActorType::Unspecified => "ACTOR_TYPE_UNSPECIFIED",
-            ActorType::User => "USER",
-            ActorType::System => "SYSTEM",
-            ActorType::Support => "SUPPORT",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ACTOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "USER" => Some(Self::User),
-            "SYSTEM" => Some(Self::System),
-            "SUPPORT" => Some(Self::Support),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ActorType::Unspecified => "ACTOR_TYPE_UNSPECIFIED",
+ActorType::User => "USER",
+ActorType::System => "SYSTEM",
+ActorType::Support => "SUPPORT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACTOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"USER" => Some(Self::User),
+"SYSTEM" => Some(Self::System),
+"SUPPORT" => Some(Self::Support),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ActionType {
-    Unspecified = 0,
-    Created = 1,
-    Updated = 2,
-    Deleted = 3,
+Unspecified = 0,
+Created = 1,
+Updated = 2,
+Deleted = 3,
 }
 impl ActionType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
-            ActionType::Created => "CREATED",
-            ActionType::Updated => "UPDATED",
-            ActionType::Deleted => "DELETED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "CREATED" => Some(Self::Created),
-            "UPDATED" => Some(Self::Updated),
-            "DELETED" => Some(Self::Deleted),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ActionType::Unspecified => "ACTION_TYPE_UNSPECIFIED",
+ActionType::Created => "CREATED",
+ActionType::Updated => "UPDATED",
+ActionType::Deleted => "DELETED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ACTION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATED" => Some(Self::Created),
+"UPDATED" => Some(Self::Updated),
+"DELETED" => Some(Self::Deleted),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ChangeHistoryResourceType {
-    Unspecified = 0,
-    Account = 1,
-    Property = 2,
-    FirebaseLink = 6,
-    GoogleAdsLink = 7,
-    GoogleSignalsSettings = 8,
-    ConversionEvent = 9,
-    MeasurementProtocolSecret = 10,
-    DataRetentionSettings = 13,
-    DisplayVideo360AdvertiserLink = 14,
-    DisplayVideo360AdvertiserLinkProposal = 15,
-    DataStream = 18,
-    AttributionSettings = 20,
+Unspecified = 0,
+Account = 1,
+Property = 2,
+FirebaseLink = 6,
+GoogleAdsLink = 7,
+GoogleSignalsSettings = 8,
+ConversionEvent = 9,
+MeasurementProtocolSecret = 10,
+DataRetentionSettings = 13,
+DisplayVideo360AdvertiserLink = 14,
+DisplayVideo360AdvertiserLinkProposal = 15,
+DataStream = 18,
+AttributionSettings = 20,
 }
 impl ChangeHistoryResourceType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ChangeHistoryResourceType::Unspecified => {
-                "CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED"
-            }
-            ChangeHistoryResourceType::Account => "ACCOUNT",
-            ChangeHistoryResourceType::Property => "PROPERTY",
-            ChangeHistoryResourceType::FirebaseLink => "FIREBASE_LINK",
-            ChangeHistoryResourceType::GoogleAdsLink => "GOOGLE_ADS_LINK",
-            ChangeHistoryResourceType::GoogleSignalsSettings => "GOOGLE_SIGNALS_SETTINGS",
-            ChangeHistoryResourceType::ConversionEvent => "CONVERSION_EVENT",
-            ChangeHistoryResourceType::MeasurementProtocolSecret => {
-                "MEASUREMENT_PROTOCOL_SECRET"
-            }
-            ChangeHistoryResourceType::DataRetentionSettings => "DATA_RETENTION_SETTINGS",
-            ChangeHistoryResourceType::DisplayVideo360AdvertiserLink => {
-                "DISPLAY_VIDEO_360_ADVERTISER_LINK"
-            }
-            ChangeHistoryResourceType::DisplayVideo360AdvertiserLinkProposal => {
-                "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL"
-            }
-            ChangeHistoryResourceType::DataStream => "DATA_STREAM",
-            ChangeHistoryResourceType::AttributionSettings => "ATTRIBUTION_SETTINGS",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "ACCOUNT" => Some(Self::Account),
-            "PROPERTY" => Some(Self::Property),
-            "FIREBASE_LINK" => Some(Self::FirebaseLink),
-            "GOOGLE_ADS_LINK" => Some(Self::GoogleAdsLink),
-            "GOOGLE_SIGNALS_SETTINGS" => Some(Self::GoogleSignalsSettings),
-            "CONVERSION_EVENT" => Some(Self::ConversionEvent),
-            "MEASUREMENT_PROTOCOL_SECRET" => Some(Self::MeasurementProtocolSecret),
-            "DATA_RETENTION_SETTINGS" => Some(Self::DataRetentionSettings),
-            "DISPLAY_VIDEO_360_ADVERTISER_LINK" => {
-                Some(Self::DisplayVideo360AdvertiserLink)
-            }
-            "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL" => {
-                Some(Self::DisplayVideo360AdvertiserLinkProposal)
-            }
-            "DATA_STREAM" => Some(Self::DataStream),
-            "ATTRIBUTION_SETTINGS" => Some(Self::AttributionSettings),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ChangeHistoryResourceType::Unspecified => "CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED",
+ChangeHistoryResourceType::Account => "ACCOUNT",
+ChangeHistoryResourceType::Property => "PROPERTY",
+ChangeHistoryResourceType::FirebaseLink => "FIREBASE_LINK",
+ChangeHistoryResourceType::GoogleAdsLink => "GOOGLE_ADS_LINK",
+ChangeHistoryResourceType::GoogleSignalsSettings => "GOOGLE_SIGNALS_SETTINGS",
+ChangeHistoryResourceType::ConversionEvent => "CONVERSION_EVENT",
+ChangeHistoryResourceType::MeasurementProtocolSecret => "MEASUREMENT_PROTOCOL_SECRET",
+ChangeHistoryResourceType::DataRetentionSettings => "DATA_RETENTION_SETTINGS",
+ChangeHistoryResourceType::DisplayVideo360AdvertiserLink => "DISPLAY_VIDEO_360_ADVERTISER_LINK",
+ChangeHistoryResourceType::DisplayVideo360AdvertiserLinkProposal => "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
+ChangeHistoryResourceType::DataStream => "DATA_STREAM",
+ChangeHistoryResourceType::AttributionSettings => "ATTRIBUTION_SETTINGS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACCOUNT" => Some(Self::Account),
+"PROPERTY" => Some(Self::Property),
+"FIREBASE_LINK" => Some(Self::FirebaseLink),
+"GOOGLE_ADS_LINK" => Some(Self::GoogleAdsLink),
+"GOOGLE_SIGNALS_SETTINGS" => Some(Self::GoogleSignalsSettings),
+"CONVERSION_EVENT" => Some(Self::ConversionEvent),
+"MEASUREMENT_PROTOCOL_SECRET" => Some(Self::MeasurementProtocolSecret),
+"DATA_RETENTION_SETTINGS" => Some(Self::DataRetentionSettings),
+"DISPLAY_VIDEO_360_ADVERTISER_LINK" => Some(Self::DisplayVideo360AdvertiserLink),
+"DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL" => Some(Self::DisplayVideo360AdvertiserLinkProposal),
+"DATA_STREAM" => Some(Self::DataStream),
+"ATTRIBUTION_SETTINGS" => Some(Self::AttributionSettings),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PropertyType {
-    Unspecified = 0,
-    Ordinary = 1,
-    Subproperty = 2,
-    Rollup = 3,
+Unspecified = 0,
+Ordinary = 1,
+Subproperty = 2,
+Rollup = 3,
 }
 impl PropertyType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            PropertyType::Unspecified => "PROPERTY_TYPE_UNSPECIFIED",
-            PropertyType::Ordinary => "PROPERTY_TYPE_ORDINARY",
-            PropertyType::Subproperty => "PROPERTY_TYPE_SUBPROPERTY",
-            PropertyType::Rollup => "PROPERTY_TYPE_ROLLUP",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "PROPERTY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "PROPERTY_TYPE_ORDINARY" => Some(Self::Ordinary),
-            "PROPERTY_TYPE_SUBPROPERTY" => Some(Self::Subproperty),
-            "PROPERTY_TYPE_ROLLUP" => Some(Self::Rollup),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PropertyType::Unspecified => "PROPERTY_TYPE_UNSPECIFIED",
+PropertyType::Ordinary => "PROPERTY_TYPE_ORDINARY",
+PropertyType::Subproperty => "PROPERTY_TYPE_SUBPROPERTY",
+PropertyType::Rollup => "PROPERTY_TYPE_ROLLUP",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PROPERTY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"PROPERTY_TYPE_ORDINARY" => Some(Self::Ordinary),
+"PROPERTY_TYPE_SUBPROPERTY" => Some(Self::Subproperty),
+"PROPERTY_TYPE_ROLLUP" => Some(Self::Rollup),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunAccessReportRequest {
-    #[prost(string, tag = "1")]
-    pub entity: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
-    pub dimensions: ::prost::alloc::vec::Vec<AccessDimension>,
-    #[prost(message, repeated, tag = "3")]
-    pub metrics: ::prost::alloc::vec::Vec<AccessMetric>,
-    #[prost(message, repeated, tag = "4")]
-    pub date_ranges: ::prost::alloc::vec::Vec<AccessDateRange>,
-    #[prost(message, optional, tag = "5")]
-    pub dimension_filter: ::core::option::Option<AccessFilterExpression>,
-    #[prost(message, optional, tag = "6")]
-    pub metric_filter: ::core::option::Option<AccessFilterExpression>,
-    #[prost(int64, tag = "7")]
-    pub offset: i64,
-    #[prost(int64, tag = "8")]
-    pub limit: i64,
-    #[prost(string, tag = "9")]
-    pub time_zone: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "10")]
-    pub order_bys: ::prost::alloc::vec::Vec<AccessOrderBy>,
-    #[prost(bool, tag = "11")]
-    pub return_entity_quota: bool,
-    #[prost(bool, tag = "12")]
-    pub include_all_users: bool,
-    #[prost(bool, tag = "13")]
-    pub expand_groups: bool,
+#[prost(string, tag = "1")]
+pub entity: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub dimensions: ::prost::alloc::vec::Vec<AccessDimension>,
+#[prost(message, repeated, tag = "3")]
+pub metrics: ::prost::alloc::vec::Vec<AccessMetric>,
+#[prost(message, repeated, tag = "4")]
+pub date_ranges: ::prost::alloc::vec::Vec<AccessDateRange>,
+#[prost(message, optional, tag = "5")]
+pub dimension_filter: ::core::option::Option<AccessFilterExpression>,
+#[prost(message, optional, tag = "6")]
+pub metric_filter: ::core::option::Option<AccessFilterExpression>,
+#[prost(int64, tag = "7")]
+pub offset: i64,
+#[prost(int64, tag = "8")]
+pub limit: i64,
+#[prost(string, tag = "9")]
+pub time_zone: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "10")]
+pub order_bys: ::prost::alloc::vec::Vec<AccessOrderBy>,
+#[prost(bool, tag = "11")]
+pub return_entity_quota: bool,
+#[prost(bool, tag = "12")]
+pub include_all_users: bool,
+#[prost(bool, tag = "13")]
+pub expand_groups: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RunAccessReportResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub dimension_headers: ::prost::alloc::vec::Vec<AccessDimensionHeader>,
-    #[prost(message, repeated, tag = "2")]
-    pub metric_headers: ::prost::alloc::vec::Vec<AccessMetricHeader>,
-    #[prost(message, repeated, tag = "3")]
-    pub rows: ::prost::alloc::vec::Vec<AccessRow>,
-    #[prost(int32, tag = "4")]
-    pub row_count: i32,
-    #[prost(message, optional, tag = "5")]
-    pub quota: ::core::option::Option<AccessQuota>,
+#[prost(message, repeated, tag = "1")]
+pub dimension_headers: ::prost::alloc::vec::Vec<AccessDimensionHeader>,
+#[prost(message, repeated, tag = "2")]
+pub metric_headers: ::prost::alloc::vec::Vec<AccessMetricHeader>,
+#[prost(message, repeated, tag = "3")]
+pub rows: ::prost::alloc::vec::Vec<AccessRow>,
+#[prost(int32, tag = "4")]
+pub row_count: i32,
+#[prost(message, optional, tag = "5")]
+pub quota: ::core::option::Option<AccessQuota>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetAccountRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountsRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub show_deleted: bool,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "3")]
+pub show_deleted: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub accounts: ::prost::alloc::vec::Vec<Account>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub accounts: ::prost::alloc::vec::Vec<Account>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteAccountRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateAccountRequest {
-    #[prost(message, optional, tag = "1")]
-    pub account: ::core::option::Option<Account>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub account: ::core::option::Option<Account>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProvisionAccountTicketRequest {
-    #[prost(message, optional, tag = "1")]
-    pub account: ::core::option::Option<Account>,
-    #[prost(string, tag = "2")]
-    pub redirect_uri: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub account: ::core::option::Option<Account>,
+#[prost(string, tag = "2")]
+pub redirect_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProvisionAccountTicketResponse {
-    #[prost(string, tag = "1")]
-    pub account_ticket_id: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub account_ticket_id: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPropertyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPropertiesRequest {
-    #[prost(string, tag = "1")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(bool, tag = "4")]
-    pub show_deleted: bool,
+#[prost(string, tag = "1")]
+pub filter: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(bool, tag = "4")]
+pub show_deleted: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPropertiesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub properties: ::prost::alloc::vec::Vec<Property>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub properties: ::prost::alloc::vec::Vec<Property>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePropertyRequest {
-    #[prost(message, optional, tag = "1")]
-    pub property: ::core::option::Option<Property>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub property: ::core::option::Option<Property>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePropertyRequest {
-    #[prost(message, optional, tag = "1")]
-    pub property: ::core::option::Option<Property>,
+#[prost(message, optional, tag = "1")]
+pub property: ::core::option::Option<Property>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePropertyRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateFirebaseLinkRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub firebase_link: ::core::option::Option<FirebaseLink>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub firebase_link: ::core::option::Option<FirebaseLink>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteFirebaseLinkRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFirebaseLinksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListFirebaseLinksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub firebase_links: ::prost::alloc::vec::Vec<FirebaseLink>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub firebase_links: ::prost::alloc::vec::Vec<FirebaseLink>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateGoogleAdsLinkRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub google_ads_link: ::core::option::Option<GoogleAdsLink>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub google_ads_link: ::core::option::Option<GoogleAdsLink>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateGoogleAdsLinkRequest {
-    #[prost(message, optional, tag = "1")]
-    pub google_ads_link: ::core::option::Option<GoogleAdsLink>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub google_ads_link: ::core::option::Option<GoogleAdsLink>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteGoogleAdsLinkRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGoogleAdsLinksRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListGoogleAdsLinksResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub google_ads_links: ::prost::alloc::vec::Vec<GoogleAdsLink>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub google_ads_links: ::prost::alloc::vec::Vec<GoogleAdsLink>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDataSharingSettingsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountSummariesRequest {
-    #[prost(int32, tag = "1")]
-    pub page_size: i32,
-    #[prost(string, tag = "2")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(int32, tag = "1")]
+pub page_size: i32,
+#[prost(string, tag = "2")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListAccountSummariesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub account_summaries: ::prost::alloc::vec::Vec<AccountSummary>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub account_summaries: ::prost::alloc::vec::Vec<AccountSummary>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AcknowledgeUserDataCollectionRequest {
-    #[prost(string, tag = "1")]
-    pub property: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub acknowledgement: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub property: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub acknowledgement: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -1626,2066 +1482,934 @@ pub struct AcknowledgeUserDataCollectionResponse {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchChangeHistoryEventsRequest {
-    #[prost(string, tag = "1")]
-    pub account: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub property: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "ChangeHistoryResourceType",
-        repeated,
-        packed = "false",
-        tag = "3"
-    )]
-    pub resource_type: ::prost::alloc::vec::Vec<i32>,
-    #[prost(enumeration = "ActionType", repeated, packed = "false", tag = "4")]
-    pub action: ::prost::alloc::vec::Vec<i32>,
-    #[prost(string, repeated, tag = "5")]
-    pub actor_email: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "6")]
-    pub earliest_change_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "7")]
-    pub latest_change_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(int32, tag = "8")]
-    pub page_size: i32,
-    #[prost(string, tag = "9")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub account: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub property: ::prost::alloc::string::String,
+#[prost(enumeration = "ChangeHistoryResourceType", repeated, packed = "false", tag = "3")]
+pub resource_type: ::prost::alloc::vec::Vec<i32>,
+#[prost(enumeration = "ActionType", repeated, packed = "false", tag = "4")]
+pub action: ::prost::alloc::vec::Vec<i32>,
+#[prost(string, repeated, tag = "5")]
+pub actor_email: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "6")]
+pub earliest_change_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "7")]
+pub latest_change_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(int32, tag = "8")]
+pub page_size: i32,
+#[prost(string, tag = "9")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchChangeHistoryEventsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub change_history_events: ::prost::alloc::vec::Vec<ChangeHistoryEvent>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub change_history_events: ::prost::alloc::vec::Vec<ChangeHistoryEvent>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetMeasurementProtocolSecretRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateMeasurementProtocolSecretRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub measurement_protocol_secret: ::core::option::Option<MeasurementProtocolSecret>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub measurement_protocol_secret: ::core::option::Option<MeasurementProtocolSecret>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteMeasurementProtocolSecretRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateMeasurementProtocolSecretRequest {
-    #[prost(message, optional, tag = "1")]
-    pub measurement_protocol_secret: ::core::option::Option<MeasurementProtocolSecret>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub measurement_protocol_secret: ::core::option::Option<MeasurementProtocolSecret>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMeasurementProtocolSecretsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListMeasurementProtocolSecretsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub measurement_protocol_secrets: ::prost::alloc::vec::Vec<
-        MeasurementProtocolSecret,
-    >,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub measurement_protocol_secrets: ::prost::alloc::vec::Vec<MeasurementProtocolSecret>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateConversionEventRequest {
-    #[prost(message, optional, tag = "1")]
-    pub conversion_event: ::core::option::Option<ConversionEvent>,
-    #[prost(string, tag = "2")]
-    pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub conversion_event: ::core::option::Option<ConversionEvent>,
+#[prost(string, tag = "2")]
+pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateConversionEventRequest {
-    #[prost(message, optional, tag = "1")]
-    pub conversion_event: ::core::option::Option<ConversionEvent>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub conversion_event: ::core::option::Option<ConversionEvent>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetConversionEventRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteConversionEventRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConversionEventsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListConversionEventsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub conversion_events: ::prost::alloc::vec::Vec<ConversionEvent>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub conversion_events: ::prost::alloc::vec::Vec<ConversionEvent>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateKeyEventRequest {
-    #[prost(message, optional, tag = "1")]
-    pub key_event: ::core::option::Option<KeyEvent>,
-    #[prost(string, tag = "2")]
-    pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub key_event: ::core::option::Option<KeyEvent>,
+#[prost(string, tag = "2")]
+pub parent: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateKeyEventRequest {
-    #[prost(message, optional, tag = "1")]
-    pub key_event: ::core::option::Option<KeyEvent>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub key_event: ::core::option::Option<KeyEvent>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetKeyEventRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteKeyEventRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListKeyEventsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListKeyEventsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub key_events: ::prost::alloc::vec::Vec<KeyEvent>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub key_events: ::prost::alloc::vec::Vec<KeyEvent>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCustomDimensionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub custom_dimension: ::core::option::Option<CustomDimension>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub custom_dimension: ::core::option::Option<CustomDimension>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCustomDimensionRequest {
-    #[prost(message, optional, tag = "1")]
-    pub custom_dimension: ::core::option::Option<CustomDimension>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub custom_dimension: ::core::option::Option<CustomDimension>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomDimensionsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomDimensionsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub custom_dimensions: ::prost::alloc::vec::Vec<CustomDimension>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub custom_dimensions: ::prost::alloc::vec::Vec<CustomDimension>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArchiveCustomDimensionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCustomDimensionRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateCustomMetricRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub custom_metric: ::core::option::Option<CustomMetric>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub custom_metric: ::core::option::Option<CustomMetric>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateCustomMetricRequest {
-    #[prost(message, optional, tag = "1")]
-    pub custom_metric: ::core::option::Option<CustomMetric>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub custom_metric: ::core::option::Option<CustomMetric>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomMetricsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListCustomMetricsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub custom_metrics: ::prost::alloc::vec::Vec<CustomMetric>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub custom_metrics: ::prost::alloc::vec::Vec<CustomMetric>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArchiveCustomMetricRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetCustomMetricRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDataRetentionSettingsRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDataRetentionSettingsRequest {
-    #[prost(message, optional, tag = "1")]
-    pub data_retention_settings: ::core::option::Option<DataRetentionSettings>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub data_retention_settings: ::core::option::Option<DataRetentionSettings>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateDataStreamRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub data_stream: ::core::option::Option<DataStream>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub data_stream: ::core::option::Option<DataStream>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteDataStreamRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateDataStreamRequest {
-    #[prost(message, optional, tag = "1")]
-    pub data_stream: ::core::option::Option<DataStream>,
-    #[prost(message, optional, tag = "2")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "1")]
+pub data_stream: ::core::option::Option<DataStream>,
+#[prost(message, optional, tag = "2")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDataStreamsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListDataStreamsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub data_streams: ::prost::alloc::vec::Vec<DataStream>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "1")]
+pub data_streams: ::prost::alloc::vec::Vec<DataStream>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetDataStreamRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod analytics_admin_service_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service Interface for the Analytics Admin API (GA4).
-    #[derive(Debug, Clone)]
-    pub struct AnalyticsAdminServiceClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> AnalyticsAdminServiceClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> AnalyticsAdminServiceClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            AnalyticsAdminServiceClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lookup for a single Account.
-        pub async fn get_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetAccountRequest>,
-        ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetAccount",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns all accounts accessible by the caller.
-        ///
-        /// Note that these accounts might not currently have GA4 properties.
-        /// Soft-deleted (ie: "trashed") accounts are excluded by default.
-        /// Returns an empty list if no relevant accounts are found.
-        pub async fn list_accounts(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListAccountsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListAccountsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListAccounts",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListAccounts",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Marks target Account as soft-deleted (ie: "trashed") and returns it.
-        ///
-        /// This API does not have a method to restore soft-deleted accounts.
-        /// However, they can be restored using the Trash Can UI.
-        ///
-        /// If the accounts are not restored before the expiration time, the account
-        /// and all child resources (eg: Properties, GoogleAdsLinks, Streams,
-        /// AccessBindings) will be permanently purged.
-        /// https://support.google.com/analytics/answer/6154772
-        ///
-        /// Returns an error if the target is not found.
-        pub async fn delete_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteAccountRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "DeleteAccount",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates an account.
-        pub async fn update_account(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateAccountRequest>,
-        ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateAccount",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateAccount",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Requests a ticket for creating an account.
-        pub async fn provision_account_ticket(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ProvisionAccountTicketRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ProvisionAccountTicketResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ProvisionAccountTicket",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ProvisionAccountTicket",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns summaries of all accounts accessible by the caller.
-        pub async fn list_account_summaries(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListAccountSummariesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListAccountSummariesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListAccountSummaries",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListAccountSummaries",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lookup for a single "GA4" Property.
-        pub async fn get_property(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPropertyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Property>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetProperty",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetProperty",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns child Properties under the specified parent Account.
-        ///
-        /// Only "GA4" properties will be returned.
-        /// Properties will be excluded if the caller does not have access.
-        /// Soft-deleted (ie: "trashed") properties are excluded by default.
-        /// Returns an empty list if no relevant properties are found.
-        pub async fn list_properties(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListPropertiesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListPropertiesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListProperties",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListProperties",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates an "GA4" property with the specified location and attributes.
-        pub async fn create_property(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreatePropertyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Property>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateProperty",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateProperty",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Marks target Property as soft-deleted (ie: "trashed") and returns it.
-        ///
-        /// This API does not have a method to restore soft-deleted properties.
-        /// However, they can be restored using the Trash Can UI.
-        ///
-        /// If the properties are not restored before the expiration time, the Property
-        /// and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings)
-        /// will be permanently purged.
-        /// https://support.google.com/analytics/answer/6154772
-        ///
-        /// Returns an error if the target is not found, or is not a GA4 Property.
-        pub async fn delete_property(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeletePropertyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Property>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteProperty",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "DeleteProperty",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a property.
-        pub async fn update_property(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdatePropertyRequest>,
-        ) -> std::result::Result<tonic::Response<super::Property>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateProperty",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateProperty",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a FirebaseLink.
-        ///
-        /// Properties can have at most one FirebaseLink.
-        pub async fn create_firebase_link(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateFirebaseLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::FirebaseLink>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateFirebaseLink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateFirebaseLink",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a FirebaseLink on a property
-        pub async fn delete_firebase_link(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteFirebaseLinkRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteFirebaseLink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "DeleteFirebaseLink",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists FirebaseLinks on a property.
-        /// Properties can have at most one FirebaseLink.
-        pub async fn list_firebase_links(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListFirebaseLinksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListFirebaseLinksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListFirebaseLinks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListFirebaseLinks",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a GoogleAdsLink.
-        pub async fn create_google_ads_link(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateGoogleAdsLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::GoogleAdsLink>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateGoogleAdsLink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateGoogleAdsLink",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a GoogleAdsLink on a property
-        pub async fn update_google_ads_link(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateGoogleAdsLinkRequest>,
-        ) -> std::result::Result<tonic::Response<super::GoogleAdsLink>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateGoogleAdsLink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateGoogleAdsLink",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a GoogleAdsLink on a property
-        pub async fn delete_google_ads_link(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteGoogleAdsLinkRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteGoogleAdsLink",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "DeleteGoogleAdsLink",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists GoogleAdsLinks on a property.
-        pub async fn list_google_ads_links(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListGoogleAdsLinksRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListGoogleAdsLinksResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListGoogleAdsLinks",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListGoogleAdsLinks",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get data sharing settings on an account.
-        /// Data sharing settings are singletons.
-        pub async fn get_data_sharing_settings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDataSharingSettingsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::DataSharingSettings>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetDataSharingSettings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetDataSharingSettings",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lookup for a single "GA4" MeasurementProtocolSecret.
-        pub async fn get_measurement_protocol_secret(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetMeasurementProtocolSecretRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::MeasurementProtocolSecret>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetMeasurementProtocolSecret",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetMeasurementProtocolSecret",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns child MeasurementProtocolSecrets under the specified parent
-        /// Property.
-        pub async fn list_measurement_protocol_secrets(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::ListMeasurementProtocolSecretsRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::ListMeasurementProtocolSecretsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListMeasurementProtocolSecrets",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListMeasurementProtocolSecrets",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a measurement protocol secret.
-        pub async fn create_measurement_protocol_secret(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::CreateMeasurementProtocolSecretRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::MeasurementProtocolSecret>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateMeasurementProtocolSecret",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateMeasurementProtocolSecret",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes target MeasurementProtocolSecret.
-        pub async fn delete_measurement_protocol_secret(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::DeleteMeasurementProtocolSecretRequest,
-            >,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteMeasurementProtocolSecret",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "DeleteMeasurementProtocolSecret",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a measurement protocol secret.
-        pub async fn update_measurement_protocol_secret(
-            &mut self,
-            request: impl tonic::IntoRequest<
-                super::UpdateMeasurementProtocolSecretRequest,
-            >,
-        ) -> std::result::Result<
-            tonic::Response<super::MeasurementProtocolSecret>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateMeasurementProtocolSecret",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateMeasurementProtocolSecret",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Acknowledges the terms of user data collection for the specified property.
-        ///
-        /// This acknowledgement must be completed (either in the Google Analytics UI
-        /// or through this API) before MeasurementProtocolSecret resources may be
-        /// created.
-        pub async fn acknowledge_user_data_collection(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AcknowledgeUserDataCollectionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AcknowledgeUserDataCollectionResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/AcknowledgeUserDataCollection",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "AcknowledgeUserDataCollection",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Searches through all changes to an account or its children given the
-        /// specified set of filters.
-        pub async fn search_change_history_events(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchChangeHistoryEventsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchChangeHistoryEventsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/SearchChangeHistoryEvents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "SearchChangeHistoryEvents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deprecated: Use `CreateKeyEvent` instead.
-        /// Creates a conversion event with the specified attributes.
-        pub async fn create_conversion_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateConversionEventRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ConversionEvent>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateConversionEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateConversionEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deprecated: Use `UpdateKeyEvent` instead.
-        /// Updates a conversion event with the specified attributes.
-        pub async fn update_conversion_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateConversionEventRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ConversionEvent>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateConversionEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateConversionEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deprecated: Use `GetKeyEvent` instead.
-        /// Retrieve a single conversion event.
-        pub async fn get_conversion_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetConversionEventRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ConversionEvent>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetConversionEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetConversionEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deprecated: Use `DeleteKeyEvent` instead.
-        /// Deletes a conversion event in a property.
-        pub async fn delete_conversion_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteConversionEventRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteConversionEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "DeleteConversionEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deprecated: Use `ListKeyEvents` instead.
-        /// Returns a list of conversion events in the specified parent property.
-        ///
-        /// Returns an empty list if no conversion events are found.
-        pub async fn list_conversion_events(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListConversionEventsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListConversionEventsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListConversionEvents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListConversionEvents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a Key Event.
-        pub async fn create_key_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateKeyEventRequest>,
-        ) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateKeyEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateKeyEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a Key Event.
-        pub async fn update_key_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateKeyEventRequest>,
-        ) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateKeyEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateKeyEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieve a single Key Event.
-        pub async fn get_key_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetKeyEventRequest>,
-        ) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetKeyEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetKeyEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a Key Event.
-        pub async fn delete_key_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteKeyEventRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteKeyEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "DeleteKeyEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a list of Key Events in the specified parent property.
-        /// Returns an empty list if no Key Events are found.
-        pub async fn list_key_events(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListKeyEventsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListKeyEventsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListKeyEvents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListKeyEvents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a CustomDimension.
-        pub async fn create_custom_dimension(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCustomDimensionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CustomDimension>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateCustomDimension",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateCustomDimension",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a CustomDimension on a property.
-        pub async fn update_custom_dimension(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCustomDimensionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CustomDimension>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateCustomDimension",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateCustomDimension",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists CustomDimensions on a property.
-        pub async fn list_custom_dimensions(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCustomDimensionsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCustomDimensionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListCustomDimensions",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListCustomDimensions",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Archives a CustomDimension on a property.
-        pub async fn archive_custom_dimension(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ArchiveCustomDimensionRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ArchiveCustomDimension",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ArchiveCustomDimension",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lookup for a single CustomDimension.
-        pub async fn get_custom_dimension(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCustomDimensionRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::CustomDimension>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetCustomDimension",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetCustomDimension",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a CustomMetric.
-        pub async fn create_custom_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateCustomMetricRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomMetric>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateCustomMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateCustomMetric",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a CustomMetric on a property.
-        pub async fn update_custom_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateCustomMetricRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomMetric>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateCustomMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateCustomMetric",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists CustomMetrics on a property.
-        pub async fn list_custom_metrics(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListCustomMetricsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListCustomMetricsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListCustomMetrics",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListCustomMetrics",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Archives a CustomMetric on a property.
-        pub async fn archive_custom_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ArchiveCustomMetricRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ArchiveCustomMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ArchiveCustomMetric",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lookup for a single CustomMetric.
-        pub async fn get_custom_metric(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetCustomMetricRequest>,
-        ) -> std::result::Result<tonic::Response<super::CustomMetric>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetCustomMetric",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetCustomMetric",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns the singleton data retention settings for this property.
-        pub async fn get_data_retention_settings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDataRetentionSettingsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::DataRetentionSettings>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetDataRetentionSettings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetDataRetentionSettings",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the singleton data retention settings for this property.
-        pub async fn update_data_retention_settings(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateDataRetentionSettingsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::DataRetentionSettings>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateDataRetentionSettings",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateDataRetentionSettings",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a DataStream.
-        pub async fn create_data_stream(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateDataStreamRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataStream>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/CreateDataStream",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "CreateDataStream",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a DataStream on a property.
-        pub async fn delete_data_stream(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteDataStreamRequest>,
-        ) -> std::result::Result<tonic::Response<()>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteDataStream",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "DeleteDataStream",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates a DataStream on a property.
-        pub async fn update_data_stream(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateDataStreamRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataStream>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateDataStream",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "UpdateDataStream",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists DataStreams on a property.
-        pub async fn list_data_streams(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListDataStreamsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListDataStreamsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/ListDataStreams",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "ListDataStreams",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lookup for a single DataStream.
-        pub async fn get_data_stream(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetDataStreamRequest>,
-        ) -> std::result::Result<tonic::Response<super::DataStream>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/GetDataStream",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "GetDataStream",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns a customized report of data access records. The report provides
-        /// records of each time a user reads Google Analytics reporting data. Access
-        /// records are retained for up to 2 years.
-        ///
-        /// Data Access Reports can be requested for a property. Reports may be
-        /// requested for any property, but dimensions that aren't related to quota can
-        /// only be requested on Google Analytics 360 properties. This method is only
-        /// available to Administrators.
-        ///
-        /// These data access records include GA4 UI Reporting, GA4 UI Explorations,
-        /// GA4 Data API, and other products like Firebase & Admob that can retrieve
-        /// data from Google Analytics through a linkage. These records don't include
-        /// property configuration changes like adding a stream or changing a
-        /// property's time zone. For configuration change history, see
-        /// [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
-        pub async fn run_access_report(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RunAccessReportRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::RunAccessReportResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.analytics.admin.v1beta.AnalyticsAdminService/RunAccessReport",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.analytics.admin.v1beta.AnalyticsAdminService",
-                        "RunAccessReport",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service Interface for the Analytics Admin API (GA4).
+#[derive(Debug, Clone)]
+pub struct AnalyticsAdminServiceClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> AnalyticsAdminServiceClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> AnalyticsAdminServiceClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+AnalyticsAdminServiceClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lookup for a single Account.
+pub async fn get_account(&mut self, request: impl tonic::IntoRequest<super::GetAccountRequest>) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns all accounts accessible by the caller.
+///
+/// Note that these accounts might not currently have GA4 properties.
+/// Soft-deleted (ie: "trashed") accounts are excluded by default.
+/// Returns an empty list if no relevant accounts are found.
+pub async fn list_accounts(&mut self, request: impl tonic::IntoRequest<super::ListAccountsRequest>) -> std::result::Result<tonic::Response<super::ListAccountsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListAccounts");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListAccounts"));
+self.inner.unary(req, path, codec).await
+}
+/// Marks target Account as soft-deleted (ie: "trashed") and returns it.
+///
+/// This API does not have a method to restore soft-deleted accounts.
+/// However, they can be restored using the Trash Can UI.
+///
+/// If the accounts are not restored before the expiration time, the account
+/// and all child resources (eg: Properties, GoogleAdsLinks, Streams,
+/// AccessBindings) will be permanently purged.
+/// https://support.google.com/analytics/answer/6154772
+///
+/// Returns an error if the target is not found.
+pub async fn delete_account(&mut self, request: impl tonic::IntoRequest<super::DeleteAccountRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "DeleteAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates an account.
+pub async fn update_account(&mut self, request: impl tonic::IntoRequest<super::UpdateAccountRequest>) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateAccount");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateAccount"));
+self.inner.unary(req, path, codec).await
+}
+/// Requests a ticket for creating an account.
+pub async fn provision_account_ticket(&mut self, request: impl tonic::IntoRequest<super::ProvisionAccountTicketRequest>) -> std::result::Result<tonic::Response<super::ProvisionAccountTicketResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ProvisionAccountTicket");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ProvisionAccountTicket"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns summaries of all accounts accessible by the caller.
+pub async fn list_account_summaries(&mut self, request: impl tonic::IntoRequest<super::ListAccountSummariesRequest>) -> std::result::Result<tonic::Response<super::ListAccountSummariesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListAccountSummaries");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListAccountSummaries"));
+self.inner.unary(req, path, codec).await
+}
+/// Lookup for a single "GA4" Property.
+pub async fn get_property(&mut self, request: impl tonic::IntoRequest<super::GetPropertyRequest>) -> std::result::Result<tonic::Response<super::Property>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetProperty");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetProperty"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns child Properties under the specified parent Account.
+///
+/// Only "GA4" properties will be returned.
+/// Properties will be excluded if the caller does not have access.
+/// Soft-deleted (ie: "trashed") properties are excluded by default.
+/// Returns an empty list if no relevant properties are found.
+pub async fn list_properties(&mut self, request: impl tonic::IntoRequest<super::ListPropertiesRequest>) -> std::result::Result<tonic::Response<super::ListPropertiesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListProperties");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListProperties"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates an "GA4" property with the specified location and attributes.
+pub async fn create_property(&mut self, request: impl tonic::IntoRequest<super::CreatePropertyRequest>) -> std::result::Result<tonic::Response<super::Property>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateProperty");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateProperty"));
+self.inner.unary(req, path, codec).await
+}
+/// Marks target Property as soft-deleted (ie: "trashed") and returns it.
+///
+/// This API does not have a method to restore soft-deleted properties.
+/// However, they can be restored using the Trash Can UI.
+///
+/// If the properties are not restored before the expiration time, the Property
+/// and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings)
+/// will be permanently purged.
+/// https://support.google.com/analytics/answer/6154772
+///
+/// Returns an error if the target is not found, or is not a GA4 Property.
+pub async fn delete_property(&mut self, request: impl tonic::IntoRequest<super::DeletePropertyRequest>) -> std::result::Result<tonic::Response<super::Property>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteProperty");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "DeleteProperty"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a property.
+pub async fn update_property(&mut self, request: impl tonic::IntoRequest<super::UpdatePropertyRequest>) -> std::result::Result<tonic::Response<super::Property>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateProperty");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateProperty"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a FirebaseLink.
+///
+/// Properties can have at most one FirebaseLink.
+pub async fn create_firebase_link(&mut self, request: impl tonic::IntoRequest<super::CreateFirebaseLinkRequest>) -> std::result::Result<tonic::Response<super::FirebaseLink>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateFirebaseLink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateFirebaseLink"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a FirebaseLink on a property
+pub async fn delete_firebase_link(&mut self, request: impl tonic::IntoRequest<super::DeleteFirebaseLinkRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteFirebaseLink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "DeleteFirebaseLink"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists FirebaseLinks on a property.
+/// Properties can have at most one FirebaseLink.
+pub async fn list_firebase_links(&mut self, request: impl tonic::IntoRequest<super::ListFirebaseLinksRequest>) -> std::result::Result<tonic::Response<super::ListFirebaseLinksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListFirebaseLinks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListFirebaseLinks"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a GoogleAdsLink.
+pub async fn create_google_ads_link(&mut self, request: impl tonic::IntoRequest<super::CreateGoogleAdsLinkRequest>) -> std::result::Result<tonic::Response<super::GoogleAdsLink>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateGoogleAdsLink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateGoogleAdsLink"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a GoogleAdsLink on a property
+pub async fn update_google_ads_link(&mut self, request: impl tonic::IntoRequest<super::UpdateGoogleAdsLinkRequest>) -> std::result::Result<tonic::Response<super::GoogleAdsLink>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateGoogleAdsLink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateGoogleAdsLink"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a GoogleAdsLink on a property
+pub async fn delete_google_ads_link(&mut self, request: impl tonic::IntoRequest<super::DeleteGoogleAdsLinkRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteGoogleAdsLink");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "DeleteGoogleAdsLink"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists GoogleAdsLinks on a property.
+pub async fn list_google_ads_links(&mut self, request: impl tonic::IntoRequest<super::ListGoogleAdsLinksRequest>) -> std::result::Result<tonic::Response<super::ListGoogleAdsLinksResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListGoogleAdsLinks");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListGoogleAdsLinks"));
+self.inner.unary(req, path, codec).await
+}
+/// Get data sharing settings on an account.
+/// Data sharing settings are singletons.
+pub async fn get_data_sharing_settings(&mut self, request: impl tonic::IntoRequest<super::GetDataSharingSettingsRequest>) -> std::result::Result<tonic::Response<super::DataSharingSettings>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetDataSharingSettings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetDataSharingSettings"));
+self.inner.unary(req, path, codec).await
+}
+/// Lookup for a single "GA4" MeasurementProtocolSecret.
+pub async fn get_measurement_protocol_secret(&mut self, request: impl tonic::IntoRequest<super::GetMeasurementProtocolSecretRequest>) -> std::result::Result<tonic::Response<super::MeasurementProtocolSecret>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetMeasurementProtocolSecret");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetMeasurementProtocolSecret"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns child MeasurementProtocolSecrets under the specified parent
+/// Property.
+pub async fn list_measurement_protocol_secrets(&mut self, request: impl tonic::IntoRequest<super::ListMeasurementProtocolSecretsRequest>) -> std::result::Result<tonic::Response<super::ListMeasurementProtocolSecretsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListMeasurementProtocolSecrets");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListMeasurementProtocolSecrets"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a measurement protocol secret.
+pub async fn create_measurement_protocol_secret(&mut self, request: impl tonic::IntoRequest<super::CreateMeasurementProtocolSecretRequest>) -> std::result::Result<tonic::Response<super::MeasurementProtocolSecret>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateMeasurementProtocolSecret");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateMeasurementProtocolSecret"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes target MeasurementProtocolSecret.
+pub async fn delete_measurement_protocol_secret(&mut self, request: impl tonic::IntoRequest<super::DeleteMeasurementProtocolSecretRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteMeasurementProtocolSecret");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "DeleteMeasurementProtocolSecret"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a measurement protocol secret.
+pub async fn update_measurement_protocol_secret(&mut self, request: impl tonic::IntoRequest<super::UpdateMeasurementProtocolSecretRequest>) -> std::result::Result<tonic::Response<super::MeasurementProtocolSecret>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateMeasurementProtocolSecret");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateMeasurementProtocolSecret"));
+self.inner.unary(req, path, codec).await
+}
+/// Acknowledges the terms of user data collection for the specified property.
+///
+/// This acknowledgement must be completed (either in the Google Analytics UI
+/// or through this API) before MeasurementProtocolSecret resources may be
+/// created.
+pub async fn acknowledge_user_data_collection(&mut self, request: impl tonic::IntoRequest<super::AcknowledgeUserDataCollectionRequest>) -> std::result::Result<tonic::Response<super::AcknowledgeUserDataCollectionResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/AcknowledgeUserDataCollection");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "AcknowledgeUserDataCollection"));
+self.inner.unary(req, path, codec).await
+}
+/// Searches through all changes to an account or its children given the
+/// specified set of filters.
+pub async fn search_change_history_events(&mut self, request: impl tonic::IntoRequest<super::SearchChangeHistoryEventsRequest>) -> std::result::Result<tonic::Response<super::SearchChangeHistoryEventsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/SearchChangeHistoryEvents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "SearchChangeHistoryEvents"));
+self.inner.unary(req, path, codec).await
+}
+/// Deprecated: Use `CreateKeyEvent` instead.
+/// Creates a conversion event with the specified attributes.
+pub async fn create_conversion_event(&mut self, request: impl tonic::IntoRequest<super::CreateConversionEventRequest>) -> std::result::Result<tonic::Response<super::ConversionEvent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateConversionEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateConversionEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Deprecated: Use `UpdateKeyEvent` instead.
+/// Updates a conversion event with the specified attributes.
+pub async fn update_conversion_event(&mut self, request: impl tonic::IntoRequest<super::UpdateConversionEventRequest>) -> std::result::Result<tonic::Response<super::ConversionEvent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateConversionEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateConversionEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Deprecated: Use `GetKeyEvent` instead.
+/// Retrieve a single conversion event.
+pub async fn get_conversion_event(&mut self, request: impl tonic::IntoRequest<super::GetConversionEventRequest>) -> std::result::Result<tonic::Response<super::ConversionEvent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetConversionEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetConversionEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Deprecated: Use `DeleteKeyEvent` instead.
+/// Deletes a conversion event in a property.
+pub async fn delete_conversion_event(&mut self, request: impl tonic::IntoRequest<super::DeleteConversionEventRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteConversionEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "DeleteConversionEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Deprecated: Use `ListKeyEvents` instead.
+/// Returns a list of conversion events in the specified parent property.
+///
+/// Returns an empty list if no conversion events are found.
+pub async fn list_conversion_events(&mut self, request: impl tonic::IntoRequest<super::ListConversionEventsRequest>) -> std::result::Result<tonic::Response<super::ListConversionEventsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListConversionEvents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListConversionEvents"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a Key Event.
+pub async fn create_key_event(&mut self, request: impl tonic::IntoRequest<super::CreateKeyEventRequest>) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateKeyEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateKeyEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a Key Event.
+pub async fn update_key_event(&mut self, request: impl tonic::IntoRequest<super::UpdateKeyEventRequest>) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateKeyEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateKeyEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Retrieve a single Key Event.
+pub async fn get_key_event(&mut self, request: impl tonic::IntoRequest<super::GetKeyEventRequest>) -> std::result::Result<tonic::Response<super::KeyEvent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetKeyEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetKeyEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a Key Event.
+pub async fn delete_key_event(&mut self, request: impl tonic::IntoRequest<super::DeleteKeyEventRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteKeyEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "DeleteKeyEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a list of Key Events in the specified parent property.
+/// Returns an empty list if no Key Events are found.
+pub async fn list_key_events(&mut self, request: impl tonic::IntoRequest<super::ListKeyEventsRequest>) -> std::result::Result<tonic::Response<super::ListKeyEventsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListKeyEvents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListKeyEvents"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a CustomDimension.
+pub async fn create_custom_dimension(&mut self, request: impl tonic::IntoRequest<super::CreateCustomDimensionRequest>) -> std::result::Result<tonic::Response<super::CustomDimension>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateCustomDimension");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateCustomDimension"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a CustomDimension on a property.
+pub async fn update_custom_dimension(&mut self, request: impl tonic::IntoRequest<super::UpdateCustomDimensionRequest>) -> std::result::Result<tonic::Response<super::CustomDimension>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateCustomDimension");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateCustomDimension"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists CustomDimensions on a property.
+pub async fn list_custom_dimensions(&mut self, request: impl tonic::IntoRequest<super::ListCustomDimensionsRequest>) -> std::result::Result<tonic::Response<super::ListCustomDimensionsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListCustomDimensions");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListCustomDimensions"));
+self.inner.unary(req, path, codec).await
+}
+/// Archives a CustomDimension on a property.
+pub async fn archive_custom_dimension(&mut self, request: impl tonic::IntoRequest<super::ArchiveCustomDimensionRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ArchiveCustomDimension");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ArchiveCustomDimension"));
+self.inner.unary(req, path, codec).await
+}
+/// Lookup for a single CustomDimension.
+pub async fn get_custom_dimension(&mut self, request: impl tonic::IntoRequest<super::GetCustomDimensionRequest>) -> std::result::Result<tonic::Response<super::CustomDimension>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetCustomDimension");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetCustomDimension"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a CustomMetric.
+pub async fn create_custom_metric(&mut self, request: impl tonic::IntoRequest<super::CreateCustomMetricRequest>) -> std::result::Result<tonic::Response<super::CustomMetric>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateCustomMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateCustomMetric"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a CustomMetric on a property.
+pub async fn update_custom_metric(&mut self, request: impl tonic::IntoRequest<super::UpdateCustomMetricRequest>) -> std::result::Result<tonic::Response<super::CustomMetric>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateCustomMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateCustomMetric"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists CustomMetrics on a property.
+pub async fn list_custom_metrics(&mut self, request: impl tonic::IntoRequest<super::ListCustomMetricsRequest>) -> std::result::Result<tonic::Response<super::ListCustomMetricsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListCustomMetrics");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListCustomMetrics"));
+self.inner.unary(req, path, codec).await
+}
+/// Archives a CustomMetric on a property.
+pub async fn archive_custom_metric(&mut self, request: impl tonic::IntoRequest<super::ArchiveCustomMetricRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ArchiveCustomMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ArchiveCustomMetric"));
+self.inner.unary(req, path, codec).await
+}
+/// Lookup for a single CustomMetric.
+pub async fn get_custom_metric(&mut self, request: impl tonic::IntoRequest<super::GetCustomMetricRequest>) -> std::result::Result<tonic::Response<super::CustomMetric>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetCustomMetric");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetCustomMetric"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns the singleton data retention settings for this property.
+pub async fn get_data_retention_settings(&mut self, request: impl tonic::IntoRequest<super::GetDataRetentionSettingsRequest>) -> std::result::Result<tonic::Response<super::DataRetentionSettings>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetDataRetentionSettings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetDataRetentionSettings"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the singleton data retention settings for this property.
+pub async fn update_data_retention_settings(&mut self, request: impl tonic::IntoRequest<super::UpdateDataRetentionSettingsRequest>) -> std::result::Result<tonic::Response<super::DataRetentionSettings>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateDataRetentionSettings");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateDataRetentionSettings"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a DataStream.
+pub async fn create_data_stream(&mut self, request: impl tonic::IntoRequest<super::CreateDataStreamRequest>) -> std::result::Result<tonic::Response<super::DataStream>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/CreateDataStream");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "CreateDataStream"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a DataStream on a property.
+pub async fn delete_data_stream(&mut self, request: impl tonic::IntoRequest<super::DeleteDataStreamRequest>) -> std::result::Result<tonic::Response<()>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/DeleteDataStream");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "DeleteDataStream"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates a DataStream on a property.
+pub async fn update_data_stream(&mut self, request: impl tonic::IntoRequest<super::UpdateDataStreamRequest>) -> std::result::Result<tonic::Response<super::DataStream>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/UpdateDataStream");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "UpdateDataStream"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists DataStreams on a property.
+pub async fn list_data_streams(&mut self, request: impl tonic::IntoRequest<super::ListDataStreamsRequest>) -> std::result::Result<tonic::Response<super::ListDataStreamsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/ListDataStreams");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "ListDataStreams"));
+self.inner.unary(req, path, codec).await
+}
+/// Lookup for a single DataStream.
+pub async fn get_data_stream(&mut self, request: impl tonic::IntoRequest<super::GetDataStreamRequest>) -> std::result::Result<tonic::Response<super::DataStream>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/GetDataStream");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "GetDataStream"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns a customized report of data access records. The report provides
+/// records of each time a user reads Google Analytics reporting data. Access
+/// records are retained for up to 2 years.
+///
+/// Data Access Reports can be requested for a property. Reports may be
+/// requested for any property, but dimensions that aren't related to quota can
+/// only be requested on Google Analytics 360 properties. This method is only
+/// available to Administrators.
+///
+/// These data access records include GA4 UI Reporting, GA4 UI Explorations,
+/// GA4 Data API, and other products like Firebase & Admob that can retrieve
+/// data from Google Analytics through a linkage. These records don't include
+/// property configuration changes like adding a stream or changing a
+/// property's time zone. For configuration change history, see
+/// [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+pub async fn run_access_report(&mut self, request: impl tonic::IntoRequest<super::RunAccessReportRequest>) -> std::result::Result<tonic::Response<super::RunAccessReportResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.analytics.admin.v1beta.AnalyticsAdminService/RunAccessReport");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.analytics.admin.v1beta.AnalyticsAdminService", "RunAccessReport"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

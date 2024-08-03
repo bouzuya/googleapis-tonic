@@ -2,1138 +2,877 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProtoSchema {
-    #[prost(message, optional, tag = "1")]
-    pub proto_descriptor: ::core::option::Option<::prost_types::DescriptorProto>,
+#[prost(message, optional, tag = "1")]
+pub proto_descriptor: ::core::option::Option<::prost_types::DescriptorProto>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProtoRows {
-    #[prost(bytes = "vec", repeated, tag = "1")]
-    pub serialized_rows: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
+#[prost(bytes = "vec", repeated, tag = "1")]
+pub serialized_rows: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArrowSchema {
-    #[prost(bytes = "vec", tag = "1")]
-    pub serialized_schema: ::prost::alloc::vec::Vec<u8>,
+#[prost(bytes = "vec", tag = "1")]
+pub serialized_schema: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ArrowRecordBatch {
-    #[prost(bytes = "vec", tag = "1")]
-    pub serialized_record_batch: ::prost::alloc::vec::Vec<u8>,
+#[prost(bytes = "vec", tag = "1")]
+pub serialized_record_batch: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ArrowSerializationOptions {
-    #[prost(enumeration = "arrow_serialization_options::Format", tag = "1")]
-    pub format: i32,
+#[prost(enumeration = "arrow_serialization_options::Format", tag = "1")]
+pub format: i32,
 }
 /// Nested message and enum types in `ArrowSerializationOptions`.
 pub mod arrow_serialization_options {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Format {
-        Unspecified = 0,
-        Arrow014 = 1,
-        Arrow015 = 2,
-    }
-    impl Format {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Format::Unspecified => "FORMAT_UNSPECIFIED",
-                Format::Arrow014 => "ARROW_0_14",
-                Format::Arrow015 => "ARROW_0_15",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-                "ARROW_0_14" => Some(Self::Arrow014),
-                "ARROW_0_15" => Some(Self::Arrow015),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Format {
+Unspecified = 0,
+Arrow014 = 1,
+Arrow015 = 2,
+}
+impl Format {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Format::Unspecified => "FORMAT_UNSPECIFIED",
+Format::Arrow014 => "ARROW_0_14",
+Format::Arrow015 => "ARROW_0_15",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+"ARROW_0_14" => Some(Self::Arrow014),
+"ARROW_0_15" => Some(Self::Arrow015),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvroSchema {
-    #[prost(string, tag = "1")]
-    pub schema: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub schema: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AvroRows {
-    #[prost(bytes = "vec", tag = "1")]
-    pub serialized_binary_rows: ::prost::alloc::vec::Vec<u8>,
+#[prost(bytes = "vec", tag = "1")]
+pub serialized_binary_rows: ::prost::alloc::vec::Vec<u8>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableSchema {
-    #[prost(message, repeated, tag = "1")]
-    pub fields: ::prost::alloc::vec::Vec<TableFieldSchema>,
+#[prost(message, repeated, tag = "1")]
+pub fields: ::prost::alloc::vec::Vec<TableFieldSchema>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TableFieldSchema {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "table_field_schema::Type", tag = "2")]
-    pub r#type: i32,
-    #[prost(enumeration = "table_field_schema::Mode", tag = "3")]
-    pub mode: i32,
-    #[prost(message, repeated, tag = "4")]
-    pub fields: ::prost::alloc::vec::Vec<TableFieldSchema>,
-    #[prost(string, tag = "6")]
-    pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "table_field_schema::Type", tag = "2")]
+pub r#type: i32,
+#[prost(enumeration = "table_field_schema::Mode", tag = "3")]
+pub mode: i32,
+#[prost(message, repeated, tag = "4")]
+pub fields: ::prost::alloc::vec::Vec<TableFieldSchema>,
+#[prost(string, tag = "6")]
+pub description: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `TableFieldSchema`.
 pub mod table_field_schema {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        String = 1,
-        Int64 = 2,
-        Double = 3,
-        Struct = 4,
-        Bytes = 5,
-        Bool = 6,
-        Timestamp = 7,
-        Date = 8,
-        Time = 9,
-        Datetime = 10,
-        Geography = 11,
-        Numeric = 12,
-        Bignumeric = 13,
-        Interval = 14,
-        Json = 15,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::String => "STRING",
-                Type::Int64 => "INT64",
-                Type::Double => "DOUBLE",
-                Type::Struct => "STRUCT",
-                Type::Bytes => "BYTES",
-                Type::Bool => "BOOL",
-                Type::Timestamp => "TIMESTAMP",
-                Type::Date => "DATE",
-                Type::Time => "TIME",
-                Type::Datetime => "DATETIME",
-                Type::Geography => "GEOGRAPHY",
-                Type::Numeric => "NUMERIC",
-                Type::Bignumeric => "BIGNUMERIC",
-                Type::Interval => "INTERVAL",
-                Type::Json => "JSON",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "STRING" => Some(Self::String),
-                "INT64" => Some(Self::Int64),
-                "DOUBLE" => Some(Self::Double),
-                "STRUCT" => Some(Self::Struct),
-                "BYTES" => Some(Self::Bytes),
-                "BOOL" => Some(Self::Bool),
-                "TIMESTAMP" => Some(Self::Timestamp),
-                "DATE" => Some(Self::Date),
-                "TIME" => Some(Self::Time),
-                "DATETIME" => Some(Self::Datetime),
-                "GEOGRAPHY" => Some(Self::Geography),
-                "NUMERIC" => Some(Self::Numeric),
-                "BIGNUMERIC" => Some(Self::Bignumeric),
-                "INTERVAL" => Some(Self::Interval),
-                "JSON" => Some(Self::Json),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Mode {
-        Unspecified = 0,
-        Nullable = 1,
-        Required = 2,
-        Repeated = 3,
-    }
-    impl Mode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Mode::Unspecified => "MODE_UNSPECIFIED",
-                Mode::Nullable => "NULLABLE",
-                Mode::Required => "REQUIRED",
-                Mode::Repeated => "REPEATED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "NULLABLE" => Some(Self::Nullable),
-                "REQUIRED" => Some(Self::Required),
-                "REPEATED" => Some(Self::Repeated),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+String = 1,
+Int64 = 2,
+Double = 3,
+Struct = 4,
+Bytes = 5,
+Bool = 6,
+Timestamp = 7,
+Date = 8,
+Time = 9,
+Datetime = 10,
+Geography = 11,
+Numeric = 12,
+Bignumeric = 13,
+Interval = 14,
+Json = 15,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::String => "STRING",
+Type::Int64 => "INT64",
+Type::Double => "DOUBLE",
+Type::Struct => "STRUCT",
+Type::Bytes => "BYTES",
+Type::Bool => "BOOL",
+Type::Timestamp => "TIMESTAMP",
+Type::Date => "DATE",
+Type::Time => "TIME",
+Type::Datetime => "DATETIME",
+Type::Geography => "GEOGRAPHY",
+Type::Numeric => "NUMERIC",
+Type::Bignumeric => "BIGNUMERIC",
+Type::Interval => "INTERVAL",
+Type::Json => "JSON",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"STRING" => Some(Self::String),
+"INT64" => Some(Self::Int64),
+"DOUBLE" => Some(Self::Double),
+"STRUCT" => Some(Self::Struct),
+"BYTES" => Some(Self::Bytes),
+"BOOL" => Some(Self::Bool),
+"TIMESTAMP" => Some(Self::Timestamp),
+"DATE" => Some(Self::Date),
+"TIME" => Some(Self::Time),
+"DATETIME" => Some(Self::Datetime),
+"GEOGRAPHY" => Some(Self::Geography),
+"NUMERIC" => Some(Self::Numeric),
+"BIGNUMERIC" => Some(Self::Bignumeric),
+"INTERVAL" => Some(Self::Interval),
+"JSON" => Some(Self::Json),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Mode {
+Unspecified = 0,
+Nullable = 1,
+Required = 2,
+Repeated = 3,
+}
+impl Mode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Mode::Unspecified => "MODE_UNSPECIFIED",
+Mode::Nullable => "NULLABLE",
+Mode::Required => "REQUIRED",
+Mode::Repeated => "REPEATED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"NULLABLE" => Some(Self::Nullable),
+"REQUIRED" => Some(Self::Required),
+"REPEATED" => Some(Self::Repeated),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadSession {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "DataFormat", tag = "3")]
-    pub data_format: i32,
-    #[prost(string, tag = "6")]
-    pub table: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "7")]
-    pub table_modifiers: ::core::option::Option<read_session::TableModifiers>,
-    #[prost(message, optional, tag = "8")]
-    pub read_options: ::core::option::Option<read_session::TableReadOptions>,
-    #[prost(message, repeated, tag = "10")]
-    pub streams: ::prost::alloc::vec::Vec<ReadStream>,
-    #[prost(oneof = "read_session::Schema", tags = "4, 5")]
-    pub schema: ::core::option::Option<read_session::Schema>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "DataFormat", tag = "3")]
+pub data_format: i32,
+#[prost(string, tag = "6")]
+pub table: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "7")]
+pub table_modifiers: ::core::option::Option<read_session::TableModifiers>,
+#[prost(message, optional, tag = "8")]
+pub read_options: ::core::option::Option<read_session::TableReadOptions>,
+#[prost(message, repeated, tag = "10")]
+pub streams: ::prost::alloc::vec::Vec<ReadStream>,
+#[prost(oneof = "read_session::Schema", tags = "4, 5")]
+pub schema: ::core::option::Option<read_session::Schema>,
 }
 /// Nested message and enum types in `ReadSession`.
 pub mod read_session {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct TableModifiers {
-        #[prost(message, optional, tag = "1")]
-        pub snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct TableReadOptions {
-        #[prost(string, repeated, tag = "1")]
-        pub selected_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, tag = "2")]
-        pub row_restriction: ::prost::alloc::string::String,
-        #[prost(message, optional, tag = "3")]
-        pub arrow_serialization_options: ::core::option::Option<
-            super::ArrowSerializationOptions,
-        >,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Schema {
-        #[prost(message, tag = "4")]
-        AvroSchema(super::AvroSchema),
-        #[prost(message, tag = "5")]
-        ArrowSchema(super::ArrowSchema),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct TableModifiers {
+#[prost(message, optional, tag = "1")]
+pub snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TableReadOptions {
+#[prost(string, repeated, tag = "1")]
+pub selected_fields: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "2")]
+pub row_restriction: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub arrow_serialization_options: ::core::option::Option<super::ArrowSerializationOptions>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Schema {
+#[prost(message, tag = "4")]
+AvroSchema(super::AvroSchema),
+#[prost(message, tag = "5")]
+ArrowSchema(super::ArrowSchema),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadStream {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WriteStream {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "write_stream::Type", tag = "2")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub table_schema: ::core::option::Option<TableSchema>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "write_stream::Type", tag = "2")]
+pub r#type: i32,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub table_schema: ::core::option::Option<TableSchema>,
 }
 /// Nested message and enum types in `WriteStream`.
 pub mod write_stream {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Type {
-        Unspecified = 0,
-        Committed = 1,
-        Pending = 2,
-        Buffered = 3,
-    }
-    impl Type {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Type::Unspecified => "TYPE_UNSPECIFIED",
-                Type::Committed => "COMMITTED",
-                Type::Pending => "PENDING",
-                Type::Buffered => "BUFFERED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "COMMITTED" => Some(Self::Committed),
-                "PENDING" => Some(Self::Pending),
-                "BUFFERED" => Some(Self::Buffered),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Type {
+Unspecified = 0,
+Committed = 1,
+Pending = 2,
+Buffered = 3,
+}
+impl Type {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Type::Unspecified => "TYPE_UNSPECIFIED",
+Type::Committed => "COMMITTED",
+Type::Pending => "PENDING",
+Type::Buffered => "BUFFERED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"COMMITTED" => Some(Self::Committed),
+"PENDING" => Some(Self::Pending),
+"BUFFERED" => Some(Self::Buffered),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DataFormat {
-    Unspecified = 0,
-    Avro = 1,
-    Arrow = 2,
+Unspecified = 0,
+Avro = 1,
+Arrow = 2,
 }
 impl DataFormat {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            DataFormat::Unspecified => "DATA_FORMAT_UNSPECIFIED",
-            DataFormat::Avro => "AVRO",
-            DataFormat::Arrow => "ARROW",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "DATA_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
-            "AVRO" => Some(Self::Avro),
-            "ARROW" => Some(Self::Arrow),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DataFormat::Unspecified => "DATA_FORMAT_UNSPECIFIED",
+DataFormat::Avro => "AVRO",
+DataFormat::Arrow => "ARROW",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DATA_FORMAT_UNSPECIFIED" => Some(Self::Unspecified),
+"AVRO" => Some(Self::Avro),
+"ARROW" => Some(Self::Arrow),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateReadSessionRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub read_session: ::core::option::Option<ReadSession>,
-    #[prost(int32, tag = "3")]
-    pub max_stream_count: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub read_session: ::core::option::Option<ReadSession>,
+#[prost(int32, tag = "3")]
+pub max_stream_count: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadRowsRequest {
-    #[prost(string, tag = "1")]
-    pub read_stream: ::prost::alloc::string::String,
-    #[prost(int64, tag = "2")]
-    pub offset: i64,
+#[prost(string, tag = "1")]
+pub read_stream: ::prost::alloc::string::String,
+#[prost(int64, tag = "2")]
+pub offset: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct ThrottleState {
-    #[prost(int32, tag = "1")]
-    pub throttle_percent: i32,
+#[prost(int32, tag = "1")]
+pub throttle_percent: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct StreamStats {
-    #[prost(message, optional, tag = "2")]
-    pub progress: ::core::option::Option<stream_stats::Progress>,
+#[prost(message, optional, tag = "2")]
+pub progress: ::core::option::Option<stream_stats::Progress>,
 }
 /// Nested message and enum types in `StreamStats`.
 pub mod stream_stats {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct Progress {
-        #[prost(double, tag = "1")]
-        pub at_response_start: f64,
-        #[prost(double, tag = "2")]
-        pub at_response_end: f64,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Progress {
+#[prost(double, tag = "1")]
+pub at_response_start: f64,
+#[prost(double, tag = "2")]
+pub at_response_end: f64,
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadRowsResponse {
-    #[prost(int64, tag = "6")]
-    pub row_count: i64,
-    #[prost(message, optional, tag = "2")]
-    pub stats: ::core::option::Option<StreamStats>,
-    #[prost(message, optional, tag = "5")]
-    pub throttle_state: ::core::option::Option<ThrottleState>,
-    #[prost(oneof = "read_rows_response::Rows", tags = "3, 4")]
-    pub rows: ::core::option::Option<read_rows_response::Rows>,
-    #[prost(oneof = "read_rows_response::Schema", tags = "7, 8")]
-    pub schema: ::core::option::Option<read_rows_response::Schema>,
+#[prost(int64, tag = "6")]
+pub row_count: i64,
+#[prost(message, optional, tag = "2")]
+pub stats: ::core::option::Option<StreamStats>,
+#[prost(message, optional, tag = "5")]
+pub throttle_state: ::core::option::Option<ThrottleState>,
+#[prost(oneof = "read_rows_response::Rows", tags = "3, 4")]
+pub rows: ::core::option::Option<read_rows_response::Rows>,
+#[prost(oneof = "read_rows_response::Schema", tags = "7, 8")]
+pub schema: ::core::option::Option<read_rows_response::Schema>,
 }
 /// Nested message and enum types in `ReadRowsResponse`.
 pub mod read_rows_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Rows {
-        #[prost(message, tag = "3")]
-        AvroRows(super::AvroRows),
-        #[prost(message, tag = "4")]
-        ArrowRecordBatch(super::ArrowRecordBatch),
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Schema {
-        #[prost(message, tag = "7")]
-        AvroSchema(super::AvroSchema),
-        #[prost(message, tag = "8")]
-        ArrowSchema(super::ArrowSchema),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Rows {
+#[prost(message, tag = "3")]
+AvroRows(super::AvroRows),
+#[prost(message, tag = "4")]
+ArrowRecordBatch(super::ArrowRecordBatch),
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Schema {
+#[prost(message, tag = "7")]
+AvroSchema(super::AvroSchema),
+#[prost(message, tag = "8")]
+ArrowSchema(super::ArrowSchema),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SplitReadStreamRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(double, tag = "2")]
-    pub fraction: f64,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(double, tag = "2")]
+pub fraction: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SplitReadStreamResponse {
-    #[prost(message, optional, tag = "1")]
-    pub primary_stream: ::core::option::Option<ReadStream>,
-    #[prost(message, optional, tag = "2")]
-    pub remainder_stream: ::core::option::Option<ReadStream>,
+#[prost(message, optional, tag = "1")]
+pub primary_stream: ::core::option::Option<ReadStream>,
+#[prost(message, optional, tag = "2")]
+pub remainder_stream: ::core::option::Option<ReadStream>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateWriteStreamRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub write_stream: ::core::option::Option<WriteStream>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub write_stream: ::core::option::Option<WriteStream>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppendRowsRequest {
-    #[prost(string, tag = "1")]
-    pub write_stream: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub offset: ::core::option::Option<i64>,
-    #[prost(string, tag = "6")]
-    pub trace_id: ::prost::alloc::string::String,
-    #[prost(oneof = "append_rows_request::Rows", tags = "4")]
-    pub rows: ::core::option::Option<append_rows_request::Rows>,
+#[prost(string, tag = "1")]
+pub write_stream: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub offset: ::core::option::Option<i64>,
+#[prost(string, tag = "6")]
+pub trace_id: ::prost::alloc::string::String,
+#[prost(oneof = "append_rows_request::Rows", tags = "4")]
+pub rows: ::core::option::Option<append_rows_request::Rows>,
 }
 /// Nested message and enum types in `AppendRowsRequest`.
 pub mod append_rows_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct ProtoData {
-        #[prost(message, optional, tag = "1")]
-        pub writer_schema: ::core::option::Option<super::ProtoSchema>,
-        #[prost(message, optional, tag = "2")]
-        pub rows: ::core::option::Option<super::ProtoRows>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Rows {
-        #[prost(message, tag = "4")]
-        ProtoRows(ProtoData),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ProtoData {
+#[prost(message, optional, tag = "1")]
+pub writer_schema: ::core::option::Option<super::ProtoSchema>,
+#[prost(message, optional, tag = "2")]
+pub rows: ::core::option::Option<super::ProtoRows>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Rows {
+#[prost(message, tag = "4")]
+ProtoRows(ProtoData),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AppendRowsResponse {
-    #[prost(message, optional, tag = "3")]
-    pub updated_schema: ::core::option::Option<TableSchema>,
-    #[prost(oneof = "append_rows_response::Response", tags = "1, 2")]
-    pub response: ::core::option::Option<append_rows_response::Response>,
+#[prost(message, optional, tag = "3")]
+pub updated_schema: ::core::option::Option<TableSchema>,
+#[prost(oneof = "append_rows_response::Response", tags = "1, 2")]
+pub response: ::core::option::Option<append_rows_response::Response>,
 }
 /// Nested message and enum types in `AppendRowsResponse`.
 pub mod append_rows_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct AppendResult {
-        #[prost(message, optional, tag = "1")]
-        pub offset: ::core::option::Option<i64>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Response {
-        #[prost(message, tag = "1")]
-        AppendResult(AppendResult),
-        #[prost(message, tag = "2")]
-        Error(super::super::super::super::super::rpc::Status),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AppendResult {
+#[prost(message, optional, tag = "1")]
+pub offset: ::core::option::Option<i64>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Response {
+#[prost(message, tag = "1")]
+AppendResult(AppendResult),
+#[prost(message, tag = "2")]
+Error(super::super::super::super::super::rpc::Status),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetWriteStreamRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCommitWriteStreamsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub write_streams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub write_streams: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BatchCommitWriteStreamsResponse {
-    #[prost(message, optional, tag = "1")]
-    pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, repeated, tag = "2")]
-    pub stream_errors: ::prost::alloc::vec::Vec<StorageError>,
+#[prost(message, optional, tag = "1")]
+pub commit_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, repeated, tag = "2")]
+pub stream_errors: ::prost::alloc::vec::Vec<StorageError>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FinalizeWriteStreamRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FinalizeWriteStreamResponse {
-    #[prost(int64, tag = "1")]
-    pub row_count: i64,
+#[prost(int64, tag = "1")]
+pub row_count: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FlushRowsRequest {
-    #[prost(string, tag = "1")]
-    pub write_stream: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub offset: ::core::option::Option<i64>,
+#[prost(string, tag = "1")]
+pub write_stream: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub offset: ::core::option::Option<i64>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct FlushRowsResponse {
-    #[prost(int64, tag = "1")]
-    pub offset: i64,
+#[prost(int64, tag = "1")]
+pub offset: i64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct StorageError {
-    #[prost(enumeration = "storage_error::StorageErrorCode", tag = "1")]
-    pub code: i32,
-    #[prost(string, tag = "2")]
-    pub entity: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub error_message: ::prost::alloc::string::String,
+#[prost(enumeration = "storage_error::StorageErrorCode", tag = "1")]
+pub code: i32,
+#[prost(string, tag = "2")]
+pub entity: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub error_message: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `StorageError`.
 pub mod storage_error {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum StorageErrorCode {
-        Unspecified = 0,
-        TableNotFound = 1,
-        StreamAlreadyCommitted = 2,
-        StreamNotFound = 3,
-        InvalidStreamType = 4,
-        InvalidStreamState = 5,
-        StreamFinalized = 6,
-    }
-    impl StorageErrorCode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                StorageErrorCode::Unspecified => "STORAGE_ERROR_CODE_UNSPECIFIED",
-                StorageErrorCode::TableNotFound => "TABLE_NOT_FOUND",
-                StorageErrorCode::StreamAlreadyCommitted => "STREAM_ALREADY_COMMITTED",
-                StorageErrorCode::StreamNotFound => "STREAM_NOT_FOUND",
-                StorageErrorCode::InvalidStreamType => "INVALID_STREAM_TYPE",
-                StorageErrorCode::InvalidStreamState => "INVALID_STREAM_STATE",
-                StorageErrorCode::StreamFinalized => "STREAM_FINALIZED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STORAGE_ERROR_CODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "TABLE_NOT_FOUND" => Some(Self::TableNotFound),
-                "STREAM_ALREADY_COMMITTED" => Some(Self::StreamAlreadyCommitted),
-                "STREAM_NOT_FOUND" => Some(Self::StreamNotFound),
-                "INVALID_STREAM_TYPE" => Some(Self::InvalidStreamType),
-                "INVALID_STREAM_STATE" => Some(Self::InvalidStreamState),
-                "STREAM_FINALIZED" => Some(Self::StreamFinalized),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum StorageErrorCode {
+Unspecified = 0,
+TableNotFound = 1,
+StreamAlreadyCommitted = 2,
+StreamNotFound = 3,
+InvalidStreamType = 4,
+InvalidStreamState = 5,
+StreamFinalized = 6,
+}
+impl StorageErrorCode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+StorageErrorCode::Unspecified => "STORAGE_ERROR_CODE_UNSPECIFIED",
+StorageErrorCode::TableNotFound => "TABLE_NOT_FOUND",
+StorageErrorCode::StreamAlreadyCommitted => "STREAM_ALREADY_COMMITTED",
+StorageErrorCode::StreamNotFound => "STREAM_NOT_FOUND",
+StorageErrorCode::InvalidStreamType => "INVALID_STREAM_TYPE",
+StorageErrorCode::InvalidStreamState => "INVALID_STREAM_STATE",
+StorageErrorCode::StreamFinalized => "STREAM_FINALIZED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STORAGE_ERROR_CODE_UNSPECIFIED" => Some(Self::Unspecified),
+"TABLE_NOT_FOUND" => Some(Self::TableNotFound),
+"STREAM_ALREADY_COMMITTED" => Some(Self::StreamAlreadyCommitted),
+"STREAM_NOT_FOUND" => Some(Self::StreamNotFound),
+"INVALID_STREAM_TYPE" => Some(Self::InvalidStreamType),
+"INVALID_STREAM_STATE" => Some(Self::InvalidStreamState),
+"STREAM_FINALIZED" => Some(Self::StreamFinalized),
+_ => None,
+}
+}
+}
 }
 /// Generated client implementations.
 pub mod big_query_read_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// BigQuery Read API.
-    ///
-    /// The Read API can be used to read data from BigQuery.
-    ///
-    /// New code should use the v1 Read API going forward, if they don't use Write
-    /// API at the same time.
-    #[derive(Debug, Clone)]
-    pub struct BigQueryReadClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> BigQueryReadClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> BigQueryReadClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            BigQueryReadClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a new read session. A read session divides the contents of a
-        /// BigQuery table into one or more streams, which can then be used to read
-        /// data from the table. The read session also specifies properties of the
-        /// data to be read, such as a list of columns or a push-down filter describing
-        /// the rows to be returned.
-        ///
-        /// A particular row can be read by at most one stream. When the caller has
-        /// reached the end of each stream in the session, then all the data in the
-        /// table has been read.
-        ///
-        /// Data is assigned to each stream such that roughly the same number of
-        /// rows can be read from each stream. Because the server-side unit for
-        /// assigning data is collections of rows, the API does not guarantee that
-        /// each stream will return the same number or rows. Additionally, the
-        /// limits are enforced based on the number of pre-filtered rows, so some
-        /// filters can lead to lopsided assignments.
-        ///
-        /// Read sessions automatically expire 6 hours after they are created and do
-        /// not require manual clean-up by the caller.
-        pub async fn create_read_session(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateReadSessionRequest>,
-        ) -> std::result::Result<tonic::Response<super::ReadSession>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryRead/CreateReadSession",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryRead",
-                        "CreateReadSession",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Reads rows from the stream in the format prescribed by the ReadSession.
-        /// Each response contains one or more table rows, up to a maximum of 100 MiB
-        /// per response; read requests which attempt to read individual rows larger
-        /// than 100 MiB will fail.
-        ///
-        /// Each request also returns a set of stream statistics reflecting the current
-        /// state of the stream.
-        pub async fn read_rows(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ReadRowsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::ReadRowsResponse>>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryRead/ReadRows",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryRead",
-                        "ReadRows",
-                    ),
-                );
-            self.inner.server_streaming(req, path, codec).await
-        }
-        /// Splits a given `ReadStream` into two `ReadStream` objects. These
-        /// `ReadStream` objects are referred to as the primary and the residual
-        /// streams of the split. The original `ReadStream` can still be read from in
-        /// the same manner as before. Both of the returned `ReadStream` objects can
-        /// also be read from, and the rows returned by both child streams will be
-        /// the same as the rows read from the original stream.
-        ///
-        /// Moreover, the two child streams will be allocated back-to-back in the
-        /// original `ReadStream`. Concretely, it is guaranteed that for streams
-        /// original, primary, and residual, that original[0-j] = primary[0-j] and
-        /// original[j-n] = residual[0-m] once the streams have been read to
-        /// completion.
-        pub async fn split_read_stream(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SplitReadStreamRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SplitReadStreamResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryRead/SplitReadStream",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryRead",
-                        "SplitReadStream",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// BigQuery Read API.
+///
+/// The Read API can be used to read data from BigQuery.
+///
+/// New code should use the v1 Read API going forward, if they don't use Write
+/// API at the same time.
+#[derive(Debug, Clone)]
+pub struct BigQueryReadClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> BigQueryReadClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> BigQueryReadClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+BigQueryReadClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a new read session. A read session divides the contents of a
+/// BigQuery table into one or more streams, which can then be used to read
+/// data from the table. The read session also specifies properties of the
+/// data to be read, such as a list of columns or a push-down filter describing
+/// the rows to be returned.
+///
+/// A particular row can be read by at most one stream. When the caller has
+/// reached the end of each stream in the session, then all the data in the
+/// table has been read.
+///
+/// Data is assigned to each stream such that roughly the same number of
+/// rows can be read from each stream. Because the server-side unit for
+/// assigning data is collections of rows, the API does not guarantee that
+/// each stream will return the same number or rows. Additionally, the
+/// limits are enforced based on the number of pre-filtered rows, so some
+/// filters can lead to lopsided assignments.
+///
+/// Read sessions automatically expire 6 hours after they are created and do
+/// not require manual clean-up by the caller.
+pub async fn create_read_session(&mut self, request: impl tonic::IntoRequest<super::CreateReadSessionRequest>) -> std::result::Result<tonic::Response<super::ReadSession>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryRead/CreateReadSession");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryRead", "CreateReadSession"));
+self.inner.unary(req, path, codec).await
+}
+/// Reads rows from the stream in the format prescribed by the ReadSession.
+/// Each response contains one or more table rows, up to a maximum of 100 MiB
+/// per response; read requests which attempt to read individual rows larger
+/// than 100 MiB will fail.
+///
+/// Each request also returns a set of stream statistics reflecting the current
+/// state of the stream.
+pub async fn read_rows(&mut self, request: impl tonic::IntoRequest<super::ReadRowsRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::ReadRowsResponse>>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryRead/ReadRows");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryRead", "ReadRows"));
+self.inner.server_streaming(req, path, codec).await
+}
+/// Splits a given `ReadStream` into two `ReadStream` objects. These
+/// `ReadStream` objects are referred to as the primary and the residual
+/// streams of the split. The original `ReadStream` can still be read from in
+/// the same manner as before. Both of the returned `ReadStream` objects can
+/// also be read from, and the rows returned by both child streams will be
+/// the same as the rows read from the original stream.
+///
+/// Moreover, the two child streams will be allocated back-to-back in the
+/// original `ReadStream`. Concretely, it is guaranteed that for streams
+/// original, primary, and residual, that original[0-j] = primary[0-j] and
+/// original[j-n] = residual[0-m] once the streams have been read to
+/// completion.
+pub async fn split_read_stream(&mut self, request: impl tonic::IntoRequest<super::SplitReadStreamRequest>) -> std::result::Result<tonic::Response<super::SplitReadStreamResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryRead/SplitReadStream");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryRead", "SplitReadStream"));
+self.inner.unary(req, path, codec).await
+}
+}
 }
 /// Generated client implementations.
 pub mod big_query_write_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// BigQuery Write API.
-    ///
-    /// The Write API can be used to write data to BigQuery.
-    ///
-    ///
-    /// The [google.cloud.bigquery.storage.v1
-    ///   API](/bigquery/docs/reference/storage/rpc/google.cloud.bigquery.storage.v1)
-    ///   should be used instead of the v1beta2 API for BigQueryWrite operations.
-    #[derive(Debug, Clone)]
-    pub struct BigQueryWriteClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> BigQueryWriteClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> BigQueryWriteClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            BigQueryWriteClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Creates a write stream to the given table.
-        /// Additionally, every table has a special COMMITTED stream named '_default'
-        /// to which data can be written. This stream doesn't need to be created using
-        /// CreateWriteStream. It is a stream that can be used simultaneously by any
-        /// number of clients. Data written to this stream is considered committed as
-        /// soon as an acknowledgement is received.
-        pub async fn create_write_stream(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateWriteStreamRequest>,
-        ) -> std::result::Result<tonic::Response<super::WriteStream>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/CreateWriteStream",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryWrite",
-                        "CreateWriteStream",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Appends data to the given stream.
-        ///
-        /// If `offset` is specified, the `offset` is checked against the end of
-        /// stream. The server returns `OUT_OF_RANGE` in `AppendRowsResponse` if an
-        /// attempt is made to append to an offset beyond the current end of the stream
-        /// or `ALREADY_EXISTS` if user provids an `offset` that has already been
-        /// written to. User can retry with adjusted offset within the same RPC
-        /// stream. If `offset` is not specified, append happens at the end of the
-        /// stream.
-        ///
-        /// The response contains the offset at which the append happened. Responses
-        /// are received in the same order in which requests are sent. There will be
-        /// one response for each successful request. If the `offset` is not set in
-        /// response, it means append didn't happen due to some errors. If one request
-        /// fails, all the subsequent requests will also fail until a success request
-        /// is made again.
-        ///
-        /// If the stream is of `PENDING` type, data will only be available for read
-        /// operations after the stream is committed.
-        pub async fn append_rows(
-            &mut self,
-            request: impl tonic::IntoStreamingRequest<Message = super::AppendRowsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::AppendRowsResponse>>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/AppendRows",
-            );
-            let mut req = request.into_streaming_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryWrite",
-                        "AppendRows",
-                    ),
-                );
-            self.inner.streaming(req, path, codec).await
-        }
-        /// Gets a write stream.
-        pub async fn get_write_stream(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetWriteStreamRequest>,
-        ) -> std::result::Result<tonic::Response<super::WriteStream>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/GetWriteStream",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryWrite",
-                        "GetWriteStream",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Finalize a write stream so that no new data can be appended to the
-        /// stream. Finalize is not supported on the '_default' stream.
-        pub async fn finalize_write_stream(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FinalizeWriteStreamRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FinalizeWriteStreamResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/FinalizeWriteStream",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryWrite",
-                        "FinalizeWriteStream",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Atomically commits a group of `PENDING` streams that belong to the same
-        /// `parent` table.
-        /// Streams must be finalized before commit and cannot be committed multiple
-        /// times. Once a stream is committed, data in the stream becomes available
-        /// for read operations.
-        pub async fn batch_commit_write_streams(
-            &mut self,
-            request: impl tonic::IntoRequest<super::BatchCommitWriteStreamsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::BatchCommitWriteStreamsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/BatchCommitWriteStreams",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryWrite",
-                        "BatchCommitWriteStreams",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Flushes rows to a BUFFERED stream.
-        /// If users are appending rows to BUFFERED stream, flush operation is
-        /// required in order for the rows to become available for reading. A
-        /// Flush operation flushes up to any previously flushed offset in a BUFFERED
-        /// stream, to the offset specified in the request.
-        /// Flush is not supported on the _default stream, since it is not BUFFERED.
-        pub async fn flush_rows(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FlushRowsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::FlushRowsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/FlushRows",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.bigquery.storage.v1beta2.BigQueryWrite",
-                        "FlushRows",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// BigQuery Write API.
+///
+/// The Write API can be used to write data to BigQuery.
+///
+///
+/// The [google.cloud.bigquery.storage.v1
+///   API](/bigquery/docs/reference/storage/rpc/google.cloud.bigquery.storage.v1)
+///   should be used instead of the v1beta2 API for BigQueryWrite operations.
+#[derive(Debug, Clone)]
+pub struct BigQueryWriteClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> BigQueryWriteClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> BigQueryWriteClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+BigQueryWriteClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Creates a write stream to the given table.
+/// Additionally, every table has a special COMMITTED stream named '_default'
+/// to which data can be written. This stream doesn't need to be created using
+/// CreateWriteStream. It is a stream that can be used simultaneously by any
+/// number of clients. Data written to this stream is considered committed as
+/// soon as an acknowledgement is received.
+pub async fn create_write_stream(&mut self, request: impl tonic::IntoRequest<super::CreateWriteStreamRequest>) -> std::result::Result<tonic::Response<super::WriteStream>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/CreateWriteStream");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryWrite", "CreateWriteStream"));
+self.inner.unary(req, path, codec).await
+}
+/// Appends data to the given stream.
+///
+/// If `offset` is specified, the `offset` is checked against the end of
+/// stream. The server returns `OUT_OF_RANGE` in `AppendRowsResponse` if an
+/// attempt is made to append to an offset beyond the current end of the stream
+/// or `ALREADY_EXISTS` if user provids an `offset` that has already been
+/// written to. User can retry with adjusted offset within the same RPC
+/// stream. If `offset` is not specified, append happens at the end of the
+/// stream.
+///
+/// The response contains the offset at which the append happened. Responses
+/// are received in the same order in which requests are sent. There will be
+/// one response for each successful request. If the `offset` is not set in
+/// response, it means append didn't happen due to some errors. If one request
+/// fails, all the subsequent requests will also fail until a success request
+/// is made again.
+///
+/// If the stream is of `PENDING` type, data will only be available for read
+/// operations after the stream is committed.
+pub async fn append_rows(&mut self, request: impl tonic::IntoStreamingRequest<Message = super::AppendRowsRequest>) -> std::result::Result<tonic::Response<tonic::codec::Streaming<super::AppendRowsResponse>>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/AppendRows");
+let mut req = request.into_streaming_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryWrite", "AppendRows"));
+self.inner.streaming(req, path, codec).await
+}
+/// Gets a write stream.
+pub async fn get_write_stream(&mut self, request: impl tonic::IntoRequest<super::GetWriteStreamRequest>) -> std::result::Result<tonic::Response<super::WriteStream>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/GetWriteStream");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryWrite", "GetWriteStream"));
+self.inner.unary(req, path, codec).await
+}
+/// Finalize a write stream so that no new data can be appended to the
+/// stream. Finalize is not supported on the '_default' stream.
+pub async fn finalize_write_stream(&mut self, request: impl tonic::IntoRequest<super::FinalizeWriteStreamRequest>) -> std::result::Result<tonic::Response<super::FinalizeWriteStreamResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/FinalizeWriteStream");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryWrite", "FinalizeWriteStream"));
+self.inner.unary(req, path, codec).await
+}
+/// Atomically commits a group of `PENDING` streams that belong to the same
+/// `parent` table.
+/// Streams must be finalized before commit and cannot be committed multiple
+/// times. Once a stream is committed, data in the stream becomes available
+/// for read operations.
+pub async fn batch_commit_write_streams(&mut self, request: impl tonic::IntoRequest<super::BatchCommitWriteStreamsRequest>) -> std::result::Result<tonic::Response<super::BatchCommitWriteStreamsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/BatchCommitWriteStreams");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryWrite", "BatchCommitWriteStreams"));
+self.inner.unary(req, path, codec).await
+}
+/// Flushes rows to a BUFFERED stream.
+/// If users are appending rows to BUFFERED stream, flush operation is
+/// required in order for the rows to become available for reading. A
+/// Flush operation flushes up to any previously flushed offset in a BUFFERED
+/// stream, to the offset specified in the request.
+/// Flush is not supported on the _default stream, since it is not BUFFERED.
+pub async fn flush_rows(&mut self, request: impl tonic::IntoRequest<super::FlushRowsRequest>) -> std::result::Result<tonic::Response<super::FlushRowsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.bigquery.storage.v1beta2.BigQueryWrite/FlushRows");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.bigquery.storage.v1beta2.BigQueryWrite", "FlushRows"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

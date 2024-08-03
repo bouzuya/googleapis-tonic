@@ -2,1374 +2,1190 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AuthorAttribution {
-    #[prost(string, tag = "1")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub photo_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub photo_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Review {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub relative_publish_time_description: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "9")]
-    pub text: ::core::option::Option<super::super::super::r#type::LocalizedText>,
-    #[prost(message, optional, tag = "12")]
-    pub original_text: ::core::option::Option<
-        super::super::super::r#type::LocalizedText,
-    >,
-    #[prost(double, tag = "7")]
-    pub rating: f64,
-    #[prost(message, optional, tag = "13")]
-    pub author_attribution: ::core::option::Option<AuthorAttribution>,
-    #[prost(message, optional, tag = "14")]
-    pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub relative_publish_time_description: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "9")]
+pub text: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+#[prost(message, optional, tag = "12")]
+pub original_text: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+#[prost(double, tag = "7")]
+pub rating: f64,
+#[prost(message, optional, tag = "13")]
+pub author_attribution: ::core::option::Option<AuthorAttribution>,
+#[prost(message, optional, tag = "14")]
+pub publish_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct References {
-    #[prost(message, repeated, tag = "1")]
-    pub reviews: ::prost::alloc::vec::Vec<Review>,
-    #[prost(string, repeated, tag = "2")]
-    pub places: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub reviews: ::prost::alloc::vec::Vec<Review>,
+#[prost(string, repeated, tag = "2")]
+pub places: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContentBlock {
-    #[prost(string, tag = "1")]
-    pub topic: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub content: ::core::option::Option<super::super::super::r#type::LocalizedText>,
-    #[prost(message, optional, tag = "3")]
-    pub references: ::core::option::Option<References>,
+#[prost(string, tag = "1")]
+pub topic: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub content: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+#[prost(message, optional, tag = "3")]
+pub references: ::core::option::Option<References>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Photo {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub width_px: i32,
-    #[prost(int32, tag = "3")]
-    pub height_px: i32,
-    #[prost(message, repeated, tag = "4")]
-    pub author_attributions: ::prost::alloc::vec::Vec<AuthorAttribution>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub width_px: i32,
+#[prost(int32, tag = "3")]
+pub height_px: i32,
+#[prost(message, repeated, tag = "4")]
+pub author_attributions: ::prost::alloc::vec::Vec<AuthorAttribution>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ContextualContent {
-    #[prost(message, repeated, tag = "1")]
-    pub reviews: ::prost::alloc::vec::Vec<Review>,
-    #[prost(message, repeated, tag = "2")]
-    pub photos: ::prost::alloc::vec::Vec<Photo>,
-    #[prost(message, repeated, tag = "3")]
-    pub justifications: ::prost::alloc::vec::Vec<contextual_content::Justification>,
+#[prost(message, repeated, tag = "1")]
+pub reviews: ::prost::alloc::vec::Vec<Review>,
+#[prost(message, repeated, tag = "2")]
+pub photos: ::prost::alloc::vec::Vec<Photo>,
+#[prost(message, repeated, tag = "3")]
+pub justifications: ::prost::alloc::vec::Vec<contextual_content::Justification>,
 }
 /// Nested message and enum types in `ContextualContent`.
 pub mod contextual_content {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Justification {
-        #[prost(oneof = "justification::Justification", tags = "1, 2")]
-        pub justification: ::core::option::Option<justification::Justification>,
-    }
-    /// Nested message and enum types in `Justification`.
-    pub mod justification {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct ReviewJustification {
-            #[prost(message, optional, tag = "1")]
-            pub highlighted_text: ::core::option::Option<
-                review_justification::HighlightedText,
-            >,
-            #[prost(message, optional, tag = "2")]
-            pub review: ::core::option::Option<super::super::Review>,
-        }
-        /// Nested message and enum types in `ReviewJustification`.
-        pub mod review_justification {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, PartialEq, ::prost::Message)]
-            pub struct HighlightedText {
-                #[prost(string, tag = "1")]
-                pub text: ::prost::alloc::string::String,
-                #[prost(message, repeated, tag = "2")]
-                pub highlighted_text_ranges: ::prost::alloc::vec::Vec<
-                    highlighted_text::HighlightedTextRange,
-                >,
-            }
-            /// Nested message and enum types in `HighlightedText`.
-            pub mod highlighted_text {
-                #[allow(clippy::derive_partial_eq_without_eq)]
-                #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-                pub struct HighlightedTextRange {
-                    #[prost(int32, tag = "1")]
-                    pub start_index: i32,
-                    #[prost(int32, tag = "2")]
-                    pub end_index: i32,
-                }
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct BusinessAvailabilityAttributesJustification {
-            #[prost(bool, tag = "1")]
-            pub takeout: bool,
-            #[prost(bool, tag = "2")]
-            pub delivery: bool,
-            #[prost(bool, tag = "3")]
-            pub dine_in: bool,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Justification {
-            #[prost(message, tag = "1")]
-            ReviewJustification(ReviewJustification),
-            #[prost(message, tag = "2")]
-            BusinessAvailabilityAttributesJustification(
-                BusinessAvailabilityAttributesJustification,
-            ),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Justification {
+#[prost(oneof = "justification::Justification", tags = "1, 2")]
+pub justification: ::core::option::Option<justification::Justification>,
+}
+/// Nested message and enum types in `Justification`.
+pub mod justification {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ReviewJustification {
+#[prost(message, optional, tag = "1")]
+pub highlighted_text: ::core::option::Option<review_justification::HighlightedText>,
+#[prost(message, optional, tag = "2")]
+pub review: ::core::option::Option<super::super::Review>,
+}
+/// Nested message and enum types in `ReviewJustification`.
+pub mod review_justification {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct HighlightedText {
+#[prost(string, tag = "1")]
+pub text: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub highlighted_text_ranges: ::prost::alloc::vec::Vec<highlighted_text::HighlightedTextRange>,
+}
+/// Nested message and enum types in `HighlightedText`.
+pub mod highlighted_text {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct HighlightedTextRange {
+#[prost(int32, tag = "1")]
+pub start_index: i32,
+#[prost(int32, tag = "2")]
+pub end_index: i32,
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct BusinessAvailabilityAttributesJustification {
+#[prost(bool, tag = "1")]
+pub takeout: bool,
+#[prost(bool, tag = "2")]
+pub delivery: bool,
+#[prost(bool, tag = "3")]
+pub dine_in: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Justification {
+#[prost(message, tag = "1")]
+ReviewJustification(ReviewJustification),
+#[prost(message, tag = "2")]
+BusinessAvailabilityAttributesJustification(BusinessAvailabilityAttributesJustification),
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EvChargeOptions {
-    #[prost(int32, tag = "1")]
-    pub connector_count: i32,
-    #[prost(message, repeated, tag = "2")]
-    pub connector_aggregation: ::prost::alloc::vec::Vec<
-        ev_charge_options::ConnectorAggregation,
-    >,
+#[prost(int32, tag = "1")]
+pub connector_count: i32,
+#[prost(message, repeated, tag = "2")]
+pub connector_aggregation: ::prost::alloc::vec::Vec<ev_charge_options::ConnectorAggregation>,
 }
 /// Nested message and enum types in `EVChargeOptions`.
 pub mod ev_charge_options {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ConnectorAggregation {
-        #[prost(enumeration = "super::EvConnectorType", tag = "1")]
-        pub r#type: i32,
-        #[prost(double, tag = "2")]
-        pub max_charge_rate_kw: f64,
-        #[prost(int32, tag = "3")]
-        pub count: i32,
-        #[prost(int32, optional, tag = "4")]
-        pub available_count: ::core::option::Option<i32>,
-        #[prost(int32, optional, tag = "5")]
-        pub out_of_service_count: ::core::option::Option<i32>,
-        #[prost(message, optional, tag = "6")]
-        pub availability_last_update_time: ::core::option::Option<
-            ::prost_types::Timestamp,
-        >,
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ConnectorAggregation {
+#[prost(enumeration = "super::EvConnectorType", tag = "1")]
+pub r#type: i32,
+#[prost(double, tag = "2")]
+pub max_charge_rate_kw: f64,
+#[prost(int32, tag = "3")]
+pub count: i32,
+#[prost(int32, optional, tag = "4")]
+pub available_count: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "5")]
+pub out_of_service_count: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "6")]
+pub availability_last_update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum EvConnectorType {
-    Unspecified = 0,
-    Other = 1,
-    J1772 = 2,
-    Type2 = 3,
-    Chademo = 4,
-    CcsCombo1 = 5,
-    CcsCombo2 = 6,
-    Tesla = 7,
-    UnspecifiedGbT = 8,
-    UnspecifiedWallOutlet = 9,
+Unspecified = 0,
+Other = 1,
+J1772 = 2,
+Type2 = 3,
+Chademo = 4,
+CcsCombo1 = 5,
+CcsCombo2 = 6,
+Tesla = 7,
+UnspecifiedGbT = 8,
+UnspecifiedWallOutlet = 9,
 }
 impl EvConnectorType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EvConnectorType::Unspecified => "EV_CONNECTOR_TYPE_UNSPECIFIED",
-            EvConnectorType::Other => "EV_CONNECTOR_TYPE_OTHER",
-            EvConnectorType::J1772 => "EV_CONNECTOR_TYPE_J1772",
-            EvConnectorType::Type2 => "EV_CONNECTOR_TYPE_TYPE_2",
-            EvConnectorType::Chademo => "EV_CONNECTOR_TYPE_CHADEMO",
-            EvConnectorType::CcsCombo1 => "EV_CONNECTOR_TYPE_CCS_COMBO_1",
-            EvConnectorType::CcsCombo2 => "EV_CONNECTOR_TYPE_CCS_COMBO_2",
-            EvConnectorType::Tesla => "EV_CONNECTOR_TYPE_TESLA",
-            EvConnectorType::UnspecifiedGbT => "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
-            EvConnectorType::UnspecifiedWallOutlet => {
-                "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
-            }
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "EV_CONNECTOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "EV_CONNECTOR_TYPE_OTHER" => Some(Self::Other),
-            "EV_CONNECTOR_TYPE_J1772" => Some(Self::J1772),
-            "EV_CONNECTOR_TYPE_TYPE_2" => Some(Self::Type2),
-            "EV_CONNECTOR_TYPE_CHADEMO" => Some(Self::Chademo),
-            "EV_CONNECTOR_TYPE_CCS_COMBO_1" => Some(Self::CcsCombo1),
-            "EV_CONNECTOR_TYPE_CCS_COMBO_2" => Some(Self::CcsCombo2),
-            "EV_CONNECTOR_TYPE_TESLA" => Some(Self::Tesla),
-            "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T" => Some(Self::UnspecifiedGbT),
-            "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET" => {
-                Some(Self::UnspecifiedWallOutlet)
-            }
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EvConnectorType::Unspecified => "EV_CONNECTOR_TYPE_UNSPECIFIED",
+EvConnectorType::Other => "EV_CONNECTOR_TYPE_OTHER",
+EvConnectorType::J1772 => "EV_CONNECTOR_TYPE_J1772",
+EvConnectorType::Type2 => "EV_CONNECTOR_TYPE_TYPE_2",
+EvConnectorType::Chademo => "EV_CONNECTOR_TYPE_CHADEMO",
+EvConnectorType::CcsCombo1 => "EV_CONNECTOR_TYPE_CCS_COMBO_1",
+EvConnectorType::CcsCombo2 => "EV_CONNECTOR_TYPE_CCS_COMBO_2",
+EvConnectorType::Tesla => "EV_CONNECTOR_TYPE_TESLA",
+EvConnectorType::UnspecifiedGbT => "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
+EvConnectorType::UnspecifiedWallOutlet => "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EV_CONNECTOR_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"EV_CONNECTOR_TYPE_OTHER" => Some(Self::Other),
+"EV_CONNECTOR_TYPE_J1772" => Some(Self::J1772),
+"EV_CONNECTOR_TYPE_TYPE_2" => Some(Self::Type2),
+"EV_CONNECTOR_TYPE_CHADEMO" => Some(Self::Chademo),
+"EV_CONNECTOR_TYPE_CCS_COMBO_1" => Some(Self::CcsCombo1),
+"EV_CONNECTOR_TYPE_CCS_COMBO_2" => Some(Self::CcsCombo2),
+"EV_CONNECTOR_TYPE_TESLA" => Some(Self::Tesla),
+"EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T" => Some(Self::UnspecifiedGbT),
+"EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET" => Some(Self::UnspecifiedWallOutlet),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Circle {
-    #[prost(message, optional, tag = "1")]
-    pub center: ::core::option::Option<super::super::super::r#type::LatLng>,
-    #[prost(double, tag = "2")]
-    pub radius: f64,
+#[prost(message, optional, tag = "1")]
+pub center: ::core::option::Option<super::super::super::r#type::LatLng>,
+#[prost(double, tag = "2")]
+pub radius: f64,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FuelOptions {
-    #[prost(message, repeated, tag = "1")]
-    pub fuel_prices: ::prost::alloc::vec::Vec<fuel_options::FuelPrice>,
+#[prost(message, repeated, tag = "1")]
+pub fuel_prices: ::prost::alloc::vec::Vec<fuel_options::FuelPrice>,
 }
 /// Nested message and enum types in `FuelOptions`.
 pub mod fuel_options {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct FuelPrice {
-        #[prost(enumeration = "fuel_price::FuelType", tag = "1")]
-        pub r#type: i32,
-        #[prost(message, optional, tag = "2")]
-        pub price: ::core::option::Option<super::super::super::super::r#type::Money>,
-        #[prost(message, optional, tag = "3")]
-        pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    }
-    /// Nested message and enum types in `FuelPrice`.
-    pub mod fuel_price {
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum FuelType {
-            Unspecified = 0,
-            Diesel = 1,
-            RegularUnleaded = 2,
-            Midgrade = 3,
-            Premium = 4,
-            Sp91 = 5,
-            Sp91E10 = 6,
-            Sp92 = 7,
-            Sp95 = 8,
-            Sp95E10 = 9,
-            Sp98 = 10,
-            Sp99 = 11,
-            Sp100 = 12,
-            Lpg = 13,
-            E80 = 14,
-            E85 = 15,
-            Methane = 16,
-            BioDiesel = 17,
-            TruckDiesel = 18,
-        }
-        impl FuelType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    FuelType::Unspecified => "FUEL_TYPE_UNSPECIFIED",
-                    FuelType::Diesel => "DIESEL",
-                    FuelType::RegularUnleaded => "REGULAR_UNLEADED",
-                    FuelType::Midgrade => "MIDGRADE",
-                    FuelType::Premium => "PREMIUM",
-                    FuelType::Sp91 => "SP91",
-                    FuelType::Sp91E10 => "SP91_E10",
-                    FuelType::Sp92 => "SP92",
-                    FuelType::Sp95 => "SP95",
-                    FuelType::Sp95E10 => "SP95_E10",
-                    FuelType::Sp98 => "SP98",
-                    FuelType::Sp99 => "SP99",
-                    FuelType::Sp100 => "SP100",
-                    FuelType::Lpg => "LPG",
-                    FuelType::E80 => "E80",
-                    FuelType::E85 => "E85",
-                    FuelType::Methane => "METHANE",
-                    FuelType::BioDiesel => "BIO_DIESEL",
-                    FuelType::TruckDiesel => "TRUCK_DIESEL",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "FUEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "DIESEL" => Some(Self::Diesel),
-                    "REGULAR_UNLEADED" => Some(Self::RegularUnleaded),
-                    "MIDGRADE" => Some(Self::Midgrade),
-                    "PREMIUM" => Some(Self::Premium),
-                    "SP91" => Some(Self::Sp91),
-                    "SP91_E10" => Some(Self::Sp91E10),
-                    "SP92" => Some(Self::Sp92),
-                    "SP95" => Some(Self::Sp95),
-                    "SP95_E10" => Some(Self::Sp95E10),
-                    "SP98" => Some(Self::Sp98),
-                    "SP99" => Some(Self::Sp99),
-                    "SP100" => Some(Self::Sp100),
-                    "LPG" => Some(Self::Lpg),
-                    "E80" => Some(Self::E80),
-                    "E85" => Some(Self::E85),
-                    "METHANE" => Some(Self::Methane),
-                    "BIO_DIESEL" => Some(Self::BioDiesel),
-                    "TRUCK_DIESEL" => Some(Self::TruckDiesel),
-                    _ => None,
-                }
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FuelPrice {
+#[prost(enumeration = "fuel_price::FuelType", tag = "1")]
+pub r#type: i32,
+#[prost(message, optional, tag = "2")]
+pub price: ::core::option::Option<super::super::super::super::r#type::Money>,
+#[prost(message, optional, tag = "3")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Nested message and enum types in `FuelPrice`.
+pub mod fuel_price {
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum FuelType {
+Unspecified = 0,
+Diesel = 1,
+RegularUnleaded = 2,
+Midgrade = 3,
+Premium = 4,
+Sp91 = 5,
+Sp91E10 = 6,
+Sp92 = 7,
+Sp95 = 8,
+Sp95E10 = 9,
+Sp98 = 10,
+Sp99 = 11,
+Sp100 = 12,
+Lpg = 13,
+E80 = 14,
+E85 = 15,
+Methane = 16,
+BioDiesel = 17,
+TruckDiesel = 18,
+}
+impl FuelType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+FuelType::Unspecified => "FUEL_TYPE_UNSPECIFIED",
+FuelType::Diesel => "DIESEL",
+FuelType::RegularUnleaded => "REGULAR_UNLEADED",
+FuelType::Midgrade => "MIDGRADE",
+FuelType::Premium => "PREMIUM",
+FuelType::Sp91 => "SP91",
+FuelType::Sp91E10 => "SP91_E10",
+FuelType::Sp92 => "SP92",
+FuelType::Sp95 => "SP95",
+FuelType::Sp95E10 => "SP95_E10",
+FuelType::Sp98 => "SP98",
+FuelType::Sp99 => "SP99",
+FuelType::Sp100 => "SP100",
+FuelType::Lpg => "LPG",
+FuelType::E80 => "E80",
+FuelType::E85 => "E85",
+FuelType::Methane => "METHANE",
+FuelType::BioDiesel => "BIO_DIESEL",
+FuelType::TruckDiesel => "TRUCK_DIESEL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"FUEL_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"DIESEL" => Some(Self::Diesel),
+"REGULAR_UNLEADED" => Some(Self::RegularUnleaded),
+"MIDGRADE" => Some(Self::Midgrade),
+"PREMIUM" => Some(Self::Premium),
+"SP91" => Some(Self::Sp91),
+"SP91_E10" => Some(Self::Sp91E10),
+"SP92" => Some(Self::Sp92),
+"SP95" => Some(Self::Sp95),
+"SP95_E10" => Some(Self::Sp95E10),
+"SP98" => Some(Self::Sp98),
+"SP99" => Some(Self::Sp99),
+"SP100" => Some(Self::Sp100),
+"LPG" => Some(Self::Lpg),
+"E80" => Some(Self::E80),
+"E85" => Some(Self::E85),
+"METHANE" => Some(Self::Methane),
+"BIO_DIESEL" => Some(Self::BioDiesel),
+"TRUCK_DIESEL" => Some(Self::TruckDiesel),
+_ => None,
+}
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Place {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "31")]
-    pub display_name: ::core::option::Option<super::super::super::r#type::LocalizedText>,
-    #[prost(string, repeated, tag = "5")]
-    pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "50")]
-    pub primary_type: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "32")]
-    pub primary_type_display_name: ::core::option::Option<
-        super::super::super::r#type::LocalizedText,
-    >,
-    #[prost(string, tag = "7")]
-    pub national_phone_number: ::prost::alloc::string::String,
-    #[prost(string, tag = "8")]
-    pub international_phone_number: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub formatted_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "51")]
-    pub short_formatted_address: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "10")]
-    pub address_components: ::prost::alloc::vec::Vec<place::AddressComponent>,
-    #[prost(message, optional, tag = "11")]
-    pub plus_code: ::core::option::Option<place::PlusCode>,
-    #[prost(message, optional, tag = "12")]
-    pub location: ::core::option::Option<super::super::super::r#type::LatLng>,
-    #[prost(message, optional, tag = "13")]
-    pub viewport: ::core::option::Option<super::super::super::geo::r#type::Viewport>,
-    #[prost(double, tag = "14")]
-    pub rating: f64,
-    #[prost(string, tag = "15")]
-    pub google_maps_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "16")]
-    pub website_uri: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "53")]
-    pub reviews: ::prost::alloc::vec::Vec<Review>,
-    #[prost(message, optional, tag = "21")]
-    pub regular_opening_hours: ::core::option::Option<place::OpeningHours>,
-    #[prost(int32, optional, tag = "22")]
-    pub utc_offset_minutes: ::core::option::Option<i32>,
-    #[prost(message, repeated, tag = "54")]
-    pub photos: ::prost::alloc::vec::Vec<Photo>,
-    #[prost(string, tag = "24")]
-    pub adr_format_address: ::prost::alloc::string::String,
-    #[prost(enumeration = "place::BusinessStatus", tag = "25")]
-    pub business_status: i32,
-    #[prost(enumeration = "PriceLevel", tag = "26")]
-    pub price_level: i32,
-    #[prost(message, repeated, tag = "27")]
-    pub attributions: ::prost::alloc::vec::Vec<place::Attribution>,
-    #[prost(int32, optional, tag = "28")]
-    pub user_rating_count: ::core::option::Option<i32>,
-    #[prost(string, tag = "29")]
-    pub icon_mask_base_uri: ::prost::alloc::string::String,
-    #[prost(string, tag = "30")]
-    pub icon_background_color: ::prost::alloc::string::String,
-    #[prost(bool, optional, tag = "33")]
-    pub takeout: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "34")]
-    pub delivery: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "35")]
-    pub dine_in: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "36")]
-    pub curbside_pickup: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "38")]
-    pub reservable: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "39")]
-    pub serves_breakfast: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "40")]
-    pub serves_lunch: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "41")]
-    pub serves_dinner: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "42")]
-    pub serves_beer: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "43")]
-    pub serves_wine: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "44")]
-    pub serves_brunch: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "45")]
-    pub serves_vegetarian_food: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "46")]
-    pub current_opening_hours: ::core::option::Option<place::OpeningHours>,
-    #[prost(message, repeated, tag = "47")]
-    pub current_secondary_opening_hours: ::prost::alloc::vec::Vec<place::OpeningHours>,
-    #[prost(message, repeated, tag = "49")]
-    pub regular_secondary_opening_hours: ::prost::alloc::vec::Vec<place::OpeningHours>,
-    #[prost(message, optional, tag = "52")]
-    pub editorial_summary: ::core::option::Option<
-        super::super::super::r#type::LocalizedText,
-    >,
-    #[prost(bool, optional, tag = "55")]
-    pub outdoor_seating: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "56")]
-    pub live_music: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "57")]
-    pub menu_for_children: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "58")]
-    pub serves_cocktails: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "59")]
-    pub serves_dessert: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "60")]
-    pub serves_coffee: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "62")]
-    pub good_for_children: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "63")]
-    pub allows_dogs: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "64")]
-    pub restroom: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "65")]
-    pub good_for_groups: ::core::option::Option<bool>,
-    #[prost(bool, optional, tag = "66")]
-    pub good_for_watching_sports: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "67")]
-    pub payment_options: ::core::option::Option<place::PaymentOptions>,
-    #[prost(message, optional, tag = "70")]
-    pub parking_options: ::core::option::Option<place::ParkingOptions>,
-    #[prost(message, repeated, tag = "71")]
-    pub sub_destinations: ::prost::alloc::vec::Vec<place::SubDestination>,
-    #[prost(message, optional, tag = "72")]
-    pub accessibility_options: ::core::option::Option<place::AccessibilityOptions>,
-    #[prost(message, optional, tag = "78")]
-    pub fuel_options: ::core::option::Option<FuelOptions>,
-    #[prost(message, optional, tag = "79")]
-    pub ev_charge_options: ::core::option::Option<EvChargeOptions>,
-    #[prost(message, optional, tag = "80")]
-    pub generative_summary: ::core::option::Option<place::GenerativeSummary>,
-    #[prost(message, optional, tag = "81")]
-    pub area_summary: ::core::option::Option<place::AreaSummary>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "31")]
+pub display_name: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+#[prost(string, repeated, tag = "5")]
+pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "50")]
+pub primary_type: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "32")]
+pub primary_type_display_name: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+#[prost(string, tag = "7")]
+pub national_phone_number: ::prost::alloc::string::String,
+#[prost(string, tag = "8")]
+pub international_phone_number: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub formatted_address: ::prost::alloc::string::String,
+#[prost(string, tag = "51")]
+pub short_formatted_address: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "10")]
+pub address_components: ::prost::alloc::vec::Vec<place::AddressComponent>,
+#[prost(message, optional, tag = "11")]
+pub plus_code: ::core::option::Option<place::PlusCode>,
+#[prost(message, optional, tag = "12")]
+pub location: ::core::option::Option<super::super::super::r#type::LatLng>,
+#[prost(message, optional, tag = "13")]
+pub viewport: ::core::option::Option<super::super::super::geo::r#type::Viewport>,
+#[prost(double, tag = "14")]
+pub rating: f64,
+#[prost(string, tag = "15")]
+pub google_maps_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "16")]
+pub website_uri: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "53")]
+pub reviews: ::prost::alloc::vec::Vec<Review>,
+#[prost(message, optional, tag = "21")]
+pub regular_opening_hours: ::core::option::Option<place::OpeningHours>,
+#[prost(int32, optional, tag = "22")]
+pub utc_offset_minutes: ::core::option::Option<i32>,
+#[prost(message, repeated, tag = "54")]
+pub photos: ::prost::alloc::vec::Vec<Photo>,
+#[prost(string, tag = "24")]
+pub adr_format_address: ::prost::alloc::string::String,
+#[prost(enumeration = "place::BusinessStatus", tag = "25")]
+pub business_status: i32,
+#[prost(enumeration = "PriceLevel", tag = "26")]
+pub price_level: i32,
+#[prost(message, repeated, tag = "27")]
+pub attributions: ::prost::alloc::vec::Vec<place::Attribution>,
+#[prost(int32, optional, tag = "28")]
+pub user_rating_count: ::core::option::Option<i32>,
+#[prost(string, tag = "29")]
+pub icon_mask_base_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "30")]
+pub icon_background_color: ::prost::alloc::string::String,
+#[prost(bool, optional, tag = "33")]
+pub takeout: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "34")]
+pub delivery: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "35")]
+pub dine_in: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "36")]
+pub curbside_pickup: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "38")]
+pub reservable: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "39")]
+pub serves_breakfast: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "40")]
+pub serves_lunch: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "41")]
+pub serves_dinner: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "42")]
+pub serves_beer: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "43")]
+pub serves_wine: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "44")]
+pub serves_brunch: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "45")]
+pub serves_vegetarian_food: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "46")]
+pub current_opening_hours: ::core::option::Option<place::OpeningHours>,
+#[prost(message, repeated, tag = "47")]
+pub current_secondary_opening_hours: ::prost::alloc::vec::Vec<place::OpeningHours>,
+#[prost(message, repeated, tag = "49")]
+pub regular_secondary_opening_hours: ::prost::alloc::vec::Vec<place::OpeningHours>,
+#[prost(message, optional, tag = "52")]
+pub editorial_summary: ::core::option::Option<super::super::super::r#type::LocalizedText>,
+#[prost(bool, optional, tag = "55")]
+pub outdoor_seating: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "56")]
+pub live_music: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "57")]
+pub menu_for_children: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "58")]
+pub serves_cocktails: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "59")]
+pub serves_dessert: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "60")]
+pub serves_coffee: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "62")]
+pub good_for_children: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "63")]
+pub allows_dogs: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "64")]
+pub restroom: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "65")]
+pub good_for_groups: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "66")]
+pub good_for_watching_sports: ::core::option::Option<bool>,
+#[prost(message, optional, tag = "67")]
+pub payment_options: ::core::option::Option<place::PaymentOptions>,
+#[prost(message, optional, tag = "70")]
+pub parking_options: ::core::option::Option<place::ParkingOptions>,
+#[prost(message, repeated, tag = "71")]
+pub sub_destinations: ::prost::alloc::vec::Vec<place::SubDestination>,
+#[prost(message, optional, tag = "72")]
+pub accessibility_options: ::core::option::Option<place::AccessibilityOptions>,
+#[prost(message, optional, tag = "78")]
+pub fuel_options: ::core::option::Option<FuelOptions>,
+#[prost(message, optional, tag = "79")]
+pub ev_charge_options: ::core::option::Option<EvChargeOptions>,
+#[prost(message, optional, tag = "80")]
+pub generative_summary: ::core::option::Option<place::GenerativeSummary>,
+#[prost(message, optional, tag = "81")]
+pub area_summary: ::core::option::Option<place::AreaSummary>,
 }
 /// Nested message and enum types in `Place`.
 pub mod place {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AddressComponent {
-        #[prost(string, tag = "1")]
-        pub long_text: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub short_text: ::prost::alloc::string::String,
-        #[prost(string, repeated, tag = "3")]
-        pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-        #[prost(string, tag = "4")]
-        pub language_code: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct PlusCode {
-        #[prost(string, tag = "1")]
-        pub global_code: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub compound_code: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct OpeningHours {
-        #[prost(bool, optional, tag = "1")]
-        pub open_now: ::core::option::Option<bool>,
-        #[prost(message, repeated, tag = "2")]
-        pub periods: ::prost::alloc::vec::Vec<opening_hours::Period>,
-        #[prost(string, repeated, tag = "3")]
-        pub weekday_descriptions: ::prost::alloc::vec::Vec<
-            ::prost::alloc::string::String,
-        >,
-        #[prost(enumeration = "opening_hours::SecondaryHoursType", tag = "4")]
-        pub secondary_hours_type: i32,
-        #[prost(message, repeated, tag = "5")]
-        pub special_days: ::prost::alloc::vec::Vec<opening_hours::SpecialDay>,
-    }
-    /// Nested message and enum types in `OpeningHours`.
-    pub mod opening_hours {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct Period {
-            #[prost(message, optional, tag = "1")]
-            pub open: ::core::option::Option<period::Point>,
-            #[prost(message, optional, tag = "2")]
-            pub close: ::core::option::Option<period::Point>,
-        }
-        /// Nested message and enum types in `Period`.
-        pub mod period {
-            #[allow(clippy::derive_partial_eq_without_eq)]
-            #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-            pub struct Point {
-                #[prost(int32, optional, tag = "1")]
-                pub day: ::core::option::Option<i32>,
-                #[prost(int32, optional, tag = "2")]
-                pub hour: ::core::option::Option<i32>,
-                #[prost(int32, optional, tag = "3")]
-                pub minute: ::core::option::Option<i32>,
-                #[prost(message, optional, tag = "6")]
-                pub date: ::core::option::Option<
-                    super::super::super::super::super::super::r#type::Date,
-                >,
-                #[prost(bool, tag = "5")]
-                pub truncated: bool,
-            }
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct SpecialDay {
-            #[prost(message, optional, tag = "1")]
-            pub date: ::core::option::Option<
-                super::super::super::super::super::r#type::Date,
-            >,
-        }
-        #[derive(
-            Clone,
-            Copy,
-            Debug,
-            PartialEq,
-            Eq,
-            Hash,
-            PartialOrd,
-            Ord,
-            ::prost::Enumeration
-        )]
-        #[repr(i32)]
-        pub enum SecondaryHoursType {
-            Unspecified = 0,
-            DriveThrough = 1,
-            HappyHour = 2,
-            Delivery = 3,
-            Takeout = 4,
-            Kitchen = 5,
-            Breakfast = 6,
-            Lunch = 7,
-            Dinner = 8,
-            Brunch = 9,
-            Pickup = 10,
-            Access = 11,
-            SeniorHours = 12,
-            OnlineServiceHours = 13,
-        }
-        impl SecondaryHoursType {
-            /// String value of the enum field names used in the ProtoBuf definition.
-            ///
-            /// The values are not transformed in any way and thus are considered stable
-            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-            pub fn as_str_name(&self) -> &'static str {
-                match self {
-                    SecondaryHoursType::Unspecified => "SECONDARY_HOURS_TYPE_UNSPECIFIED",
-                    SecondaryHoursType::DriveThrough => "DRIVE_THROUGH",
-                    SecondaryHoursType::HappyHour => "HAPPY_HOUR",
-                    SecondaryHoursType::Delivery => "DELIVERY",
-                    SecondaryHoursType::Takeout => "TAKEOUT",
-                    SecondaryHoursType::Kitchen => "KITCHEN",
-                    SecondaryHoursType::Breakfast => "BREAKFAST",
-                    SecondaryHoursType::Lunch => "LUNCH",
-                    SecondaryHoursType::Dinner => "DINNER",
-                    SecondaryHoursType::Brunch => "BRUNCH",
-                    SecondaryHoursType::Pickup => "PICKUP",
-                    SecondaryHoursType::Access => "ACCESS",
-                    SecondaryHoursType::SeniorHours => "SENIOR_HOURS",
-                    SecondaryHoursType::OnlineServiceHours => "ONLINE_SERVICE_HOURS",
-                }
-            }
-            /// Creates an enum from field names used in the ProtoBuf definition.
-            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-                match value {
-                    "SECONDARY_HOURS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                    "DRIVE_THROUGH" => Some(Self::DriveThrough),
-                    "HAPPY_HOUR" => Some(Self::HappyHour),
-                    "DELIVERY" => Some(Self::Delivery),
-                    "TAKEOUT" => Some(Self::Takeout),
-                    "KITCHEN" => Some(Self::Kitchen),
-                    "BREAKFAST" => Some(Self::Breakfast),
-                    "LUNCH" => Some(Self::Lunch),
-                    "DINNER" => Some(Self::Dinner),
-                    "BRUNCH" => Some(Self::Brunch),
-                    "PICKUP" => Some(Self::Pickup),
-                    "ACCESS" => Some(Self::Access),
-                    "SENIOR_HOURS" => Some(Self::SeniorHours),
-                    "ONLINE_SERVICE_HOURS" => Some(Self::OnlineServiceHours),
-                    _ => None,
-                }
-            }
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Attribution {
-        #[prost(string, tag = "1")]
-        pub provider: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub provider_uri: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct PaymentOptions {
-        #[prost(bool, optional, tag = "1")]
-        pub accepts_credit_cards: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "2")]
-        pub accepts_debit_cards: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "3")]
-        pub accepts_cash_only: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "4")]
-        pub accepts_nfc: ::core::option::Option<bool>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct ParkingOptions {
-        #[prost(bool, optional, tag = "1")]
-        pub free_parking_lot: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "2")]
-        pub paid_parking_lot: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "3")]
-        pub free_street_parking: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "4")]
-        pub paid_street_parking: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "5")]
-        pub valet_parking: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "6")]
-        pub free_garage_parking: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "7")]
-        pub paid_garage_parking: ::core::option::Option<bool>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct SubDestination {
-        #[prost(string, tag = "1")]
-        pub name: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub id: ::prost::alloc::string::String,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct AccessibilityOptions {
-        #[prost(bool, optional, tag = "1")]
-        pub wheelchair_accessible_parking: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "2")]
-        pub wheelchair_accessible_entrance: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "3")]
-        pub wheelchair_accessible_restroom: ::core::option::Option<bool>,
-        #[prost(bool, optional, tag = "4")]
-        pub wheelchair_accessible_seating: ::core::option::Option<bool>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct GenerativeSummary {
-        #[prost(message, optional, tag = "1")]
-        pub overview: ::core::option::Option<
-            super::super::super::super::r#type::LocalizedText,
-        >,
-        #[prost(message, optional, tag = "2")]
-        pub description: ::core::option::Option<
-            super::super::super::super::r#type::LocalizedText,
-        >,
-        #[prost(message, optional, tag = "3")]
-        pub references: ::core::option::Option<super::References>,
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct AreaSummary {
-        #[prost(message, repeated, tag = "4")]
-        pub content_blocks: ::prost::alloc::vec::Vec<super::ContentBlock>,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum BusinessStatus {
-        Unspecified = 0,
-        Operational = 1,
-        ClosedTemporarily = 2,
-        ClosedPermanently = 3,
-    }
-    impl BusinessStatus {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                BusinessStatus::Unspecified => "BUSINESS_STATUS_UNSPECIFIED",
-                BusinessStatus::Operational => "OPERATIONAL",
-                BusinessStatus::ClosedTemporarily => "CLOSED_TEMPORARILY",
-                BusinessStatus::ClosedPermanently => "CLOSED_PERMANENTLY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "BUSINESS_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
-                "OPERATIONAL" => Some(Self::Operational),
-                "CLOSED_TEMPORARILY" => Some(Self::ClosedTemporarily),
-                "CLOSED_PERMANENTLY" => Some(Self::ClosedPermanently),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AddressComponent {
+#[prost(string, tag = "1")]
+pub long_text: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub short_text: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub language_code: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlusCode {
+#[prost(string, tag = "1")]
+pub global_code: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub compound_code: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OpeningHours {
+#[prost(bool, optional, tag = "1")]
+pub open_now: ::core::option::Option<bool>,
+#[prost(message, repeated, tag = "2")]
+pub periods: ::prost::alloc::vec::Vec<opening_hours::Period>,
+#[prost(string, repeated, tag = "3")]
+pub weekday_descriptions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(enumeration = "opening_hours::SecondaryHoursType", tag = "4")]
+pub secondary_hours_type: i32,
+#[prost(message, repeated, tag = "5")]
+pub special_days: ::prost::alloc::vec::Vec<opening_hours::SpecialDay>,
+}
+/// Nested message and enum types in `OpeningHours`.
+pub mod opening_hours {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Period {
+#[prost(message, optional, tag = "1")]
+pub open: ::core::option::Option<period::Point>,
+#[prost(message, optional, tag = "2")]
+pub close: ::core::option::Option<period::Point>,
+}
+/// Nested message and enum types in `Period`.
+pub mod period {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct Point {
+#[prost(int32, optional, tag = "1")]
+pub day: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "2")]
+pub hour: ::core::option::Option<i32>,
+#[prost(int32, optional, tag = "3")]
+pub minute: ::core::option::Option<i32>,
+#[prost(message, optional, tag = "6")]
+pub date: ::core::option::Option<super::super::super::super::super::super::r#type::Date>,
+#[prost(bool, tag = "5")]
+pub truncated: bool,
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct SpecialDay {
+#[prost(message, optional, tag = "1")]
+pub date: ::core::option::Option<super::super::super::super::super::r#type::Date>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SecondaryHoursType {
+Unspecified = 0,
+DriveThrough = 1,
+HappyHour = 2,
+Delivery = 3,
+Takeout = 4,
+Kitchen = 5,
+Breakfast = 6,
+Lunch = 7,
+Dinner = 8,
+Brunch = 9,
+Pickup = 10,
+Access = 11,
+SeniorHours = 12,
+OnlineServiceHours = 13,
+}
+impl SecondaryHoursType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SecondaryHoursType::Unspecified => "SECONDARY_HOURS_TYPE_UNSPECIFIED",
+SecondaryHoursType::DriveThrough => "DRIVE_THROUGH",
+SecondaryHoursType::HappyHour => "HAPPY_HOUR",
+SecondaryHoursType::Delivery => "DELIVERY",
+SecondaryHoursType::Takeout => "TAKEOUT",
+SecondaryHoursType::Kitchen => "KITCHEN",
+SecondaryHoursType::Breakfast => "BREAKFAST",
+SecondaryHoursType::Lunch => "LUNCH",
+SecondaryHoursType::Dinner => "DINNER",
+SecondaryHoursType::Brunch => "BRUNCH",
+SecondaryHoursType::Pickup => "PICKUP",
+SecondaryHoursType::Access => "ACCESS",
+SecondaryHoursType::SeniorHours => "SENIOR_HOURS",
+SecondaryHoursType::OnlineServiceHours => "ONLINE_SERVICE_HOURS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SECONDARY_HOURS_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"DRIVE_THROUGH" => Some(Self::DriveThrough),
+"HAPPY_HOUR" => Some(Self::HappyHour),
+"DELIVERY" => Some(Self::Delivery),
+"TAKEOUT" => Some(Self::Takeout),
+"KITCHEN" => Some(Self::Kitchen),
+"BREAKFAST" => Some(Self::Breakfast),
+"LUNCH" => Some(Self::Lunch),
+"DINNER" => Some(Self::Dinner),
+"BRUNCH" => Some(Self::Brunch),
+"PICKUP" => Some(Self::Pickup),
+"ACCESS" => Some(Self::Access),
+"SENIOR_HOURS" => Some(Self::SeniorHours),
+"ONLINE_SERVICE_HOURS" => Some(Self::OnlineServiceHours),
+_ => None,
+}
+}
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Attribution {
+#[prost(string, tag = "1")]
+pub provider: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub provider_uri: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct PaymentOptions {
+#[prost(bool, optional, tag = "1")]
+pub accepts_credit_cards: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "2")]
+pub accepts_debit_cards: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "3")]
+pub accepts_cash_only: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "4")]
+pub accepts_nfc: ::core::option::Option<bool>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct ParkingOptions {
+#[prost(bool, optional, tag = "1")]
+pub free_parking_lot: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "2")]
+pub paid_parking_lot: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "3")]
+pub free_street_parking: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "4")]
+pub paid_street_parking: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "5")]
+pub valet_parking: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "6")]
+pub free_garage_parking: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "7")]
+pub paid_garage_parking: ::core::option::Option<bool>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SubDestination {
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct AccessibilityOptions {
+#[prost(bool, optional, tag = "1")]
+pub wheelchair_accessible_parking: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "2")]
+pub wheelchair_accessible_entrance: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "3")]
+pub wheelchair_accessible_restroom: ::core::option::Option<bool>,
+#[prost(bool, optional, tag = "4")]
+pub wheelchair_accessible_seating: ::core::option::Option<bool>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenerativeSummary {
+#[prost(message, optional, tag = "1")]
+pub overview: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+#[prost(message, optional, tag = "2")]
+pub description: ::core::option::Option<super::super::super::super::r#type::LocalizedText>,
+#[prost(message, optional, tag = "3")]
+pub references: ::core::option::Option<super::References>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AreaSummary {
+#[prost(message, repeated, tag = "4")]
+pub content_blocks: ::prost::alloc::vec::Vec<super::ContentBlock>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum BusinessStatus {
+Unspecified = 0,
+Operational = 1,
+ClosedTemporarily = 2,
+ClosedPermanently = 3,
+}
+impl BusinessStatus {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+BusinessStatus::Unspecified => "BUSINESS_STATUS_UNSPECIFIED",
+BusinessStatus::Operational => "OPERATIONAL",
+BusinessStatus::ClosedTemporarily => "CLOSED_TEMPORARILY",
+BusinessStatus::ClosedPermanently => "CLOSED_PERMANENTLY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"BUSINESS_STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+"OPERATIONAL" => Some(Self::Operational),
+"CLOSED_TEMPORARILY" => Some(Self::ClosedTemporarily),
+"CLOSED_PERMANENTLY" => Some(Self::ClosedPermanently),
+_ => None,
+}
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum PriceLevel {
-    Unspecified = 0,
-    Free = 1,
-    Inexpensive = 2,
-    Moderate = 3,
-    Expensive = 4,
-    VeryExpensive = 5,
+Unspecified = 0,
+Free = 1,
+Inexpensive = 2,
+Moderate = 3,
+Expensive = 4,
+VeryExpensive = 5,
 }
 impl PriceLevel {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            PriceLevel::Unspecified => "PRICE_LEVEL_UNSPECIFIED",
-            PriceLevel::Free => "PRICE_LEVEL_FREE",
-            PriceLevel::Inexpensive => "PRICE_LEVEL_INEXPENSIVE",
-            PriceLevel::Moderate => "PRICE_LEVEL_MODERATE",
-            PriceLevel::Expensive => "PRICE_LEVEL_EXPENSIVE",
-            PriceLevel::VeryExpensive => "PRICE_LEVEL_VERY_EXPENSIVE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "PRICE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
-            "PRICE_LEVEL_FREE" => Some(Self::Free),
-            "PRICE_LEVEL_INEXPENSIVE" => Some(Self::Inexpensive),
-            "PRICE_LEVEL_MODERATE" => Some(Self::Moderate),
-            "PRICE_LEVEL_EXPENSIVE" => Some(Self::Expensive),
-            "PRICE_LEVEL_VERY_EXPENSIVE" => Some(Self::VeryExpensive),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PriceLevel::Unspecified => "PRICE_LEVEL_UNSPECIFIED",
+PriceLevel::Free => "PRICE_LEVEL_FREE",
+PriceLevel::Inexpensive => "PRICE_LEVEL_INEXPENSIVE",
+PriceLevel::Moderate => "PRICE_LEVEL_MODERATE",
+PriceLevel::Expensive => "PRICE_LEVEL_EXPENSIVE",
+PriceLevel::VeryExpensive => "PRICE_LEVEL_VERY_EXPENSIVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PRICE_LEVEL_UNSPECIFIED" => Some(Self::Unspecified),
+"PRICE_LEVEL_FREE" => Some(Self::Free),
+"PRICE_LEVEL_INEXPENSIVE" => Some(Self::Inexpensive),
+"PRICE_LEVEL_MODERATE" => Some(Self::Moderate),
+"PRICE_LEVEL_EXPENSIVE" => Some(Self::Expensive),
+"PRICE_LEVEL_VERY_EXPENSIVE" => Some(Self::VeryExpensive),
+_ => None,
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchNearbyRequest {
-    #[prost(string, tag = "1")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub region_code: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub included_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "4")]
-    pub excluded_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "5")]
-    pub included_primary_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "6")]
-    pub excluded_primary_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(int32, tag = "7")]
-    pub max_result_count: i32,
-    #[prost(message, optional, tag = "8")]
-    pub location_restriction: ::core::option::Option<
-        search_nearby_request::LocationRestriction,
-    >,
-    #[prost(enumeration = "search_nearby_request::RankPreference", tag = "9")]
-    pub rank_preference: i32,
+#[prost(string, tag = "1")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub region_code: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub included_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "4")]
+pub excluded_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "5")]
+pub included_primary_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "6")]
+pub excluded_primary_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, tag = "7")]
+pub max_result_count: i32,
+#[prost(message, optional, tag = "8")]
+pub location_restriction: ::core::option::Option<search_nearby_request::LocationRestriction>,
+#[prost(enumeration = "search_nearby_request::RankPreference", tag = "9")]
+pub rank_preference: i32,
 }
 /// Nested message and enum types in `SearchNearbyRequest`.
 pub mod search_nearby_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct LocationRestriction {
-        #[prost(oneof = "location_restriction::Type", tags = "2")]
-        pub r#type: ::core::option::Option<location_restriction::Type>,
-    }
-    /// Nested message and enum types in `LocationRestriction`.
-    pub mod location_restriction {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-        pub enum Type {
-            #[prost(message, tag = "2")]
-            Circle(super::super::Circle),
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RankPreference {
-        Unspecified = 0,
-        Distance = 1,
-        Popularity = 2,
-    }
-    impl RankPreference {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RankPreference::Unspecified => "RANK_PREFERENCE_UNSPECIFIED",
-                RankPreference::Distance => "DISTANCE",
-                RankPreference::Popularity => "POPULARITY",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RANK_PREFERENCE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DISTANCE" => Some(Self::Distance),
-                "POPULARITY" => Some(Self::Popularity),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct LocationRestriction {
+#[prost(oneof = "location_restriction::Type", tags = "2")]
+pub r#type: ::core::option::Option<location_restriction::Type>,
+}
+/// Nested message and enum types in `LocationRestriction`.
+pub mod location_restriction {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "2")]
+Circle(super::super::Circle),
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RankPreference {
+Unspecified = 0,
+Distance = 1,
+Popularity = 2,
+}
+impl RankPreference {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RankPreference::Unspecified => "RANK_PREFERENCE_UNSPECIFIED",
+RankPreference::Distance => "DISTANCE",
+RankPreference::Popularity => "POPULARITY",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RANK_PREFERENCE_UNSPECIFIED" => Some(Self::Unspecified),
+"DISTANCE" => Some(Self::Distance),
+"POPULARITY" => Some(Self::Popularity),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchNearbyResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub places: ::prost::alloc::vec::Vec<Place>,
+#[prost(message, repeated, tag = "1")]
+pub places: ::prost::alloc::vec::Vec<Place>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchTextRequest {
-    #[prost(string, tag = "1")]
-    pub text_query: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub region_code: ::prost::alloc::string::String,
-    #[prost(enumeration = "search_text_request::RankPreference", tag = "4")]
-    pub rank_preference: i32,
-    #[prost(string, tag = "6")]
-    pub included_type: ::prost::alloc::string::String,
-    #[prost(bool, tag = "7")]
-    pub open_now: bool,
-    #[prost(double, tag = "9")]
-    pub min_rating: f64,
-    #[prost(int32, tag = "10")]
-    pub max_result_count: i32,
-    #[prost(enumeration = "PriceLevel", repeated, tag = "11")]
-    pub price_levels: ::prost::alloc::vec::Vec<i32>,
-    #[prost(bool, tag = "12")]
-    pub strict_type_filtering: bool,
-    #[prost(message, optional, tag = "13")]
-    pub location_bias: ::core::option::Option<search_text_request::LocationBias>,
-    #[prost(message, optional, tag = "14")]
-    pub location_restriction: ::core::option::Option<
-        search_text_request::LocationRestriction,
-    >,
-    #[prost(message, optional, tag = "15")]
-    pub ev_options: ::core::option::Option<search_text_request::EvOptions>,
+#[prost(string, tag = "1")]
+pub text_query: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub region_code: ::prost::alloc::string::String,
+#[prost(enumeration = "search_text_request::RankPreference", tag = "4")]
+pub rank_preference: i32,
+#[prost(string, tag = "6")]
+pub included_type: ::prost::alloc::string::String,
+#[prost(bool, tag = "7")]
+pub open_now: bool,
+#[prost(double, tag = "9")]
+pub min_rating: f64,
+#[prost(int32, tag = "10")]
+pub max_result_count: i32,
+#[prost(enumeration = "PriceLevel", repeated, tag = "11")]
+pub price_levels: ::prost::alloc::vec::Vec<i32>,
+#[prost(bool, tag = "12")]
+pub strict_type_filtering: bool,
+#[prost(message, optional, tag = "13")]
+pub location_bias: ::core::option::Option<search_text_request::LocationBias>,
+#[prost(message, optional, tag = "14")]
+pub location_restriction: ::core::option::Option<search_text_request::LocationRestriction>,
+#[prost(message, optional, tag = "15")]
+pub ev_options: ::core::option::Option<search_text_request::EvOptions>,
 }
 /// Nested message and enum types in `SearchTextRequest`.
 pub mod search_text_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct LocationBias {
-        #[prost(oneof = "location_bias::Type", tags = "1, 2")]
-        pub r#type: ::core::option::Option<location_bias::Type>,
-    }
-    /// Nested message and enum types in `LocationBias`.
-    pub mod location_bias {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-        pub enum Type {
-            #[prost(message, tag = "1")]
-            Rectangle(super::super::super::super::super::geo::r#type::Viewport),
-            #[prost(message, tag = "2")]
-            Circle(super::super::Circle),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct LocationRestriction {
-        #[prost(oneof = "location_restriction::Type", tags = "1")]
-        pub r#type: ::core::option::Option<location_restriction::Type>,
-    }
-    /// Nested message and enum types in `LocationRestriction`.
-    pub mod location_restriction {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-        pub enum Type {
-            #[prost(message, tag = "1")]
-            Rectangle(super::super::super::super::super::geo::r#type::Viewport),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct EvOptions {
-        #[prost(double, tag = "1")]
-        pub minimum_charging_rate_kw: f64,
-        #[prost(
-            enumeration = "super::EvConnectorType",
-            repeated,
-            packed = "false",
-            tag = "2"
-        )]
-        pub connector_types: ::prost::alloc::vec::Vec<i32>,
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RankPreference {
-        Unspecified = 0,
-        Distance = 1,
-        Relevance = 2,
-    }
-    impl RankPreference {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RankPreference::Unspecified => "RANK_PREFERENCE_UNSPECIFIED",
-                RankPreference::Distance => "DISTANCE",
-                RankPreference::Relevance => "RELEVANCE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RANK_PREFERENCE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DISTANCE" => Some(Self::Distance),
-                "RELEVANCE" => Some(Self::Relevance),
-                _ => None,
-            }
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct LocationBias {
+#[prost(oneof = "location_bias::Type", tags = "1, 2")]
+pub r#type: ::core::option::Option<location_bias::Type>,
+}
+/// Nested message and enum types in `LocationBias`.
+pub mod location_bias {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "1")]
+Rectangle(super::super::super::super::super::geo::r#type::Viewport),
+#[prost(message, tag = "2")]
+Circle(super::super::Circle),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct LocationRestriction {
+#[prost(oneof = "location_restriction::Type", tags = "1")]
+pub r#type: ::core::option::Option<location_restriction::Type>,
+}
+/// Nested message and enum types in `LocationRestriction`.
+pub mod location_restriction {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "1")]
+Rectangle(super::super::super::super::super::geo::r#type::Viewport),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvOptions {
+#[prost(double, tag = "1")]
+pub minimum_charging_rate_kw: f64,
+#[prost(enumeration = "super::EvConnectorType", repeated, packed = "false", tag = "2")]
+pub connector_types: ::prost::alloc::vec::Vec<i32>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RankPreference {
+Unspecified = 0,
+Distance = 1,
+Relevance = 2,
+}
+impl RankPreference {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RankPreference::Unspecified => "RANK_PREFERENCE_UNSPECIFIED",
+RankPreference::Distance => "DISTANCE",
+RankPreference::Relevance => "RELEVANCE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RANK_PREFERENCE_UNSPECIFIED" => Some(Self::Unspecified),
+"DISTANCE" => Some(Self::Distance),
+"RELEVANCE" => Some(Self::Relevance),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SearchTextResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub places: ::prost::alloc::vec::Vec<Place>,
-    #[prost(message, repeated, tag = "3")]
-    pub contextual_contents: ::prost::alloc::vec::Vec<ContextualContent>,
+#[prost(message, repeated, tag = "1")]
+pub places: ::prost::alloc::vec::Vec<Place>,
+#[prost(message, repeated, tag = "3")]
+pub contextual_contents: ::prost::alloc::vec::Vec<ContextualContent>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPhotoMediaRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub max_width_px: i32,
-    #[prost(int32, tag = "3")]
-    pub max_height_px: i32,
-    #[prost(bool, tag = "4")]
-    pub skip_http_redirect: bool,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub max_width_px: i32,
+#[prost(int32, tag = "3")]
+pub max_height_px: i32,
+#[prost(bool, tag = "4")]
+pub skip_http_redirect: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PhotoMedia {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub photo_uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub photo_uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPlaceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub region_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub session_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub region_code: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub session_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AutocompletePlacesRequest {
-    #[prost(string, tag = "1")]
-    pub input: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "2")]
-    pub location_bias: ::core::option::Option<autocomplete_places_request::LocationBias>,
-    #[prost(message, optional, tag = "3")]
-    pub location_restriction: ::core::option::Option<
-        autocomplete_places_request::LocationRestriction,
-    >,
-    #[prost(string, repeated, tag = "4")]
-    pub included_primary_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, repeated, tag = "5")]
-    pub included_region_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(string, tag = "6")]
-    pub language_code: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub region_code: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "8")]
-    pub origin: ::core::option::Option<super::super::super::r#type::LatLng>,
-    #[prost(int32, tag = "9")]
-    pub input_offset: i32,
-    #[prost(bool, tag = "10")]
-    pub include_query_predictions: bool,
-    #[prost(string, tag = "11")]
-    pub session_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub input: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "2")]
+pub location_bias: ::core::option::Option<autocomplete_places_request::LocationBias>,
+#[prost(message, optional, tag = "3")]
+pub location_restriction: ::core::option::Option<autocomplete_places_request::LocationRestriction>,
+#[prost(string, repeated, tag = "4")]
+pub included_primary_types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, repeated, tag = "5")]
+pub included_region_codes: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(string, tag = "6")]
+pub language_code: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub region_code: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "8")]
+pub origin: ::core::option::Option<super::super::super::r#type::LatLng>,
+#[prost(int32, tag = "9")]
+pub input_offset: i32,
+#[prost(bool, tag = "10")]
+pub include_query_predictions: bool,
+#[prost(string, tag = "11")]
+pub session_token: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `AutocompletePlacesRequest`.
 pub mod autocomplete_places_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct LocationBias {
-        #[prost(oneof = "location_bias::Type", tags = "1, 2")]
-        pub r#type: ::core::option::Option<location_bias::Type>,
-    }
-    /// Nested message and enum types in `LocationBias`.
-    pub mod location_bias {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-        pub enum Type {
-            #[prost(message, tag = "1")]
-            Rectangle(super::super::super::super::super::geo::r#type::Viewport),
-            #[prost(message, tag = "2")]
-            Circle(super::super::Circle),
-        }
-    }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-    pub struct LocationRestriction {
-        #[prost(oneof = "location_restriction::Type", tags = "1, 2")]
-        pub r#type: ::core::option::Option<location_restriction::Type>,
-    }
-    /// Nested message and enum types in `LocationRestriction`.
-    pub mod location_restriction {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
-        pub enum Type {
-            #[prost(message, tag = "1")]
-            Rectangle(super::super::super::super::super::geo::r#type::Viewport),
-            #[prost(message, tag = "2")]
-            Circle(super::super::Circle),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct LocationBias {
+#[prost(oneof = "location_bias::Type", tags = "1, 2")]
+pub r#type: ::core::option::Option<location_bias::Type>,
+}
+/// Nested message and enum types in `LocationBias`.
+pub mod location_bias {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "1")]
+Rectangle(super::super::super::super::super::geo::r#type::Viewport),
+#[prost(message, tag = "2")]
+Circle(super::super::Circle),
+}
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct LocationRestriction {
+#[prost(oneof = "location_restriction::Type", tags = "1, 2")]
+pub r#type: ::core::option::Option<location_restriction::Type>,
+}
+/// Nested message and enum types in `LocationRestriction`.
+pub mod location_restriction {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Oneof)]
+pub enum Type {
+#[prost(message, tag = "1")]
+Rectangle(super::super::super::super::super::geo::r#type::Viewport),
+#[prost(message, tag = "2")]
+Circle(super::super::Circle),
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct AutocompletePlacesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub suggestions: ::prost::alloc::vec::Vec<autocomplete_places_response::Suggestion>,
+#[prost(message, repeated, tag = "1")]
+pub suggestions: ::prost::alloc::vec::Vec<autocomplete_places_response::Suggestion>,
 }
 /// Nested message and enum types in `AutocompletePlacesResponse`.
 pub mod autocomplete_places_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct Suggestion {
-        #[prost(oneof = "suggestion::Kind", tags = "1, 2")]
-        pub kind: ::core::option::Option<suggestion::Kind>,
-    }
-    /// Nested message and enum types in `Suggestion`.
-    pub mod suggestion {
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, Copy, PartialEq, ::prost::Message)]
-        pub struct StringRange {
-            #[prost(int32, tag = "1")]
-            pub start_offset: i32,
-            #[prost(int32, tag = "2")]
-            pub end_offset: i32,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct FormattableText {
-            #[prost(string, tag = "1")]
-            pub text: ::prost::alloc::string::String,
-            #[prost(message, repeated, tag = "2")]
-            pub matches: ::prost::alloc::vec::Vec<StringRange>,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct StructuredFormat {
-            #[prost(message, optional, tag = "1")]
-            pub main_text: ::core::option::Option<FormattableText>,
-            #[prost(message, optional, tag = "2")]
-            pub secondary_text: ::core::option::Option<FormattableText>,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct PlacePrediction {
-            #[prost(string, tag = "1")]
-            pub place: ::prost::alloc::string::String,
-            #[prost(string, tag = "2")]
-            pub place_id: ::prost::alloc::string::String,
-            #[prost(message, optional, tag = "3")]
-            pub text: ::core::option::Option<FormattableText>,
-            #[prost(message, optional, tag = "4")]
-            pub structured_format: ::core::option::Option<StructuredFormat>,
-            #[prost(string, repeated, tag = "5")]
-            pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-            #[prost(int32, tag = "6")]
-            pub distance_meters: i32,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Message)]
-        pub struct QueryPrediction {
-            #[prost(message, optional, tag = "1")]
-            pub text: ::core::option::Option<FormattableText>,
-            #[prost(message, optional, tag = "2")]
-            pub structured_format: ::core::option::Option<StructuredFormat>,
-        }
-        #[allow(clippy::derive_partial_eq_without_eq)]
-        #[derive(Clone, PartialEq, ::prost::Oneof)]
-        pub enum Kind {
-            #[prost(message, tag = "1")]
-            PlacePrediction(PlacePrediction),
-            #[prost(message, tag = "2")]
-            QueryPrediction(QueryPrediction),
-        }
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Suggestion {
+#[prost(oneof = "suggestion::Kind", tags = "1, 2")]
+pub kind: ::core::option::Option<suggestion::Kind>,
+}
+/// Nested message and enum types in `Suggestion`.
+pub mod suggestion {
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct StringRange {
+#[prost(int32, tag = "1")]
+pub start_offset: i32,
+#[prost(int32, tag = "2")]
+pub end_offset: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FormattableText {
+#[prost(string, tag = "1")]
+pub text: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "2")]
+pub matches: ::prost::alloc::vec::Vec<StringRange>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StructuredFormat {
+#[prost(message, optional, tag = "1")]
+pub main_text: ::core::option::Option<FormattableText>,
+#[prost(message, optional, tag = "2")]
+pub secondary_text: ::core::option::Option<FormattableText>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlacePrediction {
+#[prost(string, tag = "1")]
+pub place: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub place_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub text: ::core::option::Option<FormattableText>,
+#[prost(message, optional, tag = "4")]
+pub structured_format: ::core::option::Option<StructuredFormat>,
+#[prost(string, repeated, tag = "5")]
+pub types: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(int32, tag = "6")]
+pub distance_meters: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryPrediction {
+#[prost(message, optional, tag = "1")]
+pub text: ::core::option::Option<FormattableText>,
+#[prost(message, optional, tag = "2")]
+pub structured_format: ::core::option::Option<StructuredFormat>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Kind {
+#[prost(message, tag = "1")]
+PlacePrediction(PlacePrediction),
+#[prost(message, tag = "2")]
+QueryPrediction(QueryPrediction),
+}
+}
 }
 /// Generated client implementations.
 pub mod places_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Service definition for the Places API.
-    /// Note: every request (except for Autocomplete requests) requires a field mask
-    /// set outside of the request proto (`all/*`, is not assumed). The field mask
-    /// can be set via the HTTP header `X-Goog-FieldMask`. See:
-    /// https://developers.google.com/maps/documentation/places/web-service/choose-fields
-    #[derive(Debug, Clone)]
-    pub struct PlacesClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> PlacesClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> PlacesClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            PlacesClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Search for places near locations.
-        pub async fn search_nearby(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchNearbyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchNearbyResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.places.v1.Places/SearchNearby",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.maps.places.v1.Places", "SearchNearby"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Text query based place search.
-        pub async fn search_text(
-            &mut self,
-            request: impl tonic::IntoRequest<super::SearchTextRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SearchTextResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.places.v1.Places/SearchText",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.maps.places.v1.Places", "SearchText"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get a photo media with a photo reference string.
-        pub async fn get_photo_media(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPhotoMediaRequest>,
-        ) -> std::result::Result<tonic::Response<super::PhotoMedia>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.places.v1.Places/GetPhotoMedia",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.maps.places.v1.Places", "GetPhotoMedia"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Get the details of a place based on its resource name, which is a string
-        /// in the `places/{place_id}` format.
-        pub async fn get_place(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetPlaceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Place>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.places.v1.Places/GetPlace",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("google.maps.places.v1.Places", "GetPlace"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Returns predictions for the given input.
-        pub async fn autocomplete_places(
-            &mut self,
-            request: impl tonic::IntoRequest<super::AutocompletePlacesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::AutocompletePlacesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.maps.places.v1.Places/AutocompletePlaces",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("google.maps.places.v1.Places", "AutocompletePlaces"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Service definition for the Places API.
+/// Note: every request (except for Autocomplete requests) requires a field mask
+/// set outside of the request proto (`all/*`, is not assumed). The field mask
+/// can be set via the HTTP header `X-Goog-FieldMask`. See:
+/// https://developers.google.com/maps/documentation/places/web-service/choose-fields
+#[derive(Debug, Clone)]
+pub struct PlacesClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> PlacesClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> PlacesClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+PlacesClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Search for places near locations.
+pub async fn search_nearby(&mut self, request: impl tonic::IntoRequest<super::SearchNearbyRequest>) -> std::result::Result<tonic::Response<super::SearchNearbyResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/SearchNearby");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.places.v1.Places", "SearchNearby"));
+self.inner.unary(req, path, codec).await
+}
+/// Text query based place search.
+pub async fn search_text(&mut self, request: impl tonic::IntoRequest<super::SearchTextRequest>) -> std::result::Result<tonic::Response<super::SearchTextResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/SearchText");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.places.v1.Places", "SearchText"));
+self.inner.unary(req, path, codec).await
+}
+/// Get a photo media with a photo reference string.
+pub async fn get_photo_media(&mut self, request: impl tonic::IntoRequest<super::GetPhotoMediaRequest>) -> std::result::Result<tonic::Response<super::PhotoMedia>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/GetPhotoMedia");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.places.v1.Places", "GetPhotoMedia"));
+self.inner.unary(req, path, codec).await
+}
+/// Get the details of a place based on its resource name, which is a string
+/// in the `places/{place_id}` format.
+pub async fn get_place(&mut self, request: impl tonic::IntoRequest<super::GetPlaceRequest>) -> std::result::Result<tonic::Response<super::Place>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/GetPlace");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.places.v1.Places", "GetPlace"));
+self.inner.unary(req, path, codec).await
+}
+/// Returns predictions for the given input.
+pub async fn autocomplete_places(&mut self, request: impl tonic::IntoRequest<super::AutocompletePlacesRequest>) -> std::result::Result<tonic::Response<super::AutocompletePlacesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.maps.places.v1.Places/AutocompletePlaces");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.maps.places.v1.Places", "AutocompletePlaces"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

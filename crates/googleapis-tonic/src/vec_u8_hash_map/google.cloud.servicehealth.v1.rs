@@ -2,913 +2,684 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Event {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(enumeration = "event::EventCategory", tag = "4")]
-    pub category: i32,
-    #[prost(enumeration = "event::DetailedCategory", tag = "21")]
-    pub detailed_category: i32,
-    #[prost(enumeration = "event::State", tag = "5")]
-    pub state: i32,
-    #[prost(enumeration = "event::DetailedState", tag = "19")]
-    pub detailed_state: i32,
-    #[prost(message, repeated, tag = "20")]
-    pub event_impacts: ::prost::alloc::vec::Vec<EventImpact>,
-    #[prost(enumeration = "event::Relevance", tag = "8")]
-    pub relevance: i32,
-    #[prost(message, repeated, tag = "9")]
-    pub updates: ::prost::alloc::vec::Vec<EventUpdate>,
-    #[prost(string, tag = "10")]
-    pub parent_event: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "12")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "13")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "14")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "15")]
-    pub next_update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(enumeration = "event::EventCategory", tag = "4")]
+pub category: i32,
+#[prost(enumeration = "event::DetailedCategory", tag = "21")]
+pub detailed_category: i32,
+#[prost(enumeration = "event::State", tag = "5")]
+pub state: i32,
+#[prost(enumeration = "event::DetailedState", tag = "19")]
+pub detailed_state: i32,
+#[prost(message, repeated, tag = "20")]
+pub event_impacts: ::prost::alloc::vec::Vec<EventImpact>,
+#[prost(enumeration = "event::Relevance", tag = "8")]
+pub relevance: i32,
+#[prost(message, repeated, tag = "9")]
+pub updates: ::prost::alloc::vec::Vec<EventUpdate>,
+#[prost(string, tag = "10")]
+pub parent_event: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "12")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "13")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "14")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "15")]
+pub next_update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum EventCategory {
-        Unspecified = 0,
-        Incident = 2,
-    }
-    impl EventCategory {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                EventCategory::Unspecified => "EVENT_CATEGORY_UNSPECIFIED",
-                EventCategory::Incident => "INCIDENT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "EVENT_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
-                "INCIDENT" => Some(Self::Incident),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DetailedCategory {
-        Unspecified = 0,
-        ConfirmedIncident = 1,
-        EmergingIncident = 2,
-    }
-    impl DetailedCategory {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DetailedCategory::Unspecified => "DETAILED_CATEGORY_UNSPECIFIED",
-                DetailedCategory::ConfirmedIncident => "CONFIRMED_INCIDENT",
-                DetailedCategory::EmergingIncident => "EMERGING_INCIDENT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DETAILED_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
-                "CONFIRMED_INCIDENT" => Some(Self::ConfirmedIncident),
-                "EMERGING_INCIDENT" => Some(Self::EmergingIncident),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Closed = 2,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Closed => "CLOSED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "CLOSED" => Some(Self::Closed),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DetailedState {
-        Unspecified = 0,
-        Emerging = 1,
-        Confirmed = 2,
-        Resolved = 3,
-        Merged = 4,
-        AutoClosed = 9,
-        FalsePositive = 10,
-    }
-    impl DetailedState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DetailedState::Unspecified => "DETAILED_STATE_UNSPECIFIED",
-                DetailedState::Emerging => "EMERGING",
-                DetailedState::Confirmed => "CONFIRMED",
-                DetailedState::Resolved => "RESOLVED",
-                DetailedState::Merged => "MERGED",
-                DetailedState::AutoClosed => "AUTO_CLOSED",
-                DetailedState::FalsePositive => "FALSE_POSITIVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DETAILED_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "EMERGING" => Some(Self::Emerging),
-                "CONFIRMED" => Some(Self::Confirmed),
-                "RESOLVED" => Some(Self::Resolved),
-                "MERGED" => Some(Self::Merged),
-                "AUTO_CLOSED" => Some(Self::AutoClosed),
-                "FALSE_POSITIVE" => Some(Self::FalsePositive),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Relevance {
-        Unspecified = 0,
-        Unknown = 2,
-        NotImpacted = 6,
-        PartiallyRelated = 7,
-        Related = 8,
-        Impacted = 9,
-    }
-    impl Relevance {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Relevance::Unspecified => "RELEVANCE_UNSPECIFIED",
-                Relevance::Unknown => "UNKNOWN",
-                Relevance::NotImpacted => "NOT_IMPACTED",
-                Relevance::PartiallyRelated => "PARTIALLY_RELATED",
-                Relevance::Related => "RELATED",
-                Relevance::Impacted => "IMPACTED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RELEVANCE_UNSPECIFIED" => Some(Self::Unspecified),
-                "UNKNOWN" => Some(Self::Unknown),
-                "NOT_IMPACTED" => Some(Self::NotImpacted),
-                "PARTIALLY_RELATED" => Some(Self::PartiallyRelated),
-                "RELATED" => Some(Self::Related),
-                "IMPACTED" => Some(Self::Impacted),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EventCategory {
+Unspecified = 0,
+Incident = 2,
+}
+impl EventCategory {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EventCategory::Unspecified => "EVENT_CATEGORY_UNSPECIFIED",
+EventCategory::Incident => "INCIDENT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EVENT_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+"INCIDENT" => Some(Self::Incident),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DetailedCategory {
+Unspecified = 0,
+ConfirmedIncident = 1,
+EmergingIncident = 2,
+}
+impl DetailedCategory {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DetailedCategory::Unspecified => "DETAILED_CATEGORY_UNSPECIFIED",
+DetailedCategory::ConfirmedIncident => "CONFIRMED_INCIDENT",
+DetailedCategory::EmergingIncident => "EMERGING_INCIDENT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DETAILED_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+"CONFIRMED_INCIDENT" => Some(Self::ConfirmedIncident),
+"EMERGING_INCIDENT" => Some(Self::EmergingIncident),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Closed = 2,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Closed => "CLOSED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"CLOSED" => Some(Self::Closed),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DetailedState {
+Unspecified = 0,
+Emerging = 1,
+Confirmed = 2,
+Resolved = 3,
+Merged = 4,
+AutoClosed = 9,
+FalsePositive = 10,
+}
+impl DetailedState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DetailedState::Unspecified => "DETAILED_STATE_UNSPECIFIED",
+DetailedState::Emerging => "EMERGING",
+DetailedState::Confirmed => "CONFIRMED",
+DetailedState::Resolved => "RESOLVED",
+DetailedState::Merged => "MERGED",
+DetailedState::AutoClosed => "AUTO_CLOSED",
+DetailedState::FalsePositive => "FALSE_POSITIVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DETAILED_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"EMERGING" => Some(Self::Emerging),
+"CONFIRMED" => Some(Self::Confirmed),
+"RESOLVED" => Some(Self::Resolved),
+"MERGED" => Some(Self::Merged),
+"AUTO_CLOSED" => Some(Self::AutoClosed),
+"FALSE_POSITIVE" => Some(Self::FalsePositive),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Relevance {
+Unspecified = 0,
+Unknown = 2,
+NotImpacted = 6,
+PartiallyRelated = 7,
+Related = 8,
+Impacted = 9,
+}
+impl Relevance {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Relevance::Unspecified => "RELEVANCE_UNSPECIFIED",
+Relevance::Unknown => "UNKNOWN",
+Relevance::NotImpacted => "NOT_IMPACTED",
+Relevance::PartiallyRelated => "PARTIALLY_RELATED",
+Relevance::Related => "RELATED",
+Relevance::Impacted => "IMPACTED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RELEVANCE_UNSPECIFIED" => Some(Self::Unspecified),
+"UNKNOWN" => Some(Self::Unknown),
+"NOT_IMPACTED" => Some(Self::NotImpacted),
+"PARTIALLY_RELATED" => Some(Self::PartiallyRelated),
+"RELATED" => Some(Self::Related),
+"IMPACTED" => Some(Self::Impacted),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrganizationEvent {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(enumeration = "organization_event::EventCategory", tag = "4")]
-    pub category: i32,
-    #[prost(enumeration = "organization_event::DetailedCategory", tag = "17")]
-    pub detailed_category: i32,
-    #[prost(enumeration = "organization_event::State", tag = "5")]
-    pub state: i32,
-    #[prost(enumeration = "organization_event::DetailedState", tag = "16")]
-    pub detailed_state: i32,
-    #[prost(message, repeated, tag = "15")]
-    pub event_impacts: ::prost::alloc::vec::Vec<EventImpact>,
-    #[prost(message, repeated, tag = "8")]
-    pub updates: ::prost::alloc::vec::Vec<EventUpdate>,
-    #[prost(string, tag = "9")]
-    pub parent_event: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "11")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "12")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "13")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "14")]
-    pub next_update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(enumeration = "organization_event::EventCategory", tag = "4")]
+pub category: i32,
+#[prost(enumeration = "organization_event::DetailedCategory", tag = "17")]
+pub detailed_category: i32,
+#[prost(enumeration = "organization_event::State", tag = "5")]
+pub state: i32,
+#[prost(enumeration = "organization_event::DetailedState", tag = "16")]
+pub detailed_state: i32,
+#[prost(message, repeated, tag = "15")]
+pub event_impacts: ::prost::alloc::vec::Vec<EventImpact>,
+#[prost(message, repeated, tag = "8")]
+pub updates: ::prost::alloc::vec::Vec<EventUpdate>,
+#[prost(string, tag = "9")]
+pub parent_event: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "11")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "12")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "13")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "14")]
+pub next_update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `OrganizationEvent`.
 pub mod organization_event {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum EventCategory {
-        Unspecified = 0,
-        Incident = 2,
-    }
-    impl EventCategory {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                EventCategory::Unspecified => "EVENT_CATEGORY_UNSPECIFIED",
-                EventCategory::Incident => "INCIDENT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "EVENT_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
-                "INCIDENT" => Some(Self::Incident),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DetailedCategory {
-        Unspecified = 0,
-        ConfirmedIncident = 1,
-        EmergingIncident = 2,
-    }
-    impl DetailedCategory {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DetailedCategory::Unspecified => "DETAILED_CATEGORY_UNSPECIFIED",
-                DetailedCategory::ConfirmedIncident => "CONFIRMED_INCIDENT",
-                DetailedCategory::EmergingIncident => "EMERGING_INCIDENT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DETAILED_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
-                "CONFIRMED_INCIDENT" => Some(Self::ConfirmedIncident),
-                "EMERGING_INCIDENT" => Some(Self::EmergingIncident),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Active = 1,
-        Closed = 2,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Active => "ACTIVE",
-                State::Closed => "CLOSED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "ACTIVE" => Some(Self::Active),
-                "CLOSED" => Some(Self::Closed),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DetailedState {
-        Unspecified = 0,
-        Emerging = 1,
-        Confirmed = 2,
-        Resolved = 3,
-        Merged = 4,
-        AutoClosed = 9,
-        FalsePositive = 10,
-    }
-    impl DetailedState {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DetailedState::Unspecified => "DETAILED_STATE_UNSPECIFIED",
-                DetailedState::Emerging => "EMERGING",
-                DetailedState::Confirmed => "CONFIRMED",
-                DetailedState::Resolved => "RESOLVED",
-                DetailedState::Merged => "MERGED",
-                DetailedState::AutoClosed => "AUTO_CLOSED",
-                DetailedState::FalsePositive => "FALSE_POSITIVE",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DETAILED_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "EMERGING" => Some(Self::Emerging),
-                "CONFIRMED" => Some(Self::Confirmed),
-                "RESOLVED" => Some(Self::Resolved),
-                "MERGED" => Some(Self::Merged),
-                "AUTO_CLOSED" => Some(Self::AutoClosed),
-                "FALSE_POSITIVE" => Some(Self::FalsePositive),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EventCategory {
+Unspecified = 0,
+Incident = 2,
+}
+impl EventCategory {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EventCategory::Unspecified => "EVENT_CATEGORY_UNSPECIFIED",
+EventCategory::Incident => "INCIDENT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EVENT_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+"INCIDENT" => Some(Self::Incident),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DetailedCategory {
+Unspecified = 0,
+ConfirmedIncident = 1,
+EmergingIncident = 2,
+}
+impl DetailedCategory {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DetailedCategory::Unspecified => "DETAILED_CATEGORY_UNSPECIFIED",
+DetailedCategory::ConfirmedIncident => "CONFIRMED_INCIDENT",
+DetailedCategory::EmergingIncident => "EMERGING_INCIDENT",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DETAILED_CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+"CONFIRMED_INCIDENT" => Some(Self::ConfirmedIncident),
+"EMERGING_INCIDENT" => Some(Self::EmergingIncident),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Active = 1,
+Closed = 2,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Active => "ACTIVE",
+State::Closed => "CLOSED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"ACTIVE" => Some(Self::Active),
+"CLOSED" => Some(Self::Closed),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DetailedState {
+Unspecified = 0,
+Emerging = 1,
+Confirmed = 2,
+Resolved = 3,
+Merged = 4,
+AutoClosed = 9,
+FalsePositive = 10,
+}
+impl DetailedState {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DetailedState::Unspecified => "DETAILED_STATE_UNSPECIFIED",
+DetailedState::Emerging => "EMERGING",
+DetailedState::Confirmed => "CONFIRMED",
+DetailedState::Resolved => "RESOLVED",
+DetailedState::Merged => "MERGED",
+DetailedState::AutoClosed => "AUTO_CLOSED",
+DetailedState::FalsePositive => "FALSE_POSITIVE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DETAILED_STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"EMERGING" => Some(Self::Emerging),
+"CONFIRMED" => Some(Self::Confirmed),
+"RESOLVED" => Some(Self::Resolved),
+"MERGED" => Some(Self::Merged),
+"AUTO_CLOSED" => Some(Self::AutoClosed),
+"FALSE_POSITIVE" => Some(Self::FalsePositive),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventUpdate {
-    #[prost(message, optional, tag = "1")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "2")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub symptom: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub workaround: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "1")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "2")]
+pub title: ::prost::alloc::string::String,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub symptom: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub workaround: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Location {
-    #[prost(string, tag = "1")]
-    pub location_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub location_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Product {
-    #[prost(string, tag = "1")]
-    pub product_name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub product_name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EventImpact {
-    #[prost(message, optional, tag = "1")]
-    pub product: ::core::option::Option<Product>,
-    #[prost(message, optional, tag = "2")]
-    pub location: ::core::option::Option<Location>,
+#[prost(message, optional, tag = "1")]
+pub product: ::core::option::Option<Product>,
+#[prost(message, optional, tag = "2")]
+pub location: ::core::option::Option<Location>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OrganizationImpact {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "2")]
-    pub events: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub asset: ::core::option::Option<Asset>,
-    #[prost(message, optional, tag = "4")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "2")]
+pub events: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, optional, tag = "3")]
+pub asset: ::core::option::Option<Asset>,
+#[prost(message, optional, tag = "4")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Asset {
-    #[prost(string, tag = "1")]
-    pub asset_name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub asset_type: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub asset_name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub asset_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(enumeration = "EventView", tag = "6")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(enumeration = "EventView", tag = "6")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListEventsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub events: ::prost::alloc::vec::Vec<Event>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub events: ::prost::alloc::vec::Vec<Event>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetEventRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOrganizationEventsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
-    #[prost(enumeration = "OrganizationEventView", tag = "6")]
-    pub view: i32,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
+#[prost(enumeration = "OrganizationEventView", tag = "6")]
+pub view: i32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOrganizationEventsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub organization_events: ::prost::alloc::vec::Vec<OrganizationEvent>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub organization_events: ::prost::alloc::vec::Vec<OrganizationEvent>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOrganizationEventRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOrganizationImpactsRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub filter: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "4")]
+pub filter: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListOrganizationImpactsResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub organization_impacts: ::prost::alloc::vec::Vec<OrganizationImpact>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub organization_impacts: ::prost::alloc::vec::Vec<OrganizationImpact>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetOrganizationImpactRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum EventView {
-    Unspecified = 0,
-    Basic = 1,
-    Full = 2,
+Unspecified = 0,
+Basic = 1,
+Full = 2,
 }
 impl EventView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EventView::Unspecified => "EVENT_VIEW_UNSPECIFIED",
-            EventView::Basic => "EVENT_VIEW_BASIC",
-            EventView::Full => "EVENT_VIEW_FULL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "EVENT_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
-            "EVENT_VIEW_BASIC" => Some(Self::Basic),
-            "EVENT_VIEW_FULL" => Some(Self::Full),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+EventView::Unspecified => "EVENT_VIEW_UNSPECIFIED",
+EventView::Basic => "EVENT_VIEW_BASIC",
+EventView::Full => "EVENT_VIEW_FULL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"EVENT_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+"EVENT_VIEW_BASIC" => Some(Self::Basic),
+"EVENT_VIEW_FULL" => Some(Self::Full),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum OrganizationEventView {
-    Unspecified = 0,
-    Basic = 1,
-    Full = 2,
+Unspecified = 0,
+Basic = 1,
+Full = 2,
 }
 impl OrganizationEventView {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            OrganizationEventView::Unspecified => "ORGANIZATION_EVENT_VIEW_UNSPECIFIED",
-            OrganizationEventView::Basic => "ORGANIZATION_EVENT_VIEW_BASIC",
-            OrganizationEventView::Full => "ORGANIZATION_EVENT_VIEW_FULL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ORGANIZATION_EVENT_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
-            "ORGANIZATION_EVENT_VIEW_BASIC" => Some(Self::Basic),
-            "ORGANIZATION_EVENT_VIEW_FULL" => Some(Self::Full),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OrganizationEventView::Unspecified => "ORGANIZATION_EVENT_VIEW_UNSPECIFIED",
+OrganizationEventView::Basic => "ORGANIZATION_EVENT_VIEW_BASIC",
+OrganizationEventView::Full => "ORGANIZATION_EVENT_VIEW_FULL",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ORGANIZATION_EVENT_VIEW_UNSPECIFIED" => Some(Self::Unspecified),
+"ORGANIZATION_EVENT_VIEW_BASIC" => Some(Self::Basic),
+"ORGANIZATION_EVENT_VIEW_FULL" => Some(Self::Full),
+_ => None,
+}
+}
 }
 /// Generated client implementations.
 pub mod service_health_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Request service health events relevant to your Google Cloud project.
-    #[derive(Debug, Clone)]
-    pub struct ServiceHealthClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> ServiceHealthClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> ServiceHealthClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            ServiceHealthClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists events under a given project and location.
-        pub async fn list_events(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListEventsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListEventsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.servicehealth.v1.ServiceHealth/ListEvents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.servicehealth.v1.ServiceHealth",
-                        "ListEvents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieves a resource containing information about an event.
-        pub async fn get_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetEventRequest>,
-        ) -> std::result::Result<tonic::Response<super::Event>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.servicehealth.v1.ServiceHealth/GetEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.servicehealth.v1.ServiceHealth",
-                        "GetEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists organization events under a given organization and location.
-        pub async fn list_organization_events(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListOrganizationEventsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListOrganizationEventsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.servicehealth.v1.ServiceHealth/ListOrganizationEvents",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.servicehealth.v1.ServiceHealth",
-                        "ListOrganizationEvents",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieves a resource containing information about an event affecting an
-        /// organization .
-        pub async fn get_organization_event(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetOrganizationEventRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::OrganizationEvent>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.servicehealth.v1.ServiceHealth/GetOrganizationEvent",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.servicehealth.v1.ServiceHealth",
-                        "GetOrganizationEvent",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Lists assets impacted by organization events under a given organization and
-        /// location.
-        pub async fn list_organization_impacts(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListOrganizationImpactsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListOrganizationImpactsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.servicehealth.v1.ServiceHealth/ListOrganizationImpacts",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.servicehealth.v1.ServiceHealth",
-                        "ListOrganizationImpacts",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Retrieves a resource containing information about impact to an asset under
-        /// an organization affected by a service health event.
-        pub async fn get_organization_impact(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetOrganizationImpactRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::OrganizationImpact>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.servicehealth.v1.ServiceHealth/GetOrganizationImpact",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.servicehealth.v1.ServiceHealth",
-                        "GetOrganizationImpact",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Request service health events relevant to your Google Cloud project.
+#[derive(Debug, Clone)]
+pub struct ServiceHealthClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> ServiceHealthClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> ServiceHealthClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+ServiceHealthClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists events under a given project and location.
+pub async fn list_events(&mut self, request: impl tonic::IntoRequest<super::ListEventsRequest>) -> std::result::Result<tonic::Response<super::ListEventsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.servicehealth.v1.ServiceHealth/ListEvents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.servicehealth.v1.ServiceHealth", "ListEvents"));
+self.inner.unary(req, path, codec).await
+}
+/// Retrieves a resource containing information about an event.
+pub async fn get_event(&mut self, request: impl tonic::IntoRequest<super::GetEventRequest>) -> std::result::Result<tonic::Response<super::Event>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.servicehealth.v1.ServiceHealth/GetEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.servicehealth.v1.ServiceHealth", "GetEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists organization events under a given organization and location.
+pub async fn list_organization_events(&mut self, request: impl tonic::IntoRequest<super::ListOrganizationEventsRequest>) -> std::result::Result<tonic::Response<super::ListOrganizationEventsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.servicehealth.v1.ServiceHealth/ListOrganizationEvents");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.servicehealth.v1.ServiceHealth", "ListOrganizationEvents"));
+self.inner.unary(req, path, codec).await
+}
+/// Retrieves a resource containing information about an event affecting an
+/// organization .
+pub async fn get_organization_event(&mut self, request: impl tonic::IntoRequest<super::GetOrganizationEventRequest>) -> std::result::Result<tonic::Response<super::OrganizationEvent>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.servicehealth.v1.ServiceHealth/GetOrganizationEvent");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.servicehealth.v1.ServiceHealth", "GetOrganizationEvent"));
+self.inner.unary(req, path, codec).await
+}
+/// Lists assets impacted by organization events under a given organization and
+/// location.
+pub async fn list_organization_impacts(&mut self, request: impl tonic::IntoRequest<super::ListOrganizationImpactsRequest>) -> std::result::Result<tonic::Response<super::ListOrganizationImpactsResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.servicehealth.v1.ServiceHealth/ListOrganizationImpacts");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.servicehealth.v1.ServiceHealth", "ListOrganizationImpacts"));
+self.inner.unary(req, path, codec).await
+}
+/// Retrieves a resource containing information about impact to an asset under
+/// an organization affected by a service health event.
+pub async fn get_organization_impact(&mut self, request: impl tonic::IntoRequest<super::GetOrganizationImpactRequest>) -> std::result::Result<tonic::Response<super::OrganizationImpact>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.servicehealth.v1.ServiceHealth/GetOrganizationImpact");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.servicehealth.v1.ServiceHealth", "GetOrganizationImpact"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

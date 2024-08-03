@@ -2,676 +2,575 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct NodeInfo {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub zone: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub id: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub zone: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Instance {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub display_name: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "3")]
-    pub labels: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(string, tag = "4")]
-    pub location_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub alternative_location_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "7")]
-    pub redis_version: ::prost::alloc::string::String,
-    #[prost(string, tag = "9")]
-    pub reserved_ip_range: ::prost::alloc::string::String,
-    #[prost(string, tag = "30")]
-    pub secondary_ip_range: ::prost::alloc::string::String,
-    #[prost(string, tag = "10")]
-    pub host: ::prost::alloc::string::String,
-    #[prost(int32, tag = "11")]
-    pub port: i32,
-    #[prost(string, tag = "12")]
-    pub current_location_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "13")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(enumeration = "instance::State", tag = "14")]
-    pub state: i32,
-    #[prost(string, tag = "15")]
-    pub status_message: ::prost::alloc::string::String,
-    #[prost(map = "string, string", tag = "16")]
-    pub redis_configs: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ::prost::alloc::string::String,
-    >,
-    #[prost(enumeration = "instance::Tier", tag = "17")]
-    pub tier: i32,
-    #[prost(int32, tag = "18")]
-    pub memory_size_gb: i32,
-    #[prost(string, tag = "20")]
-    pub authorized_network: ::prost::alloc::string::String,
-    #[prost(string, tag = "21")]
-    pub persistence_iam_identity: ::prost::alloc::string::String,
-    #[prost(enumeration = "instance::ConnectMode", tag = "22")]
-    pub connect_mode: i32,
-    #[prost(bool, tag = "23")]
-    pub auth_enabled: bool,
-    #[prost(message, repeated, tag = "25")]
-    pub server_ca_certs: ::prost::alloc::vec::Vec<TlsCertificate>,
-    #[prost(enumeration = "instance::TransitEncryptionMode", tag = "26")]
-    pub transit_encryption_mode: i32,
-    #[prost(message, optional, tag = "27")]
-    pub maintenance_policy: ::core::option::Option<MaintenancePolicy>,
-    #[prost(message, optional, tag = "28")]
-    pub maintenance_schedule: ::core::option::Option<MaintenanceSchedule>,
-    #[prost(int32, tag = "31")]
-    pub replica_count: i32,
-    #[prost(message, repeated, tag = "32")]
-    pub nodes: ::prost::alloc::vec::Vec<NodeInfo>,
-    #[prost(string, tag = "33")]
-    pub read_endpoint: ::prost::alloc::string::String,
-    #[prost(int32, tag = "34")]
-    pub read_endpoint_port: i32,
-    #[prost(enumeration = "instance::ReadReplicasMode", tag = "35")]
-    pub read_replicas_mode: i32,
-    #[prost(message, optional, tag = "37")]
-    pub persistence_config: ::core::option::Option<PersistenceConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub display_name: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "3")]
+pub labels: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(string, tag = "4")]
+pub location_id: ::prost::alloc::string::String,
+#[prost(string, tag = "5")]
+pub alternative_location_id: ::prost::alloc::string::String,
+#[prost(string, tag = "7")]
+pub redis_version: ::prost::alloc::string::String,
+#[prost(string, tag = "9")]
+pub reserved_ip_range: ::prost::alloc::string::String,
+#[prost(string, tag = "30")]
+pub secondary_ip_range: ::prost::alloc::string::String,
+#[prost(string, tag = "10")]
+pub host: ::prost::alloc::string::String,
+#[prost(int32, tag = "11")]
+pub port: i32,
+#[prost(string, tag = "12")]
+pub current_location_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "13")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "instance::State", tag = "14")]
+pub state: i32,
+#[prost(string, tag = "15")]
+pub status_message: ::prost::alloc::string::String,
+#[prost(map = "string, string", tag = "16")]
+pub redis_configs: ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+#[prost(enumeration = "instance::Tier", tag = "17")]
+pub tier: i32,
+#[prost(int32, tag = "18")]
+pub memory_size_gb: i32,
+#[prost(string, tag = "20")]
+pub authorized_network: ::prost::alloc::string::String,
+#[prost(string, tag = "21")]
+pub persistence_iam_identity: ::prost::alloc::string::String,
+#[prost(enumeration = "instance::ConnectMode", tag = "22")]
+pub connect_mode: i32,
+#[prost(bool, tag = "23")]
+pub auth_enabled: bool,
+#[prost(message, repeated, tag = "25")]
+pub server_ca_certs: ::prost::alloc::vec::Vec<TlsCertificate>,
+#[prost(enumeration = "instance::TransitEncryptionMode", tag = "26")]
+pub transit_encryption_mode: i32,
+#[prost(message, optional, tag = "27")]
+pub maintenance_policy: ::core::option::Option<MaintenancePolicy>,
+#[prost(message, optional, tag = "28")]
+pub maintenance_schedule: ::core::option::Option<MaintenanceSchedule>,
+#[prost(int32, tag = "31")]
+pub replica_count: i32,
+#[prost(message, repeated, tag = "32")]
+pub nodes: ::prost::alloc::vec::Vec<NodeInfo>,
+#[prost(string, tag = "33")]
+pub read_endpoint: ::prost::alloc::string::String,
+#[prost(int32, tag = "34")]
+pub read_endpoint_port: i32,
+#[prost(enumeration = "instance::ReadReplicasMode", tag = "35")]
+pub read_replicas_mode: i32,
+#[prost(message, optional, tag = "37")]
+pub persistence_config: ::core::option::Option<PersistenceConfig>,
 }
 /// Nested message and enum types in `Instance`.
 pub mod instance {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum State {
-        Unspecified = 0,
-        Creating = 1,
-        Ready = 2,
-        Updating = 3,
-        Deleting = 4,
-        Repairing = 5,
-        Maintenance = 6,
-        Importing = 8,
-        FailingOver = 10,
-    }
-    impl State {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                State::Unspecified => "STATE_UNSPECIFIED",
-                State::Creating => "CREATING",
-                State::Ready => "READY",
-                State::Updating => "UPDATING",
-                State::Deleting => "DELETING",
-                State::Repairing => "REPAIRING",
-                State::Maintenance => "MAINTENANCE",
-                State::Importing => "IMPORTING",
-                State::FailingOver => "FAILING_OVER",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "STATE_UNSPECIFIED" => Some(Self::Unspecified),
-                "CREATING" => Some(Self::Creating),
-                "READY" => Some(Self::Ready),
-                "UPDATING" => Some(Self::Updating),
-                "DELETING" => Some(Self::Deleting),
-                "REPAIRING" => Some(Self::Repairing),
-                "MAINTENANCE" => Some(Self::Maintenance),
-                "IMPORTING" => Some(Self::Importing),
-                "FAILING_OVER" => Some(Self::FailingOver),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Tier {
-        Unspecified = 0,
-        Basic = 1,
-        StandardHa = 3,
-    }
-    impl Tier {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Tier::Unspecified => "TIER_UNSPECIFIED",
-                Tier::Basic => "BASIC",
-                Tier::StandardHa => "STANDARD_HA",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TIER_UNSPECIFIED" => Some(Self::Unspecified),
-                "BASIC" => Some(Self::Basic),
-                "STANDARD_HA" => Some(Self::StandardHa),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ConnectMode {
-        Unspecified = 0,
-        DirectPeering = 1,
-        PrivateServiceAccess = 2,
-    }
-    impl ConnectMode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ConnectMode::Unspecified => "CONNECT_MODE_UNSPECIFIED",
-                ConnectMode::DirectPeering => "DIRECT_PEERING",
-                ConnectMode::PrivateServiceAccess => "PRIVATE_SERVICE_ACCESS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "CONNECT_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DIRECT_PEERING" => Some(Self::DirectPeering),
-                "PRIVATE_SERVICE_ACCESS" => Some(Self::PrivateServiceAccess),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum TransitEncryptionMode {
-        Unspecified = 0,
-        ServerAuthentication = 1,
-        Disabled = 2,
-    }
-    impl TransitEncryptionMode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                TransitEncryptionMode::Unspecified => {
-                    "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED"
-                }
-                TransitEncryptionMode::ServerAuthentication => "SERVER_AUTHENTICATION",
-                TransitEncryptionMode::Disabled => "DISABLED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "SERVER_AUTHENTICATION" => Some(Self::ServerAuthentication),
-                "DISABLED" => Some(Self::Disabled),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ReadReplicasMode {
-        Unspecified = 0,
-        ReadReplicasDisabled = 1,
-        ReadReplicasEnabled = 2,
-    }
-    impl ReadReplicasMode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ReadReplicasMode::Unspecified => "READ_REPLICAS_MODE_UNSPECIFIED",
-                ReadReplicasMode::ReadReplicasDisabled => "READ_REPLICAS_DISABLED",
-                ReadReplicasMode::ReadReplicasEnabled => "READ_REPLICAS_ENABLED",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "READ_REPLICAS_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "READ_REPLICAS_DISABLED" => Some(Self::ReadReplicasDisabled),
-                "READ_REPLICAS_ENABLED" => Some(Self::ReadReplicasEnabled),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum State {
+Unspecified = 0,
+Creating = 1,
+Ready = 2,
+Updating = 3,
+Deleting = 4,
+Repairing = 5,
+Maintenance = 6,
+Importing = 8,
+FailingOver = 10,
+}
+impl State {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+State::Unspecified => "STATE_UNSPECIFIED",
+State::Creating => "CREATING",
+State::Ready => "READY",
+State::Updating => "UPDATING",
+State::Deleting => "DELETING",
+State::Repairing => "REPAIRING",
+State::Maintenance => "MAINTENANCE",
+State::Importing => "IMPORTING",
+State::FailingOver => "FAILING_OVER",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"STATE_UNSPECIFIED" => Some(Self::Unspecified),
+"CREATING" => Some(Self::Creating),
+"READY" => Some(Self::Ready),
+"UPDATING" => Some(Self::Updating),
+"DELETING" => Some(Self::Deleting),
+"REPAIRING" => Some(Self::Repairing),
+"MAINTENANCE" => Some(Self::Maintenance),
+"IMPORTING" => Some(Self::Importing),
+"FAILING_OVER" => Some(Self::FailingOver),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Tier {
+Unspecified = 0,
+Basic = 1,
+StandardHa = 3,
+}
+impl Tier {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+Tier::Unspecified => "TIER_UNSPECIFIED",
+Tier::Basic => "BASIC",
+Tier::StandardHa => "STANDARD_HA",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TIER_UNSPECIFIED" => Some(Self::Unspecified),
+"BASIC" => Some(Self::Basic),
+"STANDARD_HA" => Some(Self::StandardHa),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ConnectMode {
+Unspecified = 0,
+DirectPeering = 1,
+PrivateServiceAccess = 2,
+}
+impl ConnectMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ConnectMode::Unspecified => "CONNECT_MODE_UNSPECIFIED",
+ConnectMode::DirectPeering => "DIRECT_PEERING",
+ConnectMode::PrivateServiceAccess => "PRIVATE_SERVICE_ACCESS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"CONNECT_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"DIRECT_PEERING" => Some(Self::DirectPeering),
+"PRIVATE_SERVICE_ACCESS" => Some(Self::PrivateServiceAccess),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum TransitEncryptionMode {
+Unspecified = 0,
+ServerAuthentication = 1,
+Disabled = 2,
+}
+impl TransitEncryptionMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+TransitEncryptionMode::Unspecified => "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+TransitEncryptionMode::ServerAuthentication => "SERVER_AUTHENTICATION",
+TransitEncryptionMode::Disabled => "DISABLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"TRANSIT_ENCRYPTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"SERVER_AUTHENTICATION" => Some(Self::ServerAuthentication),
+"DISABLED" => Some(Self::Disabled),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ReadReplicasMode {
+Unspecified = 0,
+ReadReplicasDisabled = 1,
+ReadReplicasEnabled = 2,
+}
+impl ReadReplicasMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+ReadReplicasMode::Unspecified => "READ_REPLICAS_MODE_UNSPECIFIED",
+ReadReplicasMode::ReadReplicasDisabled => "READ_REPLICAS_DISABLED",
+ReadReplicasMode::ReadReplicasEnabled => "READ_REPLICAS_ENABLED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"READ_REPLICAS_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"READ_REPLICAS_DISABLED" => Some(Self::ReadReplicasDisabled),
+"READ_REPLICAS_ENABLED" => Some(Self::ReadReplicasEnabled),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct PersistenceConfig {
-    #[prost(enumeration = "persistence_config::PersistenceMode", tag = "1")]
-    pub persistence_mode: i32,
-    #[prost(enumeration = "persistence_config::SnapshotPeriod", tag = "2")]
-    pub rdb_snapshot_period: i32,
-    #[prost(message, optional, tag = "4")]
-    pub rdb_next_snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "5")]
-    pub rdb_snapshot_start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(enumeration = "persistence_config::PersistenceMode", tag = "1")]
+pub persistence_mode: i32,
+#[prost(enumeration = "persistence_config::SnapshotPeriod", tag = "2")]
+pub rdb_snapshot_period: i32,
+#[prost(message, optional, tag = "4")]
+pub rdb_next_snapshot_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "5")]
+pub rdb_snapshot_start_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `PersistenceConfig`.
 pub mod persistence_config {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum PersistenceMode {
-        Unspecified = 0,
-        Disabled = 1,
-        Rdb = 2,
-    }
-    impl PersistenceMode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                PersistenceMode::Unspecified => "PERSISTENCE_MODE_UNSPECIFIED",
-                PersistenceMode::Disabled => "DISABLED",
-                PersistenceMode::Rdb => "RDB",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "PERSISTENCE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "DISABLED" => Some(Self::Disabled),
-                "RDB" => Some(Self::Rdb),
-                _ => None,
-            }
-        }
-    }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum SnapshotPeriod {
-        Unspecified = 0,
-        OneHour = 3,
-        SixHours = 4,
-        TwelveHours = 5,
-        TwentyFourHours = 6,
-    }
-    impl SnapshotPeriod {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                SnapshotPeriod::Unspecified => "SNAPSHOT_PERIOD_UNSPECIFIED",
-                SnapshotPeriod::OneHour => "ONE_HOUR",
-                SnapshotPeriod::SixHours => "SIX_HOURS",
-                SnapshotPeriod::TwelveHours => "TWELVE_HOURS",
-                SnapshotPeriod::TwentyFourHours => "TWENTY_FOUR_HOURS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "SNAPSHOT_PERIOD_UNSPECIFIED" => Some(Self::Unspecified),
-                "ONE_HOUR" => Some(Self::OneHour),
-                "SIX_HOURS" => Some(Self::SixHours),
-                "TWELVE_HOURS" => Some(Self::TwelveHours),
-                "TWENTY_FOUR_HOURS" => Some(Self::TwentyFourHours),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum PersistenceMode {
+Unspecified = 0,
+Disabled = 1,
+Rdb = 2,
+}
+impl PersistenceMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+PersistenceMode::Unspecified => "PERSISTENCE_MODE_UNSPECIFIED",
+PersistenceMode::Disabled => "DISABLED",
+PersistenceMode::Rdb => "RDB",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"PERSISTENCE_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"DISABLED" => Some(Self::Disabled),
+"RDB" => Some(Self::Rdb),
+_ => None,
+}
+}
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SnapshotPeriod {
+Unspecified = 0,
+OneHour = 3,
+SixHours = 4,
+TwelveHours = 5,
+TwentyFourHours = 6,
+}
+impl SnapshotPeriod {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+SnapshotPeriod::Unspecified => "SNAPSHOT_PERIOD_UNSPECIFIED",
+SnapshotPeriod::OneHour => "ONE_HOUR",
+SnapshotPeriod::SixHours => "SIX_HOURS",
+SnapshotPeriod::TwelveHours => "TWELVE_HOURS",
+SnapshotPeriod::TwentyFourHours => "TWENTY_FOUR_HOURS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"SNAPSHOT_PERIOD_UNSPECIFIED" => Some(Self::Unspecified),
+"ONE_HOUR" => Some(Self::OneHour),
+"SIX_HOURS" => Some(Self::SixHours),
+"TWELVE_HOURS" => Some(Self::TwelveHours),
+"TWENTY_FOUR_HOURS" => Some(Self::TwentyFourHours),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RescheduleMaintenanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "reschedule_maintenance_request::RescheduleType", tag = "2")]
-    pub reschedule_type: i32,
-    #[prost(message, optional, tag = "3")]
-    pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "reschedule_maintenance_request::RescheduleType", tag = "2")]
+pub reschedule_type: i32,
+#[prost(message, optional, tag = "3")]
+pub schedule_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `RescheduleMaintenanceRequest`.
 pub mod reschedule_maintenance_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum RescheduleType {
-        Unspecified = 0,
-        Immediate = 1,
-        NextAvailableWindow = 2,
-        SpecificTime = 3,
-    }
-    impl RescheduleType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                RescheduleType::Unspecified => "RESCHEDULE_TYPE_UNSPECIFIED",
-                RescheduleType::Immediate => "IMMEDIATE",
-                RescheduleType::NextAvailableWindow => "NEXT_AVAILABLE_WINDOW",
-                RescheduleType::SpecificTime => "SPECIFIC_TIME",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "RESCHEDULE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-                "IMMEDIATE" => Some(Self::Immediate),
-                "NEXT_AVAILABLE_WINDOW" => Some(Self::NextAvailableWindow),
-                "SPECIFIC_TIME" => Some(Self::SpecificTime),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RescheduleType {
+Unspecified = 0,
+Immediate = 1,
+NextAvailableWindow = 2,
+SpecificTime = 3,
+}
+impl RescheduleType {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+RescheduleType::Unspecified => "RESCHEDULE_TYPE_UNSPECIFIED",
+RescheduleType::Immediate => "IMMEDIATE",
+RescheduleType::NextAvailableWindow => "NEXT_AVAILABLE_WINDOW",
+RescheduleType::SpecificTime => "SPECIFIC_TIME",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"RESCHEDULE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+"IMMEDIATE" => Some(Self::Immediate),
+"NEXT_AVAILABLE_WINDOW" => Some(Self::NextAvailableWindow),
+"SPECIFIC_TIME" => Some(Self::SpecificTime),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MaintenancePolicy {
-    #[prost(message, optional, tag = "1")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub update_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "3")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "4")]
-    pub weekly_maintenance_window: ::prost::alloc::vec::Vec<WeeklyMaintenanceWindow>,
+#[prost(message, optional, tag = "1")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub update_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "3")]
+pub description: ::prost::alloc::string::String,
+#[prost(message, repeated, tag = "4")]
+pub weekly_maintenance_window: ::prost::alloc::vec::Vec<WeeklyMaintenanceWindow>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct WeeklyMaintenanceWindow {
-    #[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "1")]
-    pub day: i32,
-    #[prost(message, optional, tag = "2")]
-    pub start_time: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
-    #[prost(message, optional, tag = "3")]
-    pub duration: ::core::option::Option<::prost_types::Duration>,
+#[prost(enumeration = "super::super::super::r#type::DayOfWeek", tag = "1")]
+pub day: i32,
+#[prost(message, optional, tag = "2")]
+pub start_time: ::core::option::Option<super::super::super::r#type::TimeOfDay>,
+#[prost(message, optional, tag = "3")]
+pub duration: ::core::option::Option<::prost_types::Duration>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct MaintenanceSchedule {
-    #[prost(message, optional, tag = "1")]
-    pub start_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "2")]
-    pub end_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[deprecated]
-    #[prost(bool, tag = "3")]
-    pub can_reschedule: bool,
-    #[prost(message, optional, tag = "5")]
-    pub schedule_deadline_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "1")]
+pub start_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "2")]
+pub end_time: ::core::option::Option<::prost_types::Timestamp>,
+#[deprecated]
+#[prost(bool, tag = "3")]
+pub can_reschedule: bool,
+#[prost(message, optional, tag = "5")]
+pub schedule_deadline_time: ::core::option::Option<::prost_types::Timestamp>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(int32, tag = "2")]
-    pub page_size: i32,
-    #[prost(string, tag = "3")]
-    pub page_token: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(int32, tag = "2")]
+pub page_size: i32,
+#[prost(string, tag = "3")]
+pub page_token: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListInstancesResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub instances: ::prost::alloc::vec::Vec<Instance>,
-    #[prost(string, tag = "2")]
-    pub next_page_token: ::prost::alloc::string::String,
-    #[prost(string, repeated, tag = "3")]
-    pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+#[prost(message, repeated, tag = "1")]
+pub instances: ::prost::alloc::vec::Vec<Instance>,
+#[prost(string, tag = "2")]
+pub next_page_token: ::prost::alloc::string::String,
+#[prost(string, repeated, tag = "3")]
+pub unreachable: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetInstanceAuthStringRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InstanceAuthString {
-    #[prost(string, tag = "1")]
-    pub auth_string: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub auth_string: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreateInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub parent: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub instance_id: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub instance: ::core::option::Option<Instance>,
+#[prost(string, tag = "1")]
+pub parent: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub instance_id: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub instance: ::core::option::Option<Instance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateInstanceRequest {
-    #[prost(message, optional, tag = "1")]
-    pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
-    #[prost(message, optional, tag = "2")]
-    pub instance: ::core::option::Option<Instance>,
+#[prost(message, optional, tag = "1")]
+pub update_mask: ::core::option::Option<::prost_types::FieldMask>,
+#[prost(message, optional, tag = "2")]
+pub instance: ::core::option::Option<Instance>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpgradeInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub redis_version: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub redis_version: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsSource {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct InputConfig {
-    #[prost(oneof = "input_config::Source", tags = "1")]
-    pub source: ::core::option::Option<input_config::Source>,
+#[prost(oneof = "input_config::Source", tags = "1")]
+pub source: ::core::option::Option<input_config::Source>,
 }
 /// Nested message and enum types in `InputConfig`.
 pub mod input_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Source {
-        #[prost(message, tag = "1")]
-        GcsSource(super::GcsSource),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Source {
+#[prost(message, tag = "1")]
+GcsSource(super::GcsSource),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ImportInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub input_config: ::core::option::Option<InputConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub input_config: ::core::option::Option<InputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GcsDestination {
-    #[prost(string, tag = "1")]
-    pub uri: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub uri: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct OutputConfig {
-    #[prost(oneof = "output_config::Destination", tags = "1")]
-    pub destination: ::core::option::Option<output_config::Destination>,
+#[prost(oneof = "output_config::Destination", tags = "1")]
+pub destination: ::core::option::Option<output_config::Destination>,
 }
 /// Nested message and enum types in `OutputConfig`.
 pub mod output_config {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Destination {
-        #[prost(message, tag = "1")]
-        GcsDestination(super::GcsDestination),
-    }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Oneof)]
+pub enum Destination {
+#[prost(message, tag = "1")]
+GcsDestination(super::GcsDestination),
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExportInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub output_config: ::core::option::Option<OutputConfig>,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub output_config: ::core::option::Option<OutputConfig>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FailoverInstanceRequest {
-    #[prost(string, tag = "1")]
-    pub name: ::prost::alloc::string::String,
-    #[prost(enumeration = "failover_instance_request::DataProtectionMode", tag = "2")]
-    pub data_protection_mode: i32,
+#[prost(string, tag = "1")]
+pub name: ::prost::alloc::string::String,
+#[prost(enumeration = "failover_instance_request::DataProtectionMode", tag = "2")]
+pub data_protection_mode: i32,
 }
 /// Nested message and enum types in `FailoverInstanceRequest`.
 pub mod failover_instance_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DataProtectionMode {
-        Unspecified = 0,
-        LimitedDataLoss = 1,
-        ForceDataLoss = 2,
-    }
-    impl DataProtectionMode {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DataProtectionMode::Unspecified => "DATA_PROTECTION_MODE_UNSPECIFIED",
-                DataProtectionMode::LimitedDataLoss => "LIMITED_DATA_LOSS",
-                DataProtectionMode::ForceDataLoss => "FORCE_DATA_LOSS",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "DATA_PROTECTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
-                "LIMITED_DATA_LOSS" => Some(Self::LimitedDataLoss),
-                "FORCE_DATA_LOSS" => Some(Self::ForceDataLoss),
-                _ => None,
-            }
-        }
-    }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum DataProtectionMode {
+Unspecified = 0,
+LimitedDataLoss = 1,
+ForceDataLoss = 2,
+}
+impl DataProtectionMode {
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DataProtectionMode::Unspecified => "DATA_PROTECTION_MODE_UNSPECIFIED",
+DataProtectionMode::LimitedDataLoss => "LIMITED_DATA_LOSS",
+DataProtectionMode::ForceDataLoss => "FORCE_DATA_LOSS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"DATA_PROTECTION_MODE_UNSPECIFIED" => Some(Self::Unspecified),
+"LIMITED_DATA_LOSS" => Some(Self::LimitedDataLoss),
+"FORCE_DATA_LOSS" => Some(Self::ForceDataLoss),
+_ => None,
+}
+}
+}
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LocationMetadata {
-    #[prost(map = "string, message", tag = "1")]
-    pub available_zones: ::std::collections::HashMap<
-        ::prost::alloc::string::String,
-        ZoneMetadata,
-    >,
+#[prost(map = "string, message", tag = "1")]
+pub available_zones: ::std::collections::HashMap<::prost::alloc::string::String, ZoneMetadata>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
@@ -679,484 +578,235 @@ pub struct ZoneMetadata {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TlsCertificate {
-    #[prost(string, tag = "1")]
-    pub serial_number: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub cert: ::prost::alloc::string::String,
-    #[prost(message, optional, tag = "3")]
-    pub create_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(message, optional, tag = "4")]
-    pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(string, tag = "5")]
-    pub sha1_fingerprint: ::prost::alloc::string::String,
+#[prost(string, tag = "1")]
+pub serial_number: ::prost::alloc::string::String,
+#[prost(string, tag = "2")]
+pub cert: ::prost::alloc::string::String,
+#[prost(message, optional, tag = "3")]
+pub create_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(message, optional, tag = "4")]
+pub expire_time: ::core::option::Option<::prost_types::Timestamp>,
+#[prost(string, tag = "5")]
+pub sha1_fingerprint: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 pub mod cloud_redis_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
-    use tonic::codegen::http::Uri;
-    /// Configures and manages Cloud Memorystore for Redis instances
-    ///
-    /// Google Cloud Memorystore for Redis v1beta1
-    ///
-    /// The `redis.googleapis.com` service implements the Google Cloud Memorystore
-    /// for Redis API and defines the following resource model for managing Redis
-    /// instances:
-    /// * The service works with a collection of cloud projects, named: `/projects/*`
-    /// * Each project has a collection of available locations, named: `/locations/*`
-    /// * Each location has a collection of Redis instances, named: `/instances/*`
-    /// * As such, Redis instances are resources of the form:
-    ///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-    ///
-    /// Note that location_id must be referring to a GCP `region`; for example:
-    /// * `projects/redpepper-1290/locations/us-central1/instances/my-redis`
-    #[derive(Debug, Clone)]
-    pub struct CloudRedisClient<T> {
-        inner: tonic::client::Grpc<T>,
-    }
-    impl<T> CloudRedisClient<T>
-    where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
-    {
-        pub fn new(inner: T) -> Self {
-            let inner = tonic::client::Grpc::new(inner);
-            Self { inner }
-        }
-        pub fn with_origin(inner: T, origin: Uri) -> Self {
-            let inner = tonic::client::Grpc::with_origin(inner, origin);
-            Self { inner }
-        }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> CloudRedisClient<InterceptedService<T, F>>
-        where
-            F: tonic::service::Interceptor,
-            T::ResponseBody: Default,
-            T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-                Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
-                >,
-            >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
-        {
-            CloudRedisClient::new(InterceptedService::new(inner, interceptor))
-        }
-        /// Compress requests with the given encoding.
-        ///
-        /// This requires the server to support it otherwise it might respond with an
-        /// error.
-        #[must_use]
-        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.send_compressed(encoding);
-            self
-        }
-        /// Enable decompressing responses.
-        #[must_use]
-        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
-            self.inner = self.inner.accept_compressed(encoding);
-            self
-        }
-        /// Limits the maximum size of a decoded message.
-        ///
-        /// Default: `4MB`
-        #[must_use]
-        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_decoding_message_size(limit);
-            self
-        }
-        /// Limits the maximum size of an encoded message.
-        ///
-        /// Default: `usize::MAX`
-        #[must_use]
-        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
-            self.inner = self.inner.max_encoding_message_size(limit);
-            self
-        }
-        /// Lists all Redis instances owned by a project in either the specified
-        /// location (region) or all locations.
-        ///
-        /// The location should have the following format:
-        ///
-        /// * `projects/{project_id}/locations/{location_id}`
-        ///
-        /// If `location_id` is specified as `-` (wildcard), then all regions
-        /// available to the project are queried, and the results are aggregated.
-        pub async fn list_instances(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ListInstancesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::ListInstancesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/ListInstances",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "ListInstances",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the details of a specific Redis instance.
-        pub async fn get_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetInstanceRequest>,
-        ) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/GetInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "GetInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the AUTH string for a Redis instance. If AUTH is not enabled for the
-        /// instance the response will be empty. This information is not included in
-        /// the details returned to GetInstance.
-        pub async fn get_instance_auth_string(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetInstanceAuthStringRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::InstanceAuthString>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/GetInstanceAuthString",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "GetInstanceAuthString",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Creates a Redis instance based on the specified tier and memory size.
-        ///
-        /// By default, the instance is accessible from the project's
-        /// [default network](https://cloud.google.com/vpc/docs/vpc).
-        ///
-        /// The creation is executed asynchronously and callers may check the returned
-        /// operation to track its progress. Once the operation is completed the Redis
-        /// instance will be fully functional. The completed longrunning.Operation will
-        /// contain the new instance object in the response field.
-        ///
-        /// The returned operation is automatically deleted after a few hours, so there
-        /// is no need to call DeleteOperation.
-        pub async fn create_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::CreateInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/CreateInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "CreateInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Updates the metadata and configuration of a specific Redis instance.
-        ///
-        /// Completed longrunning.Operation will contain the new instance object
-        /// in the response field. The returned operation is automatically deleted
-        /// after a few hours, so there is no need to call DeleteOperation.
-        pub async fn update_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpdateInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/UpdateInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "UpdateInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Upgrades Redis instance to the newer Redis version specified in the
-        /// request.
-        pub async fn upgrade_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::UpgradeInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/UpgradeInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "UpgradeInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
-        ///
-        /// Redis may stop serving during this operation. Instance state will be
-        /// IMPORTING for entire operation. When complete, the instance will contain
-        /// only data from the imported file.
-        ///
-        /// The returned operation is automatically deleted after a few hours, so
-        /// there is no need to call DeleteOperation.
-        pub async fn import_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ImportInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/ImportInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "ImportInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Export Redis instance data into a Redis RDB format file in Cloud Storage.
-        ///
-        /// Redis will continue serving during this operation.
-        ///
-        /// The returned operation is automatically deleted after a few hours, so
-        /// there is no need to call DeleteOperation.
-        pub async fn export_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::ExportInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/ExportInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "ExportInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Initiates a failover of the primary node to current replica node for a
-        /// specific STANDARD tier Cloud Memorystore for Redis instance.
-        pub async fn failover_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::FailoverInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/FailoverInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "FailoverInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Deletes a specific Redis instance.  Instance stops serving and data is
-        /// deleted.
-        pub async fn delete_instance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::DeleteInstanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/DeleteInstance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "DeleteInstance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-        /// Reschedule maintenance for a given instance in a given project and
-        /// location.
-        pub async fn reschedule_maintenance(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RescheduleMaintenanceRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::super::super::super::longrunning::Operation>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/google.cloud.redis.v1beta1.CloudRedis/RescheduleMaintenance",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new(
-                        "google.cloud.redis.v1beta1.CloudRedis",
-                        "RescheduleMaintenance",
-                    ),
-                );
-            self.inner.unary(req, path, codec).await
-        }
-    }
+#![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+use tonic::codegen::http::Uri;
+use tonic::codegen::*;
+/// Configures and manages Cloud Memorystore for Redis instances
+///
+/// Google Cloud Memorystore for Redis v1beta1
+///
+/// The `redis.googleapis.com` service implements the Google Cloud Memorystore
+/// for Redis API and defines the following resource model for managing Redis
+/// instances:
+/// * The service works with a collection of cloud projects, named: `/projects/*`
+/// * Each project has a collection of available locations, named: `/locations/*`
+/// * Each location has a collection of Redis instances, named: `/instances/*`
+/// * As such, Redis instances are resources of the form:
+///   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+///
+/// Note that location_id must be referring to a GCP `region`; for example:
+/// * `projects/redpepper-1290/locations/us-central1/instances/my-redis`
+#[derive(Debug, Clone)]
+pub struct CloudRedisClient<T> {
+inner: tonic::client::Grpc<T>,
+}
+impl<T> CloudRedisClient<T>
+where
+T: tonic::client::GrpcService<tonic::body::BoxBody>,
+T::Error: Into<StdError>,
+T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+<T::ResponseBody as Body>::Error: Into<StdError> + Send,
+{
+pub fn new(inner: T) -> Self {
+let inner = tonic::client::Grpc::new(inner);
+Self { inner }
+}
+pub fn with_origin(inner: T, origin: Uri) -> Self {
+let inner = tonic::client::Grpc::with_origin(inner, origin);
+Self { inner }
+}
+pub fn with_interceptor<F>(inner: T, interceptor: F) -> CloudRedisClient<InterceptedService<T, F>>
+where
+F: tonic::service::Interceptor,
+T::ResponseBody: Default,
+T: tonic::codegen::Service<http::Request<tonic::body::BoxBody>, Response = http::Response<<T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody>>,
+<T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error: Into<StdError> + Send + Sync,
+{
+CloudRedisClient::new(InterceptedService::new(inner, interceptor))
+}
+/// Compress requests with the given encoding.
+///
+/// This requires the server to support it otherwise it might respond with an
+/// error.
+#[must_use]
+pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.send_compressed(encoding);
+self
+}
+/// Enable decompressing responses.
+#[must_use]
+pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+self.inner = self.inner.accept_compressed(encoding);
+self
+}
+/// Limits the maximum size of a decoded message.
+///
+/// Default: `4MB`
+#[must_use]
+pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_decoding_message_size(limit);
+self
+}
+/// Limits the maximum size of an encoded message.
+///
+/// Default: `usize::MAX`
+#[must_use]
+pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+self.inner = self.inner.max_encoding_message_size(limit);
+self
+}
+/// Lists all Redis instances owned by a project in either the specified
+/// location (region) or all locations.
+///
+/// The location should have the following format:
+///
+/// * `projects/{project_id}/locations/{location_id}`
+///
+/// If `location_id` is specified as `-` (wildcard), then all regions
+/// available to the project are queried, and the results are aggregated.
+pub async fn list_instances(&mut self, request: impl tonic::IntoRequest<super::ListInstancesRequest>) -> std::result::Result<tonic::Response<super::ListInstancesResponse>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/ListInstances");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "ListInstances"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the details of a specific Redis instance.
+pub async fn get_instance(&mut self, request: impl tonic::IntoRequest<super::GetInstanceRequest>) -> std::result::Result<tonic::Response<super::Instance>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/GetInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "GetInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Gets the AUTH string for a Redis instance. If AUTH is not enabled for the
+/// instance the response will be empty. This information is not included in
+/// the details returned to GetInstance.
+pub async fn get_instance_auth_string(&mut self, request: impl tonic::IntoRequest<super::GetInstanceAuthStringRequest>) -> std::result::Result<tonic::Response<super::InstanceAuthString>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/GetInstanceAuthString");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "GetInstanceAuthString"));
+self.inner.unary(req, path, codec).await
+}
+/// Creates a Redis instance based on the specified tier and memory size.
+///
+/// By default, the instance is accessible from the project's
+/// [default network](https://cloud.google.com/vpc/docs/vpc).
+///
+/// The creation is executed asynchronously and callers may check the returned
+/// operation to track its progress. Once the operation is completed the Redis
+/// instance will be fully functional. The completed longrunning.Operation will
+/// contain the new instance object in the response field.
+///
+/// The returned operation is automatically deleted after a few hours, so there
+/// is no need to call DeleteOperation.
+pub async fn create_instance(&mut self, request: impl tonic::IntoRequest<super::CreateInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/CreateInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "CreateInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Updates the metadata and configuration of a specific Redis instance.
+///
+/// Completed longrunning.Operation will contain the new instance object
+/// in the response field. The returned operation is automatically deleted
+/// after a few hours, so there is no need to call DeleteOperation.
+pub async fn update_instance(&mut self, request: impl tonic::IntoRequest<super::UpdateInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/UpdateInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "UpdateInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Upgrades Redis instance to the newer Redis version specified in the
+/// request.
+pub async fn upgrade_instance(&mut self, request: impl tonic::IntoRequest<super::UpgradeInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/UpgradeInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "UpgradeInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
+///
+/// Redis may stop serving during this operation. Instance state will be
+/// IMPORTING for entire operation. When complete, the instance will contain
+/// only data from the imported file.
+///
+/// The returned operation is automatically deleted after a few hours, so
+/// there is no need to call DeleteOperation.
+pub async fn import_instance(&mut self, request: impl tonic::IntoRequest<super::ImportInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/ImportInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "ImportInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Export Redis instance data into a Redis RDB format file in Cloud Storage.
+///
+/// Redis will continue serving during this operation.
+///
+/// The returned operation is automatically deleted after a few hours, so
+/// there is no need to call DeleteOperation.
+pub async fn export_instance(&mut self, request: impl tonic::IntoRequest<super::ExportInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/ExportInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "ExportInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Initiates a failover of the primary node to current replica node for a
+/// specific STANDARD tier Cloud Memorystore for Redis instance.
+pub async fn failover_instance(&mut self, request: impl tonic::IntoRequest<super::FailoverInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/FailoverInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "FailoverInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Deletes a specific Redis instance.  Instance stops serving and data is
+/// deleted.
+pub async fn delete_instance(&mut self, request: impl tonic::IntoRequest<super::DeleteInstanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/DeleteInstance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "DeleteInstance"));
+self.inner.unary(req, path, codec).await
+}
+/// Reschedule maintenance for a given instance in a given project and
+/// location.
+pub async fn reschedule_maintenance(&mut self, request: impl tonic::IntoRequest<super::RescheduleMaintenanceRequest>) -> std::result::Result<tonic::Response<super::super::super::super::longrunning::Operation>, tonic::Status> {
+self.inner.ready().await.map_err(|e| tonic::Status::new(tonic::Code::Unknown, format!("Service was not ready: {}", e.into())))?;
+let codec = tonic::codec::ProstCodec::default();
+let path = http::uri::PathAndQuery::from_static("/google.cloud.redis.v1beta1.CloudRedis/RescheduleMaintenance");
+let mut req = request.into_request();
+req.extensions_mut().insert(GrpcMethod::new("google.cloud.redis.v1beta1.CloudRedis", "RescheduleMaintenance"));
+self.inner.unary(req, path, codec).await
+}
+}
 }

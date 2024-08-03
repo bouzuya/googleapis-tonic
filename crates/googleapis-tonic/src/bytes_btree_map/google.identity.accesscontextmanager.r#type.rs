@@ -2,105 +2,105 @@
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DeviceEncryptionStatus {
-    EncryptionUnspecified = 0,
-    EncryptionUnsupported = 1,
-    Unencrypted = 2,
-    Encrypted = 3,
+EncryptionUnspecified = 0,
+EncryptionUnsupported = 1,
+Unencrypted = 2,
+Encrypted = 3,
 }
 impl DeviceEncryptionStatus {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            DeviceEncryptionStatus::EncryptionUnspecified => "ENCRYPTION_UNSPECIFIED",
-            DeviceEncryptionStatus::EncryptionUnsupported => "ENCRYPTION_UNSUPPORTED",
-            DeviceEncryptionStatus::Unencrypted => "UNENCRYPTED",
-            DeviceEncryptionStatus::Encrypted => "ENCRYPTED",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ENCRYPTION_UNSPECIFIED" => Some(Self::EncryptionUnspecified),
-            "ENCRYPTION_UNSUPPORTED" => Some(Self::EncryptionUnsupported),
-            "UNENCRYPTED" => Some(Self::Unencrypted),
-            "ENCRYPTED" => Some(Self::Encrypted),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DeviceEncryptionStatus::EncryptionUnspecified => "ENCRYPTION_UNSPECIFIED",
+DeviceEncryptionStatus::EncryptionUnsupported => "ENCRYPTION_UNSUPPORTED",
+DeviceEncryptionStatus::Unencrypted => "UNENCRYPTED",
+DeviceEncryptionStatus::Encrypted => "ENCRYPTED",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"ENCRYPTION_UNSPECIFIED" => Some(Self::EncryptionUnspecified),
+"ENCRYPTION_UNSUPPORTED" => Some(Self::EncryptionUnsupported),
+"UNENCRYPTED" => Some(Self::Unencrypted),
+"ENCRYPTED" => Some(Self::Encrypted),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum OsType {
-    OsUnspecified = 0,
-    DesktopMac = 1,
-    DesktopWindows = 2,
-    DesktopLinux = 3,
-    DesktopChromeOs = 6,
-    Android = 4,
-    Ios = 5,
+OsUnspecified = 0,
+DesktopMac = 1,
+DesktopWindows = 2,
+DesktopLinux = 3,
+DesktopChromeOs = 6,
+Android = 4,
+Ios = 5,
 }
 impl OsType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            OsType::OsUnspecified => "OS_UNSPECIFIED",
-            OsType::DesktopMac => "DESKTOP_MAC",
-            OsType::DesktopWindows => "DESKTOP_WINDOWS",
-            OsType::DesktopLinux => "DESKTOP_LINUX",
-            OsType::DesktopChromeOs => "DESKTOP_CHROME_OS",
-            OsType::Android => "ANDROID",
-            OsType::Ios => "IOS",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "OS_UNSPECIFIED" => Some(Self::OsUnspecified),
-            "DESKTOP_MAC" => Some(Self::DesktopMac),
-            "DESKTOP_WINDOWS" => Some(Self::DesktopWindows),
-            "DESKTOP_LINUX" => Some(Self::DesktopLinux),
-            "DESKTOP_CHROME_OS" => Some(Self::DesktopChromeOs),
-            "ANDROID" => Some(Self::Android),
-            "IOS" => Some(Self::Ios),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+OsType::OsUnspecified => "OS_UNSPECIFIED",
+OsType::DesktopMac => "DESKTOP_MAC",
+OsType::DesktopWindows => "DESKTOP_WINDOWS",
+OsType::DesktopLinux => "DESKTOP_LINUX",
+OsType::DesktopChromeOs => "DESKTOP_CHROME_OS",
+OsType::Android => "ANDROID",
+OsType::Ios => "IOS",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"OS_UNSPECIFIED" => Some(Self::OsUnspecified),
+"DESKTOP_MAC" => Some(Self::DesktopMac),
+"DESKTOP_WINDOWS" => Some(Self::DesktopWindows),
+"DESKTOP_LINUX" => Some(Self::DesktopLinux),
+"DESKTOP_CHROME_OS" => Some(Self::DesktopChromeOs),
+"ANDROID" => Some(Self::Android),
+"IOS" => Some(Self::Ios),
+_ => None,
+}
+}
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum DeviceManagementLevel {
-    ManagementUnspecified = 0,
-    None = 1,
-    Basic = 2,
-    Complete = 3,
+ManagementUnspecified = 0,
+None = 1,
+Basic = 2,
+Complete = 3,
 }
 impl DeviceManagementLevel {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            DeviceManagementLevel::ManagementUnspecified => "MANAGEMENT_UNSPECIFIED",
-            DeviceManagementLevel::None => "NONE",
-            DeviceManagementLevel::Basic => "BASIC",
-            DeviceManagementLevel::Complete => "COMPLETE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "MANAGEMENT_UNSPECIFIED" => Some(Self::ManagementUnspecified),
-            "NONE" => Some(Self::None),
-            "BASIC" => Some(Self::Basic),
-            "COMPLETE" => Some(Self::Complete),
-            _ => None,
-        }
-    }
+/// String value of the enum field names used in the ProtoBuf definition.
+///
+/// The values are not transformed in any way and thus are considered stable
+/// (if the ProtoBuf definition does not change) and safe for programmatic use.
+pub fn as_str_name(&self) -> &'static str {
+match self {
+DeviceManagementLevel::ManagementUnspecified => "MANAGEMENT_UNSPECIFIED",
+DeviceManagementLevel::None => "NONE",
+DeviceManagementLevel::Basic => "BASIC",
+DeviceManagementLevel::Complete => "COMPLETE",
+}
+}
+/// Creates an enum from field names used in the ProtoBuf definition.
+pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+match value {
+"MANAGEMENT_UNSPECIFIED" => Some(Self::ManagementUnspecified),
+"NONE" => Some(Self::None),
+"BASIC" => Some(Self::Basic),
+"COMPLETE" => Some(Self::Complete),
+_ => None,
+}
+}
 }
