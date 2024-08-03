@@ -471,7 +471,7 @@ dependencies = [
 
 [[package]]
 name = "googleapis-tonic"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "prost 0.13.1",
  "prost-types 0.13.1",
